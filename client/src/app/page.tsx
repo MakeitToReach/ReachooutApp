@@ -54,7 +54,7 @@ function page() {
                     </motion.p>
 
                     <motion.div variants={fadeIn} className="flex gap-4">
-                        <Link href={"/templates"}>
+                        <Link href={"/explore"}>
                             <Button className="dark scale-125">
                                 Start Creating
                                 <ChevronRight size={20} />
