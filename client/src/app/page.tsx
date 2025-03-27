@@ -120,7 +120,7 @@ function page() {
                             Ready to showcase your work?
                         </h2>
                         <p className="text-xl text-gray-300 mb-8">
-                            Join creators who've already launched their portfolios.
+                            Join creators who&apos;ve already launched their portfolios.
                         </p>
                         <button className="px-8 py-4 bg-white text-black rounded-lg font-semibold hover:bg-purple-100 transition flex items-center gap-2 mx-auto">
                             Create Your Portfolio
