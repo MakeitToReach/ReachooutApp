@@ -40,7 +40,7 @@ function page() {
 
                     <motion.h1
                         variants={fadeIn}
-                        className="text-4xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent"
+                        className="text-4xl md:text-7xl md:leading-tight font-bold mb-6 bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent"
                     >
                         Build Your Digital Identity
                     </motion.h1>
