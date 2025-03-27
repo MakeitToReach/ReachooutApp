@@ -1,15 +1,16 @@
 import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 interface TemplateCardProps {
-  imageUrl?: string;
+  imageUrl: string;
   title?: string;
   previewUrl?: string;
   id?: string;
 }
 export const TemplateCard = ({
-  imageUrl,
+  imageUrl = "",
   previewUrl = "/",
 }: TemplateCardProps) => {
   return (
@@ -21,7 +22,15 @@ export const TemplateCard = ({
         </Link>
         <Button className="md:text-md cursor-pointer">Use</Button>
       </div>
-      <img src={imageUrl} alt="template" />
+      <Image
+        src={imageUrl}
+        alt="template"
+        width={100}
+        height={400}
+        loading="lazy"
+        loader={() => imageUrl}
+        className="w-full h-[400px] object-cover object-top"
+      />
     </div>
   );
 };
