@@ -13,9 +13,10 @@ import {
 export const Professional = () => {
   return (
     <div className="space-y-20">
-      <PFNavbar />
-
-      <PFHeroSection />
+      <div className="space-y-10">
+        <PFNavbar />
+        <PFHeroSection />
+      </div>
 
       <PFAboutSection />
 
