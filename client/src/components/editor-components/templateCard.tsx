@@ -16,7 +16,7 @@ export const TemplateCard = ({
   return (
     <div className="relative  rounded-xl overflow-hidden">
       {/* gradient cover */}
-      <div className="absolute w-full h-full flex justify-center items-center gap-2 bottom-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent rounded-xl opacity-0 hover:opacity-100 transition-all duration-200 z-40">
+      <div className="absolute w-full h-full flex justify-center items-center gap-2 bottom-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent rounded-xl md:opacity-0 opacity-100 hover:opacity-100 transition-all duration-200 z-40 ">
         <Link href={previewUrl}>
           <Button className="md:text-md cursor-pointer">Preview</Button>
         </Link>
