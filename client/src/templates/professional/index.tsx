@@ -2,8 +2,8 @@
 import React from "react";
 import {
   PFNavbar,
-  PFSocialSection,
-  PFClientSection,
+  // PFSocialSection,
+  // PFClientSection,
   PFAboutSection,
   PFWorkSection,
   PFHeroSection,
@@ -12,7 +12,7 @@ import {
 
 export const Professional = () => {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="space-y-20">
       <PFNavbar />
 
       <PFHeroSection />
@@ -21,9 +21,9 @@ export const Professional = () => {
 
       <PFWorkSection />
 
-      <PFClientSection />
+      {/* <PFClientSection /> */}
 
-      <PFSocialSection />
+      {/* <PFSocialSection /> */}
       <PFFooter />
     </div>
   );

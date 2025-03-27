@@ -4,7 +4,7 @@ import React from "react";
 
 export const PFHeroSection = () => {
   return (
-    <section className="md:px-[20%]">
+    <section className="lg:px-[20%]">
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">
         <div className="space-y-4">
           {/* sm logo here */}

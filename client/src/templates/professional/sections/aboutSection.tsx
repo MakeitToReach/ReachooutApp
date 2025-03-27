@@ -1,56 +1,68 @@
-import React from "react";
-
 export const PFAboutSection = () => {
-  return (
-    <section className="px-4 flex flex-col lg:flex-row lg:justify-between lg:px-[20%]">
-      {/* grid */}
-      <div className="grid grid-cols-2 gap-2 mt-4 bg-red-500 lg:w-full">
-        <div className=" flex flex-col justify-center items-center rounded-sm bg-red-300 h-40">
-          <h1 className="font-bold text-5xl">8+</h1>
-          <h2>years experience</h2>
-        </div>
-        <div className=" flex flex-col justify-center items-center rounded-sm bg-red-300 h-40">
-          <h1 className="font-bold text-5xl">8+</h1>
-          <h2>years experience</h2>
-        </div>
-        <div className=" flex flex-col justify-center items-center rounded-sm bg-red-300 h-40">
-          <h1 className="font-bold text-5xl">8+</h1>
-          <h2>years experience</h2>
-        </div>
-        <div className=" flex flex-col justify-center items-center rounded-sm bg-red-300 h-40">
-          <h1 className="font-bold text-5xl">8+</h1>
-          <h2>years experience</h2>
-        </div>
-      </div>
-      {/* grid end */}
+    return (
+        <section className="px-4 lg:px-0 flex flex-col lg:flex-row lg:justify-between lg:mt-20 max-w-6xl mx-auto">
+            {/* Stats grid */}
+            <div className="grid grid-cols-2 gap-2 gap-y-2 lg:mt-20 h-fit">
+                <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6">
+                    <h1 className="font-bold text-5xl lg:text-6xl text-[#1e1e1e]">8+</h1>
+                    <h2 className="text-[#1e1e1e] mt-2 text-xl">IT Experience</h2>
+                </div>
+                <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6">
+                    <h1 className="font-bold text-5xl lg:text-6xl text-[#1e1e1e]">8+</h1>
+                    <h2 className="text-[#1e1e1e] mt-2 text-xl">IT Experience</h2>
+                </div>
+                <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6">
+                    <h1 className="font-bold text-5xl lg:text-6xl text-[#1e1e1e]">8+</h1>
+                    <h2 className="text-[#1e1e1e] mt-2 text-xl">IT Experience</h2>
+                </div>
+                <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6">
+                    <h1 className="font-bold text-5xl lg:text-6xl text-[#1e1e1e]">8+</h1>
+                    <h2 className="text-[#1e1e1e] mt-2 text-xl">IT Experience</h2>
+                </div>
+            </div>
+            {/* Content */}
+            <div className="flex flex-col gap-6 mt-8 lg:mt-0 lg:w-3/5">
+                <h1 className="text-3xl lg:text-5xl font-semibold text-[#1e1e1e]">
+                    About Me
+                </h1>
+                <h2 className="uppercase font-medium">
+                    FOUNDER OF{" "}
+                    <span className="text-[#f8b84e]">INCUBE COWORKING SPACE</span>
+                </h2>
+                <p className="text-[#1e1e1e] leading-relaxed">
+                    InCube coworking space, founded in 2017 has its branches in Pune,
+                    Nasik and Nagpur with total 250 seats all over centres.
+                    We are dedicated to provide inspiring and affordable workspace for
+                    entrepreneurs, freelancers, startups and established alike.
+                    Our services are Managed office spaces, Built to suit office, Hot
+                    desks, Dedicated desks, Private offices, Virtual offices, Meeting room
+                    and Event spaces.
+                    Our mission is to foster a vibrant community where ideas thrive,
+                    creativity flourishes and businesses grow. We are looking for a
+                    business collaborations and investors to grow in TIER 1 and 2 cities.
+                </p>
 
-      <div className="flex flex-col gap-8 bg-blue-500 mt-8 lg:mt-0">
-        <h1 className="text-3xl font-semibold">About Me</h1>
-        <h2 className="uppercase">
-          FOUNDER OF <span className="text-green-600">REACHOUT</span>
-        </h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
-          ipsa tempora labore adipisci atque libero reiciendis fugiat sed,
-          ducimus molestiae tempore odio maxime mollitia voluptates repellat
-          odit aliquid sint in sapiente aut asperiores? Dolores iure et
-          similique praesentium nemo magni dolore impedit eius, cupiditate nulla
-          possimus aperiam ut quibusdam fuga accusantium officiis, nam sint
-          suscipit debitis facere illo in. Obcaecati culpa ullam reprehenderit
-          expedita perspiciatis nemo, doloremque quo nobis vitae! Ducimus labore
-          repellat unde voluptas mollitia temporibus odit porro voluptatum dicta
-          illum maxime eligendi praesentium rerum laboriosam doloribus
-          recusandae, sequi quasi, ab pariatur culpa impedit aperiam accusamus
-          accusantium deserunt. Sequi.
-        </p>
-
-        <ul className="list-disc px-6 font-semibold space-y-2">
-          <li>Centers in 3+ cities</li>
-          <li>Founded in 2017</li>
-          <li>Savitribai Phule Pune University</li>
-          <li>100% +ve reviews</li>
-        </ul>
-      </div>
-    </section>
-  );
+                <ul className="grid grid-cols-2 gap-y-3 gap-x-4 mt-2">
+                    <li className="flex items-center">
+                        <span className="inline-block w-4 h-4 mr-2 bg-[#fbe8d3] rounded-sm"></span>
+                        <span className="font-medium">Centers in 3+ cities</span>
+                    </li>
+                    <li className="flex items-center">
+                        <span className="inline-block w-4 h-4 mr-2 bg-[#d6eef8] rounded-sm"></span>
+                        <span className="font-medium">Founded in 2017</span>
+                    </li>
+                    <li className="flex items-center">
+                        <span className="inline-block w-4 h-4 mr-2 bg-[#d6eef8] rounded-sm"></span>
+                        <span className="font-medium">
+                            Savitribai Phule Pune University
+                        </span>
+                    </li>
+                    <li className="flex items-center">
+                        <span className="inline-block w-4 h-4 mr-2 bg-[#fbe8d3] rounded-sm"></span>
+                        <span className="font-medium">100% +ve reviews</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    );
 };
