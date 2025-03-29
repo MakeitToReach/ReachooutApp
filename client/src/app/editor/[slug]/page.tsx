@@ -24,12 +24,12 @@ const EditorPage = () => {
     return (
         <div className="w-full flex">
             {/* Editor Panel */}
-            <div className="w-[40%]">
+            <div className="md:w-[40%] w-full">
                 <EditorPanel />
             </div>
 
             {/* Live Preview */}
-            <div className="w-[60%]">
+            <div className="md:w-[60%] hidden md:block">
                 <LivePreview templateComponent={template.component} />
             </div>
         </div>
