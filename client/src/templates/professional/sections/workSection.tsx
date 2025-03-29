@@ -1,9 +1,9 @@
 import { PFWorkCarousel } from "@/components/template-components/professional/workCarousel";
 import React from "react";
-import { PROJECT } from "../types/project";
+import { PF_PROJECT } from "../types/project";
 
 interface PFWorkSectionProps {
-    projects: PROJECT[];
+    projects: PF_PROJECT[];
 }
 export const PFWorkSection = ({ projects }: PFWorkSectionProps) => {
     return (

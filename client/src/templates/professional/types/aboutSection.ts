@@ -1,8 +1,8 @@
-import { STAT } from "./stat";
+import { PF_STAT } from "./stat";
 
-export type ABOUT_SECTION = {
+export type PF_ABOUT_SECTION = {
     title: string;
     colorTitle: string;
     description: string;
-    stats: STAT[];
+    stats: PF_STAT[];
 };

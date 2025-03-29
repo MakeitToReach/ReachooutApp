@@ -8,10 +8,12 @@ interface TemplateCardProps {
   title?: string;
   previewUrl?: string;
   id?: string;
+  editorUrl: string;
 }
 export const TemplateCard = ({
   imageUrl = "",
   previewUrl = "/",
+  editorUrl = "/",
 }: TemplateCardProps) => {
   return (
     <div className="relative  rounded-xl overflow-hidden">
@@ -20,7 +22,9 @@ export const TemplateCard = ({
         <Link href={previewUrl}>
           <Button className="md:text-md cursor-pointer">Preview</Button>
         </Link>
-        <Button className="md:text-md cursor-pointer">Use</Button>
+        <Link href={editorUrl}>
+          <Button className="md:text-md cursor-pointer">Use</Button>
+        </Link>
       </div>
       <Image
         src={imageUrl}

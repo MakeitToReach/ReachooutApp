@@ -1,10 +1,10 @@
-import { STAT } from "../types/stat";
+import { PF_STAT } from "../types/stat";
 
 interface PFAboutSetionProps {
     title: string;
     colorTitle: string;
     description: string;
-    stats: STAT[];
+    stats: PF_STAT[];
 }
 export const PFAboutSection = ({
     title,
@@ -13,7 +13,7 @@ export const PFAboutSection = ({
     stats,
 }: PFAboutSetionProps) => {
     return (
-        <section className="px-4 lg:px-0 flex flex-col lg:flex-row lg:justify-between lg:mt-20 max-w-6xl mx-auto">
+        <section className="px-4 flex flex-col lg:flex-row lg:justify-between lg:mt-20 max-w-6xl mx-auto">
             {/* Stats grid */}
             <div className="grid grid-cols-2 gap-2 gap-y-2 lg:mt-20 h-fit">
                 <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6">

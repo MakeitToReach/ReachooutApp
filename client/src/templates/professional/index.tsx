@@ -9,11 +9,11 @@ import {
 } from "./sections";
 import { PageLoader } from "@/components/editor-components/pageLoader";
 import { AnimatePresence, motion as m } from "motion/react";
-import { PF_STATIC_STATS } from "@/static_data/professional/stats";
-import { PF_STATIC_PROJECTS } from "@/static_data/professional/projects";
 
-export const ProfessionalPortfolio = () => {
+//eslint-disable-next-line
+export const ProfessionalPortfolio = ({ data }: any) => {
     const [loading, setLoading] = useState(true);
+    const { sections } = data;
 
     useEffect(() => {
         setTimeout(() => {
@@ -58,20 +58,20 @@ export const ProfessionalPortfolio = () => {
                         <div className="space-y-10">
                             <PFNavbar />
                             <PFHeroSection
-                                title="Hi, I'm John Doe"
-                                professions={["Founder"]}
-                                btnText="Visit our Website"
-                                btnLink="/"
-                                heroImgUrl="https://github.com/shadcn.png"
+                                professions={sections.heroSection.professions}
+                                title={sections.heroSection.title}
+                                btnLink={sections.heroSection.btnLink}
+                                btnText={sections.heroSection.btnText}
+                                heroImgUrl={sections.heroSection.heroImgUrl}
                             />
                         </div>
                         <PFAboutSection
-                            stats={PF_STATIC_STATS}
-                            title="Founder of"
-                            colorTitle="INCUBE COMPANY"
-                            description="lorem100"
+                            stats={sections.aboutSection.stats}
+                            title={sections.aboutSection.title}
+                            colorTitle={sections.aboutSection.colorTitle}
+                            description={sections.aboutSection.description}
                         />
-                        <PFWorkSection projects={PF_STATIC_PROJECTS} />
+                        <PFWorkSection projects={sections.workSection.projects} />
                         <PFFooter />
                     </m.div>
                 )}

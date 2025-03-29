@@ -37,6 +37,7 @@ const page = () => {
                             key={index}
                             imageUrl={template.imageUrl}
                             previewUrl={template.previewUrl}
+                            editorUrl={template.editorUrl}
                         />
                     ))}
                 </div>

@@ -1,4 +1,4 @@
-export type PROJECT = {
+export type PF_PROJECT = {
     heading: string;
     subtitle: string;
     imgUrl: string;
