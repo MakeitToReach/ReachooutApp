@@ -38,7 +38,7 @@ export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
         workSection: {
             projects: [
                 {
-                    heading: "main heading",
+                    heading: "01.First",
                     subtitle: "subtitle",
                     imgUrl: "https://github.com/shadcn.png",
                     description: "description",
@@ -46,9 +46,17 @@ export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
                     btnLink: "#",
                 },
                 {
-                    heading: "main heading",
+                    heading: "02.Second",
                     subtitle: "subtitle",
-                    imgUrl: "https://github.com/shadcn.png",
+                    imgUrl: "https://picsum.photos/200",
+                    description: "description",
+                    btnText: "button text",
+                    btnLink: "#",
+                },
+                {
+                    heading: "03.Third",
+                    subtitle: "subtitle",
+                    imgUrl: "https://picsum.photos/300",
                     description: "description",
                     btnText: "button text",
                     btnLink: "#",
