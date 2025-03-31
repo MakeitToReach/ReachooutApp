@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { TEMPLATES_STATIC } from "@/static_data/templates";
 import React from "react";
 
-const page = () => {
+const ExplorePage = () => {
     return (
         <div className=" font-Poppins w-full flex text-white">
             {/* content */}
@@ -46,4 +46,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default ExplorePage;
