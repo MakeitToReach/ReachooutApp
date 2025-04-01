@@ -63,5 +63,15 @@ export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
                 },
             ],
         },
+        clientSection: {
+            title: "leading companies & associations",
+            clientImgs: [
+                "https://github.com/shadcn.png",
+                "https://github.com/shadcn.png",
+                "https://github.com/shadcn.png",
+                "https://github.com/shadcn.png",
+            ],
+            colorTxt: "50+",
+        },
     },
 };

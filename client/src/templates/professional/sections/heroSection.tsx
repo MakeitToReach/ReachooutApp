@@ -41,7 +41,7 @@ export const PFHeroSection = ({
             </Button>
           </Link>
         </div>
-        <img src={heroImgUrl} alt="heroimg" className="mt-20" />
+        <img src={heroImgUrl} alt="heroimg" className="mt-20 max-h-[700px]" />
       </div>
     </section>
   );

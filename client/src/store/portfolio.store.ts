@@ -27,6 +27,11 @@ interface PortfolioState {
         value: any, // eslint-disable-line
     ) => void;
 
+    addProject: (
+        // section: keyof PF_TMP_SCHEMA["sections"],
+        project: PF_TMP_SCHEMA["sections"]["workSection"]["projects"][number],
+    ) => void;
+
     // Resets the entire portfolio data
     resetData: (newData: PF_TMP_SCHEMA) => void;
 }
@@ -114,6 +119,21 @@ export const usePortfolioStore = create<PortfolioState>((set) => ({
                 },
             };
         }),
+
+    addProject(project) {
+        set((state) => ({
+            data: {
+                ...state.data!,
+                sections: {
+                    ...state.data!.sections,
+                    workSection: {
+                        ...state.data!.sections.workSection,
+                        projects: [...state.data!.sections.workSection.projects, project],
+                    },
+                },
+            },
+        }));
+    },
 
     // Reset portfolio data
     resetData: (newData) => set({ data: newData }),

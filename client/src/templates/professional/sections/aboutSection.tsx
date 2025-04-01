@@ -20,25 +20,25 @@ export const PFAboutSection = ({
                     <h1 className="font-bold text-5xl lg:text-6xl text-[#1e1e1e]">
                         {stats[0].value}
                     </h1>
-                    <h2 className="text-[#1e1e1e] mt-2 text-xl">{stats[0].title}</h2>
+                    <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">{stats[0].title}</h2>
                 </div>
                 <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6">
                     <h1 className="font-bold text-5xl lg:text-6xl text-[#1e1e1e]">
                         {stats[1].value}
                     </h1>
-                    <h2 className="text-[#1e1e1e] mt-2 text-xl">{stats[1].title}</h2>
+                    <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">{stats[1].title}</h2>
                 </div>
                 <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6">
-                    <h1 className="font-bold text-5xl lg:text-6xl text-[#1e1e1e]">
+                    <h1 className="font-bold text-5xl lg:text-6xl text-[#1e1e1e] ">
                         {stats[2].value}
                     </h1>
-                    <h2 className="text-[#1e1e1e] mt-2 text-xl">{stats[2].title}</h2>
+                    <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">{stats[2].title}</h2>
                 </div>
-                <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6">
+                <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6 truncate">
                     <h1 className="font-bold text-5xl lg:text-6xl text-[#1e1e1e]">
                         {stats[3].value}
                     </h1>
-                    <h2 className="text-[#1e1e1e] mt-2 text-xl">{stats[3].title}</h2>
+                    <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">{stats[3].title}</h2>
                 </div>
             </div>
             {/* Content */}

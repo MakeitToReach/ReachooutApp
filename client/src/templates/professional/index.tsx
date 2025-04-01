@@ -6,6 +6,8 @@ import {
     PFWorkSection,
     PFHeroSection,
     PFFooter,
+    PFClientSection,
+    PFSocialSection,
 } from "./sections";
 import { PageLoader } from "@/components/editor-components/pageLoader";
 import { AnimatePresence, motion as m } from "motion/react";
@@ -72,6 +74,12 @@ export const ProfessionalPortfolio = ({ data }: any) => {
                             description={sections.aboutSection.description}
                         />
                         <PFWorkSection projects={sections.workSection.projects} />
+                        <PFClientSection
+                            title={sections.clientSection.title}
+                            clientImgs={sections.clientSection.clientImgs}
+                            colorTxt={sections.clientSection.colorTxt}
+                        />
+                        <PFSocialSection />
                         <PFFooter />
                     </m.div>
                 )}
