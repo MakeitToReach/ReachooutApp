@@ -10,10 +10,6 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
-// app.use(morgan(
-//     ':method :url :status :res[content-length] - :response-time ms'
-// ))
-
 // Test route
 app.get("/", (req, res) => {
   res.send("Express + TypeScript Server is running!");
