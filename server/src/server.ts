@@ -12,7 +12,7 @@ app.use(morgan("dev"));
 
 // Test route
 app.get("/", (req, res) => {
-  res.send("Express + TypeScript Server is running!");
+    res.send("Express + TypeScript Server is running!");
 });
 
 app.use(cors());
