@@ -1,2 +1,6 @@
 node_modules
+<<<<<<< HEAD
+=======
+# Keep environment variables out of version control
+>>>>>>> 73ac2fa54222a80144e6efbedbed67d6abef95ca
 .env
