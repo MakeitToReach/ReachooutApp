@@ -6,18 +6,18 @@ import React from "react";
 import { CldImage } from "next-cloudinary";
 
 interface PFHeroSetionProps {
-  title: string;
-  professions: string[];
-  btnText: string;
-  btnLink: string;
-  heroImgUrl: string;
+    title: string;
+    professions: string[];
+    btnText: string;
+    btnLink: string;
+    heroImgUrl: string;
 }
 export const PFHeroSection = ({
-  title,
-  professions,
-  btnLink,
-  btnText,
-  heroImgUrl,
+    title,
+    professions,
+    btnLink,
+    btnText,
+    heroImgUrl,
 }: PFHeroSetionProps) => {
   return (
     <section className="max-w-6xl mx-auto">

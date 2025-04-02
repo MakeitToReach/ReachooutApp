@@ -1,4 +1,4 @@
-export const useAuth = () => {
+export const getToken = () => {
     if (!document.cookie) {
         console.log("No cookie found");
         return;
