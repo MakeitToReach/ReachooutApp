@@ -1,10 +1,29 @@
 "use client";
+import { fetchAllTemplates } from "@/api/explore";
 import { TemplateCard } from "@/components/editor-components/templateCard";
 import { Button } from "@/components/ui/button";
-import { TEMPLATES_STATIC } from "@/static_data/templates";
-import React from "react";
+import { getToken } from "@/lib/isAuthenticated";
+import { TEMPLATES_SCHEMA } from "@/types/templates.types";
+import { useRouter } from "next/navigation";
+// import { TEMPLATES_STATIC } from "@/static_data/templates";
+import React, { useEffect, useState } from "react";
 
-const page = () => {
+const ExplorePage = () => {
+    const [templates, setTemplates] = useState<TEMPLATES_SCHEMA[]>();
+    const router = useRouter();
+
+    const fetchTemplates = async () => {
+        const response = await fetchAllTemplates();
+        setTemplates(response.templates);
+        // console.log(response);
+    };
+    useEffect(() => {
+        const token = getToken();
+        if (!token) {
+            router.push("/");
+        }
+        fetchTemplates();
+    });
     return (
         <div className=" font-Poppins w-full flex text-white">
             {/* content */}
@@ -32,18 +51,19 @@ const page = () => {
                 </div>
                 <hr />
                 <div className="grid md:grid-cols-4 gap-4 space-y-4 px-4">
-                    {TEMPLATES_STATIC.map((template, index) => (
-                        <TemplateCard
-                            key={index}
-                            imageUrl={template.imageUrl}
-                            previewUrl={template.previewUrl}
-                            editorUrl={template.editorUrl}
-                        />
-                    ))}
+                    {templates &&
+                        templates.map((template: TEMPLATES_SCHEMA, idx: number) => (
+                            <TemplateCard
+                                key={idx}
+                                imageUrl={template.thumbnailUrl}
+                                previewUrl={`/preview/${template.name.toLowerCase()}`}
+                                editorUrl={`/editor/${template.name.toLowerCase()}`}
+                            />
+                        ))}
                 </div>
             </div>
         </div>
     );
 };
 
-export default page;
+export default ExplorePage;

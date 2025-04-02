@@ -3,6 +3,6 @@ export type TEMPLATES_SCHEMA = {
   name: string;
   sections: object;
   thumbnailUrl: string;
-  previewRoute: string;
-  editorRoute: string;
+  previewRoute?: string;
+  editorRoute?: string;
 };

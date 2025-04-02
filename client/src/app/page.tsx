@@ -1,13 +1,15 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Code2, ChevronRight, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { TEMPLATES_STATIC } from "@/static_data/templates";
+import { AuthPopup } from "@/components/editor-components/authPopup";
 
-function page() {
+function Home() {
+    const [token, setToken] = useState<string>("");
     const fadeIn = {
         initial: { opacity: 0, y: 20 },
         animate: { opacity: 1, y: 0 },
@@ -21,6 +23,22 @@ function page() {
             },
         },
     };
+
+    useEffect(() => {
+        if (!document.cookie) {
+            console.log("No cookie found");
+            return;
+        }
+
+        const token = document.cookie
+            .split("; ")
+            .find((cookie) => cookie.startsWith("token="))
+            ?.split("=")[1];
+
+        if (token) {
+            setToken(token);
+        }
+    }, []);
 
     return (
         <div className="min-h-screen bg-black text-white font-Poppins">
@@ -56,12 +74,21 @@ function page() {
                     </motion.p>
 
                     <motion.div variants={fadeIn} className="flex gap-4">
-                        <Link href={"/explore"}>
-                            <Button className="dark scale-125">
-                                Start Creating
-                                <ChevronRight size={20} />
-                            </Button>
-                        </Link>
+                        {token ? (
+                            <Link href={"/explore"}>
+                                <Button className="dark scale-125">
+                                    Start Creating
+                                    <ChevronRight size={20} />
+                                </Button>
+                            </Link>
+                        ) : (
+                            <AuthPopup>
+                                <Button className="dark scale-125">
+                                    Start Creating
+                                    <ChevronRight size={20} />
+                                </Button>
+                            </AuthPopup>
+                        )}
                     </motion.div>
                 </motion.div>
             </header>
@@ -176,4 +203,4 @@ function page() {
     );
 }
 
-export default page;
+export default Home;

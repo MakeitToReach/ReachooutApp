@@ -32,8 +32,8 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                 src={project.imgUrl}
                 alt="project-img"
                 className="md:max-h-[500px] md:max-w-[500px] object-cover rounded-md"
-                width={600}
-                height={600}
+                width={500}
+                height={500}
               />
               <div className="space-y-4">
                 <div>
