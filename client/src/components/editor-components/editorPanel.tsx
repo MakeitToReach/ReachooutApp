@@ -152,10 +152,10 @@ export const EditorPanel = () => {
             <div className="p-4 bg-zinc-200 shadow-md flex gap-1 rounded-lg w-full truncate">
                 <h1>Preview at : </h1>
                 <Link
-                    href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/${user?.name}?template=${data.name}`}
+                    href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/live-preview/${user?.name}?template=${data.name}`}
                     className="text-blue-600 hover:text-blue-800 transition-all"
                 >
-                    {`${process.env.NEXT_PUBLIC_FRONTEND_URL}/${user?.name}?template=${data.name}`}
+                    {`${process.env.NEXT_PUBLIC_FRONTEND_URL}/live-preview/${user?.name}?template=${data.name}`}
                 </Link>
             </div>
         </form>
