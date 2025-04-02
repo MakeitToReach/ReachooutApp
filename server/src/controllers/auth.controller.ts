@@ -36,7 +36,7 @@ export const register = async (
 
         // Remove password from response
         const { password: _, ...userWithoutPassword } = user;
-        res.json(userWithoutPassword);
+        res.json({ userWithoutPassword });
     } catch (error) {
         console.error("Registration error:", error);
         res.status(500).json({ error: "User creation failed" });

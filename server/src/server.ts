@@ -1,14 +1,18 @@
 import express from "express";
 import cors from "cors";
-import bcrypt from "bcrypt";
 import authRouter from "./routes/auth.routes";
-import { PrismaClient } from "@prisma/client";
+import templateRouter from "./routes/template.routes";
+import morgan from "morgan";
 
 const app = express();
-const prisma = new PrismaClient();
 
 app.use(cors());
 app.use(express.json());
+app.use(morgan("dev"));
+
+// app.use(morgan(
+//     ':method :url :status :res[content-length] - :response-time ms'
+// ))
 
 // Test route
 app.get("/", (req, res) => {
@@ -17,12 +21,13 @@ app.get("/", (req, res) => {
 
 app.use(cors());
 app.use("/v1/auth", authRouter);
+app.use("/v1/template", templateRouter);
 
 // Get all users
-app.get("/users", async (req, res) => {
-  const users = await prisma.user.findMany();
-  res.json(users);
-});
+// app.get("/users", async (req, res) => {
+//   const users = await prisma.user.findMany();
+//   res.json(users);
+// });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
