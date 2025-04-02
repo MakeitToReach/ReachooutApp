@@ -1,7 +1,9 @@
+import { FlipText } from "@/components/template-components/professional/flipText";
 import { Button } from "@/components/ui/button";
 import { LucideArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { CldImage } from "next-cloudinary";
 
 interface PFHeroSetionProps {
   title: string;
@@ -23,14 +25,14 @@ export const PFHeroSection = ({
         <div className="space-y-4">
           {/* sm logo here */}
           <div>
-            <h1
-              className="text-3xl md:text-6xl font-bold"
-            >
-              {title}
-            </h1>
-            <h2 className="text-3xl md:text-5xl font-bold text-green-600">
-              {professions[0]}
-            </h2>
+            <h1 className="text-3xl md:text-6xl font-bold">{title}</h1>
+            {/* <h2 className="text-3xl md:text-5xl font-bold text-green-600"> */}
+            {/*   {professions[0]} */}
+            {/* </h2> */}
+            <FlipText
+              texts={professions}
+              className="text-3xl md:text-5xl font-bold text-green-600"
+            />
           </div>
           <Link href={btnLink}>
             <Button className="p-6 text-md rounded-sm">
@@ -41,7 +43,13 @@ export const PFHeroSection = ({
             </Button>
           </Link>
         </div>
-        <img src={heroImgUrl} alt="heroimg" className="mt-20 max-h-[700px]" />
+        <CldImage
+          src={heroImgUrl}
+          alt="heroimg"
+          className="mt-20 max-h-[500px] max-w-[500px] object-contain"
+          width={600}
+          height={600}
+        />
       </div>
     </section>
   );

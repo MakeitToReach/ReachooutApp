@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { PF_PROJECT } from "@/templates/professional/types/project";
 import Link from "next/link";
 import Autoplay from "embla-carousel-autoplay";
+import { CldImage } from "next-cloudinary";
 
 interface PFWorkCarouselProps {
   Projects: PF_PROJECT[];
@@ -27,10 +28,17 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
         {Projects.map((project, idx) => (
           <CarouselItem key={idx}>
             <div className="flex flex-col lg:flex-row-reverse gap-4 lg:justify-around lg:items-center mt-10">
-              <img
+              {/* <img */}
+              {/*   src={project.imgUrl} */}
+              {/*   alt="img" */}
+              {/*   className="w-80 rounded-md h-50  lg:size-90 object-cover self-center" */}
+              {/* /> */}
+              <CldImage
                 src={project.imgUrl}
-                alt="img"
-                className="w-80 rounded-md h-50  lg:size-90 object-cover self-center"
+                alt="project-img"
+                className="mt-20 max-h-[500px] max-w-[500px] object-cover rounded-md"
+                width={600}
+                height={600}
               />
               <div className="space-y-4">
                 <div>

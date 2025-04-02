@@ -3,6 +3,8 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { EditProjectPopup } from "./editProjectPopup";
 import Link from "next/link";
+import { CldUploadButton } from "next-cloudinary";
+import { LucideUpload } from "lucide-react";
 
 export const EditorPanel = () => {
   const { data, setSectionField, setStatField } = usePortfolioStore();
@@ -23,13 +25,24 @@ export const EditorPanel = () => {
             setSectionField("heroSection", "title", e.target.value)
           }
         />
-        <label className="font-semibold">Hero Image</label>
+        {/* <label className="font-semibold">Hero Image</label> */}
+        {/* <Input */}
+        {/*   type="text" */}
+        {/*   placeholder="Hero Image URL" */}
+        {/*   value={data.sections.heroSection.heroImgUrl} */}
+        {/*   onChange={(e) => */}
+        {/*     setSectionField("heroSection", "heroImgUrl", e.target.value) */}
+        {/*   } */}
+        {/* /> */}
+        <label className="font-semibold">
+          Animated Texts (comma separated)
+        </label>
         <Input
           type="text"
-          placeholder="Hero Image URL"
-          value={data.sections.heroSection.heroImgUrl}
+          placeholder="Web developer, Freelancer, Tech enthusiast"
+          value={data.sections.heroSection.professions}
           onChange={(e) =>
-            setSectionField("heroSection", "heroImgUrl", e.target.value)
+            setSectionField("heroSection", "professions", e.target.value)
           }
         />
         <label className="font-semibold">Button Redirect Link</label>
@@ -50,6 +63,24 @@ export const EditorPanel = () => {
             setSectionField("heroSection", "btnText", e.target.value)
           }
         />
+        <CldUploadButton
+          uploadPreset="you-view"
+          options={{ sources: ["local", "url", "unsplash"] }}
+          className="cursor-pointer p-2 bg-neutral-800 rounded-lg"
+          //eslint-disable-next-line
+          onSuccess={(result: any) => {
+            setSectionField(
+              "heroSection",
+              "heroImgUrl",
+              result.info.secure_url,
+            );
+          }}
+        >
+          <div className="text-white flex items-center gap-2">
+            <h1 className="font-semibold">Upload Image</h1> <LucideUpload />
+          </div>
+        </CldUploadButton>
+                <span className="ml-2">Dimensions - 500x500</span>
       </div>
 
       {/* About Section */}
@@ -128,10 +159,10 @@ export const EditorPanel = () => {
       <div className="p-4 bg-zinc-200 shadow-md flex gap-1 rounded-lg w-full truncate">
         <h1>Preview at : </h1>
         <Link
-          href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/username?template=${'professional'}`}
+          href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/username?template=${"professional"}`}
           className="text-blue-600 hover:text-blue-800 transition-all"
         >
-          {`${process.env.NEXT_PUBLIC_FRONTEND_URL}/username?template=${'professional'}`}
+          {`${process.env.NEXT_PUBLIC_FRONTEND_URL}/username?template=${"professional"}`}
         </Link>
       </div>
     </form>
