@@ -46,7 +46,7 @@ export const PFHeroSection = ({
         <CldImage
           src={heroImgUrl}
           alt="heroimg"
-          className="mt-20 max-h-[500px] max-w-[500px] object-contain"
+          className="md:max-h-[500px] md:max-w-[500px] object-contain"
           width={600}
           height={600}
         />
