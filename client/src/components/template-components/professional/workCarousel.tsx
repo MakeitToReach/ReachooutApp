@@ -28,17 +28,12 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
         {Projects.map((project, idx) => (
           <CarouselItem key={idx}>
             <div className="flex flex-col lg:flex-row-reverse gap-4 lg:justify-around lg:items-center mt-10">
-              {/* <img */}
-              {/*   src={project.imgUrl} */}
-              {/*   alt="img" */}
-              {/*   className="w-80 rounded-md h-50  lg:size-90 object-cover self-center" */}
-              {/* /> */}
               <CldImage
                 src={project.imgUrl}
                 alt="project-img"
-                className="mt-20 max-h-[500px] max-w-[500px] object-cover rounded-md"
-                width={600}
-                height={600}
+                className="md:max-h-[500px] md:max-w-[500px] object-cover rounded-md"
+                width={500}
+                height={500}
               />
               <div className="space-y-4">
                 <div>

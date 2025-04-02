@@ -13,8 +13,10 @@ import { motion as m } from "motion/react";
 import { loginUser, registerUser } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import { LucideLoader } from "lucide-react";
+import { useUserStore } from "@/store/user.store";
 
 export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
+    const { setUser } = useUserStore();
     const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -24,16 +26,24 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
     const router = useRouter();
 
     const handleRegister = async () => {
-        await registerUser(email, username, password).then(() => {
-            setOpen(false);
-            router.push("/explore");
-        });
+        setLoading(true);
+        const response = await registerUser(email, username, password);
+        if (response.user) {
+            setUser(response.user);
+        }
+        setLoading(false);
+        setOpen(false);
+        router.push("/explore");
     };
     const handleLogin = async () => {
-        await loginUser(username, password).then(() => {
-            setOpen(false);
-            router.push("/explore");
-        });
+        setLoading(true);
+        const response = await loginUser(username, password);
+        if (response.user) {
+            setUser(response.user);
+        }
+        setLoading(false);
+        setOpen(false);
+        router.push("/explore");
     };
 
     return (
@@ -144,7 +154,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                                     onClick={type === "Register" ? handleRegister : handleLogin}
                                 >
                                     {loading ? (
-                                        <LucideLoader />
+                                        <LucideLoader className="animate-spin" />
                                     ) : type === "Register" ? (
                                         "Register"
                                     ) : (
