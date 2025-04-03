@@ -3,6 +3,8 @@ import cors from "cors";
 import authRouter from "./routes/auth.routes";
 import templateRouter from "./routes/template.routes";
 import morgan from "morgan";
+import { CLIENT_URL } from "./config/dotenv";
+
 
 const app = express();
 
@@ -15,7 +17,13 @@ app.get("/", (req, res) => {
     res.send("Express + TypeScript Server is running!");
 });
 
-app.use(cors());
+app.use(cors({
+    origin: CLIENT_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+}));
+
 app.use("/v1/auth", authRouter);
 app.use("/v1/template", templateRouter);
 
