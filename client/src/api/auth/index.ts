@@ -2,7 +2,11 @@ import { toast } from "sonner";
 import { api } from "../axios.config";
 
 export const loginUser = async (name: string, password: string) => {
-    const response = await api.post("/v1/auth/login", { name, password });
+    const response = await api.post(
+        "/v1/auth/login",
+        { name, password },
+        { withCredentials: true },
+    );
     switch (response.status) {
         case 200:
             toast.success("Logged In successfully");
