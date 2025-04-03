@@ -35,9 +35,20 @@ export const register = async (
             data: { name, email, password: hashedPassword },
         });
 
+        const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
+            expiresIn: "24h",
+        });
         // Remove password from response
         const { password: _, ...userWithoutPassword } = user;
-        res.json({ user: userWithoutPassword });
+
+        res.cookie("token", token, {
+            httpOnly: true, // Secure against XSS attacks
+            secure: process.env.NODE_ENV === "production", // Requires HTTPS in production
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allows cross-site in production
+            domain: process.env.NODE_ENV === "production" ? ".vercel.app" : undefined, // Works for localhost in dev
+            path: "/", // Ensure it works across the whole site
+        });
+        res.status(200).json({ user: userWithoutPassword, token });
     } catch (error) {
         console.error("Registration error:", error);
         res.status(500).json({ error: "User creation failed" });
@@ -71,10 +82,7 @@ export const login = async (req: Request, res: Response) => {
             httpOnly: true, // Secure against XSS attacks
             secure: process.env.NODE_ENV === "production", // Requires HTTPS in production
             sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allows cross-site in production
-            domain:
-                process.env.NODE_ENV === "production"
-                    ? "reachoout.vercel.app"
-                    : undefined, // Works for localhost in dev
+            domain: process.env.NODE_ENV === "production" ? ".vercel.app" : undefined, // Works for localhost in dev
             path: "/", // Ensure it works across the whole site
         });
         res.status(200).json({ user: userWithoutPassword, token });
