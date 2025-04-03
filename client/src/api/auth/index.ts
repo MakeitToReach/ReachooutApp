@@ -34,23 +34,31 @@ export const registerUser = async (
   name: string,
   password: string,
 ) => {
-  const response = await api.post("/v1/auth/register", {
-    email,
-    name,
-    password,
-  });
-  switch (response.status) {
-    case 201:
-      toast.success("Account created successfully");
-      break;
-    case 400:
-      toast.error("User already exist");
-      break;
-    default:
-      toast.warning("An unexpected error occured");
-  }
+  try {
+    const response = await api.post("/v1/auth/register", {
+      email,
+      name,
+      password,
+    });
 
-  return response.data;
+    if (response.status === 201) {
+      toast.success("Account created successfully");
+
+      // Manually setting the cookie if backend sends token in response
+      if (response.data.token) {
+        document.cookie = `token=${response.data.token}; path=/; Secure; SameSite=Strict`;
+      }
+
+      return response.data;
+    } else if (response.status === 400) {
+      toast.error("User already exists");
+    } else {
+      toast.warning("An unexpected error occurred");
+    }
+  } catch (error) {
+    toast.error("Something went wrong. Please try again.");
+    console.error(error);
+  }
 };
 
 export const logoutUser = () => {
