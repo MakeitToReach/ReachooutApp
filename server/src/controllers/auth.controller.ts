@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import type { Request, Response } from "express"; // Import Request & Response
 import { JWT_SECRET } from "../config/dotenv";
 import jwt from "jsonwebtoken";
+import { warn } from "console";
 
 const prisma = new PrismaClient();
 
@@ -67,9 +68,10 @@ export const login = async (req: Request, res: Response) => {
         const { password: _, ...userWithoutPassword } = user;
 
         res.cookie("token", token, {
-            // httpOnly: true,
-            // secure: true,
-            // sameSite: "none",
+            httpOnly: false,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "none",
+            domain: "reachoout.vercel.app",
         });
         res.status(200).json({ user: userWithoutPassword, token });
     } catch (error) {
