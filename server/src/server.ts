@@ -8,7 +8,6 @@ import { CLIENT_URL } from "./config/dotenv";
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
