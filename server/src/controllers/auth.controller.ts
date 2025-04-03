@@ -37,7 +37,7 @@ export const register = async (
 
         // Remove password from response
         const { password: _, ...userWithoutPassword } = user;
-        res.json({ userWithoutPassword });
+        res.json({ user: userWithoutPassword });
     } catch (error) {
         console.error("Registration error:", error);
         res.status(500).json({ error: "User creation failed" });
@@ -68,10 +68,14 @@ export const login = async (req: Request, res: Response) => {
         const { password: _, ...userWithoutPassword } = user;
 
         res.cookie("token", token, {
-            httpOnly: false,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "none",
-            domain: "reachoout.vercel.app",
+            httpOnly: true, // Secure against XSS attacks
+            secure: process.env.NODE_ENV === "production", // Requires HTTPS in production
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allows cross-site in production
+            domain:
+                process.env.NODE_ENV === "production"
+                    ? "reachoout.vercel.app"
+                    : undefined, // Works for localhost in dev
+            path: "/", // Ensure it works across the whole site
         });
         res.status(200).json({ user: userWithoutPassword, token });
     } catch (error) {
