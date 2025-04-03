@@ -42,11 +42,11 @@ export const register = async (
         const { password: _, ...userWithoutPassword } = user;
 
         res.cookie("token", token, {
-            httpOnly: true, // Secure against XSS attacks
-            secure: process.env.NODE_ENV === "production", // Requires HTTPS in production
-            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Allows cross-site in production
-            domain: process.env.NODE_ENV === "production" ? ".vercel.app" : undefined, // Works for localhost in dev
-            path: "/", // Ensure it works across the whole site
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "none", // Needed for cross-site cookies
+            domain: "reachoout.vercel.app", // Restrict to your frontend
+            path: "/",
         });
         res.status(200).json({ user: userWithoutPassword, token });
     } catch (error) {
