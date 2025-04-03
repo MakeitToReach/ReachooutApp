@@ -11,7 +11,7 @@ import { PasswordInput } from "./passwordInput";
 import { ReqInput } from "./reqInput";
 import { motion as m } from "motion/react";
 import { loginUser, registerUser } from "@/api/auth";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { LucideLoader } from "lucide-react";
 import { useUserStore } from "@/store/user.store";
 
@@ -23,7 +23,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
     const [type, setType] = useState<"Register" | "Login">("Login");
     const [open, setOpen] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
-    // const router = useRouter();
+    const router = useRouter();
 
     const handleRegister = async () => {
         setLoading(true);
@@ -33,7 +33,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
         }
         setLoading(false);
         setOpen(false);
-        // router.push("/explore");
+        router.push("/explore");
     };
     const handleLogin = async () => {
         setLoading(true);
@@ -43,7 +43,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
         }
         setLoading(false);
         setOpen(false);
-        // router.push("/explore");
+        router.push("/explore");
     };
 
     return (
