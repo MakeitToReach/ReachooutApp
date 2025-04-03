@@ -42,11 +42,11 @@ export const register = async (
         const { password: _, ...userWithoutPassword } = user;
 
         res.cookie("token", token, {
-            httpOnly: true,
+            httpOnly: false,
             secure: process.env.NODE_ENV === "production",
             sameSite: "none", // Needed for cross-site cookies
-            // domain: "reachoout.vercel.app", // Restrict to your frontend
-            path: "/",
+            domain: "reachoout.vercel.app", // Restrict to your frontend
+            // path: "/",
         });
         res.status(200).json({ user: userWithoutPassword, token });
     } catch (error) {
@@ -79,11 +79,11 @@ export const login = async (req: Request, res: Response) => {
         const { password: _, ...userWithoutPassword } = user;
 
         res.cookie("token", token, {
-            httpOnly: true,
+            httpOnly: false,
             secure: process.env.NODE_ENV === "production",
             sameSite: "none", // Needed for cross-site cookies
-            // domain: "reachoout.vercel.app", // Restrict to your frontend
-            path: "/",
+            domain: "reachoout.vercel.app", // Restrict to your frontend
+            // path: "/",
         });
         res.status(200).json({ user: userWithoutPassword, token });
     } catch (error) {
