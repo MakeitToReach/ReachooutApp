@@ -1,4 +1,6 @@
 "use client";
+import { publishTemplate } from "@/api/publish-template";
+import { LPrevDock } from "@/components/editor-components/livePreviewDock";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -30,7 +32,19 @@ const UserPreview = () => {
     return <p>Loading...</p>;
   }
 
-  return <template.component data={data} />;
+  const publishSite = async () => {
+    await publishTemplate(templateKey, data);
+  };
+
+  return (
+    <div className="w-full min-h-screen relative">
+      <template.component data={data} />
+
+      <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 z-[100]">
+        <LPrevDock publishSite={publishSite} />
+      </div>
+    </div>
+  );
 };
 
 export default UserPreview;

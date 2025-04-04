@@ -6,6 +6,7 @@ import { PF_WORK_SECTION } from "../types/workSection";
 export interface PF_TMP_SCHEMA {
     id: string;
     name: string;
+
     sections: {
         heroSection: PF_HERO_SECTION;
         aboutSection: PF_ABOUT_SECTION;
