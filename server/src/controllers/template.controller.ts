@@ -5,12 +5,11 @@ import type { Request, Response } from "express";
 export const addUserTemplate = async (req: Request, res: Response) => {
     try {
         //fetch the userId from the headers instead of body
-
         const userId = req.user?.userId;
-        const { templateId, data } = req.body;
+        const { templateName, data } = req.body;
 
         // Validate required fields
-        if (!templateId || !data) {
+        if (!templateName || !data) {
             return res.status(400).json({ error: "Missing required fields" });
         }
 
@@ -24,9 +23,8 @@ export const addUserTemplate = async (req: Request, res: Response) => {
         }
 
         // Find the template
-        const template = await prisma.template.update({
-            where: { id: templateId },
-            data: { data },
+        const template = await prisma.template.findUnique({
+            where: { name: templateName },
         });
 
         if (!template) {
@@ -38,7 +36,7 @@ export const addUserTemplate = async (req: Request, res: Response) => {
             where: {
                 user_id_template_id: {
                     user_id: userId,
-                    template_id: templateId,
+                    template_id: template.id,
                 },
             },
         });
@@ -55,7 +53,8 @@ export const addUserTemplate = async (req: Request, res: Response) => {
         const association = await prisma.userTemplate.create({
             data: {
                 user_id: userId,
-                template_id: templateId,
+                template_id: template.id,
+                data: data,
             },
         });
 
@@ -70,6 +69,30 @@ export const addUserTemplate = async (req: Request, res: Response) => {
     }
 };
 
+export const getUserTemplateData = async (req: Request, res: Response) => {
+    try {
+        const userId = req.user?.userId;
+        const { templateName } = req.params;
+
+        const userTemplate = await prisma.userTemplate.findFirst({
+            where: {
+                user_id: userId,
+                template: {
+                    name: templateName,
+                },
+            },
+            include: { template: true },
+        });
+
+        const userTemplateData = userTemplate?.data;
+        return res.status(200).json({ userTemplateData });
+    } catch (error) {
+        console.error("Error fetching user template:", error);
+        return res.status(500).json({ error: "Failed to process request" });
+    }
+};
+
+//ADMIN
 export const createTemplate = async (req: Request, res: Response) => {
     try {
         const { name, data, thumbnailUrl = "" } = req.body;
@@ -110,6 +133,7 @@ export const createTemplate = async (req: Request, res: Response) => {
     }
 };
 
+//ADMIN
 export const updateTemplate = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
@@ -151,38 +175,6 @@ export const updateTemplate = async (req: Request, res: Response) => {
     }
 };
 
-export const getUserTemplates = async (req: Request, res: Response) => {
-    try {
-        //fetch the userId from the headers instead of body
-        // const { userId } = req.body;
-        const userId = req.user?.userId;
-
-        const user = await prisma.user.findUnique({
-            where: { id: userId },
-            include: {
-                templates: true,
-            },
-        });
-
-        if (!user) {
-            return res.status(404).json({ error: "User not found" });
-        }
-
-        const template = await prisma.template.findMany({
-            where: {
-                id: {
-                    in: user.templates.map((template) => template.template_id),
-                },
-            },
-        });
-
-        return res.status(200).json({ templates: template });
-    } catch (error) {
-        console.error("Error fetching user templates:", error);
-        return res.status(500).json({ error: "Failed to process request" });
-    }
-};
-
 export const getAllTemplates = async (req: Request, res: Response) => {
     const templates = await prisma.template.findMany();
 
@@ -190,4 +182,29 @@ export const getAllTemplates = async (req: Request, res: Response) => {
         return res.status(404).json({ error: "Templates not found" });
     }
     return res.status(200).json({ templates });
+};
+
+export const getUserTemplates = async (req: Request, res: Response) => {
+    const userId = req.user?.userId;
+    const userTemplates = await prisma.userTemplate.findMany({
+        where: {
+            user_id: userId,
+        },
+        include: {
+            template: true,
+        },
+    });
+
+    if (userTemplates.length === 0) {
+        res.status(404).json({ error: "No templates found" });
+    }
+
+    const formattedTemplates = userTemplates.map((template) => {
+        return {
+            id: template.template_id,
+            name: template.template.name,
+            thumbnailUrl: template.template.thumbnailUrl,
+        };
+    })
+    return res.status(200).json({ userTemplates : formattedTemplates });
 };

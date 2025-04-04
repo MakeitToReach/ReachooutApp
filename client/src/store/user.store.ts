@@ -1,4 +1,5 @@
 import { create } from "zustand";
+// import { persist } from "zustand/middleware";
 
 type USER = {
     id: string;
@@ -13,4 +14,5 @@ interface User {
 export const useUserStore = create<User>((set) => ({
     user: null,
     setUser: (user: USER) => set({ user: user }),
+
 }));

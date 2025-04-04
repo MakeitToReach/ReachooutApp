@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { logoutUser } from "@/api/auth";
 import { useUserStore } from "@/store/user.store";
 import { useRouter } from "next/navigation";
+import AvatarDropdown from "./userAvatarDropdown";
 
 export const Navbar = () => {
     const { user } = useUserStore();
@@ -27,7 +28,13 @@ export const Navbar = () => {
                 />
             </Link>
             <div className="md:flex gap-4 items-center text-white text-lg hidden ">
-                {user && <p>{user.name}</p>}
+                {user && (
+                    <AvatarDropdown
+                        name={user.name}
+                        email={user.email}
+                        handleLogout={logoutAndRedirect}
+                    />
+                )}
                 <p>About</p>
                 <p>Pricing</p>
                 <p>FAQs</p>
