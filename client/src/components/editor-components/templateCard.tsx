@@ -3,21 +3,40 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { usePortfolioStore } from "@/store/portfolio.store";
+import { getUserTemplateData } from "@/api/user-template";
+import { useRouter } from "next/navigation";
 
 interface TemplateCardProps {
     imageUrl: string;
-    title?: string;
+    templateName?: string;
     previewUrl?: string;
     id?: string;
     editorUrl: string;
+    isPublished?: boolean;
     className?: string;
 }
 export const TemplateCard = ({
     imageUrl = "",
     previewUrl = "/",
     editorUrl = "/",
-    className
+    className,
+    isPublished,
+    templateName = "",
 }: TemplateCardProps) => {
+    const router = useRouter();
+    const { resetData } = usePortfolioStore();
+    const handleEdit = async () => {
+        const fetchedData = await getUserTemplateData(templateName);
+        if (!fetchedData) router.push(`/`);
+        // resetData(fetchedData.userTemplateData);
+
+        if (fetchedData) {
+            // console.log("data from edit", data);
+            resetData(fetchedData.userTemplateData);
+            router.push(editorUrl);
+        }
+    };
     return (
         <div className={cn(className, "relative rounded-xl overflow-hidden")}>
             {/* gradient cover */}
@@ -25,9 +44,15 @@ export const TemplateCard = ({
                 <Link href={previewUrl}>
                     <Button className="md:text-md cursor-pointer">Preview</Button>
                 </Link>
-                <Link href={editorUrl}>
-                    <Button className="md:text-md cursor-pointer">Use</Button>
-                </Link>
+                {isPublished ? (
+                    <Button className="md:text-md cursor-pointer" onClick={handleEdit}>
+                        Edit
+                    </Button>
+                ) : (
+                    <Link href={editorUrl}>
+                        <Button className="md:text-md cursor-pointer">Use</Button>
+                    </Link>
+                )}
             </div>
             <Image
                 src={imageUrl}

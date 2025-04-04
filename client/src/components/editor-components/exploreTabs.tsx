@@ -70,7 +70,7 @@ export default function ExploreTabs({ templates }: ExploreTabsProps) {
                 key={idx}
                 imageUrl={template.thumbnailUrl}
                 previewUrl={`/preview/${template.name.toLowerCase()}`}
-                editorUrl={`/editor/${template.name.toLowerCase()}`}
+                editorUrl={`/editor/${template.name.toLowerCase()}?new`}
               />
             ))
           ) : (

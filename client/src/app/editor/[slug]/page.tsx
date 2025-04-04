@@ -4,19 +4,23 @@ import { EditorPanel } from "@/components/editor-components/editorPanel";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { LivePreview } from "@/components/editor-components/LivePreview";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 
 const EditorPage = () => {
     const { slug } = useParams();
+    const searchParams = useSearchParams();
+
+    const isNew = searchParams.has("new");
     const { resetData } = usePortfolioStore();
 
     const templateKey = slug as keyof typeof TEMPLATE_REGISTRY;
     const template = TEMPLATE_REGISTRY[templateKey];
 
     useEffect(() => {
-        if (template) {
+        if (template && isNew) {
             resetData(template.schema); // Load default content
         }
+        console.log(slug);
     }, [slug]);
 
     if (!template) return <p>Template not found</p>;

@@ -11,8 +11,9 @@ import { TemplateCard } from "@/components/editor-components/templateCard";
 import { getUserTemplates } from "@/api/user-template";
 import { TEMPLATES_SCHEMA } from "@/types/templates.types";
 import { Button } from "@/components/ui/button";
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, LayoutGroup } from "motion/react";
 import { motion as m } from "motion/react";
+import { useUserStore } from "@/store/user.store";
 
 type Tab = "templates" | "domains" | "analytics";
 
@@ -20,6 +21,7 @@ function App() {
     const [activeTab, setActiveTab] = useState<Tab>("templates");
     const [templates, setTemplates] = useState<TEMPLATES_SCHEMA[]>([]);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const { user } = useUserStore();
 
     useEffect(() => {
         const fetchUserTemplates = async () => {
@@ -49,24 +51,41 @@ function App() {
                 <div className="p-6 flex justify-between items-center">
                     <h2 className="text-2xl font-bold text-white">Dashboard</h2>
                 </div>
-                <nav className="mt-2">
-                    {tabs.map((tab) => (
-                        <button
-                            key={tab.id}
-                            onClick={() => {
-                                setActiveTab(tab.id as Tab);
-                                setSidebarOpen(false); // Close sidebar when selecting a tab
-                            }}
-                            className={`w-full flex items-center px-6 py-3 text-left ${activeTab === tab.id
-                                ? "bg-zinc-800 border-r-4 border-blue-500 text-blue-600"
-                                : "text-gray-600 hover:bg-gray-50"
-                                }`}
-                        >
-                            <tab.icon className="w-5 h-5 mr-3" />
-                            <span className="font-medium">{tab.name}</span>
-                        </button>
-                    ))}
-                </nav>
+                <LayoutGroup>
+                    <nav className="relative mt-2 space-y-2">
+                        {tabs.map((tab) => {
+                            const isActive = activeTab === tab.id;
+                            return (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => {
+                                        setActiveTab(tab.id as Tab);
+                                        setSidebarOpen(false);
+                                    }}
+                                    className={`relative w-full flex items-center px-6 py-3 text-left transition-colors duration-200
+            ${isActive ? "text-blue-600" : "text-gray-600 hover:bg-gray-50"}
+          `}
+                                >
+                                    {/* Animated border */}
+                                    {isActive && (
+                                        <m.div
+                                            layoutId="tab-border"
+                                            className="absolute right-0 top-0 h-full w-1 bg-blue-500 rounded-r"
+                                            transition={{
+                                                type: "spring",
+                                                stiffness: 500,
+                                                damping: 30,
+                                            }}
+                                        />
+                                    )}
+
+                                    <tab.icon className="w-5 h-5 mr-3 z-10" />
+                                    <span className="font-medium z-10">{tab.name}</span>
+                                </button>
+                            );
+                        })}
+                    </nav>
+                </LayoutGroup>
             </m.div>
             <div className="md:hidden">
                 <AnimatePresence mode="wait">
@@ -130,12 +149,14 @@ function App() {
                             Your Templates
                         </h1>
                         <div className="grid md:grid-cols-4 gap-4 px-4">
-                            {templates.length > 0 ? (
+                            {templates.length > 0 && user ? (
                                 templates.map((template, idx) => (
                                     <TemplateCard
+                                        isPublished
+                                        templateName={template.name.toLowerCase()}
                                         key={idx}
                                         imageUrl={template.thumbnailUrl}
-                                        previewUrl={`/preview/${template.name.toLowerCase()}`}
+                                        previewUrl={`/${user.name}?template=${template.name.toLowerCase()}`}
                                         editorUrl={`/editor/${template.name.toLowerCase()}`}
                                         className="shadow-2xl shadow-black"
                                     />

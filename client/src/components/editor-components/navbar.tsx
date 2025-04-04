@@ -17,7 +17,7 @@ export const Navbar = () => {
         router.push("/");
     };
     return (
-        <div className="w-full h-[10vh] bg-neutral-950 backdrop-blur p-4 flex md:justify-between items-center md:px-40">
+        <div className="w-full h-[10vh] bg-neutral-950 backdrop-blur p-4 flex justify-between items-center md:px-40">
             <Link href={"/"}>
                 <Image
                     src="/reachout-logo.png"
@@ -27,6 +27,16 @@ export const Navbar = () => {
                     className="cursor-pointer object-cover size-[50px] md:size-[80px]"
                 />
             </Link>
+            <div className="flex gap-2 items-center">
+                {user && (
+                    <AvatarDropdown
+                        name={user.name}
+                        email={user.email}
+                        handleLogout={logoutAndRedirect}
+                    />
+                )}
+
+            </div>
             <div className="md:flex gap-4 items-center text-white text-lg hidden ">
                 {user && (
                     <AvatarDropdown

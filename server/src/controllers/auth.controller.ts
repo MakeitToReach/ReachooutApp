@@ -19,9 +19,10 @@ export const register = async (
     try {
         const { name, email, password } = req.body;
 
+        const formattedName = name.toLowerCase();
         // Check if user already exists
         const existingUser = await prisma.user.findUnique({
-            where: { name },
+            where: { name: formattedName },
         });
         if (existingUser) {
             return res.status(400).json({ error: "Username already taken" });
@@ -30,7 +31,6 @@ export const register = async (
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const formattedName = name.toLowerCase();
         // Create user
         const user = await prisma.user.create({
             data: { name: formattedName, email, password: hashedPassword },
@@ -61,7 +61,10 @@ export const login = async (req: Request, res: Response) => {
         const { name, password } = req.body;
 
         // Find user by email
-        const user = await prisma.user.findUnique({ where: { name } });
+        const formattedName = name.toLowerCase();
+        const user = await prisma.user.findUnique({
+            where: { name: formattedName },
+        });
         if (!user) {
             return res.status(401).json({ error: "Invalid email or password" });
         }
