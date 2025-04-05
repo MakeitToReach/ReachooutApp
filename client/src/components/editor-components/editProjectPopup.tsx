@@ -26,9 +26,13 @@ export function EditProjectPopup({
 }: EdtiProjectPopupProps) {
   const { setProjectField } = usePortfolioStore();
   return (
-    <Dialog>
+    <Dialog modal={false}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent
+        className="sm:max-w-[600px]"
+        style={{ overflow: "visible" }}
+        onInteractOutside={(e) => e.preventDefault()}
+      >
         <DialogHeader>
           <DialogTitle>Edit Project {projectIdx + 1}</DialogTitle>
         </DialogHeader>
@@ -84,7 +88,6 @@ export function EditProjectPopup({
             />
           </div>
 
-
           <div>
             <label className="font-semibold">Button Text</label>
             <Input
@@ -126,7 +129,7 @@ export function EditProjectPopup({
             <CldUploadButton
               uploadPreset="you-view"
               options={{ sources: ["local", "url", "unsplash"] }}
-              className="cursor-pointer p-1 bg-neutral-800 rounded-lg"
+              className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
               //eslint-disable-next-line
               onSuccess={(result: any) => {
                 setProjectField(

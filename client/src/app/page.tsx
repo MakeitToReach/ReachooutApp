@@ -8,8 +8,11 @@ import Image from "next/image";
 import { TEMPLATES_STATIC } from "@/static_data/templates";
 import { AuthPopup } from "@/components/editor-components/authPopup";
 import { getToken } from "@/lib/isAuthenticated";
+import { useUserStore } from "@/store/user.store";
+import { getUserFromToken } from "@/api/auth";
 
 function Home() {
+  const { setUser } = useUserStore();
   const [token, setToken] = useState<string>("");
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
@@ -29,9 +32,20 @@ function Home() {
     const token = getToken();
 
     if (token) {
+      const fetchUserDetails = async () => {
+        try {
+          const response = await getUserFromToken(token);
+          if (response) {
+            setUser(response.user);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      fetchUserDetails();
       setToken(token);
     } else {
-      console.log("Unauthorized");
     }
   }, []);
 

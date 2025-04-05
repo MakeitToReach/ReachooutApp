@@ -157,7 +157,7 @@ function App() {
                                         key={idx}
                                         imageUrl={template.thumbnailUrl}
                                         previewUrl={`/${user.name}?template=${template.name.toLowerCase()}`}
-                                        editorUrl={`/editor/${template.name.toLowerCase()}`}
+                                        editorUrl={`/editor/${template.name.toLowerCase()}?edit`}
                                         className="shadow-2xl shadow-black"
                                     />
                                 ))

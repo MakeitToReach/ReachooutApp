@@ -65,3 +65,16 @@ export const logoutUser = () => {
   document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   toast.success("Logged out successfully");
 };
+
+export const getUserFromToken = async (token: string) => {
+  try {
+    const response = await api.get("/v1/auth/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

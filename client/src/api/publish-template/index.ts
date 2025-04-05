@@ -14,7 +14,10 @@ export const fetchAllTemplates = async () => {
   return response.data;
 };
 
-export const publishTemplate = async (templateName: string, data: PF_TMP_SCHEMA) => {
+export const publishTemplate = async (
+  templateName: string,
+  data: PF_TMP_SCHEMA,
+) => {
   const token = getToken();
   const response = await api.post(
     `/v1/template/publish`,
@@ -26,7 +29,7 @@ export const publishTemplate = async (templateName: string, data: PF_TMP_SCHEMA)
     },
   );
 
-  if (response.status === 200) {
+  if (response.status === 200 || response.status === 201) {
     toast.success("Template published successfully");
   }
 

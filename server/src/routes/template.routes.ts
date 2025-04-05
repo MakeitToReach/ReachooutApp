@@ -50,4 +50,8 @@ templateRouter.get(
     },
 );
 
+templateRouter.post("/update/:id", (req: Request, res: Response) => {
+    updateTemplate(req, res);
+});
+
 export default templateRouter;
