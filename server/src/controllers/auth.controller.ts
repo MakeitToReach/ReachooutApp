@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import type { Request, Response } from "express"; // Import Request & Response
 import { JWT_SECRET } from "../config/dotenv";
 import jwt from "jsonwebtoken";
-import { warn } from "console";
 
 const prisma = new PrismaClient();
 
@@ -49,7 +48,7 @@ export const register = async (
             domain: "reachoout.vercel.app", // Restrict to your frontend
             // path: "/",
         });
-        res.status(200).json({ user: userWithoutPassword, token });
+        res.status(201).json({ user: userWithoutPassword, token });
     } catch (error) {
         console.error("Registration error:", error);
         res.status(500).json({ error: "User creation failed" });
