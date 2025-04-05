@@ -27,7 +27,7 @@ export const Navbar = () => {
                     className="cursor-pointer object-cover size-[50px] md:size-[80px]"
                 />
             </Link>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center md:hidden">
                 {user && (
                     <AvatarDropdown
                         name={user.name}
