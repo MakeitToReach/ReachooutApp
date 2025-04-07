@@ -42,8 +42,6 @@ function App() {
     return (
         <div className="min-h-screen bg-gray-50 flex relative">
             <m.div
-                initial={{ x: "-100%" }}
-                animate={{ x: 0 }}
                 exit={{ x: "-100%" }} // Exit animation now works
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 className="w-64 bg-zinc-950 shadow-lg hidden md:block"

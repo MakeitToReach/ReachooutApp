@@ -6,7 +6,7 @@ import {
     PFWorkSection,
     PFHeroSection,
     PFFooter,
-    PFClientSection,
+    // PFClientSection,
     PFSocialSection,
 } from "./sections";
 import { PageLoader } from "@/components/editor-components/pageLoader";
@@ -74,12 +74,12 @@ export const ProfessionalPortfolio = ({ data }: any) => {
                             description={sections.aboutSection.description}
                         />
                         <PFWorkSection projects={sections.workSection.projects} />
-                        <PFClientSection
-                            title={sections.clientSection.title}
-                            clientImgs={sections.clientSection.clientImgs}
-                            colorTxt={sections.clientSection.colorTxt}
-                        />
-                        <PFSocialSection />
+                        {/* <PFClientSection */}
+                        {/*     title={sections.clientSection.title} */}
+                        {/*     clientImgs={sections.clientSection.clientImgs} */}
+                        {/*     colorTxt={sections.clientSection.colorTxt} */}
+                        {/* /> */}
+                        <PFSocialSection socials={sections.socialSection.socials} />
                         <PFFooter />
                     </m.div>
                 )}

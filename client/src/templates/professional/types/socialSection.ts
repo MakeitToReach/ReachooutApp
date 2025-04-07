@@ -1,5 +1,5 @@
+import { PF_SOCIAL } from "./social";
+
 export type PF_SOCIAL_SECTION = {
-    linkedinUrl: string;
-    instagramUrl: string;
-    twitterUrl: string;
+    socials: PF_SOCIAL[];
 };

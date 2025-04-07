@@ -1,4 +1,10 @@
 import { PF_TMP_SCHEMA } from "@/templates/professional/schema/PFTemplateSchema";
+import {
+    IconBrandInstagramFilled,
+    IconBrandLinkedinFilled,
+    IconBrandX,
+    IconBrandYoutubeFilled,
+} from "@tabler/icons-react";
 
 export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
     id: "pf-tmp",
@@ -16,7 +22,7 @@ export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
             title: "Founder of ",
             colorTitle: "Reachoout",
             description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+                "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit vel laborum vero cum, magni in alias, laboriosam officia vitae possimus rerum aut repellat blanditiis officiis accusantium. Eius itaque eveniet debitis quos, ut, sint aut saepe facere repellendus quas quae nihil asperiores laudantium esse veniam fugit ullam modi. Incidunt, tempora rerum! Iure necessitatibus voluptas cumque. Quisquam laborum quas, odio totam esse quam. Consequuntur nulla minima quidem alias quos corrupti assumenda impedit temporibus explicabo expedita ea laboriosam quaerat totam architecto voluptates, consequatur doloremque obcaecati dolores eius voluptatum fuga nemo autem? Officia asperiores provident illo. Aut corporis eligendi quasi. Vitae rem beatae dolores.",
             stats: [
                 {
                     title: "Projects",
@@ -76,6 +82,34 @@ export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
                 "https://picsum.photos/200/200",
             ],
             colorTxt: "50+",
+        },
+        socialSection: {
+            socials: [
+                {
+                    title: "Linkedin",
+                    socialLink: "https://linkedin.com",
+                    // followerCounts: 500,
+                    icon: <IconBrandLinkedinFilled size={45} color="blue" />,
+                },
+                {
+                    title: "Twitter / X",
+                    socialLink: "https://x.com",
+                    followerCounts: 500,
+                    icon: <IconBrandX size={45} />,
+                },
+                {
+                    title: "Youtube",
+                    socialLink: "https://youtube.com",
+                    followerCounts: 500,
+                    icon: <IconBrandYoutubeFilled color="red" size={45} />,
+                },
+                {
+                    title: "Instagram",
+                    socialLink: "https://instagram.com",
+                    // followerCounts: 500,
+                    icon: <IconBrandInstagramFilled size={45} />,
+                },
+            ],
         },
     },
 };

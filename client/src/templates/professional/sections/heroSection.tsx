@@ -25,10 +25,10 @@ export const PFHeroSection = ({
                 <div className="space-y-4">
                     {/* sm logo here */}
                     <div>
-                        <h1 className="text-3xl md:text-6xl font-bold">{title}</h1>
+                        <h1 className="text-4xl md:text-6xl font-bold">{title}</h1>
                         <FlipText
                             texts={professions}
-                            className="text-3xl md:text-5xl font-bold text-green-600"
+                            className="text-4xl md:text-5xl font-bold text-green-600"
                         />
                     </div>
                     <Link href={btnLink}>

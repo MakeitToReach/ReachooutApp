@@ -46,6 +46,7 @@ function Home() {
       fetchUserDetails();
       setToken(token);
     } else {
+      setToken("");
     }
   }, []);
 
