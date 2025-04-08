@@ -32,6 +32,13 @@ interface PortfolioState {
         project: PF_TMP_SCHEMA["sections"]["workSection"]["projects"][number],
     ) => void;
 
+    setSocialField: (
+        section: keyof PF_TMP_SCHEMA["sections"],
+        index: number,
+        key: keyof PF_TMP_SCHEMA["sections"]["socialSection"]["socials"][number],
+        value: any, // eslint-disable-line
+    ) => void;
+
     // Resets the entire portfolio data
     resetData: (newData: PF_TMP_SCHEMA) => void;
 }
@@ -134,6 +141,38 @@ export const usePortfolioStore = create<PortfolioState>((set) => ({
             },
         }));
     },
+
+    setSocialField: (
+        section: keyof PF_TMP_SCHEMA["sections"],
+        statIndex: number,
+        key: string,
+        value: any, //eslint-disable-line
+    ) =>
+        set((state) => {
+            const sectionData = state.data!.sections[section];
+
+            if (
+                !sectionData ||
+                !("socials" in sectionData) ||
+                !Array.isArray(sectionData.socials)
+            )
+                return state;
+
+            return {
+                data: {
+                    ...state.data!,
+                    sections: {
+                        ...state.data!.sections,
+                        [section]: {
+                            ...sectionData,
+                            socials: sectionData.socials.map((social, index) =>
+                                index === statIndex ? { ...social, [key]: value } : social,
+                            ),
+                        },
+                    },
+                },
+            };
+        }),
 
     // Reset portfolio data
     resetData: (newData) => set({ data: newData }),

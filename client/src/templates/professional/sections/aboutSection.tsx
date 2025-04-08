@@ -16,7 +16,7 @@ export const PFAboutSection = ({
         <section className="max-w-6xl mx-auto">
             <div className="px-4 lg:px-0 flex flex-col lg:flex-row w-full lg:gap-20 lg:mt-20">
                 {/* Stats grid */}
-                <div className="grid grid-cols-2 gap-2 gap-y-2 lg:gap-5 lg:mt-20 h-fit lg:w-1/2">
+                <div className="grid grid-cols-2 gap-2  lg:gap-5 lg:gap-y-2 lg:mt-20 h-fit lg:w-1/2">
                     <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] max-h-48 p-10 overflow-hidden">
                         <h1 className="font-bold text-5xl lg:text-7xl text-[#1e1e1e]">
                             {stats[0].value}

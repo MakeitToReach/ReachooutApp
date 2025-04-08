@@ -27,14 +27,14 @@ const EditorPage = () => {
   if (!template) return <p>Template not found</p>;
 
   return (
-    <div className="w-full flex">
+    <div className="w-full flex overflow-x-hidden">
       {/* Editor Panel */}
-      <div className="md:w-[40%] w-full">
+      <div className="md:w-[30%] w-full">
         {isEditing ? <EditorPanel isEditing /> : <EditorPanel />}
       </div>
 
       {/* Live Preview */}
-      <div className="md:w-[60%] hidden md:block">
+      <div className="md:w-[70%] hidden md:block">
         <LivePreview templateComponent={template.component} />
       </div>
     </div>
