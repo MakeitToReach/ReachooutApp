@@ -9,6 +9,7 @@ import {
     PFSocialSection,
     PFGallerySection,
     PFServicesSection,
+    PFContactSection,
     // PFClientSection,
 } from "./sections";
 import { PageLoader } from "@/components/editor-components/pageLoader";
@@ -53,11 +54,11 @@ export const ProfessionalPortfolio = ({ data }: any) => {
                 {!loading && (
                     <m.div
                         key="content"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.6, delay: 0.5 }} // Delay to smooth transition
-                        className="space-y-20 w-full"
+                        // initial={{ opacity: 0, y: 20 }}
+                        // animate={{ opacity: 1, y: 0 }}
+                        // exit={{ opacity: 0 }}
+                        // transition={{ duration: 0.6, delay: 0.5 }} // Delay to smooth transition
+                        className="space-y-20 w-full overflow-x-hidden"
                     >
                         <div className="space-y-10">
                             <PFNavbar />
@@ -85,7 +86,11 @@ export const ProfessionalPortfolio = ({ data }: any) => {
 
                         {sections.gallerySection && <PFGallerySection />}
 
-                        <PFServicesSection services={sections.servicesSection.services} subtitle={sections.servicesSection.subtitle} />
+                        <PFServicesSection
+                            services={sections.servicesSection.services}
+                            subtitle={sections.servicesSection.subtitle}
+                        />
+                        <PFContactSection />
 
                         <PFFooter />
                     </m.div>
