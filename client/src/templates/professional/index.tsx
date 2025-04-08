@@ -6,8 +6,9 @@ import {
     PFWorkSection,
     PFHeroSection,
     PFFooter,
-    // PFClientSection,
     PFSocialSection,
+    PFGallerySection,
+    // PFClientSection,
 } from "./sections";
 import { PageLoader } from "@/components/editor-components/pageLoader";
 import { AnimatePresence, motion as m } from "motion/react";
@@ -80,6 +81,9 @@ export const ProfessionalPortfolio = ({ data }: any) => {
                         {/*     colorTxt={sections.clientSection.colorTxt} */}
                         {/* /> */}
                         <PFSocialSection socials={sections.socialSection.socials} />
+
+                        {sections.gallerySection && <PFGallerySection />}
+
                         <PFFooter />
                     </m.div>
                 )}

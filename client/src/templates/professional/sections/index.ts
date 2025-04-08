@@ -5,3 +5,4 @@ export * from "./socialSection";
 export * from "./workSection";
 export * from "./navbar";
 export * from "./footer";
+export * from "./gallerySection";

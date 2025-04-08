@@ -58,7 +58,19 @@ export const PFAboutSection = ({
                     <h2 className="uppercase font-medium">
                         {title} <span className="text-[#f8b84e]">{colorTitle}</span>
                     </h2>
-                    <p className="text-[#1e1e1e] leading-relaxed">{description}</p>
+                    <div>
+                        {description
+                            .split(/\n{2,}/) // Split at 2 or more line breaks only
+                            .filter((para) => para.trim() !== "") // Remove empty chunks
+                            .map((para, index) => (
+                                <p
+                                    key={index}
+                                    className="text-[#1e1e1e] leading-relaxed mb-4 whitespace-pre-line"
+                                >
+                                    {para.trim()}
+                                </p>
+                            ))}
+                    </div>
 
                     <ul className="grid grid-cols-2 gap-y-3 gap-x-4 mt-2">
                         <li className="flex items-center">
