@@ -6,3 +6,4 @@ export * from "./workSection";
 export * from "./navbar";
 export * from "./footer";
 export * from "./gallerySection";
+export * from "./servicesSection";

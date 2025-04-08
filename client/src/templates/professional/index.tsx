@@ -8,6 +8,7 @@ import {
     PFFooter,
     PFSocialSection,
     PFGallerySection,
+    PFServicesSection,
     // PFClientSection,
 } from "./sections";
 import { PageLoader } from "@/components/editor-components/pageLoader";
@@ -83,6 +84,8 @@ export const ProfessionalPortfolio = ({ data }: any) => {
                         <PFSocialSection socials={sections.socialSection.socials} />
 
                         {sections.gallerySection && <PFGallerySection />}
+
+                        <PFServicesSection services={sections.servicesSection.services} subtitle={sections.servicesSection.subtitle} />
 
                         <PFFooter />
                     </m.div>

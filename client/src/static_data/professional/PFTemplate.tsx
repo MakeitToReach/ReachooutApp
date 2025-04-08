@@ -5,6 +5,7 @@ import {
     IconBrandX,
     IconBrandYoutubeFilled,
 } from "@tabler/icons-react";
+import { LucideCode } from "lucide-react";
 
 export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
     id: "pf-tmp",
@@ -116,6 +117,36 @@ export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
                 "https://github.com/shadcn.png",
                 "https://github.com/shadcn.png",
                 "https://github.com/shadcn.png",
+            ],
+        },
+
+        servicesSection: {
+            subtitle: "subtitle here",
+            services: [
+                {
+                    icon: <LucideCode size={25} />,
+                    heading: "Web Development",
+                    description:
+                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore, earum quia minus similique tempore veniam?",
+                },
+                {
+                    icon: <LucideCode size={25} />,
+                    heading: "Web Development",
+                    description:
+                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore, earum quia minus similique tempore veniam?",
+                },
+                {
+                    icon: <LucideCode size={25} />,
+                    heading: "Web Development",
+                    description:
+                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore, earum quia minus similique tempore veniam?",
+                },
+                {
+                    icon: <LucideCode size={25} />,
+                    heading: "Web Development",
+                    description:
+                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore, earum quia minus similique tempore veniam?",
+                },
             ],
         },
     },
