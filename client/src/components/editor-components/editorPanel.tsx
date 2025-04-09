@@ -178,7 +178,7 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
         <h1 className="font-semibold">Social media handles</h1>
         {data.sections.socialSection.socials.map((social, idx) => (
           <div key={idx} className="flex justify-between items-center">
-            <div>
+            <div className="w-1/2 space-y-1">
               <label className="font-semibold">{social.title}</label>
               <Input
                 type="text"
