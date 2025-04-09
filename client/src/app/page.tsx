@@ -93,10 +93,14 @@ function Home() {
               </Link>
             ) : (
               <AuthPopup>
-                <Button className="dark scale-125">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  role="button"
+                  className="cursor-pointer scale-125 flex items-center gap-2 bg-white text-black backdrop-blur-sm px-4 py-2 rounded-full"
+                >
                   Start Creating
                   <ChevronRight size={20} />
-                </Button>
+                </motion.div>
               </AuthPopup>
             )}
           </motion.div>

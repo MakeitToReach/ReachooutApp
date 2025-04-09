@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TemplateCard } from "./templateCard";
 import { TEMPLATES_SCHEMA } from "@/types/templates.types";
 import { Skeleton } from "../ui/skeleton";
+import { motion as m } from "motion/react";
 
 interface ExploreTabsProps {
   templates: TEMPLATES_SCHEMA[];
@@ -87,37 +88,35 @@ export default function ExploreTabs({ templates }: ExploreTabsProps) {
       </TabsContent>
       <TabsContent value="tab-2">
         <div className="w-full flex justify-center items-center h-[70vh]">
-          <h1 className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent">
+          <m.h1
+            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent"
+          >
             Coming Soon
-          </h1>
+          </m.h1>
         </div>
       </TabsContent>
       <TabsContent value="tab-3">
         <div className="w-full flex justify-center items-center h-[70vh]">
-          <h1 className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent">
+          <m.h1
+            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent"
+          >
             Coming Soon
-          </h1>
+          </m.h1>
         </div>
       </TabsContent>
       <TabsContent value="tab-4">
         <div className="w-full flex justify-center items-center h-[70vh]">
-          <h1 className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent">
+          <m.h1
+            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent"
+          >
             Coming Soon
-          </h1>
-        </div>
-      </TabsContent>
-      <TabsContent value="tab-5">
-        <div className="w-full flex justify-center items-center h-[70vh]">
-          <h1 className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent">
-            Coming Soon
-          </h1>
-        </div>
-      </TabsContent>
-      <TabsContent value="tab-6">
-        <div className="w-full flex justify-center items-center h-[70vh]">
-          <h1 className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent">
-            Coming Soon
-          </h1>
+          </m.h1>
         </div>
       </TabsContent>
     </Tabs>

@@ -37,7 +37,7 @@ export default function AvatarDropdown({
                 <Button variant="ghost" className="h-auto p-0 hover:bg-transparent dark">
                     <ChevronDownIcon
                         size={16}
-                        className="opacity-100"
+                        className="opacity-100 text-white"
                         aria-hidden="true"
                     />
                     <Avatar>
@@ -45,7 +45,7 @@ export default function AvatarDropdown({
                             src="https://github.com/shadcn.png"
                             alt="Profile image"
                         />
-                        <AvatarFallback className="text-black">
+                        <AvatarFallback className="text-black bg-white uppercase">
                             {name.slice(0, 1)}
                         </AvatarFallback>
                     </Avatar>

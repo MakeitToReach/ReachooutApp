@@ -29,10 +29,8 @@ export const TemplateCard = ({
     const handleEdit = async () => {
         const fetchedData = await getUserTemplateData(templateName);
         if (!fetchedData) router.push(`/`);
-        // resetData(fetchedData.userTemplateData);
 
         if (fetchedData) {
-            // console.log("data from edit", data);
             resetData(fetchedData.userTemplateData);
             router.push(editorUrl);
         }
