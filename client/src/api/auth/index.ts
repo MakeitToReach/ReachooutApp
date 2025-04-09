@@ -1,80 +1,87 @@
 import { toast } from "sonner";
 import { api } from "../axios.config";
 
+export const setCookie = (name: string, value: string, days = 1) => {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000); // default: 1 day
+
+    document.cookie = `${name}=${value}; expires=${expires.toUTCString()}; path=/; Secure; SameSite=Strict`;
+};
+
 export const loginUser = async (name: string, password: string) => {
-  try {
-    const response = await api.post(
-      "/v1/auth/login",
-      { name, password },
-      { withCredentials: true },
-    );
+    try {
+        const response = await api.post(
+            "/v1/auth/login",
+            { name, password },
+            { withCredentials: true },
+        );
 
-    if (response.status === 200) {
-      toast.success("Logged in successfully");
+        if (response.status === 200) {
+            toast.success("Logged in successfully");
 
-      // If the token is sent in the response body, store it
-      if (response.data.token) {
-        document.cookie = `token=${response.data.token}; path=/; Secure; SameSite=Strict`;
-      }
+            // If the token is sent in the response body, store it
+            if (response.data.token) {
+                setCookie("token", response.data.token);
+            }
 
-      return response.data;
-    } else if (response.status === 401) {
-      toast.error("Invalid email or password");
-    } else {
-      toast.warning("An unexpected error occurred");
+            return response.data;
+        } else if (response.status === 401) {
+            toast.error("Invalid email or password");
+        } else {
+            toast.warning("An unexpected error occurred");
+        }
+    } catch (error) {
+        toast.error("Something went wrong. Please try again.");
+        console.log(error);
     }
-  } catch (error) {
-    toast.error("Something went wrong. Please try again.");
-    console.log(error);
-  }
 };
 
 export const registerUser = async (
-  email: string,
-  name: string,
-  password: string,
+    email: string,
+    name: string,
+    password: string,
 ) => {
-  try {
-    const response = await api.post("/v1/auth/register", {
-      email,
-      name,
-      password,
-    });
+    try {
+        const response = await api.post("/v1/auth/register", {
+            email,
+            name,
+            password,
+        });
 
-    if (response.status === 201) {
-      toast.success("Account created successfully");
+        if (response.status === 201) {
+            toast.success("Account created successfully");
 
-      // Manually setting the cookie if backend sends token in response
-      if (response.data.token) {
-        document.cookie = `token=${response.data.token}; path=/; Secure; SameSite=Strict`;
-      }
+            // Manually setting the cookie if backend sends token in response
+            if (response.data.token) {
+                setCookie("token", response.data.token);
+            }
 
-      return response.data;
-    } else if (response.status === 400) {
-      toast.error("User already exists");
-    } else {
-      toast.warning("An unexpected error occurred");
+            return response.data;
+        } else if (response.status === 400) {
+            toast.error("User already exists");
+        } else {
+            toast.warning("An unexpected error occurred");
+        }
+    } catch (error) {
+        toast.error("Something went wrong. Please try again.");
+        console.error(error);
     }
-  } catch (error) {
-    toast.error("Something went wrong. Please try again.");
-    console.error(error);
-  }
 };
 
 export const logoutUser = () => {
-  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  toast.success("Logged out successfully");
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    toast.success("Logged out successfully");
 };
 
 export const getUserFromToken = async (token: string) => {
-  try {
-    const response = await api.get("/v1/auth/me", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+    try {
+        const response = await api.get("/v1/auth/me", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
 };
