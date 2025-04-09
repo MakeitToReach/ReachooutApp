@@ -55,12 +55,12 @@ export const IconPicker: React.FC<IconPickerProps> = ({ value, onChange }) => {
                 }}
                 className={cn(
                   "flex flex-col items-center justify-center p-2 rounded-md border border-transparent hover:border-muted transition",
-                  value?.type === item.icon?.type ? "bg-muted border-primary" : ""
+                  value?.valueOf === item.icon?.valueOf ? "bg-muted border-primary" : ""
                 )}
               >
                 {item.icon}
                 <span className="text-xs mt-1">{item.label}</span>
-                {value?.type === item.icon?.type && (
+                {value?.valueOf === item.icon?.valueOf && (
                   <Check className="absolute top-1 right-1 w-4 h-4 text-primary" />
                 )}
               </button>
