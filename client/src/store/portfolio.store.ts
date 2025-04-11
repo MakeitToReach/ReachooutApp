@@ -1,14 +1,17 @@
-import { getSectionByType } from "@/lib/utils";
-import { PF_TMP_SCHEMA } from "@/templates/professional/schema/PFTemplateSchema";
+// import { getSectionByType } from "@/lib/utils";
+import {
+    PF_SECTION_BLOCK,
+    PF_TMP_SCHEMA,
+} from "@/templates/professional/schema/PFTemplateSchema";
 import { create } from "zustand";
 
 type SectionType = PF_TMP_SCHEMA["sections"][number]["type"];
 
 interface PortfolioState {
-    data: PF_TMP_SCHEMA["sections"][number]["data"] | null;
+    data: PF_TMP_SCHEMA | null;
 
     setSectionField: (
-        type: string,
+        type: SectionType,
         key: string,
         value: any, // eslint-disable-line
     ) => void;
@@ -18,13 +21,8 @@ interface PortfolioState {
         arrayKey: string,
         index: number,
         key: string,
-        value: any, //eslint-disable-line
+        value: any, // eslint-disable-line
     ) => void;
-
-    //usage
-    // updateArrayItemField("about", "stats", 0, "value", 100);
-    // updateArrayItemField("work", "projects", 2, "title", "Updated Project");
-    // updateArrayItemField("services", "services", 1, "icon", "rocket");
 
     resetData: (newData: PF_TMP_SCHEMA) => void;
 }
@@ -32,44 +30,67 @@ interface PortfolioState {
 export const usePortfolioStore = create<PortfolioState>((set) => ({
     data: null,
 
-    updateArrayItemField: (
-        type: SectionType,
-        arrayKey: string,
-        index: number,
-        key: string,
-        value: any, //eslint-disable-line
-    ) =>
+    setSectionField: (type, key, value) =>
         set((state) => {
-            const section = getSectionByType(state.data, type);
+            if (!state.data) return state;
 
-            if (!section || !Array.isArray((section as any)[arrayKey])) return state; //eslint-disable-line
+            const updatedSections: PF_SECTION_BLOCK[] = state.data.sections.map(
+                (section) => {
+                    if (section.type !== type || section.data === null) return section;
+
+                    return {
+                        ...section,
+                        data: {
+                            ...section.data,
+                            [key]: value,
+                        },
+                    } as PF_SECTION_BLOCK;
+                },
+            );
 
             return {
                 data: {
-                    ...state.data!,
-                    sections: state.data!.sections.map((s) =>
-                        s.type === type
-                            ? {
-                                ...s,
-                                [arrayKey]: (s as any)[arrayKey].map(//eslint-disable-line
-                                    (item: any, i: number) => //eslint-disable-line
-                                        i === index ? { ...item, [key]: value } : item,
-                                ),
-                            }
-                            : s,
-                    ),
+                    ...state.data,
+                    sections: updatedSections,
                 },
             };
         }),
-    setSectionField: (type, key, value) =>
-        set((state) => ({
-            data: {
-                ...state.data!,
-                sections: state.data!.sections.map((section) =>
-                    section.type === type ? { ...section, [key]: value } : section,
-                ),
-            },
-        })),
+
+    updateArrayItemField: (type, arrayKey, index, key, value) =>
+        set((state) => {
+            if (!state.data) return state;
+
+            const updatedSections: PF_SECTION_BLOCK[] = state.data.sections.map(
+                (section) => {
+                    if (section.type !== type || section.data === null) return section;
+
+                    const array = (section.data as Record<string, any>)[arrayKey];//eslint-disable-line
+                    if (!Array.isArray(array)) return section;
+
+                    const updatedArray = array.map(
+                        (
+                            item: any,//eslint-disable-line
+                            i: number,
+                        ) => (i === index ? { ...item, [key]: value } : item),
+                    );
+
+                    return {
+                        ...section,
+                        data: {
+                            ...section.data,
+                            [arrayKey]: updatedArray,
+                        },
+                    } as PF_SECTION_BLOCK;
+                },
+            );
+
+            return {
+                data: {
+                    ...state.data,
+                    sections: updatedSections,
+                },
+            };
+        }),
 
     resetData: (newData) => set({ data: newData }),
 }));

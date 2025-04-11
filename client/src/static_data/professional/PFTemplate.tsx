@@ -13,7 +13,7 @@ export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
     sections: [
         {
             type: "navbar",
-            data: null, // Add navbar data if needed
+            data: null,
         },
         {
             type: "hero",
@@ -42,7 +42,7 @@ export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
             },
         },
         {
-            type: "work",
+            type: "projects",
             data: {
                 projects: [
                     {
@@ -148,11 +148,11 @@ export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
         },
         {
             type: "contact",
-            data: null, // Add contact section data if needed
+            data: null,
         },
         {
             type: "footer",
-            data: null, // Add footer data if needed
+            data: null,
         },
     ],
 };

@@ -24,24 +24,6 @@ type Props = {
 export const ProfessionalPortfolio = ({ data }: Props) => {
     const [loading, setLoading] = useState(true);
 
-    // Categorize sections
-    const fixedStartTypes = ["navbar", "hero"];
-    const fixedEndTypes = ["contact", "footer"];
-
-    const fixedStartSections = data.sections.filter((s) =>
-        fixedStartTypes.includes(s.type),
-    );
-    const fixedEndSections = data.sections.filter((s) =>
-        fixedEndTypes.includes(s.type),
-    );
-    const initialReorderable = data.sections.filter(
-        (s) => !fixedStartTypes.includes(s.type) && !fixedEndTypes.includes(s.type),
-    );
-
-    const [reorderableSections, setReorderableSections] =
-        useState<PF_SECTION_BLOCK[]>(initialReorderable);
-
-    // Loader animation
     useEffect(() => {
         const timeout = setTimeout(() => {
             setLoading(false);
@@ -49,7 +31,6 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
         return () => clearTimeout(timeout);
     }, []);
 
-    // Render any section by type
     const renderSection = (section: PF_SECTION_BLOCK, index: number) => {
         switch (section.type) {
             case "navbar":
@@ -65,9 +46,7 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             case "gallery":
                 return <PFGallerySection key={`gallery-${index}`} {...section.data} />;
             case "services":
-                return (
-                    <PFServicesSection key={`services-${index}`} {...section.data} />
-                );
+                return <PFServicesSection key={`services-${index}`} {...section.data} />;
             case "contact":
                 return <PFContactSection key={`contact-${index}`} />;
             case "footer":
@@ -77,24 +56,8 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
         }
     };
 
-    // Move section up or down in reorderable list
-    const moveSection = (from: number, to: number) => {
-        const newSections = [...reorderableSections];
-        const [moved] = newSections.splice(from, 1);
-        newSections.splice(to, 0, moved);
-        setReorderableSections(newSections);
-    };
-
-    // Combine all sections for display
-    // const finalSections = [
-    //     ...fixedStartSections,
-    //     ...reorderableSections,
-    //     ...fixedEndSections,
-    // ];
-
     return (
         <>
-            {/* Loader Animation */}
             <AnimatePresence mode="wait">
                 {loading && (
                     <m.div
@@ -116,35 +79,12 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             </AnimatePresence>
 
             {!loading && (
-                <div className="space-y-20 px-4 pt-10">
-                    {fixedStartSections.map((s, i) => renderSection(s, i))}
-
-                    {reorderableSections.map((section, index) => (
-                        <div key={index} className="relative group border rounded p-2">
+                <div className="space-y-20 px-4">
+                    {data.sections.map((section, index) => (
+                        <div key={index} className="relative p-2">
                             {renderSection(section, index)}
-
-                            <div className="absolute right-2 top-2 flex flex-col space-y-1">
-                                {index > 0 && (
-                                    <button
-                                        className="bg-gray-200 text-xs px-2 py-1 rounded"
-                                        onClick={() => moveSection(index, index - 1)}
-                                    >
-                                        ↑ Move Up
-                                    </button>
-                                )}
-                                {index < reorderableSections.length - 1 && (
-                                    <button
-                                        className="bg-gray-200 text-xs px-2 py-1 rounded"
-                                        onClick={() => moveSection(index, index + 1)}
-                                    >
-                                        ↓ Move Down
-                                    </button>
-                                )}
-                            </div>
                         </div>
                     ))}
-
-                    {fixedEndSections.map((s, i) => renderSection(s, i))}
                 </div>
             )}
         </>
