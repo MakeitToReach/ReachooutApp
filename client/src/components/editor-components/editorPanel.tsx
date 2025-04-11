@@ -39,7 +39,7 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
         <Input
           type="text"
           placeholder="Title"
-          value={data.sections.heroSection.title}
+          value={data.sections["hero"].title}
           onChange={(e) =>
             setSectionField("heroSection", "title", e.target.value)
           }
