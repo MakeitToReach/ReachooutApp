@@ -16,21 +16,10 @@ export type PF_SECTION_BLOCK =
     | { type: "services"; data: PF_SERVICE_SECTION }
     | { type: "navbar"; data: null }
     | { type: "contact"; data: null }
-    | { type: "footer"; data: null }
+    | { type: "footer"; data: null };
 
 export interface PF_TMP_SCHEMA {
     id: string;
     name: string;
-
-    // sections: {
-    //     heroSection: PF_HERO_SECTION;
-    //     aboutSection: PF_ABOUT_SECTION;
-    //     workSection: PF_WORK_SECTION;
-    //     clientSection: PF_CLIENT_SECTION;
-    //     socialSection: PF_SOCIAL_SECTION;
-    //     gallerySection?: PF_GALLERY_SECTION;
-    //     servicesSection?: PF_SERVICE_SECTION;
-    // };
-    
-    sections: PF_SECTION_BLOCK[]
+    sections: PF_SECTION_BLOCK[];
 }

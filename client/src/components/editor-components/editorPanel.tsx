@@ -1,4 +1,4 @@
-import { usePortfolioStore } from "@/store/portfolio.store";
+import { SectionType, usePortfolioStore } from "@/store/portfolio.store";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { EditProjectPopup } from "./editProjectPopup";
@@ -9,15 +9,35 @@ import { publishTemplate } from "@/api/publish-template";
 import PreviewButton from "./previewBtn";
 import { AddProjectPopup } from "./addProjectPopup";
 import { EditServicesAccordion } from "./editServicesAccordion";
+import { ReorderSectionsPopup } from "./SectionsPopup";
 
 interface EditorPanelProps {
     isEditing?: boolean;
 }
 export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
     const { data, setSectionField, updateArrayItemField } = usePortfolioStore();
+
+    const reorderSections = usePortfolioStore((state) => state.reorderSections);
+
     const { user } = useUserStore();
     if (!data) return <div>No data found</div>;
 
+    const sections = data.sections.map((section) => ({
+        id: section.type,
+        name: section.type.replace("Section", ""),
+    }));
+
+    const handleReorder = (newOrder: { id: SectionType; name: string }[]) => {
+        const oldOrder = data.sections.map((s) => s.type);
+
+        newOrder.forEach(({ id }, newIndex) => {
+            const oldIndex = oldOrder.indexOf(id);
+            if (oldIndex !== newIndex) {
+                console.log("oldIndex", oldIndex, "newIndex", newIndex);
+                reorderSections(oldIndex, newIndex);
+            }
+        });
+    };
     const heroSection = data.sections.find((s) => s.type === "hero");
     const aboutSection = data.sections.find((s) => s.type === "about");
     const workSection = data.sections.find((s) => s.type === "projects");
@@ -33,10 +53,11 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
         e.preventDefault();
         await publishTemplate(data.name, data);
     };
-
     return (
         <form className="space-y-10 fixed top-0 left-0 md:w-[30%]  overflow-scroll lg:p-10 p-4 bg-neutral-100 h-full">
             {/* Hero Section */}
+            <h1>Manage Sections Order</h1>
+            <ReorderSectionsPopup sections={sections} onReorder={handleReorder} />
             {heroSection && (
                 <div className="space-y-3">
                     <h2 className=" text-3xl md:text-5xl font-bold">Hero Section</h2>
@@ -89,7 +110,6 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
                     <span className="ml-2">Dimensions - 500x500</span>
                 </div>
             )}
-
             {/* About Section */}
             {aboutSection && (
                 <div className="space-y-3">
@@ -159,7 +179,6 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
                     ))}
                 </div>
             )}
-
             {/* Work section */}
             {workSection && (
                 <div className="space-y-3">
@@ -181,7 +200,6 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
                     ))}
                 </div>
             )}
-
             {/* Social section */}
             {socialSection && (
                 <div className="space-y-3">
@@ -226,7 +244,6 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
                     ))}
                 </div>
             )}
-
             {/* Services section */}
             {servicesSection && (
                 <div className="space-y-3">
@@ -246,7 +263,6 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
                     <EditServicesAccordion services={servicesSection.data.services} />
                 </div>
             )}
-
             <div className="space-x-2">
                 <PreviewButton
                     previewUrl={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/live-preview/${user?.name}?template=${data.name}`}

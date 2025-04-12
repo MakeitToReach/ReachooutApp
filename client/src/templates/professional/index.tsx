@@ -46,7 +46,9 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             case "gallery":
                 return <PFGallerySection key={`gallery-${index}`} {...section.data} />;
             case "services":
-                return <PFServicesSection key={`services-${index}`} {...section.data} />;
+                return (
+                    <PFServicesSection key={`services-${index}`} {...section.data} />
+                );
             case "contact":
                 return <PFContactSection key={`contact-${index}`} />;
             case "footer":

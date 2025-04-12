@@ -17,7 +17,7 @@ export const PFSocialCard = ({
 }: PFSocialCardProps) => {
     return (
         <div className="w-full p-6 bg-white rounded-md flex items-center gap-6">
-            {icon}
+            <span>{icon}</span>
             <div className="flex flex-col gap-3">
                 <div className="space-y-1">
                     <h1 className="font-semibold md:text-xl">{title}</h1>
