@@ -1,12 +1,8 @@
 import { PFSocialCard } from "@/components/template-components/professional/socialCard";
 import React from "react";
-import { PF_SOCIAL } from "../types/social";
+import { PF_SOCIAL_SECTION } from "../types/socialSection";
 
-interface PFSocialSectionProps {
-    socials: PF_SOCIAL[];
-}
-
-export const PFSocialSection = ({ socials }: PFSocialSectionProps) => {
+export const PFSocialSection = ({ socials }: PF_SOCIAL_SECTION) => {
     return (
         <section className="relative">
             <div className="absolute z-0 w-[80%] h-[110%] right-0 -top-6 md:top-0 bg-blue-100 rounded-md"></div>

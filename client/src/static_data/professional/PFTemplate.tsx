@@ -1,15 +1,11 @@
+// import { TEMPLATES_SCHEMA } from "@/schemas/templates.schema";
 import { PF_TMP_SCHEMA } from "@/templates/professional/schema/PFTemplateSchema";
-import {
-    IconBrandInstagramFilled,
-    IconBrandLinkedinFilled,
-    IconBrandX,
-    IconBrandYoutubeFilled,
-} from "@tabler/icons-react";
 import { LucideCode } from "lucide-react";
 
 export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
     id: "pf-tmp",
     name: "professional",
+    // thumbnailUrl: "/professional_template.png",
     sections: [
         {
             type: "navbar",
@@ -72,45 +68,6 @@ export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
                         btnText: "button text",
                         btnLink: "#",
                     },
-                ],
-            },
-        },
-        {
-            type: "social",
-            data: {
-                socials: [
-                    {
-                        title: "Linkedin",
-                        socialLink: "https://linkedin.com",
-                        icon: <IconBrandLinkedinFilled size={45} color="blue" />,
-                    },
-                    {
-                        title: "Twitter / X",
-                        socialLink: "https://x.com",
-                        followerCounts: 500,
-                        icon: <IconBrandX size={45} />,
-                    },
-                    {
-                        title: "Youtube",
-                        socialLink: "https://youtube.com",
-                        followerCounts: 500,
-                        icon: <IconBrandYoutubeFilled color="red" size={45} />,
-                    },
-                    {
-                        title: "Instagram",
-                        socialLink: "https://instagram.com",
-                        icon: <IconBrandInstagramFilled size={45} />,
-                    },
-                ],
-            },
-        },
-        {
-            type: "gallery",
-            data: {
-                images: [
-                    "https://github.com/shadcn.png",
-                    "https://github.com/shadcn.png",
-                    "https://github.com/shadcn.png",
                 ],
             },
         },

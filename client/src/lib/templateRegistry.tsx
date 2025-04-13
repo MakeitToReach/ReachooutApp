@@ -1,10 +1,14 @@
 import { PF_STATIC_DATA } from "@/static_data/professional/PFTemplate";
 import { ProfessionalPortfolio } from "@/templates/professional";
-// import { PF_TMP_SCHEMA } from "@/templates/professional/schema/PFTemplateSchema";
+import LanderPortfolio from "@/templates/test";
 
 export const TEMPLATE_REGISTRY = {
-  professional: {
-    schema: PF_STATIC_DATA,
-    component: ProfessionalPortfolio,
-  },
+    professional: {
+        data: PF_STATIC_DATA,
+        component: ProfessionalPortfolio,
+    },
+    test: {
+        data: PF_STATIC_DATA,
+        component: LanderPortfolio,
+    },
 };

@@ -6,14 +6,14 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { useState } from "react";
-import { Button } from "../ui/button";
-import { PasswordInput } from "./passwordInput";
-import { ReqInput } from "./reqInput";
+import { PasswordInput } from "../inputs/passwordInput";
 import { motion as m } from "motion/react";
 import { loginUser, registerUser } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import { LucideLoader } from "lucide-react";
 import { useUserStore } from "@/store/user.store";
+import { ReqInput } from "../inputs/reqInput";
+import { Button } from "@/components/ui/button";
 
 export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
     const { setUser } = useUserStore();

@@ -1,15 +1,11 @@
 import { ServicesCard } from "@/components/template-components/professional/servicesCard";
 import React from "react";
-import { PF_SERVICES } from "../types/services";
+import { PF_SERVICE_SECTION } from "../types/serviceSection";
 
-interface PFServicesSectionProps {
-    subtitle: string;
-    services: PF_SERVICES[];
-}
 export const PFServicesSection = ({
     subtitle,
     services,
-}: PFServicesSectionProps) => {
+}: PF_SERVICE_SECTION) => {
     return (
         <section className="max-w-6xl mx-auto px-4">
             <h1 className="text-3xl font-semibold md:text-6xl text-center">

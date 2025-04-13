@@ -3,9 +3,9 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TemplateCard } from "./templateCard";
-import { TEMPLATES_SCHEMA } from "@/types/templates.types";
 import { Skeleton } from "../ui/skeleton";
 import { motion as m } from "motion/react";
+import { TEMPLATES_SCHEMA } from "@/schemas/templates.schema";
 
 interface ExploreTabsProps {
   templates: TEMPLATES_SCHEMA[];

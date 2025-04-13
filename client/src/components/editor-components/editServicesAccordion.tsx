@@ -8,7 +8,7 @@ import { PF_SERVICES } from "@/templates/professional/types/services";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { usePortfolioStore } from "@/store/portfolio.store";
-import { IconPicker } from "./iconPicker";
+import { IconPicker } from "./inputs/iconPicker";
 
 interface EditServicesAccordionProps {
     services?: PF_SERVICES[];

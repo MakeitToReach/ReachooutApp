@@ -1,5 +1,5 @@
 // import { getSectionByType } from "@/lib/utils";
-import { SectionItem } from "@/components/editor-components/SectionsPopup";
+import { SectionItem } from "@/components/editor-components/popups/SectionsPopup";
 import {
     PF_SECTION_BLOCK,
     PF_TMP_SCHEMA,

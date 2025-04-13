@@ -1,18 +1,12 @@
-import { PF_STAT } from "../types/stat";
+import { PF_ABOUT_SECTION } from "../types/aboutSection";
 import { motion as m } from "motion/react";
 
-interface PFAboutSetionProps {
-  title: string;
-  colorTitle: string;
-  description: string;
-  stats: PF_STAT[];
-}
 export const PFAboutSection = ({
   title,
   colorTitle,
   description,
   stats,
-}: PFAboutSetionProps) => {
+}: PF_ABOUT_SECTION) => {
   const animateVariants = {
     initial: {
       opacity: 0,

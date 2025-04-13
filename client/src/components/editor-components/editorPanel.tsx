@@ -1,15 +1,16 @@
 import { SectionType, usePortfolioStore } from "@/store/portfolio.store";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { EditProjectPopup } from "./editProjectPopup";
+import { EditProjectPopup } from "./popups/editProjectPopup";
 import { CldUploadButton } from "next-cloudinary";
 import { LucideUpload, LucideUploadCloud } from "lucide-react";
 import { useUserStore } from "@/store/user.store";
 import { publishTemplate } from "@/api/publish-template";
 import PreviewButton from "./previewBtn";
-import { AddProjectPopup } from "./addProjectPopup";
+import { AddProjectPopup } from "./popups/addProjectPopup";
 import { EditServicesAccordion } from "./editServicesAccordion";
-import { ReorderSectionsPopup } from "./SectionsPopup";
+import { ReorderSectionsPopup } from "./popups/SectionsPopup";
+import { ReqInput } from "./inputs/reqInput";
 
 interface EditorPanelProps {
     isEditing?: boolean;
@@ -54,7 +55,7 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
         await publishTemplate(data.name, data);
     };
     return (
-        <form className="space-y-10 fixed top-0 left-0 md:w-[30%]  overflow-scroll lg:p-10 p-4 bg-neutral-100 h-full">
+        <form className="space-y-10 fixed  top-0 left-0 md:w-[30%] overflow-scroll lg:p-10 p-4 bg-neutral-100 h-full">
             {/* Hero Section */}
             <h1>Manage Sections Order</h1>
             <ReorderSectionsPopup sections={sections} onReorder={handleReorder} />
@@ -62,17 +63,15 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
                 <div className="space-y-3">
                     <h2 className=" text-3xl md:text-5xl font-bold">Hero Section</h2>
                     <hr />
-                    <label className="font-semibold">Title</label>
-                    <Input
+                    <ReqInput
                         type="text"
+                        label="Title"
                         placeholder="Title"
                         value={heroSection.data.title || ""}
                         onChange={(e) => setSectionField("hero", "title", e.target.value)}
                     />
-                    <label className="font-semibold">
-                        Animated Texts (comma separated)
-                    </label>
-                    <Input
+                    <ReqInput
+                        label="Animated Texts"
                         type="text"
                         placeholder="Web developer, Freelancer, Tech enthusiast"
                         value={heroSection.data.professions || ""}
@@ -80,15 +79,15 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
                             setSectionField("hero", "professions", e.target.value)
                         }
                     />
-                    <label className="font-semibold">Button Redirect Link</label>
-                    <Input
+                    <ReqInput
+                        label="Button Redirect link"
                         type="text"
                         placeholder="https://reachooout.com"
                         value={heroSection.data.btnLink || ""}
                         onChange={(e) => setSectionField("hero", "btnLink", e.target.value)}
                     />
-                    <label className="font-semibold">Button Text</label>
-                    <Input
+                    <ReqInput
+                        label="Button Text"
                         type="text"
                         placeholder="Visit my website"
                         value={heroSection.data.btnText || ""}
@@ -115,16 +114,16 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
                 <div className="space-y-3">
                     <h2 className=" text-3xl md:text-5xl font-bold">About Section</h2>
                     <hr />
-                    <label className="font-semibold">Title</label>
-                    <Input
+                    <ReqInput
+                        label="Title"
                         type="text"
                         placeholder="Title"
                         className="uppercase"
                         value={aboutSection.data.title}
                         onChange={(e) => setSectionField("about", "title", e.target.value)}
                     />
-                    <label className="font-semibold">Colored Text</label>
-                    <Input
+                    <ReqInput
+                        label="Colored Text"
                         type="text"
                         placeholder="Hero Image URL"
                         value={aboutSection.data.colorTitle || ""}
@@ -208,24 +207,23 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
                     <h1 className="font-semibold">Social media handles</h1>
                     {socialSection.data.socials?.map((social, idx) => (
                         <div key={idx} className="flex justify-between items-center">
-                            <div className="w-1/2 space-y-1">
-                                <label className="font-semibold">{social.title}</label>
-                                <Input
-                                    type="text"
-                                    placeholder="https://x.com"
-                                    value={social.socialLink}
-                                    onChange={(e) =>
-                                        updateArrayItemField(
-                                            "social",
-                                            "socials",
-                                            idx,
-                                            "socialLink",
-                                            e.target.value,
-                                        )
-                                    }
-                                />
-                            </div>
-                            <Input
+                            <ReqInput
+                                label={social.title}
+                                type="text"
+                                className="w-1/2"
+                                placeholder="https://x.com"
+                                value={social.socialLink}
+                                onChange={(e) =>
+                                    updateArrayItemField(
+                                        "social",
+                                        "socials",
+                                        idx,
+                                        "socialLink",
+                                        e.target.value,
+                                    )
+                                }
+                            />
+                            <ReqInput
                                 type="number"
                                 placeholder="500"
                                 value={social.followerCounts ?? 0}
@@ -249,17 +247,15 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
                 <div className="space-y-3">
                     <h2 className="text-3xl md:text-5xl font-bold">Services Section</h2>
                     <hr />
-                    <div>
-                        <label className="font-semibold">Subtitle</label>
-                        <Input
-                            type="text"
-                            placeholder="Subtitle here"
-                            value={servicesSection.data.subtitle || ""}
-                            onChange={(e) =>
-                                setSectionField("services", "subtitle", e.target.value)
-                            }
-                        />
-                    </div>
+                    <ReqInput
+                        label="Subtitle"
+                        type="text"
+                        placeholder="Subtitle here"
+                        value={servicesSection.data.subtitle || ""}
+                        onChange={(e) =>
+                            setSectionField("services", "subtitle", e.target.value)
+                        }
+                    />
                     <EditServicesAccordion services={servicesSection.data.services} />
                 </div>
             )}

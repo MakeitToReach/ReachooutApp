@@ -1,11 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import React from "react";
+import { PF_CLIENT_SECTION } from "../types/clientSection";
 
-interface PFClientSectionProps {
-    title: string;
-    clientImgs: string[];
-    colorTxt: string;
-}
 export const PFClientSection = ({
     title,
     clientImgs = [
@@ -15,7 +11,7 @@ export const PFClientSection = ({
         "https://github.com/shadcn.png",
     ],
     colorTxt,
-}: PFClientSectionProps) => {
+}: PF_CLIENT_SECTION) => {
     return (
         <section className="px-4 max-w-6xl mx-auto">
             <div className="flex flex-col gap-4">

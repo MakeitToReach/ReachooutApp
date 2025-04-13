@@ -19,9 +19,8 @@ const EditorPage = () => {
 
   useEffect(() => {
     if (template && isNew) {
-      resetData(template.schema); // Load default content
+      resetData(template.data); // Load default content
     }
-    console.log(slug);
   }, [slug]);
 
   if (!template) return <p>Template not found</p>;

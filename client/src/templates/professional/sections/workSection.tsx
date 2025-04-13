@@ -1,11 +1,8 @@
 import { PFWorkCarousel } from "@/components/template-components/professional/workCarousel";
 import React from "react";
-import { PF_PROJECT } from "../types/project";
+import { PF_WORK_SECTION } from "../types/workSection";
 
-interface PFWorkSectionProps {
-    projects: PF_PROJECT[];
-}
-export const PFWorkSection = ({ projects }: PFWorkSectionProps) => {
+export const PFWorkSection = ({ projects }: PF_WORK_SECTION) => {
     return (
         <section className="bg-blue-900 overflow-x-hidden py-10 text-white">
             <div className="max-w-6xl mx-auto flex flex-col justify-center items-center">
