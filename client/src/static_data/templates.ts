@@ -11,7 +11,7 @@ export const TEMPLATES_STATIC = [
   },
   {
     imageUrl: "/placeholder.png",
-    previewUrl: "/preview/shadcn",
-    editorUrl: "/editor/other",
+    previewUrl: "/preview/dev",
+    editorUrl: "/editor/dev",
   },
 ];
