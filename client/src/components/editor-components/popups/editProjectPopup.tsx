@@ -8,7 +8,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { usePortfolioStore } from "@/store/portfolio.store";
+// import { usePortfolioStore } from "@/store/portfolio.store";
 import { PF_PROJECT } from "@/templates/professional/types/project";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { LucideUpload } from "lucide-react";
@@ -24,7 +24,7 @@ export function EditProjectPopup({
     project,
     projectIdx,
 }: EdtiProjectPopupProps) {
-    const { updateArrayItemField } = usePortfolioStore();
+    // const { updateArrayItemField } = usePortfolioStore();
     return (
         <Dialog modal={false}>
             <DialogTrigger asChild>{children}</DialogTrigger>
@@ -43,9 +43,6 @@ export function EditProjectPopup({
                             type="text"
                             placeholder="Enter your project heading"
                             value={project.heading}
-                            onChange={(e) =>
-                                updateArrayItemField("projects", "projects", projectIdx, "heading", e.target.value)
-                            }
                         />
                     </div>
 
@@ -55,9 +52,6 @@ export function EditProjectPopup({
                             type="text"
                             placeholder="Enter subtitle"
                             value={project.subtitle}
-                            onChange={(e) =>
-                                updateArrayItemField("projects", "projects", projectIdx, "subtitle", e.target.value)
-                            }
                         />
                     </div>
 
@@ -67,9 +61,6 @@ export function EditProjectPopup({
                             type="text"
                             placeholder="Enter your project description"
                             value={project.description}
-                            onChange={(e) =>
-                                updateArrayItemField("projects", "projects", projectIdx, "description", e.target.value)
-                            }
                         />
                     </div>
 
@@ -79,9 +70,6 @@ export function EditProjectPopup({
                             type="text"
                             placeholder="View my project"
                             value={project.btnText}
-                            onChange={(e) =>
-                                updateArrayItemField("projects", "projects", projectIdx, "btnText", e.target.value)
-                            }
                         />
                     </div>
 
@@ -91,14 +79,6 @@ export function EditProjectPopup({
                             type="text"
                             placeholder="https://reachoout.com"
                             value={project.btnLink}
-                            onChange={(e) =>
-                                setProjectField(
-                                    "workSection",
-                                    projectIdx,
-                                    "btnLink",
-                                    e.target.value,
-                                )
-                            }
                         />
                     </div>
 
@@ -110,15 +90,7 @@ export function EditProjectPopup({
                             uploadPreset="you-view"
                             options={{ sources: ["local", "url", "unsplash"] }}
                             className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                            //eslint-disable-next-line
-                            onSuccess={(result: any) => {
-                                setProjectField(
-                                    "workSection",
-                                    projectIdx,
-                                    "imgUrl",
-                                    result.info.secure_url,
-                                );
-                            }}
+                         
                         >
                             <div className="text-white flex items-center gap-2">
                                 <h1 className="font-semibold">Upload Image</h1> <LucideUpload />

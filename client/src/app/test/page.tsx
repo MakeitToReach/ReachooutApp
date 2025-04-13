@@ -1,7 +1,7 @@
 "use client";
-import { PF_STATIC_DATA } from "@/static_data/professional/PFTemplate";
+// import { PF_STATIC_DATA } from "@/static_data/professional/PFTemplate";
 // import { ReorderSectionsPopup } from "@/components/editor-components/SectionsPopup";
-import { ProfessionalPortfolio } from "@/templates/professional";
+// import { ProfessionalPortfolio } from "@/templates/professional";
 import LanderPortfolio from "@/templates/test";
 import React from "react";
 

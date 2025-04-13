@@ -1,3 +1,4 @@
+import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import { PF_ABOUT_SECTION } from "../types/aboutSection";
 import { PF_CLIENT_SECTION } from "../types/clientSection";
 import { PF_GALLERY_SECTION } from "../types/gallerySection";
@@ -18,8 +19,4 @@ export type PF_SECTION_BLOCK =
     | { type: "contact"; data: null }
     | { type: "footer"; data: null };
 
-export interface PF_TMP_SCHEMA {
-    id: string;
-    name: string;
-    sections: PF_SECTION_BLOCK[];
-}
+export type PF_TMP_SCHEMA = GenericTemplateSchema<PF_SECTION_BLOCK>;

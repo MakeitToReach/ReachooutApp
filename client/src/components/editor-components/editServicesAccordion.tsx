@@ -7,7 +7,7 @@ import {
 import { PF_SERVICES } from "@/templates/professional/types/services";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import { usePortfolioStore } from "@/store/portfolio.store";
+// import { usePortfolioStore } from "@/store/portfolio.store";
 import { IconPicker } from "./inputs/iconPicker";
 
 interface EditServicesAccordionProps {
@@ -16,7 +16,7 @@ interface EditServicesAccordionProps {
 export function EditServicesAccordion({
     services,
 }: EditServicesAccordionProps) {
-    const { updateArrayItemField } = usePortfolioStore();
+    // const { updateArrayItemField } = usePortfolioStore();
     return (
         <Accordion type="single" collapsible className="w-full">
             {services &&
@@ -31,15 +31,6 @@ export function EditServicesAccordion({
                                 <Input
                                     type="text"
                                     value={service.heading}
-                                    onChange={(e) =>
-                                        updateArrayItemField(
-                                            "services",
-                                            "service",
-                                            idx,
-                                            "heading",
-                                            e.target.value,
-                                        )
-                                    }
                                 />
                             </div>
                             <div className="space-y-2">
@@ -48,29 +39,12 @@ export function EditServicesAccordion({
                                     placeholder="Description"
                                     className="border p-2 w-full rounded-md h-20"
                                     value={service.description}
-                                    onChange={(e) =>
-                                        updateArrayItemField(
-                                            "services",
-                                            "service",
-                                            idx,
-                                            "description",
-                                            e.target.value,
-                                        )
-                                    }
                                 />
                             </div>
                             <div className="self-end flex  items-center gap-2">
                                 <h2>Select an Icon</h2>
                                 <IconPicker
-                                    onChange={(icon) =>
-                                        updateArrayItemField(
-                                            "services",
-                                            "service",
-                                            idx,
-                                            "icon",
-                                            icon,
-                                        )
-                                    }
+                                    onChange={()=>{}}
                                     value={service.icon}
                                 />
                             </div>

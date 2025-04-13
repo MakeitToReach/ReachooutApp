@@ -5,10 +5,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TemplateCard } from "./templateCard";
 import { Skeleton } from "../ui/skeleton";
 import { motion as m } from "motion/react";
-import { TEMPLATES_SCHEMA } from "@/schemas/templates.schema";
+import { GenericTemplateSchema } from "@/schemas/templates.schema";
 
 interface ExploreTabsProps {
-  templates: TEMPLATES_SCHEMA[];
+  templates: GenericTemplateSchema[];
 }
 export default function ExploreTabs({ templates }: ExploreTabsProps) {
   return (
@@ -69,7 +69,7 @@ export default function ExploreTabs({ templates }: ExploreTabsProps) {
             templates.map((template, idx) => (
               <TemplateCard
                 key={idx}
-                imageUrl={template.thumbnailUrl}
+                imageUrl={template.thumbnailUrl || "/placeholder.png"}
                 previewUrl={`/preview/${template.name.toLowerCase()}`}
                 editorUrl={`/editor/${template.name.toLowerCase()}?new`}
               />

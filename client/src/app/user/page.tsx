@@ -9,17 +9,17 @@ import {
 } from "lucide-react";
 import { TemplateCard } from "@/components/editor-components/templateCard";
 import { getUserTemplates } from "@/api/user-template";
-import { TEMPLATES_SCHEMA } from "@/types/templates.types";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, LayoutGroup } from "motion/react";
 import { motion as m } from "motion/react";
 import { useUserStore } from "@/store/user.store";
+import { GenericTemplateSchema } from "@/schemas/templates.schema";
 
 type Tab = "templates" | "domains" | "analytics";
 
 function App() {
     const [activeTab, setActiveTab] = useState<Tab>("templates");
-    const [templates, setTemplates] = useState<TEMPLATES_SCHEMA[]>([]);
+    const [templates, setTemplates] = useState<GenericTemplateSchema[]>([]);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const { user } = useUserStore();
 
@@ -153,7 +153,7 @@ function App() {
                                         isPublished
                                         templateName={template.name.toLowerCase()}
                                         key={idx}
-                                        imageUrl={template.thumbnailUrl}
+                                        imageUrl={template.thumbnailUrl || "/placeholder.png"}
                                         previewUrl={`/${user.name}?template=${template.name.toLowerCase()}`}
                                         editorUrl={`/editor/${template.name.toLowerCase()}?edit`}
                                         className="shadow-2xl shadow-black"

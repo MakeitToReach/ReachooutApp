@@ -1,4 +1,5 @@
-import { PF_STATIC_DATA } from "@/static_data/professional/PFTemplate";
+import { PF_STATIC_DATA } from "@/static_data/professional/PFStaticData";
+import { TEST_STATIC_DATA } from "@/static_data/test/TestStaticData";
 import { ProfessionalPortfolio } from "@/templates/professional";
 import LanderPortfolio from "@/templates/test";
 
@@ -8,7 +9,7 @@ export const TEMPLATE_REGISTRY = {
         component: ProfessionalPortfolio,
     },
     test: {
-        data: PF_STATIC_DATA,
+        data: TEST_STATIC_DATA,
         component: LanderPortfolio,
     },
 };

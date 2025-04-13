@@ -1,11 +1,10 @@
-// import { TEMPLATES_SCHEMA } from "@/schemas/templates.schema";
-import { PF_TMP_SCHEMA } from "@/templates/professional/schema/PFTemplateSchema";
+import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import { LucideCode } from "lucide-react";
 
-export const PF_STATIC_DATA: PF_TMP_SCHEMA = {
+export const PF_STATIC_DATA: GenericTemplateSchema = {
     id: "pf-tmp",
     name: "professional",
-    // thumbnailUrl: "/professional_template.png",
+    thumbnailUrl: "/professional_template.png",
     sections: [
         {
             type: "navbar",

@@ -6,18 +6,16 @@ import {
     PFWorkSection,
     PFHeroSection,
     PFFooter,
-    PFSocialSection,
-    PFGallerySection,
-    PFServicesSection,
+    // PFServicesSection,
     PFContactSection,
 } from "./sections";
 import { PageLoader } from "@/components/editor-components/pageLoader";
 import { AnimatePresence, motion as m } from "motion/react";
-import { PF_SECTION_BLOCK } from "./schema/PFTemplateSchema";
+import { SectionBlock } from "@/schemas/templates.schema";
 
 type Props = {
     data: {
-        sections: PF_SECTION_BLOCK[];
+        sections: SectionBlock[];
     };
 };
 
@@ -31,7 +29,7 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
         return () => clearTimeout(timeout);
     }, []);
 
-    const renderSection = (section: PF_SECTION_BLOCK, index: number) => {
+    const renderSection = (section: SectionBlock, index: number) => {
         switch (section.type) {
             case "navbar":
                 return <PFNavbar key={`navbar-${index}`} />;
@@ -41,14 +39,10 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
                 return <PFAboutSection key={`about-${index}`} {...section.data} />;
             case "projects":
                 return <PFWorkSection key={`work-${index}`} {...section.data} />;
-            case "social":
-                return <PFSocialSection key={`social-${index}`} {...section.data} />;
-            case "gallery":
-                return <PFGallerySection key={`gallery-${index}`} {...section.data} />;
-            case "services":
-                return (
-                    <PFServicesSection key={`services-${index}`} {...section.data} />
-                );
+            // case "services":
+            //     return (
+            //         <PFServicesSection key={`services-${index}`} {...section.data} />
+            //     );
             case "contact":
                 return <PFContactSection key={`contact-${index}`} />;
             case "footer":
@@ -81,9 +75,9 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             </AnimatePresence>
 
             {!loading && (
-                <div className="space-y-20 px-4">
+                <div className="space-y-20">
                     {data.sections.map((section, index) => (
-                        <div key={index} className="relative p-2">
+                        <div key={index} className="relative">
                             {renderSection(section, index)}
                         </div>
                     ))}

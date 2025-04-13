@@ -1,13 +1,13 @@
-import { TEMPLATES_SCHEMA } from "@/types/templates.types";
+import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import { create } from "zustand";
 // import { persist } from "zustand/middleware";
 
 interface TemplateStore {
-  templates: TEMPLATES_SCHEMA[];
-  setTemplates: (templates: TEMPLATES_SCHEMA[]) => void;
+  templates: GenericTemplateSchema[];
+  setTemplates: (templates: GenericTemplateSchema[]) => void;
 }
 export const useTemplateStore = create<TemplateStore>((set) => ({
   templates: [],
-  setTemplates: (templates: TEMPLATES_SCHEMA[]) =>
+  setTemplates: (templates: GenericTemplateSchema[]) =>
     set({ templates: templates }),
 }));

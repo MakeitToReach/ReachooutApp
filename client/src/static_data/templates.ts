@@ -10,7 +10,7 @@ export const TEMPLATES_STATIC = [
     editorUrl: "/editor/professional",
   },
   {
-    imageUrl: "https://github.com/shadcn.png",
+    imageUrl: "/placeholder.png",
     previewUrl: "/preview/shadcn",
     editorUrl: "/editor/other",
   },

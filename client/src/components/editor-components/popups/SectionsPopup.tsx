@@ -26,10 +26,9 @@ import { CSS } from "@dnd-kit/utilities";
 
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { cn } from "@/lib/utils"; // for merging Tailwind classes
-import { SectionType } from "@/store/portfolio.store";
 
 export type SectionItem = {
-    id: SectionType;
+    id: string;
     name: string;
 };
 
@@ -46,6 +45,7 @@ export const ReorderSectionsPopup = ({
 
     const sensors = useSensors(useSensor(PointerSensor));
 
+    //eslint-disable-next-line
     const handleDragEnd = (event: any) => {
         const { active, over } = event;
         if (active.id !== over?.id) {

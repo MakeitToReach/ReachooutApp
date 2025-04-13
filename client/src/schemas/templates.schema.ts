@@ -1,13 +1,14 @@
-export type SECTIONS = {
+//eslint-disable-next-line
+export type SectionBlock<T = any> = {
     type: string;
-    data: object | null;
+    data: T | null;
 };
 
-export type TEMPLATES_SCHEMA = {
+export interface GenericTemplateSchema<T extends SectionBlock = SectionBlock> {
     id: string;
     name: string;
-    sections: SECTIONS[];
-    thumbnailUrl: string;
+    sections: T[];
+    thumbnailUrl?: string;
     previewRoute?: string;
     editorRoute?: string;
-};
+}
