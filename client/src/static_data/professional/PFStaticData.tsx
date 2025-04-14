@@ -1,5 +1,5 @@
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
-import { LucideCode } from "lucide-react";
+// import { LucideCode } from "lucide-react";
 
 export const PF_STATIC_DATA: GenericTemplateSchema = {
     id: "pf-tmp",
@@ -9,6 +9,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
         {
             type: "navbar",
             data: null,
+            isFixed: true,
         },
         {
             type: "hero",
@@ -20,6 +21,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                 heroImgUrl:
                     "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
             },
+            isFixed: true,
         },
         {
             type: "about",
@@ -35,6 +37,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                     { title: "Experience", value: "2" },
                 ],
             },
+            isFixed: false,
         },
         {
             type: "projects",
@@ -69,46 +72,51 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                     },
                 ],
             },
+            isFixed: false,
         },
-        {
-            type: "services",
-            data: {
-                subtitle: "subtitle here",
-                services: [
-                    {
-                        icon: <LucideCode size={25} />,
-                        heading: "Web Development",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
-                    },
-                    {
-                        icon: <LucideCode size={25} />,
-                        heading: "Web Development",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
-                    },
-                    {
-                        icon: <LucideCode size={25} />,
-                        heading: "Web Development",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
-                    },
-                    {
-                        icon: <LucideCode size={25} />,
-                        heading: "Web Development",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
-                    },
-                ],
-            },
-        },
+        // {
+        //     type: "services",
+        //     data: {
+        //         subtitle: "subtitle here",
+        //         services: [
+        //             {
+        //                 icon: <LucideCode size={25} />,
+        //                 heading: "Web Development",
+        //                 description:
+        //                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
+        //             },
+        //             {
+        //                 icon: <LucideCode size={25} />,
+        //                 heading: "Web Development",
+        //                 description:
+        //                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
+        //             },
+        //             {
+        //                 icon: <LucideCode size={25} />,
+        //                 heading: "Web Development",
+        //                 description:
+        //                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
+        //             },
+        //             {
+        //                 icon: <LucideCode size={25} />,
+        //                 heading: "Web Development",
+        //                 description:
+        //                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
+        //             },
+        //         ],
+        //     },
+        //     isFixed: false,
+        // isEditable:true
+        // },
         {
             type: "contact",
             data: null,
+            isFixed: true,
         },
         {
             type: "footer",
             data: null,
+            isFixed: true,
         },
     ],
 };

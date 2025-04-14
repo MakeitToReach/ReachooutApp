@@ -2,6 +2,7 @@
 export type SectionBlock<T = any> = {
     type: string;
     data: T | null;
+    isFixed: boolean;
 };
 
 export interface GenericTemplateSchema<T extends SectionBlock = SectionBlock> {

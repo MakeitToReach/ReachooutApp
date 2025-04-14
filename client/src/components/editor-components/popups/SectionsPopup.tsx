@@ -28,7 +28,7 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { cn } from "@/lib/utils";
 
 interface ReorderSectionsDialogProps {
-    sections: { id: string; name: string }[]; // id = section.type
+    sections: { id: string; name: string; isFixed: boolean }[];
     onReorder: (newOrder: string[]) => void;
 }
 
@@ -36,7 +36,8 @@ export const ReorderSectionsPopup = ({
     sections,
     onReorder,
 }: ReorderSectionsDialogProps) => {
-    const [order, setOrder] = useState(sections.map((s) => s.id));
+    const reorderableIds = sections.filter((s) => !s.isFixed).map((s) => s.id);
+    const [order, setOrder] = useState(reorderableIds);
 
     const sensors = useSensors(useSensor(PointerSensor));
 
@@ -52,11 +53,13 @@ export const ReorderSectionsPopup = ({
     };
 
     const handleSave = () => {
-        onReorder(order);
-    };
+        // Rebuild final order, keeping fixed sections in original positions
+        const finalOrder = sections.map((section) => {
+            return section.isFixed ? section.id : order.shift()!; // Pull from reordered list
+        });
 
-    const getSectionName = (id: string) =>
-        sections.find((s) => s.id === id)?.name || id;
+        onReorder(finalOrder);
+    };
 
     return (
         <Dialog>
@@ -74,17 +77,25 @@ export const ReorderSectionsPopup = ({
                     onDragEnd={handleDragEnd}
                     modifiers={[restrictToVerticalAxis]}
                 >
-                    <SortableContext items={order} strategy={verticalListSortingStrategy}>
-                        <div className="space-y-2 mt-4">
-                            {order.map((id) => (
-                                <SortableSectionItem
-                                    key={id}
-                                    id={id}
-                                    name={getSectionName(id)}
-                                />
-                            ))}
-                        </div>
-                    </SortableContext>
+                    <div className="space-y-2 mt-4">
+                        {sections.map((section) =>
+                            section.isFixed ? (
+                                <FixedSectionItem key={section.id} name={section.name} />
+                            ) : (
+                                <SortableContext
+                                    key={section.id}
+                                    items={order}
+                                    strategy={verticalListSortingStrategy}
+                                >
+                                    <SortableSectionItem
+                                        key={section.id}
+                                        id={section.id}
+                                        name={section.name}
+                                    />
+                                </SortableContext>
+                            ),
+                        )}
+                    </div>
                 </DndContext>
 
                 <div className="flex justify-end gap-2 mt-6">
@@ -132,6 +143,18 @@ const SortableSectionItem = ({ id, name }: { id: string; name: string }) => {
                 </span>
                 <span className="font-medium">{name}</span>
             </div>
+        </div>
+    );
+};
+
+const FixedSectionItem = ({ name }: { name: string }) => {
+    return (
+        <div className="flex items-center justify-between p-3 border rounded-lg bg-neutral-100 text-neutral-500 cursor-not-allowed">
+            <div className="flex items-center gap-3">
+                <GripVertical className="w-5 h-5 opacity-30" />
+                <span className="font-medium">{name}</span>
+            </div>
+            <span className="text-xs italic">Fixed</span>
         </div>
     );
 };
