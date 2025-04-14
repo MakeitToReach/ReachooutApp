@@ -7,26 +7,25 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { usePortfolioStore } from "@/store/portfolio.store";
 import { PF_PROJECT } from "@/templates/professional/types/project";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { LucideUpload } from "lucide-react";
 import { CldUploadButton } from "next-cloudinary";
 import { useState } from "react";
+import { ReqInput } from "../inputs/reqInput";
+import ImageSelectButton from "../inputs/imageInputBtn";
 
 interface AddProjectPopupProps {
   children: React.ReactNode;
 }
 export function AddProjectPopup({ children }: AddProjectPopupProps) {
-  const { addProject } = usePortfolioStore();
+  // const { addProject } = usePortfolioStore();
   const [project, setProject] = useState<PF_PROJECT>({
     heading: "",
     subtitle: "",
     description: "",
     btnText: "",
     btnLink: "",
-    imgUrl: "https://github.com/shadcn.png",
+    imgUrl: "https://placehold.co/500",
   });
   return (
     <Dialog modal={false}>
@@ -40,29 +39,25 @@ export function AddProjectPopup({ children }: AddProjectPopupProps) {
           <DialogTitle>Add Project</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-3">
-          <div>
-            <label className="font-semibold">Heading</label>
-            <Input
-              type="text"
-              placeholder="Enter your project heading"
-              value={project.heading}
-              onChange={(e) =>
-                setProject({ ...project, heading: e.target.value })
-              }
-            />
-          </div>
+          <ReqInput
+            type="text"
+            label="Heading"
+            placeholder="Enter your project heading"
+            value={project.heading}
+            onChange={(e) =>
+              setProject({ ...project, heading: e.target.value })
+            }
+          />
 
-          <div>
-            <label className="font-semibold">Subtitle</label>
-            <Input
-              type="text"
-              placeholder="Enter subtitle"
-              value={project.subtitle}
-              onChange={(e) =>
-                setProject({ ...project, subtitle: e.target.value })
-              }
-            />
-          </div>
+          <ReqInput
+            label="Subtitle"
+            type="text"
+            placeholder="Enter subtitle"
+            value={project.subtitle}
+            onChange={(e) =>
+              setProject({ ...project, subtitle: e.target.value })
+            }
+          />
 
           <div>
             <label className="font-semibold">Description</label>
@@ -76,34 +71,27 @@ export function AddProjectPopup({ children }: AddProjectPopupProps) {
             />
           </div>
 
-          <div>
-            <label className="font-semibold">Button Text</label>
-            <Input
-              type="text"
-              placeholder="View my project"
-              value={project.btnText}
-              onChange={(e) =>
-                setProject({ ...project, btnText: e.target.value })
-              }
-            />
-          </div>
+          <ReqInput
+            label="Button Text"
+            type="text"
+            placeholder="View my project"
+            value={project.btnText}
+            onChange={(e) =>
+              setProject({ ...project, btnText: e.target.value })
+            }
+          />
 
-          <div>
-            <label className="font-semibold">Button Redirect Link</label>
-            <Input
-              type="text"
-              placeholder="https://reachoout.com"
-              value={project.btnLink}
-              onChange={(e) =>
-                setProject({ ...project, btnLink: e.target.value })
-              }
-            />
-          </div>
+          <ReqInput
+            label="Button Redirect Link"
+            type="text"
+            placeholder="https://reachoout.com"
+            value={project.btnLink}
+            onChange={(e) =>
+              setProject({ ...project, btnLink: e.target.value })
+            }
+          />
 
           <div className="space-x-2">
-            <label htmlFor="" className="font-semibold">
-              Project Image -
-            </label>
             <CldUploadButton
               uploadPreset="you-view"
               options={{ sources: ["local", "url", "unsplash"] }}
@@ -113,16 +101,16 @@ export function AddProjectPopup({ children }: AddProjectPopupProps) {
                 setProject({ ...project, imgUrl: result.info.url });
               }}
             >
-              <div className="text-white flex items-center gap-2">
-                <h1 className="font-semibold">Upload Image</h1> <LucideUpload />
-              </div>
+              <ImageSelectButton selectedImgUrl={project.imgUrl} />
             </CldUploadButton>
           </div>
         </div>
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button onClick={() => addProject(project)}>Add</Button>
+            <Button onClick={() => alert("still under development")}>
+              Add
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

@@ -4,21 +4,15 @@ import { LucideArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { CldImage } from "next-cloudinary";
+import { PF_HERO_SECTION } from "../types/heroSection";
 
-interface PFHeroSetionProps {
-    title: string;
-    professions: string[];
-    btnText: string;
-    btnLink: string;
-    heroImgUrl: string;
-}
 export const PFHeroSection = ({
     title,
     professions,
     btnLink,
     btnText,
     heroImgUrl,
-}: PFHeroSetionProps) => {
+}: PF_HERO_SECTION) => {
     return (
         <section className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">

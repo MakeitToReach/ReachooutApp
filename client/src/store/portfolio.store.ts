@@ -1,216 +1,63 @@
-//eslint-disable
-import { PF_TMP_SCHEMA } from "@/templates/professional/schema/PFTemplateSchema";
+import {
+  GenericTemplateSchema,
+  SectionBlock,
+} from "@/schemas/templates.schema";
 import { create } from "zustand";
+import _set from "lodash/set";
+import _cloneDeep from "lodash/cloneDeep";
+
+type TemplateSchema = GenericTemplateSchema;
 
 interface PortfolioState {
-  data: PF_TMP_SCHEMA | null; // Stores the portfolio data
-
-  // Updates a specific section field (for primitives like title, colorTitle, description)
+  data: TemplateSchema | null;
+  resetData: (newData: TemplateSchema) => void;
   setSectionField: (
-    section: keyof PF_TMP_SCHEMA["sections"],
-    key: string,
-    value: any, // eslint-disable-line
+    sectionType: string,
+    fieldPath: string,
+    value: any, //eslint-disable-line
   ) => void;
 
-  // Updates a specific stat inside the stats array
-  setStatField: (
-    section: keyof PF_TMP_SCHEMA["sections"], // Section containing stats[]
-    statIndex: number, // Index of the stat in the array
-    key: keyof PF_TMP_SCHEMA["sections"]["aboutSection"]["stats"][number], // Key inside stat
-    value: any, // eslint-disable-line
-  ) => void;
-
-  setProjectField: (
-    section: keyof PF_TMP_SCHEMA["sections"],
-    statIndex: number,
-    key: keyof PF_TMP_SCHEMA["sections"]["workSection"]["projects"][number],
-    value: any, // eslint-disable-line
-  ) => void;
-
-  addProject: (
-    // section: keyof PF_TMP_SCHEMA["sections"],
-    project: PF_TMP_SCHEMA["sections"]["workSection"]["projects"][number],
-  ) => void;
-
-  setSocialField: (
-    section: keyof PF_TMP_SCHEMA["sections"],
-    index: number,
-    key: keyof PF_TMP_SCHEMA["sections"]["socialSection"]["socials"][number],
-    value: any, // eslint-disable-line
-  ) => void;
-
-  setServicesField: (
-    // section: keyof PF_TMP_SCHEMA["sections"],
-    index: number,
-    key: keyof NonNullable<
-      PF_TMP_SCHEMA["sections"]["servicesSection"]
-    >["services"][number],
-    value: any, // eslint-disable-line
-  ) => void;
-
-  // Resets the entire portfolio data
-  resetData: (newData: PF_TMP_SCHEMA) => void;
+  reorderSections: (newOrder: string[]) => void;
 }
 
 export const usePortfolioStore = create<PortfolioState>((set) => ({
-  data: null, // Initially empty
+  data: null,
+  resetData: (newData) => set({ data: newData }),
 
-  // Update a primitive section field
-  setSectionField: (section, key, value) =>
-    set((state) => ({
-      data: {
-        ...state.data!,
-        sections: {
-          ...state.data!.sections,
-          [section]: {
-            ...state.data!.sections[section],
-            [key]: value, // Works for primitive values
-          },
-        },
-      },
-    })),
-
-  // Update a specific stat inside the stats array
-  setStatField: (
-    section: keyof PF_TMP_SCHEMA["sections"],
-    statIndex: number,
-    key: string,
-    value: any, //eslint-disable-line
-  ) =>
+  setSectionField: (sectionType, fieldPath, value) => {
     set((state) => {
-      const sectionData = state.data!.sections[section];
+      if (!state.data) return {};
 
-      if (
-        !sectionData ||
-        !("stats" in sectionData) ||
-        !Array.isArray(sectionData.stats)
-      )
-        return state;
+      const newData = _cloneDeep(state.data);
+      const section = newData.sections.find(
+        (s: SectionBlock) => s.type === sectionType,
+      );
 
-      return {
-        data: {
-          ...state.data!,
-          sections: {
-            ...state.data!.sections,
-            [section]: {
-              ...sectionData,
-              stats: sectionData.stats.map((stat, index: number) =>
-                index === statIndex ? { ...stat, [key]: value } : stat,
-              ),
-            },
-          },
-        },
-      };
-    }),
+      if (!section || !section.data) return {};
 
-  setProjectField: (
-    section: keyof PF_TMP_SCHEMA["sections"],
-    statIndex: number,
-    key: string,
-    value: any, //eslint-disable-line
-  ) =>
-    set((state) => {
-      const sectionData = state.data!.sections[section];
+      _set(section.data, fieldPath, value);
 
-      // Ensure the section exists and has a 'projects' array
-      if (
-        !sectionData ||
-        !("projects" in sectionData) ||
-        !Array.isArray(sectionData.projects)
-      )
-        return state;
-
-      return {
-        data: {
-          ...state.data!,
-          sections: {
-            ...state.data!.sections,
-            [section]: {
-              ...sectionData,
-              projects: sectionData.projects.map((stat, index) =>
-                index === statIndex ? { ...stat, [key]: value } : stat,
-              ),
-            },
-          },
-        },
-      };
-    }),
-
-  addProject(project) {
-    set((state) => ({
-      data: {
-        ...state.data!,
-        sections: {
-          ...state.data!.sections,
-          workSection: {
-            ...state.data!.sections.workSection,
-            projects: [...state.data!.sections.workSection.projects, project],
-          },
-        },
-      },
-    }));
+      return { data: newData };
+    });
   },
 
-  setSocialField: (
-    section: keyof PF_TMP_SCHEMA["sections"],
-    statIndex: number,
-    key: string,
-    value: any, //eslint-disable-line
-  ) =>
+  reorderSections: (newOrder) => {
     set((state) => {
-      const sectionData = state.data!.sections[section];
+      if (!state.data) return {};
 
-      if (
-        !sectionData ||
-        !("socials" in sectionData) ||
-        !Array.isArray(sectionData.socials)
-      )
-        return state;
+      const newData = _cloneDeep(state.data);
 
-      return {
-        data: {
-          ...state.data!,
-          sections: {
-            ...state.data!.sections,
-            [section]: {
-              ...sectionData,
-              socials: sectionData.socials.map((social, index) =>
-                index === statIndex ? { ...social, [key]: value } : social,
-              ),
-            },
-          },
-        },
-      };
-    }),
+      const sectionsByType = Object.fromEntries(
+        newData.sections.map((section) => [section.type, section]),
+      );
 
-  setServicesField: (index, key, value) =>
-    set((state) => {
-      const servicesSection = state.data?.sections.servicesSection;
+      const reorderedSections = newOrder
+        .map((type) => sectionsByType[type])
+        .filter(Boolean); // removes any undefined sections
 
-      if (
-        !servicesSection ||
-        !Array.isArray(servicesSection.services) ||
-        !servicesSection.services[index]
-      ) {
-        return state; // No update if service doesn't exist
-      }
+      newData.sections = reorderedSections;
 
-      return {
-        data: {
-          ...state.data!,
-          sections: {
-            ...state.data!.sections,
-            servicesSection: {
-              ...servicesSection,
-              services: servicesSection.services.map((service, idx) =>
-                idx === index ? { ...service, [key]: value } : service,
-              ),
-            },
-          },
-        },
-      };
-    }),
-
-  // Reset portfolio data
-  resetData: (newData) => set({ data: newData }),
+      return { data: newData };
+    });
+  },
 }));

@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import { api } from "../axios.config";
 import { getToken } from "@/lib/isAuthenticated";
-import { PF_TMP_SCHEMA } from "@/templates/professional/schema/PFTemplateSchema";
+import { GenericTemplateSchema } from "@/schemas/templates.schema";
 
 export const fetchAllTemplates = async () => {
   const token = getToken();
@@ -16,7 +16,7 @@ export const fetchAllTemplates = async () => {
 
 export const publishTemplate = async (
   templateName: string,
-  data: PF_TMP_SCHEMA,
+  data: GenericTemplateSchema,
 ) => {
   const token = getToken();
   const response = await api.post(

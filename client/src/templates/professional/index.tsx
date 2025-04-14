@@ -6,29 +6,54 @@ import {
     PFWorkSection,
     PFHeroSection,
     PFFooter,
-    PFSocialSection,
-    PFGallerySection,
-    PFServicesSection,
+    // PFServicesSection,
     PFContactSection,
-    // PFClientSection,
 } from "./sections";
 import { PageLoader } from "@/components/editor-components/pageLoader";
 import { AnimatePresence, motion as m } from "motion/react";
+import { SectionBlock } from "@/schemas/templates.schema";
 
-//eslint-disable-next-line
-export const ProfessionalPortfolio = ({ data }: any) => {
+type Props = {
+    data: {
+        sections: SectionBlock[];
+    };
+};
+
+export const ProfessionalPortfolio = ({ data }: Props) => {
     const [loading, setLoading] = useState(true);
-    const { sections } = data;
 
     useEffect(() => {
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
             setLoading(false);
-        }, 2000); // Adjust duration if needed
+        }, 1000);
+        return () => clearTimeout(timeout);
     }, []);
+
+    const renderSection = (section: SectionBlock, index: number) => {
+        switch (section.type) {
+            case "navbar":
+                return <PFNavbar key={`navbar-${index}`} />;
+            case "hero":
+                return <PFHeroSection key={`hero-${index}`} {...section.data} />;
+            case "about":
+                return <PFAboutSection key={`about-${index}`} {...section.data} />;
+            case "projects":
+                return <PFWorkSection key={`work-${index}`} {...section.data} />;
+            // case "services":
+            //     return (
+            //         <PFServicesSection key={`services-${index}`} {...section.data} />
+            //     );
+            case "contact":
+                return <PFContactSection key={`contact-${index}`} />;
+            case "footer":
+                return <PFFooter key={`footer-${index}`} />;
+            default:
+                return null;
+        }
+    };
 
     return (
         <>
-            {/* Loader Animation */}
             <AnimatePresence mode="wait">
                 {loading && (
                     <m.div
@@ -49,53 +74,15 @@ export const ProfessionalPortfolio = ({ data }: any) => {
                 )}
             </AnimatePresence>
 
-            {/* Main Content Animation */}
-            <AnimatePresence>
-                {!loading && (
-                    <m.div
-                        key="content"
-                        // initial={{ opacity: 0, y: 20 }}
-                        // animate={{ opacity: 1, y: 0 }}
-                        // exit={{ opacity: 0 }}
-                        // transition={{ duration: 0.6, delay: 0.5 }} // Delay to smooth transition
-                        className="space-y-20 w-full overflow-x-hidden"
-                    >
-                        <div className="space-y-10">
-                            <PFNavbar />
-                            <PFHeroSection
-                                professions={sections.heroSection.professions}
-                                title={sections.heroSection.title}
-                                btnLink={sections.heroSection.btnLink}
-                                btnText={sections.heroSection.btnText}
-                                heroImgUrl={sections.heroSection.heroImgUrl}
-                            />
+            {!loading && (
+                <div className="space-y-20">
+                    {data.sections.map((section, index) => (
+                        <div key={index} className="relative">
+                            {renderSection(section, index)}
                         </div>
-                        <PFAboutSection
-                            stats={sections.aboutSection.stats}
-                            title={sections.aboutSection.title}
-                            colorTitle={sections.aboutSection.colorTitle}
-                            description={sections.aboutSection.description}
-                        />
-                        <PFWorkSection projects={sections.workSection.projects} />
-                        {/* <PFClientSection */}
-                        {/*     title={sections.clientSection.title} */}
-                        {/*     clientImgs={sections.clientSection.clientImgs} */}
-                        {/*     colorTxt={sections.clientSection.colorTxt} */}
-                        {/* /> */}
-                        <PFSocialSection socials={sections.socialSection.socials} />
-
-                        {sections.gallerySection && <PFGallerySection />}
-
-                        <PFServicesSection
-                            services={sections.servicesSection.services}
-                            subtitle={sections.servicesSection.subtitle}
-                        />
-                        <PFContactSection />
-
-                        <PFFooter />
-                    </m.div>
-                )}
-            </AnimatePresence>
+                    ))}
+                </div>
+            )}
         </>
     );
 };

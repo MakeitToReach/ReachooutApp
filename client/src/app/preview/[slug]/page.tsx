@@ -1,6 +1,5 @@
 "use client";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
-import { PF_STATIC_DATA } from "@/static_data/professional/PFTemplate";
 import { useParams } from "next/navigation";
 import React from "react";
 
@@ -18,10 +17,9 @@ const Preview = () => {
         return <div>Template not found</div>;
     }
 
-    //make request to BE to get demo data
     return (
         <>
-            <SelectedTemplate.component data={PF_STATIC_DATA} />
+            <SelectedTemplate.component data={SelectedTemplate.data} />
         </>
     );
 };

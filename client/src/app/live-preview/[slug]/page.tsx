@@ -20,6 +20,7 @@ const UserPreview = () => {
       router.push(`/editor/${templateKey}`);
     }
   }, [data, templateKey, router]);
+
   // Ensure the templateKey exists in TEMPLATE_REGISTRY
   if (!templateKey || !TEMPLATE_REGISTRY[templateKey]) {
     return <p>Template not found</p>;
