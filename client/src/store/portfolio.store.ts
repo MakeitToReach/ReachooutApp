@@ -16,6 +16,8 @@ interface PortfolioState {
     fieldPath: string,
     value: any, //eslint-disable-line
   ) => void;
+
+  reorderSections: (newOrder: string[]) => void;
 }
 
 export const usePortfolioStore = create<PortfolioState>((set) => ({
@@ -34,6 +36,26 @@ export const usePortfolioStore = create<PortfolioState>((set) => ({
       if (!section || !section.data) return {};
 
       _set(section.data, fieldPath, value);
+
+      return { data: newData };
+    });
+  },
+
+  reorderSections: (newOrder) => {
+    set((state) => {
+      if (!state.data) return {};
+
+      const newData = _cloneDeep(state.data);
+
+      const sectionsByType = Object.fromEntries(
+        newData.sections.map((section) => [section.type, section]),
+      );
+
+      const reorderedSections = newOrder
+        .map((type) => sectionsByType[type])
+        .filter(Boolean); // removes any undefined sections
+
+      newData.sections = reorderedSections;
 
       return { data: newData };
     });

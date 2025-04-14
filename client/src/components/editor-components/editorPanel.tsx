@@ -15,7 +15,7 @@ interface EditorPanelProps {
   templateSchema?: GenericEditorFieldSchema;
 }
 export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
-  const { data } = usePortfolioStore();
+  const { data, reorderSections } = usePortfolioStore();
 
   const { user } = useUserStore();
   if (!data) return <div>No data found</div>;
@@ -40,6 +40,11 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
     e.preventDefault();
     await publishTemplate(data.name, data);
   };
+
+  const handleReorder = (newOrder: string[]) => {
+    reorderSections(newOrder);
+  };
+
   return (
     <div className="p-4 md:p-10 space-y-10 md:fixed top-0 left-0 md:w-[30%]">
       <EditorTabs
@@ -62,7 +67,10 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
             </span>
           </Button>
         )}
-        <ReorderSectionsPopup sections={sections} onReorder={() => {}} />
+        <ReorderSectionsPopup
+          sections={sections}
+          onReorder={(newOrder) => handleReorder(newOrder)}
+        />
       </div>
     </div>
   );

@@ -25,23 +25,18 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import { cn } from "@/lib/utils"; // for merging Tailwind classes
-
-export type SectionItem = {
-    id: string;
-    name: string;
-};
+import { cn } from "@/lib/utils";
 
 interface ReorderSectionsDialogProps {
-    sections: SectionItem[];
-    onReorder: (newOrder: SectionItem[]) => void;
+    sections: { id: string; name: string }[]; // id = section.type
+    onReorder: (newOrder: string[]) => void;
 }
 
 export const ReorderSectionsPopup = ({
     sections,
     onReorder,
 }: ReorderSectionsDialogProps) => {
-    const [items, setItems] = useState(sections);
+    const [order, setOrder] = useState(sections.map((s) => s.id));
 
     const sensors = useSensors(useSensor(PointerSensor));
 
@@ -49,16 +44,19 @@ export const ReorderSectionsPopup = ({
     const handleDragEnd = (event: any) => {
         const { active, over } = event;
         if (active.id !== over?.id) {
-            const oldIndex = items.findIndex((i) => i.id === active.id);
-            const newIndex = items.findIndex((i) => i.id === over?.id);
-            const newItems = arrayMove(items, oldIndex, newIndex);
-            setItems(newItems);
+            const oldIndex = order.indexOf(active.id);
+            const newIndex = order.indexOf(over?.id);
+            const newOrder = arrayMove(order, oldIndex, newIndex);
+            setOrder(newOrder);
         }
     };
 
     const handleSave = () => {
-        onReorder(items);
+        onReorder(order);
     };
+
+    const getSectionName = (id: string) =>
+        sections.find((s) => s.id === id)?.name || id;
 
     return (
         <Dialog>
@@ -76,13 +74,13 @@ export const ReorderSectionsPopup = ({
                     onDragEnd={handleDragEnd}
                     modifiers={[restrictToVerticalAxis]}
                 >
-                    <SortableContext items={items} strategy={verticalListSortingStrategy}>
+                    <SortableContext items={order} strategy={verticalListSortingStrategy}>
                         <div className="space-y-2 mt-4">
-                            {items.map((item) => (
+                            {order.map((id) => (
                                 <SortableSectionItem
-                                    key={item.id}
-                                    id={item.id}
-                                    name={item.name}
+                                    key={id}
+                                    id={id}
+                                    name={getSectionName(id)}
                                 />
                             ))}
                         </div>
@@ -91,7 +89,9 @@ export const ReorderSectionsPopup = ({
 
                 <div className="flex justify-end gap-2 mt-6">
                     <Button variant="ghost">Cancel</Button>
-                    <Button onClick={handleSave} className="cursor-pointer">Save</Button>
+                    <Button onClick={handleSave} className="cursor-pointer">
+                        Save
+                    </Button>
                 </div>
             </DialogContent>
         </Dialog>
