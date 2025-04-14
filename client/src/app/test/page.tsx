@@ -26,6 +26,7 @@ const page = () => {
     //
     // return <ProfessionalPortfolio data={PF_STATIC_DATA} />;
     return <LanderPortfolio />;
+
 };
 
 export default page;
