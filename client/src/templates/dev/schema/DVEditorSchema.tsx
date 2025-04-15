@@ -15,7 +15,7 @@ export const DEV_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Projects",
             type: "component",
             fieldPath: "projects",
-            component: ({ value }) => <AddDevProjectModal value={value} />,
+            component: ({ value }) => <AddDevProjectModal value={value} > add</AddDevProjectModal>,
         },
     ],
 };

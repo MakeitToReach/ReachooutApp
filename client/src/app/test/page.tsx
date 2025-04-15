@@ -1,4 +1,5 @@
 "use client";
+import { DEV_STATIC_DATA } from "@/static_data/dev/DEVStaticData";
 import { DevPortfolio } from "@/templates/dev";
 // import { PF_STATIC_DATA } from "@/static_data/professional/PFTemplate";
 // import { ReorderSectionsPopup } from "@/components/editor-components/SectionsPopup";
@@ -27,7 +28,7 @@ const page = () => {
     //
     // return <ProfessionalPortfolio data={PF_STATIC_DATA} />;
     // return <LanderPortfolio />;
-    return <DevPortfolio />;
+    return <DevPortfolio data={DEV_STATIC_DATA} />;
 };
 
 export default page;

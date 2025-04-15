@@ -11,20 +11,16 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { DEV_PROJECT } from "@/templates/dev/types/projectSection.types";
 // import { Textarea } from "@/components/ui/textarea";
 
-type DEV_PROJECT = {
-    projectImg: string;
-    title: string;
-    desc: string;
-    tech: string;
-};
 
 type Props = {
-    onSubmit: (project: DEV_PROJECT) => void;
+    children: React.ReactNode
+    onAdd: (project: DEV_PROJECT) => void
 };
 
-export const AddDevProjectModal = ({ onSubmit }: Props) => {
+export const AddDevProjectModal = ({ onAdd, children }: Props) => {
     const [project, setProject] = useState<DEV_PROJECT>({
         projectImg: "",
         title: "",
@@ -41,14 +37,14 @@ export const AddDevProjectModal = ({ onSubmit }: Props) => {
 
     const handleSubmit = () => {
         if (!project.title || !project.desc) return;
-        onSubmit(project);
+        onAdd(project);
         setProject({ projectImg: "", title: "", desc: "", tech: "" }); // reset
     };
 
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="outline">Add Project</Button>
+                {children}
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
