@@ -3,9 +3,7 @@
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { Button } from "../ui/button";
 import { LucideUploadCloud } from "lucide-react";
-import { useUserStore } from "@/store/user.store";
 import { publishTemplate } from "@/api/publish-template";
-import PreviewButton from "./previewBtn";
 import { EditorTabs } from "./editorTabs";
 import { ReorderSectionsPopup } from "./popups/SectionsPopup";
 import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema";
@@ -22,7 +20,6 @@ export const EditorPanel = ({
 }: EditorPanelProps) => {
     const { data, reorderSections } = usePortfolioStore();
 
-    const { user } = useUserStore();
 
     useEffect(() => {
         console.log("editor sections");
@@ -57,14 +54,10 @@ export const EditorPanel = ({
     return (
         <div className="p-4 md:p-10 space-y-10 md:fixed top-0 left-0 md:w-[30%]">
             <EditorTabs
-                // sections={data.sections.map((s) => s.type)}
                 sections={editorSections}
                 templateEditorSchema={templateSchema}
             />
             <div className="space-x-2">
-                {/* <PreviewButton */}
-                {/*     previewUrl={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/live-preview/${user?.name}?template=${data.name}`} */}
-                {/* /> */}
                 {isEditing ? (
                     <Button onClick={handleSave} className="cursor-pointer">
                         Save
