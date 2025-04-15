@@ -136,7 +136,7 @@ const SortableSectionItem = ({ id, name }: { id: string; name: string }) => {
             style={style}
             className={cn(
                 "flex items-center justify-between p-3 border rounded-lg bg-white shadow-sm",
-                isDragging && "opacity-50",
+                isDragging && "opacity-50 ring-2 ring-blue-500",
             )}
         >
             <div className="flex items-center gap-3">

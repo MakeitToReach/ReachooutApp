@@ -14,25 +14,17 @@ interface EditorPanelProps {
     isEditing?: boolean;
     templateSchema?: GenericEditorFieldSchema;
 }
-export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
+export const EditorPanel = ({ isEditing, templateSchema = PF_EDITOR_SCHEMA }: EditorPanelProps) => {
     const { data, reorderSections } = usePortfolioStore();
 
     const { user } = useUserStore();
     if (!data) return <div>No data found</div>;
-
-    // const heroSection = data.sections.find((s) => s.type === "hero");
-    // const aboutSection = data.sections.find((s) => s.type === "about");
-    // const workSection = data.sections.find((s) => s.type === "projects");
-    // const socialSection = data.sections.find((s) => s.type === "social");
-    // const servicesSection = data.sections.find((s) => s.type === "services");
 
     const sections = data.sections.map((section) => ({
         id: section.type,
         name: section.type.replace("Section", ""),
         isFixed: section.isFixed,
     }));
-
-
 
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
@@ -48,12 +40,18 @@ export const EditorPanel = ({ isEditing }: EditorPanelProps) => {
         reorderSections(newOrder);
     };
 
+    const editorSections = data.sections
+        .filter((section) => section.isEditable)
+        .map((s) => s.type);
+
+
+
     return (
         <div className="p-4 md:p-10 space-y-10 md:fixed top-0 left-0 md:w-[30%]">
             <EditorTabs
-                sections={data.sections.map((s) => s.type)}
-                // sections={editableSections}
-                templateEditorSchema={PF_EDITOR_SCHEMA}
+                // sections={data.sections.map((s) => s.type)}
+                sections={editorSections}
+                templateEditorSchema={templateSchema}
             />
             <div className="space-x-2">
                 <PreviewButton

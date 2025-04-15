@@ -10,6 +10,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             type: "navbar",
             data: null,
             isFixed: true,
+            isEditable: false,
         },
         {
             type: "hero",
@@ -22,6 +23,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                     "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
             },
             isFixed: true,
+            isEditable: true,
         },
         {
             type: "about",
@@ -38,6 +40,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                 ],
             },
             isFixed: false,
+            isEditable: true,
         },
         {
             type: "projects",
@@ -73,6 +76,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                 ],
             },
             isFixed: false,
+            isEditable: true,
         },
         // {
         //     type: "services",
@@ -112,11 +116,13 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             type: "contact",
             data: null,
             isFixed: true,
+            isEditable: false,
         },
         {
             type: "footer",
             data: null,
             isFixed: true,
+            isEditable: false,
         },
     ],
 };
