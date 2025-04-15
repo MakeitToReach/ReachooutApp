@@ -1,110 +1,86 @@
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-// import { usePortfolioStore } from "@/store/portfolio.store";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
 import { PF_PROJECT } from "@/templates/professional/types/project";
-import { DialogClose } from "@radix-ui/react-dialog";
-import { LucideUpload } from "lucide-react";
-import { CldUploadButton } from "next-cloudinary";
 
-interface EdtiProjectPopupProps {
-    children: React.ReactNode;
-    project: PF_PROJECT;
-    projectIdx: number;
+interface EditProjectPopupProps {
+  project: PF_PROJECT;
+  projectIdx?: number; // optional, for display/debug
+  onSave: (updated: PF_PROJECT) => void;
+  children: React.ReactNode;
 }
-export function EditProjectPopup({
-    children,
-    project,
-    projectIdx,
-}: EdtiProjectPopupProps) {
-    // const { updateArrayItemField } = usePortfolioStore();
-    return (
-        <Dialog modal={false}>
-            <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent
-                className="sm:max-w-[600px]"
-                style={{ overflow: "visible" }}
-                onInteractOutside={(e) => e.preventDefault()}
-            >
-                <DialogHeader>
-                    <DialogTitle>Edit Project {projectIdx + 1}</DialogTitle>
-                </DialogHeader>
-                <div className="flex flex-col gap-3">
-                    <div>
-                        <label className="font-semibold">Heading</label>
-                        <Input
-                            type="text"
-                            placeholder="Enter your project heading"
-                            value={project.heading}
-                        />
-                    </div>
 
-                    <div>
-                        <label className="font-semibold">Subtitle</label>
-                        <Input
-                            type="text"
-                            placeholder="Enter subtitle"
-                            value={project.subtitle}
-                        />
-                    </div>
+export const EditProjectPopup = ({
+  project,
+  projectIdx,
+  onSave,
+  children,
+}: EditProjectPopupProps) => {
+  const [formData, setFormData] = useState<PF_PROJECT>(project);
+  const [open, setOpen] = useState(false);
 
-                    <div>
-                        <label className="font-semibold">Description</label>
-                        <Input
-                            type="text"
-                            placeholder="Enter your project description"
-                            value={project.description}
-                        />
-                    </div>
+  useEffect(() => {
+    if (open) setFormData(project); // reset on open
+  }, [open, project]);
 
-                    <div>
-                        <label className="font-semibold">Button Text</label>
-                        <Input
-                            type="text"
-                            placeholder="View my project"
-                            value={project.btnText}
-                        />
-                    </div>
+  const handleChange = (key: keyof PF_PROJECT, val: string) => {
+    setFormData((prev) => ({ ...prev, [key]: val }));
+  };
 
-                    <div>
-                        <label className="font-semibold">Button Redirect Link</label>
-                        <Input
-                            type="text"
-                            placeholder="https://reachoout.com"
-                            value={project.btnLink}
-                        />
-                    </div>
+  const handleSave = () => {
+    onSave(formData);
+    setOpen(false);
+  };
 
-                    <div className="space-x-2">
-                        <label htmlFor="" className="font-semibold">
-                            Project Image -
-                        </label>
-                        <CldUploadButton
-                            uploadPreset="you-view"
-                            options={{ sources: ["local", "url", "unsplash"] }}
-                            className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                         
-                        >
-                            <div className="text-white flex items-center gap-2">
-                                <h1 className="font-semibold">Upload Image</h1> <LucideUpload />
-                            </div>
-                        </CldUploadButton>
-                    </div>
-                </div>
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent className="space-y-4">
+        <DialogHeader>
+          <DialogTitle>Edit Project {projectIdx !== undefined && `#${projectIdx + 1}`}</DialogTitle>
+        </DialogHeader>
 
-                <DialogFooter>
-                    <DialogClose asChild>
-                        <Button>Back to Preview</Button>
-                    </DialogClose>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
-    );
-}
+        <div className="space-y-2">
+          <Label>Title</Label>
+          <Input
+            value={formData.heading}
+            onChange={(e) => handleChange("heading", e.target.value)}
+          />
+
+          <Label>Description</Label>
+          <Input
+            value={formData.subtitle}
+            onChange={(e) => handleChange("subtitle", e.target.value)}
+          />
+
+          <Label>Technologies</Label>
+          <Input
+            value={formData.description}
+            onChange={(e) => handleChange("description", e.target.value)}
+          />
+
+          <Label>Project Image URL</Label>
+          <Input
+            value={formData.imgUrl}
+            onChange={(e) => handleChange("imgUrl", e.target.value)}
+          />
+        </div>
+
+        <div className="flex justify-end gap-2">
+          <Button variant="ghost" onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={handleSave}>Save</Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};

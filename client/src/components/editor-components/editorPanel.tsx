@@ -1,3 +1,4 @@
+'use client'
 //eslint-disable
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { Button } from "../ui/button";
@@ -9,15 +10,24 @@ import { EditorTabs } from "./editorTabs";
 import { ReorderSectionsPopup } from "./popups/SectionsPopup";
 import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema";
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
+import { useEffect } from "react";
 
 interface EditorPanelProps {
     isEditing?: boolean;
     templateSchema?: GenericEditorFieldSchema;
 }
-export const EditorPanel = ({ isEditing, templateSchema = PF_EDITOR_SCHEMA }: EditorPanelProps) => {
+export const EditorPanel = ({
+    isEditing,
+    templateSchema = PF_EDITOR_SCHEMA,
+}: EditorPanelProps) => {
     const { data, reorderSections } = usePortfolioStore();
 
     const { user } = useUserStore();
+
+    useEffect(() => {
+        console.log("editor sections");
+    }, []);
+
     if (!data) return <div>No data found</div>;
 
     const sections = data.sections.map((section) => ({
@@ -44,8 +54,6 @@ export const EditorPanel = ({ isEditing, templateSchema = PF_EDITOR_SCHEMA }: Ed
         .filter((section) => section.isEditable)
         .map((s) => s.type);
 
-
-
     return (
         <div className="p-4 md:p-10 space-y-10 md:fixed top-0 left-0 md:w-[30%]">
             <EditorTabs
@@ -54,9 +62,9 @@ export const EditorPanel = ({ isEditing, templateSchema = PF_EDITOR_SCHEMA }: Ed
                 templateEditorSchema={templateSchema}
             />
             <div className="space-x-2">
-                <PreviewButton
-                    previewUrl={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/live-preview/${user?.name}?template=${data.name}`}
-                />
+                {/* <PreviewButton */}
+                {/*     previewUrl={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/live-preview/${user?.name}?template=${data.name}`} */}
+                {/* /> */}
                 {isEditing ? (
                     <Button onClick={handleSave} className="cursor-pointer">
                         Save

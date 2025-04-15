@@ -21,6 +21,10 @@ const EditorPage = () => {
         if (template && isNew) {
             resetData(template.data); // Load default content
         }
+
+        return () => {
+            resetData(null);
+        };
     }, [slug]);
 
     if (!template) return <p>Template not found</p>;
@@ -29,7 +33,11 @@ const EditorPage = () => {
         <div className="w-full flex overflow-x-hidden">
             {/* Editor Panel */}
             <div className="md:w-[30%] w-full">
-                {isEditing ? <EditorPanel isEditing /> : <EditorPanel templateSchema={template.editorSchema} />}
+                {isEditing ? (
+                    <EditorPanel isEditing />
+                ) : (
+                    <EditorPanel templateSchema={template.editorSchema} />
+                )}
             </div>
 
             {/* Live Preview */}
