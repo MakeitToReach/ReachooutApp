@@ -52,10 +52,30 @@ export const ReorderSectionsPopup = ({
         }
     };
 
+    const renderSections = () => {
+        let reorderIndex = 0;
+
+        return sections.map((section) => {
+            if (section.isFixed) {
+                return <FixedSectionItem key={section.id} name={section.name} />;
+            } else {
+                const reorderedId = order[reorderIndex++];
+                const reorderedSection = sections.find((s) => s.id === reorderedId);
+                return (
+                    <SortableSectionItem
+                        key={reorderedSection!.id}
+                        id={reorderedSection!.id}
+                        name={reorderedSection!.name}
+                    />
+                );
+            }
+        });
+    };
+
     const handleSave = () => {
-        // Rebuild final order, keeping fixed sections in original positions
+        let orderIndex = 0;
         const finalOrder = sections.map((section) => {
-            return section.isFixed ? section.id : order.shift()!; // Pull from reordered list
+            return section.isFixed ? section.id : order[orderIndex++];
         });
 
         onReorder(finalOrder);
@@ -77,25 +97,11 @@ export const ReorderSectionsPopup = ({
                     onDragEnd={handleDragEnd}
                     modifiers={[restrictToVerticalAxis]}
                 >
-                    <div className="space-y-2 mt-4">
-                        {sections.map((section) =>
-                            section.isFixed ? (
-                                <FixedSectionItem key={section.id} name={section.name} />
-                            ) : (
-                                <SortableContext
-                                    key={section.id}
-                                    items={order}
-                                    strategy={verticalListSortingStrategy}
-                                >
-                                    <SortableSectionItem
-                                        key={section.id}
-                                        id={section.id}
-                                        name={section.name}
-                                    />
-                                </SortableContext>
-                            ),
-                        )}
-                    </div>
+                    <SortableContext items={order} strategy={verticalListSortingStrategy}>
+                        <div className="space-y-2 mt-4">
+                            {renderSections()}
+                        </div>
+                    </SortableContext>
                 </DndContext>
 
                 <div className="flex justify-end gap-2 mt-6">
