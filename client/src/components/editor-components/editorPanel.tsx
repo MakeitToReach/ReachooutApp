@@ -1,4 +1,3 @@
-'use client'
 //eslint-disable
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { Button } from "../ui/button";
@@ -8,7 +7,6 @@ import { EditorTabs } from "./editorTabs";
 import { ReorderSectionsPopup } from "./popups/SectionsPopup";
 import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema";
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
-import { useEffect } from "react";
 
 interface EditorPanelProps {
     isEditing?: boolean;
@@ -19,11 +17,6 @@ export const EditorPanel = ({
     templateSchema = PF_EDITOR_SCHEMA,
 }: EditorPanelProps) => {
     const { data, reorderSections } = usePortfolioStore();
-
-
-    useEffect(() => {
-        console.log("editor sections");
-    }, []);
 
     if (!data) return <div>No data found</div>;
 

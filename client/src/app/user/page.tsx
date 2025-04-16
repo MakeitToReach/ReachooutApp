@@ -117,8 +117,8 @@ function App() {
                                             setSidebarOpen(false); // Close sidebar when selecting a tab
                                         }}
                                         className={`w-full flex items-center px-6 py-3 text-left ${activeTab === tab.id
-                                            ? "bg-zinc-800 border-r-4 border-blue-500 text-blue-600"
-                                            : "text-gray-600 hover:bg-gray-50"
+                                                ? "bg-zinc-800 border-r-4 border-blue-500 text-blue-600"
+                                                : "text-gray-600 hover:bg-gray-50"
                                             }`}
                                     >
                                         <tab.icon className="w-5 h-5 mr-3" />

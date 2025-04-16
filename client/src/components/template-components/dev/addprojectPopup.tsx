@@ -12,12 +12,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { DEV_PROJECT } from "@/templates/dev/types/projectSection.types";
-// import { Textarea } from "@/components/ui/textarea";
-
+import { CldUploadButton } from "next-cloudinary";
+import ImageSelectButton from "@/components/editor-components/inputs/imageInputBtn";
 
 type Props = {
-    children: React.ReactNode
-    onAdd: (project: DEV_PROJECT) => void
+    children: React.ReactNode;
+    onAdd: (project: DEV_PROJECT) => void;
 };
 
 export const AddDevProjectModal = ({ onAdd, children }: Props) => {
@@ -42,10 +42,8 @@ export const AddDevProjectModal = ({ onAdd, children }: Props) => {
     };
 
     return (
-        <Dialog>
-            <DialogTrigger asChild>
-                {children}
-            </DialogTrigger>
+        <Dialog modal={false}>
+            <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                     <DialogTitle>Add New Project</DialogTitle>
@@ -83,15 +81,21 @@ export const AddDevProjectModal = ({ onAdd, children }: Props) => {
                         />
                     </div>
 
-                    <div className="grid gap-2">
-                        <Label htmlFor="projectImg">Image URL</Label>
-                        <Input
-                            name="projectImg"
-                            placeholder="https://..."
-                            value={project.projectImg}
-                            onChange={handleChange}
-                        />
-                    </div>
+                    <CldUploadButton
+                        uploadPreset="you-view"
+                        options={{ sources: ["local", "url", "unsplash"] }}
+                        className="cursor-pointer p-1 bg-neutral-800 w-fit rounded-lg z-[100]"
+                        //eslint-disable-next-line
+                        onSuccess={(result: any) => {
+                            setProject((prev) => ({
+                                ...prev,
+                                projectImg: result.info.secure_url,
+                            }));
+                        }}
+                        
+                    >
+                        <ImageSelectButton selectedImgUrl={project.projectImg} />
+                    </CldUploadButton>
                 </div>
 
                 <div className="flex justify-end">

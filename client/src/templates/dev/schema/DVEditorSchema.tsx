@@ -1,4 +1,4 @@
-import { AddDevProjectModal } from "@/components/template-components/dev/projectPopup";
+import { DevProjectEditorField } from "@/components/template-components/dev/editor/projectEditor";
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
 
 export const DEV_EDITOR_SCHEMA: GenericEditorFieldSchema = {
@@ -15,7 +15,9 @@ export const DEV_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Projects",
             type: "component",
             fieldPath: "projects",
-            component: ({ value }) => <AddDevProjectModal value={value} > add</AddDevProjectModal>,
+            component: ({ value, onChange }) => (
+                <DevProjectEditorField value={value || []} onChange={onChange} />
+            ),
         },
     ],
 };

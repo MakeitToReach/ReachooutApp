@@ -18,14 +18,19 @@ const EditorPage = () => {
     const template = TEMPLATE_REGISTRY[templateKey];
 
     useEffect(() => {
+        
+        const data = usePortfolioStore.getState().data;
+        console.log("current data in store for editing:", data);
         if (template && isNew) {
             resetData(template.data); // Load default content
         }
 
         return () => {
-            resetData(null);
+            if (isNew) {
+                resetData(null);
+            }
         };
-    }, [slug]);
+    }, [slug, isNew]);
 
     if (!template) return <p>Template not found</p>;
 
@@ -34,7 +39,7 @@ const EditorPage = () => {
             {/* Editor Panel */}
             <div className="md:w-[30%] w-full">
                 {isEditing ? (
-                    <EditorPanel isEditing />
+                    <EditorPanel isEditing templateSchema={template.editorSchema} />
                 ) : (
                     <EditorPanel templateSchema={template.editorSchema} />
                 )}
