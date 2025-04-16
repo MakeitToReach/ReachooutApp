@@ -1,7 +1,7 @@
 //eslint-disable
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { Button } from "../ui/button";
-import { LucideUploadCloud } from "lucide-react";
+import { EllipsisVertical, LucideUploadCloud } from "lucide-react";
 import { publishTemplate } from "@/api/publish-template";
 import { EditorTabs } from "./editorTabs";
 import { ReorderSectionsPopup } from "./popups/SectionsPopup";
@@ -45,8 +45,19 @@ export const EditorPanel = ({
         .map((s) => s.type);
 
     return (
-        <div className="p-4 md:p-10 space-y-10 md:fixed top-0 left-0 md:w-[30%]">
+        <div className="relative p-4 md:px-10 space-y-10 md:fixed overflow-y-scroll top-0 left-0 md:w-[30%]">
+            <div className="absolute top-4 right-4 z-50">
+                <ReorderSectionsPopup
+                    sections={sections}
+                    onReorder={(newOrder) => handleReorder(newOrder)}
+                >
+                    <Button variant={"ghost"}>
+                        <EllipsisVertical className="size-5" />
+                    </Button>
+                </ReorderSectionsPopup>
+            </div>
             <EditorTabs
+                className="md:mt-4"
                 sections={editorSections}
                 templateEditorSchema={templateSchema}
             />
@@ -63,10 +74,6 @@ export const EditorPanel = ({
                         </span>
                     </Button>
                 )}
-                <ReorderSectionsPopup
-                    sections={sections}
-                    onReorder={(newOrder) => handleReorder(newOrder)}
-                />
             </div>
         </div>
     );

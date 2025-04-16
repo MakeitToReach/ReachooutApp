@@ -1,60 +1,53 @@
-import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { ScrollArea, ScrollBar } from "../ui/scroll-area";
+"use client";
+
+import React, { useState } from "react";
+import { Tabs, TabsContent } from "../ui/tabs";
 import { ReqInput } from "./inputs/reqInput";
 import { CldUploadButton } from "next-cloudinary";
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
 import ImageSelectButton from "./inputs/imageInputBtn";
 import { Label } from "../ui/label";
-import { motion as m } from "motion/react";
+import { Button } from "../ui/button";
+import { motion as m } from "framer-motion"; // fixed from "motion/react" to "framer-motion"
+import { cn } from "@/lib/utils";
 
 interface EditorTabsProps {
     sections: string[];
     templateEditorSchema: GenericEditorFieldSchema;
+    className?: string;
 }
 
 export const EditorTabs = ({
     sections,
+    className,
     templateEditorSchema,
 }: EditorTabsProps) => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
     const { data, setSectionField } = usePortfolioStore();
 
+    const currentSection = sections[activeTabIndex];
+    const sectionData = data?.sections.find((s) => s.type === currentSection);
+
+    const goToPrev = () => {
+        if (activeTabIndex > 0) setActiveTabIndex((prev) => prev - 1);
+    };
+
+    const goToNext = () => {
+        if (activeTabIndex < sections.length - 1)
+            setActiveTabIndex((prev) => prev + 1);
+    };
+
     return (
-        <Tabs defaultValue="tab-1" className="w-full">
-            <ScrollArea>
-                <TabsList className="text-foreground flex justify-start mb-3 h-auto gap-2 rounded-none border-b bg-transparent px-0 py-1 w-full">
-                    {sections.length > 0 && sections.map((section, idx) => (
-                        <TabsTrigger
-                            key={section}
-                            value={`tab-${idx + 1}`}
-                            className="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-xl"
-                        >
-                            <span className="capitalize">{section}</span>
-                        </TabsTrigger>
-                    ))}
-
-                    {sections.length === 0 && (
-
-                        <TabsTrigger
-                            value={`tab-1`}
-                            className="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-xl"
-                        >
-                            No sections found
-                        </TabsTrigger>
-                        
-                    )}
-                </TabsList>
-                <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-
-            {sections.map((section, idx) => {
-                const sectionData = data?.sections.find((s) => s.type === section);
-
-                return (
-                    <TabsContent key={section} value={`tab-${idx + 1}`}>
+        <Tabs
+            value={`tab-${activeTabIndex + 1}`}
+            className={cn("w-full", className)}
+        >
+            {sections.map((section, idx) => (
+                <TabsContent key={section} value={`tab-${idx + 1}`}>
+                    {idx === activeTabIndex && (
                         <m.div
-                            className="space-y-4 py-6 overflow-y-scroll h-full"
+                            className="space-y-6 overflow-y-scroll h-full"
                             initial={{ opacity: 0, filter: "blur(5px)" }}
                             animate={{ opacity: 1, filter: "blur(0px)" }}
                             transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -134,10 +127,26 @@ export const EditorTabs = ({
                                         No form defined for <strong>{section}</strong>.
                                     </p>
                                 )}
+
+                            <div className="flex justify-between pt-8">
+                                <Button
+                                    variant="outline"
+                                    onClick={goToPrev}
+                                    disabled={activeTabIndex === 0}
+                                >
+                                    ← Prev Section
+                                </Button>
+                                <Button
+                                    onClick={goToNext}
+                                    disabled={activeTabIndex === sections.length - 1}
+                                >
+                                    Next Section →
+                                </Button>
+                            </div>
                         </m.div>
-                    </TabsContent>
-                );
-            })}
+                    )}
+                </TabsContent>
+            ))}
         </Tabs>
     );
 };

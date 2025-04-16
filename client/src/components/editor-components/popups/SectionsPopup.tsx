@@ -28,11 +28,13 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { cn } from "@/lib/utils";
 
 interface ReorderSectionsDialogProps {
+    children: React.ReactNode;
     sections: { id: string; name: string; isFixed: boolean }[];
     onReorder: (newOrder: string[]) => void;
 }
 
 export const ReorderSectionsPopup = ({
+    children,
     sections,
     onReorder,
 }: ReorderSectionsDialogProps) => {
@@ -83,9 +85,7 @@ export const ReorderSectionsPopup = ({
 
     return (
         <Dialog>
-            <DialogTrigger asChild>
-                <Button variant="outline">Reorder Sections</Button>
-            </DialogTrigger>
+            <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent className="max-w-md">
                 <DialogHeader>
                     <DialogTitle>Reorder Sections</DialogTitle>
@@ -98,9 +98,7 @@ export const ReorderSectionsPopup = ({
                     modifiers={[restrictToVerticalAxis]}
                 >
                     <SortableContext items={order} strategy={verticalListSortingStrategy}>
-                        <div className="space-y-2 mt-4">
-                            {renderSections()}
-                        </div>
+                        <div className="space-y-2 mt-4">{renderSections()}</div>
                     </SortableContext>
                 </DndContext>
 
