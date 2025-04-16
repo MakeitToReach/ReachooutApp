@@ -26,6 +26,7 @@ export const TemplateCard = ({
 }: TemplateCardProps) => {
     const router = useRouter();
     const { resetData } = usePortfolioStore();
+
     const handleEdit = async () => {
         const fetchedData = await getUserTemplateData(templateName);
         if (!fetchedData) router.push(`/`);

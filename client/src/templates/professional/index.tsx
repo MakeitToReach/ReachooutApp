@@ -58,14 +58,11 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
                 {loading && (
                     <m.div
                         key="loader"
-                        initial={{ y: "100%" }}
-                        animate={{ y: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{
                             duration: 0.5,
-                            stiffness: 100,
-                            damping: 20,
-                            mass: 0.5,
                         }}
                         className="fixed inset-0 flex items-center justify-center bg-white"
                     >

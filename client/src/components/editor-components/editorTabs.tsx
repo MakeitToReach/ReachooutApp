@@ -24,7 +24,7 @@ export const EditorTabs = ({
         <Tabs defaultValue="tab-1" className="w-full">
             <ScrollArea>
                 <TabsList className="text-foreground flex justify-start mb-3 h-auto gap-2 rounded-none border-b bg-transparent px-0 py-1 w-full">
-                    {sections.map((section, idx) => (
+                    {sections.length > 0 && sections.map((section, idx) => (
                         <TabsTrigger
                             key={section}
                             value={`tab-${idx + 1}`}
@@ -33,6 +33,17 @@ export const EditorTabs = ({
                             <span className="capitalize">{section}</span>
                         </TabsTrigger>
                     ))}
+
+                    {sections.length === 0 && (
+
+                        <TabsTrigger
+                            value={`tab-1`}
+                            className="hover:bg-accent hover:text-foreground data-[state=active]:after:bg-primary data-[state=active]:hover:bg-accent relative after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-xl"
+                        >
+                            No sections found
+                        </TabsTrigger>
+                        
+                    )}
                 </TabsList>
                 <ScrollBar orientation="horizontal" />
             </ScrollArea>
