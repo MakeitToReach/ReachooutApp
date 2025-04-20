@@ -60,7 +60,7 @@ const EditorPage = () => {
           )}
         </div>
       ) : (
-          <Button variant={"default"} className="absolute top-4 left-4 z-[100]" onClick={toggleEditor}>
+          <Button variant={"default"} className="fixed bottom-4 left-4 z-[100]" onClick={toggleEditor}>
             <LucideSidebarOpen className="w-6 h-6" />
           </Button>
 

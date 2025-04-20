@@ -2,11 +2,11 @@
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { Button } from "../ui/button";
 import {
-  EllipsisVertical,
-  LucideChevronLeft,
-  LucideEye,
-  LucideSettings,
-  LucideUploadCloud,
+    EllipsisVertical,
+    LucideChevronLeft,
+    LucideEye,
+    LucideSettings,
+    LucideUploadCloud,
 } from "lucide-react";
 import { publishTemplate } from "@/api/publish-template";
 import { EditorTabs } from "./editorTabs";
@@ -16,98 +16,97 @@ import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
 import { cn } from "@/lib/utils";
 
 interface EditorPanelProps {
-  isEditing?: boolean;
-  templateSchema?: GenericEditorFieldSchema;
-  toggleEditor: () => void;
+    isEditing?: boolean;
+    templateSchema?: GenericEditorFieldSchema;
+    toggleEditor: () => void;
 }
 export const EditorPanel = ({
-  isEditing,
-  templateSchema = PF_EDITOR_SCHEMA,
-  toggleEditor,
+    isEditing,
+    templateSchema = PF_EDITOR_SCHEMA,
+    toggleEditor,
 }: EditorPanelProps) => {
-  const { data, reorderSections } = usePortfolioStore();
+    const { data, reorderSections } = usePortfolioStore();
 
-  if (!data) return <div>No data found</div>;
+    if (!data) return <div>No data found</div>;
 
-  const sections = data.sections.map((section) => ({
-    id: section.type,
-    name: section.type.replace("Section", ""),
-    isFixed: section.isFixed,
-  }));
+    const sections = data.sections.map((section) => ({
+        id: section.type,
+        name: section.type.replace("Section", ""),
+        isFixed: section.isFixed,
+    }));
 
-  const handleSave = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("new data", data);
-  };
+    const handleSave = (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log("new data", data);
+    };
 
-  const handlePublish = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await publishTemplate(data.name, data);
-  };
+    const handlePublish = async (e: React.FormEvent) => {
+        e.preventDefault();
+        await publishTemplate(data.name, data);
+    };
 
-  const handleReorder = (newOrder: string[]) => {
-    reorderSections(newOrder);
-  };
+    const handleReorder = (newOrder: string[]) => {
+        reorderSections(newOrder);
+    };
 
-  const editorSections = data.sections
-    .filter((section) => section.isEditable)
-    .map((s) => s.type);
+    const editorSections = data.sections
+        .filter((section) => section.isEditable)
+        .map((s) => s.type);
 
-  return (
-    <div
-      className={cn(
-        "flex flex-col gap-4 p-4 md:px-10 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full",
-      )}
-    >
-      <div className="w-full flex justify-between items-center">
-        <ReorderSectionsPopup
-          sections={sections}
-          onReorder={(newOrder) => handleReorder(newOrder)}
+    return (
+        <div
+            className={cn(
+                "flex flex-col gap-4 p-4 md:px-10 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full",
+            )}
         >
-          <button className="cursor-pointer">
-            <EllipsisVertical className="size-6" />
-          </button>
-        </ReorderSectionsPopup>
+            <div className="w-full flex justify-between items-center border-border border rounded-md p-2">
+                <ReorderSectionsPopup
+                    sections={sections}
+                    onReorder={(newOrder) => handleReorder(newOrder)}
+                >
+                    <button className="cursor-pointer">
+                        <EllipsisVertical className="size-6" />
+                    </button>
+                </ReorderSectionsPopup>
 
-        <div className="flex items-center">
-          {isEditing ? (
-            <Button
-              onClick={handleSave}
-              className="cursor-pointer text-blue-600"
-            >
-              Save
-            </Button>
-          ) : (
-            <Button
-              onClick={handlePublish}
-              variant={"ghost"}
-              className="cursor-pointer text-blue-600"
-            >
-              Publish{" "}
-              <span>
-                <LucideUploadCloud />
-              </span>
-            </Button>
-          )}
+                <div className="flex items-center">
+                    {isEditing ? (
+                        <Button
+                            onClick={handleSave}
+                            className="cursor-pointer text-blue-600"
+                        >
+                            Save
+                        </Button>
+                    ) : (
+                        <Button
+                            onClick={handlePublish}
+                            variant={"ghost"}
+                            className="cursor-pointer flex items-center"
+                        >
+                            <span className="hidden md:block text-lg">Publish</span>
+                            <span>
+                                <LucideUploadCloud className="size-6" />
+                            </span>
+                        </Button>
+                    )}
 
-          <Button
-            variant={"ghost"}
-            onClick={() => alert("Settings under development")}
-          >
-            <LucideSettings className="size-6" />
-          </Button>
-          <Button variant={"ghost"} onClick={() => toggleEditor()}>
-            <LucideChevronLeft className="size-6 hidden md:block" />
-            <LucideEye className="size-6 md:hidden" />
-          </Button>
+                    <Button
+                        variant={"ghost"}
+                        onClick={() => alert("Settings under development")}
+                    >
+                        <LucideSettings className="size-6" />
+                    </Button>
+                    <Button variant={"ghost"} onClick={() => toggleEditor()}>
+                        <LucideChevronLeft className="size-6 hidden md:block" />
+                        <LucideEye className="size-6 md:hidden" />
+                    </Button>
+                </div>
+            </div>
+            <EditorTabs
+                className="md:mt-2"
+                sections={editorSections}
+                templateEditorSchema={templateSchema}
+            />
         </div>
-      </div>
-
-      <EditorTabs
-        className="md:mt-4"
-        sections={editorSections}
-        templateEditorSchema={templateSchema}
-      />
-    </div>
-  );
+    );
 };
