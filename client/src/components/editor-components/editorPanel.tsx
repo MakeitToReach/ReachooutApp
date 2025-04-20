@@ -59,7 +59,7 @@ export const EditorPanel = ({
                 "flex flex-col gap-4 p-4 md:px-10 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full",
             )}
         >
-            <div className="w-full flex justify-between items-center border-border border rounded-md p-2">
+            <div className="w-full flex justify-between items-center border-border border rounded-md p-2 shadow-xs shadow-gray-300 transition-all">
                 <ReorderSectionsPopup
                     sections={sections}
                     onReorder={(newOrder) => handleReorder(newOrder)}
@@ -92,11 +92,12 @@ export const EditorPanel = ({
 
                     <Button
                         variant={"ghost"}
+                        className="cursor-pointer"
                         onClick={() => alert("Settings under development")}
                     >
                         <LucideSettings className="size-6" />
                     </Button>
-                    <Button variant={"ghost"} onClick={() => toggleEditor()}>
+                    <Button variant={"ghost"} onClick={() => toggleEditor()} className="cursor-pointer">
                         <LucideChevronLeft className="size-6 hidden md:block" />
                         <LucideEye className="size-6 md:hidden" />
                     </Button>
