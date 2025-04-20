@@ -3,6 +3,8 @@ import { usePortfolioStore } from "@/store/portfolio.store";
 import { Button } from "../ui/button";
 import {
   EllipsisVertical,
+  LucideChevronLeft,
+  LucideEye,
   LucideSettings,
   LucideUploadCloud,
 } from "lucide-react";
@@ -11,14 +13,17 @@ import { EditorTabs } from "./editorTabs";
 import { ReorderSectionsPopup } from "./popups/SectionsPopup";
 import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema";
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
+import { cn } from "@/lib/utils";
 
 interface EditorPanelProps {
   isEditing?: boolean;
   templateSchema?: GenericEditorFieldSchema;
+  toggleEditor: () => void;
 }
 export const EditorPanel = ({
   isEditing,
   templateSchema = PF_EDITOR_SCHEMA,
+  toggleEditor,
 }: EditorPanelProps) => {
   const { data, reorderSections } = usePortfolioStore();
 
@@ -49,7 +54,11 @@ export const EditorPanel = ({
     .map((s) => s.type);
 
   return (
-    <div className="flex flex-col gap-4 p-4 md:px-10 md:py-2 md:fixed top-0 left-0 md:w-[30%] h-screen overflow-y-scroll">
+    <div
+      className={cn(
+        "flex flex-col gap-4 p-4 md:px-10 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full",
+      )}
+    >
       <div className="w-full flex justify-between items-center">
         <ReorderSectionsPopup
           sections={sections}
@@ -62,11 +71,18 @@ export const EditorPanel = ({
 
         <div className="flex items-center">
           {isEditing ? (
-            <Button onClick={handleSave} className="cursor-pointer text-blue-600">
+            <Button
+              onClick={handleSave}
+              className="cursor-pointer text-blue-600"
+            >
               Save
             </Button>
           ) : (
-            <Button onClick={handlePublish} variant={'ghost'} className="cursor-pointer text-blue-600">
+            <Button
+              onClick={handlePublish}
+              variant={"ghost"}
+              className="cursor-pointer text-blue-600"
+            >
               Publish{" "}
               <span>
                 <LucideUploadCloud />
@@ -79,6 +95,10 @@ export const EditorPanel = ({
             onClick={() => alert("Settings under development")}
           >
             <LucideSettings className="size-6" />
+          </Button>
+          <Button variant={"ghost"} onClick={() => toggleEditor()}>
+            <LucideChevronLeft className="size-6 hidden md:block" />
+            <LucideEye className="size-6 md:hidden" />
           </Button>
         </div>
       </div>

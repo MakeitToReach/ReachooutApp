@@ -10,7 +10,7 @@ export const LivePreview = ({
     if (!data) return null;
 
     return (
-        <div className="border border-l">
+        <div className="border border-l w-full">
             <TemplateComponent data={data} />
         </div>
     );
