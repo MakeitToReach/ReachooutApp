@@ -16,7 +16,7 @@ export const ReqInput: React.FC<ReqInputProps> = ({
   return (
     <div className="space-y-2">
       {label && (
-        <Label htmlFor="input-02" className="text-lg font-Montserrat">
+        <Label htmlFor="input-02" className="text-md md:text-lg font-Montserrat">
           {label}
           {isRequired && <span className="text-red-400">*</span>}
           {isOptional && <span className="text-gray-400"> (optional)</span>}

@@ -13,7 +13,7 @@ const ImageSelectButton: React.FC<ImageSelectButtonProps> = ({
     <div
       role="button"
       onClick={onClick}
-      className="w-40 h-40 rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:border-blue-500 hover:scale-110 transition flex items-center justify-center overflow-hidden cursor-pointer"
+      className="size-30 md:size-40 rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:border-blue-500 hover:scale-110 transition flex items-center justify-center overflow-hidden cursor-pointer"
     >
       {selectedImgUrl ? (
         <img

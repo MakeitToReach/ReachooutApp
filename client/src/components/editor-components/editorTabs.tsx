@@ -61,7 +61,7 @@ export const EditorTabs = ({
                 <div key={i} className="flex flex-col gap-2">
                   {field.type === "textarea" && (
                     <div className="space-y-2">
-                      <Label htmlFor={field.name} className="text-lg">
+                      <Label htmlFor={field.label} className="text-lg">
                         {field.label}
                       </Label>
                       <textarea
@@ -95,24 +95,47 @@ export const EditorTabs = ({
                   )}
 
                   {field.type === "image" && (
-                    <CldUploadButton
-                      uploadPreset="you-view"
-                      options={{ sources: ["local", "url", "unsplash"] }}
-                      className="cursor-pointer p-2 rounded-lg w-fit"
-                      //eslint-disable-next-line
-                      onSuccess={(result: any) => {
-                        setSectionField(
-                          section,
-                          field.fieldPath,
-                          result.info.secure_url,
-                        );
-                      }}
-                    >
-                      <ImageSelectButton
-                        selectedImgUrl={sectionData?.data[field.fieldPath]}
+                    <div className="flex items-center md:gap-10 gap-6 w-full">
+                      <CldUploadButton
+                        uploadPreset="you-view"
+                        options={{ sources: ["local", "url", "unsplash"] }}
+                        className="cursor-pointer p-2 rounded-lg w-fit"
+                        //eslint-disable-next-line
+                        onSuccess={(result: any) => {
+                          setSectionField(
+                            section,
+                            field.fieldPath,
+                            result.info.secure_url,
+                          );
+                        }}
+                      >
+                        <ImageSelectButton
+                          selectedImgUrl={
+                            sectionData?.data[
+                              field.fieldPathImg ??
+                                "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg"
+                            ]
+                          }
+                        />
+                        <span className="capitalize">dimensions 500x500</span>
+                      </CldUploadButton>
+
+                      <h1 className="text-xs md:text-lg">OR</h1>
+
+                      <ReqInput
+                        label={field.label}
+                        type="text"
+                        placeholder={field.label}
+                        // value={sectionData?.data[field.fieldPathVid ?? ""]}
+                        onChange={(e) =>
+                          setSectionField(
+                            section,
+                            field.fieldPathVid ?? "",
+                            e.target.value,
+                          )
+                        }
                       />
-                      <span className="capitalize">dimensions 500x500</span>
-                    </CldUploadButton>
+                    </div>
                   )}
 
                   {field.type === "component" &&
@@ -122,6 +145,28 @@ export const EditorTabs = ({
                       onChange: (val: any) =>
                         setSectionField(section, field.fieldPath, val),
                     })}
+
+                  {field.type === "group" && (
+                    <div className="flex gap-2 w-full">
+                      {field.fields?.map((groupField, idx) => (
+                        <ReqInput
+                          key={idx}
+                          label={groupField.label}
+                          type="text"
+                          placeholder={groupField.label}
+                          value={sectionData?.data[groupField.fieldPath] ?? ""}
+                          onChange={(e) =>
+                            setSectionField(
+                              section,
+                              groupField.fieldPath,
+                              e.target.value,
+                            )
+                          }
+                          className="w-full"
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
               )) || (
                 <p className="text-muted-foreground">
@@ -144,7 +189,7 @@ export const EditorTabs = ({
                   onClick={goToNext}
                   disabled={activeTabIndex === sections.length - 1}
                 >
-                  Next Section 
+                  Next Section
                   <span>
                     <LucideArrowRight />
                   </span>{" "}

@@ -3,5 +3,6 @@ export type PF_HERO_SECTION = {
     professions: string[];
     btnText: string;
     btnLink: string;
-    heroImgUrl: string;
+    heroImgUrl?: string;
+    heroVidUrl?: string;
 };
