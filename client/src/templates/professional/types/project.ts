@@ -5,4 +5,5 @@ export type PF_PROJECT = {
     description: string;
     btnText: string;
     btnLink: string;
+    category: string;
 };

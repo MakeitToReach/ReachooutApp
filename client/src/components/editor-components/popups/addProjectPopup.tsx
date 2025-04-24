@@ -27,6 +27,7 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
         btnText: "",
         btnLink: "",
         imgUrl: "https://placehold.co/500",
+        category: "",
     });
     return (
         <Dialog modal={false}>
@@ -119,6 +120,7 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
                                     btnText: "",
                                     btnLink: "",
                                     imgUrl: "https://placehold.co/500",
+                                    category: "",
                                 });
                             }}
                         >
