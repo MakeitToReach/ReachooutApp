@@ -7,7 +7,7 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { GripVertical } from "lucide-react";
+import { GripVertical, LucideEdit } from "lucide-react";
 
 import {
     DndContext,
@@ -26,17 +26,20 @@ import { CSS } from "@dnd-kit/utilities";
 
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { cn } from "@/lib/utils";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 interface ReorderSectionsDialogProps {
     children: React.ReactNode;
     sections: { id: string; name: string; isFixed: boolean }[];
     onReorder: (newOrder: string[]) => void;
+    onEdit: (tabIdx: number) => void;
 }
 
 export const ReorderSectionsPopup = ({
     children,
     sections,
     onReorder,
+    onEdit,
 }: ReorderSectionsDialogProps) => {
     const reorderableIds = sections.filter((s) => !s.isFixed).map((s) => s.id);
     const [order, setOrder] = useState(reorderableIds);
@@ -59,7 +62,14 @@ export const ReorderSectionsPopup = ({
 
         return sections.map((section) => {
             if (section.isFixed) {
-                return <FixedSectionItem key={section.id} name={section.name} />;
+                return (
+                    <FixedSectionItem
+                        key={section.id}
+                        name={section.name}
+                        // tabIdx={sections.findIndex((s) => s.id === section.id)}
+                        // onEdit={onEdit}
+                    />
+                );
             } else {
                 const reorderedId = order[reorderIndex++];
                 const reorderedSection = sections.find((s) => s.id === reorderedId);
@@ -68,6 +78,8 @@ export const ReorderSectionsPopup = ({
                         key={reorderedSection!.id}
                         id={reorderedSection!.id}
                         name={reorderedSection!.name}
+                        tabIdx={sections.findIndex((s) => s.id === reorderedSection!.id)}
+                        onEdit={onEdit}
                     />
                 );
             }
@@ -89,6 +101,9 @@ export const ReorderSectionsPopup = ({
             <DialogContent className="max-w-md">
                 <DialogHeader>
                     <DialogTitle>Reorder Sections</DialogTitle>
+                    <DialogDescription>
+                        Drag your sections to reorder them
+                    </DialogDescription>
                 </DialogHeader>
 
                 <DndContext
@@ -113,7 +128,17 @@ export const ReorderSectionsPopup = ({
     );
 };
 
-const SortableSectionItem = ({ id, name }: { id: string; name: string }) => {
+const SortableSectionItem = ({
+    id,
+    name,
+    tabIdx,
+    onEdit,
+}: {
+    id: string;
+    name: string;
+    tabIdx: number;
+    onEdit: (tabIdx: number) => void;
+}) => {
     const {
         attributes,
         listeners,
@@ -147,11 +172,25 @@ const SortableSectionItem = ({ id, name }: { id: string; name: string }) => {
                 </span>
                 <span className="font-medium">{name}</span>
             </div>
+            <Button onClick={() => onEdit(tabIdx)} variant={"outline"}>
+                Edit{" "}
+                <span>
+                    <LucideEdit />
+                </span>
+            </Button>
         </div>
     );
 };
 
-const FixedSectionItem = ({ name }: { name: string }) => {
+const FixedSectionItem = ({
+    name,
+    // tabIdx,
+    // onEdit,
+}: {
+    name: string;
+    // tabIdx: number;
+    // onEdit: (tabIdx: number) => void;
+}) => {
     return (
         <div className="flex items-center justify-between p-3 border rounded-lg bg-neutral-100 text-neutral-500 cursor-not-allowed">
             <div className="flex items-center gap-3">
@@ -159,6 +198,13 @@ const FixedSectionItem = ({ name }: { name: string }) => {
                 <span className="font-medium">{name}</span>
             </div>
             <span className="text-xs italic">Fixed</span>
+
+            {/* <Button onClick={() => onEdit(tabIdx)} variant={"outline"}> */}
+            {/*     Edit{" "} */}
+            {/*     <span> */}
+            {/*         <LucideEdit /> */}
+            {/*     </span> */}
+            {/* </Button> */}
         </div>
     );
 };

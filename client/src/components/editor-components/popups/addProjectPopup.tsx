@@ -22,7 +22,6 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
     // const { addProject } = usePortfolioStore();
     const [project, setProject] = useState<PF_PROJECT>({
         heading: "",
-        subtitle: "",
         description: "",
         btnText: "",
         btnLink: "",
@@ -38,7 +37,7 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
                 onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader>
-                    <DialogTitle>Add Project</DialogTitle>
+                    <DialogTitle className="md:text-2xl">Add Project</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col gap-3">
                     <ReqInput
@@ -52,12 +51,12 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
                     />
 
                     <ReqInput
-                        label="Subtitle"
+                        label="Category Tag"
                         type="text"
-                        placeholder="Enter subtitle"
-                        value={project.subtitle}
+                        placeholder="Enter your project category"
+                        value={project.category}
                         onChange={(e) =>
-                            setProject({ ...project, subtitle: e.target.value })
+                            setProject({ ...project, category: e.target.value })
                         }
                     />
 
@@ -73,6 +72,7 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
                         />
                     </div>
 
+                    <div className="flex gap-2">
                     <ReqInput
                         label="Button Text"
                         type="text"
@@ -84,7 +84,7 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
                     />
 
                     <ReqInput
-                        label="Button Redirect Link"
+                        label="Button Link"
                         type="text"
                         placeholder="https://reachoout.com"
                         value={project.btnLink}
@@ -92,6 +92,9 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
                             setProject({ ...project, btnLink: e.target.value })
                         }
                     />
+
+                    </div>
+
 
                     <div className="space-x-2">
                         <CldUploadButton
@@ -115,7 +118,6 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
                                 onAdd(project);
                                 setProject({
                                     heading: "",
-                                    subtitle: "",
                                     description: "",
                                     btnText: "",
                                     btnLink: "",

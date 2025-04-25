@@ -10,7 +10,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             type: "navbar",
             data: null,
             isFixed: true,
-            isEditable: false,
+            isEditable: true,
         },
         {
             type: "hero",

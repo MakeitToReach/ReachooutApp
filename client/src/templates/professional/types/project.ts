@@ -1,6 +1,6 @@
 export type PF_PROJECT = {
     heading: string;
-    subtitle: string;
+    // subtitle: string;
     imgUrl: string;
     description: string;
     btnText: string;

@@ -14,6 +14,7 @@ import { ReorderSectionsPopup } from "./popups/SectionsPopup";
 import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema";
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 interface EditorPanelProps {
     isEditing?: boolean;
@@ -26,6 +27,7 @@ export const EditorPanel = ({
     toggleEditor,
 }: EditorPanelProps) => {
     const { data, reorderSections } = usePortfolioStore();
+    const [editorTabIndex, setEditorTabIndex] = useState(0);
 
     if (!data) return <div>No data found</div>;
 
@@ -63,6 +65,7 @@ export const EditorPanel = ({
                 <ReorderSectionsPopup
                     sections={sections}
                     onReorder={(newOrder) => handleReorder(newOrder)}
+                    onEdit={(tabIdx) => setEditorTabIndex(tabIdx)}
                 >
                     <button className="cursor-pointer">
                         <EllipsisVertical className="size-6" />
@@ -97,7 +100,11 @@ export const EditorPanel = ({
                     >
                         <LucideSettings className="size-6" />
                     </Button>
-                    <Button variant={"ghost"} onClick={() => toggleEditor()} className="cursor-pointer">
+                    <Button
+                        variant={"ghost"}
+                        onClick={() => toggleEditor()}
+                        className="cursor-pointer"
+                    >
                         <LucideChevronLeft className="size-6 hidden md:block" />
                         <LucideEye className="size-6 md:hidden" />
                     </Button>
@@ -107,6 +114,7 @@ export const EditorPanel = ({
                 className="md:mt-2"
                 sections={editorSections}
                 templateEditorSchema={templateSchema}
+                TabIndex={editorTabIndex}
             />
         </div>
     );
