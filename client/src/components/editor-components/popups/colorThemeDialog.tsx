@@ -51,7 +51,7 @@ export function ThemePickerDialog({ children }: { children: React.ReactNode }) {
     return (
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent>
+            <DialogContent className="z-[100]">
                 <DialogHeader>
                     <DialogTitle>Customize Theme Colors !!WIP!!</DialogTitle>
                 </DialogHeader>
