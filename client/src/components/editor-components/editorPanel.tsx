@@ -5,6 +5,7 @@ import {
     EllipsisVertical,
     LucideChevronLeft,
     LucideEye,
+    LucidePalette,
     LucideSettings,
     LucideUploadCloud,
 } from "lucide-react";
@@ -15,6 +16,8 @@ import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { SettingsDropdown } from "./settingsDropdown";
+import { ThemePickerDialog } from "./popups/colorThemeDialog";
 
 interface EditorPanelProps {
     isEditing?: boolean;
@@ -72,7 +75,10 @@ export const EditorPanel = ({
                     </button>
                 </ReorderSectionsPopup>
 
-                <div className="flex items-center">
+                <div className="flex items-center gap-2">
+                    <ThemePickerDialog>
+                        <LucidePalette />
+                    </ThemePickerDialog>
                     {isEditing ? (
                         <Button
                             onClick={handleSave}
@@ -92,14 +98,10 @@ export const EditorPanel = ({
                             </span>
                         </Button>
                     )}
-
-                    <Button
-                        variant={"ghost"}
-                        className="cursor-pointer"
-                        onClick={() => alert("Settings under development")}
-                    >
+                    <SettingsDropdown>
                         <LucideSettings className="size-6" />
-                    </Button>
+                    </SettingsDropdown>
+
                     <Button
                         variant={"ghost"}
                         onClick={() => toggleEditor()}

@@ -72,7 +72,7 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             </AnimatePresence>
 
             {!loading && (
-                <div className="space-y-20">
+                <div className="space-y-20 bg-template-primary">
                     {data.sections.map((section, index) => (
                         <div key={index} className="relative">
                             {renderSection(section, index)}
