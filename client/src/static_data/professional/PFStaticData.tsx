@@ -6,8 +6,8 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
   name: "professional",
   thumbnailUrl: "/professional_template.png",
   theme: {
-    "--template-primary": "#002642", // gray
-    "--template-secondary": "#6c757d", // gray
+    "--template-primary": "#fffffc", // gray
+    "--template-secondary": "#fffffc", // gray
     "--template-tertiary": "#0d6efd", // blue
     "--template-text-primary": "#0d6efd", // blue
     "--template-text-secondary": "#6c757d", // gray
@@ -23,7 +23,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     {
       type: "hero",
       data: {
-        title: "Hello, I'm John Doe",
+        title: "Hello, I'm Omkar B",
         professions: ["Web Developer", "UI/UX Designer"],
         btnText: "Download CV",
         btnLink: "#",

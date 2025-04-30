@@ -18,7 +18,7 @@ const Preview = () => {
   }
 
   return (
-    <div style={(SelectedTemplate.theme as Record<string, string>) || {}}>
+    <div style={(SelectedTemplate.data.theme as Record<string, string>) || {}}>
       <SelectedTemplate.component data={SelectedTemplate.data} />
     </div>
   );

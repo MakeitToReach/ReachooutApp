@@ -16,7 +16,7 @@ export const DEV_STATIC_DATA: GenericTemplateSchema = {
         {
             type: "hero",
             data: {
-                title: "Hi, Im John Doe",
+                title: "Hi, Im Omkar",
             },
             isFixed: false,
             isEditable: true,
