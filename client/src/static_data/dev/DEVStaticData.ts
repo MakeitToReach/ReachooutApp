@@ -4,6 +4,14 @@ export const DEV_STATIC_DATA: GenericTemplateSchema = {
     id: "dev-tmp",
     name: "dev",
     thumbnailUrl: "/Dev_template.png",
+    theme: {
+        "--template-primary": "#6c757d", // gray
+        "--template-secondary": "#6c757d", // gray
+        "--template-tertiary": "#6c757d", // gray
+        "--template-text-primary": "#0d6efd", // blue
+        "--template-text-secondary": "#6c757d", // gray
+        "--template-text-tertiary": "#6c757d", // gray
+    },
     sections: [
         {
             type: "hero",

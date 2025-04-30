@@ -1,17 +1,19 @@
 import { usePortfolioStore } from "@/store/portfolio.store";
 
 export const LivePreview = ({
-    templateComponent: TemplateComponent,
+  templateComponent: TemplateComponent,
+  theme,
 }: {
-    //eslint-disable-next-line
-    templateComponent: React.FC<{ data: any }>;
+  //eslint-disable-next-line
+  templateComponent: React.FC<{ data: any }>;
+  theme?: Record<string, string>;
 }) => {
-    const { data } = usePortfolioStore();
-    if (!data) return null;
+  const { data } = usePortfolioStore();
+  if (!data) return null;
 
-    return (
-        <div className="border border-l w-full">
-            <TemplateComponent data={data} />
-        </div>
-    );
+  return (
+    <div className="border border-l w-full" style={theme}>
+      <TemplateComponent data={data} />
+    </div>
+  );
 };

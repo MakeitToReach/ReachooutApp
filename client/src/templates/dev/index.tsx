@@ -26,7 +26,7 @@ export const DevPortfolio = ({ data }: Props) => {
     };
 
     return (
-        <div className="min-h-screen px-6 py-10 text-white bg-gradient-to-br from-black via-gray-900 to-gray-800 font-sans">
+        <div className="min-h-screen px-6 py-10 text-white font-Poppins bg-template-primary">
             <div className="max-w-5xl mx-auto space-y-8">
                 {data.sections.map((section, idx) => (
                     <div key={idx} className="relative">
