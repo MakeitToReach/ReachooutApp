@@ -2,139 +2,119 @@ import { GenericTemplateSchema } from "@/schemas/templates.schema";
 // import { LucideCode } from "lucide-react";
 
 export const PF_STATIC_DATA: GenericTemplateSchema = {
-  id: "pf-tmp",
-  name: "professional",
-  thumbnailUrl: "/professional_template.png",
-  theme: {
-    "--template-primary": "#fffffc", // gray
-    "--template-secondary": "#fffffc", // gray
-    "--template-tertiary": "#0d6efd", // blue
-    "--template-text-primary": "#0d6efd", // blue
-    "--template-text-secondary": "#6c757d", // gray
-    "--template-text-tertiary": "#6c757d", // gray
-  },
-  sections: [
-    {
-      type: "navbar",
-      data: null,
-      isFixed: true,
-      isEditable: true,
+    id: "pf-tmp",
+    name: "professional",
+    thumbnailUrl: "/professional_template.png",
+    theme: {
+        "--template-primary": "#fffffc", // gray
+        "--template-secondary": "#fffffc", // gray
+        "--template-tertiary": "#0d6efd", // blue
+        "--template-text-primary": "#0d6efd", // blue
+        "--template-text-secondary": "#6c757d", // gray
+        "--template-text-tertiary": "#6c757d", // gray
     },
-    {
-      type: "hero",
-      data: {
-        title: "Hello, I'm Omkar B",
-        professions: ["Web Developer", "UI/UX Designer"],
-        btnText: "Download CV",
-        btnLink: "#",
-        heroImgUrl:
-          "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
-        // heroVidUrl: "https://www.youtube.com/watch?v=X_Dpv4CVlpo",
-      },
-      isFixed: true,
-      isEditable: true,
-    },
-    {
-      type: "about",
-      data: {
-        title: "Founder of ",
-        colorTitle: "Reachoout",
-        description:
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit vel laborum vero cum, magni in alias, laboriosam officia vitae possimus rerum aut repellat blanditiis officiis accusantium...",
-        stats: [
-          { title: "Projects", value: "3" },
-          { title: "Clients", value: "2" },
-          { title: "Experience", value: "2" },
-          { title: "Experience", value: "2" },
-        ],
-      },
-      isFixed: false,
-      isEditable: true,
-    },
-    {
-      type: "projects",
-      data: {
-        projects: [
-          {
-            heading: "01.First",
-            subtitle: "subtitle",
-            imgUrl:
-              "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
-            description: "description",
-            btnText: "button text",
-            btnLink: "#",
-            category: "Frontend",
-          },
-          {
-            heading: "02.Second",
-            subtitle: "subtitle",
-            imgUrl:
-              "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
-            description: "description",
-            btnText: "button text",
-            btnLink: "#",
-            category: "Frontend",
-          },
-          {
-            heading: "03.Third",
-            subtitle: "subtitle",
-            imgUrl:
-              "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
-            description: "description",
-            btnText: "button text",
-            btnLink: "#",
-            category: "Full Stack",
-          },
-        ],
-      },
-      isFixed: false,
-      isEditable: true,
-    },
-    // {
-    //     type: "services",
-    //     data: {
-    //         subtitle: "subtitle here",
-    //         services: [
-    //             {
-    //                 icon: <LucideCode size={25} />,
-    //                 heading: "Web Development",
-    //                 description:
-    //                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
-    //             },
-    //             {
-    //                 icon: <LucideCode size={25} />,
-    //                 heading: "Web Development",
-    //                 description:
-    //                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
-    //             },
-    //             {
-    //                 icon: <LucideCode size={25} />,
-    //                 heading: "Web Development",
-    //                 description:
-    //                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
-    //             },
-    //             {
-    //                 icon: <LucideCode size={25} />,
-    //                 heading: "Web Development",
-    //                 description:
-    //                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laborum molestias consequuntur numquam dolore...",
-    //             },
-    //         ],
-    //     },
-    //     isFixed: false,
-    // isEditable:true
-    // },
-    {
-      type: "contact",
-      data: null,
-      isFixed: true,
-      isEditable: false,
-    },
-    {
-      type: "footer",
-      data: null,
-      isFixed: true,
-      isEditable: false,
-    },
-  ],
+    sections: [
+        {
+            type: "navbar",
+            data: null,
+            isFixed: true,
+            isEditable: true,
+        },
+        {
+            type: "hero",
+            data: {
+                title: "Hi, I'm Omkar B",
+                professions: ["Full Stack Developer", "UI/UX Designer"],
+                btnText: "Visit My Website",
+                btnLink: "https://reachoout.com",
+                heroImgUrl:
+                    "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+            },
+            isFixed: true,
+            isEditable: true,
+        },
+        {
+            type: "about",
+            data: {
+                title: "Founder of ",
+                colorTitle: "Reachoout",
+                description:
+                    "I’m a passionate developer with a strong focus on building intuitive, scalable web applications. With experience in both frontend and backend technologies, I love bringing ideas to life through clean design and efficient code.",
+                stats: [
+                    { title: "Projects", value: "15+" },
+                    { title: "Clients", value: "7+" },
+                    { title: "Years of Experience", value: "3" },
+                    { title: "Awards", value: "2" },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+        },
+        {
+            type: "projects",
+            data: {
+                projects: [
+                    {
+                        heading: "01. Reachoout",
+                        subtitle: "B2B Networking Platform",
+                        imgUrl:
+                            "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+                        description:
+                            "Reachoout is a platform that helps businesses connect, collaborate, and grow through verified partnerships and networking tools.",
+                        btnText: "View Project",
+                        btnLink: "https://reachoout.in",
+                        category: "Full Stack",
+                    },
+                    {
+                        heading: "02. Devfolio Clone",
+                        subtitle: "Portfolio Generator for Developers",
+                        imgUrl:
+                            "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+                        description:
+                            "A customizable portfolio generator built with Next.js and Tailwind CSS, aimed at helping developers showcase their work online.",
+                        btnText: "GitHub Repo",
+                        btnLink: "https://github.com/omkar-dev/devfolio-clone",
+                        category: "Frontend",
+                    },
+                    {
+                        heading: "03. TaskMaster",
+                        subtitle: "Team Collaboration App",
+                        imgUrl:
+                            "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+                        description:
+                            "TaskMaster is a real-time team task manager with WebSocket support, kanban-style UI, and role-based access control.",
+                        btnText: "Live Demo",
+                        btnLink: "https://taskmaster-app.netlify.app",
+                        category: "Full Stack",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+        },
+        {
+            type: "contact",
+            data: {
+                email: "omkarb@example.com",
+                phone: "+91 98765 43210",
+                address: "Pune, Maharashtra, India",
+                socialLinks: {
+                    github: "https://github.com/omkar-dev",
+                    linkedin: "https://linkedin.com/in/omkar-b",
+                    twitter: "https://twitter.com/omkarb_dev",
+                },
+            },
+            isFixed: true,
+            isEditable: false,
+        },
+        {
+            type: "footer",
+            data: {
+                copyright:
+                    "© 2025 Omkar B. All rights reserved. | Designed & Built by Omkar B",
+            },
+            isFixed: true,
+            isEditable: false,
+        },
+    ],
 };

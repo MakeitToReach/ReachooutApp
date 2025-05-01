@@ -46,10 +46,10 @@ export const PFHeroSection = ({
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">
         <div className="space-y-4">
           <div>
-            <h1 className="text-4xl md:text-6xl font-bold">{title}</h1>
+            <h1 className="text-4xl md:text-6xl font-bold text-template-text-primary">{title}</h1>
             <FlipText
               texts={professions}
-              className="text-4xl md:text-5xl font-bold text-green-600"
+              className="text-4xl md:text-5xl font-bold text-template-text-tertiary"
             />
           </div>
           <Link href={btnLink}>

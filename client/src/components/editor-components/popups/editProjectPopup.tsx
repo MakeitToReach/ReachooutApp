@@ -45,7 +45,7 @@ export const EditProjectPopup = ({
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4">
+            <DialogContent className="space-y-4 z-[100]">
                 <DialogHeader>
                     <DialogTitle>
                         Edit Project {projectIdx !== undefined && `#${projectIdx + 1}`}
@@ -65,7 +65,7 @@ export const EditProjectPopup = ({
                         onChange={(e) => handleChange("category", e.target.value)}
                     />
 
-                    <Label>Technologies</Label>
+                    <Label>Description</Label>
                     <Input
                         value={formData.description}
                         onChange={(e) => handleChange("description", e.target.value)}
@@ -77,7 +77,6 @@ export const EditProjectPopup = ({
                         className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
                         //eslint-disable-next-line
                         onSuccess={(result: any) => {
-                            // setProject({ ...project, imgUrl: result.info.url });
                             handleChange("imgUrl", result.info.url);
                         }}
                     >

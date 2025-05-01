@@ -47,12 +47,12 @@ export function ThemePickerDialog({
         <div className="grid gap-4 py-4">
           {(
             [
-              ["--template-primary", "Primary"],
-              ["--template-secondary", "Secondary"],
-              ["--template-tertiary", "Tertiary"],
-              ["--template-text-primary", "Text Primary"],
-              ["--template-text-secondary", "Text Secondary"],
-              ["--template-text-tertiary", "Text Tertiary"],
+              ["--template-primary", "Background"],
+              ["--template-secondary", "Secondary Background"],
+              ["--template-tertiary", "Tertiary Background"],
+              ["--template-text-primary", "Title Text"],
+              ["--template-text-secondary", "Description Text"],
+              ["--template-text-tertiary", "Color Text"],
             ] as const
           ).map(([key, label]) => (
             <div key={key} className="flex items-center justify-between gap-4">

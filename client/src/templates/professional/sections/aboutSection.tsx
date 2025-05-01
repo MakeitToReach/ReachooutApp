@@ -28,15 +28,15 @@ export const PFAboutSection = ({
         {/* Stats grid */}
         <div className="grid grid-cols-2 gap-2  lg:gap-5 lg:gap-y-2 lg:mt-20 h-fit lg:w-1/2">
           <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] max-h-48 p-10 overflow-hidden">
-            <h1 className="font-bold text-5xl lg:text-7xl text-[#1e1e1e]">
+            <h1 className="font-bold text-5xl lg:text-7xl text-template-text-primary">
               {stats[0].value}
             </h1>
-            <h2 className="text-[#1e1e1e] mt-2 text-xl lg:text-2xl w-full text-center">
+            <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-tempalte-text-secondary">
               {stats[0].title}
             </h2>
           </div>
           <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6">
-            <h1 className="font-bold text-5xl lg:text-7xl text-[#1e1e1e]">
+            <h1 className="font-bold text-5xl lg:text-7xl text-template-text-primary">
               {stats[1].value}
             </h1>
             <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
@@ -44,7 +44,7 @@ export const PFAboutSection = ({
             </h2>
           </div>
           <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6">
-            <h1 className="font-bold text-5xl lg:text-7xl text-[#1e1e1e] ">
+            <h1 className="font-bold text-5xl lg:text-7xl text-template-text-primary ">
               {stats[2].value}
             </h1>
             <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
@@ -52,7 +52,7 @@ export const PFAboutSection = ({
             </h2>
           </div>
           <div className="flex flex-col justify-center items-center rounded-sm bg-[#d6eef8] h-48 p-6 truncate">
-            <h1 className="font-bold text-5xl lg:text-7xl text-[#1e1e1e]">
+            <h1 className="font-bold text-5xl lg:text-7xl text-template-text-primary">
               {stats[3].value}
             </h1>
             <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
@@ -67,7 +67,7 @@ export const PFAboutSection = ({
             initial="initial"
             whileInView="animate"
             viewport={{ amount: 1 }}
-            className="text-3xl lg:text-5xl font-semibold text-[#1e1e1e]"
+            className="text-3xl lg:text-5xl font-semibold text-template-text-primary"
           >
             About Me
           </m.h1>
@@ -78,7 +78,7 @@ export const PFAboutSection = ({
             viewport={{ amount: 1 }}
             className="uppercase font-medium"
           >
-            {title} <span className="text-[#f8b84e]">{colorTitle}</span>
+            {title} <span className="text-template-text-tertiary">{colorTitle}</span>
           </m.h2>
           <m.div
             variants={animateVariants}
@@ -91,7 +91,7 @@ export const PFAboutSection = ({
               .map((para, index) => (
                 <p
                   key={index}
-                  className="text-[#1e1e1e] leading-relaxed mb-4 whitespace-pre-line"
+                  className="text-template-text-primary leading-relaxed mb-4 whitespace-pre-line"
                 >
                   {para.trim()}
                 </p>

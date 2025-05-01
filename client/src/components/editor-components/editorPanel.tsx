@@ -85,6 +85,7 @@ export const EditorPanel = ({
             <Button
               onClick={handleSave}
               className="cursor-pointer text-blue-600"
+              variant={"ghost"}
             >
               Save
             </Button>

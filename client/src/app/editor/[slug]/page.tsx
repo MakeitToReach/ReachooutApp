@@ -48,7 +48,7 @@ const EditorPage = () => {
         <>
           <div className="w-full md:w-[30%]" />
           <div
-            className={cn("w-full md:w-[30%] fixed top-0 left-0 z-[100]", {
+            className={cn("w-full md:w-[30%] fixed top-0 left-0 z-[50]", {
               hidden: !editorOpen,
             })}
           >
@@ -69,7 +69,7 @@ const EditorPage = () => {
       ) : (
         <Button
           variant={"default"}
-          className="fixed bottom-4 left-4 z-[100]"
+          className="fixed bottom-4 left-4 z-50"
           onClick={toggleEditor}
         >
           <LucideSidebarOpen className="w-6 h-6" />
