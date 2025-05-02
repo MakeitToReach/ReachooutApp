@@ -108,9 +108,10 @@ export const EditorTabs = ({
                                                 className="cursor-pointer p-2 rounded-lg w-fit"
                                                 //eslint-disable-next-line
                                                 onSuccess={(result: any) => {
+                                                    // console.log("result", result);
                                                     setSectionField(
                                                         section,
-                                                        field.fieldPath,
+                                                        field.fieldPathImg ?? "",
                                                         result.info.secure_url,
                                                     );
                                                 }}

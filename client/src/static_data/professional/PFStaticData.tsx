@@ -6,12 +6,16 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     name: "professional",
     thumbnailUrl: "/professional_template.png",
     theme: {
-        "--template-primary": "#fffffc", // gray
-        "--template-secondary": "#fffffc", // gray
-        "--template-tertiary": "#0d6efd", // blue
-        "--template-text-primary": "#0d6efd", // blue
-        "--template-text-secondary": "#6c757d", // gray
-        "--template-text-tertiary": "#6c757d", // gray
+        "--template-primary": "#fffffc",
+        "--template-secondary": "#1e3a8a",
+        "--template-accent-primary": "#d6eef8",
+        "--template-accent-secondary": "#fbe8d3",
+        "--template-btn": "#111111",
+        "--template-text-primary": "#111111",
+        "--template-text-secondary": "#fffffc",
+        "--template-text-accent-primary": "#4ade80",
+        "--template-text-accent-secondary": "#fbe8d3",
+        "--template-text-btn": "#fffffc",
     },
     sections: [
         {

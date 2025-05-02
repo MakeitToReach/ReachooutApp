@@ -51,7 +51,7 @@ export const PFContactSection = () => {
     >
       <m.h1
         variants={itemVariants}
-        className="text-4xl font-semibold md:text-6xl text-center"
+        className="text-4xl font-semibold md:text-6xl text-center text-template-text-primary"
       >
         Contact
       </m.h1>
