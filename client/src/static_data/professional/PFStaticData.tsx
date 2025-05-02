@@ -17,7 +17,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
         {
             type: "navbar",
             data: null,
-            isFixed: true,
+            isFixed: false,
             isEditable: true,
         },
         {
@@ -30,7 +30,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                 heroImgUrl:
                     "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
             },
-            isFixed: true,
+            isFixed: false,
             isEditable: true,
         },
         {
@@ -104,8 +104,8 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                     twitter: "https://twitter.com/omkarb_dev",
                 },
             },
-            isFixed: true,
-            isEditable: false,
+            isFixed: false,
+            isEditable: true,
         },
         {
             type: "footer",
@@ -113,8 +113,8 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                 copyright:
                     "© 2025 Omkar B. All rights reserved. | Designed & Built by Omkar B",
             },
-            isFixed: true,
-            isEditable: false,
+            isFixed: false,
+            isEditable: true,
         },
     ],
 };
