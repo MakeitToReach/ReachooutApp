@@ -43,7 +43,7 @@ export const EditProjectPopup = ({
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={setOpen} modal={false}>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent className="space-y-4 z-[100]">
                 <DialogHeader>
@@ -80,7 +80,7 @@ export const EditProjectPopup = ({
                             handleChange("imgUrl", result.info.url);
                         }}
                     >
-                        <ImageSelectButton selectedImgUrl={project.imgUrl} />
+                        <ImageSelectButton selectedImgUrl={formData.imgUrl} />
                     </CldUploadButton>
                 </div>
 
