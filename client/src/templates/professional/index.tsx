@@ -74,7 +74,7 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             {!loading && (
                 <div className="space-y-20 bg-template-primary">
                     {data.sections.map((section, index) => (
-                        <div key={index} className="relative">
+                        <div key={index} className="relative template-font">
                             {renderSection(section, index)}
                         </div>
                     ))}

@@ -7,6 +7,7 @@ export type SectionBlock<T = any> = {
 };
 
 export type ThemeObject = {
+    "--template-font": string;
     "--template-primary": string;
     "--template-secondary": string;
     "--template-accent-primary": string;

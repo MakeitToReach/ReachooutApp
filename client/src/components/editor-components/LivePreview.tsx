@@ -12,7 +12,7 @@ export const LivePreview = ({
   if (!data) return null;
 
   return (
-    <div className="border border-l w-full" style={theme}>
+    <div className="border border-l w-full theme-wrapper" style={theme}>
       <TemplateComponent data={data} />
     </div>
   );
