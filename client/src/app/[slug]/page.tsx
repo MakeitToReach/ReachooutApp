@@ -32,7 +32,7 @@ const UserPreview = () => {
   if (!data) return <p>Loading...</p>;
 
   return (
-    <div style={(data.theme as Record<string, string>) || {}} className="theme-wrapper">
+    <div style={data.theme as React.CSSProperties} className="theme-wrapper">
       <template.component data={data} />
     </div>
   );
