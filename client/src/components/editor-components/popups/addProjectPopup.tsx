@@ -32,7 +32,7 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
         <Dialog modal={false}>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[600px]"
+                className="sm:max-w-[600px] font-Poppins"
                 style={{ overflow: "visible" }}
                 onInteractOutside={(e) => e.preventDefault()}
             >

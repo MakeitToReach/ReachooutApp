@@ -43,7 +43,7 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex relative">
+    <div className="min-h-screen bg-gray-50 flex relative font-Poppins">
       <m.div
         exit={{ x: "-100%" }} // Exit animation now works
         transition={{ duration: 0.4, ease: "easeInOut" }}

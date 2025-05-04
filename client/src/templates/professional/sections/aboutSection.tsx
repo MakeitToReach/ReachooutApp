@@ -1,3 +1,4 @@
+import { formatCompactNumber } from "@/lib/utils";
 import { PF_ABOUT_SECTION } from "../types/aboutSection";
 import { motion as m } from "motion/react";
 
@@ -23,13 +24,13 @@ export const PFAboutSection = ({
         },
     };
     return (
-        <section className="max-w-6xl mx-auto">
+        <section className="max-w-6xl mx-auto" id="about">
             <div className="px-4 lg:px-0 flex flex-col lg:flex-row w-full lg:gap-20 lg:mt-20">
                 {/* Stats grid */}
                 <div className="grid grid-cols-2 gap-2  lg:gap-5 lg:gap-y-2 lg:mt-20 h-fit lg:w-1/2">
                     <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary max-h-48 p-10 overflow-hidden">
                         <h1 className="font-bold text-5xl lg:text-7xl text-template-text-primary">
-                            {stats[0].value}
+                            {formatCompactNumber(stats[0].value)}
                         </h1>
                         <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-tempalte-text-secondary">
                             {stats[0].title}
@@ -37,7 +38,7 @@ export const PFAboutSection = ({
                     </div>
                     <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary h-48 p-6">
                         <h1 className="font-bold text-5xl lg:text-7xl text-template-text-primary">
-                            {stats[1].value}
+                            {formatCompactNumber(stats[1].value)}
                         </h1>
                         <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
                             {stats[1].title}
@@ -45,7 +46,7 @@ export const PFAboutSection = ({
                     </div>
                     <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary h-48 p-6">
                         <h1 className="font-bold text-5xl lg:text-7xl text-template-text-primary ">
-                            {stats[2].value}
+                            {formatCompactNumber(stats[2].value)}
                         </h1>
                         <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center">
                             {stats[2].title}
@@ -53,7 +54,7 @@ export const PFAboutSection = ({
                     </div>
                     <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary h-48 p-6 truncate">
                         <h1 className="font-bold text-5xl lg:text-7xl text-template-text-primary">
-                            {stats[3].value}
+                            {formatCompactNumber(stats[3].value)}
                         </h1>
                         <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
                             {stats[3].title}

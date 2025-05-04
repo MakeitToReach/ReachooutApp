@@ -1,4 +1,4 @@
 export type PF_STAT = {
     title: string;
-    value: string;
+    value: number;
 };

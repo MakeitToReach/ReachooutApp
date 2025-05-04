@@ -1,19 +1,30 @@
+"use client";
 import { usePortfolioStore } from "@/store/portfolio.store";
+import { useEffect } from "react";
 
 export const LivePreview = ({
-  templateComponent: TemplateComponent,
-  theme,
+    templateComponent: TemplateComponent,
+    theme,
 }: {
-  //eslint-disable-next-line
-  templateComponent: React.FC<{ data: any }>;
-  theme?: Record<string, string>;
+    //eslint-disable-next-line
+    templateComponent: React.FC<{ data: any }>;
+    theme?: Record<string, string>;
 }) => {
-  const { data } = usePortfolioStore();
-  if (!data) return null;
+    const { data, currentEditingSection } = usePortfolioStore();
 
-  return (
-    <div className="border border-l w-full theme-wrapper" style={theme}>
-      <TemplateComponent data={data} />
-    </div>
-  );
+    useEffect(() => {
+        if (currentEditingSection) {
+            const sectionElement = document.getElementById(currentEditingSection);
+            if (sectionElement) {
+                sectionElement.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+        }
+    }, [currentEditingSection]);
+
+    if (!data) return null;
+    return (
+        <div className="w-full theme-wrapper" style={theme}>
+            <TemplateComponent data={data} />
+        </div>
+    );
 };

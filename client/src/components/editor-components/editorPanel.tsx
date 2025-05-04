@@ -4,6 +4,7 @@ import {
     EllipsisVertical,
     LucideChevronLeft,
     LucideEye,
+    LucideLoaderCircle,
     LucidePalette,
     LucideSettings,
     LucideUploadCloud,
@@ -30,6 +31,7 @@ export const EditorPanel = ({
 }: EditorPanelProps) => {
     const { data, reorderSections, setThemeObject } = usePortfolioStore();
     const [editorTabIndex, setEditorTabIndex] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     if (!data) return <div>No data found</div>;
 
@@ -47,7 +49,9 @@ export const EditorPanel = ({
 
     const handlePublish = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         await publishTemplate(data.name, data);
+        setLoading(false);
     };
 
     const handleReorder = (newOrder: string[]) => {
@@ -91,16 +95,24 @@ export const EditorPanel = ({
                             Save
                         </Button>
                     ) : (
-                        <Button
-                            onClick={handlePublish}
-                            variant={"ghost"}
-                            className="cursor-pointer flex items-center"
-                        >
-                            <span className="hidden md:block text-lg">Publish</span>
-                            <span>
-                                <LucideUploadCloud className="size-6" />
-                            </span>
-                        </Button>
+                        <>
+                            <Button
+                                onClick={handlePublish}
+                                variant={"ghost"}
+                                className="cursor-pointer flex items-center"
+                            >
+                                {loading ? (
+                                    <LucideLoaderCircle className="size-6 animate-spin" />
+                                ) : (
+                                    <>
+                                        <span className="hidden md:block text-lg">Publish</span>
+                                        <span>
+                                            <LucideUploadCloud className="size-6" />
+                                        </span>
+                                    </>
+                                )}
+                            </Button>
+                        </>
                     )}
                     <SettingsDropdown>
                         <LucideSettings className="size-6" />

@@ -3,8 +3,6 @@ import { StatsField } from "@/components/editor-components/inputs/statField";
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
 
 export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
-    navbar: [
-    ],
     hero: [
         {
             label: "Title",
@@ -15,6 +13,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Animated Texts",
             type: "text",
             fieldPath: "professions",
+            subtitle: "Comma separated values",
         },
         {
             type: "group",
@@ -37,6 +36,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "img&vid",
             fieldPathImg: "heroImgUrl",
             fieldPathVid: "heroVidUrl",
+            subtitle:"Only youtube links are allowed"
         },
     ],
     about: [

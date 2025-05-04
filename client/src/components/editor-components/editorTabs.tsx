@@ -27,7 +27,8 @@ export const EditorTabs = ({
     templateEditorSchema,
 }: EditorTabsProps) => {
     const [activeTabIndex, setActiveTabIndex] = useState(TabIndex);
-    const { data, setSectionField } = usePortfolioStore();
+    const { data, setSectionField, setCurrentEditingSection } =
+        usePortfolioStore();
 
     const currentSection = sections[activeTabIndex];
     const sectionData = data?.sections.find((s) => s.type === currentSection);
@@ -41,9 +42,14 @@ export const EditorTabs = ({
             setActiveTabIndex((prev) => prev + 1);
     };
 
+    //sets the activeTabIndex when TabIndex changes
     useEffect(() => {
         setActiveTabIndex(TabIndex);
     }, [TabIndex]);
+
+    useEffect(() => {
+        setCurrentEditingSection(sections[activeTabIndex]);
+    }, [activeTabIndex]);
 
     return (
         <Tabs
@@ -88,6 +94,7 @@ export const EditorTabs = ({
                                         <ReqInput
                                             label={field.label}
                                             type="text"
+                                            subtitle={field.subtitle}
                                             placeholder={field.label}
                                             value={sectionData?.data[field.fieldPath] ?? ""}
                                             onChange={(e) =>
@@ -132,6 +139,7 @@ export const EditorTabs = ({
                                             <ReqInput
                                                 label={field.label}
                                                 type="text"
+                                                subtitle={field.subtitle}
                                                 placeholder={field.label}
                                                 // value={sectionData?.data[field.fieldPathVid ?? ""]}
                                                 onChange={(e) =>
@@ -159,6 +167,7 @@ export const EditorTabs = ({
                                                 <ReqInput
                                                     key={idx}
                                                     label={groupField.label}
+                                                    subtitle={field.subtitle}
                                                     type="text"
                                                     placeholder={groupField.label}
                                                     value={sectionData?.data[groupField.fieldPath] ?? ""}

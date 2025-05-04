@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 import {
     PFNavbar,
     PFAboutSection,
@@ -9,8 +9,8 @@ import {
     // PFServicesSection,
     PFContactSection,
 } from "./sections";
-import { PageLoader } from "@/components/editor-components/pageLoader";
-import { AnimatePresence, motion as m } from "motion/react";
+// import { PageLoader } from "@/components/editor-components/pageLoader";
+// import { AnimatePresence, motion as m } from "motion/react";
 import { SectionBlock } from "@/schemas/templates.schema";
 
 type Props = {
@@ -20,14 +20,14 @@ type Props = {
 };
 
 export const ProfessionalPortfolio = ({ data }: Props) => {
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-        return () => clearTimeout(timeout);
-    }, []);
+    // useEffect(() => {
+    //     const timeout = setTimeout(() => {
+    //         setLoading(false);
+    //     }, 1000);
+    //     return () => clearTimeout(timeout);
+    // }, []);
 
     const renderSection = (section: SectionBlock, index: number) => {
         switch (section.type) {
@@ -54,32 +54,32 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
 
     return (
         <>
-            <AnimatePresence mode="wait">
-                {loading && (
-                    <m.div
-                        key="loader"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{
-                            duration: 0.5,
-                        }}
-                        className="fixed inset-0 flex items-center justify-center bg-white"
-                    >
-                        <PageLoader />
-                    </m.div>
-                )}
-            </AnimatePresence>
+            {/* <AnimatePresence mode="wait"> */}
+            {/*     {loading && ( */}
+            {/*         <m.div */}
+            {/*             key="loader" */}
+            {/*             initial={{ opacity: 0 }} */}
+            {/*             animate={{ opacity: 1 }} */}
+            {/*             exit={{ opacity: 0 }} */}
+            {/*             transition={{ */}
+            {/*                 duration: 0.5, */}
+            {/*             }} */}
+            {/*             className="fixed inset-0 flex items-center justify-center bg-white" */}
+            {/*         > */}
+            {/*             <PageLoader /> */}
+            {/*         </m.div> */}
+            {/*     )} */}
+            {/* </AnimatePresence> */}
 
-            {!loading && (
-                <div className="space-y-20 bg-template-primary">
-                    {data.sections.map((section, index) => (
-                        <div key={index} className="relative template-font">
-                            {renderSection(section, index)}
-                        </div>
-                    ))}
-                </div>
-            )}
+            {/* {!loading && ( */}
+            <div className="space-y-20 bg-template-primary">
+                {data.sections.map((section, index) => (
+                    <div key={index} className="relative template-font">
+                        {renderSection(section, index)}
+                    </div>
+                ))}
+            </div>
+            {/* )} */}
         </>
     );
 };

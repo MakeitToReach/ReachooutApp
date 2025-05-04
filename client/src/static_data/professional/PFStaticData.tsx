@@ -29,9 +29,9 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             type: "hero",
             data: {
                 title: "Hi, I'm Omkar B",
-                professions: ["Full Stack Developer", "UI/UX Designer"],
+                professions: ["Web Developer", "UI/UX Designer", "CRM Consultant"],
                 btnText: "Visit My Website",
-                btnLink: "https://reachoout.com",
+                btnLink: "#",
                 heroImgUrl:
                     "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
             },
@@ -46,10 +46,10 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                 description:
                     "I’m a passionate developer with a strong focus on building intuitive, scalable web applications. With experience in both frontend and backend technologies, I love bringing ideas to life through clean design and efficient code.",
                 stats: [
-                    { title: "Projects", value: "15+" },
-                    { title: "Clients", value: "7+" },
-                    { title: "Years of Experience", value: "3" },
-                    { title: "Awards", value: "2" },
+                    { title: "Projects", value: 15 },
+                    { title: "Clients", value: 7 },
+                    { title: "Years of Experience", value: 3 },
+                    { title: "Awards", value: 2 },
                 ],
             },
             isFixed: false,

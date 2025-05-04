@@ -54,12 +54,12 @@ export const ProjectEditorField = ({
                             project={project}
                             projectIdx={index}
                         >
-                            <Button>
+                            <Button variant={'ghost'}>
                                 <LucideEdit />
                             </Button>
                         </EditProjectPopup>
-                        <Button onClick={() => handleRemove(index)} variant={"destructive"}>
-                            <LucideTrash />
+                        <Button onClick={() => handleRemove(index)} variant={"ghost"}>
+                            <LucideTrash className="text-destructive" />
                         </Button>
                     </div>
                 </div>

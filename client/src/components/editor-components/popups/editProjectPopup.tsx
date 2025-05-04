@@ -45,7 +45,7 @@ export const EditProjectPopup = ({
     return (
         <Dialog open={open} onOpenChange={setOpen} modal={false}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 z-[100]">
+            <DialogContent className="space-y-4 z-[100] font-Poppins">
                 <DialogHeader>
                     <DialogTitle>
                         Edit Project {projectIdx !== undefined && `#${projectIdx + 1}`}

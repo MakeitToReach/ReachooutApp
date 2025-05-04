@@ -98,7 +98,7 @@ export const ReorderSectionsPopup = ({
     return (
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="z-[100]">
+            <DialogContent className="z-[100] font-Poppins">
                 <DialogHeader>
                     <DialogTitle>Reorder Sections</DialogTitle>
                     <DialogDescription>

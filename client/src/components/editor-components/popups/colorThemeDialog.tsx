@@ -20,6 +20,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { toast } from "sonner";
+import { FONT_REGISTRY } from "@/lib/fontRegistry";
 
 type ThemePickerDialogProps = {
     children: React.ReactNode;
@@ -72,14 +74,15 @@ export function ThemePickerDialog({
 
     const handleApply = () => {
         onThemeChange(theme);
+        toast.success("Theme applied successfully!");
     };
 
-    const fontOptions = [
-        { label: "Inter", value: "'Inter', sans-serif" },
-        { label: "Roboto", value: "'Roboto', sans-serif" },
-        { label: "Poppins", value: "'Poppins', sans-serif" },
-        { label: "Lato", value: "'Lato', sans-serif" },
-    ];
+    // const fontOptions = [
+    //     { label: "Inter", value: "'Inter', sans-serif" },
+    //     { label: "Roboto", value: "'Roboto', sans-serif" },
+    //     { label: "Poppins", value: "'Poppins', sans-serif" },
+    //     { label: "Lato", value: "'Lato', sans-serif" },
+    // ];
 
     return (
         <Dialog>
@@ -99,7 +102,7 @@ export function ThemePickerDialog({
                             <SelectValue placeholder="Select a font" />
                         </SelectTrigger>
                         <SelectContent className="z-[150]">
-                            {fontOptions.map((font) => (
+                            {FONT_REGISTRY.map((font) => (
                                 <SelectItem
                                     key={font.value}
                                     value={font.value}

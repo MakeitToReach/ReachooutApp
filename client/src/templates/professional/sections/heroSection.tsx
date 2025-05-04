@@ -42,7 +42,7 @@ export const PFHeroSection = ({
     };
 
     return (
-        <section className="max-w-6xl mx-auto">
+        <section className="max-w-6xl mx-auto" id="hero">
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">
                 <div className="space-y-4">
                     <div>
