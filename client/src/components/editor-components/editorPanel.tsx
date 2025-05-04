@@ -61,7 +61,7 @@ export const EditorPanel = ({
     return (
         <div
             className={cn(
-                "flex flex-col gap-4 p-4 md:px-10 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full",
+                "flex flex-col gap-4 p-4 md:px-10 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full font-Poppins",
             )}
         >
             <div className="w-full flex justify-between items-center border-border border rounded-md p-2 shadow-xs shadow-gray-300 transition-all">

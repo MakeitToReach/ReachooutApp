@@ -5,6 +5,7 @@ export const DEV_STATIC_DATA: GenericTemplateSchema = {
     name: "dev",
     thumbnailUrl: "/Dev_template.png",
     theme: {
+        "--template-font": "'Poppins', sans-serif",
         "--template-primary": "#fffffc",
         "--template-secondary": "#1e3a8a",
         "--template-accent-primary": "#d6eef8",

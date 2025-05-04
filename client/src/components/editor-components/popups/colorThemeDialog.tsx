@@ -13,6 +13,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { ThemeObject } from "@/schemas/templates.schema";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
 type ThemePickerDialogProps = {
     children: React.ReactNode;
@@ -20,7 +27,6 @@ type ThemePickerDialogProps = {
     onThemeChange: (newTheme: ThemeObject) => void;
 };
 
-// Define a config array to drive the UI
 const themeFields: {
     label: string;
     backgroundKey?: keyof ThemeObject;
@@ -68,13 +74,44 @@ export function ThemePickerDialog({
         onThemeChange(theme);
     };
 
+    const fontOptions = [
+        { label: "Inter", value: "'Inter', sans-serif" },
+        { label: "Roboto", value: "'Roboto', sans-serif" },
+        { label: "Poppins", value: "'Poppins', sans-serif" },
+        { label: "Lato", value: "'Lato', sans-serif" },
+    ];
+
     return (
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="z-[100]">
+            <DialogContent className="z-[100] font-Poppins">
                 <DialogHeader>
-                    <DialogTitle>Customize Theme Colors</DialogTitle>
+                    <DialogTitle>Customize Theme Colors and Font</DialogTitle>
                 </DialogHeader>
+
+                <div className="py-2">
+                    <Label className="block mb-1">Font</Label>
+                    <Select
+                        value={theme["--template-font"]}
+                        onValueChange={(value) => handleChange("--template-font", value)}
+                    >
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select a font" />
+                        </SelectTrigger>
+                        <SelectContent className="z-[150]">
+                            {fontOptions.map((font) => (
+                                <SelectItem
+                                    key={font.value}
+                                    value={font.value}
+                                    style={{ fontFamily: font.value }}
+                                    className="md:text-lg"
+                                >
+                                    {font.label}
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                </div>
 
                 <div className="grid gap-2 py-4">
                     {/* Column Headings */}
