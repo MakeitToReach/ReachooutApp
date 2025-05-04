@@ -87,6 +87,7 @@ export const EditorTabs = ({
                                                     )
                                                 }
                                             />
+                                            <p className="text-xs text-gray-700">{field.subtitle}</p>
                                         </div>
                                     )}
 

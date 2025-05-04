@@ -12,3 +12,22 @@ export function formatCompactNumber(number: number, locale: string = "en") {
         maximumFractionDigits: 1,
     }).format(number);
 }
+
+export function getTrimmedTextWithToggle(
+  text: string,
+  maxLength: number = 100
+): {
+  isLong: boolean;
+  shortText: string;
+  fullText: string;
+} {
+  const trimmed = text.trim();
+  const isLong = trimmed.length > maxLength;
+  const shortText = isLong ? trimmed.slice(0, maxLength) + "..." : trimmed;
+
+  return {
+    isLong,
+    shortText,
+    fullText: trimmed,
+  };
+}

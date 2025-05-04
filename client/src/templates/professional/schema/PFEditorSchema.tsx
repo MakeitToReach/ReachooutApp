@@ -54,6 +54,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Description",
             type: "textarea",
             fieldPath: "description",
+            subtitle:"Max 300 characters, over 300 will be truncated to a popup",
         },
         {
             label: "Stats",
