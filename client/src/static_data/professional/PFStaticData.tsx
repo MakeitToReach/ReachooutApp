@@ -22,7 +22,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
         {
             type: "navbar",
             data: {
-                textLogo: "Omkar B",
+                textLogo: "Omkar",
             },
             isFixed: false,
             isEditable: true,

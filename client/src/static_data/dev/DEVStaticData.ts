@@ -5,23 +5,23 @@ export const DEV_STATIC_DATA: GenericTemplateSchema = {
     name: "dev",
     thumbnailUrl: "/Dev_template.png",
     theme: {
-        "--template-font": "'Poppins', sans-serif",
-        "--template-primary": "#fffffc",
-        "--template-secondary": "#1e3a8a",
-        "--template-accent-primary": "#d6eef8",
-        "--template-accent-secondary": "#fbe8d3",
-        "--template-btn": "#111111",
-        "--template-text-primary": "#111111",
-        "--template-text-secondary": "#fffffc",
-        "--template-text-accent-primary": "#4ade80",
-        "--template-text-accent-secondary": "#fbe8d3",
-        "--template-text-btn": "#fffffc",
+        "--template-font": "'Montserrat', sans-serif",
+        "--template-primary": "#0f172a", // dark navy
+        "--template-secondary": "#1e293b", // slate
+        "--template-accent-primary": "#3b82f6", // blue-500
+        "--template-accent-secondary": "#60a5fa", // blue-400
+        "--template-btn": "#2563eb", // blue-600
+        "--template-text-primary": "#f8fafc", // light text
+        "--template-text-secondary": "#cbd5e1", // gray-300
+        "--template-text-accent-primary": "#93c5fd", // blue-300
+        "--template-text-accent-secondary": "#bae6fd", // blue-200
+        "--template-text-btn": "#ffffff", // button text
     },
     sections: [
         {
             type: "hero",
             data: {
-                title: "Hi, Im Omkar",
+                title: "Hi, I'm Omkar — Full Stack Developer & UI Enthusiast",
             },
             isFixed: false,
             isEditable: true,
@@ -32,27 +32,31 @@ export const DEV_STATIC_DATA: GenericTemplateSchema = {
                 projects: [
                     {
                         title: "GearUp",
-                        desc: "An ecommerce platform selling gaming peripherals",
-                        tech: "React, ExpressJS, MongoDB, NodeJS, GSAP, Redux",
-                        projectImg: "https://placehold.co/400",
+                        desc: "A modern e-commerce platform for gaming enthusiasts offering curated gear, seamless checkout, and real-time inventory.",
+                        tech: "Next.js, Express, MongoDB, TailwindCSS, Redux, Stripe API",
+                        projectImg:
+                            "https://placehold.co/400x250/0f172a/ffffff?text=GearUp",
                     },
                     {
                         title: "DevDiary",
-                        desc: "An aesthetic text-only blog posting platform",
-                        tech: "React, ExpressJS, MongoDB, NodeJS, GSAP, Redux",
-                        projectImg: "https://placehold.co/400",
+                        desc: "A minimalist blogging platform for developers to share thoughts and tutorials with built-in markdown and code highlighting.",
+                        tech: "React, Node.js, MongoDB, Prisma, Markdown, TailwindCSS",
+                        projectImg:
+                            "https://placehold.co/400x250/1e293b/ffffff?text=DevDiary",
                     },
                     {
                         title: "DocxGen",
-                        desc: "An AI powered API documentation writer for GitHub repos",
-                        tech: "NextJS, Go, TailwindCSS, Google Gemini",
-                        projectImg: "https://placehold.co/400",
+                        desc: "AI-powered GitHub integration that scans codebases and auto-generates clean, structured documentation with search support.",
+                        tech: "Next.js, Golang, TailwindCSS, OpenAI API, GitHub OAuth",
+                        projectImg:
+                            "https://placehold.co/400x250/111827/ffffff?text=DocxGen",
                     },
                     {
                         title: "Projectalyze",
-                        desc: "An AI powered project analysis tool",
-                        tech: "NextJS, Go, TailwindCSS, Google Gemini",
-                        projectImg: "https://placehold.co/400",
+                        desc: "A smart dashboard that analyzes GitHub projects to track issues, contributor activity, and roadmap health using AI.",
+                        tech: "Next.js, Go, TypeScript, TailwindCSS, GPT API",
+                        projectImg:
+                            "https://placehold.co/400x250/0f172a/ffffff?text=Projectalyze",
                     },
                 ],
             },
