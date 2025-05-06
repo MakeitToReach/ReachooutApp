@@ -105,3 +105,96 @@ const MyTemplate = () => (
 When you click or edit a field in the `EditorPanel`, the `LivePreview` will **auto-scroll smoothly** to that section.
 
 Would you like help adding animations or highlighting the target section briefly too? That can enhance visibility.
+
+
+
+Great! Let's add a **loader** to your `UserPreview` component that displays while:
+
+1. The template data is being fetched
+2. Fonts/styles are loading (if needed)
+
+---
+
+### ✅ Step-by-Step Loader Integration
+
+#### 1. **Create a Loader Component**
+
+Here's a simple, reusable loader:
+
+```tsx
+// components/Loader.tsx
+const Loader = () => (
+  <div className="w-full h-screen flex items-center justify-center bg-black text-white">
+    <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500"></div>
+  </div>
+);
+
+export default Loader;
+```
+
+You can style it however you want or replace it with a skeleton, spinner, shimmer, etc.
+
+---
+
+#### 2. **Use it in `UserPreview.tsx`**
+
+Update your component to use the loader while data is loading:
+
+```tsx
+"use client";
+
+import { getUserTemplateData } from "@/api/user-template";
+import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
+import { GenericTemplateSchema } from "@/schemas/templates.schema";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import Loader from "@/components/Loader"; // adjust import path as needed
+
+const UserPreview = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [data, setData] = useState<GenericTemplateSchema | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const templateKey = searchParams.get("template") as keyof typeof TEMPLATE_REGISTRY;
+  const template = TEMPLATE_REGISTRY[templateKey];
+
+  useEffect(() => {
+    if (!template) return;
+
+    const fetchData = async () => {
+      try {
+        const fetchedData = await getUserTemplateData(templateKey);
+        if (!fetchedData) return router.push(`/`);
+        setData(fetchedData.userTemplateData);
+      } catch (err) {
+        console.error("Failed to load template data:", err);
+        router.push(`/`);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [templateKey]);
+
+  if (!template) return <p>Template not found</p>;
+  if (isLoading || !data) return <Loader />;
+
+  return (
+    <div style={data.theme as React.CSSProperties} className="theme-wrapper">
+      <template.component data={data} />
+    </div>
+  );
+};
+
+export default UserPreview;
+```
+
+---
+
+### ✅ Optional: Add Transition for Loader Exit
+
+If you want a smooth transition from loader to content, we can wrap the return with `AnimatePresence` and `motion` later.
+
+Would you like a fancier loader (skeletons, logo spinner, etc.) or keep it minimal?

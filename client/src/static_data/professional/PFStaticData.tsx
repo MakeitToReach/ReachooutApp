@@ -139,7 +139,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                     twitter: "https://twitter.com/omkarb_dev",
                 },
             },
-            isFixed: false,
+            isFixed: true,
             isEditable: true,
         },
         {
@@ -148,7 +148,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                 copyright:
                     "© 2025 Omkar B. All rights reserved. | Designed & Built by Omkar B",
             },
-            isFixed: false,
+            isFixed: true,
             isEditable: true,
         },
     ],
