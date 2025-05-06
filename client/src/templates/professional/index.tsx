@@ -10,7 +10,7 @@ import {
     PFContactSection,
 } from "./sections";
 // import { PageLoader } from "@/components/editor-components/pageLoader";
-// import { AnimatePresence, motion as m } from "motion/react";
+import { motion as m } from "motion/react";
 import { SectionBlock } from "@/schemas/templates.schema";
 
 type Props = {
@@ -72,13 +72,19 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             {/* </AnimatePresence> */}
 
             {/* {!loading && ( */}
-            <div className="space-y-20 bg-template-primary">
+            <m.div
+                initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
+                animate={{ opacity: 1 , filter: "blur(0px)", y: 0}}
+                transition={{
+                    duration: 0.8,
+                }}
+                className="space-y-20 bg-template-primary">
                 {data.sections.map((section, index) => (
                     <div key={index} className="relative template-font">
                         {renderSection(section, index)}
                     </div>
                 ))}
-            </div>
+            </m.div>
             {/* )} */}
         </>
     );
