@@ -38,11 +38,14 @@ const UserPreview = () => {
         fetchData();
     }, [templateKey]);
 
+    if (isLoading || !data || !data.theme) return <PageLoader />;
     if (!template) return <p>Template not found</p>;
-    if (isLoading || !data) return <PageLoader />;
 
     return (
-        <div style={data.theme as React.CSSProperties} className="theme-wrapper">
+        <div
+            className="theme-wrapper"
+            style={(data.theme as Record<string, string>) || {}}
+        >
             <template.component data={data} />
         </div>
     );
