@@ -64,7 +64,7 @@ const EditorPage = () => {
 
             {!editorOpen && (
                 <Button
-                    variant="default"
+                    variant="outline"
                     className="fixed md:top-4 md:left-4 bottom-4 left-4 z-[100]"
                     onClick={toggleEditor}
                 >
@@ -85,7 +85,6 @@ const EditorPage = () => {
             {/* </div> */}
             <motion.div
                 layout
-                // transition={{ ease: "spring", duration: 0.5 }}
                 transition={{ type: "spring", duration: 0.5 }}
                 className="md:block flex-grow"
                 style={{ width: editorOpen ? "70%" : "100%" }}
