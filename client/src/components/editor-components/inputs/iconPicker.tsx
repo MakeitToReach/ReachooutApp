@@ -26,7 +26,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({ value, onChange }) => {
                     <ChevronDown className="w-4 h-4 ml-2 opacity-50" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-64 p-2">
+            <PopoverContent className="w-64 p-2 z-[120]">
                 <ScrollArea className="h-48">
                     <div className="grid grid-cols-4 gap-2">
                         {ICONS_REGISTRY.map((item, idx) => (
