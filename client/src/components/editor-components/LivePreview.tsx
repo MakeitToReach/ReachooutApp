@@ -1,4 +1,5 @@
 "use client";
+import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { useEffect } from "react";
 
@@ -6,8 +7,7 @@ export const LivePreview = ({
     templateComponent: TemplateComponent,
     theme,
 }: {
-    //eslint-disable-next-line
-    templateComponent: React.FC<{ data: any }>;
+    templateComponent: React.FC<{ data: GenericTemplateSchema }>;
     theme?: Record<string, string>;
 }) => {
     const { data, currentEditingSection } = usePortfolioStore();
