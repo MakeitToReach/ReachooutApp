@@ -1,8 +1,19 @@
 import { ProjectEditorField } from "@/components/editor-components/inputs/projectEditorField";
+import { ServicesEditorField } from "@/components/editor-components/inputs/servicesEditorField";
 import { StatsField } from "@/components/editor-components/inputs/statField";
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
 
 export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
+    navbar: [
+        {
+            label: "Text Logo",
+            type: "image-video",
+            fieldPath: "img&vid",
+            fieldPathVid: "textLogo",
+            fieldPathImg: "logoUrl",
+            imgSubtitle: "Dimensions 64x64",
+        },
+    ],
     hero: [
         {
             label: "Title",
@@ -32,11 +43,12 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         },
         {
             label: "Video Link",
-            type: "image",
+            type: "image-video",
             fieldPath: "img&vid",
             fieldPathImg: "heroImgUrl",
             fieldPathVid: "heroVidUrl",
-            subtitle:"Only youtube links are allowed"
+            subtitle: "Only youtube links are allowed",
+            imgSubtitle: "Dimensions 500x500",
         },
     ],
     about: [
@@ -54,7 +66,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Description",
             type: "textarea",
             fieldPath: "description",
-            subtitle:"Max 300 characters, over 300 will be truncated to a popup",
+            subtitle: "Max 300 characters, over 300 will be truncated to a popup",
         },
         {
             label: "Stats",
@@ -72,6 +84,22 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "projects",
             component: ({ value, onChange }) => (
                 <ProjectEditorField value={value || []} onChange={onChange} />
+            ),
+        },
+    ],
+    services: [
+        {
+            label: "Subtitle",
+            type: "text",
+            fieldPath: "subtitle",
+            subtitle: "Optional",
+        },
+        {
+            label: "Services",
+            type: "component",
+            fieldPath: "services",
+            component: ({ value, onChange }) => (
+                <ServicesEditorField value={value || []} onChange={onChange} />
             ),
         },
     ],

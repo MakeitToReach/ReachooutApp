@@ -6,7 +6,7 @@ import {
     PFWorkSection,
     PFHeroSection,
     PFFooter,
-    // PFServicesSection,
+    PFServicesSection,
     PFContactSection,
 } from "./sections";
 // import { PageLoader } from "@/components/editor-components/pageLoader";
@@ -32,17 +32,17 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
     const renderSection = (section: SectionBlock, index: number) => {
         switch (section.type) {
             case "navbar":
-                return <PFNavbar key={`navbar-${index}`} />;
+                return <PFNavbar key={`navbar-${index}`} {...section.data} />;
             case "hero":
                 return <PFHeroSection key={`hero-${index}`} {...section.data} />;
             case "about":
                 return <PFAboutSection key={`about-${index}`} {...section.data} />;
             case "projects":
                 return <PFWorkSection key={`work-${index}`} {...section.data} />;
-            // case "services":
-            //     return (
-            //         <PFServicesSection key={`services-${index}`} {...section.data} />
-            //     );
+            case "services":
+                return (
+                    <PFServicesSection key={`services-${index}`} {...section.data} />
+                );
             case "contact":
                 return <PFContactSection key={`contact-${index}`} />;
             case "footer":

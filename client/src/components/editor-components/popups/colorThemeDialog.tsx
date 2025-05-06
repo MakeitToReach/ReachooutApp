@@ -77,13 +77,6 @@ export function ThemePickerDialog({
         toast.success("Theme applied successfully!");
     };
 
-    // const fontOptions = [
-    //     { label: "Inter", value: "'Inter', sans-serif" },
-    //     { label: "Roboto", value: "'Roboto', sans-serif" },
-    //     { label: "Poppins", value: "'Poppins', sans-serif" },
-    //     { label: "Lato", value: "'Lato', sans-serif" },
-    // ];
-
     return (
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>

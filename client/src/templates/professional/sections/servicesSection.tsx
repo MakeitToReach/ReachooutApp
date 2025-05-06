@@ -7,7 +7,10 @@ export const PFServicesSection = ({
     services,
 }: PF_SERVICE_SECTION) => {
     return (
-        <section className="max-w-6xl mx-auto px-4">
+        <section
+            className="max-w-6xl mx-auto px-4 text-template-text-primary"
+            id="services"
+        >
             <h1 className="text-3xl font-semibold md:text-6xl text-center">
                 Services We Offer
             </h1>

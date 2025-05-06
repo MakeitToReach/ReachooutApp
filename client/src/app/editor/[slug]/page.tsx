@@ -22,8 +22,6 @@ const EditorPage = () => {
   const template = TEMPLATE_REGISTRY[templateKey];
 
   useEffect(() => {
-    // const data = usePortfolioStore.getState().data;
-    // console.log("current data in store for editing:", data);
     if (template && isNew) {
       resetData(template.data); // Load default content
     }

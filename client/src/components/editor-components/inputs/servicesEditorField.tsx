@@ -1,20 +1,19 @@
 import React from "react";
-import { EditProjectPopup } from "../popups/editProjectPopup";
-import { AddProjectPopup } from "../popups/addProjectPopup";
+import { PF_SERVICES } from "@/templates/professional/types/services";
+import { AddServicesPopup, EditServicePopup } from "../popups/servicesPopup";
 import { Button } from "@/components/ui/button";
-import { PF_PROJECT } from "@/templates/professional/types/project";
 import { LucideEdit, LucidePlus, LucideTrash } from "lucide-react";
 
-interface ProjectEditorFieldProps {
-    value: PF_PROJECT[];
-    onChange: (val: PF_PROJECT[]) => void;
+interface ServiceEditorFieldProps {
+    value: PF_SERVICES[];
+    onChange: (val: PF_SERVICES[]) => void;
 }
-export const ProjectEditorField = ({
+export const ServicesEditorField = ({
     value,
     onChange,
-}: ProjectEditorFieldProps) => {
-    const handleAdd = (newProject: PF_PROJECT) => {
-        onChange([...value, newProject]);
+}: ServiceEditorFieldProps) => {
+    const handleAdd = (newService: PF_SERVICES) => {
+        onChange([...value, newService]);
     };
 
     const handleRemove = (index: number) => {
@@ -23,41 +22,41 @@ export const ProjectEditorField = ({
         onChange(updated);
     };
 
-    const handleEdit = (index: number, newProject: PF_PROJECT) => {
+    const handleEdit = (index: number, newService: PF_SERVICES) => {
         const updated = [...value];
-        updated[index] = newProject;
+        updated[index] = newService;
         onChange(updated);
     };
 
     return (
         <div className="space-y-3">
             <div className="flex justify-between mb-4">
-                <h1 className="font-semibold">Carousel</h1>
-                <AddProjectPopup onAdd={handleAdd}>
+                <h1 className="font-semibold">Your Services</h1>
+                <AddServicesPopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
-                        Add Project{" "}
+                        Add Service{" "}
                         <span>
                             <LucidePlus />
                         </span>
                     </Button>
-                </AddProjectPopup>
+                </AddServicesPopup>
             </div>
-            {value.map((project, index) => (
+            {value.map((service, index) => (
                 <div
                     key={index}
                     className="space-y-4 flex justify-between items-center"
                 >
-                    <h3>Project {index + 1}</h3>
+                    <h3>Service {index + 1}</h3>
                     <div className="flex items-center gap-2">
-                        <EditProjectPopup
-                            onSave={(newProject) => handleEdit(index, newProject)}
-                            project={project}
-                            projectIdx={index}
+                        <EditServicePopup
+                            onSave={(newService) => handleEdit(index, newService)}
+                            service={service}
+                            serviceIdx={index}
                         >
-                            <Button variant={'ghost'}>
+                            <Button variant={"ghost"}>
                                 <LucideEdit />
                             </Button>
-                        </EditProjectPopup>
+                        </EditServicePopup>
                         <Button onClick={() => handleRemove(index)} variant={"ghost"}>
                             <LucideTrash className="text-destructive" />
                         </Button>

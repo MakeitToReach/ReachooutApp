@@ -6,6 +6,7 @@ import { PF_HERO_SECTION } from "../types/heroSection";
 import { PF_SERVICE_SECTION } from "../types/serviceSection";
 import { PF_SOCIAL_SECTION } from "../types/socialSection";
 import { PF_WORK_SECTION } from "../types/workSection";
+import { PF_NAVBAR_SECTION } from "../types/navbarSection";
 
 export type PF_SECTION_BLOCK =
   | { type: "hero"; data: PF_HERO_SECTION; isFixed: true, isEditable: true }
@@ -15,7 +16,7 @@ export type PF_SECTION_BLOCK =
   | { type: "social"; data: PF_SOCIAL_SECTION; isFixed: false, isEditable: true }
   | { type: "gallery"; data: PF_GALLERY_SECTION; isFixed: false, isEditable: true }
   | { type: "services"; data: PF_SERVICE_SECTION; isFixed: false, isEditable: true }
-  | { type: "navbar"; data: null; isFixed: true, isEditable: false }
+  | { type: "navbar"; data: PF_NAVBAR_SECTION; isFixed: true, isEditable: false }
   | { type: "contact"; data: null; isFixed: true, isEditable: false }
   | { type: "footer"; data: null; isFixed: true , isEditable: false};
 

@@ -108,7 +108,7 @@ export const EditorTabs = ({
                                         />
                                     )}
 
-                                    {field.type === "image" && (
+                                    {field.type === "image-video" && (
                                         <div className="flex items-center md:gap-10 gap-6 w-full">
                                             <CldUploadButton
                                                 uploadPreset="you-view"
@@ -132,7 +132,7 @@ export const EditorTabs = ({
                                                         ]
                                                     }
                                                 />
-                                                <span className="capitalize">dimensions 500x500</span>
+                                                <span className="capitalize">{field.imgSubtitle}</span>
                                             </CldUploadButton>
 
                                             <h1 className="text-xs md:text-lg">OR</h1>
@@ -142,7 +142,7 @@ export const EditorTabs = ({
                                                 type="text"
                                                 subtitle={field.subtitle}
                                                 placeholder={field.label}
-                                                // value={sectionData?.data[field.fieldPathVid ?? ""]}
+                                                value={sectionData?.data[field.fieldPathVid ?? ""]}
                                                 onChange={(e) =>
                                                     setSectionField(
                                                         section,
@@ -151,6 +151,34 @@ export const EditorTabs = ({
                                                     )
                                                 }
                                             />
+                                        </div>
+                                    )}
+
+                                    {field.type === "image" && (
+                                        <div className="flex items-center md:gap-10 gap-6 w-full">
+                                            <CldUploadButton
+                                                uploadPreset="you-view"
+                                                options={{ sources: ["local", "url", "unsplash"] }}
+                                                className="cursor-pointer p-2 rounded-lg w-fit"
+                                                //eslint-disable-next-line
+                                                onSuccess={(result: any) => {
+                                                    setSectionField(
+                                                        section,
+                                                        field.fieldPathImg ?? "",
+                                                        result.info.secure_url,
+                                                    );
+                                                }}
+                                            >
+                                                <ImageSelectButton
+                                                    selectedImgUrl={
+                                                        sectionData?.data[
+                                                        field.fieldPathImg ??
+                                                        "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg"
+                                                        ]
+                                                    }
+                                                />
+                                                <span className="capitalize">{field.imgSubtitle}</span>
+                                            </CldUploadButton>
                                         </div>
                                     )}
 

@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { ICONS_REGISTRY } from "./iconsRegistry";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -30,4 +31,8 @@ export function getTrimmedTextWithToggle(
     shortText,
     fullText: trimmed,
   };
+}
+
+export function getIconFromRegistry(icon: string) {
+  return ICONS_REGISTRY.find((item) => item.label === icon)?.icon;
 }

@@ -84,7 +84,7 @@ export const EditorPanel = ({
                         initialTheme={data?.theme}
                         onThemeChange={(newTheme) => setThemeObject(newTheme)}
                     >
-                        <LucidePalette className="size-6 cursor-pointer" />
+                        <LucidePalette className="size-6 cursor-pointer" role="button" />
                     </ThemePickerDialog>
                     {isEditing ? (
                         <Button
@@ -115,7 +115,7 @@ export const EditorPanel = ({
                         </>
                     )}
                     <SettingsDropdown>
-                        <LucideSettings className="size-6" />
+                        <LucideSettings className="size-6" role="button" />
                     </SettingsDropdown>
 
                     <Button

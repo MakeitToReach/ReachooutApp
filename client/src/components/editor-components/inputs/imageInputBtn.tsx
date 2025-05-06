@@ -22,7 +22,7 @@ const ImageSelectButton: React.FC<ImageSelectButtonProps> = ({
           className="object-cover w-full h-full rounded-lg"
         />
       ) : (
-        <span className="text-gray-200 text-sm">Select Image</span>
+        <span className="text-gray-400 text-sm">Select Image</span>
       )}
     </div>
   );

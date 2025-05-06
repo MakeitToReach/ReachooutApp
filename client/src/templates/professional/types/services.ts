@@ -1,5 +1,5 @@
 export type PF_SERVICES = {
-    icon: React.ReactNode;
+    icon: string;
     heading: string;
     description: string;
 };
