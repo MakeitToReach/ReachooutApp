@@ -15,14 +15,16 @@ interface TemplateCardProps {
     editorUrl: string;
     isPublished?: boolean;
     className?: string;
+    onPreviewClick?: () => void; //TODO: remove this later, using temporarily
 }
 export const TemplateCard = ({
     imageUrl = "",
-    previewUrl = "/",
-    editorUrl = "/",
+    previewUrl = "#",
+    editorUrl = "#",
     className,
     isPublished,
     templateName = "",
+    onPreviewClick,
 }: TemplateCardProps) => {
     const router = useRouter();
     const { resetData } = usePortfolioStore();
@@ -41,7 +43,12 @@ export const TemplateCard = ({
             {/* gradient cover */}
             <div className="absolute w-full h-full flex justify-center items-center gap-2 bottom-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent rounded-xl md:opacity-0 opacity-100 hover:opacity-100 transition-all duration-200 z-40 ">
                 <Link href={previewUrl}>
-                    <Button className="md:text-md cursor-pointer">Preview</Button>
+                    <Button
+                        className="md:text-md cursor-pointer"
+                        onClick={onPreviewClick}
+                    >
+                        Preview
+                    </Button>
                 </Link>
                 {isPublished ? (
                     <Button className="md:text-md cursor-pointer" onClick={handleEdit}>

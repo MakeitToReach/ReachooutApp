@@ -1,103 +1,89 @@
+"use client";
+
 import { getUserTemplateData } from "@/api/user-template";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
-import { GetServerSideProps } from "next";
-// import { PageLoader } from "@/components/editor-components/pageLoader";
-// import { toast } from "sonner";
-import Head from "next/head";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { PageLoader } from "@/components/editor-components/pageLoader";
+import { toast } from "sonner";
 
-interface UserPortfolioProps {
-  portfolioData: GenericTemplateSchema | null;
-  templateKey: string | null;
-}
+export const UserPreview = () => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const wrapperRef = useRef<HTMLDivElement>(null);
+    const [templateKey, setTemplateKey] = useState<string | null>(null);
+    const [data, setData] = useState<GenericTemplateSchema | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-const UserPortfolioPage = ({
-  portfolioData,
-  templateKey,
-}: UserPortfolioProps) => {
-  if (!portfolioData) {
-    return <p>Portfolio not found</p>;
-  }
+    // Extract templateKey only on client
+    useEffect(() => {
+        const key = searchParams.get("template");
+        if (key) setTemplateKey(key);
+    }, [searchParams]);
 
-  const template = templateKey
-    ? TEMPLATE_REGISTRY[templateKey as keyof typeof TEMPLATE_REGISTRY]
-    : null;
+    const template = templateKey
+        ? TEMPLATE_REGISTRY[templateKey as keyof typeof TEMPLATE_REGISTRY]
+        : null;
 
-  if (!template) {
-    return <p>Template not found</p>;
-  }
+    // Fetch data
+    useEffect(() => {
+        if (!templateKey || !template) return;
 
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
+        const fetchData = async () => {
+            try {
+                const fetchedData = await getUserTemplateData(templateKey);
+                if (!fetchedData) {
+                    toast.error("Something went wrong");
+                    router.push(`/`);
+                    return;
+                }
+                setData(fetchedData.userTemplateData);
+            } catch (err) {
+                console.error("Failed to load template data:", err);
+                toast.error("Failed to load data");
+                router.push(`/`);
+            } finally {
+                setIsLoading(false);
+            }
+        };
 
-  // Apply the theme styles
-  React.useEffect(() => {
-    if (!portfolioData?.theme || !wrapperRef.current) return;
+        fetchData();
+    }, [templateKey, template, router]);
 
-    const wrapper = wrapperRef.current;
-    const toCSSVars = (theme: Record<string, string>) =>
-      Object.entries(theme).reduce(
-        (acc, [key, value]) => {
-          const cssKey = key.startsWith("--")
-            ? key
-            : `--${key.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}`;
-          acc[cssKey] = value;
-          return acc;
-        },
-        {} as Record<string, string>,
-      );
+    // Apply theme styles
+    useEffect(() => {
+        if (!data?.theme || !wrapperRef.current) return;
 
-    const cssVars = toCSSVars(portfolioData.theme);
+        const wrapper = wrapperRef.current;
 
-    Object.entries(cssVars).forEach(([key, value]) => {
-      wrapper.style.setProperty(key, value);
-    });
-  }, [portfolioData?.theme]);
+        const toCSSVars = (theme: Record<string, string>) =>
+            Object.entries(theme).reduce(
+                (acc, [key, value]) => {
+                    const cssKey = key.startsWith("--")
+                        ? key
+                        : `--${key.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}`;
+                    acc[cssKey] = value;
+                    return acc;
+                },
+                {} as Record<string, string>,
+            );
 
-  return (
-    <>
-      <Head>
-        <title>{portfolioData.name}'s Portfolio</title>
-        <meta
-          name="description"
-          content={`Visit ${portfolioData.name}'s portfolio to see their work and projects.`}
-        />
-        {/* Add other meta tags, OpenGraph tags, etc. */}
-      </Head>
+        const cssVars = toCSSVars(data.theme);
 
-      <div ref={wrapperRef} className="theme-wrapper w-full">
-        <template.component data={portfolioData} />
-      </div>
-    </>
-  );
+        Object.entries(cssVars).forEach(([key, value]) => {
+            wrapper.style.setProperty(key, value);
+        });
+    }, [data?.theme]);
+
+    if (isLoading || !templateKey || !data || !data.theme) return <PageLoader />;
+    if (!template) return <p>Template not found</p>;
+
+    return (
+        <div ref={wrapperRef} className="theme-wrapper w-full">
+            <template.component data={data} />
+        </div>
+    );
 };
 
-// SSR: Fetch user data on the server side
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { slug } = params; // dynamic slug as username or unique identifier
-
-  try {
-    // Fetch portfolio data by username
-    const portfolioData = await getUserTemplateData(slug as string);
-    if (!portfolioData) {
-      return {
-        notFound: true, // Portfolio not found
-      };
-    }
-
-    const templateKey = portfolioData.userTemplateData?.templateKey || null;
-
-    return {
-      props: {
-        portfolioData: portfolioData.userTemplateData || null,
-        templateKey,
-      },
-    };
-  } catch (err) {
-    console.error("Error fetching user portfolio:", err);
-    return {
-      notFound: true,
-    };
-  }
-};
-
-export default UserPortfolioPage;
+export default UserPreview;

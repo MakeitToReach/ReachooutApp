@@ -16,21 +16,8 @@ export const loginUser = async (name: string, password: string) => {
             { withCredentials: true },
         );
 
-        if (response.status === 200) {
-            toast.success("Logged in successfully");
-
-            if (response.data.token) {
-                setCookie("token", response.data.token);
-            }
-
-            return response.data;
-        } else if (response.status === 401) {
-            toast.error("Invalid email or password");
-        } else {
-            toast.warning("An unexpected error occurred");
-        }
+        return response;
     } catch (error) {
-        toast.error("Something went wrong. Please try again.");
         console.log(error);
     }
 };

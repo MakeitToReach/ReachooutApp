@@ -14,6 +14,7 @@ import { LucideLoader } from "lucide-react";
 import { useUserStore } from "@/store/user.store";
 import { ReqInput } from "../inputs/reqInput";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
     const { setUser } = useUserStore();
@@ -35,21 +36,44 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
         setOpen(false);
         router.push("/explore");
     };
+
+    // const handleLogin = async () => {
+    //     setLoading(true);
+    //     const response = await loginUser(username, password);
+    //     if (response?.data.user) {
+    //         setUser(response.data.user);
+    //     }
+
+    //     if(!response.user) {
+    //         setLoading(false);
+    //         setOpen(false);
+    //         return;
+    //     }
+    //     setLoading(false);
+    //     setOpen(false);
+    //     router.push("/explore");
+    // };
+    //
     const handleLogin = async () => {
         setLoading(true);
-        const response = await loginUser(username, password);
-        if (response.user) {
-            setUser(response.user);
-        }
 
-        if(!response.user) {
+        try {
+            const response = await loginUser(username, password);
+
+            if (response?.status === 200 && response.data?.user) {
+                setUser(response.data.user);
+                router.push("/explore");
+                setOpen(false);
+            } else if (response?.status === 401) {
+                toast.error("Invalid username or password");
+            } else {
+                toast.error("Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+        } finally {
             setLoading(false);
-            setOpen(false);
-            return;
         }
-        setLoading(false);
-        setOpen(false);
-        router.push("/explore");
     };
 
     return (
