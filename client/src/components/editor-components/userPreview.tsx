@@ -1,5 +1,6 @@
 "use client";
 
+export const dynamic = "force-dynamic";
 import { getUserTemplateData } from "@/api/user-template";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
@@ -58,13 +59,16 @@ export const UserPreview = () => {
         const wrapper = wrapperRef.current;
 
         const toCSSVars = (theme: Record<string, string>) =>
-            Object.entries(theme).reduce((acc, [key, value]) => {
-                const cssKey = key.startsWith('--')
-                    ? key
-                    : `--${key.replace(/[A-Z]/g, m => '-' + m.toLowerCase())}`;
-                acc[cssKey] = value;
-                return acc;
-            }, {} as Record<string, string>);
+            Object.entries(theme).reduce(
+                (acc, [key, value]) => {
+                    const cssKey = key.startsWith("--")
+                        ? key
+                        : `--${key.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}`;
+                    acc[cssKey] = value;
+                    return acc;
+                },
+                {} as Record<string, string>,
+            );
 
         const cssVars = toCSSVars(data.theme);
 
