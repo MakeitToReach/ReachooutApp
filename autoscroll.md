@@ -1,200 +1,259 @@
-To implement **auto-scrolling** in the `LivePreview` when a section is being edited in the `EditorPanel`, you'll need to:
+Certainly! Below are two implementations for fetching data and rendering a user portfolio with **Server-Side Rendering (SSR)** and **Static Site Generation (SSG)** using Next.js.
 
-1. **Assign IDs or refs** to each section/component in the preview.
-2. **Communicate** from `EditorPanel` which section is being edited (e.g., using a global state or context).
-3. **Scroll into view** inside `LivePreview` when the section changes.
+### 1. **Server-Side Rendering (SSR)**
 
----
+With SSR, the data is fetched on every request, ensuring that the latest data is always served. This is ideal if the user's portfolio data changes frequently or needs to be up-to-date each time the page is accessed.
 
-### ✅ Step-by-Step Implementation
-
----
-
-### 1. **Modify Global Store (or Context)**
-
-If you're using Zustand in `portfolio.store`, you can add a field for the **currently edited section**.
-
-```ts
-// portfolio.store.ts
-
-interface PortfolioState {
-    data: any;
-    currentEditingSection: string | null;
-    setCurrentEditingSection: (id: string | null) => void;
-    // other state...
-}
-
-export const usePortfolioStore = create<PortfolioState>((set) => ({
-    data: null,
-    currentEditingSection: null,
-    setCurrentEditingSection: (id) => set({ currentEditingSection: id }),
-    // other state...
-}));
-```
-
----
-
-### 2. **Update `EditorPanel` to Set Editing Section**
-
-When a user focuses or clicks on a section in `EditorPanel`, update the state:
+#### `/app/[slug]/page.tsx` (SSR Implementation)
 
 ```tsx
-// EditorPanel.tsx
-import { usePortfolioStore } from "@/store/portfolio.store";
-
-// Inside your component or form input handler
-const handleFocus = (sectionId: string) => {
-    usePortfolioStore.getState().setCurrentEditingSection(sectionId);
-};
-
-// Example
-<input onFocus={() => handleFocus("about-section")} />
-```
-
----
-
-### 3. **Scroll in `LivePreview` When Section Changes**
-
-In the `LivePreview` component:
-
-```tsx
-import { useEffect, useRef } from "react";
-import { usePortfolioStore } from "@/store/portfolio.store";
-
-export const LivePreview = ({ templateComponent: TemplateComponent }) => {
-    const currentEditingSection = usePortfolioStore((state) => state.currentEditingSection);
-
-    useEffect(() => {
-        if (currentEditingSection) {
-            const sectionElement = document.getElementById(currentEditingSection);
-            if (sectionElement) {
-                sectionElement.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
-        }
-    }, [currentEditingSection]);
-
-    return (
-        <div className="preview-container overflow-y-auto h-full">
-            <TemplateComponent />
-        </div>
-    );
-};
-```
-
----
-
-### 4. **Set IDs in Template Sections**
-
-Ensure each section rendered in the template has an ID that matches what `EditorPanel` is sending:
-
-```tsx
-// Inside your template
-const MyTemplate = () => (
-    <div>
-        <section id="hero-section">...</section>
-        <section id="about-section">...</section>
-        <section id="projects-section">...</section>
-    </div>
-);
-```
-
----
-
-### ✅ Result
-
-When you click or edit a field in the `EditorPanel`, the `LivePreview` will **auto-scroll smoothly** to that section.
-
-Would you like help adding animations or highlighting the target section briefly too? That can enhance visibility.
-
-
-
-Great! Let's add a **loader** to your `UserPreview` component that displays while:
-
-1. The template data is being fetched
-2. Fonts/styles are loading (if needed)
-
----
-
-### ✅ Step-by-Step Loader Integration
-
-#### 1. **Create a Loader Component**
-
-Here's a simple, reusable loader:
-
-```tsx
-// components/Loader.tsx
-const Loader = () => (
-  <div className="w-full h-screen flex items-center justify-center bg-black text-white">
-    <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500"></div>
-  </div>
-);
-
-export default Loader;
-```
-
-You can style it however you want or replace it with a skeleton, spinner, shimmer, etc.
-
----
-
-#### 2. **Use it in `UserPreview.tsx`**
-
-Update your component to use the loader while data is loading:
-
-```tsx
-"use client";
-
 import { getUserTemplateData } from "@/api/user-template";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import Loader from "@/components/Loader"; // adjust import path as needed
+import { GetServerSideProps } from "next";
+import { PageLoader } from "@/components/editor-components/pageLoader";
+import { toast } from "sonner";
+import Head from "next/head";
 
-const UserPreview = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [data, setData] = useState<GenericTemplateSchema | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+interface UserPortfolioProps {
+  portfolioData: GenericTemplateSchema | null;
+  templateKey: string | null;
+}
 
-  const templateKey = searchParams.get("template") as keyof typeof TEMPLATE_REGISTRY;
-  const template = TEMPLATE_REGISTRY[templateKey];
+const UserPortfolioPage = ({
+  portfolioData,
+  templateKey,
+}: UserPortfolioProps) => {
+  if (!portfolioData) {
+    return <p>Portfolio not found</p>;
+  }
 
-  useEffect(() => {
-    if (!template) return;
+  const template = templateKey
+    ? TEMPLATE_REGISTRY[templateKey as keyof typeof TEMPLATE_REGISTRY]
+    : null;
 
-    const fetchData = async () => {
-      try {
-        const fetchedData = await getUserTemplateData(templateKey);
-        if (!fetchedData) return router.push(`/`);
-        setData(fetchedData.userTemplateData);
-      } catch (err) {
-        console.error("Failed to load template data:", err);
-        router.push(`/`);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  if (!template) {
+    return <p>Template not found</p>;
+  }
 
-    fetchData();
-  }, [templateKey]);
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
 
-  if (!template) return <p>Template not found</p>;
-  if (isLoading || !data) return <Loader />;
+  // Apply the theme styles
+  React.useEffect(() => {
+    if (!portfolioData?.theme || !wrapperRef.current) return;
+
+    const wrapper = wrapperRef.current;
+    const toCSSVars = (theme: Record<string, string>) =>
+      Object.entries(theme).reduce(
+        (acc, [key, value]) => {
+          const cssKey = key.startsWith("--")
+            ? key
+            : `--${key.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}`;
+          acc[cssKey] = value;
+          return acc;
+        },
+        {} as Record<string, string>,
+      );
+
+    const cssVars = toCSSVars(portfolioData.theme);
+
+    Object.entries(cssVars).forEach(([key, value]) => {
+      wrapper.style.setProperty(key, value);
+    });
+  }, [portfolioData?.theme]);
 
   return (
-    <div style={data.theme as React.CSSProperties} className="theme-wrapper">
-      <template.component data={data} />
-    </div>
+    <>
+      <Head>
+        <title>{portfolioData.name}'s Portfolio</title>
+        <meta
+          name="description"
+          content={`Visit ${portfolioData.name}'s portfolio to see their work and projects.`}
+        />
+        {/* Add other meta tags, OpenGraph tags, etc. */}
+      </Head>
+
+      <div ref={wrapperRef} className="theme-wrapper w-full">
+        <template.component data={portfolioData} />
+      </div>
+    </>
   );
 };
 
-export default UserPreview;
+// SSR: Fetch user data on the server side
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const { slug } = params; // dynamic slug as username or unique identifier
+
+  try {
+    // Fetch portfolio data by username
+    const portfolioData = await getUserTemplateData(slug as string);
+    if (!portfolioData) {
+      return {
+        notFound: true, // Portfolio not found
+      };
+    }
+
+    const templateKey = portfolioData.userTemplateData?.templateKey || null;
+
+    return {
+      props: {
+        portfolioData: portfolioData.userTemplateData || null,
+        templateKey,
+      },
+    };
+  } catch (err) {
+    console.error("Error fetching user portfolio:", err);
+    return {
+      notFound: true,
+    };
+  }
+};
+
+export default UserPortfolioPage;
 ```
+
+### Key Points for SSR:
+
+- The data is fetched **server-side** on each request with `getServerSideProps`.
+- SEO is improved by adding dynamic `<title>` and `<meta>` tags in the `<Head>` component for each user’s portfolio.
+- Since the page is generated on the server with up-to-date data, this implementation works well if the portfolio data changes frequently.
 
 ---
 
-### ✅ Optional: Add Transition for Loader Exit
+### 2. **Static Site Generation (SSG)**
 
-If you want a smooth transition from loader to content, we can wrap the return with `AnimatePresence` and `motion` later.
+With SSG, the page is pre-rendered at build time. This approach is best if the user’s portfolio data doesn’t change often or if it's acceptable to serve cached content.
 
-Would you like a fancier loader (skeletons, logo spinner, etc.) or keep it minimal?
+#### `/app/[slug]/page.tsx` (SSG Implementation)
+
+```tsx
+import { getUserTemplateData } from "@/api/user-template";
+import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
+import { GenericTemplateSchema } from "@/schemas/templates.schema";
+import { GetStaticProps, GetStaticPaths } from "next";
+import { PageLoader } from "@/components/editor-components/pageLoader";
+import { toast } from "sonner";
+import Head from "next/head";
+
+interface UserPortfolioProps {
+  portfolioData: GenericTemplateSchema | null;
+  templateKey: string | null;
+}
+
+const UserPortfolioPage = ({
+  portfolioData,
+  templateKey,
+}: UserPortfolioProps) => {
+  if (!portfolioData) {
+    return <p>Portfolio not found</p>;
+  }
+
+  const template = templateKey
+    ? TEMPLATE_REGISTRY[templateKey as keyof typeof TEMPLATE_REGISTRY]
+    : null;
+
+  if (!template) {
+    return <p>Template not found</p>;
+  }
+
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+
+  // Apply the theme styles
+  React.useEffect(() => {
+    if (!portfolioData?.theme || !wrapperRef.current) return;
+
+    const wrapper = wrapperRef.current;
+    const toCSSVars = (theme: Record<string, string>) =>
+      Object.entries(theme).reduce(
+        (acc, [key, value]) => {
+          const cssKey = key.startsWith("--")
+            ? key
+            : `--${key.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())}`;
+          acc[cssKey] = value;
+          return acc;
+        },
+        {} as Record<string, string>,
+      );
+
+    const cssVars = toCSSVars(portfolioData.theme);
+
+    Object.entries(cssVars).forEach(([key, value]) => {
+      wrapper.style.setProperty(key, value);
+    });
+  }, [portfolioData?.theme]);
+
+  return (
+    <>
+      <Head>
+        <title>{portfolioData.name}'s Portfolio</title>
+        <meta
+          name="description"
+          content={`Visit ${portfolioData.name}'s portfolio to see their work and projects.`}
+        />
+        {/* Add other meta tags, OpenGraph tags, etc. */}
+      </Head>
+
+      <div ref={wrapperRef} className="theme-wrapper w-full">
+        <template.component data={portfolioData} />
+      </div>
+    </>
+  );
+};
+
+// SSG: Fetch user data at build time
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Fetch all usernames/slugs (This could be a list of all usernames in your DB)
+  const slugs = await getAllUsernames(); // Replace with actual logic
+  const paths = slugs.map((slug) => ({ params: { slug } }));
+
+  return {
+    paths,
+    fallback: "blocking", // block rendering until data is ready
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug } = params;
+
+  try {
+    // Fetch portfolio data by username
+    const portfolioData = await getUserTemplateData(slug as string);
+    if (!portfolioData) {
+      return {
+        notFound: true, // Portfolio not found
+      };
+    }
+
+    const templateKey = portfolioData.userTemplateData?.templateKey || null;
+
+    return {
+      props: {
+        portfolioData: portfolioData.userTemplateData || null,
+        templateKey,
+      },
+      revalidate: 60, // Optional: revalidate data after 60 seconds (ISR)
+    };
+  } catch (err) {
+    console.error("Error fetching user portfolio:", err);
+    return {
+      notFound: true,
+    };
+  }
+};
+
+export default UserPortfolioPage;
+```
+
+### Key Points for SSG:
+
+1. **Pre-render pages at build time** using `getStaticProps`. This ensures faster page loads.
+2. **Dynamic slugs**: `getStaticPaths` is used to specify the slugs that need to be pre-rendered (in this case, each user’s portfolio).
+3. **Revalidate**: If you want to periodically regenerate the pages, you can use the `revalidate` option to trigger Incremental Static Regeneration (ISR) after a certain period (e.g., every 60 seconds).
+4. **SEO**: Similar to SSR, you can dynamically update the `<title>` and `<meta>` tags using the `Head` component.
+
+### Summary of Differences:
+
+- **SSR**: Data is fetched on each request, ensuring that the data is always up-to-date. This is ideal for frequently changing content but may introduce some delay in rendering.
+- **SSG**: Pages are pre-rendered at build time, making them very fast to load. This is ideal if the data doesn't change often, but you can use **ISR** to periodically regenerate the pages.
+
+Both methods can help you ensure that your pages are SEO-friendly and can be indexed by search engines.
