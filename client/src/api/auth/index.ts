@@ -19,7 +19,6 @@ export const loginUser = async (name: string, password: string) => {
         if (response.status === 200) {
             toast.success("Logged in successfully");
 
-            // If the token is sent in the response body, store it
             if (response.data.token) {
                 setCookie("token", response.data.token);
             }

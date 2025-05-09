@@ -41,6 +41,12 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
         if (response.user) {
             setUser(response.user);
         }
+
+        if(!response.user) {
+            setLoading(false);
+            setOpen(false);
+            return;
+        }
         setLoading(false);
         setOpen(false);
         router.push("/explore");
