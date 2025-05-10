@@ -9,7 +9,7 @@ import {
     LucideSettings,
     LucideUploadCloud,
 } from "lucide-react";
-import { publishTemplate } from "@/api/publish-template";
+import { publishTemplate, updateTemplateData } from "@/api/publish-template";
 import { EditorTabs } from "./editorTabs";
 import { ReorderSectionsPopup } from "./popups/SectionsPopup";
 import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema";
@@ -35,32 +35,43 @@ export const EditorPanel = ({
 
     if (!data) return <div>No data found</div>;
 
+    //refactors the data.sections to reorderPopup usable format
     const sections = data.sections.map((section) => ({
         id: section.type,
         name: section.type.replace("Section", ""),
         isFixed: section.isFixed,
     }));
 
-    const handleSave = (e: React.FormEvent) => {
-        e.preventDefault();
-        alert("Work in progress");
-        console.log("new data", data);
+    //refactors the data.sections to editorTabs usable format
+    const editorSections = data.sections
+        .filter((section) => section.isEditable)
+        .map((s) => s.type);
+
+    const handleSave = async () => {
+        setLoading(true);
+        try {
+            await updateTemplateData(data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const handlePublish = async (e: React.FormEvent) => {
-        e.preventDefault();
+    const handlePublish = async () => {
         setLoading(true);
-        await publishTemplate(data.name, data);
-        setLoading(false);
+        try {
+            await publishTemplate(data.name, data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleReorder = (newOrder: string[]) => {
         reorderSections(newOrder);
     };
-
-    const editorSections = data.sections
-        .filter((section) => section.isEditable)
-        .map((s) => s.type);
 
     return (
         <div
@@ -92,7 +103,11 @@ export const EditorPanel = ({
                             className="cursor-pointer text-blue-600"
                             variant={"ghost"}
                         >
-                            Save
+                            {loading ? (
+                                <LucideLoaderCircle className="size-6 animate-spin" />
+                            ) : (
+                                <span className="hidden md:block text-lg">Save</span>
+                            )}
                         </Button>
                     ) : (
                         <>

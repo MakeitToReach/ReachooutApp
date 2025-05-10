@@ -1,7 +1,7 @@
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
 
 export const DEV_STATIC_DATA: GenericTemplateSchema = {
-    id: "dev-tmp",
+    id: "cm9jqg57n0000kv04ems9adky",
     name: "dev",
     thumbnailUrl: "/Dev_template.png",
     theme: {

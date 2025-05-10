@@ -2,7 +2,7 @@ import { GenericTemplateSchema } from "@/schemas/templates.schema";
 // import { LucideCode } from "lucide-react";
 
 export const PF_STATIC_DATA: GenericTemplateSchema = {
-    id: "pf-tmp",
+    id: "cm91hhx2l0000js04ktn7xof8",
     name: "professional",
     thumbnailUrl: "/professional_template.png",
     theme: {

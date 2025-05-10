@@ -110,9 +110,9 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-/* .theme-wrapper { */
-/*   font-family: var(--template-font, sans-serif); */
-/* } */
+.theme-wrapper {
+  font-family: var(--template-font, sans-serif);
+}
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);

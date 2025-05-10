@@ -73,16 +73,6 @@ const EditorPage = () => {
             )}
 
             {/* Live Preview */}
-            {/* <div */}
-            {/*     className={cn("md:w-[70%] hidden md:block flex-grow", { */}
-            {/*         "w-full block": !editorOpen, */}
-            {/*     })} */}
-            {/* > */}
-            {/*     <LivePreview */}
-            {/*         templateComponent={template.component} */}
-            {/*         theme={data?.theme} */}
-            {/*     /> */}
-            {/* </div> */}
             <motion.div
                 layout
                 transition={{ type: "spring", duration: 0.5 }}

@@ -77,7 +77,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogTrigger>{children}</DialogTrigger>
                 <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                    <DialogContent className="overflow-hidden">
+                    <DialogContent className="overflow-hidden font-Poppins">
                         <DialogHeader>
                             <m.div layoutId="dialog-title">
                                 <DialogTitle className="text-2xl font-semibold font-Montserrat">
@@ -123,6 +123,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                             >
                                 <ReqInput
                                     isRequired
+                                    required
                                     placeholder="Enter your username"
                                     label="Username"
                                     value={username}
@@ -183,9 +184,9 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                                     {loading ? (
                                         <LucideLoader className="animate-spin" />
                                     ) : type === "Register" ? (
-                                        "Register"
+                                        <span>Register</span>
                                     ) : (
-                                        "Login"
+                                        <span>Login</span>
                                     )}
                                 </Button>
                             </m.div>

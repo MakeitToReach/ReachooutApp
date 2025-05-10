@@ -43,5 +43,29 @@ export const publishTemplate = async (
         toast.error("Failed to publish template");
     }
 
-    return response.data;
+    return response;
+};
+
+export const updateTemplateData = async (data: GenericTemplateSchema) => {
+    const token = getToken();
+    const template_id = data.id;
+    const response = await api.put(
+        `/v1/template/update/user/${template_id}`,
+        { data },
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        },
+    );
+
+    if (response.status === 200 || response.status === 201) {
+        toast.success("Template updated successfully");
+    } else if (response.status === 500) {
+        toast.error("Failed to update template, Server Error");
+    } else {
+        toast.error("Failed to update template");
+    }
+
+    return response;
 };

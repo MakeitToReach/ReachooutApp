@@ -6,6 +6,7 @@ import {
     getUserTemplateData,
     getUserTemplates,
     updateTemplate,
+    updateUserTemplateData,
 } from "../controllers/template.controller";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 
@@ -50,8 +51,12 @@ templateRouter.get(
     },
 );
 
-templateRouter.post("/update/:id", (req: Request, res: Response) => {
-    updateTemplate(req, res);
-});
+templateRouter.put(
+    "/update/user/:template_id",
+    isAuthenticated,
+    (req: Request, res: Response) => {
+        updateUserTemplateData(req, res);
+    },
+);
 
 export default templateRouter;

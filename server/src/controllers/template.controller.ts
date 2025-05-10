@@ -212,20 +212,42 @@ export const getUserTemplates = async (req: Request, res: Response) => {
 };
 
 export const updateUserTemplateData = async (req: Request, res: Response) => {
-    const templateId = req.params.id;
-    const { data } = req.body;
-    const userId = req.user?.userId;
+    try {
+        const templateId = req.params.template_id;
+        const { data } = req.body;
+        const userId = req.user?.userId;
 
-    const updatedUserTemplateData = await prisma.userTemplate.update({
-        where: {
-            user_id_template_id: {
-                user_id: userId,
-                template_id: templateId,
+        if (!userId || !templateId) {
+            return res.status(400).json({ error: "Missing userId or templateId" });
+        }
+
+        const existingRecord = await prisma.userTemplate.findUnique({
+            where: {
+                user_id_template_id: {
+                    user_id: userId,
+                    template_id: templateId,
+                },
             },
-        },
-        data: {
-            data,
-        },
-    });
-    return res.status(200).json({ updatedUserTemplateData });
+        });
+
+        if (!existingRecord) {
+            return res.status(404).json({ error: "UserTemplate entry not found." });
+        }
+
+        const updatedUserTemplateData = await prisma.userTemplate.update({
+            where: {
+                user_id_template_id: {
+                    user_id: userId,
+                    template_id: templateId,
+                },
+            },
+            data: {
+                data,
+            },
+        });
+
+        return res.status(200).json({ updatedUserTemplateData });
+    } catch (error: any) {
+        return res.status(500).json({ error: error.message || "Server error" });
+    }
 };
