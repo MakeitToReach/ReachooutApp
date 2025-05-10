@@ -9,20 +9,16 @@ export const setCookie = (name: string, value: string, days = 1) => {
 };
 
 export const loginUser = async (name: string, password: string) => {
-    try {
-        const response = await api.post(
-            "/v1/auth/login",
-            { name, password },
-            { withCredentials: true },
-        );
+    const response = await api.post(
+        "/v1/auth/login",
+        { name, password },
+        { withCredentials: true },
+    );
 
-        if (response.data.token) {
-            setCookie("token", response.data.token);
-        }
-        return response;
-    } catch (error) {
-        console.log(error);
+    if (response.data.token) {
+        setCookie("token", response.data.token);
     }
+    return response;
 };
 
 export const registerUser = async (

@@ -38,7 +38,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
             }
             //eslint-disable-next-line
         } catch (error: any) {
-            if (error.response?.status === 400) {
+            if (error.status === 400) {
                 toast.error("Username already taken");
             } else {
                 toast.error("Something went wrong. Please try again.");
@@ -61,7 +61,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
             }
             //eslint-disable-next-line
         } catch (error: any) {
-            if (error.response?.status === 401) {
+            if (error.status === 401) {
                 toast.error("Invalid username or password");
             } else {
                 toast.error("Something went wrong. Please try again.");
