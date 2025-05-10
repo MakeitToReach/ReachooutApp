@@ -16,6 +16,9 @@ export const loginUser = async (name: string, password: string) => {
             { withCredentials: true },
         );
 
+        if (response.data.token) {
+            setCookie("token", response.data.token);
+        }
         return response;
     } catch (error) {
         console.log(error);
@@ -27,31 +30,16 @@ export const registerUser = async (
     name: string,
     password: string,
 ) => {
-    try {
-        const response = await api.post("/v1/auth/register", {
-            email,
-            name,
-            password,
-        });
+    const response = await api.post("/v1/auth/register", {
+        email,
+        name,
+        password,
+    });
 
-        if (response.status === 201) {
-            toast.success("Account created successfully");
-
-            // Manually setting the cookie if backend sends token in response
-            if (response.data.token) {
-                setCookie("token", response.data.token);
-            }
-
-            return response.data;
-        } else if (response.status === 400) {
-            toast.error("User already exists");
-        } else {
-            toast.warning("An unexpected error occurred");
-        }
-    } catch (error) {
-        toast.error("Something went wrong. Please try again.");
-        console.error(error);
+    if (response.data.token) {
+        setCookie("token", response.data.token);
     }
+    return response;
 };
 
 export const logoutUser = () => {

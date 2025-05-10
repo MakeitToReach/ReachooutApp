@@ -28,49 +28,45 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
 
     const handleRegister = async () => {
         setLoading(true);
-        const response = await registerUser(email, username, password);
-        if (response.user) {
-            setUser(response.user);
+        try {
+            const response = await registerUser(email, username, password);
+
+            if (response?.status === 201 && response.data?.user) {
+                setUser(response.data.user);
+                setOpen(false);
+                router.push("/explore");
+            }
+            //eslint-disable-next-line
+        } catch (error: any) {
+            if (error.response?.status === 400) {
+                toast.error("Username already taken");
+            } else {
+                toast.error("Something went wrong. Please try again.");
+            }
+            console.error("Login Error", error);
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
-        setOpen(false);
-        router.push("/explore");
     };
 
-    // const handleLogin = async () => {
-    //     setLoading(true);
-    //     const response = await loginUser(username, password);
-    //     if (response?.data.user) {
-    //         setUser(response.data.user);
-    //     }
-
-    //     if(!response.user) {
-    //         setLoading(false);
-    //         setOpen(false);
-    //         return;
-    //     }
-    //     setLoading(false);
-    //     setOpen(false);
-    //     router.push("/explore");
-    // };
-    //
     const handleLogin = async () => {
         setLoading(true);
-
         try {
             const response = await loginUser(username, password);
 
             if (response?.status === 200 && response.data?.user) {
                 setUser(response.data.user);
-                router.push("/explore");
                 setOpen(false);
-            } else if (response?.status === 401) {
+                router.push("/explore");
+            }
+            //eslint-disable-next-line
+        } catch (error: any) {
+            if (error.response?.status === 401) {
                 toast.error("Invalid username or password");
             } else {
                 toast.error("Something went wrong. Please try again.");
             }
-        } catch (error) {
-            console.error("Login error:", error);
+            console.error("Login Error", error);
         } finally {
             setLoading(false);
         }
@@ -132,6 +128,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
                                     type="text"
+                                    className="lowercase"
                                 />
                             </m.div>
 
