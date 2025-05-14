@@ -39,10 +39,12 @@ export const FlipText: React.FC<FlipTextProps> = ({
         enter: {
             y: -70,
             opacity: 0,
+            filter: "blur(10px)",
         },
         visible: {
             y: 0,
             opacity: 1,
+            filter: "blur(0px)",
             transition: {
                 duration: 0.5,
                 ease: "easeOut",
@@ -51,6 +53,7 @@ export const FlipText: React.FC<FlipTextProps> = ({
         exit: {
             y: 70,
             opacity: 0,
+            filter: "blur(10px)",
             transition: {
                 duration: 0.5,
                 ease: "easeIn",
