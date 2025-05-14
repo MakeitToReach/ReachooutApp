@@ -15,6 +15,7 @@ export const DEV_STATIC_DATA: GenericTemplateSchema = {
         "--template-text-secondary": "#cbd5e1", // gray-300
         "--template-text-accent-primary": "#93c5fd", // blue-300
         "--template-text-accent-secondary": "#bae6fd", // blue-200
+        "--template-text-accent-tertiary": "#11111",
         "--template-text-btn": "#ffffff", // button text
     },
     sections: [

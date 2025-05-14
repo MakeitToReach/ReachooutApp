@@ -7,50 +7,54 @@ import {
 } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
-import { Check, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { ICONS_REGISTRY } from "@/lib/iconsRegistry";
 
 type IconPickerProps = {
-    value?: React.ReactNode;
+    value?: string;
     onChange: (icon: string) => void;
 };
 
 export const IconPicker: React.FC<IconPickerProps> = ({ value, onChange }) => {
     const [open, setOpen] = React.useState(false);
 
+    const selectedIcon = ICONS_REGISTRY.find((icon) => icon.label === value);
+
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
-                <Button variant="outline" className="flex items-center gap-2">
-                    {value ?? "Select an icon"}
-                    <ChevronDown className="w-4 h-4 ml-2 opacity-50" />
+                <Button
+                    variant="outline"
+                    className="flex items-center justify-center gap-2 px-3 py-2 text-sm w-12 h-12"
+                    title={value ?? "Select an icon"}
+                >
+                    {selectedIcon?.icon ?? <ChevronDown className="w-4 h-4 opacity-50" />}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-64 p-2 z-[120]">
-                <ScrollArea className="h-48">
-                    <div className="grid grid-cols-4 gap-2">
-                        {ICONS_REGISTRY.map((item, idx) => (
-                            <button
-                                key={idx}
-                                type="button"
-                                onClick={() => {
-                                    onChange(item.label);
-                                    setOpen(false);
-                                }}
-                                className={cn(
-                                    "flex flex-col items-center justify-center p-2 rounded-md border border-transparent hover:border-muted transition",
-                                    value?.valueOf === item.icon?.valueOf
-                                        ? "bg-muted border-primary"
-                                        : "",
-                                )}
-                            >
-                                {item.icon}
-                                <span className="text-xs mt-1">{item.label}</span>
-                                {value?.valueOf === item.icon?.valueOf && (
-                                    <Check className="absolute top-1 right-1 w-4 h-4 text-primary" />
-                                )}
-                            </button>
-                        ))}
+            <PopoverContent className="w-72 p-4 z-[120] rounded-md shadow-md border bg-background">
+                <ScrollArea className="h-64">
+                    <div className="grid grid-cols-5 gap-3">
+                        {ICONS_REGISTRY.map((item, idx) => {
+                            const isSelected = value === item.label;
+
+                            return (
+                                <button
+                                    key={idx}
+                                    type="button"
+                                    onClick={() => {
+                                        onChange(item.label);
+                                        setOpen(false);
+                                    }}
+                                    className={cn(
+                                        "relative flex items-center justify-center w-12 h-12 rounded-md border hover:bg-muted transition-colors group",
+                                        isSelected && "border-blue-500",
+                                    )}
+                                    title={item.label}
+                                >
+                                    <div className="w-5 h-5 text-foreground">{item.icon}</div>
+                                </button>
+                            );
+                        })}
                     </div>
                 </ScrollArea>
             </PopoverContent>

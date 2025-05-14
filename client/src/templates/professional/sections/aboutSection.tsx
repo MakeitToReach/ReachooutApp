@@ -45,36 +45,36 @@ export const PFAboutSection = ({
                         {/* </h1> */}
                         <NumberTicker
                             value={stats[0].value}
-                            className="font-bold text-5xl lg:text-7xl text-template-text-primary"
+                            className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
                         />
-                        <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-tempalte-text-secondary">
+                        <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-template-text-accent-secondary">
                             {stats[0].title}
                         </h2>
                     </div>
                     <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary h-48 p-6">
                         <NumberTicker
                             value={stats[1].value}
-                            className="font-bold text-5xl lg:text-7xl text-template-text-primary"
+                            className="font-bold text-5xl lg:text-7xl text-template-text-accent-primary"
                         />
-                        <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
+                        <h2 className="text-template-text-accent-primary mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
                             {stats[1].title}
                         </h2>
                     </div>
                     <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary h-48 p-6">
                         <NumberTicker
                             value={stats[2].value}
-                            className="font-bold text-5xl lg:text-7xl text-template-text-primary"
+                            className="font-bold text-5xl lg:text-7xl text-template-text-accent-primary"
                         />
-                        <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center">
+                        <h2 className="text-template-text-accent-primary mt-2 text-xl w-full text-center">
                             {stats[2].title}
                         </h2>
                     </div>
                     <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary h-48 p-6 truncate">
                         <NumberTicker
                             value={stats[3].value}
-                            className="font-bold text-5xl lg:text-7xl text-template-text-primary"
+                            className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
                         />
-                        <h2 className="text-[#1e1e1e] mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
+                        <h2 className="text-template-text-accent-secondary mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
                             {stats[3].title}
                         </h2>
                     </div>
@@ -98,7 +98,7 @@ export const PFAboutSection = ({
                         className="uppercase font-medium text-template-text-primary"
                     >
                         {title}{" "}
-                        <span className="text-template-text-accent-secondary">
+                        <span className="text-template-accent-secondary">
                             {colorTitle}
                         </span>
                     </m.h2>

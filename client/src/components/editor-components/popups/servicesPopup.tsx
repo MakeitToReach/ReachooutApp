@@ -13,7 +13,6 @@ import {
 import { ReqInput } from "../inputs/reqInput";
 import { Button } from "@/components/ui/button";
 import { IconPicker } from "../inputs/iconPicker";
-import { getIconFromRegistry } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 
 interface AddServicesPopupProps {
@@ -63,10 +62,9 @@ export function AddServicesPopup({ children, onAdd }: AddServicesPopupProps) {
 
                     <IconPicker
                         onChange={(icon) => {
-                            alert(icon);
                             setService({ ...service, icon });
                         }}
-                        value={getIconFromRegistry(service.icon)}
+                        value={service.icon}
                     />
                 </div>
 
@@ -148,8 +146,8 @@ export const EditServicePopup = ({
                     </div>
 
                     <IconPicker
-                        onChange={() => { }}
-                        value={getIconFromRegistry(formData.icon)}
+                        onChange={(icon) => handleChange("icon", icon)}
+                        value={formData.icon}
                     />
                 </div>
 

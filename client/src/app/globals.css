@@ -44,17 +44,29 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
+
+  /* template specific inline styles */
+
+  /* template theme background color variables */
   --color-template-primary: var(--template-primary);
   --color-template-secondary: var(--template-secondary);
   --color-template-accent-primary: var(--template-accent-primary);
   --color-template-accent-secondary: var(--template-accent-secondary);
+
+  /* template theme text color and font variables */
   --color-template-text-primary: var(--template-text-primary);
   --color-template-text-secondary: var(--template-text-secondary);
   --color-template-text-accent-primary: var(--template-text-accent-primary);
   --color-template-text-accent-secondary: var(--template-text-accent-secondary);
+  --color-template-text-accent-tertiary: var(--template-text-accent-tertiary);
+  --template-font: var(--template-font);
+
+  /* template theme btn color and text variables */
   --color-template-btn: var(--template-btn);
   --color-template-text-btn: var(--template-text-btn);
-  --template-font: var(--template-font);
+
+  /* template specific inline styles end here */
+
   --color-card: var(--card);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -72,15 +84,22 @@
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
 
-  --template-font: "Poppins", sans-serif;
+  /* template specific inline styles */
+  /* template theme background color variables */
   --template-primary: oklch(1 0 0);
   --template-secondary: oklch(1 0 0);
   --template-accent-primary: oklch(1 0 0);
   --template-accent-secondary: oklch(1 0 0);
+
+  /* template theme text color variables */
   --template-text-primary: oklch(1 0 0);
   --template-text-secondary: oklch(1 0 0);
   --template-text-accent-primary: oklch(1 0 0);
   --template-text-accent-secondary: oklch(1 0 0);
+  --template-text-accent-tertiary: oklch(1 0 0);
+  --template-font: "Poppins", sans-serif;
+
+  /* template theme button color and text variables */
   --template-btn: oklch(1 0 0);
   --template-text-btn: oklch(1 0 0);
 
@@ -110,6 +129,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+/*for applying template selected fonts */
 .theme-wrapper {
   font-family: var(--template-font, sans-serif);
 }

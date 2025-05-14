@@ -17,6 +17,7 @@ export type ThemeObject = {
     "--template-text-secondary": string;
     "--template-text-accent-primary": string;
     "--template-text-accent-secondary": string;
+    "--template-text-accent-tertiary": string;
     "--template-text-btn": string;
 };
 export interface GenericTemplateSchema<T extends SectionBlock = SectionBlock> {

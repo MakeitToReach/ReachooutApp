@@ -55,6 +55,11 @@ const themeFields: {
             textKey: "--template-text-accent-secondary",
         },
         {
+            label: "Accent Text",
+            // backgroundKey: "--template-accent-secondary",
+            textKey: "--template-text-accent-tertiary",
+        },
+        {
             label: "Buttons",
             backgroundKey: "--template-btn",
             textKey: "--template-text-btn",
@@ -117,37 +122,47 @@ export function ThemePickerDialog({
                         <div className="w-1/5 text-center">Text</div>
                     </div>
 
-                    {/* Dynamic Field Rows */}
                     {themeFields.map(({ label, backgroundKey, textKey }) => (
                         <div
                             key={label}
-                            className="flex items-center justify-between gap-4"
+                            className="flex items-center justify-between gap-4 py-1"
                         >
-                            <Label className="w-1/3">{label}</Label>
+                            {/* Label */}
+                            <Label className="w-1/3 text-sm font-medium text-muted-foreground">
+                                {label}
+                            </Label>
 
-                            {/* Background Color Input */}
+                            {/* Background Color */}
                             <div className="w-1/5">
-                                {backgroundKey && (
-                                    <Input
-                                        type="color"
-                                        value={theme[backgroundKey]}
-                                        onChange={(e) =>
-                                            handleChange(backgroundKey, e.target.value)
-                                        }
-                                        className="w-full h-10 p-0 border-none"
-                                    />
+                                {backgroundKey ? (
+                                    <div className="relative flex items-center">
+                                        <Input
+                                            type="color"
+                                            value={theme[backgroundKey]}
+                                            onChange={(e) =>
+                                                handleChange(backgroundKey, e.target.value)
+                                            }
+                                            className="w-full p-0 rounded cursor-pointer hover:shadow-sm"
+                                            title={theme[backgroundKey]}
+                                        />
+                                    </div>
+                                ) : (
+                                    <p className="text-xs text-center text-muted-foreground">N/A</p>
                                 )}
                             </div>
 
-                            {/* Text Color Input */}
+                            {/* Text Color */}
                             <div className="w-1/5">
                                 {textKey && (
-                                    <Input
-                                        type="color"
-                                        value={theme[textKey]}
-                                        onChange={(e) => handleChange(textKey, e.target.value)}
-                                        className="w-full h-10 p-0 border-none"
-                                    />
+                                    <div className="relative flex items-center">
+                                        <Input
+                                            type="color"
+                                            value={theme[textKey]}
+                                            onChange={(e) => handleChange(textKey, e.target.value)}
+                                            className="w-full p-0 rounded cursor-pointer hover:shadow-sm"
+                                            title={theme[textKey]}
+                                        />
+                                    </div>
                                 )}
                             </div>
                         </div>

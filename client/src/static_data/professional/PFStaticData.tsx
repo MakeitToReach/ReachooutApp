@@ -14,8 +14,9 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
         "--template-btn": "#111111",
         "--template-text-primary": "#111111",
         "--template-text-secondary": "#fffffc",
-        "--template-text-accent-primary": "#4ade80",
-        "--template-text-accent-secondary": "#fbe8d3",
+        "--template-text-accent-primary": "#111111",
+        "--template-text-accent-secondary": "#111111",
+        "--template-text-accent-tertiary": "#4ade80",
         "--template-text-btn": "#fffffc",
     },
     sections: [
@@ -24,7 +25,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             data: {
                 textLogo: "Omkar",
             },
-            isFixed: false,
+            isFixed: true,
             isEditable: true,
         },
         {
@@ -105,19 +106,19 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                 subtitle: "Services",
                 services: [
                     {
-                        icon: "Star",
+                        icon: "Cloud",
                         heading: "Web Development",
                         description:
                             "I specialize in creating visually stunning and user-friendly web applications using the latest technologies.",
                     },
                     {
-                        icon: "Star",
+                        icon: "Cloud",
                         heading: "Web Development",
                         description:
                             "I specialize in creating visually stunning and user-friendly web applications using the latest technologies.",
                     },
                     {
-                        icon: "Star",
+                        icon: "Cloud",
                         heading: "Web Development",
                         description:
                             "I specialize in creating visually stunning and user-friendly web applications using the latest technologies.",
@@ -139,7 +140,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                     twitter: "https://twitter.com/omkarb_dev",
                 },
             },
-            isFixed: true,
+            isFixed: false,
             isEditable: true,
         },
         {
@@ -149,7 +150,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                     "© 2025 Omkar B. All rights reserved. | Designed & Built by Omkar B",
             },
             isFixed: true,
-            isEditable: true,
+            isEditable: false,
         },
     ],
 };

@@ -51,7 +51,7 @@ export const PFHeroSection = ({
             </h1>
             <FlipText
               texts={professions}
-              className="text-4xl md:text-5xl font-bold text-template-text-accent-primary"
+              className="text-4xl md:text-5xl font-bold text-template-text-accent-tertiary"
             />
           </div>
           <Link href={btnLink}>

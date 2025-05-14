@@ -66,8 +66,8 @@ export const ReorderSectionsPopup = ({
                     <FixedSectionItem
                         key={section.id}
                         name={section.name}
-                        // tabIdx={sections.findIndex((s) => s.id === section.id)}
-                        // onEdit={onEdit}
+                        tabIdx={sections.findIndex((s) => s.id === section.id)}
+                        onEdit={onEdit}
                     />
                 );
             } else {
@@ -184,12 +184,12 @@ const SortableSectionItem = ({
 
 const FixedSectionItem = ({
     name,
-    // tabIdx,
-    // onEdit,
+    tabIdx,
+    onEdit,
 }: {
     name: string;
-    // tabIdx: number;
-    // onEdit: (tabIdx: number) => void;
+    tabIdx: number;
+    onEdit: (tabIdx: number) => void;
 }) => {
     return (
         <div className="flex items-center justify-between p-3 border rounded-lg bg-neutral-100 text-neutral-500 cursor-not-allowed">
@@ -197,14 +197,14 @@ const FixedSectionItem = ({
                 <GripVertical className="w-5 h-5 opacity-30" />
                 <span className="font-medium">{name}</span>
             </div>
-            <span className="text-xs italic">Fixed</span>
+            {/* <span className="text-xs italic">Fixed</span> */}
 
-            {/* <Button onClick={() => onEdit(tabIdx)} variant={"outline"}> */}
-            {/*     Edit{" "} */}
-            {/*     <span> */}
-            {/*         <LucideEdit /> */}
-            {/*     </span> */}
-            {/* </Button> */}
+            <Button onClick={() => onEdit(tabIdx)} variant={"outline"}>
+                Edit{" "}
+                <span>
+                    <LucideEdit />
+                </span>
+            </Button>
         </div>
     );
 };
