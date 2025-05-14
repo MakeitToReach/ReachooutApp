@@ -21,7 +21,8 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
     const [username, setUsername] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [type, setType] = useState<"Register" | "Login">("Login");
+    //eslint-disable-next-line
+    const [type, setType] = useState<"Register" | "Login">("Login"); //temporarily disabling register
     const [open, setOpen] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
@@ -83,7 +84,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                                 <DialogTitle className="text-2xl font-semibold font-Montserrat">
                                     {type === "Register"
                                         ? "Create An Account"
-                                        : "Login to your account"}
+                                        : "Login to Reachoout"}
                                 </DialogTitle>
                             </m.div>
                         </DialogHeader>
@@ -148,29 +149,29 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                                 />
                             </m.div>
 
-                            <m.div
-                                initial={{ opacity: 0, filter: "blur(4px)" }}
-                                animate={{ opacity: 1, filter: "blur(0px)" }}
-                                transition={{ duration: 0.15, delay: 0.15 }}
-                                layoutId="toggle-text"
-                            >
-                                <p className="text-sm text-gray-500 flex gap-1 items-center">
-                                    {type === "Register"
-                                        ? "Already have an account? "
-                                        : "New here? "}
-                                    <span className="text-black">
-                                        <Button
-                                            variant={"link"}
-                                            className="p-0"
-                                            onClick={() =>
-                                                setType(type === "Register" ? "Login" : "Register")
-                                            }
-                                        >
-                                            {type === "Register" ? "Login" : "Create an account"}
-                                        </Button>
-                                    </span>
-                                </p>
-                            </m.div>
+                            {/* <m.div */}
+                            {/*     initial={{ opacity: 0, filter: "blur(4px)" }} */}
+                            {/*     animate={{ opacity: 1, filter: "blur(0px)" }} */}
+                            {/*     transition={{ duration: 0.15, delay: 0.15 }} */}
+                            {/*     layoutId="toggle-text" */}
+                            {/* > */}
+                            {/*     <p className="text-sm text-gray-500 flex gap-1 items-center"> */}
+                            {/*         {type === "Register" */}
+                            {/*             ? "Already have an account? " */}
+                            {/*             : "New here? "} */}
+                            {/*         <span className="text-black"> */}
+                            {/*             <Button */}
+                            {/*                 variant={"link"} */}
+                            {/*                 className="p-0" */}
+                            {/*                 onClick={() => */}
+                            {/*                     setType(type === "Register" ? "Login" : "Register") */}
+                            {/*                 } */}
+                            {/*             > */}
+                            {/*                 {type === "Register" ? "Login" : "Create an account"} */}
+                            {/*             </Button> */}
+                            {/*         </span> */}
+                            {/*     </p> */}
+                            {/* </m.div> */}
 
                             <m.div
                                 initial={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
