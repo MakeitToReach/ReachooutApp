@@ -73,28 +73,26 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
                     </div>
 
                     <div className="flex gap-2">
-                    <ReqInput
-                        label="Button Text"
-                        type="text"
-                        placeholder="View my project"
-                        value={project.btnText}
-                        onChange={(e) =>
-                            setProject({ ...project, btnText: e.target.value })
-                        }
-                    />
+                        <ReqInput
+                            label="Button Text"
+                            type="text"
+                            placeholder="View my project"
+                            value={project.btnText}
+                            onChange={(e) =>
+                                setProject({ ...project, btnText: e.target.value })
+                            }
+                        />
 
-                    <ReqInput
-                        label="Button Link"
-                        type="text"
-                        placeholder="https://reachoout.com"
-                        value={project.btnLink}
-                        onChange={(e) =>
-                            setProject({ ...project, btnLink: e.target.value })
-                        }
-                    />
-
+                        <ReqInput
+                            label="Button Link"
+                            type="text"
+                            placeholder="https://reachoout.com"
+                            value={project.btnLink}
+                            onChange={(e) =>
+                                setProject({ ...project, btnLink: e.target.value })
+                            }
+                        />
                     </div>
-
 
                     <div className="space-x-2">
                         <CldUploadButton
@@ -106,7 +104,7 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
                                 setProject({ ...project, imgUrl: result.info.url });
                             }}
                         >
-                            <ImageSelectButton selectedImgUrl={project.imgUrl} />
+                            <ImageSelectButton selectedImgUrl={project.imgUrl!} />
                         </CldUploadButton>
                     </div>
                 </div>

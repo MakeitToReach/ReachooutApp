@@ -1,5 +1,5 @@
-import { PF_SOCIAL } from "./social";
+// import { PF_SOCIAL } from "./social";
 
-export type PF_SOCIAL_SECTION = {
-    socials: PF_SOCIAL[];
-};
+// export type PF_SOCIAL_SECTION = {
+//     socials: PF_SOCIAL[];
+// };

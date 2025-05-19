@@ -51,7 +51,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
             key={category}
             variant={selectedCategory === category ? "outline" : "default"}
             onClick={() => setSelectedCategory(category)}
-            className="dark"
+            className="bg-template-btn text-template-text-btn"
           >
             {category}
           </Button>
@@ -77,7 +77,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
               >
                 <div className="flex flex-col lg:flex-row-reverse gap-4 lg:justify-around lg:items-center mt-10 max-w-6xl">
                   <CldImage
-                    src={project.imgUrl}
+                    src={project.imgUrl!}
                     alt="project-img"
                     className="md:max-h-[500px] md:max-w-[500px] object-cover rounded-md"
                     width={500}
@@ -108,7 +108,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                       )}
                     </div>
                     <Link href={project.btnLink}>
-                      <Button>{project.btnText}</Button>
+                      <Button className="text-template-text-btn bg-template-btn">{project.btnText}</Button>
                     </Link>
                   </div>
                 </div>

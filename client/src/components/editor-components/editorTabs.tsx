@@ -9,7 +9,7 @@ import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
 import ImageSelectButton from "./inputs/imageInputBtn";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
-import { motion as m } from "framer-motion"; // fixed from "motion/react" to "framer-motion"
+import { motion as m } from "motion/react";
 import { cn } from "@/lib/utils";
 import { LucideArrowLeft, LucideArrowRight } from "lucide-react";
 
@@ -212,6 +212,21 @@ export const EditorTabs = ({
                                             ))}
                                         </div>
                                     )}
+
+                                    {field.type === "phone" && (
+                                        <ReqInput
+                                            label={field.label}
+                                            type="tel"
+                                            value={sectionData?.data[field.fieldPath] ?? ""}
+                                            onChange={(e) =>
+                                                setSectionField(
+                                                    section,
+                                                    field.fieldPath,
+                                                    e.target.value,
+                                                )
+                                            }
+                                        />
+                                    )}
                                 </div>
                             )) || (
                                     <p className="text-muted-foreground">
@@ -219,7 +234,7 @@ export const EditorTabs = ({
                                     </p>
                                 )}
 
-                            <div className="flex justify-between pt-8">
+                            <div className="flex justify-between py-8">
                                 <Button
                                     variant="outline"
                                     onClick={goToPrev}

@@ -23,6 +23,12 @@ import {
     IconMail,
     IconSearch,
     IconHelp,
+    IconBrandYoutube,
+    IconBrandX,
+    IconBrandFacebook,
+    IconBrandGithub,
+    IconBrandInstagram,
+    IconBrandLinkedin,
 } from "@tabler/icons-react";
 
 import {
@@ -86,4 +92,32 @@ export const ICONS_REGISTRY: IconOption[] = [
     { label: "Upload", icon: <UploadCloud className="w-5 h-5" /> },
     { label: "Archive", icon: <Archive className="w-5 h-5" /> },
     { label: "Organization", icon: <Building2 className="w-5 h-5" /> },
+];
+
+export const SOCIAL_ICONS_REGISTRY = [
+    {
+        label: "Facebook",
+        icon: <IconBrandFacebook size={20} />,
+    },
+
+    {
+        label: "Github",
+        icon: <IconBrandGithub size={20} />,
+    },
+    {
+        label: "Instagram",
+        icon: <IconBrandInstagram size={20} />,
+    },
+    {
+        label: "Linkedin",
+        icon: <IconBrandLinkedin size={20} />,
+    },
+    {
+        label: "X",
+        icon: <IconBrandX size={20} />,
+    },
+    {
+        label: "Youtube",
+        icon: <IconBrandYoutube size={20} />,
+    },
 ];

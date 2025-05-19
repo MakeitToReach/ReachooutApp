@@ -3,6 +3,7 @@ import React from "react";
 import { PF_SERVICE_SECTION } from "../types/serviceSection";
 
 export const PFServicesSection = ({
+    title,
     subtitle,
     services,
 }: PF_SERVICE_SECTION) => {
@@ -12,7 +13,7 @@ export const PFServicesSection = ({
             id="services"
         >
             <h1 className="text-3xl font-semibold md:text-6xl text-center">
-                Services We Offer
+                {title}
             </h1>
 
             <h2 className="text-center text-xl text-neutral-400 mt-10">{subtitle}</h2>
