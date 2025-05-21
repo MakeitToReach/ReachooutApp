@@ -2,6 +2,7 @@ import { FooterEditorField } from "@/components/editor-components/inputs/footerE
 import { ProjectEditorField } from "@/components/editor-components/inputs/projectEditorField";
 import { ServicesEditorField } from "@/components/editor-components/inputs/servicesEditorField";
 import { StatsField } from "@/components/editor-components/inputs/statField";
+import { TeamMemberEditorField } from "@/components/editor-components/inputs/teamEditorField";
 import { TestimonialEditorField } from "@/components/editor-components/inputs/testimonialEditorField";
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
 
@@ -149,6 +150,27 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "testimonials",
             component: ({ value, onChange }) => (
                 <TestimonialEditorField value={value || []} onChange={onChange} />
+            ),
+        },
+    ],
+
+    team: [
+        {
+            label: "Section Title",
+            type: "text",
+            fieldPath: "title",
+        },
+        {
+            label: "Subtitle",
+            type: "text",
+            fieldPath: "subtitle",
+        },
+        {
+            label: "Team Members",
+            type: "component",
+            fieldPath: "teamMembers",
+            component: ({ value, onChange }) => (
+                <TeamMemberEditorField value={value || []} onChange={onChange} />
             ),
         },
     ],

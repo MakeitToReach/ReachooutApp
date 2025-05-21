@@ -41,7 +41,7 @@ export const TestimonialEditorField = ({
                     </Button>
                 </AddTestimonialPopup>
             </div>
-            {value.map((service, index) => (
+            {value.map((testimonial, index) => (
                 <div
                     key={index}
                     className="space-y-4 flex justify-between items-center"
@@ -50,7 +50,7 @@ export const TestimonialEditorField = ({
                     <div className="flex items-center gap-2">
                         <EditTestimonialPopup
                             onSave={(newTestimonial) => handleEdit(index, newTestimonial)}
-                            testimonial={service}
+                            testimonial={testimonial}
                             testimonialIdx={index}
                         >
                             <Button variant={"ghost"}>

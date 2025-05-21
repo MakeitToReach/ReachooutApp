@@ -11,22 +11,22 @@ import {
 } from "@/components/ui/dialog";
 import { ReqInput } from "../inputs/reqInput";
 import { Button } from "@/components/ui/button";
-import { PF_TESTIMONIAL } from "@/templates/professional/types/testimonials.types";
 import { CldUploadButton } from "next-cloudinary";
 import ImageSelectButton from "../inputs/imageInputBtn";
+import { PF_TEAM_MEMBER } from "@/templates/professional/types/teamMember.types";
 
-interface AddTestimonialPopupProps {
+interface AddTeamMemberPopupProps {
     children: React.ReactNode;
-    onAdd: (testimonial: PF_TESTIMONIAL) => void;
+    onAdd: (member: PF_TEAM_MEMBER) => void;
 }
-export function AddTestimonialPopup({
+export function AddTeamMemberPopup({
     children,
     onAdd,
-}: AddTestimonialPopupProps) {
-    const [testimonial, setTestimonial] = useState<PF_TESTIMONIAL>({
+}: AddTeamMemberPopupProps) {
+    const [member, setMember] = useState<PF_TEAM_MEMBER>({
         name: "",
-        body: "",
-        img: "",
+        avatar: "",
+        designation: "",
     });
     return (
         <Dialog modal={false}>
@@ -37,28 +37,27 @@ export function AddTestimonialPopup({
                 onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader>
-                    <DialogTitle className="md:text-2xl">Add Testimonial</DialogTitle>
+                    <DialogTitle className="md:text-2xl">Add Team Member</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col gap-3">
                     <ReqInput
                         type="text"
-                        label="Client Name"
-                        placeholder="Enter Name of the client"
-                        value={testimonial.name}
+                        label="Member Name"
+                        placeholder="Enter name of the member"
+                        value={member.name}
                         onChange={(e) =>
-                            setTestimonial({ ...testimonial, name: e.target.value })
+                            setMember({ ...member, name: e.target.value })
                         }
                     />
 
-
                     <div>
-                        <label className="font-semibold">Message</label>
+                        <label className="font-semibold">Designation</label>
                         <textarea
-                            placeholder="Message"
+                            placeholder="Chief Executive Officer"
                             className="border p-2 w-full rounded-md h-20"
-                            value={testimonial.body}
+                            value={member.designation}
                             onChange={(e) =>
-                                setTestimonial({ ...testimonial, body: e.target.value })
+                                setMember({ ...member, designation: e.target.value })
                             }
                         />
                     </div>
@@ -70,10 +69,10 @@ export function AddTestimonialPopup({
                             className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
                             //eslint-disable-next-line
                             onSuccess={(result: any) => {
-                                setTestimonial({ ...testimonial, img: result.info.url });
+                                setMember({ ...member, avatar: result.info.url });
                             }}
                         >
-                            <ImageSelectButton selectedImgUrl={testimonial.img} />
+                            <ImageSelectButton selectedImgUrl={member.avatar} />
                         </CldUploadButton>
                     </div>
                 </div>
@@ -82,15 +81,15 @@ export function AddTestimonialPopup({
                     <DialogClose asChild>
                         <Button
                             onClick={() => {
-                                onAdd(testimonial);
-                                setTestimonial({
+                                onAdd(member);
+                                setMember({
                                     name: "",
-                                    body: "",
-                                    img: "",
+                                    avatar: "",
+                                    designation: "",
                                 });
                             }}
                         >
-                            Add
+                            Add member
                         </Button>
                     </DialogClose>
                 </DialogFooter>
@@ -99,27 +98,27 @@ export function AddTestimonialPopup({
     );
 }
 
-interface EditTestimonialPopupProps {
-    testimonial: PF_TESTIMONIAL;
-    testimonialIdx?: number;
-    onSave: (updated: PF_TESTIMONIAL) => void;
+interface EditTeamMemberPopupProps {
+    member: PF_TEAM_MEMBER;
+    memberIdx?: number;
+    onSave: (updated: PF_TEAM_MEMBER) => void;
     children: React.ReactNode;
 }
 
-export const EditTestimonialPopup = ({
-    testimonial,
-    testimonialIdx,
+export const EditTeamMemberPopup = ({
+    member,
+    memberIdx,
     onSave,
     children,
-}: EditTestimonialPopupProps) => {
-    const [formData, setFormData] = useState<PF_TESTIMONIAL>(testimonial);
+}: EditTeamMemberPopupProps) => {
+    const [formData, setFormData] = useState<PF_TEAM_MEMBER>(member);
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        if (open) setFormData(testimonial); // reset on open
-    }, [open, testimonial]);
+        if (open) setFormData(member); // reset on open
+    }, [open, member]);
 
-    const handleChange = (key: keyof PF_TESTIMONIAL, val: string) => {
+    const handleChange = (key: keyof PF_TEAM_MEMBER, val: string) => {
         setFormData((prev) => ({ ...prev, [key]: val }));
     };
 
@@ -134,8 +133,8 @@ export const EditTestimonialPopup = ({
             <DialogContent className="space-y-4 z-[100] font-Poppins">
                 <DialogHeader>
                     <DialogTitle>
-                        Edit Testimonial{" "}
-                        {testimonialIdx !== undefined && `#${testimonialIdx + 1}`}
+                        Edit Team Member{" "}
+                        {memberIdx !== undefined && `#${memberIdx + 1}`}
                     </DialogTitle>
                 </DialogHeader>
 
@@ -148,12 +147,12 @@ export const EditTestimonialPopup = ({
                     />
 
                     <div>
-                        <label className="font-semibold">Message</label>
+                        <label className="font-semibold">Designation</label>
                         <textarea
-                            placeholder="Description"
+                            placeholder="Designation"
                             className="border p-2 w-full rounded-md h-20"
-                            value={formData.body}
-                            onChange={(e) => handleChange("body", e.target.value)}
+                            value={formData.designation}
+                            onChange={(e) => handleChange("designation", e.target.value)}
                         />
                     </div>
                 </div>
@@ -165,10 +164,10 @@ export const EditTestimonialPopup = ({
                         className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
                         //eslint-disable-next-line
                         onSuccess={(result: any) => {
-                            handleChange("img", result.info.url);
+                            handleChange("avatar", result.info.url);
                         }}
                     >
-                        <ImageSelectButton selectedImgUrl={testimonial.img}  />
+                        <ImageSelectButton selectedImgUrl={member.avatar} />
                     </CldUploadButton>
                 </div>
 

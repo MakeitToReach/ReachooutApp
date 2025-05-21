@@ -100,6 +100,44 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             isFixed: false,
             isEditable: true,
         },
+
+        {
+            type: "team",
+            data: {
+                title: "Our Team",
+                subtitle: "Meet the professionals behind our success",
+                teamMembers:
+                    [
+                        {
+                            avatar: "https://avatar.vercel.sh/jack",
+                            name: "John Doe",
+                            designation: "Senior Software Engineer",
+                        },
+                        {
+                            avatar: "https://avatar.vercel.sh/jill",
+                            name: "Jane Smith",
+                            designation: "UX/UI Designer",
+                        },
+                        {
+                            avatar: "https://avatar.vercel.sh/jill",
+                            name: "Jane Smith",
+                            designation: "UX/UI Designer",
+                        },
+                        {
+                            avatar: "https://avatar.vercel.sh/jill",
+                            name: "Jane Smith",
+                            designation: "UX/UI Designer",
+                        },
+                        {
+                            avatar: "https://avatar.vercel.sh/jill",
+                            name: "Jane Smith",
+                            designation: "UX/UI Designer",
+                        },
+                    ]
+            },
+            isFixed: false,
+            isEditable: true,
+        },
         {
             type: "client",
             data: {

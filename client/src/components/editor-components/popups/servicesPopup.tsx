@@ -20,7 +20,6 @@ interface AddServicesPopupProps {
     onAdd: (service: PF_SERVICES) => void;
 }
 export function AddServicesPopup({ children, onAdd }: AddServicesPopupProps) {
-    // const { addProject } = usePortfolioStore();
     const [service, setService] = useState<PF_SERVICES>({
         heading: "",
         description: "",
@@ -140,7 +139,7 @@ export const EditServicePopup = ({
                         <textarea
                             placeholder="Description"
                             className="border p-2 w-full rounded-md h-20"
-                            value={service.description}
+                            value={formData.description}
                             onChange={(e) => handleChange("description", e.target.value)}
                         />
                     </div>
