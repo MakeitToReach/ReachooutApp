@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Section Component Naming
 
-## Getting Started
+- The section component name should follow camelCase with the initials of the templateName
+  `PFHeroSection`
 
-First, run the development server:
+## Section names should be lowercase
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- navbar, hero, footer, about, etc
+- export the sections from the `<templateName>/sections/index.ts`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Directory Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- All template components should be under the `src/templates` directory
+- `src/templates` follows a set structure with `<templateName>` directories
+- each `<template>` directory must have the
+  - schema
+  - sections ( components )
+  - types ( optional )
+  - index.tsx ( main template page file )
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Schema
 
-## Learn More
+- It must contain the template's `TemplateSchema` object that follows the
+  `GenericTemplateSchema` interface
+- Also must contain the `TemplateEditorSchema` object that follows the `GenericEditorFieldSchema` interface
 
-To learn more about Next.js, take a look at the following resources:
+## Types
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- It must contain the section type. i.e the props interface that the section data follows
+  e.g `PF_HERO_SECTION`
+- It must follow the CAPS_SNAKE_CASE for both the interface and the type alias
+- These types must be registered as in the `GenericTemplateSchema` interface in
+  `<templateName>/schema/templateSchema.ts` under the `<template>_SECTION_BLOCK`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
