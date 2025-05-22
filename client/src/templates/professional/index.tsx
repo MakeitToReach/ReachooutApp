@@ -8,14 +8,14 @@ import {
   PFFooter,
   PFServicesSection,
   PFContactSection,
-  // PFGallerySection,
   PFTestimonialsSection,
   PFClientSection,
+  PFGallerySection,
+  PFTeamMembersSection,
 } from "./sections";
 // import { PageLoader } from "@/components/editor-components/pageLoader";
 import { motion as m } from "motion/react";
-import { SectionBlock } from "@/schemas/templates.schema";
-import { PFTeamMembersSection } from "./sections/teamMember.section";
+import type { SectionBlock } from "@/schemas/templates.schema";
 
 type Props = {
   data: {
@@ -48,8 +48,8 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
         return (
           <PFServicesSection key={`services-${index}`} {...section.data} />
         );
-      // case "gallery":
-      //   return <PFGallerySection key={`gallery-${index}`} {...section.data} />;
+      case "gallery":
+        return <PFGallerySection key={`gallery-${index}`} {...section.data} />;
       case "testimonials":
         return (
           <PFTestimonialsSection
@@ -112,7 +112,6 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
           <div>Loading</div>
         )}
       </m.div>
-      {/* )} */}
     </>
   );
 };

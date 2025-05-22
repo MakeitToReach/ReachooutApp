@@ -10,7 +10,7 @@ type ClientLogosProps = {
     clientImgs: ClientLogo[];
 };
 
-export const ClientLogos: React.FC<ClientLogosProps> = ({ clientImgs }) => {
+export const ClientLogos = ({ clientImgs }: ClientLogosProps) => {
     return (
         <Marquee className="py-4 [--duration:20s]">
             {" "}

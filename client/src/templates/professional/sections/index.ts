@@ -5,7 +5,10 @@ export * from "./heroSection";
 export * from "./workSection";
 export * from "./navbar";
 export * from "./footer";
-export * from "./gallerySection";
 export * from "./servicesSection";
 export * from "./contactSection";
 export * from "./testimonials";
+
+export * from "./teamMember.section";
+export * from "./gallery.section";
+

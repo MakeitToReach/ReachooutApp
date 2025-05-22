@@ -1,7 +1,6 @@
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
-// import { LucideCode } from "lucide-react";
 
-export const PF_STATIC_DATA: GenericTemplateSchema = {
+export const PF_STATIC_INDIE_DATA: GenericTemplateSchema = {
   id: "cm91hhx2l0000js04ktn7xof8",
   name: "professional",
   thumbnailUrl: "/professional_template.png",
@@ -101,42 +100,43 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
       isEditable: true,
     },
 
-    {
-      type: "team",
-      data: {
-        title: "Our Team",
-        subtitle: "Meet the professionals behind our success",
-        teamMembers: [
-          {
-            avatar: "https://avatar.vercel.sh/jack",
-            name: "John Doe",
-            designation: "Senior Software Engineer",
-          },
-          {
-            avatar: "https://avatar.vercel.sh/jill",
-            name: "Jane Smith",
-            designation: "UX/UI Designer",
-          },
-          {
-            avatar: "https://avatar.vercel.sh/jill",
-            name: "Jane Smith",
-            designation: "UX/UI Designer",
-          },
-          {
-            avatar: "https://avatar.vercel.sh/jill",
-            name: "Jane Smith",
-            designation: "UX/UI Designer",
-          },
-          {
-            avatar: "https://avatar.vercel.sh/jill",
-            name: "Jane Smith",
-            designation: "UX/UI Designer",
-          },
-        ],
-      },
-      isFixed: false,
-      isEditable: true,
-    },
+    // {
+    //     type: "team",
+    //     data: {
+    //         title: "Our Team",
+    //         subtitle: "Meet the professionals behind our success",
+    //         teamMembers:
+    //             [
+    //                 {
+    //                     avatar: "https://avatar.vercel.sh/jack",
+    //                     name: "John Doe",
+    //                     designation: "Senior Software Engineer",
+    //                 },
+    //                 {
+    //                     avatar: "https://avatar.vercel.sh/jill",
+    //                     name: "Jane Smith",
+    //                     designation: "UX/UI Designer",
+    //                 },
+    //                 {
+    //                     avatar: "https://avatar.vercel.sh/jill",
+    //                     name: "Jane Smith",
+    //                     designation: "UX/UI Designer",
+    //                 },
+    //                 {
+    //                     avatar: "https://avatar.vercel.sh/jill",
+    //                     name: "Jane Smith",
+    //                     designation: "UX/UI Designer",
+    //                 },
+    //                 {
+    //                     avatar: "https://avatar.vercel.sh/jill",
+    //                     name: "Jane Smith",
+    //                     designation: "UX/UI Designer",
+    //                 },
+    //             ]
+    //     },
+    //     isFixed: false,
+    //     isEditable: true,
+    // },
     {
       type: "client",
       data: {

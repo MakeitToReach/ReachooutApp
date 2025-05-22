@@ -57,6 +57,12 @@ export type PF_SECTION_BLOCK =
     }
   | { type: "contact"; data: null; isFixed: true; isEditable: false }
   | {
+      type: "gallery";
+      data: PF_GALLERY_SECTION;
+      isFixed: false;
+      isEditable: true;
+    }
+  | {
       type: "footer";
       data: PF_FOOTER_SECTION;
       isFixed: true;

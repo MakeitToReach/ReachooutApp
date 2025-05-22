@@ -6,6 +6,8 @@ import { TemplateCard } from "./templateCard";
 import { Skeleton } from "../ui/skeleton";
 import { motion as m } from "motion/react";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
+import { OnboardingPopup } from "./popups/onboardingPopup";
+import { Button } from "../ui/button";
 
 interface ExploreTabsProps {
   templates: GenericTemplateSchema[];
@@ -72,7 +74,14 @@ export default function ExploreTabs({ templates }: ExploreTabsProps) {
                 imageUrl={template.thumbnailUrl || "/placeholder.png"}
                 previewUrl={`/preview/${template.name.toLowerCase()}`}
                 editorUrl={`/editor/${template.name.toLowerCase()}?new`}
-              />
+              >
+                <OnboardingPopup
+                  typeOrgEditorUrl={`/editor/${template.name.toLowerCase()}?new=true&type=organization`}
+                  typeIndieEditorUrl={`/editor/${template.name.toLowerCase()}?new=true&type=individual`}
+                >
+                  <Button>Use</Button>
+                </OnboardingPopup>
+              </TemplateCard>
             ))
           ) : (
             <>
