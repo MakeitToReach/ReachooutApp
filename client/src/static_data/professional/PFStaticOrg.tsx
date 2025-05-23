@@ -64,10 +64,8 @@ export const PF_STATIC_ORG_DATA: GenericTemplateSchema = {
                     {
                         heading: "01. Reachoout",
                         subtitle: "B2B Networking Platform",
-                        imgUrl: [
+                        imgUrl:
                             "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
-                            "/placeholder.png",
-                        ],
                         description:
                             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque debitis modi molestias officiis? Magnam explicabo sunt quaerat reprehenderit distinctio fugit hic velit, debitis unde adipisci et aspernatur non ratione facere? Blanditiis obcaecati, sapiente quas harum ad recusandae facilis natus aperiam expedita, dignissimos, vitae doloribus voluptatem saepe maxime delectus mollitia accusamus! Ex cum distinctio aut perferendis, id ratione natus amet optio. Voluptates magni, magnam facilis quae dolor adipisci dolorem vitae placeat ipsum est beatae eius ullam vero. Alias ut quod sint quo aspernatur, quia asperiores corporis voluptas eius saepe accusamus quaerat sed est eum nulla obcaecati possimus, amet voluptatibus cum blanditiis.",
                         btnText: "View Project",
@@ -77,10 +75,8 @@ export const PF_STATIC_ORG_DATA: GenericTemplateSchema = {
                     {
                         heading: "02. Devfolio Clone",
                         subtitle: "Portfolio Generator for Developers",
-                        imgUrl: [
+                        imgUrl:
                             "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
-                            "/placeholder.png",
-                        ],
                         description:
                             "A customizable portfolio generator built with Next.js and Tailwind CSS, aimed at helping developers showcase their work online.",
                         btnText: "GitHub Repo",
@@ -90,10 +86,8 @@ export const PF_STATIC_ORG_DATA: GenericTemplateSchema = {
                     {
                         heading: "03. TaskMaster",
                         subtitle: "Team Collaboration App",
-                        imgUrl: [
+                        imgUrl:
                             "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
-                            "/placeholder.png",
-                        ],
                         description:
                             "TaskMaster is a real-time team task manager with WebSocket support, kanban-style UI, and role-based access control.",
                         btnText: "Live Demo",
@@ -142,41 +136,46 @@ export const PF_STATIC_ORG_DATA: GenericTemplateSchema = {
             isFixed: false,
             isEditable: true,
         },
-        // {
-        //     type: "client",
-        //     data: {
-        //         title: "Leading Organizations and Companies",
-        //         colorTxt: "50+",
-        //         subtitle: "Clients I've worked with",
-        //         avatarImg:
-        //             "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
-        //         clientImgs: [
-        //             {
-        //                 src: "/apple.svg",
-        //                 alt: "Image 4",
-        //             },
-        //             {
-        //                 src: "/next.svg",
-        //                 alt: "Image 1",
-        //             },
-        //             {
-        //                 src: "/tailwind.svg",
-        //                 alt: "Image 5",
-        //             },
-        //             {
-        //                 src: "/reachout-logo.png",
-        //                 alt: "Image 2",
-        //             },
-        //         ],
-        //     },
-        //     isFixed: false,
-        //     isEditable: true,
-        // },
+        {
+            type: "service-catalog",
+            data: {
+                projects: [
+                    {
+                        heading: "01. Reachoout",
+                        subtitle: "B2B Networking Platform",
+                        imgUrl: [
+                            "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+                            "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+                        ],
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque debitis modi molestias officiis? Magnam explicabo sunt quaerat reprehenderit distinctio fugit hic velit, debitis unde adipisci et aspernatur non ratione facere? Blanditiis obcaecati, sapiente quas harum ad recusandae facilis natus aperiam expedita, dignissimos, vitae doloribus voluptatem saepe maxime delectus mollitia accusamus! Ex cum distinctio aut perferendis, id ratione natus amet optio. Voluptates magni, magnam facilis quae dolor adipisci dolorem vitae placeat ipsum est beatae eius ullam vero. Alias ut quod sint quo aspernatur, quia asperiores corporis voluptas eius saepe accusamus quaerat sed est eum nulla obcaecati possimus, amet voluptatibus cum blanditiis.",
+                        btnText: "View Project",
+                        btnLink: "#",
+                        category: "Full Stack",
+                    },
+                    {
+                        heading: "02. Devfolio Clone",
+                        subtitle: "Portfolio Generator for Developers",
+                        imgUrl: [
+                            "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+                            "/placholder.png",
+                        ],
+                        description:
+                            "A customizable portfolio generator built with Next.js and Tailwind CSS, aimed at helping developers showcase their work online.",
+                        btnText: "GitHub Repo",
+                        btnLink: "#",
+                        category: "Frontend",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+        },
         {
             type: "services",
             data: {
-                title: "Services I offer",
-                subtitle: "View My services",
+                title: "Services We offer",
+                subtitle: "View Our services",
                 services: [
                     {
                         icon: "Cloud",

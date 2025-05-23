@@ -9,6 +9,7 @@ import { PF_NAVBAR_SECTION } from "../types/navbarSection";
 import { PF_TESTIMONIAL_SECTION } from "../types/testimonials.types";
 import { PF_FOOTER_SECTION } from "../types/footer.types";
 import { PF_TEAM_MEMBER_SECTION } from "../types/teamMember.types";
+import { PF_CATALOG_SECTION } from "../types/serviceCatalog.types";
 
 export type PF_SECTION_BLOCK =
   | { type: "hero"; data: PF_HERO_SECTION; isFixed: true; isEditable: true }
@@ -40,6 +41,12 @@ export type PF_SECTION_BLOCK =
   | {
       type: "services";
       data: PF_SERVICE_SECTION;
+      isFixed: false;
+      isEditable: true;
+    }
+  | {
+      type: "service-catalog";
+      data: PF_CATALOG_SECTION;
       isFixed: false;
       isEditable: true;
     }

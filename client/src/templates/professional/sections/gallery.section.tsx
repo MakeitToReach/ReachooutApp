@@ -8,9 +8,11 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import { AnimatePresence, motion as m } from "motion/react";
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 import Autoplay from "embla-carousel-autoplay";
 import { PF_GALLERY_SECTION } from "../types/gallerySection";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export const PFGallerySection = ({ gallery }: PF_GALLERY_SECTION) => {
     return (
@@ -39,13 +41,9 @@ const CatalogCarousel = ({ gallery }: PF_GALLERY_SECTION) => {
         >
             <CarouselContent className="">
                 {gallery.map((_, idx) => (
-                    <>
-                        <CarouselItem key={idx} className="flex justify-center">
-                            <CatalogImages
-                                imgs={gallery[idx].items.map((item) => item.img)}
-                            />
-                        </CarouselItem>
-                    </>
+                    <CarouselItem key={idx} className="flex justify-center">
+                        <CatalogImages imgs={gallery[idx].items.map((item) => item.img)} />
+                    </CarouselItem>
                 ))}
             </CarouselContent>
             <CarouselPrevious />
@@ -54,10 +52,17 @@ const CatalogCarousel = ({ gallery }: PF_GALLERY_SECTION) => {
     );
 };
 
-export const CatalogImages = ({ imgs }: { imgs: string[] | string }) => {
+export const CatalogImages = ({ imgs }: { imgs: string[] }) => {
     const [currIdx, setCurrIdx] = useState(0);
-    if (typeof imgs === "string") imgs = [imgs];
     const totalLength = imgs.length;
+
+    const handleNext = () => {
+        setCurrIdx((prev) => (prev + 1) % totalLength);
+    };
+
+    const handlePrev = () => {
+        setCurrIdx((prev) => (prev - 1 + totalLength) % totalLength);
+    };
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -82,24 +87,36 @@ export const CatalogImages = ({ imgs }: { imgs: string[] | string }) => {
             </AnimatePresence>
             <div className="text-black flex flex-col items-center my-4">
                 <div className="flex gap-2">
-                    {totalLength > 1 && (
-                        <>
-                            {Array.from({ length: totalLength }, (_, index) => (
-                                <div
-                                    key={index}
-                                    role="button"
-                                    onClick={() => setCurrIdx(index)}
-                                    className={cn(
-                                        "size-4 rounded-full transition-all cursor-pointer hover:scale-105",
-                                        {
-                                            "bg-black": index === currIdx,
-                                            "bg-gray-300": index !== currIdx,
-                                        },
-                                    )}
-                                />
-                            ))}
-                        </>
-                    )}
+                    <Button
+                        onClick={handlePrev}
+                        className="bg-template-btn text-template-text-btn"
+                    >
+                        <ChevronLeft/>
+                    </Button>
+                    <Button
+                        onClick={handleNext}
+                        className="bg-template-btn text-template-text-btn"
+                    >
+                        <ChevronRight/>
+                    </Button>
+                    {/* {totalLength > 1 && ( */}
+                    {/*     <> */}
+                    {/*         {Array.from({ length: totalLength }, (_, index) => ( */}
+                    {/*             <div */}
+                    {/*                 key={index} */}
+                    {/*                 role="button" */}
+                    {/*                 onClick={() => setCurrIdx(index)} */}
+                    {/*                 className={cn( */}
+                    {/*                     "size-4 rounded-full transition-all cursor-pointer hover:scale-105", */}
+                    {/*                     { */}
+                    {/*                         "bg-black": index === currIdx, */}
+                    {/*                         "bg-gray-300": index !== currIdx, */}
+                    {/*                     }, */}
+                    {/*                 )} */}
+                    {/*             /> */}
+                    {/*         ))} */}
+                    {/*     </> */}
+                    {/* )} */}
                 </div>
             </div>
         </div>

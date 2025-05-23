@@ -65,10 +65,8 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                     {
                         heading: "01. Reachoout",
                         subtitle: "B2B Networking Platform",
-                        imgUrl: [
+                        imgUrl:
                             "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
-                            "/placeholder.png",
-                        ],
 
                         description:
                             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque debitis modi molestias officiis? Magnam explicabo sunt quaerat reprehenderit distinctio fugit hic velit, debitis unde adipisci et aspernatur non ratione facere? Blanditiis obcaecati, sapiente quas harum ad recusandae facilis natus aperiam expedita, dignissimos, vitae doloribus voluptatem saepe maxime delectus mollitia accusamus! Ex cum distinctio aut perferendis, id ratione natus amet optio. Voluptates magni, magnam facilis quae dolor adipisci dolorem vitae placeat ipsum est beatae eius ullam vero. Alias ut quod sint quo aspernatur, quia asperiores corporis voluptas eius saepe accusamus quaerat sed est eum nulla obcaecati possimus, amet voluptatibus cum blanditiis.",
@@ -260,6 +258,41 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                         name: "Jane",
                         body: "I'm at a loss for words. This is amazing. I love it.",
                         img: "https://avatar.vercel.sh/jane",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+        },
+        {
+            type: "service-catalog",
+            data: {
+                projects: [
+                    {
+                        heading: "01. Reachoout",
+                        subtitle: "B2B Networking Platform",
+                        imgUrl: [
+                            "https://avatar.vercel.sh/jane",
+                            "https://avatar.vercel.sh/jack",
+                        ],
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque debitis modi molestias officiis? Magnam explicabo sunt quaerat reprehenderit distinctio fugit hic velit, debitis unde adipisci et aspernatur non ratione facere? Blanditiis obcaecati, sapiente quas harum ad recusandae facilis natus aperiam expedita, dignissimos, vitae doloribus voluptatem saepe maxime delectus mollitia accusamus! Ex cum distinctio aut perferendis, id ratione natus amet optio. Voluptates magni, magnam facilis quae dolor adipisci dolorem vitae placeat ipsum est beatae eius ullam vero. Alias ut quod sint quo aspernatur, quia asperiores corporis voluptas eius saepe accusamus quaerat sed est eum nulla obcaecati possimus, amet voluptatibus cum blanditiis.",
+                        btnText: "View Project",
+                        btnLink: "#",
+                        category: "Full Stack",
+                    },
+                    {
+                        heading: "02. Devfolio Clone",
+                        subtitle: "Portfolio Generator for Developers",
+                        imgUrl: [
+                            "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+                            "https://avatar.vercel.sh/jill",
+                        ],
+                        description:
+                            "A customizable portfolio generator built with Next.js and Tailwind CSS, aimed at helping developers showcase their work online.",
+                        btnText: "GitHub Repo",
+                        btnLink: "#",
+                        category: "Frontend",
                     },
                 ],
             },

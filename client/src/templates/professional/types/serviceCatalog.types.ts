@@ -1,7 +1,7 @@
-export type PF_PROJECT = {
+export type PF_CATALOG = {
     heading: string;
     // subtitle: string;
-    imgUrl?: string;
+    imgUrl?: string[];
     vidUrl?: string;
     description: string;
     btnText: string;
@@ -9,6 +9,6 @@ export type PF_PROJECT = {
     category: string;
 };
 
-export type PF_WORK_SECTION = {
-    projects: PF_PROJECT[];
+export type PF_CATALOG_SECTION = {
+    projects: PF_CATALOG[];
 };

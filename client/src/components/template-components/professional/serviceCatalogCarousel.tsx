@@ -9,20 +9,21 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
-import { PF_PROJECT } from "@/templates/professional/types/project";
 import Link from "next/link";
 import Autoplay from "embla-carousel-autoplay";
-import { CldImage } from "next-cloudinary";
+// import { CldImage } from "next-cloudinary";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { getTrimmedTextWithToggle } from "@/lib/utils";
 import { ReadMorePopup } from "@/components/editor-components/popups/readMorePopup";
+import { PF_CATALOG } from "@/templates/professional/types/serviceCatalog.types";
+import { CatalogImages } from "@/templates/professional/sections";
 
-interface PFWorkCarouselProps {
-    Projects: PF_PROJECT[];
+interface PFCatalogCarouselProps {
+    Projects: PF_CATALOG[];
 }
 
-export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
+export function PFCatalogCarousel({ Projects }: PFCatalogCarouselProps) {
     const [selectedCategory, setSelectedCategory] = React.useState<string | null>(
         null,
     );
@@ -72,13 +73,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                         return (
                             <CarouselItem key={idx}>
                                 <div className="flex flex-col md:flex-row lg:flex-row-reverse mt-10">
-                                    <CldImage
-                                        src={project.imgUrl!}
-                                        alt="project-img"
-                                        className="md:h-[500px] md:w-[700px] h-[300px] w-full rounded-md object-cover"
-                                        width={700}
-                                        height={500}
-                                    />
+                                    <CatalogImages key={idx} imgs={project.imgUrl!} />
 
                                     {/* text content */}
                                     <div className="flex flex-col gap-4 self-center md:w-[60%]">
