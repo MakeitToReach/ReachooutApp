@@ -80,7 +80,7 @@ export const EditProjectPopup = ({
                             handleChange("imgUrl", result.info.url);
                         }}
                     >
-                        <ImageSelectButton selectedImgUrl={formData.imgUrl!} />
+                        <ImageSelectButton selectedImgUrl={formData.imgUrl![0]} />
                     </CldUploadButton>
                 </div>
 

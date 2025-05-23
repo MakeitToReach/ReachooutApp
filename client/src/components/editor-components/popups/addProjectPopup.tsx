@@ -104,7 +104,7 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
                                 setProject({ ...project, imgUrl: result.info.url });
                             }}
                         >
-                            <ImageSelectButton selectedImgUrl={project.imgUrl!} />
+                            <ImageSelectButton selectedImgUrl={project.imgUrl![0]} />
                         </CldUploadButton>
                     </div>
                 </div>
