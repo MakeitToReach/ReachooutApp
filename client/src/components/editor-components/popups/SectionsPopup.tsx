@@ -101,8 +101,8 @@ export const ReorderSectionsPopup = ({
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="z-[100] font-Poppins max-h-[90vh]">
-        <ScrollArea className="h-[70vh] overflow-scroll">
+      <DialogContent className="z-[100] font-Poppins max-h-[95vh]">
+        <ScrollArea className="h-[80vh]">
           <DialogHeader>
             <DialogTitle>Reorder Sections</DialogTitle>
             <DialogDescription>
