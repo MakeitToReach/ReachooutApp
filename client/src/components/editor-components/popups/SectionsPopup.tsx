@@ -102,7 +102,7 @@ export const ReorderSectionsPopup = ({
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="z-[100] font-Poppins max-h-[90vh]">
-        <ScrollArea className="h-full overflow-scroll">
+        <ScrollArea className="h-[70vh] overflow-scroll">
           <DialogHeader>
             <DialogTitle>Reorder Sections</DialogTitle>
             <DialogDescription>
@@ -124,7 +124,7 @@ export const ReorderSectionsPopup = ({
             </SortableContext>
           </DndContext>
 
-          <div className="flex justify-end gap-2 mt-6">
+          <div className="flex justify-start gap-2 mt-6">
             <Button onClick={handleSave} className="cursor-pointer">
               Save
             </Button>
