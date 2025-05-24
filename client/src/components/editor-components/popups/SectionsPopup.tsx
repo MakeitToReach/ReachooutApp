@@ -28,6 +28,7 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { cn } from "@/lib/utils";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { toast } from "sonner";
 
 interface ReorderSectionsDialogProps {
   children: React.ReactNode;
@@ -94,6 +95,7 @@ export const ReorderSectionsPopup = ({
     });
 
     onReorder(finalOrder);
+    toast.success("Sections reordered successfully");
   };
 
   return (
@@ -123,7 +125,6 @@ export const ReorderSectionsPopup = ({
           </DndContext>
 
           <div className="flex justify-end gap-2 mt-6">
-            <Button variant="ghost">Cancel</Button>
             <Button onClick={handleSave} className="cursor-pointer">
               Save
             </Button>

@@ -1,5 +1,4 @@
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
-import { PF_ABOUT_SECTION } from "../types/aboutSection";
 import { PF_CLIENT_SECTION } from "../types/clientSection";
 import { PF_GALLERY_SECTION } from "../types/gallerySection";
 import { PF_HERO_SECTION } from "../types/heroSection";
@@ -8,6 +7,7 @@ import { PF_WORK_SECTION } from "../types/workSection";
 import { PF_NAVBAR_SECTION } from "../types/navbarSection";
 import { PF_TESTIMONIAL_SECTION } from "../types/testimonials.types";
 import { PF_FOOTER_SECTION } from "../types/footer.types";
+import { PF_ABOUT_SECTION } from "../types/about.types";
 import { PF_TEAM_MEMBER_SECTION } from "../types/teamMember.types";
 import { PF_CATALOG_SECTION } from "../types/serviceCatalog.types";
 

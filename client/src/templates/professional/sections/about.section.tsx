@@ -1,4 +1,4 @@
-import { PF_ABOUT_SECTION } from "../types/aboutSection";
+import { PF_ABOUT_SECTION } from "../types/about.types";
 import { motion as m } from "motion/react";
 import { NumberTicker } from "@/components/magicui/number-ticker";
 import { ReadMorePopup } from "@/components/editor-components/popups/readMorePopup";
@@ -44,7 +44,7 @@ export const PFAboutSection = ({
                         {/*     {formatCompactNumber(stats[0].value)} */}
                         {/* </h1> */}
                         <NumberTicker
-                            value={stats[0].value}
+                            value={stats[0].value || 0}
                             className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
                         />
                         <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-template-text-accent-secondary">
@@ -53,7 +53,7 @@ export const PFAboutSection = ({
                     </div>
                     <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary h-48 p-6">
                         <NumberTicker
-                            value={stats[1].value}
+                            value={stats[1].value || 0}
                             className="font-bold text-5xl lg:text-7xl text-template-text-accent-primary"
                         />
                         <h2 className="text-template-text-accent-primary mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
@@ -62,7 +62,7 @@ export const PFAboutSection = ({
                     </div>
                     <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary h-48 p-6">
                         <NumberTicker
-                            value={stats[2].value}
+                            value={stats[2].value || 0}
                             className="font-bold text-5xl lg:text-7xl text-template-text-accent-primary"
                         />
                         <h2 className="text-template-text-accent-primary mt-2 text-xl w-full text-center">
@@ -71,7 +71,7 @@ export const PFAboutSection = ({
                     </div>
                     <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary h-48 p-6 truncate">
                         <NumberTicker
-                            value={stats[3].value}
+                            value={stats[3].value || 0}
                             className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
                         />
                         <h2 className="text-template-text-accent-secondary mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
