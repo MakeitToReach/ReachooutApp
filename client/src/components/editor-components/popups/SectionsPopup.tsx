@@ -7,7 +7,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { GripVertical, LucideEdit } from "lucide-react";
+import {
+  GripVertical,
+  LucideEdit,
+  LucideEye,
+  LucideEyeOff,
+} from "lucide-react";
 
 import {
   DndContext,
@@ -32,9 +37,10 @@ import { toast } from "sonner";
 
 interface ReorderSectionsDialogProps {
   children: React.ReactNode;
-  sections: { id: string; name: string; isFixed: boolean }[];
+  sections: { id: string; name: string; isFixed: boolean; isHidden: boolean }[];
   onReorder: (newOrder: string[]) => void;
   onEdit: (tabIdx: number) => void;
+  onHide: (sectionType: string) => void;
 }
 
 export const ReorderSectionsPopup = ({
@@ -42,6 +48,7 @@ export const ReorderSectionsPopup = ({
   sections,
   onReorder,
   onEdit,
+  onHide,
 }: ReorderSectionsDialogProps) => {
   const reorderableIds = sections.filter((s) => !s.isFixed).map((s) => s.id);
   const [order, setOrder] = useState(reorderableIds);
@@ -80,8 +87,10 @@ export const ReorderSectionsPopup = ({
             key={reorderedSection!.id}
             id={reorderedSection!.id}
             name={reorderedSection!.name}
+            isHidden={reorderedSection!.isHidden}
             tabIdx={sections.findIndex((s) => s.id === reorderedSection!.id)}
             onEdit={onEdit}
+            toggleHideSection={onHide}
           />
         );
       }
@@ -140,11 +149,15 @@ const SortableSectionItem = ({
   name,
   tabIdx,
   onEdit,
+  toggleHideSection,
+  isHidden,
 }: {
   id: string;
   name: string;
   tabIdx: number;
   onEdit: (tabIdx: number) => void;
+  toggleHideSection: (sectionType: string) => void;
+  isHidden: boolean;
 }) => {
   const {
     attributes,
@@ -179,12 +192,25 @@ const SortableSectionItem = ({
         </span>
         <span className="font-medium">{name}</span>
       </div>
-      <Button onClick={() => onEdit(tabIdx)} variant={"outline"}>
-        Edit{" "}
-        <span>
-          <LucideEdit />
-        </span>
-      </Button>
+      <div className="flex items-center gap-2">
+        <Button onClick={() => toggleHideSection(name)} variant={"ghost"}>
+          {isHidden ? (
+            <span >
+              <LucideEyeOff />
+            </span>
+          ) : (
+            <span>
+              <LucideEye />
+            </span>
+          )}
+        </Button>
+        <Button onClick={() => onEdit(tabIdx)} variant={"outline"}>
+          Edit{" "}
+          <span>
+            <LucideEdit />
+          </span>
+        </Button>
+      </div>
     </div>
   );
 };

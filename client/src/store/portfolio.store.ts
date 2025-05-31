@@ -1,7 +1,7 @@
 import {
-    GenericTemplateSchema,
-    SectionBlock,
-    ThemeObject,
+  GenericTemplateSchema,
+  SectionBlock,
+  ThemeObject,
 } from "@/schemas/templates.schema";
 import { create } from "zustand";
 import _set from "lodash/set";
@@ -10,72 +10,89 @@ import _cloneDeep from "lodash/cloneDeep";
 type TemplateSchema = GenericTemplateSchema;
 
 interface PortfolioState {
-    data: TemplateSchema | null;
-    currentEditingSection: string | null;
-    setCurrentEditingSection: (id: string | null) => void;
+  data: TemplateSchema | null;
+  currentEditingSection: string | null;
+  setCurrentEditingSection: (id: string | null) => void;
+  resetData: (newData: TemplateSchema | null) => void;
+  setSectionField: (
+    sectionType: string,
+    fieldPath: string,
+    value: any, //eslint-disable-line
+  ) => void;
 
-    resetData: (newData: TemplateSchema | null) => void;
-    setSectionField: (
-        sectionType: string,
-        fieldPath: string,
-        value: any, //eslint-disable-line
-    ) => void;
+  toggleHideSection: (sectionType: string) => void;
 
-    reorderSections: (newOrder: string[]) => void;
+  reorderSections: (newOrder: string[]) => void;
 
-    setThemeObject: (themeObject: ThemeObject) => void;
+  setThemeObject: (themeObject: ThemeObject) => void;
 }
 
 export const usePortfolioStore = create<PortfolioState>((set) => ({
-    data: null,
-    currentEditingSection: null,
-    setCurrentEditingSection: (id) => set({ currentEditingSection: id }),
-    resetData: (newData) => set({ data: newData }),
+  data: null,
+  currentEditingSection: null,
+  setCurrentEditingSection: (id) => set({ currentEditingSection: id }),
+  resetData: (newData) => set({ data: newData }),
+  toggleHideSection: (sectionType) => {
+    set((state) => {
+      if (!state.data) return {};
 
-    setSectionField: (sectionType, fieldPath, value) => {
-        set((state) => {
-            if (!state.data) return {};
+      const newData = _cloneDeep(state.data);
+      const section = newData.sections.find(
+        (s: SectionBlock) => s.type === sectionType,
+      );
 
-            const newData = _cloneDeep(state.data);
-            const section = newData.sections.find(
-                (s: SectionBlock) => s.type === sectionType,
-            );
+      if (!section) return {};
 
-            if (!section || !section.data) return {};
+      section.isHidden = !section.isHidden;
 
-            _set(section.data, fieldPath, value);
+      return { data: newData };
+    });
+  },
 
-            return { data: newData };
-        });
-    },
+  setSectionField: (sectionType, fieldPath, value) => {
+    set((state) => {
+      if (!state.data) return {};
 
-    reorderSections: (newOrder) => {
-        set((state) => {
-            if (!state.data) return {};
+      const newData = _cloneDeep(state.data);
+      const section = newData.sections.find(
+        (s: SectionBlock) => s.type === sectionType,
+      );
 
-            const newData = _cloneDeep(state.data);
+      if (!section || !section.data) return {};
 
-            const sectionsByType = Object.fromEntries(
-                newData.sections.map((section) => [section.type, section]),
-            );
+      _set(section.data, fieldPath, value);
 
-            const reorderedSections = newOrder
-                .map((type) => sectionsByType[type])
-                .filter(Boolean); // removes any undefined sections
+      return { data: newData };
+    });
+  },
 
-            newData.sections = reorderedSections;
+  reorderSections: (newOrder) => {
+    set((state) => {
+      if (!state.data) return {};
 
-            return { data: newData };
-        });
-    },
+      const newData = _cloneDeep(state.data);
 
-    setThemeObject: (newTheme: ThemeObject) => {
-        set((state) => {
-            if (!state.data) return {};
+      const sectionsByType = Object.fromEntries(
+        newData.sections.map((section) => [section.type, section]),
+      );
 
-            const newData = _cloneDeep(state.data);
-            newData.theme = newTheme;
-            return { data: newData };
-        });
-    },
+      const reorderedSections = newOrder
+        .map((type) => sectionsByType[type])
+        .filter(Boolean); // removes any undefined sections
+
+      newData.sections = reorderedSections;
+
+      return { data: newData };
+    });
+  },
+
+  setThemeObject: (newTheme: ThemeObject) => {
+    set((state) => {
+      if (!state.data) return {};
+
+      const newData = _cloneDeep(state.data);
+      newData.theme = newTheme;
+      return { data: newData };
+    });
+  },
 }));

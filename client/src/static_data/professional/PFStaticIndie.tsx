@@ -26,6 +26,7 @@ export const PF_STATIC_INDIE_DATA: GenericTemplateSchema = {
       },
       isFixed: true,
       isEditable: true,
+      isHidden: false,
     },
     {
       type: "hero",
@@ -39,6 +40,7 @@ export const PF_STATIC_INDIE_DATA: GenericTemplateSchema = {
       },
       isFixed: false,
       isEditable: true,
+      isHidden: false,
     },
     {
       type: "about",
@@ -56,6 +58,7 @@ export const PF_STATIC_INDIE_DATA: GenericTemplateSchema = {
       },
       isFixed: false,
       isEditable: true,
+      isHidden: false,
     },
     {
       type: "projects",
@@ -98,6 +101,7 @@ export const PF_STATIC_INDIE_DATA: GenericTemplateSchema = {
       },
       isFixed: false,
       isEditable: true,
+      isHidden: false,
     },
 
     // {
@@ -166,6 +170,7 @@ export const PF_STATIC_INDIE_DATA: GenericTemplateSchema = {
       },
       isFixed: false,
       isEditable: true,
+      isHidden: false,
     },
     {
       type: "services",
@@ -195,6 +200,7 @@ export const PF_STATIC_INDIE_DATA: GenericTemplateSchema = {
       },
       isFixed: false,
       isEditable: true,
+      isHidden: false,
     },
     {
       type: "gallery",
@@ -232,6 +238,7 @@ export const PF_STATIC_INDIE_DATA: GenericTemplateSchema = {
       },
       isFixed: false,
       isEditable: true,
+      isHidden: false,
     },
     {
       type: "testimonials",
@@ -262,6 +269,7 @@ export const PF_STATIC_INDIE_DATA: GenericTemplateSchema = {
       },
       isFixed: false,
       isEditable: true,
+      isHidden: false,
     },
 
     {
@@ -278,6 +286,7 @@ export const PF_STATIC_INDIE_DATA: GenericTemplateSchema = {
       },
       isFixed: false,
       isEditable: true,
+      isHidden: false,
     },
     {
       type: "footer",
@@ -312,6 +321,7 @@ export const PF_STATIC_INDIE_DATA: GenericTemplateSchema = {
       },
       isFixed: true,
       isEditable: true,
+      isHidden: false,
     },
   ],
 };

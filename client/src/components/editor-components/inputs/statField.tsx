@@ -1,5 +1,5 @@
 import { Label } from "@/components/ui/label";
-import { PF_STAT } from "@/templates/professional/types/stat";
+import { PF_STAT } from "@/templates/professional/types/about.types";
 
 interface StatsFieldProps {
   value: PF_STAT[];
