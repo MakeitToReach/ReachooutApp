@@ -12,8 +12,8 @@ export const PasswordInput: React.FC<InputHTMLAttributes<HTMLInputElement>> = (
     const toggleVisibility = () => setIsVisible((prevState) => !prevState);
 
     return (
-        <div className="space-y-2 font-Montserrat">
-            <Label htmlFor="input-23" className="text-lg">
+        <div className="space-y-2 font-Montserrat ">
+            <Label htmlFor="input-23" className="text-lg text-foreground">
                 Password
             </Label>
             <div className="relative">

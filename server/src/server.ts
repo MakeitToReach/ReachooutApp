@@ -4,7 +4,7 @@ import authRouter from "./routes/auth.routes";
 import templateRouter from "./routes/template.routes";
 import morgan from "morgan";
 import { CLIENT_URL, DEV_URL } from "./config/dotenv";
-
+import adminRouter from "./routes/admin.routes";
 
 const app = express();
 
@@ -25,6 +25,7 @@ app.use(cors({
 
 app.use("/v1/auth", authRouter);
 app.use("/v1/template", templateRouter);
+app.use("/v1/admin", adminRouter);
 
 // Get all users
 // app.get("/users", async (req, res) => {
