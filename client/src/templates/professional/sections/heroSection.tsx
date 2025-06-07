@@ -14,6 +14,7 @@ export const PFHeroSection = ({
     btnText,
     heroImgUrl,
     heroVidUrl,
+    description,
 }: PF_HERO_SECTION) => {
     const getYouTubeVideoId = (url: string | undefined) => {
         if (!url) return null;
@@ -49,10 +50,17 @@ export const PFHeroSection = ({
                         <h1 className="text-4xl md:text-6xl font-bold text-template-text-primary">
                             {title}
                         </h1>
-                        <FlipText
-                            texts={professions}
-                            className="text-4xl md:text-5xl font-bold text-template-text-accent-tertiary"
-                        />
+                        {professions && (
+                            <FlipText
+                                texts={professions}
+                                className="text-4xl md:text-5xl font-bold text-template-text-accent-tertiary"
+                            />
+                        )}
+                        {description && (
+                            <p className="text-template-text-primary leading-relaxed my-4 whitespace-pre-line">
+                                {description}
+                            </p>
+                        )}
                     </div>
                     <Link href={btnLink}>
                         <Button className="p-6 text-md rounded-sm bg-template-btn">

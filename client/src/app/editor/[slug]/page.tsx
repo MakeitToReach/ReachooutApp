@@ -48,7 +48,7 @@ const EditorPage = () => {
     <div className="relative w-full flex overflow-x-hidden">
       {/* Animate Sidebar */}
 
-      <div className={cn("hidden md:block", editorOpen ? "w-[30%]" : "w-0")} />
+      <div className={cn("hidden md:block", editorOpen ? "w-[25%]" : "w-0")} />
       <AnimatePresence>
         {editorOpen && (
           <motion.div
@@ -83,7 +83,7 @@ const EditorPage = () => {
         layout
         transition={{ type: "spring", duration: 0.5 }}
         className="md:block flex-grow"
-        style={{ width: editorOpen ? "70%" : "100%" }}
+        style={{ width: editorOpen ? "80%" : "100%" }}
       >
         <LivePreview
           templateComponent={template.component}

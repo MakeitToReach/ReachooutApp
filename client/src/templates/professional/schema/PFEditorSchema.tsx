@@ -24,6 +24,12 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "title",
         },
         {
+            label: "Description",
+            type: "textarea",
+            fieldPath: "description",
+        },
+
+        {
             label: "Animated Texts",
             type: "text",
             fieldPath: "professions",
