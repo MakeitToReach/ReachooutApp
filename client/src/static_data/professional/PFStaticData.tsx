@@ -33,7 +33,8 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             type: "hero",
             data: {
                 title: "Hi, I'm Omkar B",
-                description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, sunt veritatis. Itaque ullam maiores ut quod alias sint excepturi molestiae.",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, sunt veritatis. Itaque ullam maiores ut quod alias sint excepturi molestiae.",
                 professions: ["Web Developer", "UI/UX Designer", "CRM Consultant"],
                 btnText: "Visit My Website",
                 btnLink: "#",

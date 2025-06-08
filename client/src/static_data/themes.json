@@ -1,0 +1,121 @@
+[
+    {
+        "name": "Default",
+        "theme": {
+            "--template-font": "'Poppins', sans-serif",
+            "--template-primary": "#fffffc",
+            "--template-secondary": "#1e3a8a",
+            "--template-accent-primary": "#d6eef8",
+            "--template-accent-secondary": "#fbe8d3",
+            "--template-btn": "#111111",
+            "--template-text-primary": "#111111",
+            "--template-text-secondary": "#fffffc",
+            "--template-text-accent-primary": "#111111",
+            "--template-text-accent-secondary": "#111111",
+            "--template-text-accent-tertiary": "#4ade80",
+            "--template-text-btn": "#fffffc"
+        }
+    },
+    {
+        "name": "Midnight Drive",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#1e1e2f",
+            "--template-secondary": "#10b981",
+            "--template-accent-primary": "#2dd4bf",
+            "--template-accent-secondary": "#fcd34d",
+            "--template-btn": "#10b981",
+            "--template-text-primary": "#ffffff",
+            "--template-text-secondary": "#cbd5e1",
+            "--template-text-accent-primary": "#ffffff",
+            "--template-text-accent-secondary": "#ffffff",
+            "--template-text-accent-tertiary": "#4ade80",
+            "--template-text-btn": "#1e1e2f"
+        }
+    },
+    {
+        "name": "Coastal Breeze",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#ffffff",
+            "--template-secondary": "#0f172a",
+            "--template-accent-primary": "#a5f3fc",
+            "--template-accent-secondary": "#e0f2fe",
+            "--template-btn": "#0f172a",
+            "--template-text-primary": "#0f172a",
+            "--template-text-secondary": "#ffffff",
+            "--template-text-accent-primary": "#0f172a",
+            "--template-text-accent-secondary": "#0f172a",
+            "--template-text-accent-tertiary": "#06b6d4",
+            "--template-text-btn": "#ffffff"
+        }
+    },
+    {
+        "name": "Earthy Modern",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#fdfcfb",
+            "--template-secondary": "#78350f",
+            "--template-accent-primary": "#fde68a",
+            "--template-accent-secondary": "#fef3c7",
+            "--template-btn": "#78350f",
+            "--template-text-primary": "#1f2937",
+            "--template-text-secondary": "#fdfcfb",
+            "--template-text-accent-primary": "#78350f",
+            "--template-text-accent-secondary": "#92400e",
+            "--template-text-accent-tertiary": "#d97706",
+            "--template-text-btn": "#fff7ed"
+        }
+    },
+    {
+        "name": "Sakura Blossom",
+        "theme": {
+            "--template-font": "'Poppins', sans-serif",
+            "--template-primary": "#fff1f2",
+            "--template-secondary": "#be123c",
+            "--template-accent-primary": "#f9a8d4",
+            "--template-accent-secondary": "#fce7f3",
+            "--template-btn": "#be123c",
+            "--template-text-primary": "#111827",
+            "--template-text-secondary": "#fff1f2",
+            "--template-text-accent-primary": "#be123c",
+            "--template-text-accent-secondary": "#db2777",
+            "--template-text-accent-tertiary": "#f43f5e",
+            "--template-text-btn": "#fff1f2"
+        }
+    },
+    {
+        "name": "Artic Chill",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#f8fafc",
+            "--template-secondary": "#0284c7",
+            "--template-accent-primary": "#7dd3fc",
+            "--template-accent-secondary": "#e0f2fe",
+            "--template-btn": "#0284c7",
+            "--template-text-primary": "#0f172a",
+            "--template-text-secondary": "#f8fafc",
+            "--template-text-accent-primary": "#0284c7",
+            "--template-text-accent-secondary": "#0ea5e9",
+            "--template-text-accent-tertiary": "#38bdf8",
+            "--template-text-btn": "#f8fafc"
+        }
+    },
+    {
+        "name": "Techno Grape",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#0f172a",
+            "--template-secondary": "#9333ea",
+            "--template-accent-primary": "#c084fc",
+            "--template-accent-secondary": "#ede9fe",
+            "--template-btn": "#9333ea",
+            "--template-text-primary": "#ffffff",
+            "--template-text-secondary": "#e0e7ff",
+            "--template-text-accent-primary": "#ede9fe",
+            "--template-text-accent-secondary": "#a855f7",
+            "--template-text-accent-tertiary": "#8b5cf6",
+            "--template-text-btn": "#ffffff"
+        }
+    }
+]

@@ -39,7 +39,7 @@ templateRouter.get(
     },
 );
 
-templateRouter.get("/all", isAuthenticated, (req: Request, res: Response) => {
+templateRouter.get("/all", (req: Request, res: Response) => {
     getAllTemplates(req, res);
 });
 

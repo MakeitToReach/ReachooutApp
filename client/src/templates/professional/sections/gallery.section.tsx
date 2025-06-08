@@ -20,7 +20,7 @@ export const PFGallerySection = ({ gallery }: PF_GALLERY_SECTION) => {
             id="gallery"
             className="max-w-6xl mx-auto text-center overflow-hidden"
         >
-            <h1 className="text-4xl font-semibold md:text-6xl">Gallery</h1>
+            <h1 className="text-4xl font-semibold text-template-text-primary md:text-6xl">Gallery</h1>
             <div className="flex px-4 mt-10 items-center justify-center">
                 <CatalogCarousel gallery={gallery} />
             </div>

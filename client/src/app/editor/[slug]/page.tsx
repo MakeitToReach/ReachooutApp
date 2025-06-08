@@ -11,87 +11,89 @@ import { LucideSidebarOpen } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 
 const EditorPage = () => {
-  const { slug } = useParams();
-  const searchParams = useSearchParams();
-  const [editorOpen, setEditorOpen] = useState(true);
+    const { slug } = useParams();
+    const searchParams = useSearchParams();
+    const [editorOpen, setEditorOpen] = useState(true);
 
-  const isNew = searchParams.has("new");
-  const isEditing = searchParams.has("edit");
-  const type = searchParams.get("type");
+    const isNew = searchParams.has("new");
+    const isEditing = searchParams.has("edit");
+    // const type = searchParams.get("type");
+    // using the type/category parameter, search the backend for the corresponding static data 
 
-  const { resetData, data } = usePortfolioStore();
+    const { resetData, data } = usePortfolioStore();
 
-  const templateKey = slug as keyof typeof TEMPLATE_REGISTRY;
-  const template = TEMPLATE_REGISTRY[templateKey];
+    const templateKey = slug as keyof typeof TEMPLATE_REGISTRY;
+    const template = TEMPLATE_REGISTRY[templateKey];
 
-  useEffect(() => {
-    if (template && isNew) {
-      if (type === "individual") {
-        resetData(template.individualData);
-      } else if (type === "organization") {
-        resetData(template.organizationData);
-      }
-    }
+    useEffect(() => {
+        if (template && isNew) {
+            resetData(template.data);
+            // if (type === "individual") {
+            //   resetData(template.individualData);
+            // } else if (type === "organization") {
+            //   resetData(template.organizationData);
+            // }
+        }
 
-    return () => {
-      if (isNew) {
-        resetData(null);
-      }
-    };
-  }, [slug, isNew, type]);
+        return () => {
+            if (isNew) {
+                resetData(null);
+            }
+        };
+    }, [slug, isNew]);
 
-  const toggleEditor = () => setEditorOpen((prev) => !prev);
+    const toggleEditor = () => setEditorOpen((prev) => !prev);
 
-  if (!template) return <p>Template not found</p>;
+    if (!template) return <p>Template not found</p>;
 
-  return (
-    <div className="relative w-full flex overflow-x-hidden">
-      {/* Animate Sidebar */}
+    return (
+        <div className="relative w-full flex overflow-x-hidden">
+            {/* Animate Sidebar */}
 
-      <div className={cn("hidden md:block", editorOpen ? "w-[25%]" : "w-0")} />
-      <AnimatePresence>
-        {editorOpen && (
-          <motion.div
-            key="sidebar"
-            initial={{ x: -300 }}
-            animate={{ x: 0 }}
-            exit={{ x: -700 }}
-            transition={{ type: "spring", duration: 0.5 }}
-            className="w-full md:w-[30%] fixed top-0 left-0 z-[50] border border-border bg-white"
-          >
-            <EditorPanel
-              toggleEditor={toggleEditor}
-              isEditing={isEditing}
-              templateSchema={template.editorSchema}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <div className={cn("hidden md:block", editorOpen ? "w-[25%]" : "w-0")} />
+            <AnimatePresence>
+                {editorOpen && (
+                    <motion.div
+                        key="sidebar"
+                        initial={{ x: -300 }}
+                        animate={{ x: 0 }}
+                        exit={{ x: -700 }}
+                        transition={{ type: "spring", duration: 0.5 }}
+                        className="w-full md:w-[30%] fixed top-0 left-0 z-[50] border border-border bg-white"
+                    >
+                        <EditorPanel
+                            toggleEditor={toggleEditor}
+                            isEditing={isEditing}
+                            templateSchema={template.editorSchema}
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
-      {!editorOpen && (
-        <Button
-          variant="outline"
-          className="fixed md:top-4 md:left-4 bottom-4 left-4 z-[100]"
-          onClick={toggleEditor}
-        >
-          <LucideSidebarOpen className="w-6 h-6" />
-        </Button>
-      )}
+            {!editorOpen && (
+                <Button
+                    variant="outline"
+                    className="fixed md:top-4 md:left-4 bottom-4 left-4 z-[100]"
+                    onClick={toggleEditor}
+                >
+                    <LucideSidebarOpen className="w-6 h-6" />
+                </Button>
+            )}
 
-      {/* Live Preview */}
-      <motion.div
-        layout
-        transition={{ type: "spring", duration: 0.5 }}
-        className="md:block flex-grow"
-        style={{ width: editorOpen ? "80%" : "100%" }}
-      >
-        <LivePreview
-          templateComponent={template.component}
-          theme={data?.theme}
-        />
-      </motion.div>
-    </div>
-  );
+            {/* Live Preview */}
+            <motion.div
+                layout
+                transition={{ type: "spring", duration: 0.5 }}
+                className="md:block flex-grow"
+                style={{ width: editorOpen ? "80%" : "100%" }}
+            >
+                <LivePreview
+                    templateComponent={template.component}
+                    theme={data?.theme}
+                />
+            </motion.div>
+        </div>
+    );
 };
 
 export default EditorPage;

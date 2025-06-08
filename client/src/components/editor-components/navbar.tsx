@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Button } from "../ui/button";
+// import { Button } from "../ui/button";
 import { logoutUser } from "@/api/auth";
 import { useUserStore } from "@/store/user.store";
 import { useRouter } from "next/navigation";
@@ -49,7 +49,6 @@ export const Navbar = () => {
                 <p>Pricing</p>
                 <p>FAQs</p>
                 <p>Templates</p>
-                <Button onClick={logoutAndRedirect}>Logout</Button>
             </div>
         </div>
     );

@@ -2,21 +2,21 @@
 
 import { fetchAllTemplates } from "@/api/explore";
 import ExploreTabs from "@/components/editor-components/exploreTabs";
-import { getToken } from "@/lib/isAuthenticated";
+// import { getToken } from "@/lib/isAuthenticated";
 import { useTemplateStore } from "@/store/template.store";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const ExplorePage = () => {
   const { templates, setTemplates } = useTemplateStore();
-  const router = useRouter();
+  // const router = useRouter();
 
   useEffect(() => {
-    const token = getToken();
-    if (!token) {
-      router.push("/");
-      return;
-    }
+    // const token = getToken();
+    // if (!token) {
+    //   router.push("/");
+    //   return;
+    // }
 
     if (templates.length === 0) {
       const fetchTemplates = async () => {

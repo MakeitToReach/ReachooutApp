@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Code2, ChevronRight, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { TEMPLATES_STATIC } from "@/static_data/templates";
@@ -85,23 +85,48 @@ function Home() {
 
                     <motion.div variants={fadeIn} className="flex gap-4">
                         {token ? (
-                            <Link href={"/explore"}>
-                                <Button className="dark scale-125">
-                                    Start Creating
-                                    <ChevronRight size={20} />
-                                </Button>
-                            </Link>
+                            <div className="flex gap-12">
+                                <Link href={"/user"}>
+                                    <motion.div
+                                        whileHover={{ scale: 1.05 }}
+                                        role="button"
+                                        className="cursor-pointer scale-125 flex items-center gap-2 bg-white text-black backdrop-blur-sm px-4 py-2 rounded-full  "
+                                    >
+                                        Get Started
+                                    </motion.div>
+                                </Link>
+                                <Link href={"/explore"}>
+                                    <motion.div
+                                        whileHover={{ scale: 1.05 }}
+                                        role="button"
+                                        className="cursor-pointer scale-125 flex items-center gap-2 bg-white text-black backdrop-blur-sm px-4 py-2 rounded-full  "
+                                    >
+                                        Explore Templates
+                                    </motion.div>
+                                </Link>
+                            </div>
                         ) : (
-                            <AuthPopup>
-                                <motion.div
-                                    whileHover={{ scale: 1.05 }}
-                                    role="button"
-                                    className="cursor-pointer scale-125 flex items-center gap-2 bg-white text-black backdrop-blur-sm px-4 py-2 rounded-full"
-                                >
-                                    Start Creating
-                                    <ChevronRight size={20} />
-                                </motion.div>
-                            </AuthPopup>
+                            <div className="flex gap-12">
+                                <AuthPopup>
+                                    <motion.div
+                                        whileHover={{ scale: 1.05 }}
+                                        role="button"
+                                        className="cursor-pointer scale-125 flex items-center gap-2 bg-white text-black backdrop-blur-sm px-4 py-2 rounded-full"
+                                    >
+                                        Get Started
+                                        <ChevronRight size={20} />
+                                    </motion.div>
+                                </AuthPopup>
+                                <Link href={"/explore"}>
+                                    <motion.div
+                                        whileHover={{ scale: 1.05 }}
+                                        role="button"
+                                        className="cursor-pointer scale-125 flex items-center gap-2 bg-white text-black backdrop-blur-sm px-4 py-2 rounded-full  "
+                                    >
+                                        Explore Templates
+                                    </motion.div>
+                                </Link>
+                            </div>
                         )}
                     </motion.div>
                 </motion.div>

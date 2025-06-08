@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { FONT_REGISTRY } from "@/lib/fontRegistry";
+import { ThemeSelectDropdown } from "../themeSelectDropdown";
 
 type ThemePickerDialogProps = {
     children: React.ReactNode;
@@ -113,11 +114,14 @@ export function ThemePickerDialog({
                         </SelectContent>
                     </Select>
                 </div>
+                <div className="py-2">
+                    <Label className="block mb-1">Theme Presets</Label>
+                    <ThemeSelectDropdown />
+                </div>
 
                 <div className="grid gap-2 py-4">
-                    {/* Column Headings */}
                     <div className="flex justify-between items-center font-semibold text-sm px-1">
-                        <div className="w-1/3">Color</div>
+                        <div className="w-1/3">Custom Color</div>
                         <div className="w-1/5 text-center">Background</div>
                         <div className="w-1/5 text-center">Text</div>
                     </div>
@@ -127,12 +131,10 @@ export function ThemePickerDialog({
                             key={label}
                             className="flex items-center justify-between gap-4 py-1"
                         >
-                            {/* Label */}
                             <Label className="w-1/3 text-sm font-medium text-muted-foreground">
                                 {label}
                             </Label>
 
-                            {/* Background Color */}
                             <div className="w-1/5">
                                 {backgroundKey ? (
                                     <div className="relative flex items-center">
@@ -147,11 +149,12 @@ export function ThemePickerDialog({
                                         />
                                     </div>
                                 ) : (
-                                    <p className="text-xs text-center text-muted-foreground">N/A</p>
+                                    <p className="text-xs text-center text-muted-foreground">
+                                        N/A
+                                    </p>
                                 )}
                             </div>
 
-                            {/* Text Color */}
                             <div className="w-1/5">
                                 {textKey && (
                                     <div className="relative flex items-center">
@@ -170,7 +173,7 @@ export function ThemePickerDialog({
                 </div>
 
                 <DialogFooter>
-                    <Button onClick={handleApply}>Apply Theme</Button>
+                    <Button onClick={handleApply}>Apply Custom Theme</Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
