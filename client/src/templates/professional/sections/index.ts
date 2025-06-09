@@ -10,4 +10,4 @@ export * from "./testimonials";
 export * from "./teamMember.section";
 export * from "./gallery.section";
 export * from "./about.section";
-
+export * from "./widgets.section";

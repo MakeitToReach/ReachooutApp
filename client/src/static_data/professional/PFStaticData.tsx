@@ -329,6 +329,16 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             isHidden: false,
         },
         {
+            type: "contact widgets",
+            data: {
+                whatsapp_url: "https://wa.me/1234567890",
+                telephone_number: "1234567890",
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
             type: "footer",
             data: {
                 logoText: "Omkar",

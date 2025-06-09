@@ -10,6 +10,8 @@ import { PF_FOOTER_SECTION } from "../types/footer.types";
 import { PF_ABOUT_SECTION } from "../types/about.types";
 import { PF_TEAM_MEMBER_SECTION } from "../types/teamMember.types";
 import { PF_CATALOG_SECTION } from "../types/serviceCatalog.types";
+import { PF_WIDGETS_SECTION } from "../types/widgets.types";
+
 
 export type PF_SECTION_BLOCK =
   | {
@@ -96,6 +98,14 @@ export type PF_SECTION_BLOCK =
       isEditable: true;
       isHidden: false;
     }
+  | {
+      type: "contact widgets";
+      data: PF_WIDGETS_SECTION;
+      isFixed: false;
+      isEditable: true;
+      isHidden: false;
+    }
+
   | {
       type: "footer";
       data: PF_FOOTER_SECTION;

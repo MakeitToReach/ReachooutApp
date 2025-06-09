@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import { PF_PROJECT } from "@/templates/professional/types/project";
-import Link from "next/link";
 import Autoplay from "embla-carousel-autoplay";
 import { CldImage } from "next-cloudinary";
 import { Badge } from "@/components/ui/badge";
@@ -105,11 +104,11 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                                                 </ReadMorePopup>
                                             )}
                                         </div>
-                                        <Link href={project.btnLink}>
+                                        <a href={project.btnLink} target="_blank" rel="noopener noreferrer">
                                             <Button className="text-template-text-btn bg-template-btn">
                                                 {project.btnText}
                                             </Button>
-                                        </Link>
+                                        </a>
                                     </div>
                                 </div>
                             </CarouselItem>

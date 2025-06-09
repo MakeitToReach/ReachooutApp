@@ -34,7 +34,7 @@ export const ReqInput: React.FC<ReqInputProps> = ({
                 className="font-Montserrat"
                 {...props}
             />
-            <p className="text-xs text-gray-700">{subtitle}</p>
+            {subtitle && <p className="text-xs text-gray-700">{subtitle}</p>}
         </div>
     );
 };
