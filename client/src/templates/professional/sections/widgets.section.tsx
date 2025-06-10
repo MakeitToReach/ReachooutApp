@@ -5,7 +5,7 @@ import { IconBrandWhatsapp } from "@tabler/icons-react";
 import { motion } from "motion/react";
 
 export const PFWidgetsSection = ({
-    whatsapp_url,
+    whatsapp_number,
     className,
 }: PF_WIDGETS_SECTION) => {
     return (
@@ -20,9 +20,9 @@ export const PFWidgetsSection = ({
             )}
         >
             <a
-                href={whatsapp_url || "#"}
+                href={`https://wa.me/${whatsapp_number}` || "#"}
                 target={"_blank"}
-                rel="noreferrer noreferrer"
+                rel="noopener noreferrer"
             >
                 <IconBrandWhatsapp className="md:size-12" />
             </a>

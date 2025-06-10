@@ -15,7 +15,7 @@ import { ReorderSectionsPopup } from "./popups/SectionsPopup";
 import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema";
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SettingsDropdown } from "./settingsDropdown";
 import { ThemePickerDialog } from "./popups/colorThemeDialog";
 
@@ -23,16 +23,28 @@ interface EditorPanelProps {
     isEditing?: boolean;
     templateSchema?: GenericEditorFieldSchema;
     toggleEditor: () => void;
+    TabIndex?: number;
 }
 export const EditorPanel = ({
     isEditing,
     templateSchema = PF_EDITOR_SCHEMA,
     toggleEditor,
+    TabIndex = 0,
 }: EditorPanelProps) => {
-    const { data, reorderSections, setThemeObject, toggleHideSection } =
-        usePortfolioStore();
-    const [editorTabIndex, setEditorTabIndex] = useState(0);
+    const {
+        data,
+        reorderSections,
+        setThemeObject,
+        toggleHideSection,
+        setCurrentEditingSection,
+    } = usePortfolioStore();
+    const [editorTabIndex, setEditorTabIndex] = useState(TabIndex);
     const [loading, setLoading] = useState(false);
+
+    //Sets the editorTabIndex when TabIndex changes
+    useEffect(() => {
+        setEditorTabIndex(TabIndex);
+    }, [TabIndex]);
 
     if (!data) return <div>No data found</div>;
 
@@ -81,13 +93,16 @@ export const EditorPanel = ({
                 "flex flex-col gap-4 p-4 md:px-10 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full font-Poppins",
             )}
         >
+            {/* TODO: Add this to a component ( EditorHeader ) */}
             <div className="w-full flex justify-between items-center border-border border rounded-md p-2 shadow-xs shadow-gray-300 transition-all">
                 <ReorderSectionsPopup
                     sections={sections}
                     onReorder={(newOrder) => handleReorder(newOrder)}
-                    onEdit={(tabIdx) => setEditorTabIndex(tabIdx)}
+                    onEdit={(tabIdx) => {
+                        setCurrentEditingSection(sections[tabIdx].id);
+                        setEditorTabIndex(tabIdx);
+                    }}
                     onHide={(sectionType: string) => toggleHideSection(sectionType)}
-
                 >
                     <button className="cursor-pointer">
                         <EllipsisVertical className="size-6" />
@@ -104,13 +119,13 @@ export const EditorPanel = ({
                     {isEditing ? (
                         <Button
                             onClick={handleSave}
-                            className="cursor-pointer text-blue-600"
+                            className="cursor-pointer text-black"
                             variant={"ghost"}
                         >
                             {loading ? (
                                 <LucideLoaderCircle className="size-6 animate-spin" />
                             ) : (
-                                <span className="hidden md:block text-lg">Save</span>
+                                <span className="text-lg">Save</span>
                             )}
                         </Button>
                     ) : (

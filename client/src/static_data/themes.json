@@ -117,5 +117,294 @@
             "--template-text-accent-tertiary": "#8b5cf6",
             "--template-text-btn": "#ffffff"
         }
+    },
+    {
+        "name": "Forest Whisper",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#f7fdf4",
+            "--template-secondary": "#166534",
+            "--template-accent-primary": "#a7f3d0",
+            "--template-accent-secondary": "#dcfce7",
+            "--template-btn": "#166534",
+            "--template-text-primary": "#1f2937",
+            "--template-text-secondary": "#f7fdf4",
+            "--template-text-accent-primary": "#065f46",
+            "--template-text-accent-secondary": "#047857",
+            "--template-text-accent-tertiary": "#10b981",
+            "--template-text-btn": "#f7fdf4"
+        }
+    },
+    {
+        "name": "Sunset Glow",
+        "theme": {
+            "--template-font": "'Poppins', sans-serif",
+            "--template-primary": "#fef7ed",
+            "--template-secondary": "#ea580c",
+            "--template-accent-primary": "#fed7aa",
+            "--template-accent-secondary": "#ffedd5",
+            "--template-btn": "#ea580c",
+            "--template-text-primary": "#1c1917",
+            "--template-text-secondary": "#fef7ed",
+            "--template-text-accent-primary": "#c2410c",
+            "--template-text-accent-secondary": "#dc2626",
+            "--template-text-accent-tertiary": "#f97316",
+            "--template-text-btn": "#fef7ed"
+        }
+    },
+    {
+        "name": "Monochrome Elite",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#ffffff",
+            "--template-secondary": "#111827",
+            "--template-accent-primary": "#d1d5db",
+            "--template-accent-secondary": "#f3f4f6",
+            "--template-btn": "#111827",
+            "--template-text-primary": "#111827",
+            "--template-text-secondary": "#ffffff",
+            "--template-text-accent-primary": "#374151",
+            "--template-text-accent-secondary": "#4b5563",
+            "--template-text-accent-tertiary": "#6b7280",
+            "--template-text-btn": "#ffffff"
+        }
+    },
+    {
+        "name": "Deep Ocean",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#0c1426",
+            "--template-secondary": "#1e40af",
+            "--template-accent-primary": "#3b82f6",
+            "--template-accent-secondary": "#1e293b",
+            "--template-btn": "#1e40af",
+            "--template-text-primary": "#e2e8f0",
+            "--template-text-secondary": "#cbd5e1",
+            "--template-text-accent-primary": "#93c5fd",
+            "--template-text-accent-secondary": "#60a5fa",
+            "--template-text-accent-tertiary": "#3b82f6",
+            "--template-text-btn": "#ffffff"
+        }
+    },
+    {
+        "name": "Lavender Dreams",
+        "theme": {
+            "--template-font": "'Poppins', sans-serif",
+            "--template-primary": "#faf7ff",
+            "--template-secondary": "#7c3aed",
+            "--template-accent-primary": "#ddd6fe",
+            "--template-accent-secondary": "#f3f4f6",
+            "--template-btn": "#7c3aed",
+            "--template-text-primary": "#1f2937",
+            "--template-text-secondary": "#faf7ff",
+            "--template-text-accent-primary": "#5b21b6",
+            "--template-text-accent-secondary": "#6d28d9",
+            "--template-text-accent-tertiary": "#a855f7",
+            "--template-text-btn": "#faf7ff"
+        }
+    },
+    {
+        "name": "Golden Hour",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#fffbeb",
+            "--template-secondary": "#b45309",
+            "--template-accent-primary": "#fde68a",
+            "--template-accent-secondary": "#fef3c7",
+            "--template-btn": "#b45309",
+            "--template-text-primary": "#451a03",
+            "--template-text-secondary": "#fffbeb",
+            "--template-text-accent-primary": "#92400e",
+            "--template-text-accent-secondary": "#a16207",
+            "--template-text-accent-tertiary": "#d97706",
+            "--template-text-btn": "#fffbeb"
+        }
+    },
+    {
+        "name": "Crimson Shadow",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#1a1a1a",
+            "--template-secondary": "#dc2626",
+            "--template-accent-primary": "#fca5a5",
+            "--template-accent-secondary": "#2d1b1b",
+            "--template-btn": "#dc2626",
+            "--template-text-primary": "#f5f5f5",
+            "--template-text-secondary": "#e5e5e5",
+            "--template-text-accent-primary": "#fca5a5",
+            "--template-text-accent-secondary": "#f87171",
+            "--template-text-accent-tertiary": "#ef4444",
+            "--template-text-btn": "#ffffff"
+        }
+    },
+    {
+        "name": "Emerald Luxe",
+        "theme": {
+            "--template-font": "'Poppins', sans-serif",
+            "--template-primary": "#ecfdf5",
+            "--template-secondary": "#047857",
+            "--template-accent-primary": "#6ee7b7",
+            "--template-accent-secondary": "#d1fae5",
+            "--template-btn": "#047857",
+            "--template-text-primary": "#064e3b",
+            "--template-text-secondary": "#ecfdf5",
+            "--template-text-accent-primary": "#065f46",
+            "--template-text-accent-secondary": "#059669",
+            "--template-text-accent-tertiary": "#10b981",
+            "--template-text-btn": "#ecfdf5"
+        }
+    },
+    {
+        "name": "Tokyo Night",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#1a1b26",
+            "--template-secondary": "#7aa2f7",
+            "--template-accent-primary": "#bb9af7",
+            "--template-accent-secondary": "#24283b",
+            "--template-btn": "#7aa2f7",
+            "--template-text-primary": "#c0caf5",
+            "--template-text-secondary": "#a9b1d6",
+            "--template-text-accent-primary": "#bb9af7",
+            "--template-text-accent-secondary": "#7dcfff",
+            "--template-text-accent-tertiary": "#9ece6a",
+            "--template-text-btn": "#1a1b26"
+        }
+    },
+    {
+        "name": "Gruvbox Dark",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#282828",
+            "--template-secondary": "#d79921",
+            "--template-accent-primary": "#83a598",
+            "--template-accent-secondary": "#3c3836",
+            "--template-btn": "#d79921",
+            "--template-text-primary": "#ebdbb2",
+            "--template-text-secondary": "#a89984",
+            "--template-text-accent-primary": "#fabd2f",
+            "--template-text-accent-secondary": "#8ec07c",
+            "--template-text-accent-tertiary": "#fb4934",
+            "--template-text-btn": "#1d2021"
+        }
+    },
+    {
+        "name": "Gruvbox Light",
+        "theme": {
+            "--template-font": "'Poppins', sans-serif",
+            "--template-primary": "#fbf1c7",
+            "--template-secondary": "#b57614",
+            "--template-accent-primary": "#458588",
+            "--template-accent-secondary": "#f2e5bc",
+            "--template-btn": "#b57614",
+            "--template-text-primary": "#3c3836",
+            "--template-text-secondary": "#504945",
+            "--template-text-accent-primary": "#b57614",
+            "--template-text-accent-secondary": "#79740e",
+            "--template-text-accent-tertiary": "#9d0006",
+            "--template-text-btn": "#f9f5d7"
+        }
+    },
+    {
+        "name": "Rosé Pine",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#191724",
+            "--template-secondary": "#ebbcba",
+            "--template-accent-primary": "#f6c177",
+            "--template-accent-secondary": "#1f1d2e",
+            "--template-btn": "#ebbcba",
+            "--template-text-primary": "#e0def4",
+            "--template-text-secondary": "#908caa",
+            "--template-text-accent-primary": "#f6c177",
+            "--template-text-accent-secondary": "#c4a7e7",
+            "--template-text-accent-tertiary": "#9ccfd8",
+            "--template-text-btn": "#191724"
+        }
+    },
+    {
+        "name": "Rosé Pine Dawn",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#faf4ed",
+            "--template-secondary": "#d7827e",
+            "--template-accent-primary": "#ea9d34",
+            "--template-accent-secondary": "#f2e9e1",
+            "--template-btn": "#d7827e",
+            "--template-text-primary": "#575279",
+            "--template-text-secondary": "#797593",
+            "--template-text-accent-primary": "#ea9d34",
+            "--template-text-accent-secondary": "#907aa9",
+            "--template-text-accent-tertiary": "#56949f",
+            "--template-text-btn": "#faf4ed"
+        }
+    },
+    {
+        "name": "Catppuccin Mocha",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#1e1e2e",
+            "--template-secondary": "#cba6f7",
+            "--template-accent-primary": "#f5c2e7",
+            "--template-accent-secondary": "#313244",
+            "--template-btn": "#cba6f7",
+            "--template-text-primary": "#cdd6f4",
+            "--template-text-secondary": "#bac2de",
+            "--template-text-accent-primary": "#f5c2e7",
+            "--template-text-accent-secondary": "#94e2d5",
+            "--template-text-accent-tertiary": "#a6e3a1",
+            "--template-text-btn": "#1e1e2e"
+        }
+    },
+    {
+        "name": "Catppuccin Latte",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#eff1f5",
+            "--template-secondary": "#8839ef",
+            "--template-accent-primary": "#ea76cb",
+            "--template-accent-secondary": "#e6e9ef",
+            "--template-btn": "#8839ef",
+            "--template-text-primary": "#4c4f69",
+            "--template-text-secondary": "#5c5f77",
+            "--template-text-accent-primary": "#ea76cb",
+            "--template-text-accent-secondary": "#179299",
+            "--template-text-accent-tertiary": "#40a02b",
+            "--template-text-btn": "#eff1f5"
+        }
+    },
+    {
+        "name": "Nightfox",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#192330",
+            "--template-secondary": "#81b29a",
+            "--template-accent-primary": "#f4a261",
+            "--template-accent-secondary": "#212e3f",
+            "--template-btn": "#81b29a",
+            "--template-text-primary": "#cdcecf",
+            "--template-text-secondary": "#aeafb0",
+            "--template-text-accent-primary": "#f4a261",
+            "--template-text-accent-secondary": "#86abdc",
+            "--template-text-accent-tertiary": "#63cdcf",
+            "--template-text-btn": "#192330"
+        }
+    },
+    {
+        "name": "Dawnfox",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#faf4ed",
+            "--template-secondary": "#618774",
+            "--template-accent-primary": "#ea9558",
+            "--template-accent-secondary": "#f0ebe5",
+            "--template-btn": "#618774",
+            "--template-text-primary": "#575279",
+            "--template-text-secondary": "#6e6a86",
+            "--template-text-accent-primary": "#ea9558",
+            "--template-text-accent-secondary": "#286983",
+            "--template-text-accent-tertiary": "#56949f",
+            "--template-text-btn": "#faf4ed"
+        }
     }
 ]

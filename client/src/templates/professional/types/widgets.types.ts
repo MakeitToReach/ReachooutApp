@@ -1,5 +1,5 @@
 export type PF_WIDGETS_SECTION = {
-    whatsapp_url: string;
+    whatsapp_number: number;
     telephone_number: number;
     className?: string;
 };

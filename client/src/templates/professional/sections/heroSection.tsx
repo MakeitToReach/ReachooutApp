@@ -3,7 +3,6 @@ import { PF_HERO_SECTION } from "../types/heroSection";
 import { FlipText } from "@/components/template-components/professional/flipText";
 import { Button } from "@/components/ui/button";
 import { LucideArrowRight } from "lucide-react";
-import Link from "next/link";
 import React from "react";
 import { CldImage } from "next-cloudinary";
 
@@ -62,14 +61,14 @@ export const PFHeroSection = ({
                             </p>
                         )}
                     </div>
-                    <Link href={btnLink}>
+                    <a href={btnLink} rel="noopener noreferrer" target="_blank">
                         <Button className="p-6 text-md rounded-sm bg-template-btn">
                             <span className="text-template-text-btn">{btnText}</span>
                             <span>
                                 <LucideArrowRight className="text-template-text-btn" />
                             </span>
                         </Button>
-                    </Link>
+                    </a>
                 </div>
                 {videoId ? (
                     <div className="relative w-full max-w-[600px] aspect-video rounded-md overflow-hidden">

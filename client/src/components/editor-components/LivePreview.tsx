@@ -21,6 +21,8 @@ export const LivePreview = ({
         }
     }, [currentEditingSection]);
 
+    if (!data) return <div>No data found</div>;
+
     if (!data) return null;
     return (
         <div className="w-full theme-wrapper" style={theme}>

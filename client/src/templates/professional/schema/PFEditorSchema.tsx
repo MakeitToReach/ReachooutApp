@@ -183,9 +183,9 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
 
     "contact widgets": [
         {
-            label: "Whatsapp URL",
-            type: "text",
-            fieldPath: "whatsapp_url",
+            label: "Whatsapp Number",
+            type: "phone",
+            fieldPath: "whatsapp_number",
         },
     ],
 

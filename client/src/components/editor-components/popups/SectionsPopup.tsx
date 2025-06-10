@@ -84,8 +84,10 @@ export const ReorderSectionsPopup = ({
                 const reorderedSection = sections.find((s) => s.id === reorderedId);
                 return (
                     <SortableSectionItem
-                        key={reorderedSection!.id}
-                        id={reorderedSection!.id}
+                        // key={reorderedSection.id}
+                        // id={reorderedSection.id}
+                        key={reorderedId}
+                        id={reorderedId}
                         name={reorderedSection!.name}
                         isHidden={reorderedSection!.isHidden}
                         tabIdx={sections.findIndex((s) => s.id === reorderedSection!.id)}
