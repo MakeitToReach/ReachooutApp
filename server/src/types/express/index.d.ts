@@ -13,6 +13,9 @@ interface CustomUser {
 declare global {
   namespace Express {
     interface User extends CustomUser {}
+    interface Request {
+      user?: User;
+    }
   }
 }
 
