@@ -24,9 +24,7 @@ import {
 import { Request, Response } from "express";
 import { VerifyCallback } from "passport-google-oauth20";
 import jwt from "jsonwebtoken";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "./config/prisma";
 
 const app = express();
 
