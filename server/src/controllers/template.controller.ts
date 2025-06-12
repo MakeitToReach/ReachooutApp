@@ -5,7 +5,7 @@ import type { Request, Response } from "express";
 export const addUserTemplate = async (req: Request, res: Response) => {
     try {
         //fetch the userId from the headers instead of body
-        const userId = req.user?.userId;
+        const userId = req.user?.id;
         const { templateName, data } = req.body;
 
         // Validate required fields
@@ -35,7 +35,7 @@ export const addUserTemplate = async (req: Request, res: Response) => {
         const existingAssociation = await prisma.userTemplate.findUnique({
             where: {
                 user_id_template_id: {
-                    user_id: userId,
+                    user_id: userId!,
                     template_id: template.id,
                 },
             },
@@ -52,7 +52,7 @@ export const addUserTemplate = async (req: Request, res: Response) => {
         // Create the association
         const association = await prisma.userTemplate.create({
             data: {
-                user_id: userId,
+                user_id: userId!,
                 template_id: template.id,
                 data: data,
             },
@@ -71,7 +71,7 @@ export const addUserTemplate = async (req: Request, res: Response) => {
 
 export const getUserTemplateData = async (req: Request, res: Response) => {
     try {
-        const userId = req.user?.userId;
+        const userId = req.user?.id;
         const { templateName } = req.params;
 
         const userTemplate = await prisma.userTemplate.findFirst({
@@ -187,35 +187,45 @@ export const getAllTemplates = async (req: Request, res: Response) => {
 };
 
 export const getUserTemplates = async (req: Request, res: Response) => {
-    const userId = req.user?.userId;
-    const userTemplates = await prisma.userTemplate.findMany({
-        where: {
-            user_id: userId,
-        },
-        include: {
-            template: true,
-        },
-    });
+    try {
+        const userId = req.user?.id;
 
-    if (userTemplates.length === 0) {
-        res.status(404).json({ error: "No templates found" });
+        const userTemplates = await prisma.userTemplate.findMany({
+            where: {
+                user_id: userId,
+            },
+            include: {
+                template: true,
+            },
+        });
+
+        if (userTemplates.length === 0) {
+            return res.status(404).json({ message: "No templates found" });
+        }
+
+        const formattedTemplates = userTemplates.map((template) => {
+            return {
+                id: template.template_id,
+                name: template.template.name,
+                thumbnailUrl: template.template.thumbnailUrl,
+            };
+        });
+
+        return res.status(200).json({ userTemplates: formattedTemplates });
+    } catch (error) {
+        console.error("Error fetching user templates:", error);
+        return res.status(500).json({
+            message: "Internal server error",
+            // error: process.env.NODE_ENV === "development" ? error.message : undefined,
+        });
     }
-
-    const formattedTemplates = userTemplates.map((template) => {
-        return {
-            id: template.template_id,
-            name: template.template.name,
-            thumbnailUrl: template.template.thumbnailUrl,
-        };
-    });
-    return res.status(200).json({ userTemplates: formattedTemplates });
 };
 
 export const updateUserTemplateData = async (req: Request, res: Response) => {
     try {
         const templateId = req.params.template_id;
         const { data } = req.body;
-        const userId = req.user?.userId;
+        const userId = req.user?.id;
 
         if (!userId || !templateId) {
             return res.status(400).json({ error: "Missing userId or templateId" });

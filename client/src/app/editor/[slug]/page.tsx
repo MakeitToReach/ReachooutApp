@@ -4,7 +4,7 @@ import { EditorPanel } from "@/components/editor-components/editorPanel";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { LivePreview } from "@/components/editor-components/LivePreview";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,8 +31,9 @@ const EditorPage = () => {
         reorderSections,
         setCurrentEditingSection,
     } = usePortfolioStore();
-
     const searchParams = useSearchParams();
+    const router = useRouter()
+
     const [editorOpen, setEditorOpen] = useState(true);
 
     const isNew = searchParams.has("new");
@@ -84,6 +85,7 @@ const EditorPage = () => {
         setLoading(true);
         try {
             await publishTemplate(data.name, data);
+            router.push("/user")
         } catch (error) {
             console.error(error);
         } finally {

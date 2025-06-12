@@ -1,27 +1,29 @@
-import jwt, { JwtPayload } from "jsonwebtoken";
-// import { CustomJwtPayload } from "../types/express"; // Adjust path if needed
+import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config/dotenv";
-import { CustomJwtPayload } from "../types/express";
 
-export const authenticateJWT = (token: string): CustomJwtPayload | null => {
-  const jwtSecret = JWT_SECRET;
-  if (!jwtSecret) {
-    console.error(
-      "FATAL ERROR: JWT_SECRET is not defined in environment variables.",
-    );
-    return null;
-  }
-
-  jwt.verify(token, jwtSecret, (err, decoded) => {
-    if (err) {
-      if (err.name === "TokenExpiredError") {
-        return { error: "Unauthorized: Token expired" };
-      }
-      console.error("JWT Verification Error:", err.message);
-      return { error: "Unauthorized: Invalid token" };
+export const authenticateJWT = (token: string): Express.User | null => {
+    const jwtSecret = JWT_SECRET;
+    if (!jwtSecret) {
+        console.error("FATAL ERROR: JWT_SECRET is not defined in environment variables.");
+        return null;
     }
-    return decoded as CustomJwtPayload;
-  });
 
-  return null;
+    try {
+        const decoded = jwt.verify(token, jwtSecret) as Express.User;
+
+        // Validate payload structure
+        if (!decoded || !decoded.id) {
+            console.error("JWT payload missing required user identifier field.");
+            return null;
+        }
+
+        return decoded;
+    } catch (err: any) {
+        if (err.name === "TokenExpiredError") {
+            console.error("Unauthorized: Token expired");
+            return null;
+        }
+        console.error("JWT Verification Error:", err.message);
+        return null;
+    }
 };

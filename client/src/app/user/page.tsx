@@ -15,11 +15,13 @@ import { motion as m } from "motion/react";
 import { useUserStore } from "@/store/user.store";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
+import { toast } from "sonner";
 
-type Tab = "templates" | "domains" | "analytics";
+type Tab = "projects" | "domains" | "analytics";
 
 function App() {
-    const [activeTab, setActiveTab] = useState<Tab>("templates");
+    const [activeTab, setActiveTab] = useState<Tab>("projects");
     const [templates, setTemplates] = useState<GenericTemplateSchema[]>([]);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -27,17 +29,26 @@ function App() {
 
     useEffect(() => {
         const fetchUserTemplates = async () => {
-            const response = await getUserTemplates();
-            if (response) {
-                setTemplates(response.userTemplates);
+            try {
+                const response = await getUserTemplates();
+                if (response) {
+                    setTemplates(response.userTemplates);
+                } else {
+                    toast.error("Failed to load templates");
+                }
+            } catch (error) {
+                console.error("Error fetching user templates:", error);
+                toast.error("Error fetching user templates");
+            } finally {
                 setIsLoading(false);
             }
         };
+
         fetchUserTemplates();
     }, []);
 
     const tabs = [
-        { id: "templates", name: "Your Templates", icon: LayoutTemplate },
+        { id: "projects", name: "Your Projects", icon: LayoutTemplate },
         { id: "domains", name: "Manage Domains", icon: Globe },
         { id: "analytics", name: "View Analytics", icon: BarChart3 },
     ];
@@ -50,7 +61,7 @@ function App() {
                 className="w-64 bg-zinc-950 shadow-lg hidden md:block"
             >
                 <div className="p-6 flex justify-between items-center">
-                    <h2 className="text-2xl font-bold text-white">Dashboard</h2>
+                    <h2 className="text-xl font-bold text-white">Hi, {user?.name}</h2>
                 </div>
                 <LayoutGroup>
                     <nav className="relative mt-2 space-y-2">
@@ -102,7 +113,9 @@ function App() {
                             className="w-64 bg-zinc-950 shadow-lg fixed top-0 left-0 h-full z-[100]"
                         >
                             <div className="p-6 flex justify-between items-center">
-                                <h2 className="text-2xl font-bold text-white">Dashboard</h2>
+                                <h2 className="text-2xl font-bold text-white">
+                                    Hi, {user?.name}
+                                </h2>
                                 <Button
                                     variant={"ghost"}
                                     className="dark"
@@ -144,10 +157,10 @@ function App() {
             </div>
             {/* Main Content */}
             <div className="flex-1 p-8 bg-neutral-800">
-                {activeTab === "templates" && (
+                {activeTab === "projects" && (
                     <div>
                         <h1 className="text-2xl font-bold text-white mb-6">
-                            Your Templates
+                            Your Projects
                         </h1>
                         <div className="grid md:grid-cols-4 gap-4 px-4">
                             {isLoading ? (
@@ -178,9 +191,12 @@ function App() {
                                             />
                                         ))
                                     ) : (
-                                        <p className="text-center col-span-4 text-white">
-                                            No templates found.
-                                        </p>
+                                        <div className="text-center col-span-4 text-white">
+                                            <p>No Templates found</p>
+                                            <Link href="/explore" className="text-black">
+                                                <Button variant={"outline"}>Create Project</Button>
+                                            </Link>
+                                        </div>
                                     )}
                                 </>
                             )}

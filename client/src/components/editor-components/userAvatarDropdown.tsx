@@ -24,17 +24,22 @@ import Link from "next/link";
 interface AvatarDropdownProps {
     name: string;
     email: string;
+    avatarUrl?: string;
     handleLogout: () => void;
 }
 export default function AvatarDropdown({
     name,
     email,
+    avatarUrl,
     handleLogout,
 }: AvatarDropdownProps) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="h-auto p-0 hover:bg-transparent dark">
+                <Button
+                    variant="ghost"
+                    className="h-auto p-0 hover:bg-transparent dark"
+                >
                     <ChevronDownIcon
                         size={16}
                         className="opacity-100 text-white"
@@ -42,7 +47,7 @@ export default function AvatarDropdown({
                     />
                     <Avatar>
                         <AvatarImage
-                            src="https://github.com/shadcn.png"
+                            src={avatarUrl}
                             alt="Profile image"
                         />
                         <AvatarFallback className="text-black bg-white uppercase">
@@ -63,7 +68,10 @@ export default function AvatarDropdown({
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                     <DropdownMenuItem>
-                        <Link href={"/user"} className="flex items-center gap-2 w-full h-full">
+                        <Link
+                            href={"/user"}
+                            className="flex items-center gap-2 w-full h-full"
+                        >
                             <BoltIcon size={16} className="opacity-60" aria-hidden="true" />
                             <span>Dashboard</span>
                         </Link>

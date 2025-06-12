@@ -16,6 +16,7 @@ export const Navbar = () => {
         logoutUser();
         router.push("/");
     };
+
     return (
         <div className="w-full h-[10vh] bg-neutral-950 backdrop-blur p-4 flex justify-between items-center md:px-40">
             <Link href={"/"}>
@@ -32,6 +33,7 @@ export const Navbar = () => {
                     <AvatarDropdown
                         name={user.name}
                         email={user.email}
+                        avatarUrl={user.avatarUrl}
                         handleLogout={logoutAndRedirect}
                     />
                 )}
@@ -42,6 +44,7 @@ export const Navbar = () => {
                     <AvatarDropdown
                         name={user.name}
                         email={user.email}
+                        avatarUrl={user.avatarUrl}
                         handleLogout={logoutAndRedirect}
                     />
                 )}

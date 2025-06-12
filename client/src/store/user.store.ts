@@ -5,6 +5,8 @@ type USER = {
     id: string;
     name: string;
     email: string;
+    googleId?: string;
+    avatarUrl?: string;
 };
 interface User {
     user: USER | null;
@@ -14,5 +16,4 @@ interface User {
 export const useUserStore = create<User>((set) => ({
     user: null,
     setUser: (user: USER) => set({ user: user }),
-
 }));

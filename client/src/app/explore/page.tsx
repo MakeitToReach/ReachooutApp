@@ -8,30 +8,24 @@ import { useTemplateStore } from "@/store/template.store";
 import { useEffect } from "react";
 
 const ExplorePage = () => {
-  const { templates, setTemplates } = useTemplateStore();
-  // const router = useRouter();
+    const { templates, setTemplates } = useTemplateStore();
 
-  useEffect(() => {
-    // const token = getToken();
-    // if (!token) {
-    //   router.push("/");
-    //   return;
-    // }
+    useEffect(() => {
+        if (templates.length === 0) {
+            const fetchTemplates = async () => {
+                const response = await fetchAllTemplates();
+                setTemplates(response.templates);
+            };
+            fetchTemplates();
+        }
 
-    if (templates.length === 0) {
-      const fetchTemplates = async () => {
-        const response = await fetchAllTemplates();
-        setTemplates(response.templates);
-      };
-      fetchTemplates();
-    }
-  });
+    });
 
-  return (
-    <div className="font-Poppins w-full  flex text-white dark">
-      <ExploreTabs templates={templates} />
-    </div>
-  );
+    return (
+        <div className="font-Poppins w-full  flex text-white dark">
+            <ExploreTabs templates={templates} />
+        </div>
+    );
 };
 
 export default ExplorePage;

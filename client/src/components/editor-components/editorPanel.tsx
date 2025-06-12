@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { SettingsDropdown } from "./settingsDropdown";
 import { ThemePickerDialog } from "./popups/colorThemeDialog";
+import { useRouter } from "next/navigation";
 
 interface EditorPanelProps {
     isEditing?: boolean;
@@ -38,6 +39,7 @@ export const EditorPanel = ({
         toggleHideSection,
         setCurrentEditingSection,
     } = usePortfolioStore();
+    const router = useRouter();
     const [editorTabIndex, setEditorTabIndex] = useState(TabIndex);
     const [loading, setLoading] = useState(false);
 
@@ -76,6 +78,7 @@ export const EditorPanel = ({
         setLoading(true);
         try {
             await publishTemplate(data.name, data);
+            router.push("/user");
         } catch (error) {
             console.error(error);
         } finally {

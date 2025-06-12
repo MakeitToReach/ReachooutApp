@@ -7,14 +7,15 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import { PasswordInput } from "../inputs/passwordInput";
-import { motion as m } from "motion/react";
-import { loginUser, registerUser } from "@/api/auth";
+import { motion as m } from "framer-motion";
+import { loginUser, registerUser, setCookie } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import { LucideLoader } from "lucide-react";
 import { useUserStore } from "@/store/user.store";
 import { ReqInput } from "../inputs/reqInput";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { IconBrandGoogleFilled } from "@tabler/icons-react";
 
 export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
     const { setUser } = useUserStore();
@@ -35,7 +36,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
             if (response?.status === 201 && response.data?.user) {
                 setUser(response.data.user);
                 setOpen(false);
-                router.push("/explore");
+                router.push("/user");
             }
             //eslint-disable-next-line
         } catch (error: any) {
@@ -58,7 +59,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
             if (response?.status === 200 && response.data?.user) {
                 setUser(response.data.user);
                 setOpen(false);
-                router.push("/explore");
+                router.push("/user");
             }
             //eslint-disable-next-line
         } catch (error: any) {
@@ -71,6 +72,12 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleGoogleLogin = async () => {
+        window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google`;
+        
+        setCookie("token", "");
     };
 
     return (
@@ -181,6 +188,8 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                             >
                                 <Button
                                     onClick={type === "Register" ? handleRegister : handleLogin}
+                                    disabled={loading}
+                                    className="w-full"
                                 >
                                     {loading ? (
                                         <LucideLoader className="animate-spin" />
@@ -191,6 +200,25 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                                     )}
                                 </Button>
                             </m.div>
+
+                            <div className="flex items-center justify-center gap-2 text-gray-500 text-sm">
+                                <div className="h-px bg-gray-300 flex-1" />
+                                <span>Or</span>
+                                <div className="h-px bg-gray-300 flex-1" />
+                            </div>
+
+                            <Button
+                                variant="outline"
+                                onClick={handleGoogleLogin}
+                                className="w-full flex items-center justify-center gap-2"
+                            >
+                                <IconBrandGoogleFilled
+                                    className="text-neutral-900 dark:text-white/60"
+                                    size={16}
+                                    aria-hidden="true"
+                                />
+                                Login with Google
+                            </Button>
                         </m.div>
                     </DialogContent>
                 </m.div>
