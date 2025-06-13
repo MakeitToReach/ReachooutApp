@@ -5,28 +5,16 @@ import { getToken } from "@/lib/isAuthenticated";
 
 //TODO:make it server safe and remove client side usage by using getToken and toast
 export const getUserTemplateData = async (templateName: string) => {
-    const token = getToken();
-    const response = await api.get(`/v1/template/user/${templateName}`, {
-        headers: { Authorization: `Bearer ${token}` },
-        withCredentials: true,
-    });
+  const token = getToken();
+  const response = await api.get(`/v1/template/user/${templateName}`, {
+    headers: { Authorization: `Bearer ${token}` },
+    withCredentials: true,
+  });
 
-    if (response.status === 200) {
-        toast.success("Template fetched successfully");
-    }
+  if (response.status === 200) {
+    toast.success("Template fetched successfully");
+  }
 
-    return response.data;
+  return response.data;
 };
 
-export const getUserTemplates = async () => {
-    const token = getToken();
-    const response = await api.get(`/v1/template/all/user`, {
-        headers: { Authorization: `Bearer ${token}` },
-        withCredentials: true,
-    });
-
-    if (response.status == 200) {
-        toast.success("Templates fetched successfully");
-    }
-    return response.data;
-};

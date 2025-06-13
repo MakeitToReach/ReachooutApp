@@ -4,7 +4,7 @@ import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className="flex min-h-screen">
+        <div className="md:flex min-h-screen hidden">
             {/* Sidebar */}
             <aside className="w-64 bg-gray-800 text-white flex flex-col p-4">
                 <h1 className="text-2xl font-bold mb-6">Reachoout</h1>
@@ -18,6 +18,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                 <IconHomeStats />
                             </span>
                             Dashboard
+                        </Link>
+                        <Link
+                            href="/admin/dashboard/templates"
+                            className="hover:bg-gray-700 px-3 flex gap-2 py-2 rounded transition"
+                        >
+                            Templates
                         </Link>
                         <Link
                             href="/admin/dashboard/create-template"

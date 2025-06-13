@@ -1,3 +1,4 @@
+// TODO: instead of this tab shit, move to layout structure for this dashboard
 "use client";
 import React, { useEffect, useState } from "react";
 import {
@@ -7,34 +8,38 @@ import {
     PanelLeftDashedIcon,
     LucideX,
 } from "lucide-react";
-import { TemplateCard } from "@/components/editor-components/templateCard";
-import { getUserTemplates } from "@/api/user-template";
+import { getUserProjects } from "@/api/project";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, LayoutGroup } from "motion/react";
 import { motion as m } from "motion/react";
 import { useUserStore } from "@/store/user.store";
-import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import { Skeleton } from "@/components/ui/skeleton";
-import Link from "next/link";
+// import Link from "next/link";
 import { toast } from "sonner";
+import { Project } from "@/schemas/projects.schema";
+import { CreateUserProjectDialog } from "@/components/editor-components/popups/createUserProject";
+import { getToken } from "@/lib/isAuthenticated";
+import { getUserFromToken } from "@/api/auth";
+import { IconPlus } from "@tabler/icons-react";
+import { ProjectCard } from "@/components/editor-components/projectCard";
 
 type Tab = "projects" | "domains" | "analytics";
 
 function App() {
     const [activeTab, setActiveTab] = useState<Tab>("projects");
-    const [templates, setTemplates] = useState<GenericTemplateSchema[]>([]);
+    const [projects, setProjects] = useState<Project[]>([]);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const { user } = useUserStore();
+    const { user, setUser } = useUserStore();
 
     useEffect(() => {
-        const fetchUserTemplates = async () => {
+        const fetchUserProjects = async () => {
             try {
-                const response = await getUserTemplates();
+                const response = await getUserProjects();
                 if (response) {
-                    setTemplates(response.userTemplates);
+                    setProjects(response);
                 } else {
-                    toast.error("Failed to load templates");
+                    toast.error("Failed to load projects");
                 }
             } catch (error) {
                 console.error("Error fetching user templates:", error);
@@ -44,7 +49,26 @@ function App() {
             }
         };
 
-        fetchUserTemplates();
+        fetchUserProjects();
+    }, []);
+
+    useEffect(() => {
+        const token = getToken();
+
+        if (token) {
+            const fetchUserDetails = async () => {
+                try {
+                    const response = await getUserFromToken(token);
+                    if (response) {
+                        setUser(response.user);
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+
+            fetchUserDetails();
+        }
     }, []);
 
     const tabs = [
@@ -99,6 +123,8 @@ function App() {
                     </nav>
                 </LayoutGroup>
             </m.div>
+
+            {/* sidebar */}
             <div className="md:hidden">
                 <AnimatePresence mode="wait">
                     {sidebarOpen && (
@@ -113,7 +139,7 @@ function App() {
                             className="w-64 bg-zinc-950 shadow-lg fixed top-0 left-0 h-full z-[100]"
                         >
                             <div className="p-6 flex justify-between items-center">
-                                <h2 className="text-2xl font-bold text-white">
+                                <h2 className="text-xl md:text-2xl font-bold text-white">
                                     Hi, {user?.name}
                                 </h2>
                                 <Button
@@ -158,11 +184,24 @@ function App() {
             {/* Main Content */}
             <div className="flex-1 p-8 bg-neutral-800">
                 {activeTab === "projects" && (
-                    <div>
-                        <h1 className="text-2xl font-bold text-white mb-6">
-                            Your Projects
-                        </h1>
-                        <div className="grid md:grid-cols-4 gap-4 px-4">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="flex justify-between items-center">
+                            <h1 className="md:text-2xl text-xl font-bold text-white mb-6">
+                                Your Projects
+                            </h1>
+
+                            {projects.length > 0 && (
+                                <CreateUserProjectDialog>
+                                    <Button variant={"ghost"} className="p-0">
+                                        Create Project{" "}
+                                        <span>
+                                            <IconPlus />
+                                        </span>
+                                    </Button>
+                                </CreateUserProjectDialog>
+                            )}
+                        </div>
+                        <div className="grid md:grid-cols-3 gap-4 px-4">
                             {isLoading ? (
                                 <>
                                     {Array.from({ length: 4 }).map((_, idx) => (
@@ -174,28 +213,22 @@ function App() {
                                 </>
                             ) : (
                                 <>
-                                    {templates.length > 0 && user ? (
-                                        templates.map((template, idx) => (
-                                            <TemplateCard
-                                                isPublished
-                                                templateName={template.name.toLowerCase()}
+                                    {projects.length > 0 ? (
+                                        projects.map((project, idx) => (
+                                            <ProjectCard
                                                 key={idx}
-                                                imageUrl={template.thumbnailUrl || "/placeholder.png"}
-                                                // previewUrl={`/${user.name}?template=${template.name.toLowerCase()}`}
-                                                // previewUrl="#"
-                                                onPreviewClick={() => {
-                                                    alert("WIP");
-                                                }}
-                                                editorUrl={`/editor/${template.name.toLowerCase()}?edit`}
-                                                className="shadow-2xl shadow-black"
+                                                project={project}
+                                                onDelete={() => { }}
                                             />
                                         ))
                                     ) : (
                                         <div className="text-center col-span-4 text-white">
-                                            <p>No Templates found</p>
-                                            <Link href="/explore" className="text-black">
-                                                <Button variant={"outline"}>Create Project</Button>
-                                            </Link>
+                                            <p>No Projects found</p>
+                                            <CreateUserProjectDialog>
+                                                <Button variant={"outline"} className="text-black">
+                                                    Create Project
+                                                </Button>
+                                            </CreateUserProjectDialog>
                                         </div>
                                     )}
                                 </>

@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -14,12 +13,15 @@ import {
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, Save, Eye, X } from "lucide-react";
 import { createTemplate } from "@/api/admin";
+import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 
 const CreateTemplatePage = () => {
     const [formData, setFormData] = useState({
         templateName: "",
         thumbnailUrl: "",
+        category: "",
         data: "",
+        tags: "",
     });
     const [isLoading, setIsLoading] = useState(false);
     const [showPreview, setShowPreview] = useState(false);
@@ -27,19 +29,24 @@ const CreateTemplatePage = () => {
         setFormData({
             templateName: "",
             thumbnailUrl: "",
+            category: "",
             data: "",
+            tags: "",
         });
     };
 
     const handleSubmit = async () => {
         setIsLoading(true);
+        const tags = formData.tags.split(",").map((tag) => tag.trim());
         try {
             await createTemplate(
                 formData.templateName,
                 formData.data,
-                formData.thumbnailUrl
+                formData.thumbnailUrl,
+                formData.category,
+                tags
             );
-            handleReset();
+            // handleReset();
         } catch (error) {
             console.error("Error creating template:", error);
         } finally {
@@ -71,35 +78,47 @@ const CreateTemplatePage = () => {
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-6">
-                                {/* Template Name */}
-                                <div className="space-y-2">
-                                    <Label htmlFor="templateName" className="text-sm font-medium">
-                                        Template Name *
-                                    </Label>
-                                    <Input
-                                        id="templateName"
-                                        placeholder="Enter template name"
-                                        value={formData.templateName}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, templateName: e.target.value })
-                                        }
-                                    />
-                                </div>
+                                <ReqInput
+                                    isRequired
+                                    label="Template Name"
+                                    id="templateName"
+                                    placeholder="Enter template name"
+                                    value={formData.templateName}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, templateName: e.target.value })
+                                    }
+                                />
 
-                                {/* Thumbnail URL */}
-                                <div className="space-y-2">
-                                    <Label htmlFor="thumbnailUrl" className="text-sm font-medium">
-                                        Thumbnail URL *
-                                    </Label>
-                                    <Input
-                                        id="thumbnailUrl"
-                                        placeholder="https://example.com/image.jpg"
-                                        value={formData.thumbnailUrl}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, thumbnailUrl: e.target.value })
-                                        }
-                                    />
-                                </div>
+                                <ReqInput
+                                    label="Thumbnail URL"
+                                    id="templateName"
+                                    placeholder="Enter thumbnail URL"
+                                    value={formData.thumbnailUrl}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, thumbnailUrl: e.target.value })
+                                    }
+                                />
+
+                                <ReqInput
+                                    label="Category"
+                                    id="category"
+                                    placeholder="Freelance"
+                                    value={formData.category}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, category: e.target.value })
+                                    }
+                                />
+
+                                <ReqInput
+                                    subtitle="Comma separated"
+                                    label="Template Tags"
+                                    id="tags"
+                                    placeholder="Featured, Professional, Developer"
+                                    value={formData.tags}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, tags: e.target.value })
+                                    }
+                                />
 
                                 {/* Template Data */}
                                 <div className="space-y-2">

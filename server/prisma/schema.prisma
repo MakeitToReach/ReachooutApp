@@ -1,6 +1,5 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
@@ -14,33 +13,90 @@ datasource db {
 }
 
 model User {
-    id        String      @id @default(cuid()) 
-    googleId  String?      @unique
-    email     String      @unique
-    name      String      @unique
-    password  String? 
-    createdAt DateTime    @default(now())
-    updatedAt DateTime    @updatedAt
-    avatarUrl String?
+  id        String    @id @default(cuid()) 
+  googleId  String?   @unique
+  email     String    @unique
+  name      String    @unique
+  password  String? 
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  avatarUrl String?
+  
+  // Relations
+  projects  Project[]
+  templates UserTemplate[]
+}
 
-    templates UserTemplate[]
+model Project {
+  id            String   @id @default(cuid())
+  name          String
+  subDomain     String   @unique
+  customDomain  String?  @unique
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  // Relations
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String
+  templates     ProjectTemplate[]
+  
+  @@index([userId])
 }
 
 model Template {
-    id           String         @id @default(cuid())
-    name         String         @unique
-    thumbnailUrl String
-    users        UserTemplate[]
-    data         Json
+  id           String    @id @default(cuid())
+  name         String    @unique
+  thumbnailUrl String
+  tags         String[]  // e.g., ["ecommerce", "developer", "featured"]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  
+  // Relations
+  users        UserTemplate[]
+  projects     ProjectTemplate[]
+  categories   TemplateCategory[]
+  
+  @@index([tags])
 }
 
-// Join table for Many-to-Many relationship
-model UserTemplate {
-    user      User     @relation(fields: [user_id], references: [id])
-    user_id   String
-    template  Template @relation(fields: [template_id], references: [id])
-    template_id String
-    data        Json?
+// Template categories with specific data for each category
+model TemplateCategory {
+  id         String   @id @default(cuid())
+  template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  templateId String
+  category   String   // e.g., "freelance developer", "UI/UX designer", "ecommerce store"
+  data       Json     // Category-specific data structure
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  @@unique([templateId, category])
+  @@index([category])
+}
 
-    @@id([user_id, template_id]) // Composite primary key
+// Join table for Many-to-Many relationship between User and Template
+model UserTemplate {
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  template    Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  templateId  String
+  data        Json?    // User's customization data for this template
+  createdAt   DateTime @default(now())
+  
+  @@id([userId, templateId])
+}
+
+// Join table for Many-to-Many relationship between Project and Template
+model ProjectTemplate {
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   String
+  template    Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  templateId  String
+  data        Json?    // Project-specific customization data for this template instance
+  order       Int      @default(0) // Order of templates within the project
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Composite primary key allows same template multiple times in a project
+  @@id([projectId, templateId, createdAt])
+  @@index([projectId, order])
 }

@@ -5,31 +5,32 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, Suspense } from "react";
 
 const AuthSuccessPageContent = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    // const { setUser } = useUserStore();
 
-  const token = searchParams.get("token");
+    const token = searchParams.get("token");
 
-  useEffect(() => {
-    if (token) {
-      setCookie("token", token);
-      router.push("/user");
-    }
-  }, [token, router]); // Added dependencies to avoid React warning
+    useEffect(() => {
+        if (token) {
+            setCookie("token", token);
+            router.push("/user");
+        }
+    }, [token, router]);
 
-  return (
-    <div>
-      <h1>Redirecting to dashboard...</h1>
-    </div>
-  );
+    return (
+        <div>
+            <h1>Redirecting to dashboard...</h1>
+        </div>
+    );
 };
 
 const AuthSuccessPage = () => {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <AuthSuccessPageContent />
-    </Suspense>
-  );
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <AuthSuccessPageContent />
+        </Suspense>
+    );
 };
 
 export default AuthSuccessPage;
