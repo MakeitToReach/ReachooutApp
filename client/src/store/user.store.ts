@@ -1,7 +1,7 @@
 import { create } from "zustand";
 // import { persist } from "zustand/middleware";
 
-type USER = {
+export type USER = {
     id: string;
     name: string;
     email: string;
@@ -9,11 +9,11 @@ type USER = {
     avatarUrl?: string;
 };
 interface User {
-    user: USER | null;
+    user: USER | undefined;
     setUser: (user: USER) => void;
 }
 
 export const useUserStore = create<User>((set) => ({
-    user: null,
+    user: undefined,
     setUser: (user: USER) => set({ user: user }),
 }));

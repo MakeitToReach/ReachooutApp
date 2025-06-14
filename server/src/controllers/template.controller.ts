@@ -101,6 +101,36 @@ export const getAllTemplates = async (req: Request, res: Response) => {
     return res.status(200).json({ templates });
 };
 
+export const getTemplateCategories = async (
+    req: Request,
+    res: Response,
+) => {
+    const { templateId } = req.params;
+    const categories = await prisma.templateCategory.findMany({
+        where: {
+            templateId,
+        },
+    });
+    if (!categories) {
+        return res.status(404).json({ error: "Categories not found" });
+    }
+    return res.status(200).json({ categories });
+};
+
+// export const publishTemplate = async (req: Request, res: Response) => {
+//     const { templateName, data } = req.body;
+//     const template = await prisma.projectTemplate.create({
+//         where: {
+//             name: templateName,
+//         },
+//         data: {
+//             name: templateName,
+//             data,
+//         },
+//     });
+//     return res.status(200).json({ template });
+// };
+
 // export const getUserTemplates = async (req: Request, res: Response) => {
 //     try {
 //         const userId = req.user?.id;

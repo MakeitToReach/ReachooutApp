@@ -37,7 +37,7 @@ export const CreateUserProjectDialog = ({
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent className="">
                 <DialogHeader>
-                    <DialogTitle className="text-xl">Create Rechoout Project</DialogTitle>
+                    <DialogTitle className="text-xl">Create Reachoout Project</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col space-y-4">
                     <ReqInput

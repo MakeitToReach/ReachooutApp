@@ -1,9 +1,12 @@
 import UserPreview from "@/components/editor-components/userPreview";
-import React from "react";
-
+import React, { Suspense } from "react";
 
 const page = () => {
-    return <UserPreview />;
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <UserPreview />
+        </Suspense>
+    );
 };
 
 export default page;

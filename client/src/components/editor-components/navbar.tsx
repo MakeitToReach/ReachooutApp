@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-// import { Button } from "../ui/button";
 import { logoutUser } from "@/api/auth";
 import { useUserStore } from "@/store/user.store";
 import { useRouter } from "next/navigation";
@@ -17,9 +16,16 @@ export const Navbar = () => {
         router.push("/");
     };
 
+    const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        if (e.ctrlKey && e.shiftKey) {
+            e.preventDefault();
+            router.push("/admin");
+        }
+    };
+
     return (
         <div className="w-full h-[10vh] bg-neutral-950 backdrop-blur p-4 flex justify-between items-center md:px-40">
-            <Link href={"/"}>
+            <Link href={"/"} onClick={handleLogoClick}>
                 <Image
                     src="/reachout-logo.png"
                     alt="logo"
@@ -37,7 +43,6 @@ export const Navbar = () => {
                         handleLogout={logoutAndRedirect}
                     />
                 )}
-
             </div>
             <div className="md:flex gap-4 items-center text-white text-lg hidden ">
                 {user && (

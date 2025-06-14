@@ -17,6 +17,7 @@ interface TemplateCardProps {
   className?: string;
   children?: React.ReactNode;
   onPreviewClick?: () => void; //TODO: remove this later, using temporarily
+  showPreview?: boolean;
 }
 export const TemplateCard = ({
   imageUrl = "",
@@ -27,6 +28,7 @@ export const TemplateCard = ({
   children,
   className,
   onPreviewClick,
+  showPreview,
 }: TemplateCardProps) => {
   const router = useRouter();
   const { resetData } = usePortfolioStore();
@@ -44,14 +46,16 @@ export const TemplateCard = ({
     <div className={cn(className, "relative rounded-xl overflow-hidden")}>
       {/* gradient cover */}
       <div className="absolute w-full h-full flex justify-center items-center gap-2 bottom-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent rounded-xl md:opacity-0 opacity-100 hover:opacity-100 transition-all duration-200 z-40 ">
-        <Link href={previewUrl}>
-          <Button
-            className="md:text-md cursor-pointer"
-            onClick={onPreviewClick}
-          >
-            Preview
-          </Button>
-        </Link>
+        {showPreview && (
+          <Link href={previewUrl}>
+            <Button
+              className="md:text-md cursor-pointer"
+              onClick={onPreviewClick}
+            >
+              Preview
+            </Button>
+          </Link>
+        )}
         {isPublished ? (
           <Button className="md:text-md cursor-pointer" onClick={handleEdit}>
             Edit

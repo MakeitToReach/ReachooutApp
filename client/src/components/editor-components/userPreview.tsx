@@ -18,7 +18,7 @@ export const UserPreview = () => {
 
     // Extract templateKey only on client
     useEffect(() => {
-        const key = searchParams.get("template");
+        const key = searchParams?.get("template");
         if (key) setTemplateKey(key);
     }, [searchParams]);
 

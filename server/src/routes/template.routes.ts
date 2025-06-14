@@ -2,6 +2,7 @@ import { Request, Response, Router } from "express";
 import {
     // addUserTemplate,
     getAllTemplates,
+    getTemplateCategories,
     // getUserTemplateData,
     // getUserTemplates,
     // updateUserTemplateData,
@@ -19,8 +20,6 @@ const templateRouter = Router();
 //     },
 // );
 
-//for admin only
-
 // templateRouter.get(
 //     "/user/:templateName",
 //     isAuthenticated,
@@ -33,13 +32,13 @@ templateRouter.get("/all", (req: Request, res: Response) => {
     getAllTemplates(req, res);
 });
 
-// templateRouter.get(
-//     "/all/user",
-//     isAuthenticated,
-//     (req: Request, res: Response) => {
-//         getUserTemplates(req, res);
-//     },
-// );
+templateRouter.get(
+    "/categories/:templateId",
+    isAuthenticated,
+    (req: Request<{ templateId: string }>, res: Response) => {
+        getTemplateCategories(req, res);
+    },
+);
 
 // templateRouter.put(
 //     "/update/user/:template_id",

@@ -4,19 +4,23 @@ import {
     DropdownMenuTrigger,
     DropdownMenuContent,
     DropdownMenuItem,
+    DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { MoreVertical } from "lucide-react";
-import Link from "next/link";
+// import { Button } from "@/components/ui/button";
+import { Folder, MoreVertical, Share, Trash2 } from "lucide-react";
+// import Link from "next/link";
 import PreviewButton from "./previewBtn";
 import { Project } from "@/schemas/projects.schema";
+import { useSidebar } from "../ui/sidebar";
+import Link from "next/link";
 
 interface ProjectCardProps {
     project: Project;
-    onDelete: () => void;
+    onDelete: (projectId: string) => void;
 }
 
 export function ProjectCard({ project, onDelete }: ProjectCardProps) {
+    const { isMobile } = useSidebar();
     return (
         <Card className="shadow-2xl hover:shadow-3xl transition-shadow duration-300">
             <CardHeader className="flex flex-row items-center justify-between">
@@ -25,21 +29,30 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
                 {/* Settings Menu */}
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" className="h-8 w-8 p-0">
-                            <MoreVertical className="h-4 w-4" />
-                        </Button>
+                        <div role="button" className="cursor-pointer">
+                            <MoreVertical />
+                            <span className="sr-only">More</span>
+                        </div>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuItem asChild>
-                            <Link
-                                href={`https://${project.customDomain || project.subDomain}`}
-                                target="_blank"
-                            >
-                                View Project
-                            </Link>
+                    <DropdownMenuContent
+                        className="w-48"
+                        side={isMobile ? "bottom" : "right"}
+                        align={isMobile ? "end" : "start"}
+                    >
+                        <Link href={`/user/project/${project.id}`}>
+                            <DropdownMenuItem>
+                                <Folder className="text-muted-foreground" />
+                                <span>View Project</span>
+                            </DropdownMenuItem>
+                        </Link>
+                        <DropdownMenuItem>
+                            <Share className="text-muted-foreground" />
+                            <span>Share Project</span>
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={onDelete} className="text-red-600">
-                            Delete Project
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={() => onDelete(project.id)}>
+                            <Trash2 className="text-muted-foreground" />
+                            <span>Delete Project</span>
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

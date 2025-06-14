@@ -9,7 +9,7 @@ const AuthSuccessPageContent = () => {
     const searchParams = useSearchParams();
     // const { setUser } = useUserStore();
 
-    const token = searchParams.get("token");
+    const token = searchParams?.get("token");
 
     useEffect(() => {
         if (token) {

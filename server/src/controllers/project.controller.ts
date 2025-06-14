@@ -193,20 +193,34 @@ export const getUserProjects = async (req: Request, res: Response) => {
 };
 
 export const getTemplatesInProject = async (
-    req: Request<{ projectId: string }>,
+    req: Request<{ id: string }>,
     res: Response,
 ) => {
-    const { projectId } = req.params;
+    const { id } = req.params;
     const templates = await prisma.projectTemplate.findMany({
         where: {
-            projectId: projectId,
+            projectId: id,
         },
         include: {
             template: true,
+            project: true,
         },
     });
     if (!templates || templates.length === 0) {
         return res.status(404).json({ error: "Templates not found" });
     }
     res.status(200).json(templates);
+};
+
+export const deleteProjectById = async (req: Request, res: Response) => {
+    const { id: projectId } = req.params;
+    try {
+        await prisma.project.delete({
+            where: { id: projectId },
+        });
+        res.status(200).json({ message: "Project deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting project", error);
+        res.status(500).json({ error: "Error Deleting Project" });
+    }
 };

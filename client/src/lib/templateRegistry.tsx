@@ -5,7 +5,7 @@ import { DEV_EDITOR_SCHEMA } from "@/templates/dev/schema/DVEditorSchema";
 import { ProfessionalPortfolio } from "@/templates/professional";
 import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema";
 
-// TODO: instead of the data in the registry, fetch the data from the backend
+// TODO: instead of the data in the registry, fetch the data from the backend for isNew preview
 export const TEMPLATE_REGISTRY = {
     professional: {
         data: PF_STATIC_DATA,
