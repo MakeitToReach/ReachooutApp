@@ -1,8 +1,9 @@
 import { Request, Response, Router } from "express";
 // import { isAuthenticated } from "../middlewares/isAuthenticated";
 import {
-  addTemplateCategoryData,
+  // addTemplateCategoryData,
   createTemplate,
+  createTemplateCategory,
   loginAdmin,
   updateTemplate,
 } from "../controllers/admin.controller";
@@ -26,13 +27,20 @@ adminRouter.post("/update/:id", (req: Request, res: Response) => {
   updateTemplate(req, res);
 });
 
+// adminRouter.post(
+//   "/update/category/:templateId",
+//   (
+//     req: Request<{ templateId: string }, {}, { category: string; data: any }>,
+//     res: Response,
+//   ) => {
+//     addTemplateCategoryData(req, res);
+//   },
+// );
+
 adminRouter.post(
-  "/update/category/:id",
-  (
-    req: Request<{ id: string }, {}, { category: string; data: any }>,
-    res: Response,
-  ) => {
-    addTemplateCategoryData(req, res);
+  "/create/category/:templateId/:categoryName",
+  (req: Request, res: Response) => {
+    createTemplateCategory(req, res);
   },
 );
 

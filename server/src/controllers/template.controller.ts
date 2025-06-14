@@ -93,28 +93,70 @@ import type { Request, Response } from "express";
 // };
 
 export const getAllTemplates = async (req: Request, res: Response) => {
-    const templates = await prisma.template.findMany();
+  const templates = await prisma.template.findMany();
 
-    if (!templates) {
-        return res.status(404).json({ error: "Templates not found" });
-    }
-    return res.status(200).json({ templates });
+  if (!templates) {
+    return res.status(404).json({ error: "Templates not found" });
+  }
+  return res.status(200).json({ templates });
 };
 
-export const getTemplateCategories = async (
-    req: Request,
-    res: Response,
-) => {
-    const { templateId } = req.params;
-    const categories = await prisma.templateCategory.findMany({
-        where: {
-            templateId,
-        },
+export const getTemplateCategories = async (req: Request, res: Response) => {
+  const { templateId } = req.params;
+  const categories = await prisma.templateCategory.findMany({
+    where: {
+      templateId,
+    },
+  });
+  if (!categories) {
+    return res.status(404).json({ error: "Categories not found" });
+  }
+  return res.status(200).json({ categories });
+};
+
+
+// DELETE /v1/template/:templateId/categories/:categoryName
+export const deleteTemplateCategory = async (req: Request, res: Response) => {
+  try {
+    const { templateId, categoryName } = req.params;
+
+    // Decode category name in case it contains special characters
+    const decodedCategoryName = decodeURIComponent(categoryName);
+
+    const existingCategory = await prisma.templateCategory.findUnique({
+      where: {
+        templateId_category: {
+          templateId,
+          category: decodedCategoryName
+        }
+      }
     });
-    if (!categories) {
-        return res.status(404).json({ error: "Categories not found" });
+
+    if (!existingCategory) {
+      return res.status(404).json({
+        error: 'Template category not found'
+      });
     }
-    return res.status(200).json({ categories });
+
+    await prisma.templateCategory.delete({
+      where: {
+        templateId_category: {
+          templateId,
+          category: decodedCategoryName
+        }
+      }
+    });
+
+    res.json({
+      message: 'Template category deleted successfully'
+    });
+
+  } catch (error) {
+    console.error('Error deleting template category:', error);
+    res.status(500).json({
+      error: 'Internal server error'
+    });
+  }
 };
 
 // export const publishTemplate = async (req: Request, res: Response) => {

@@ -127,7 +127,7 @@ const CreateTemplatePage = () => {
                                     </Label>
                                     <Textarea
                                         id="data"
-                                        placeholder="Enter template data (JSON, HTML, or configuration)"
+                                        placeholder="Enter template data (JSON only)"
                                         value={formData.data}
                                         onChange={(e) =>
                                             setFormData({ ...formData, data: e.target.value })

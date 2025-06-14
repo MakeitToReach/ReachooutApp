@@ -34,12 +34,12 @@ const TemplatesDashboardPage = () => {
     fetchTemplates();
   }, []);
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-6">
+    <div className="max-w-7xl mx-auto space-y-6">
       {/* Header */}
-
+      <h1 className="text-3xl">Templates</h1>
       <AdminStats data={data} />
 
-      <div className="grid md:grid-cols-4 gap-4 px-4">
+      <div className="grid md:grid-cols-4 gap-4">
         {templates.length > 0 ? (
           templates.map((template, idx) => (
             <TemplateCard
@@ -48,8 +48,8 @@ const TemplatesDashboardPage = () => {
               previewUrl={`/preview/${template.name.toLowerCase()}`}
               editorUrl={`/editor/${template.name.toLowerCase()}?new`}
             >
-              <Link href={`/editor/${template.name.toLowerCase()}?new`}>
-                <Button>Use</Button>
+              <Link href={`/admin/dashboard/template/${template.id}?name=${template.name.toLowerCase()}`}>
+                <Button>Settings</Button>
               </Link>
             </TemplateCard>
           ))

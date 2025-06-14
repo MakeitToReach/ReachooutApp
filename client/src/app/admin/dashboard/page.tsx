@@ -33,8 +33,8 @@ const DashboardAnalyticsPage = () => {
   }, []);
 
   return (
-    <div className="text-3xl flex flex-col gap-10 max-w-7xl mx-auto ">
-      <h1>Dashboard</h1>
+    <div className="flex flex-col gap-10 max-w-7xl mx-auto ">
+      <h1 className="text-3xl">Dashboard</h1>
       <AdminStats data={data} />
     </div>
   );

@@ -1,5 +1,6 @@
 import { Request, Response, Router } from "express";
 import {
+    deleteTemplateCategory,
     // addUserTemplate,
     getAllTemplates,
     getTemplateCategories,
@@ -39,6 +40,15 @@ templateRouter.get(
         getTemplateCategories(req, res);
     },
 );
+
+
+templateRouter.delete(
+    "/delete/category/:templateId/:categoryName",
+    isAuthenticated,
+    (req: Request, res: Response) => {
+        deleteTemplateCategory(req, res);
+    }
+)
 
 // templateRouter.put(
 //     "/update/user/:template_id",

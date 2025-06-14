@@ -1,4 +1,4 @@
-import { IconHomeStats, IconPlus } from "@tabler/icons-react";
+import { IconHomeStats, IconPlus, IconTemplate } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
 
@@ -23,6 +23,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                             href="/admin/dashboard/templates"
                             className="hover:bg-gray-700 px-3 flex gap-2 py-2 rounded transition"
                         >
+                            <span>
+                                <IconTemplate/>
+                            </span>
                             Templates
                         </Link>
                         <Link
