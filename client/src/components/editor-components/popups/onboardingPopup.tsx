@@ -15,13 +15,7 @@ import { Sparkles } from "lucide-react";
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import { useRouter } from "next/navigation";
-
-export type CategoryItem = {
-    id: string;
-    category: string;
-    data: JSON;
-    templateId: string;
-};
+import { CategoryItem } from "@/types/category.types";
 
 export const OnboardingPopup = ({
     children,

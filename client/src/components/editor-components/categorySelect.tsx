@@ -5,8 +5,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { CategoryItem } from "./popups/onboardingPopup";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
+import { CategoryItem } from "@/types/category.types";
 
 interface CategorySelectProps {
     categoryItems: CategoryItem[];

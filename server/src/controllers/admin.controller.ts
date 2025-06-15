@@ -135,7 +135,7 @@ export const addTemplateCategoryData = async (
 
     // Check if template with this name already exists
     const existingTemplate = await prisma.template.findUnique({
-      where: { id:templateId },
+      where: { id: templateId },
     });
 
     if (!existingTemplate) {
@@ -213,12 +213,22 @@ export const createTemplateCategory = async (req: Request, res: Response) => {
       });
     }
 
+    let parsedData;
+
+    try {
+      parsedData = JSON.parse(data);
+    } catch (err: any) {
+      return res.status(400).json({
+        error: "Invalid JSON format",
+      });
+    }
+
     // Create the category
     const templateCategory = await prisma.templateCategory.create({
       data: {
         templateId,
         category,
-        data,
+        data: parsedData,
       },
       include: {
         template: {
