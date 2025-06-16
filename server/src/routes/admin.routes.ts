@@ -4,6 +4,7 @@ import {
   // addTemplateCategoryData,
   createTemplate,
   createTemplateCategory,
+  getTemplateCategoriesByTemplateId,
   loginAdmin,
   updateTemplate,
 } from "../controllers/admin.controller";
@@ -41,6 +42,13 @@ adminRouter.post(
   "/create/category/:templateId/:categoryName",
   (req: Request, res: Response) => {
     createTemplateCategory(req, res);
+  },
+);
+
+adminRouter.get(
+  "/categories/:templateId",
+  (req: Request<{ templateId: string }>, res: Response) => {
+    getTemplateCategoriesByTemplateId(req, res);
   },
 );
 

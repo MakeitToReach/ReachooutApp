@@ -251,3 +251,16 @@ export const createTemplateCategory = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getTemplateCategoriesByTemplateId = async (req: Request, res: Response) => {
+  const { templateId } = req.params;
+  const categories = await prisma.templateCategory.findMany({
+    where: {
+      templateId,
+    },
+  });
+  if (!categories) {
+    return res.status(404).json({ error: "Categories not found" });
+  }
+  return res.status(200).json({ categories });
+};
