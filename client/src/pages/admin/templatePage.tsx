@@ -1,7 +1,6 @@
 "use client";
 
-import { createTemplateCategory } from "@/api/admin";
-import { getCategoriesByTemplateId } from "@/api/templates";
+import { createTemplateCategory, getCategoriesByTemplateIdAdmin } from "@/api/admin";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -71,7 +70,7 @@ const TemplatePage = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             if (!id) return;
-            const response = await getCategoriesByTemplateId(id);
+            const response = await getCategoriesByTemplateIdAdmin(id);
             setCategories(response.categories);
         };
 

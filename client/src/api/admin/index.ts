@@ -83,3 +83,17 @@ export const createTemplateCategory = async (
     }
   }
 };
+
+export const getCategoriesByTemplateIdAdmin = async (templateId: string) => {
+    const response = await api.get(`/v1/admin/categories/${templateId}`, {
+    });
+
+    if (response.status === 200) {
+        return response.data;
+    } else {
+        toast.error("Failed to fetch categories");
+    }
+
+    return null;
+};
+
