@@ -16,9 +16,17 @@ const ProjectsTab = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // TODO: add re-render on delete to show rest of the projects
   const handleDeleteProject = async (projectId: string) => {
-    await deleteProjectById(projectId);
+    try {
+      await deleteProjectById(projectId);
+      setProjects((prevProjects) =>
+        prevProjects.filter((project) => project.id !== projectId),
+      );
+      toast.success("Project deleted successfully");
+    } catch (error) {
+      console.error("Error deleting project:", error);
+      toast.error("Failed to delete project");
+    }
   };
 
   useEffect(() => {

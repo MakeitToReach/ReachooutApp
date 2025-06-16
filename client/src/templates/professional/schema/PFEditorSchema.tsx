@@ -199,6 +199,12 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             imgSubtitle: "Dimensions 64x64",
         },
         {
+            label: "Description",
+            type: "textarea",
+            fieldPath: "description",
+        },
+
+        {
             label: "Address",
             type: "textarea",
             fieldPath: "address",

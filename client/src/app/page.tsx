@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Code2, ChevronRight, Sparkles } from "lucide-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 // import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,9 +10,20 @@ import { AuthPopup } from "@/components/editor-components/popups/authPopup";
 import { getToken } from "@/lib/isAuthenticated";
 import { useUserStore } from "@/store/user.store";
 import { getUserFromToken } from "@/api/auth";
+import { Navbar } from "@/components/editor-components/navbar";
 
 function Home() {
     const { setUser } = useUserStore();
+    const rotatingWords = ["Portfolio", "Brandsite"];
+    const [wordIndex, setWordIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+        }, 3000); // Change every 3 seconds
+        return () => clearInterval(interval);
+    }, []);
+
     const [token, setToken] = useState<string>("");
     const fadeIn = {
         initial: { opacity: 0, y: 20 },
@@ -51,9 +62,10 @@ function Home() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-black text-white font-Poppins">
+        <div className="min-h-screen bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 text-white font-Montserrat">
             {/* Hero Section */}
-            <header className="container mx-auto px-6 py-24 md:py-32">
+            <Navbar />
+            <header className="container mx-auto px-6 py-24 md:py-20">
                 <motion.div
                     initial="initial"
                     animate="animate"
@@ -70,9 +82,38 @@ function Home() {
 
                     <motion.h1
                         variants={fadeIn}
-                        className="text-4xl md:text-7xl md:leading-tight font-bold mb-6 bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent"
+                        layout
+                        transition={{ layout: { duration: 0.5, ease: "easeInOut" } }}
+                        className="text-4xl md:text-5xl text-center md:leading-tight font-bold mb-6 bg-gradient-to-r from-orange-100 to-orange-400 bg-clip-text text-transparent"
                     >
-                        Build Your Digital Identity
+                        Launch Your{" "}
+                        <motion.span
+                            layout
+                            className="bg-white text-orange-400 rounded-full px-4 inline-flex justify-center items-center overflow-hidden min-w-0"
+                        >
+                            <AnimatePresence mode="wait" initial={false}>
+                                <motion.span
+                                    layout
+                                    key={rotatingWords[wordIndex]}
+                                    initial={{ opacity: 0, filter: "blur(4px)", width: 0 }}
+                                    animate={{ opacity: 1, filter: "blur(0px)", width: "auto" }}
+                                    exit={{ opacity: 0, filter: "blur(4px)", width: 0 }}
+                                    transition={{
+                                        duration: 0.4,
+                                        ease: "easeInOut",
+                                        delay: 0.1, // Slight delay to let layout animation start first
+                                    }}
+                                    className="inline-block whitespace-nowrap"
+                                    style={{
+                                        position: "relative",
+                                        display: "inline-block",
+                                    }}
+                                >
+                                    {rotatingWords[wordIndex]}
+                                </motion.span>
+                            </AnimatePresence>
+                        </motion.span>
+                        {" "}before <br /> your coffee gets cold
                     </motion.h1>
 
                     <motion.p

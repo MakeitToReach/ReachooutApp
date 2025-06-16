@@ -3,21 +3,23 @@ import "./globals.css";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "Reachoout",
-  description: "Reachoout - Build your Digital Identity in just minutes",
+    title: "Reachoout",
+    description: "Reachoout - Build your Digital Identity in just minutes",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={`antialiased`}>
-        <main>{children}</main>
-        <Toaster richColors/>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body className={`antialiased`}>
+                <main>
+                    {children}
+                </main>
+                <Toaster richColors />
+            </body>
+        </html>
+    );
 }

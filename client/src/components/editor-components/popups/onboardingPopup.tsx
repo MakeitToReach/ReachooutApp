@@ -148,7 +148,7 @@ export const OnboardingPopup = ({
               />
             </div>
 
-            <Button onClick={handleAiSubmit} className="w-full">
+            <Button onClick={handleAiSubmit} className="w-full" disabled={isLoading}>
               {isLoading ? "Generating..." : "Generate Content"}
             </Button>
           </div>

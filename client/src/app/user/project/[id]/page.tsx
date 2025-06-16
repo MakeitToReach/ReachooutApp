@@ -3,11 +3,13 @@
 import { getTemplatesInProject } from "@/api/project";
 import PreviewButton from "@/components/editor-components/previewBtn";
 import { TemplateCard } from "@/components/editor-components/templateCard";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 // import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
-// import Link from "next/link";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -29,8 +31,8 @@ interface TemplateItem {
 }
 
 const ProjectPage = () => {
-    const params = useParams<{id: string}>();
-    const id = params?.id
+    const params = useParams<{ id: string }>();
+    const id = params?.id;
 
     const [templates, setTemplates] = useState<TemplateItem[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -52,7 +54,7 @@ const ProjectPage = () => {
         fetchTemplatesInProject();
     }, [id]);
 
-    const projectName = templates[0]?.project?.name ?? "Loading...";
+    const projectName = templates[0]?.project?.name ?? "Project Name";
     const projectDomain =
         templates[0]?.project?.customDomain || templates[0]?.project?.subDomain;
 
@@ -82,21 +84,28 @@ const ProjectPage = () => {
                             className="h-[400px] w-full rounded-lg bg-neutral-900 animate-pulse"
                         />
                     ))
-                ) : templates.length > 0 ? (
-                    templates.map((item, idx) => (
-                        <TemplateCard
-                            key={idx}
-                            imageUrl={item.template.thumbnailUrl || "/placeholder.png"}
-                            previewUrl={`/preview/${item.template.name.toLowerCase()}`}
-                            editorUrl={`/editor/${item.template.name.toLowerCase()}?new`}
-                            showPreview={false}
-                            isPublished
-                        />
-                    ))
                 ) : (
-                    <div className="col-span-full text-center text-gray-400">
-                        No templates found for this project.
-                    </div>
+                    <>
+                        {templates.length > 0
+                            ? templates.map((item, idx) => (
+                                <TemplateCard
+                                    key={idx}
+                                    imageUrl={item.template.thumbnailUrl || "/placeholder.png"}
+                                    previewUrl={`/preview/${item.template.name.toLowerCase()}`}
+                                    editorUrl={`/editor/${item.template.name.toLowerCase()}?new`}
+                                    showPreview={false}
+                                    isPublished
+                                />
+                            ))
+                            : null}
+                        <Link href={`/explore?pid=${id}`}>
+                            <Card className="border bg-transparent border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">
+                                <CardContent className="p-4">
+                                    <Button variant="outline">Create New website</Button>
+                                </CardContent>
+                            </Card>
+                        </Link>
+                    </>
                 )}
             </div>
         </div>
