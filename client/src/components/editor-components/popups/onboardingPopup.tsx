@@ -3,6 +3,8 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
@@ -11,13 +13,18 @@ import { getCategoriesByTemplateId } from "@/api/templates";
 import { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
+import { InfoIcon, Loader2, Sparkles } from "lucide-react";
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import { useRouter } from "next/navigation";
 import { CategoryItem } from "@/types/category.types";
 import { Textarea } from "@/components/ui/textarea";
 import { generateContent } from "@/api/genai";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export const OnboardingPopup = ({
   children,
@@ -39,9 +46,9 @@ export const OnboardingPopup = ({
   const [isAiMode, setIsAiMode] = useState(false);
 
   const [aiForm, setAiForm] = useState({
+    services: "",
     about: "",
     projects: "",
-    testimonials: "",
   });
 
   const handleDataChange = (data: GenericTemplateSchema) => {
@@ -85,12 +92,12 @@ export const OnboardingPopup = ({
   const handleAiSubmit = async () => {
     setIsLoading(true);
     const completeInput =
+      "Services: " +
+      aiForm.services +
       "About: " +
       aiForm.about +
-      " Projects/Services: " +
-      aiForm.projects +
-      " Testimonials: " +
-      aiForm.testimonials;
+      "Projects: " +
+      aiForm.projects;
     // console.log("Complete Input:", completeInput);
     const response = await generateContent(completeInput, defaultCategoryData);
 
@@ -106,28 +113,75 @@ export const OnboardingPopup = ({
     <Dialog onOpenChange={(open) => setIsOpen(open)} defaultOpen={false}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-h-[80vh] flex flex-col gap-4 overflow-y-auto">
-        <DialogTitle className="text-2xl font-medium mb-2">
-          {isAiMode ? "Generate with AI" : "Choose your content Category"}
-        </DialogTitle>
+        <DialogHeader className="text-left mb-2">
+          <DialogTitle className="md:text-2xl text-xl font-medium flex gap-1">
+            {isAiMode ? (
+              <div className="flex gap-1">
+                <h1>Generate Content</h1>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <InfoIcon size={14} />
+                  </TooltipTrigger>
+                  <TooltipContent className="text-sm w-[200px]">
+                    <p>
+                      The AI will fallback to default content if it cannot
+                      extract the required information from your answers
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+            ) : (
+              "Choose your content Category"
+            )}
+          </DialogTitle>
+          {isAiMode && (
+            <DialogDescription className="text-xs">
+              The more detailed and specific you are, the better content will be
+              generated.
+            </DialogDescription>
+          )}
+        </DialogHeader>
 
         {isAiMode ? (
-          <div className="space-y-4">
+          <div className="space-y-10">
             <div className="space-y-2">
-              <Label className="text-base">Tell us about yourself</Label>
+              <Label className="text-base">
+                Tell us about the services/products you offer. What do you
+                provide? Who is it for? What makes it valuable?
+              </Label>
               <Textarea
-                placeholder="Write about yourself here..."
-                value={aiForm.about}
-                onChange={(e) => handleAiInputChange("about", e.target.value)}
+                placeholder="Write about your services here..."
+                value={aiForm.services}
+                onChange={(e) =>
+                  handleAiInputChange("services", e.target.value)
+                }
                 className="min-h-[100px]"
               />
             </div>
 
             <div className="space-y-2">
               <Label className="text-base">
-                Tell us about your projects/services
+                Why should someone trust or choose you? Share any results,
+                experience, or unique approach that sets you apart.
               </Label>
               <Textarea
-                placeholder="Describe your projects or services..."
+                placeholder="Write about yourself and your experiences here..."
+                value={aiForm.about}
+                onChange={(e) => handleAiInputChange("about", e.target.value)}
+                className="min-h-[100px]"
+              />
+              <p className="text-xs text-gray-500">
+                Include your name, role, and any relevant experience.
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-base">
+                Can you share examples of your past work, projects or client
+                results that show what you do best?
+              </Label>
+              <Textarea
+                placeholder="Write about your projects here..."
                 value={aiForm.projects}
                 onChange={(e) =>
                   handleAiInputChange("projects", e.target.value)
@@ -136,20 +190,22 @@ export const OnboardingPopup = ({
               />
             </div>
 
-            <div className="space-y-2">
-              <Label className="text-base">Share any testimonials</Label>
-              <Textarea
-                placeholder="Include any client testimonials or feedback..."
-                value={aiForm.testimonials}
-                onChange={(e) =>
-                  handleAiInputChange("testimonials", e.target.value)
-                }
-                className="min-h-[100px]"
-              />
-            </div>
-
-            <Button onClick={handleAiSubmit} className="w-full" disabled={isLoading}>
-              {isLoading ? "Generating..." : "Generate Content"}
+            <Button
+              onClick={handleAiSubmit}
+              className="w-full"
+              disabled={isLoading}
+            >
+              {/* {isLoading ? "Generating..." : "Generate Content"} */}
+              {isLoading ? (
+                <p className="flex items-center gap-2">
+                  Generating..{" "}
+                  <span>
+                    <Loader2 className="animate-spin" />
+                  </span>
+                </p>
+              ) : (
+                "Generate Content"
+              )}
             </Button>
           </div>
         ) : (
