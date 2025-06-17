@@ -32,7 +32,7 @@ export const ViewMoreDrawer = ({ Project, children }: ViewMoreDrawerProps) => {
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       {/* Drawer Content with min height and flex layout */}
-      <DrawerContent className="p-0 max-w-full md:max-w-6xl mx-auto min-h-[80vh] flex flex-col">
+      <DrawerContent className="p-0 max-w-full md:max-w-6xl mx-auto min-h-[90vh] flex flex-col">
         {/* Header */}
         <DrawerHeader className="p-4 border-b">
           <DrawerTitle className="text-left text-xl">
