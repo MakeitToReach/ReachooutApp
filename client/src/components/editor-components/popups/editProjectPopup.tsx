@@ -1,96 +1,126 @@
 import { useState, useEffect } from "react";
 import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import { PF_PROJECT } from "@/templates/professional/types/project";
 import { CldUploadButton } from "next-cloudinary";
 import ImageSelectButton from "../inputs/imageInputBtn";
+import { ReqInput } from "../inputs/reqInput";
 
 interface EditProjectPopupProps {
-    project: PF_PROJECT;
-    projectIdx?: number; // optional, for display/debug
-    onSave: (updated: PF_PROJECT) => void;
-    children: React.ReactNode;
+  project: PF_PROJECT;
+  projectIdx?: number; // optional, for display/debug
+  onSave: (updated: PF_PROJECT) => void;
+  children: React.ReactNode;
 }
 
 export const EditProjectPopup = ({
-    project,
-    projectIdx,
-    onSave,
-    children,
+  project,
+  projectIdx,
+  onSave,
+  children,
 }: EditProjectPopupProps) => {
-    const [formData, setFormData] = useState<PF_PROJECT>(project);
-    const [open, setOpen] = useState(false);
+  const [formData, setFormData] = useState<PF_PROJECT>(project);
+  const [open, setOpen] = useState(false);
 
-    useEffect(() => {
-        if (open) setFormData(project); // reset on open
-    }, [open, project]);
+  useEffect(() => {
+    if (open) setFormData(project); // reset on open
+  }, [open, project]);
 
-    const handleChange = (key: keyof PF_PROJECT, val: string) => {
-        setFormData((prev) => ({ ...prev, [key]: val }));
-    };
+  const handleChange = (key: keyof PF_PROJECT, val: string) => {
+    setFormData((prev) => ({ ...prev, [key]: val }));
+  };
 
-    const handleSave = () => {
-        onSave(formData);
-        setOpen(false);
-    };
+  const handleSave = () => {
+    onSave(formData);
+    setOpen(false);
+  };
 
-    return (
-        <Dialog open={open} onOpenChange={setOpen} modal={false}>
-            <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 z-[100] font-Poppins">
-                <DialogHeader>
-                    <DialogTitle>
-                        Edit Project {projectIdx !== undefined && `#${projectIdx + 1}`}
-                    </DialogTitle>
-                </DialogHeader>
+  return (
+    <Dialog open={open} onOpenChange={setOpen} modal={false}>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent className="space-y-4 z-[100] font-Poppins">
+        <DialogHeader>
+          <DialogTitle>
+            Edit Project {projectIdx !== undefined && `#${projectIdx + 1}`}
+          </DialogTitle>
+        </DialogHeader>
 
-                <div className="space-y-2">
-                    <Label>Title</Label>
-                    <Input
-                        value={formData.heading}
-                        onChange={(e) => handleChange("heading", e.target.value)}
-                    />
+        <div className="space-y-2">
+          <ReqInput
+            required={true}
+            type="text"
+            label="Title"
+            placeholder="Enter your project link"
+            value={formData.heading}
+            onChange={(e) => handleChange("heading", e.target.value)}
+          />
+          <ReqInput
+            required={true}
+            type="text"
+            label="Category Tag"
+            placeholder="Enter your project category"
+            value={formData.category}
+            onChange={(e) => handleChange("category", e.target.value)}
+          />
 
-                    <Label>Category Tag</Label>
-                    <Input
-                        value={formData.category}
-                        onChange={(e) => handleChange("category", e.target.value)}
-                    />
+          <ReqInput
+            required={true}
+            type="text"
+            label="Description"
+            placeholder="Enter your project description"
+            value={formData.description}
+            onChange={(e) => handleChange("description", e.target.value)}
+          />
+          {/* <CldUploadButton */}
+          {/*     uploadPreset="you-view" */}
+          {/*     options={{ sources: ["local", "url", "unsplash"] }} */}
+          {/*     className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]" */}
+          {/*     //eslint-disable-next-line */}
+          {/*     onSuccess={(result: any) => { */}
+          {/*         handleChange("imgUrl", result.info.url); */}
+          {/*     }} */}
+          {/* > */}
+          {/*     <ImageSelectButton selectedImgUrl={formData.imgUrl![0]} /> */}
+          {/* </CldUploadButton> */}
+          <div className="flex items-center md:gap-10 gap-6 w-full">
+            <CldUploadButton
+              uploadPreset="you-view"
+              options={{ sources: ["local", "url", "unsplash"] }}
+              className="cursor-pointer p-2 rounded-lg w-fit"
+              //eslint-disable-next-line
+              onSuccess={(result: any) => {
+                handleChange("imgUrl", result.info.url);
+              }}
+            >
+              <ImageSelectButton selectedImgUrl={formData.imgUrl![0]} />
+              <span className="capitalize">500x500</span>
+            </CldUploadButton>
 
-                    <Label>Description</Label>
-                    <Input
-                        value={formData.description}
-                        onChange={(e) => handleChange("description", e.target.value)}
-                    />
+            <h1 className="text-xs md:text-lg">OR</h1>
 
-                    <CldUploadButton
-                        uploadPreset="you-view"
-                        options={{ sources: ["local", "url", "unsplash"] }}
-                        className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                        //eslint-disable-next-line
-                        onSuccess={(result: any) => {
-                            handleChange("imgUrl", result.info.url);
-                        }}
-                    >
-                        <ImageSelectButton selectedImgUrl={formData.imgUrl![0]} />
-                    </CldUploadButton>
-                </div>
+            <ReqInput
+              label="Video URL"
+              type="text"
+              placeholder="https://youtub.com/watch?v=******"
+              value={formData.vidUrl}
+              onChange={(e) => handleChange("vidUrl", e.target.value)}
+            />
+          </div>
+        </div>
 
-                <div className="flex justify-end gap-2">
-                    <Button variant="ghost" onClick={() => setOpen(false)}>
-                        Cancel
-                    </Button>
-                    <Button onClick={handleSave}>Save</Button>
-                </div>
-            </DialogContent>
-        </Dialog>
-    );
+        <div className="flex justify-end gap-2">
+          <Button variant="ghost" onClick={() => setOpen(false)}>
+            Cancel
+          </Button>
+          <Button onClick={handleSave}>Save</Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 };
