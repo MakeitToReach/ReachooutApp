@@ -40,7 +40,7 @@ export function ThemeSelectDropdown({ value }: ThemeSelectDropdownProps) {
             onValueChange={handleThemeChange}
             value={value?.name || selectedThemeName || ""}
         >
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full bg-white">
                 <SelectValue placeholder="Select theme" />
             </SelectTrigger>
             <SelectContent className="z-[100]">

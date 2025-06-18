@@ -1,4 +1,4 @@
-import PreviewPage from "@/pages/previewPage";
+import PreviewPage from "@/components/pages/previewPage";
 import { Suspense } from "react";
 
 export default function page() {

@@ -1,4 +1,4 @@
-import TemplatePage from "@/pages/admin/templatePage";
+import TemplatePage from "@/components/pages/admin/templatePage";
 import React, { Suspense } from "react";
 
 const page = () => {

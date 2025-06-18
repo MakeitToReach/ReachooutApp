@@ -40,3 +40,10 @@ export function getIconFromRegistry(icon: string) {
 export function getSocialIconFromRegistry(icon: string) {
     return SOCIAL_ICONS_REGISTRY.find((item) => item.label === icon)?.icon;
 }
+
+export const scrollToSection = (selector: string) => {
+    const target = document.querySelector(selector);
+    if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+};

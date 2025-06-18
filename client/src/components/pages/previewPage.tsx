@@ -37,7 +37,7 @@ const PreviewPage = () => {
             className="theme-wrapper relative"
             style={(data?.theme as Record<string, string>) || {}}
         >
-            <div className="absolute top-4 right-4 w-[200px] z-[149]">
+            <div className="fixed bottom-4 right-0 -translate-x-1/2 md:translate-x-0 md:top-4 md:right-4 w-[200px] z-[149]">
                 <ThemeSelectDropdown />
             </div>
             <SelectedTemplate.component data={data!} />

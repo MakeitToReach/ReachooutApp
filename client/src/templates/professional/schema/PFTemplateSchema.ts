@@ -12,11 +12,11 @@ import { PF_TEAM_MEMBER_SECTION } from "../types/teamMember.types";
 import { PF_CATALOG_SECTION } from "../types/serviceCatalog.types";
 import { PF_WIDGETS_SECTION } from "../types/widgets.types";
 
-
 export type PF_SECTION_BLOCK =
   | {
       type: "hero";
       data: PF_HERO_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: true;
       isEditable: true;
       isHidden: false;
@@ -24,6 +24,7 @@ export type PF_SECTION_BLOCK =
   | {
       type: "about";
       data: PF_ABOUT_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: false;
       isEditable: true;
       isHidden: false;
@@ -31,6 +32,7 @@ export type PF_SECTION_BLOCK =
   | {
       type: "projects";
       data: PF_WORK_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: false;
       isEditable: true;
       isHidden: false;
@@ -38,6 +40,7 @@ export type PF_SECTION_BLOCK =
   | {
       type: "client";
       data: PF_CLIENT_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: false;
       isEditable: true;
       isHidden: false;
@@ -45,6 +48,7 @@ export type PF_SECTION_BLOCK =
   | {
       type: "gallery";
       data: PF_GALLERY_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: false;
       isEditable: true;
       isHidden: false;
@@ -52,6 +56,7 @@ export type PF_SECTION_BLOCK =
   | {
       type: "testimonials";
       data: PF_TESTIMONIAL_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: false;
       isEditable: true;
       isHidden: false;
@@ -59,6 +64,7 @@ export type PF_SECTION_BLOCK =
   | {
       type: "services";
       data: PF_SERVICE_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: false;
       isEditable: true;
       isHidden: false;
@@ -66,6 +72,7 @@ export type PF_SECTION_BLOCK =
   | {
       type: "service-catalog";
       data: PF_CATALOG_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: false;
       isEditable: true;
       isHidden: false;
@@ -73,6 +80,7 @@ export type PF_SECTION_BLOCK =
   | {
       type: "navbar";
       data: PF_NAVBAR_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: true;
       isEditable: false;
       isHidden: false;
@@ -80,6 +88,7 @@ export type PF_SECTION_BLOCK =
   | {
       type: "team";
       data: PF_TEAM_MEMBER_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: false;
       isEditable: true;
       isHidden: false;
@@ -87,6 +96,7 @@ export type PF_SECTION_BLOCK =
   | {
       type: "contact";
       data: null;
+      menuItem: { text: string; link: string };
       isFixed: true;
       isEditable: false;
       isHidden: false;
@@ -94,6 +104,7 @@ export type PF_SECTION_BLOCK =
   | {
       type: "gallery";
       data: PF_GALLERY_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: false;
       isEditable: true;
       isHidden: false;
@@ -101,14 +112,15 @@ export type PF_SECTION_BLOCK =
   | {
       type: "contact widgets";
       data: PF_WIDGETS_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: false;
       isEditable: true;
       isHidden: false;
     }
-
   | {
       type: "footer";
       data: PF_FOOTER_SECTION;
+      menuItem: { text: string; link: string };
       isFixed: true;
       isEditable: false;
       isHidden: false;

@@ -27,21 +27,22 @@ type Props = {
 };
 
 export const ProfessionalPortfolio = ({ data }: Props) => {
-    // const [loading, setLoading] = useState(true);
 
-    // useEffect(() => {
-    //     const timeout = setTimeout(() => {
-    //         setLoading(false);
-    //     }, 1000);
-    //     return () => clearTimeout(timeout);
-    // }, []);
+    // const navSections = data.sections.map((section) => ({
+    //     name: section.type.replace("Section", ""),
+    //     href: `#${section.type}`,
+    // }));
 
+    const navSections = data.sections.filter((section) => section.isHidden === false).map((section) => ({
+        name: section.type.replace("Section", ""),
+        href: `#${section.type}`,
+    }));
     const renderSection = (section: SectionBlock, index: number) => {
         switch (section.type) {
             case "navbar":
                 return (
                     <>
-                        <PFNavbar key={`navbar-${index}`} {...section.data} />
+                        <PFNavbar key={`navbar-${index}`} {...section.data} sections={navSections} />
                     </>
                 );
 
@@ -158,24 +159,6 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
 
     return (
         <>
-            {/* <AnimatePresence mode="wait"> */}
-            {/*     {loading && ( */}
-            {/*         <m.div */}
-            {/*             key="loader" */}
-            {/*             initial={{ opacity: 0 }} */}
-            {/*             animate={{ opacity: 1 }} */}
-            {/*             exit={{ opacity: 0 }} */}
-            {/*             transition={{ */}
-            {/*                 duration: 0.5, */}
-            {/*             }} */}
-            {/*             className="fixed inset-0 flex items-center justify-center bg-white" */}
-            {/*         > */}
-            {/*             <PageLoader /> */}
-            {/*         </m.div> */}
-            {/*     )} */}
-            {/* </AnimatePresence> */}
-
-            {/* {!loading && ( */}
             <m.div
                 initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
                 animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
