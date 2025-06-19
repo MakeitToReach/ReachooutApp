@@ -4,6 +4,8 @@ import {
   // addTemplateCategoryData,
   createTemplate,
   createTemplateCategory,
+  deleteTemplateByTemplateId,
+  deleteTemplateCategoryByCategoryId,
   getTemplateCategoriesByTemplateId,
   loginAdmin,
   updateTemplate,
@@ -28,15 +30,10 @@ adminRouter.post("/update/:id", (req: Request, res: Response) => {
   updateTemplate(req, res);
 });
 
-// adminRouter.post(
-//   "/update/category/:templateId",
-//   (
-//     req: Request<{ templateId: string }, {}, { category: string; data: any }>,
-//     res: Response,
-//   ) => {
-//     addTemplateCategoryData(req, res);
-//   },
-// );
+adminRouter.delete("/template/:templateId", (req: Request, res: Response) => {
+  deleteTemplateByTemplateId(req, res);
+})
+
 
 adminRouter.post(
   "/create/category/:templateId/:categoryName",
@@ -51,6 +48,13 @@ adminRouter.get(
     getTemplateCategoriesByTemplateId(req, res);
   },
 );
+
+adminRouter.delete("/category/:categoryId", (req: Request, res: Response) => {
+  deleteTemplateCategoryByCategoryId(req, res);
+})
+
+
+
 
 // /v1/admin/analytics
 

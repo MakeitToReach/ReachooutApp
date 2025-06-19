@@ -23,6 +23,7 @@ import {
 import { toast } from "sonner";
 import { FONT_REGISTRY } from "@/lib/fontRegistry";
 import { ThemeSelectDropdown } from "../themeSelectDropdown";
+import { Separator } from "@/components/ui/separator";
 
 type ThemePickerDialogProps = {
     children: React.ReactNode;
@@ -83,6 +84,10 @@ export function ThemePickerDialog({
         toast.success("Theme applied successfully!");
     };
 
+    React.useEffect(() => {
+        setTheme(initialTheme);
+    }, [initialTheme]);
+
     return (
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
@@ -92,7 +97,14 @@ export function ThemePickerDialog({
                 </DialogHeader>
 
                 <div className="py-2">
-                    <Label className="block mb-1">Font</Label>
+                    <Label className="block mb-1">Theme Presets</Label>
+                    <ThemeSelectDropdown />
+                </div>
+
+                <Separator/>
+
+                <div className="">
+                    <Label className="block mb-1">Custom Font</Label>
                     <Select
                         value={theme["--template-font"]}
                         onValueChange={(value) => handleChange("--template-font", value)}
@@ -113,10 +125,6 @@ export function ThemePickerDialog({
                             ))}
                         </SelectContent>
                     </Select>
-                </div>
-                <div className="py-2">
-                    <Label className="block mb-1">Theme Presets</Label>
-                    <ThemeSelectDropdown />
                 </div>
 
                 <div className="grid gap-2 py-4">

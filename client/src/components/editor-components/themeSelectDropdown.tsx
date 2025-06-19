@@ -7,7 +7,6 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
-// import type { ThemeObject, ThemeEntry } from "@/types";
 import themesJson from "@/static_data/themes.json";
 import { usePortfolioStore } from "@/store/portfolio.store";
 import type { ThemeObject } from "@/schemas/templates.schema";

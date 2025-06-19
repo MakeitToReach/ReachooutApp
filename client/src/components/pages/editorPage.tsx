@@ -20,6 +20,7 @@ import { ReorderSectionsPopup } from "@/components/editor-components/popups/Sect
 import { ThemePickerDialog } from "@/components/editor-components/popups/colorThemeDialog";
 import { SettingsDropdown } from "@/components/editor-components/settingsDropdown";
 import { publishTemplate, updateTemplateData } from "@/api/publish-template";
+import { Loading } from "../editor-components/loading";
 
 const EditorPage = () => {
     const params = useParams<{ slug: string }>();
@@ -39,6 +40,8 @@ const EditorPage = () => {
 
     const isNew = searchParams?.has("new");
     const isEditing = searchParams?.has("edit");
+    // const templateId = searchParams?.get("tid");
+    // const projectId = searchParams?.get("pid");
 
     // const type = searchParams.get("type");
     // using the type/category parameter, search the backend for the corresponding static data
@@ -56,14 +59,13 @@ const EditorPage = () => {
         }
     }, [slug, isNew]);
 
-    if (!data) return <div>No data found</div>;
+    if (!data) return <Loading/>;
     if (!template) return <p>Template not found</p>;
 
     //refactors the data.sections to reorderPopup usable format
     const sections = data.sections.map((section) => ({
         id: section.type,
-        // name: section.type.replace("Section", ""),
-        name: section.sectionName,
+        name: section.type.replace("Section", ""),
         isFixed: section.isFixed,
         isHidden: section.isHidden,
     }));
@@ -99,7 +101,6 @@ const EditorPage = () => {
 
     return (
         <div className="relative w-full flex overflow-x-hidden">
-            {/* Animate Sidebar */}
 
             <div className={cn("hidden md:block", editorOpen ? "w-[30%]" : "w-0")} />
             <AnimatePresence mode="wait">
@@ -151,7 +152,7 @@ const EditorPage = () => {
                             className="w-[30%] hidden md:flex fixed z-[100] bottom-4 right-1/2 translate-x-1/2 bg-white justify-between backdrop-blur-3xl items-center border-border border rounded-md p-2 shadow-xs shadow-gray-300"
                         >
                             <ReorderSectionsPopup
-                                sections={sections!}
+                                sections={sections}
                                 onReorder={(newOrder) => handleReorder(newOrder)}
                                 onEdit={(tabIdx) => {
                                     setCurrentEditingSection(sections[tabIdx].id);

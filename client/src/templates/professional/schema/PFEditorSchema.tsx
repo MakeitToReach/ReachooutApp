@@ -26,11 +26,6 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
   ],
   hero: [
     {
-      label: "Menu Title",
-      type: "text",
-      fieldPath: "heroTitle",
-    },
-    {
       label: "Title",
       type: "text",
       fieldPath: "title",

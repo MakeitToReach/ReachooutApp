@@ -93,7 +93,7 @@ export const EditorPanel = ({
     return (
         <div
             className={cn(
-                "flex flex-col gap-4 p-4 md:px-10 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full font-Poppins",
+                "flex flex-col gap-4 p-4 md:px-6 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full font-Poppins",
             )}
         >
             {/* TODO: Add this to a component ( EditorHeader ) */}

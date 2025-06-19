@@ -69,7 +69,7 @@ export const EditorTabs = ({
               animate={{ opacity: 1, filter: "blur(0px)" }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold capitalize mb-6">
+              <h2 className="text-3xl md:text-3xl font-bold capitalize mb-6">
                 {section} Section
               </h2>
 

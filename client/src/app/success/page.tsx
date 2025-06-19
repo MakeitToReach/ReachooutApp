@@ -1,36 +1,33 @@
 "use client";
 
 import { setCookie } from "@/api/auth";
+import { Loading } from "@/components/editor-components/loading";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, Suspense } from "react";
 
 const AuthSuccessPageContent = () => {
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    // const { setUser } = useUserStore();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  // const { setUser } = useUserStore();
 
-    const token = searchParams?.get("token");
+  const token = searchParams?.get("token");
 
-    useEffect(() => {
-        if (token) {
-            setCookie("token", token);
-            router.push("/user");
-        }
-    }, [token, router]);
+  useEffect(() => {
+    if (token) {
+      setCookie("token", token);
+      router.push("/user");
+    }
+  }, [token, router]);
 
-    return (
-        <div>
-            <h1>Redirecting to dashboard...</h1>
-        </div>
-    );
+  return <Loading />;
 };
 
 const AuthSuccessPage = () => {
-    return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <AuthSuccessPageContent />
-        </Suspense>
-    );
+  return (
+    <Suspense fallback={<Loading />}>
+      <AuthSuccessPageContent />
+    </Suspense>
+  );
 };
 
 export default AuthSuccessPage;

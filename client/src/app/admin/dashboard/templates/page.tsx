@@ -15,10 +15,13 @@ import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { AnalyticsData } from "../page";
+import { deleteTemplateByTemplateId } from "@/api/admin";
+import { Trash2 } from "lucide-react";
 
 const TemplatesDashboardPage = () => {
   const [templates, setTemplates] = useState<GenericTemplateSchema[]>([]);
   const [data, setData] = useState<AnalyticsData[]>([]);
+
   useEffect(() => {
     const fetchTemplates = async () => {
       const response = await fetchAllTemplates();
@@ -33,6 +36,18 @@ const TemplatesDashboardPage = () => {
 
     fetchTemplates();
   }, []);
+
+  const handleDeleteTemplate = async (templateId: string) => {
+    try {
+      await deleteTemplateByTemplateId(templateId);
+      const updatedTemplates = templates.filter(
+        (template) => template.id !== templateId,
+      );
+      setTemplates(updatedTemplates);
+    } catch (error) {
+      console.error("Error deleting category:", error);
+    }
+  };
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       {/* Header */}
@@ -48,9 +63,20 @@ const TemplatesDashboardPage = () => {
               previewUrl={`/preview/${template.name.toLowerCase()}`}
               editorUrl={`/editor/${template.name.toLowerCase()}?new`}
             >
-              <Link href={`/admin/dashboard/template/${template.id}?name=${template.name.toLowerCase()}`}>
-                <Button>Settings</Button>
-              </Link>
+              <div className="space-x-2">
+                <Link
+                  href={`/admin/dashboard/template/${template.id}?name=${template.name.toLowerCase()}`}
+                >
+                  <Button>Settings</Button>
+                </Link>
+
+                <Button onClick={() => handleDeleteTemplate(template.id)}>
+                  Delete{" "}
+                  <span>
+                    <Trash2 />
+                  </span>
+                </Button>
+              </div>
             </TemplateCard>
           ))
         ) : (

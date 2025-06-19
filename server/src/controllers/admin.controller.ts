@@ -252,7 +252,10 @@ export const createTemplateCategory = async (req: Request, res: Response) => {
   }
 };
 
-export const getTemplateCategoriesByTemplateId = async (req: Request, res: Response) => {
+export const getTemplateCategoriesByTemplateId = async (
+  req: Request,
+  res: Response,
+) => {
   const { templateId } = req.params;
   const categories = await prisma.templateCategory.findMany({
     where: {
@@ -263,4 +266,48 @@ export const getTemplateCategoriesByTemplateId = async (req: Request, res: Respo
     return res.status(404).json({ error: "Categories not found" });
   }
   return res.status(200).json({ categories });
+};
+
+export const deleteTemplateCategoryByCategoryId = async (
+  req: Request,
+  res: Response,
+) => {
+  const { categoryId } = req.params;
+
+  try {
+    const deletedCategory = await prisma.templateCategory.delete({
+      where: {
+        id: categoryId,
+      },
+    });
+    if (!deletedCategory) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+    return res.status(200).json({ message: "Category deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting category:", error);
+    return res.status(500).json({ error: "Failed to process request" });
+  }
+};
+
+export const deleteTemplateByTemplateId = async (
+  req: Request,
+  res: Response,
+) => {
+  const { templateId } = req.params;
+
+  try {
+    const deletedTemplate = await prisma.template.delete({
+      where: {
+        id: templateId,
+      },
+    });
+    if (!deletedTemplate) {
+      return res.status(404).json({ error: "Template not found" });
+    }
+    return res.status(200).json({ message: "Template deleted successfully", template: deletedTemplate });
+  } catch (error) {
+    console.error("Error deleting Template:", error);
+    return res.status(500).json({ error: "Failed to process request" });
+  }
 };

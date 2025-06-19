@@ -85,15 +85,40 @@ export const createTemplateCategory = async (
 };
 
 export const getCategoriesByTemplateIdAdmin = async (templateId: string) => {
-    const response = await api.get(`/v1/admin/categories/${templateId}`, {
-    });
+  const response = await api.get(`/v1/admin/categories/${templateId}`, {});
 
-    if (response.status === 200) {
-        return response.data;
-    } else {
-        toast.error("Failed to fetch categories");
-    }
+  if (response.status === 200) {
+    return response.data;
+  } else {
+    toast.error("Failed to fetch categories");
+  }
 
-    return null;
+  return null;
 };
 
+export const deleteCategoryByCategoryId = async (categoryId: string) => {
+  const response = await api.delete(`/v1/admin/category/${categoryId}`);
+
+  if (response.status === 200) {
+    toast.success("Category deleted successfully");
+    return response.data;
+  } else {
+    toast.error("Failed to delete category");
+  }
+
+  return null;
+};
+
+export const deleteTemplateByTemplateId = async (templateId: string) => {
+    const response  = await api.delete(`/v1/admin/template/${templateId}`);
+
+    if (response.status === 200) {
+      toast.success("Template deleted successfully");
+      return response.data;
+    } else {
+      toast.error("Failed to delete template");
+    }
+  
+    return null;
+
+}

@@ -195,7 +195,7 @@ const SortableSectionItem = ({
                 <span className="font-medium">{name}</span>
             </div>
             <div className="flex items-center gap-2">
-                <Button onClick={() => toggleHideSection(name)} variant={"ghost"}>
+                <Button onClick={() => toggleHideSection(name)} variant={"outline"}>
                     {isHidden ? (
                         <span>
                             <LucideEyeOff />
