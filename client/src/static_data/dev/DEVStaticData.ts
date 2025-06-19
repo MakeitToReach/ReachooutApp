@@ -21,6 +21,7 @@ export const DEV_STATIC_DATA: GenericTemplateSchema = {
     sections: [
         {
             type: "hero",
+            sectionName: "Hero",
             data: {
                 title: "Hi, I'm Omkar — Full Stack Developer & UI Enthusiast",
             },
@@ -30,6 +31,7 @@ export const DEV_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "projects",
+            sectionName: "Hero",
             data: {
                 projects: [
                     {

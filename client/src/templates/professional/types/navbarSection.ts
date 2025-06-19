@@ -1,4 +1,4 @@
-type PF_NAVBAR_SECTION_ITEM = {
+export type PF_NAVBAR_SECTION_ITEM = {
     name: string;
     href: string;
 }

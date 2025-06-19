@@ -1,29 +1,31 @@
 import React from "react";
 
 export type GenericEditorFieldSchema = Record<
-    string,
-    {
-        label: string;
-        type: string;
-        fieldPath: string;
+  string,
+  {
+    label: string;
+    type: string;
+    fieldPath: string;
 
-        //for image-video input
-        fieldPathImg?: string;
-        fieldPathVid?: string;
+    //for image-video input
+    fieldPathImg?: string;
+    fieldPathVid?: string;
 
-        //for grouped inputs
-        fields?: { label: string; fieldPath: string }[];
+    //for grouped inputs
+    fields?: { label: string; fieldPath: string }[];
 
-        //for custom component inputs
-        component?: (props: {
-            value: any; //eslint-disable-line
-            onChange: (val: any) => void; //eslint-disable-line
-        }) => React.JSX.Element;
+    //for custom component inputs
+    component?: (props: {
+      value: any; //eslint-disable-line
+      onChange: (val: any) => void; //eslint-disable-line
+    }) => React.JSX.Element;
 
-        //for text input subtitle
-        subtitle?: string;
+    customComponent?: () => React.ReactNode;
 
-        //for image input subtitle
-        imgSubtitle?: string;
-    }[]
+    //for text input subtitle
+    subtitle?: string;
+
+    //for image input subtitle
+    imgSubtitle?: string;
+  }[]
 >;

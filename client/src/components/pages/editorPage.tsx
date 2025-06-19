@@ -62,7 +62,8 @@ const EditorPage = () => {
     //refactors the data.sections to reorderPopup usable format
     const sections = data.sections.map((section) => ({
         id: section.type,
-        name: section.type.replace("Section", ""),
+        // name: section.type.replace("Section", ""),
+        name: section.sectionName,
         isFixed: section.isFixed,
         isHidden: section.isHidden,
     }));

@@ -21,7 +21,7 @@ export const PFNavbar = ({
 
   const handleSelectChange = (value: string) => {
     if (value) {
-      scrollToSection(value); // You can adjust the scroll speed here
+      scrollToSection(value);
     }
   };
 

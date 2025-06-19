@@ -22,6 +22,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
   sections: [
     {
       type: "navbar",
+      sectionName: "Navbar",
       data: {
         textLogo: "Omkar",
       },
@@ -31,6 +32,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     },
     {
       type: "hero",
+      sectionName: "Hero",
       data: {
         title: "Hi, I'm Omkar B",
         description:
@@ -47,6 +49,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     },
     {
       type: "about",
+      sectionName: "About",
       data: {
         title: "Founder of ",
         colorTitle: "Reachoout",
@@ -65,6 +68,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     },
     {
       type: "projects",
+      sectionName: "Projects",
       data: {
         projects: [
           {
@@ -110,6 +114,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
 
     {
       type: "team",
+      sectionName: "Team",
       data: {
         title: "Our Team",
         subtitle: "Meet the professionals behind our success",
@@ -147,6 +152,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     },
     {
       type: "client",
+      sectionName: "Client",
       data: {
         title: "Leading Organizations and Companies",
         colorTxt: "50+",
@@ -178,6 +184,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     },
     {
       type: "services",
+      sectionName: "Services",
       data: {
         title: "Services I offer",
         subtitle: "View My services",
@@ -208,6 +215,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     },
     {
       type: "gallery",
+      sectionName: "Gallery",
       data: {
         gallery: [
           {
@@ -246,6 +254,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     },
     {
       type: "testimonials",
+      sectionName: "Testimonials",
       data: {
         title: "Testimonials",
         testimonials: [
@@ -277,6 +286,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     },
     {
       type: "service-catalog",
+      sectionName: "Service Catalog",
       data: {
         projects: [
           {
@@ -314,6 +324,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
 
     {
       type: "contact",
+      sectionName: "Contact",
       data: {
         email: "omkarb@example.com",
         phone: "+91 98765 43210",
@@ -330,6 +341,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     },
     {
       type: "contact widgets",
+      sectionName: "Contact Widgets",
       data: {
         whatsapp_number: 8888888888,
         telephone_number: "1234567890",
@@ -340,6 +352,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
     },
     {
       type: "footer",
+      sectionName: "Footer",
       data: {
         logoText: "Omkar",
         // logoUrl: "/next.svg",

@@ -5,6 +5,7 @@ import { DEV_PROJECT_SECTION } from "../types/projectSection.types";
 export type DEV_SECTION_BLOCK =
   | {
       type: "hero";
+      sectionName: "hero";
       data: DEV_HERO_SECTION;
       isFixed: true;
       isEditable: true;
@@ -12,6 +13,7 @@ export type DEV_SECTION_BLOCK =
     }
   | {
       type: "projects";
+      sectionName: "hero";
       data: DEV_PROJECT_SECTION;
       isFixed: false;
       isEditable: true;
