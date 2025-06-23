@@ -47,3 +47,11 @@ export const scrollToSection = (selector: string) => {
         target.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 };
+
+export const getYouTubeVideoId = (url: string | undefined) => {
+    if (!url) return null;
+    const regExp =
+        /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
+    const match = url.match(regExp);
+    return match ? match[1] : null;
+};

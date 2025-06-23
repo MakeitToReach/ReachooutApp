@@ -99,7 +99,7 @@ const ProjectPage = () => {
                             ))
                             : null}
                         <Link href={`/explore?pid=${id}`}>
-                            <Card className="border bg-transparent border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">
+                            <Card className="border bg-transparent h-full border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">
                                 <CardContent className="p-4">
                                     <Button variant="outline">Create New website</Button>
                                 </CardContent>

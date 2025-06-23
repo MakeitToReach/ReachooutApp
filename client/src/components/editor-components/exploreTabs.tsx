@@ -81,11 +81,13 @@ export default function ExploreTabs({
                     {templates.length > 0 ? (
                         templates.map((template, idx) => (
                             <TemplateCard
+                                id={template.id}
                                 key={idx}
                                 imageUrl={template.thumbnailUrl || "/placeholder.png"}
                                 previewUrl={`/preview/${template.name.toLowerCase()}?new`}
                                 editorUrl={`/editor/${template.name.toLowerCase()}?new`}
                                 showPreview={projectId ? false : true}
+                                templateName={template.name}
                             >
                                 {projectId && (
                                     <OnboardingPopup

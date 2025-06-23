@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { LucideArrowRight } from "lucide-react";
 import React from "react";
 import { CldImage } from "next-cloudinary";
+import { getYouTubeVideoId } from "@/lib/utils";
 
 export const PFHeroSection = ({
     title,
@@ -15,14 +16,6 @@ export const PFHeroSection = ({
     heroVidUrl,
     description,
 }: PF_HERO_SECTION) => {
-    const getYouTubeVideoId = (url: string | undefined) => {
-        if (!url) return null;
-        const regExp =
-            /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
-        const match = url.match(regExp);
-        return match ? match[1] : null;
-    };
-
     const videoId = getYouTubeVideoId(heroVidUrl);
 
     const opts = {

@@ -1,6 +1,7 @@
 import { toast } from "sonner";
 import { api } from "../axios.config";
 import { getToken } from "@/lib/isAuthenticated";
+import { GenericTemplateSchema } from "@/schemas/templates.schema";
 
 export const fetchAllTemplates = async () => {
     const token = getToken();
@@ -34,4 +35,31 @@ export const getCategoriesByTemplateId = async (templateId: string) => {
     }
 
     return null;
+};
+
+export const publishTemplate = async (
+    projectId: string,
+    templateId: string,
+    data: GenericTemplateSchema,
+) => {
+    const token = getToken();
+    try {
+        const response = await api.post(
+            `/v1/template/publish/${projectId}`,
+            {
+                templateId,
+                data,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            },
+        );
+
+        return response.data;
+    } catch (error) {
+        toast.error("Failed to publish template");
+        console.error("Failed to publish template", error);
+    }
 };

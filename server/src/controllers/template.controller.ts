@@ -93,85 +93,153 @@ import type { Request, Response } from "express";
 // };
 
 export const getAllTemplates = async (req: Request, res: Response) => {
-  const templates = await prisma.template.findMany();
+    const templates = await prisma.template.findMany();
 
-  if (!templates) {
-    return res.status(404).json({ error: "Templates not found" });
-  }
-  return res.status(200).json({ templates });
+    if (!templates) {
+        return res.status(404).json({ error: "Templates not found" });
+    }
+    return res.status(200).json({ templates });
 };
 
 export const getTemplateCategories = async (req: Request, res: Response) => {
-  const { templateId } = req.params;
-  const categories = await prisma.templateCategory.findMany({
-    where: {
-      templateId,
-    },
-  });
-  if (!categories) {
-    return res.status(404).json({ error: "Categories not found" });
-  }
-  return res.status(200).json({ categories });
+    const { templateId } = req.params;
+    const categories = await prisma.templateCategory.findMany({
+        where: {
+            templateId,
+        },
+    });
+    if (!categories) {
+        return res.status(404).json({ error: "Categories not found" });
+    }
+    return res.status(200).json({ categories });
 };
-
 
 // DELETE /v1/template/:templateId/categories/:categoryName
 export const deleteTemplateCategory = async (req: Request, res: Response) => {
-  try {
-    const { templateId, categoryName } = req.params;
+    try {
+        const { templateId, categoryName } = req.params;
 
-    // Decode category name in case it contains special characters
-    const decodedCategoryName = decodeURIComponent(categoryName);
+        // Decode category name in case it contains special characters
+        const decodedCategoryName = decodeURIComponent(categoryName);
 
-    const existingCategory = await prisma.templateCategory.findUnique({
-      where: {
-        templateId_category: {
-          templateId,
-          category: decodedCategoryName
+        const existingCategory = await prisma.templateCategory.findUnique({
+            where: {
+                templateId_category: {
+                    templateId,
+                    category: decodedCategoryName,
+                },
+            },
+        });
+
+        if (!existingCategory) {
+            return res.status(404).json({
+                error: "Template category not found",
+            });
         }
-      }
-    });
 
-    if (!existingCategory) {
-      return res.status(404).json({
-        error: 'Template category not found'
-      });
+        await prisma.templateCategory.delete({
+            where: {
+                templateId_category: {
+                    templateId,
+                    category: decodedCategoryName,
+                },
+            },
+        });
+
+        res.json({
+            message: "Template category deleted successfully",
+        });
+    } catch (error) {
+        console.error("Error deleting template category:", error);
+        res.status(500).json({
+            error: "Internal server error",
+        });
     }
-
-    await prisma.templateCategory.delete({
-      where: {
-        templateId_category: {
-          templateId,
-          category: decodedCategoryName
-        }
-      }
-    });
-
-    res.json({
-      message: 'Template category deleted successfully'
-    });
-
-  } catch (error) {
-    console.error('Error deleting template category:', error);
-    res.status(500).json({
-      error: 'Internal server error'
-    });
-  }
 };
 
-// export const publishTemplate = async (req: Request, res: Response) => {
-//     const { templateName, data } = req.body;
-//     const template = await prisma.projectTemplate.create({
-//         where: {
-//             name: templateName,
-//         },
-//         data: {
-//             name: templateName,
-//             data,
-//         },
-//     });
-//     return res.status(200).json({ template });
-// };
+export const publishTemplate = async (req: Request, res: Response) => {
+    try {
+        const { projectId } = req.params;
+        const { templateId, data, order = 0 } = req.body;
+
+        // Validate required fields
+        if (!templateId) {
+            return res.status(400).json({
+                error: "Template ID is required",
+            });
+        }
+
+        // Verify project exists and user has access
+        const project = await prisma.project.findUnique({
+            where: { id: projectId },
+            include: { user: true },
+        });
+
+        if (!project) {
+            return res.status(404).json({
+                error: "Project not found",
+            });
+        }
+
+        // Verify template exists
+        const template = await prisma.template.findUnique({
+            where: { id: templateId },
+        });
+
+        if (!template) {
+            return res.status(404).json({
+                error: "Template not found",
+            });
+        }
+
+        // Check if template is already published in this project
+        const existingProjectTemplate = await prisma.projectTemplate.findFirst({
+            where: {
+                projectId,
+                templateId,
+            },
+            orderBy: {
+                createdAt: "desc",
+            },
+        });
+
+        if (existingProjectTemplate) {
+            return res.status(400).json({
+                error: "Template is already published in this project, edit and save it instead",
+            });
+        }
+
+        // If template already exists, create a new instance (since composite key includes createdAt)
+        const projectTemplate = await prisma.projectTemplate.create({
+            data: {
+                projectId,
+                templateId,
+                data: data || {},
+                order,
+            },
+            include: {
+                template: {
+                    select: {
+                        id: true,
+                        name: true,
+                        thumbnailUrl: true,
+                        tags: true,
+                    },
+                },
+            },
+        });
+
+        res.status(201).json({
+            message: "Template published successfully",
+            projectTemplate,
+        });
+    } catch (error) {
+        console.error("Error publishing template:", error);
+        res.status(500).json({
+            error: "Internal server error",
+        });
+    }
+};
 
 // export const getUserTemplates = async (req: Request, res: Response) => {
 //     try {

@@ -4,6 +4,7 @@ import {
     // addUserTemplate,
     getAllTemplates,
     getTemplateCategories,
+    publishTemplate,
     // getUserTemplateData,
     // getUserTemplates,
     // updateUserTemplateData,
@@ -13,13 +14,13 @@ import { isAuthenticated } from "../middlewares/isAuthenticated";
 const templateRouter = Router();
 
 //v1/template
-// templateRouter.post(
-//     "/publish",
-//     isAuthenticated,
-//     (req: Request, res: Response) => {
-//         addUserTemplate(req, res);
-//     },
-// );
+templateRouter.post(
+    "/publish/:projectId",
+    isAuthenticated,
+    (req: Request, res: Response) => {
+        publishTemplate(req, res);
+    },
+);
 
 // templateRouter.get(
 //     "/user/:templateName",
