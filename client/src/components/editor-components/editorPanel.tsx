@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import { SettingsDropdown } from "./settingsDropdown";
 import { ThemePickerDialog } from "./popups/colorThemeDialog";
 import { useRouter } from "next/navigation";
+import { useEditorTabIdxStore } from "@/store/editorTabIdx.store";
 
 interface EditorPanelProps {
     isEditing?: boolean;
@@ -30,7 +31,7 @@ export const EditorPanel = ({
     isEditing,
     templateSchema = PF_EDITOR_SCHEMA,
     toggleEditor,
-    TabIndex = 0,
+    TabIndex,
 }: EditorPanelProps) => {
     const {
         data,
@@ -40,12 +41,15 @@ export const EditorPanel = ({
         setCurrentEditingSection,
     } = usePortfolioStore();
     const router = useRouter();
-    const [editorTabIndex, setEditorTabIndex] = useState(TabIndex);
+
+    const { editorTabIndex, setEditorTabIndex } = useEditorTabIdxStore();
+
+    // const [editorTabIndex, setEditorTabIndex] = useState(TabIndex);
     const [loading, setLoading] = useState(false);
 
     //Sets the editorTabIndex when TabIndex changes
     useEffect(() => {
-        setEditorTabIndex(TabIndex);
+        setEditorTabIndex(TabIndex!);
     }, [TabIndex]);
 
     if (!data) return <div>No data found</div>;

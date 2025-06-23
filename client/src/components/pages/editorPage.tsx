@@ -21,6 +21,7 @@ import { ThemePickerDialog } from "@/components/editor-components/popups/colorTh
 import { SettingsDropdown } from "@/components/editor-components/settingsDropdown";
 import { publishTemplate, updateTemplateData } from "@/api/publish-template";
 import { Loading } from "../editor-components/loading";
+import { useEditorTabIdxStore } from "@/store/editorTabIdx.store";
 
 const EditorPage = () => {
     const params = useParams<{ slug: string }>();
@@ -33,6 +34,8 @@ const EditorPage = () => {
         reorderSections,
         setCurrentEditingSection,
     } = usePortfolioStore();
+
+    const { editorTabIndex, setEditorTabIndex } = useEditorTabIdxStore()
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -49,7 +52,6 @@ const EditorPage = () => {
     const templateKey = slug as keyof typeof TEMPLATE_REGISTRY;
     const template = TEMPLATE_REGISTRY[templateKey];
 
-    const [editorTabIndex, setEditorTabIndex] = useState(0);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
