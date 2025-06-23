@@ -36,7 +36,6 @@ templateRouter.get("/all", (req: Request, res: Response) => {
 
 templateRouter.get(
     "/categories/:templateId",
-    isAuthenticated,
     (req: Request<{ templateId: string }>, res: Response) => {
         getTemplateCategories(req, res);
     },
