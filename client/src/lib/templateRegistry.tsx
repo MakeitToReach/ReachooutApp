@@ -1,7 +1,7 @@
-import { DEV_STATIC_DATA } from "@/static_data/dev/DEVStaticData";
+import { F_STATIC_DATA } from "@/static_data/finance/FStaticData";
 import { PF_STATIC_DATA } from "@/static_data/professional";
-import { DevPortfolio } from "@/templates/dev";
 import { DEV_EDITOR_SCHEMA } from "@/templates/dev/schema/DVEditorSchema";
+import { FinancePortfolio } from "@/templates/finance";
 import { ProfessionalPortfolio } from "@/templates/professional";
 import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema";
 
@@ -12,9 +12,9 @@ export const TEMPLATE_REGISTRY = {
         component: ProfessionalPortfolio,
         editorSchema: PF_EDITOR_SCHEMA,
     },
-    dev: {
-        data: DEV_STATIC_DATA,
-        component: DevPortfolio,
+    finance: {
+        data: F_STATIC_DATA,
+        component: FinancePortfolio,
         editorSchema: DEV_EDITOR_SCHEMA,
     },
 };

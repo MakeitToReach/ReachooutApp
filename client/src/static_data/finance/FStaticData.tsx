@@ -1,0 +1,389 @@
+import { GenericTemplateSchema } from "@/schemas/templates.schema";
+
+export const F_STATIC_DATA: GenericTemplateSchema = {
+    id: "cm9jqg57n0000kv04ems9adky",
+    name: "finance",
+    thumbnailUrl: "/finance_template.png",
+    theme: {
+        "--template-font": "'Poppins', sans-serif",
+        "--template-primary": "#f4f4f4",
+        "--template-secondary": "#1e293b",
+        "--template-accent-primary": "#3b82f6",
+        "--template-accent-secondary": "#60a5fa",
+        "--template-btn": "#2563eb",
+        "--template-text-primary": "#f8fafc",
+        "--template-text-secondary": "#cbd5e1",
+        "--template-text-accent-primary": "#93c5fd",
+        "--template-text-accent-secondary": "#bae6fd",
+        "--template-text-accent-tertiary": "#11111",
+        "--template-text-btn": "#ffffff",
+    },
+    sections: [
+        {
+            type: "navbar",
+            sectionName: "Navbar",
+            data: {
+                textLogo: "Omkar",
+            },
+            isFixed: true,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "hero",
+            sectionName: "Hero",
+            data: {
+                title: "Hi, I'm Omkar B",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, sunt veritatis. Itaque ullam maiores ut quod alias sint excepturi molestiae.",
+                professions: ["Web Developer", "UI/UX Designer", "CRM Consultant"],
+                btnText: "Visit My Website",
+                btnLink: "#",
+                heroImgUrl:
+                    "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "about",
+            sectionName: "About",
+            data: {
+                title: "Founder of ",
+                colorTitle: "Reachoout",
+                description:
+                    "I’m a passionate developer with a strong focus on building intuitive, scalable web applications. With experience in both frontend and backend technologies, I love bringing ideas to life through clean design and efficient code.",
+                stats: [
+                    { title: "Projects", value: 15 },
+                    { title: "Clients", value: 7 },
+                    { title: "Years of Experience", value: 3 },
+                    { title: "Awards", value: 2 },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "projects",
+            sectionName: "Projects",
+            data: {
+                projects: [
+                    {
+                        heading: "01. Reachoout",
+                        subtitle: "B2B Networking Platform",
+                        imgUrl:
+                            "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque debitis modi molestias officiis? Magnam explicabo sunt quaerat reprehenderit distinctio fugit hic velit, debitis unde adipisci et aspernatur non ratione facere? Blanditiis obcaecati, sapiente quas harum ad recusandae facilis natus aperiam expedita, dignissimos, vitae doloribus voluptatem saepe maxime delectus mollitia accusamus! Ex cum distinctio aut perferendis, id ratione natus amet optio. Voluptates magni, magnam facilis quae dolor adipisci dolorem vitae placeat ipsum est beatae eius ullam vero. Alias ut quod sint quo aspernatur, quia asperiores corporis voluptas eius saepe accusamus quaerat sed est eum nulla obcaecati possimus, amet voluptatibus cum blanditiis.",
+                        btnText: "View Project",
+                        btnLink: "#",
+                        category: "Full Stack",
+                    },
+                    {
+                        heading: "02. Devfolio Clone",
+                        subtitle: "Portfolio Generator for Developers",
+                        imgUrl:
+                            "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+                        description:
+                            "A customizable portfolio generator built with Next.js and Tailwind CSS, aimed at helping developers showcase their work online.",
+                        btnText: "GitHub Repo",
+                        btnLink: "#",
+                        category: "Frontend",
+                    },
+                    {
+                        heading: "03. TaskMaster",
+                        subtitle: "Team Collaboration App",
+                        imgUrl:
+                            "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+                        description:
+                            "TaskMaster is a real-time team task manager with WebSocket support, kanban-style UI, and role-based access control.",
+                        btnText: "Live Demo",
+                        btnLink: "#",
+                        category: "Full Stack",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+
+        {
+            type: "team",
+            sectionName: "Team",
+            data: {
+                title: "Our Team",
+                subtitle: "Meet the professionals behind our success",
+                teamMembers: [
+                    {
+                        avatar: "https://avatar.vercel.sh/jack",
+                        name: "John Doe",
+                        designation: "Senior Software Engineer",
+                    },
+                    {
+                        avatar: "https://avatar.vercel.sh/jill",
+                        name: "Jane Smith",
+                        designation: "UX/UI Designer",
+                    },
+                    {
+                        avatar: "https://avatar.vercel.sh/jill",
+                        name: "Jane Smith",
+                        designation: "UX/UI Designer",
+                    },
+                    {
+                        avatar: "https://avatar.vercel.sh/jill",
+                        name: "Jane Smith",
+                        designation: "UX/UI Designer",
+                    },
+                    {
+                        avatar: "https://avatar.vercel.sh/jill",
+                        name: "Jane Smith",
+                        designation: "UX/UI Designer",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "client",
+            sectionName: "Client",
+            data: {
+                title: "Leading Organizations and Companies",
+                colorTxt: "50+",
+                subtitle: "Clients I've worked with",
+                avatarImg:
+                    "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+                clientImgs: [
+                    {
+                        src: "/apple.svg",
+                        alt: "Image 4",
+                    },
+                    {
+                        src: "/next.svg",
+                        alt: "Image 1",
+                    },
+                    {
+                        src: "/tailwind.svg",
+                        alt: "Image 5",
+                    },
+                    {
+                        src: "/reachout-logo.png",
+                        alt: "Image 2",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "services",
+            sectionName: "Services",
+            data: {
+                title: "Services I offer",
+                subtitle: "View My services",
+                services: [
+                    {
+                        icon: "Cloud",
+                        heading: "Web Development",
+                        description:
+                            "I specialize in creating visually stunning and user-friendly web applications using the latest technologies.",
+                    },
+                    {
+                        icon: "Cloud",
+                        heading: "Web Development",
+                        description:
+                            "I specialize in creating visually stunning and user-friendly web applications using the latest technologies.",
+                    },
+                    {
+                        icon: "Cloud",
+                        heading: "Web Development",
+                        description:
+                            "I specialize in creating visually stunning and user-friendly web applications using the latest technologies.",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "gallery",
+            sectionName: "Gallery",
+            data: {
+                gallery: [
+                    {
+                        items: [
+                            {
+                                img: "https://avatar.vercel.sh/jack",
+                                title: "Mountain Escape",
+                            },
+                            {
+                                img: "https://avatar.vercel.sh/jill",
+                                title: "Sunset Horizon",
+                            },
+                            {
+                                img: "/placeholder.png",
+                                title: "Urban Jungle",
+                            },
+                        ],
+                    },
+                    {
+                        items: [
+                            {
+                                img: "/placeholder.png",
+                                title: "Foggy Forest",
+                            },
+                            {
+                                img: "https://avatar.vercel.sh/jack",
+                                title: "Snowy Peaks",
+                            },
+                        ],
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "testimonials",
+            sectionName: "Testimonials",
+            data: {
+                title: "Testimonials",
+                testimonials: [
+                    {
+                        name: "Jack",
+                        body: "I don't know what to say. I'm speechless. This is amazing.",
+                        img: "https://avatar.vercel.sh/jack",
+                    },
+                    {
+                        name: "Jill",
+                        body: "I don't know what to say. I'm speechless. This is amazing.",
+                        img: "https://avatar.vercel.sh/jill",
+                    },
+                    {
+                        name: "John",
+                        body: "I'm at a loss for words. This is amazing. I love it.",
+                        img: "https://avatar.vercel.sh/john",
+                    },
+                    {
+                        name: "Jane",
+                        body: "I'm at a loss for words. This is amazing. I love it.",
+                        img: "https://avatar.vercel.sh/jane",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "service-catalog",
+            sectionName: "Service Catalog",
+            data: {
+                projects: [
+                    {
+                        heading: "01. Reachoout",
+                        subtitle: "B2B Networking Platform",
+                        imgUrl: [
+                            "https://avatar.vercel.sh/jane",
+                            "https://avatar.vercel.sh/jack",
+                        ],
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque debitis modi molestias officiis? Magnam explicabo sunt quaerat reprehenderit distinctio fugit hic velit, debitis unde adipisci et aspernatur non ratione facere? Blanditiis obcaecati, sapiente quas harum ad recusandae facilis natus aperiam expedita, dignissimos, vitae doloribus voluptatem saepe maxime delectus mollitia accusamus! Ex cum distinctio aut perferendis, id ratione natus amet optio. Voluptates magni, magnam facilis quae dolor adipisci dolorem vitae placeat ipsum est beatae eius ullam vero. Alias ut quod sint quo aspernatur, quia asperiores corporis voluptas eius saepe accusamus quaerat sed est eum nulla obcaecati possimus, amet voluptatibus cum blanditiis.",
+                        btnText: "View Project",
+                        btnLink: "#",
+                        category: "Full Stack",
+                    },
+                    {
+                        heading: "02. Devfolio Clone",
+                        subtitle: "Portfolio Generator for Developers",
+                        imgUrl: [
+                            "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
+                            "https://avatar.vercel.sh/jill",
+                        ],
+                        description:
+                            "A customizable portfolio generator built with Next.js and Tailwind CSS, aimed at helping developers showcase their work online.",
+                        btnText: "GitHub Repo",
+                        btnLink: "#",
+                        category: "Frontend",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+
+        {
+            type: "contact",
+            sectionName: "Contact",
+            data: {
+                email: "omkarb@example.com",
+                phone: "+91 98765 43210",
+                address: "Pune, Maharashtra, India",
+                socialLinks: {
+                    github: "https://github.com/omkar-dev",
+                    linkedin: "https://linkedin.com/in/omkar-b",
+                    twitter: "https://twitter.com/omkarb_dev",
+                },
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "contact widgets",
+            sectionName: "Contact Widgets",
+            data: {
+                whatsapp_number: 8888888888,
+                telephone_number: "1234567890",
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "footer",
+            sectionName: "Footer",
+            data: {
+                logoText: "Omkar",
+                // logoUrl: "/next.svg",
+                description:
+                    "Showcasing my work and passion for creating innovative solutions. Connect with me to collaborate or learn more about my projects.",
+                address: "1234 Creative Street, Innovation City, CA 90210",
+                email: "omkar@reachoout.com",
+                phone: "+1 (555) 123-4567",
+                socials: [
+                    { name: "X", url: "https://x.com" },
+                    {
+                        name: "Linkedin",
+                        url: "https://linkedin.com",
+                    },
+                    { name: "Github", url: "https://github.com" },
+                    {
+                        name: "Instagram",
+                        url: "https://instagram.com",
+                    },
+                    {
+                        name: "Youtube",
+                        url: "https://youtube.com",
+                    },
+                    {
+                        name: "Facebook",
+                        url: "https://facebook.com",
+                    },
+                ],
+            },
+            isFixed: true,
+            isEditable: true,
+            isHidden: false,
+        },
+    ],
+};

@@ -25,10 +25,6 @@ type Props = {
 };
 
 export const ProfessionalPortfolio = ({ data }: Props) => {
-  // const navSections = data.sections.map((section) => ({
-  //     name: section.type.replace("Section", ""),
-  //     href: `#${section.type}`,
-  // }));
 
   const navSections = data.sections
     .filter((section) => section.isHidden === false)

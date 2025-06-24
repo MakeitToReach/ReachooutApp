@@ -1,17 +1,17 @@
 export const TEMPLATES_STATIC = [
   {
     imageUrl: "/test_template.png",
-    previewUrl: "/preview/test",
+    previewUrl: "/preview/test?new",
     editorUrl: "/editor/test",
   },
   {
     imageUrl: "/professional_template.png",
-    previewUrl: "/preview/professional",
+    previewUrl: "/preview/professional?new",
     editorUrl: "/editor/professional",
   },
   {
-    imageUrl: "/Dev_template.png",
-    previewUrl: "/preview/dev",
-    editorUrl: "/editor/dev",
+    imageUrl: "finance_template.png",
+    previewUrl: "/preview/finance?new",
+    editorUrl: "/editor/finance",
   },
 ];
