@@ -32,7 +32,7 @@ const BLOGS_STATIC_DATA = [
 
 export const FBlogsSection = () => {
     return (
-        <section className="w-full rounded-lg min-h-[75vh] overflow-hidden my-14 px-6 py-4">
+        <section className="w-full rounded-lg min-h-[75vh] overflow-hidden my-14 py-4">
             <div className="max-w-6xl mx-auto h-full my-10 space-y-8 overflow-x-visible">
                 <h2 className="text-center font-semibold sm:text-5xl text-3xl tracking-tight">
                     Latest Blogs

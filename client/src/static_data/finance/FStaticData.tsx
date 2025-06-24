@@ -84,6 +84,14 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             isHidden: false,
         },
         {
+            type: "logos",
+            sectionName: "Team",
+            data: {},
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
             type: "projects",
             sectionName: "Projects",
             data: {},
