@@ -15,6 +15,7 @@ import {
     FServicesSection,
     FTeamSection,
     FTestimonialsSection,
+    FWhyChooseUsSection,
 } from "./sections";
 
 type Props = {
@@ -118,6 +119,17 @@ export const FinancePortfolio = ({ data }: Props) => {
                     <>
                         {!section.isHidden && (
                             <FServiceCatalogSection
+                                key={`service-catalog-${index}`}
+                                {...section.data}
+                            />
+                        )}
+                    </>
+                );
+            case "why-choose-us":
+                return (
+                    <>
+                        {!section.isHidden && (
+                            <FWhyChooseUsSection
                                 key={`service-catalog-${index}`}
                                 {...section.data}
                             />

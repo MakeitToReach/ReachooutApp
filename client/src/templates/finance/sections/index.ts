@@ -16,4 +16,5 @@ export * from "./stats.section";
 export * from "./team.section";
 export * from "./testimonials.section";
 export * from "./timeline.section";
+export * from "./whyChooseUs.section";
 
