@@ -2,7 +2,9 @@ import React from "react";
 import { SectionBlock } from "@/schemas/templates.schema";
 import {
     FAboutSection,
+    FBlogsSection,
     FContactSection,
+    FFeaturedServicesSection,
     FFooterSection,
     FGallerySection,
     FHeroSection,
@@ -41,6 +43,14 @@ export const FinancePortfolio = ({ data }: Props) => {
                     <>
                         {!section.isHidden && (
                             <FHeroSection key={`hero-${index}`} {...section.data} />
+                        )}
+                    </>
+                );
+            case "featured-services":
+                return (
+                    <>
+                        {!section.isHidden && (
+                            <FFeaturedServicesSection key={`about-${index}`} {...section.data} />
                         )}
                     </>
                 );
@@ -120,6 +130,12 @@ export const FinancePortfolio = ({ data }: Props) => {
                         {!section.isHidden && <FContactSection key={`contact-${index}`} />}
                     </>
                 );
+            case "blogs":
+                return (
+                    <>
+                        {!section.isHidden && <FBlogsSection key={`contact-${index}`} />}
+                    </>
+                );
             case "footer":
                 return <FFooterSection key={`footer-${index}`} {...section.data} />;
             default:
@@ -129,7 +145,7 @@ export const FinancePortfolio = ({ data }: Props) => {
 
     return (
         <div className="min-h-screen bg-template-primary">
-            <div className="px-12">
+            <div className="sm:px-12 px-4">
                 {data.sections.map((section, idx) => (
                     <div key={idx} className="relative">
                         {renderSection(section, idx)}
