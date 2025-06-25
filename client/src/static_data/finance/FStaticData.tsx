@@ -11,7 +11,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         "--template-accent-primary": "#3b82f6",
         "--template-accent-secondary": "#60a5fa",
         "--template-btn": "#2563eb",
-        "--template-text-primary": "#f8fafc",
+        "--template-text-primary": "#00000",
         "--template-text-secondary": "#cbd5e1",
         "--template-text-accent-primary": "#93c5fd",
         "--template-text-accent-secondary": "#bae6fd",
@@ -90,6 +90,14 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             isFixed: false,
             isEditable: true,
             isHidden: false,
+        },
+        {
+            type: "newsletter",
+            sectionName: "Team",
+            data: {},
+            isFixed: false,
+            isEditable: true,
+            isHidden: true,
         },
         {
             type: "projects",

@@ -1,9 +1,32 @@
-import { FButton } from "../components/FButton"
+import { HandCoins } from "lucide-react";
+import { FButton } from "../components/FButton";
+import { FWhyChooseUsCard } from "../components/FWhyChooseUsCard";
+
+const WHY_CHOOSE_US_STATIC_DATA = [
+    {
+        icon: <HandCoins size={80} className="size-14 sm:size-20" />,
+        title: "We are here to help",
+        description:
+            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid omnis quod ad fugit esse suscipit natus porro dicta nesciunt dolorem.",
+    },
+    {
+        icon: <HandCoins size={80} className="size-14 sm:size-20" />,
+        title: "We are here to help",
+        description:
+            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid omnis quod ad fugit esse suscipit natus porro dicta nesciunt dolorem.",
+    },
+    {
+        icon: <HandCoins size={80} className="size-14 sm:size-20" />,
+        title: "We are here to help",
+        description:
+            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid omnis quod ad fugit esse suscipit natus porro dicta nesciunt dolorem.",
+    },
+];
 
 export const FWhyChooseUsSection = () => {
     return (
         <section className="max-w-6xl mx-auto sm:py-20 py-10 px-4">
-            <div className="flex flex-col sm:flex-row">
+            <div className="flex flex-col sm:flex-row gap-10">
                 {/* text content */}
                 <div className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full">
                     <div className="w-fit rounded-full translate-x-10 bg-gradient-to-r from-gray-100 to-green-200 via-green-100 flex items-center justify-center px-4 py-2 uppercase font-semibold text-lg">
@@ -24,10 +47,17 @@ export const FWhyChooseUsSection = () => {
                     </div>
                 </div>
 
-                <div className="self-end">
-                    {/* <img src="https://github.com/shadcn.png" alt="about-img" /> */}
+                <div className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full">
+                    {WHY_CHOOSE_US_STATIC_DATA.map((card, index) => (
+                        <FWhyChooseUsCard
+                            key={index}
+                            icon={card.icon}
+                            title={card.title}
+                            description={card.description}
+                        />
+                    ))}
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};

@@ -19,7 +19,7 @@ export const FBlogCard = ({
     author,
 }: FBlogCardProps) => {
     return (
-        <div className="sm:h-[45vh] h-fit sm:w-[20vw] w-full bg-white rounded-lg overflow-hidden space-y-6 pb-6">
+        <div className="sm:h-[45vh] h-fit sm:w-[20vw] w-full bg-white rounded-lg overflow-hidden space-y-6 pb-6 shadow-xl">
             <Image
                 src={imgUrl}
                 alt="blog-img"

@@ -10,6 +10,7 @@ import {
     FHeroSection,
     FLogoSection,
     FNavbarSection,
+    FNewsletterSection,
     FProjectsSection,
     FServiceCatalogSection,
     FServicesSection,
@@ -76,6 +77,14 @@ export const FinancePortfolio = ({ data }: Props) => {
                     <>
                         {!section.isHidden && (
                             <FServicesSection key={`services-${index}`} {...section.data} />
+                        )}
+                    </>
+                );
+            case "newsletter":
+                return (
+                    <>
+                        {!section.isHidden && (
+                            <FNewsletterSection key={`newsletter-${index}`} {...section.data} />
                         )}
                     </>
                 );
