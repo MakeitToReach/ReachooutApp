@@ -52,7 +52,10 @@ export const FinancePortfolio = ({ data }: Props) => {
                 return (
                     <>
                         {!section.isHidden && (
-                            <FFeaturedServicesSection key={`about-${index}`} {...section.data} />
+                            <FFeaturedServicesSection
+                                key={`about-${index}`}
+                                {...section.data}
+                            />
                         )}
                     </>
                 );
@@ -84,7 +87,10 @@ export const FinancePortfolio = ({ data }: Props) => {
                 return (
                     <>
                         {!section.isHidden && (
-                            <FNewsletterSection key={`newsletter-${index}`} {...section.data} />
+                            <FNewsletterSection
+                                key={`newsletter-${index}`}
+                                {...section.data}
+                            />
                         )}
                     </>
                 );
@@ -148,13 +154,17 @@ export const FinancePortfolio = ({ data }: Props) => {
             case "contact":
                 return (
                     <>
-                        {!section.isHidden && <FContactSection key={`contact-${index}`} />}
+                        {!section.isHidden && (
+                            <FContactSection key={`contact-${index}`} {...section.data} />
+                        )}
                     </>
                 );
             case "blogs":
                 return (
                     <>
-                        {!section.isHidden && <FBlogsSection key={`contact-${index}`} />}
+                        {!section.isHidden && (
+                            <FBlogsSection key={`blogs-${index}`} {...section.data} />
+                        )}
                     </>
                 );
             case "footer":

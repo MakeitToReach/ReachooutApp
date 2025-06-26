@@ -2,7 +2,7 @@ import { LucideAtSign, LucidePhone } from "lucide-react";
 
 interface FContactButtonProps {
     type: "tel" | "email";
-    value: string;
+    value: string | number;
 }
 export const FContactButton = ({ type, value }: FContactButtonProps) => {
     return (

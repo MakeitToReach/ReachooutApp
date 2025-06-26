@@ -1,7 +1,7 @@
 import { F_STATIC_DATA } from "@/static_data/finance/FStaticData";
 import { PF_STATIC_DATA } from "@/static_data/professional";
-import { DEV_EDITOR_SCHEMA } from "@/templates/dev/schema/DVEditorSchema";
 import { FinancePortfolio } from "@/templates/finance";
+import { F_EDITOR_SCHEMA } from "@/templates/finance/schema/FEditorSchema";
 import { ProfessionalPortfolio } from "@/templates/professional";
 import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema";
 
@@ -15,6 +15,6 @@ export const TEMPLATE_REGISTRY = {
     finance: {
         data: F_STATIC_DATA,
         component: FinancePortfolio,
-        editorSchema: DEV_EDITOR_SCHEMA,
+        editorSchema: F_EDITOR_SCHEMA,
     },
 };

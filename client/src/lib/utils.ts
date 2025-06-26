@@ -33,8 +33,12 @@ export function getTrimmedTextWithToggle(
     };
 }
 
-export function getIconFromRegistry(icon: string) {
-    return ICONS_REGISTRY.find((item) => item.label === icon)?.icon;
+export function getIconFromRegistry(
+    icon: string,
+    //eslint-disable-next-line
+    props?: React.ComponentProps<any>,
+) {
+    return ICONS_REGISTRY.find((item) => item.label === icon)?.icon(props);
 }
 
 export function getSocialIconFromRegistry(icon: string) {

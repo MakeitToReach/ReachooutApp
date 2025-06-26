@@ -50,48 +50,109 @@ import {
 
 type IconOption = {
     label: string;
-    icon: React.ReactNode;
+    //eslint-disable-next-line
+    icon: (props?: React.ComponentProps<any>) => React.ReactNode;
 };
 
 export const ICONS_REGISTRY: IconOption[] = [
-    { label: "Cloud", icon: <IconCloud size={20} /> },
-    { label: "Security", icon: <IconShield size={20} /> },
-    { label: "Analytics", icon: <IconChartBar size={20} /> },
-    { label: "Support", icon: <LifeBuoy className="w-5 h-5" /> },
-    { label: "Settings", icon: <IconSettings size={20} /> },
-    { label: "Users", icon: <IconUsers size={20} /> },
-    { label: "Server", icon: <Server className="w-5 h-5" /> },
-    { label: "Global", icon: <Globe className="w-5 h-5" /> },
-    { label: "Chat", icon: <IconMessageCircle size={20} /> },
-    { label: "Notifications", icon: <IconBell size={20} /> },
-    { label: "Launch", icon: <Rocket className="w-5 h-5" /> },
-    { label: "Enterprise", icon: <IconBuildingSkyscraper size={20} /> },
-    { label: "Documents", icon: <IconFileText size={20} /> },
-    { label: "Database", icon: <IconDatabase size={20} /> },
-    { label: "Payments", icon: <IconCreditCard size={20} /> },
-    { label: "Wallet", icon: <Wallet className="w-5 h-5" /> },
-    { label: "E-Commerce", icon: <ShoppingCart className="w-5 h-5" /> },
-    { label: "Map", icon: <IconMapPin size={20} /> },
-    { label: "Calendar", icon: <IconCalendar size={20} /> },
-    { label: "Integration", icon: <IconPlug size={20} /> },
-    { label: "Code", icon: <IconCode size={20} /> },
-    { label: "Devices", icon: <IconDeviceLaptop size={20} /> },
-    { label: "Microphone", icon: <IconMicrophone size={20} /> },
-    { label: "Camera", icon: <IconCamera size={20} /> },
-    { label: "AI", icon: <IconRobot size={20} /> },
-    { label: "Email", icon: <IconMail size={20} /> },
-    { label: "Home", icon: <IconHome size={20} /> },
-    { label: "Search", icon: <IconSearch size={20} /> },
-    { label: "Help", icon: <IconHelp size={20} /> },
-    { label: "Privacy", icon: <IconLock size={20} /> },
-    { label: "Time", icon: <Clock className="w-5 h-5" /> },
-    { label: "Vision", icon: <Eye className="w-5 h-5" /> },
-    { label: "Ideas", icon: <Lightbulb className="w-5 h-5" /> },
-    { label: "Automation", icon: <Zap className="w-5 h-5" /> },
-    { label: "Layers", icon: <Layers className="w-5 h-5" /> },
-    { label: "Upload", icon: <UploadCloud className="w-5 h-5" /> },
-    { label: "Archive", icon: <Archive className="w-5 h-5" /> },
-    { label: "Organization", icon: <Building2 className="w-5 h-5" /> },
+    { label: "Cloud", icon: (props) => <IconCloud size={20} {...props} /> },
+    { label: "Security", icon: (props) => <IconShield size={20} {...props} /> },
+    {
+        label: "Analytics",
+        icon: (props) => <IconChartBar size={20} {...props} />,
+    },
+    {
+        label: "Support",
+        icon: (props) => <LifeBuoy className="w-5 h-5" {...props} />,
+    },
+    { label: "Settings", icon: (props) => <IconSettings size={20} {...props} /> },
+    { label: "Users", icon: (props) => <IconUsers size={20} {...props} /> },
+    {
+        label: "Server",
+        icon: (props) => <Server className="w-5 h-5" {...props} />,
+    },
+    {
+        label: "Global",
+        icon: (props) => <Globe className="w-5 h-5" {...props} />,
+    },
+    {
+        label: "Chat",
+        icon: (props) => <IconMessageCircle size={20} {...props} />,
+    },
+    {
+        label: "Notifications",
+        icon: (props) => <IconBell size={20} {...props} />,
+    },
+    {
+        label: "Launch",
+        icon: (props) => <Rocket className="w-5 h-5" {...props} />,
+    },
+    {
+        label: "Enterprise",
+        icon: (props) => <IconBuildingSkyscraper size={20} {...props} />,
+    },
+    {
+        label: "Documents",
+        icon: (props) => <IconFileText size={20} {...props} />,
+    },
+    { label: "Database", icon: (props) => <IconDatabase size={20} {...props} /> },
+    {
+        label: "Payments",
+        icon: (props) => <IconCreditCard size={20} {...props} />,
+    },
+    {
+        label: "Wallet",
+        icon: (props) => <Wallet className="w-5 h-5" {...props} />,
+    },
+    {
+        label: "E-Commerce",
+        icon: (props) => <ShoppingCart className="w-5 h-5" {...props} />,
+    },
+    { label: "Map", icon: (props) => <IconMapPin size={20} {...props} /> },
+    { label: "Calendar", icon: (props) => <IconCalendar size={20} {...props} /> },
+    { label: "Integration", icon: (props) => <IconPlug size={20} {...props} /> },
+    { label: "Code", icon: (props) => <IconCode size={20} {...props} /> },
+    {
+        label: "Devices",
+        icon: (props) => <IconDeviceLaptop size={20} {...props} />,
+    },
+    {
+        label: "Microphone",
+        icon: (props) => <IconMicrophone size={20} {...props} />,
+    },
+    { label: "Camera", icon: (props) => <IconCamera size={20} {...props} /> },
+    { label: "AI", icon: (props) => <IconRobot size={20} {...props} /> },
+    { label: "Email", icon: (props) => <IconMail size={20} {...props} /> },
+    { label: "Home", icon: (props) => <IconHome size={20} {...props} /> },
+    { label: "Search", icon: (props) => <IconSearch size={20} {...props} /> },
+    { label: "Help", icon: (props) => <IconHelp size={20} {...props} /> },
+    { label: "Privacy", icon: (props) => <IconLock size={20} {...props} /> },
+    { label: "Time", icon: (props) => <Clock className="w-5 h-5" {...props} /> },
+    { label: "Vision", icon: (props) => <Eye className="w-5 h-5" {...props} /> },
+    {
+        label: "Ideas",
+        icon: (props) => <Lightbulb className="w-5 h-5" {...props} />,
+    },
+    {
+        label: "Automation",
+        icon: (props) => <Zap className="w-5 h-5" {...props} />,
+    },
+    {
+        label: "Layers",
+        icon: (props) => <Layers className="w-5 h-5" {...props} />,
+    },
+    {
+        label: "Upload",
+        icon: (props) => <UploadCloud className="w-5 h-5" {...props} />,
+    },
+    {
+        label: "Archive",
+        icon: (props) => <Archive className="w-5 h-5" {...props} />,
+    },
+    {
+        label: "Organization",
+        icon: (props) => <Building2 className="w-5 h-5" {...props} />,
+    },
 ];
 
 export const SOCIAL_ICONS_REGISTRY = [
