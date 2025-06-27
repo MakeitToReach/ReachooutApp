@@ -23,6 +23,7 @@ export const FHeroSection = ({
                     // src="https://www.okler.net/previews/porto/12.1.0/img/demos/accounting-1/slides/slide-2.jpg"
                     src={imgUrls[0]}
                     alt="hero-img"
+                    priority
                 />
             </m.div>
 

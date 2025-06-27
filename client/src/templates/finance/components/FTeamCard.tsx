@@ -15,6 +15,7 @@ export const FTeamCard = ({
     return (
         <div className="h-fit sm:w-[20vw] w-full bg-white rounded-lg overflow-hidden space-y-6 pb-6">
             <Image
+                quality={100}
                 src={imgUrl}
                 alt="blog-img"
                 width={100}

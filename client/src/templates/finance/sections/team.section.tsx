@@ -1,4 +1,4 @@
-import { FTeamCard } from "../components/FTeamCard";
+import { FTeamCarousel } from "../components/FTeamCarousel";
 import { F_TEAM_SECTION } from "../types/team.types";
 
 export const FTeamSection = ({ team, heading }: F_TEAM_SECTION) => {
@@ -8,15 +8,8 @@ export const FTeamSection = ({ team, heading }: F_TEAM_SECTION) => {
                 <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight text-center">
                     {heading}
                 </h2>
-                <div className="w-[100vw] bg-black rounded-lg flex gap-4">
-                    {team.map((member, index) => (
-                        <FTeamCard
-                            key={index}
-                            imgUrl={member.imgUrl}
-                            name={member.name}
-                            designation={member.designation}
-                        />
-                    ))}
+                <div className="sm:w-[130vw] rounded-lg">
+                    <FTeamCarousel team={team} />
                 </div>
             </div>
         </section>

@@ -13,6 +13,8 @@ team
 logos
 testimonials
 why-choose-us
+services
+projects
 
 
 design remaining:

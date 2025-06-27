@@ -175,7 +175,7 @@ export const FinancePortfolio = ({ data }: Props) => {
     };
 
     return (
-        <div className="min-h-screen bg-template-primary">
+        <div className="min-h-screen bg-template-primary overflow-x-hidden">
             <div className="sm:px-12 px-4">
                 {data.sections.map((section, idx) => (
                     <div key={idx} className="relative">
