@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { F_SERVICE } from "../types/services.types";
 import { Badge } from "@/components/ui/badge";
 import {
     Carousel,
@@ -8,18 +7,22 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import { FServicesCard } from "./FServicesCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { F_CATLOG_SERVICES } from "../types/service-catalog.types";
+import { FCatalogServicesCard } from "./FCatalogServiceCard";
 
-export const FServicesCarousel = ({ services }: { services: F_SERVICE[] }) => {
+export const FCatalogServicesCarousel = ({ catalogServices }: { catalogServices: F_CATLOG_SERVICES[] }) => {
     const [selectedCategory, setSelectedCategory] = useState("All");
 
-const categories = ["All", ...Array.from(new Set(services.map(service => service.category)))];
+    const categories = [
+        "All",
+        ...Array.from(new Set(catalogServices.map((service) => service.category))),
+    ];
 
     const filteredServices =
         selectedCategory === "All"
-            ? services
-            : services.filter((service) => service.category === selectedCategory);
+            ? catalogServices
+            : catalogServices.filter((service) => service.category === selectedCategory);
 
     return (
         <div>
@@ -54,7 +57,7 @@ const categories = ["All", ...Array.from(new Set(services.map(service => service
                                 // className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                                 className="sm:basis-1/6 gap-2 basis-1/1"
                             >
-                                <FServicesCard {...service} />
+                                <FCatalogServicesCard {...service} />
                             </CarouselItem>
                         ))}
                     </CarouselContent>

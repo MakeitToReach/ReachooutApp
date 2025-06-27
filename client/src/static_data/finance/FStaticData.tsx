@@ -80,7 +80,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                 imgUrls: ["/placeholder.png", "/placeholder.png"],
                 btnText: "Learn More",
                 btnLink: "#",
-                experience: "30+"
+                experience: "30+",
             },
             isFixed: false,
             isEditable: true,
@@ -487,7 +487,63 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                         title: "Service 1",
                         description:
                             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrls: ["/placeholder.png"],
+                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
+                        category: "Business",
+                    },
+                    {
+                        title: "Service 1",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
+                        category: "Business",
+                    },
+                    {
+                        title: "Service 1",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
+                        category: "Business",
+                    },
+                    {
+                        title: "Service 1",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
+                        category: "Business",
+                    },
+                    {
+                        title: "Service 1",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
+                        category: "Business",
+                    },
+                    {
+                        title: "Service 1",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
+                        category: "Business",
+                    },
+                    {
+                        title: "Service 1",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
+                        category: "Business",
+                    },
+                    {
+                        title: "Service 1",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
+                        category: "Business",
+                    },
+                    {
+                        title: "Service 1",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
                         category: "Business",
                     },
                 ],
