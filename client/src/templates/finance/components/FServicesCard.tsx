@@ -13,7 +13,7 @@ export const FServicesCard = ({
     description,
 }: FServicesCardProps) => {
     return (
-        <div className="h-fit sm:w-[20vw] w-full bg-white rounded-lg overflow-hidden space-y-6 pb-6">
+        <div className="h-fit sm:w-[20vw] w-full bg-white rounded-lg overflow-hidden space-y-6 pb-6 shadow-lg shadow-black/30">
             <Image
                 src={imgUrl || "/placeholder.png"}
                 alt="blog-img"

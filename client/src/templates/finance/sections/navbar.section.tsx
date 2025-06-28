@@ -2,7 +2,7 @@ import { FButton } from "../components/FButton";
 
 export const FNavbarSection = () => {
     return (
-        <nav id="navbar" className="flex items-center w-full justify-between py-10">
+        <nav id="navbar" className="flex items-center w-full justify-between py-10 text-template-text-primary">
             <h1 className="font-semibold text-3xl">LOGO</h1>
             <ul className="items-center space-x-6 font-semibold hidden sm:flex">
                 <li>Home</li>

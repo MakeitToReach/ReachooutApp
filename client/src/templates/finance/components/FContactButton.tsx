@@ -7,13 +7,13 @@ interface FContactButtonProps {
 export const FContactButton = ({ type, value }: FContactButtonProps) => {
     return (
         <div className="flex gap-2 items-center">
-            <div className="rounded-full size-16 bg-template-secondary text-template-text-accent-secondary flex items-center justify-center">
+            <div className="rounded-full size-16 bg-template-accent-primary text-template-text-accent-primary flex items-center justify-center">
                 {type === "tel" ? <LucidePhone /> : <LucideAtSign />}
             </div>
             <div>
                 {type === "tel" ? (
                     <>
-                        <h3 className="uppercase font-semibold text-template-secondary">
+                        <h3 className="uppercase font-semibold">
                             Call us
                         </h3>
                         <a href={`tel:${value}`} className="hover:underline">
@@ -22,7 +22,7 @@ export const FContactButton = ({ type, value }: FContactButtonProps) => {
                     </>
                 ) : (
                     <>
-                        <h3 className="uppercase font-semibold text-template-secondary">
+                        <h3 className="uppercase font-semibold">
                             Send us an email
                         </h3>
                         <a href={`mailto:${value}`} className="hover:underline">

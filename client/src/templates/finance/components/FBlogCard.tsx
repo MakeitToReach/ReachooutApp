@@ -19,13 +19,13 @@ export const FBlogCard = ({
     author,
 }: FBlogCardProps) => {
     return (
-        <div className="sm:h-[45vh] h-fit sm:w-[20vw] w-full bg-white rounded-lg overflow-hidden space-y-6 pb-6 shadow-xl">
+        <div className="h-fit sm:w-[20vw] w-full bg-white rounded-lg overflow-hidden space-y-6 pb-6 shadow-xl shadow-black/20">
             <Image
                 src={imgUrl}
                 alt="blog-img"
                 width={200}
                 height={200}
-                className="w-full h-[40%] object-cover"
+                className="w-full h-[30%] object-cover"
             />
             <div className="px-6 space-y-1">
                 <div className="font-semibold w-fit rounded-full bg-black text-white px-3 py-1 uppercase">

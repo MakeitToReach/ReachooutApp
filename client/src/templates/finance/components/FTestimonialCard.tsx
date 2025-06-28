@@ -16,7 +16,7 @@ export const FTestimonialCard = ({
     rating,
 }: FTestimonialCardProps) => {
     return (
-        <div className="flex flex-col gap-6 bg-template-primary shadow-xl rounded-lg p-10">
+        <div className="flex flex-col gap-6 bg-template-primary shadow-lg shadow-black/20 text-template-text-primary rounded-lg p-10">
             <div className="flex gap-2 items-center">
                 <Avatar className="size-12">
                     <AvatarImage

@@ -15,8 +15,8 @@ export const FAboutSection = ({
         <section id="about" className="max-w-6xl mx-auto sm:py-20 py-10 px-4">
             <div className="flex flex-col sm:flex-row justify-between gap-10">
                 {/* text content */}
-                <div className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full">
-                    <div className="w-fit rounded-full translate-x-10 bg-gradient-to-r from-gray-100 to-green-200 via-green-100 flex items-center justify-center px-4 py-2 uppercase font-semibold text-lg">
+                <div className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full text-template-text-primary">
+                    <div className="w-fit rounded-full translate-x-10 bg-gradient-to-r from-template-primary to-template-accent-primary via-template-accent-primary/10 text-template-text-accent-primary flex items-center justify-center px-4 py-2 uppercase font-semibold text-lg">
                         {badgeText}
                     </div>
                     <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight">
@@ -27,7 +27,7 @@ export const FAboutSection = ({
                     <div className="flex items-center gap-2">
                         {experience && (
                             <>
-                                <h2 className="font-bold text-7xl  bg-gradient-to-b from-gray-100 to-green-200 via-green-100">
+                                <h2 className="font-bold text-7xl  bg-gradient-to-b from-template-primary to-template-accent-primary via-template-accent-primary/10 text-template-text-accent-primary">
                                     {experience}
                                 </h2>
                                 <h3 className="font-extralight sm:text-3xl text-2xl tracking-tighter font-serif italic">
