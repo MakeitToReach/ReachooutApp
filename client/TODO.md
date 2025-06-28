@@ -15,10 +15,7 @@ testimonials
 why-choose-us
 services
 projects
+catalog-services
 
 
-design remaining:
-projects
-services 20%
-catalog 20%
 

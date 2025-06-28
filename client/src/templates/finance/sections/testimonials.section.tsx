@@ -11,7 +11,7 @@ export const FTestimonialsSection = ({
     testimonials,
 }: F_TESTIMONIAL_SECTION) => {
     return (
-        <section className="max-w-6xl mx-auto sm:py-20 py-10 px-4">
+        <section id="testimonials" className="max-w-6xl mx-auto sm:py-20 py-10 px-4">
             <div className="flex flex-col sm:flex-row gap-10">
                 {/* text content */}
                 <div className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full">

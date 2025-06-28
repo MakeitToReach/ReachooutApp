@@ -7,7 +7,7 @@ export const FGallerySection = ({
     imgs,
 }: F_GALLERY_SECTION) => {
     return (
-        <section className="w-full rounded-lg overflow-hidden my-14 px-6 py-4">
+        <section id="gallery" className="w-full rounded-lg overflow-hidden my-14 px-6 py-4">
             <div className="max-w-6xl mx-auto h-full my-10 space-y-8 overflow-x-visible">
                 <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight text-center">
                     {title}

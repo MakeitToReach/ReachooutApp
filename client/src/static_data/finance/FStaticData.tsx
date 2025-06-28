@@ -102,48 +102,6 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                         category: "Business",
                         imgUrl: "/placeholder.png",
                     },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
-                        category: "Business",
-                        imgUrl: "/placeholder.png",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
-                        category: "Business",
-                        imgUrl: "/placeholder.png",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
-                        category: "Business",
-                        imgUrl: "/placeholder.png",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
-                        category: "Business",
-                        imgUrl: "/placeholder.png",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
-                        category: "Accounting",
-                        imgUrl: "/placeholder.png",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
-                        category: "Business",
-                        imgUrl: "/placeholder.png",
-                    },
                 ],
             },
             isFixed: false,
@@ -198,37 +156,6 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                     {
                         imgUrl:
                             "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        name: "Laura Mitchell",
-                        designation: "CEO & Founder",
-                    },
-                    {
-                        imgUrl:
-                            "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        name: "Laura Mitchell",
-                        designation: "CEO & Founder",
-                    },
-                    {
-                        imgUrl: "/placeholder.png",
-                        name: "Laura Mitchell",
-                        designation: "CEO & Founder",
-                    },
-                    {
-                        imgUrl: "/placeholder.png",
-                        name: "Laura Mitchell",
-                        designation: "CEO & Founder",
-                    },
-                    {
-                        imgUrl: "/placeholder.png",
-                        name: "Laura Mitchell",
-                        designation: "CEO & Founder",
-                    },
-                    {
-                        imgUrl: "/placeholder.png",
-                        name: "Laura Mitchell",
-                        designation: "CEO & Founder",
-                    },
-                    {
-                        imgUrl: "/placeholder.png",
                         name: "Laura Mitchell",
                         designation: "CEO & Founder",
                     },
@@ -291,14 +218,14 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             isEditable: true,
             isHidden: false,
         },
-        {
-            type: "newsletter",
-            sectionName: "Team",
-            data: {},
-            isFixed: false,
-            isEditable: true,
-            isHidden: true,
-        },
+        // {
+        //     type: "newsletter",
+        //     sectionName: "Team",
+        //     data: {},
+        //     isFixed: false,
+        //     isEditable: true,
+        //     isHidden: true,
+        // },
         {
             type: "projects",
             sectionName: "Projects",
@@ -315,86 +242,6 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                         projectUrl: "#",
                         category: "Business",
                     },
-                    {
-                        title: "Project 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrl: "/placeholder.png",
-                        projectUrl: "#",
-                        category: "Business",
-                    },
-                    {
-                        title: "Project 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrl: "/placeholder.png",
-                        projectUrl: "#",
-                        category: "Business",
-                    },
-                    {
-                        title: "Project 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrl: "/placeholder.png",
-                        projectUrl: "#",
-                        category: "Business",
-                    },
-                    {
-                        title: "Project 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrl: "/placeholder.png",
-                        projectUrl: "#",
-                        category: "Business",
-                    },
-                    {
-                        title: "Project 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrl: "/placeholder.png",
-                        projectUrl: "#",
-                        category: "Business",
-                    },
-                    {
-                        title: "Project 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrl: "/placeholder.png",
-                        projectUrl: "#",
-                        category: "Business",
-                    },
-                    {
-                        title: "Project 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrl: "/placeholder.png",
-                        projectUrl: "#",
-                        category: "Business",
-                    },
-                    {
-                        title: "Project 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrl: "/placeholder.png",
-                        projectUrl: "#",
-                        category: "Business",
-                    },
-                    {
-                        title: "Project 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrl: "/placeholder.png",
-                        projectUrl: "#",
-                        category: "Business",
-                    },
-                    {
-                        title: "Project 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrl: "/placeholder.png",
-                        projectUrl: "#",
-                        category: "Business",
-                    },
                 ],
             },
             isFixed: false,
@@ -402,14 +249,14 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             isHidden: false,
         },
 
-        {
-            type: "client",
-            sectionName: "Client",
-            data: {},
-            isFixed: false,
-            isEditable: true,
-            isHidden: false,
-        },
+        // {
+        //     type: "client",
+        //     sectionName: "Client",
+        //     data: {},
+        //     isFixed: false,
+        //     isEditable: true,
+        //     isHidden: false,
+        // },
         {
             type: "gallery",
             sectionName: "Gallery",
@@ -483,62 +330,6 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                 subtitle:
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam excepturi temporibus laborum fuga ipsa modi!",
                 catalogServices: [
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
-                        category: "Business",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
-                        category: "Business",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
-                        category: "Business",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
-                        category: "Business",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
-                        category: "Business",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
-                        category: "Business",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
-                        category: "Business",
-                    },
-                    {
-                        title: "Service 1",
-                        description:
-                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-                        imgUrls: ["/placeholder.png", "https://github.com/shadcn.png"],
-                        category: "Business",
-                    },
                     {
                         title: "Service 1",
                         description:

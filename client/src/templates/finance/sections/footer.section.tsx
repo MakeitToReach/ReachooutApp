@@ -3,7 +3,7 @@ import { FButton } from "../components/FButton";
 
 export const FFooterSection = () => {
     return (
-        <footer className="border-t border-border">
+        <footer id="footer" className="border-t border-border">
             <div className="max-w-6xl mx-auto flex flex-col sm:flex-row gap-10 justify-between px-4  py-10">
                 <div className="flex sm:w-1/3 w-full flex-col gap-3">
                     <h3 className="font-semibold text-xl">Logo</h3>

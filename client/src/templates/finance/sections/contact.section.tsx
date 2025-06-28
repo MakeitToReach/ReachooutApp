@@ -13,7 +13,7 @@ export const FContactSection = ({
     emailAddress,
 }: F_CONTACT_SECTION) => {
     return (
-        <section className="max-w-6xl mx-auto sm:py-20 my-10 px-4">
+        <section id="contact" className="max-w-6xl mx-auto sm:py-20 my-10 px-4">
             <div className="flex flex-col sm:flex-row sm:gap-20">
                 {/* text content */}
                 <div className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full">

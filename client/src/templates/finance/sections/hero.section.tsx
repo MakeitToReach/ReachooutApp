@@ -10,7 +10,7 @@ export const FHeroSection = ({
     btnLink,
 }: F_HERO_SECTION) => {
     return (
-        <section className="bg-black rounded-lg w-full h-[75vh] relative overflow-hidden">
+        <section id="hero" className="bg-black rounded-lg w-full h-[75vh] relative overflow-hidden">
             <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

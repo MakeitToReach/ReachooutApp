@@ -6,7 +6,7 @@ export const FFeaturedServicesSection = ({
     featuredServices,
 }: F_FEATURED_SERVICE_SECTION) => {
     return (
-        <section>
+        <section id="featured-services">
             <div className="max-w-6xl mx-auto py-10">
                 <div className="flex flex-col sm:flex-row gap-10 items-center">
                     {featuredServices.map((service, index) => (
