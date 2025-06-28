@@ -1,5 +1,10 @@
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
-
+import { FServiceEditorField } from "../editorFields/FServiceEditorField";
+import { FProjectEditorField } from "../editorFields/FProjectEditorField";
+import { FFeaturedServiceEditorField } from "../editorFields/FFeaturedServiceEditorField";
+import { FTeamEditorField } from "../editorFields/FTeamEditorField";
+import { FWhyChooseUsEditorField } from "../editorFields/FWhyChooseUsEditorField";
+import { FTestimonialEditorField } from "../editorFields/FTestimonialEditorField";
 export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
   hero: [
     {
@@ -21,6 +26,16 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
           fieldPath: "btnLink",
         },
       ],
+    },
+  ],
+  "featured-services": [
+    {
+      label: "Featured Services",
+      type: "component",
+      fieldPath: "featuredServices",
+      component: ({ value, onChange }) => (
+        <FFeaturedServiceEditorField value={value || []} onChange={onChange} />
+      ),
     },
   ],
   about: [
@@ -78,7 +93,14 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       type: "text",
       fieldPath: "subtitle",
     },
-    // TODO:add services editorField here
+    {
+      label: "Services",
+      type: "component",
+      fieldPath: "services",
+      component: ({ value, onChange }) => (
+        <FServiceEditorField value={value || []} onChange={onChange} />
+      ),
+    },
   ],
 
   blogs: [
@@ -96,7 +118,14 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       label: "Heading",
       fieldPath: "heading",
     },
-    // TODO:add team editorField here
+    {
+      type: "component",
+      label: "Team",
+      fieldPath: "team",
+      component: ({ value, onChange }) => (
+        <FTeamEditorField value={value || []} onChange={onChange} />
+      ),
+    },
   ],
 
   "why-choose-us": [
@@ -130,7 +159,14 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         },
       ],
     },
-    // TODO:add whyChooseUs editorField here
+    {
+      type: "component",
+      label: "Why Choose Us",
+      fieldPath: "features",
+      component: ({ value, onChange }) => (
+        <FWhyChooseUsEditorField value={value || []} onChange={onChange} />
+      ),
+    },
   ],
   logos: [
     {
@@ -155,6 +191,14 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       type: "text",
       label: "Subtitle",
       fieldPath: "subtitle",
+    },
+    {
+      label: "Projects",
+      type: "component",
+      fieldPath: "projects",
+      component: ({ value, onChange }) => (
+        <FProjectEditorField value={value || []} onChange={onChange} />
+      ),
     },
     // TODO:add projects editorField here
   ],
@@ -203,24 +247,63 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         },
       ],
     },
-    // TODO:add testimonials editorField here
+    {
+      type: "component",
+      label: "Testimonials",
+      fieldPath: "testimonials",
+      component: ({ value, onChange }) => (
+        <FTestimonialEditorField value={value || []} onChange={onChange} />
+      ),
+    },
   ],
-    "service-catalog": [
+  "service-catalog": [
+    {
+      label: "Badge Text",
+      type: "text",
+      fieldPath: "badgeText",
+    },
+    {
+      label: "Title",
+      type: "text",
+      fieldPath: "title",
+    },
+    {
+      label: "Subtitle",
+      type: "text",
+      fieldPath: "subtitle",
+    },
+    // TODO:add service-catalog editorField here
+  ],
+  contact: [
+    {
+      label: "Badge Text",
+      type: "text",
+      fieldPath: "badgeText",
+    },
+    {
+      label: "Title",
+      type: "text",
+      fieldPath: "title",
+    },
+    {
+      label: "Subtitle",
+      type: "textarea",
+      fieldPath: "subtitle",
+    },
+    {
+      type: "group",
+      label: "Button Group",
+      fieldPath: "btnGroup",
+      fields: [
         {
-            label: "Badge Text",
-            type: "text",
-            fieldPath: "badgeText",
+          label: "Phone Number",
+          fieldPath: "phoneNumber",
         },
         {
-            label: "Title",
-            type: "text",
-            fieldPath: "title",
+          label: "Email Address",
+          fieldPath: "emailAddress",
         },
-        {
-            label: "Subtitle",
-            type: "text",
-            fieldPath: "subtitle",
-        },
-        // TODO:add service-catalog editorField here
-    ]
+      ],
+    },
+  ],
 };

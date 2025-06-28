@@ -12,7 +12,7 @@ export const FProjectCard = ({
     return (
         <div className="h-fit sm:w-[20vw] w-full bg-white rounded-lg overflow-hidden space-y-6 pb-6">
             <Image
-                src={imgUrl}
+                src={imgUrl || "/placeholder.png"}
                 alt="blog-img"
                 width={100}
                 height={100}
