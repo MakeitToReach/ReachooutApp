@@ -1,15 +1,15 @@
 import { getIconFromRegistry } from "@/lib/utils";
 
-interface FeaturedServiceCardProps {
+interface FFeaturedServiceCardProps {
     icon: string;
     title: string;
     subtitle: string;
 }
-export const FeaturedServiceCard = ({
+export const FFeaturedServiceCard = ({
     title,
     subtitle,
     icon,
-}: FeaturedServiceCardProps) => {
+}: FFeaturedServiceCardProps) => {
     return (
         <div className="flex gap-4 items-center text-template-text-primary">
             <div className="size-20 bg-template-accent-primary  rounded-full flex items-center justify-center">

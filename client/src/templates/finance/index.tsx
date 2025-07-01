@@ -4,6 +4,7 @@ import {
     FAboutSection,
     FBlogsSection,
     FContactSection,
+    FFaqSection,
     FFeaturedServicesSection,
     FFooterSection,
     FGallerySection,
@@ -14,8 +15,10 @@ import {
     FProjectsSection,
     FServiceCatalogSection,
     FServicesSection,
+    FStatsSection,
     FTeamSection,
     FTestimonialsSection,
+    FTimelineSection,
     FWhyChooseUsSection,
 } from "./sections";
 
@@ -59,6 +62,17 @@ export const FinancePortfolio = ({ data }: Props) => {
                         )}
                     </>
                 );
+            case "timeline":
+                return (
+                    <>
+                        {!section.isHidden && (
+                            <FTimelineSection
+                                key={`about-${index}`}
+                                {...section.data}
+                            />
+                        )}
+                    </>
+                );
             case "about":
                 return (
                     <>
@@ -88,6 +102,17 @@ export const FinancePortfolio = ({ data }: Props) => {
                     <>
                         {!section.isHidden && (
                             <FNewsletterSection
+                                key={`newsletter-${index}`}
+                                {...section.data}
+                            />
+                        )}
+                    </>
+                );
+            case "stats":
+                return (
+                    <>
+                        {!section.isHidden && (
+                            <FStatsSection
                                 key={`newsletter-${index}`}
                                 {...section.data}
                             />
@@ -164,6 +189,14 @@ export const FinancePortfolio = ({ data }: Props) => {
                     <>
                         {!section.isHidden && (
                             <FBlogsSection key={`blogs-${index}`} {...section.data} />
+                        )}
+                    </>
+                );
+            case "faqs":
+                return (
+                    <>
+                        {!section.isHidden && (
+                            <FFaqSection key={`faqs-${index}`} {...section.data} />
                         )}
                     </>
                 );

@@ -29,7 +29,7 @@ export const FProjectCard = ({
             <div className="w-full flex justify-between items-center px-6">
                 <Button
                     variant={"link"}
-                    className="flex items-center px-0 text-green-500 font-semibold "
+                    className="flex items-center px-0 text-template-accent-primary font-semibold "
                 >
                     View Details
                 </Button>

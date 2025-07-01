@@ -35,7 +35,7 @@ export const FBlogCard = ({
                 <p className="text-xs line-clamp-3 leading-8 text-gray-600">
                     {description}
                 </p>
-                <button className="flex items-center hover:underline text-green-500 font-semibold ">
+                <button className="flex items-center hover:underline text-template-accent-primary font-semibold ">
                     Read More
                     <span>
                         <LucideChevronRight />

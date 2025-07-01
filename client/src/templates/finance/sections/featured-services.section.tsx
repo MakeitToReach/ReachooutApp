@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { FeaturedServiceCard } from "../components/FfeaturedServiceCard";
+import { FFeaturedServiceCard } from "../components/FfeaturedServiceCard";
 import { F_FEATURED_SERVICE_SECTION } from "../types/featured-services.types";
 
 export const FFeaturedServicesSection = ({
@@ -10,7 +10,7 @@ export const FFeaturedServicesSection = ({
             <div className="max-w-6xl mx-auto py-10">
                 <div className="flex flex-col sm:flex-row gap-10 items-center">
                     {featuredServices.map((service, index) => (
-                        <FeaturedServiceCard
+                        <FFeaturedServiceCard
                             key={index}
                             icon={service.icon}
                             title={service.title}

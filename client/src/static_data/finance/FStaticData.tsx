@@ -343,7 +343,6 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             isEditable: true,
             isHidden: false,
         },
-
         {
             type: "contact",
             sectionName: "Contact",
@@ -354,6 +353,72 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem voluptates explicabo ex repellendus dolores corrupti, molestiae possimus molestias! Dolor, ducimus!",
                 phoneNumber: 1234567890,
                 emailAddress: "XG2V6@example.com",
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "timeline",
+            sectionName: "Contact",
+            data: {
+                title: "How to set financial goals for your future",
+                subtitle:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium numquam mollitia eos, accusantium, commodi a architecto dolor modi tenetur aspernatur, ea tempore dicta asperiores labore. At, facere itaque. Corrupti harum nam rem, expedita perspiciatis laboriosam consectetur commodi sequi nesciunt quidem!",
+                steps: [
+                    {
+                        badgeText: "Step 1",
+                        title: "Initial Consultation",
+                        description:
+                            "We start with a comprehensive consultation to understand your business, financial goals, and unique needs. This allows us to tailor our services to ensure the best possible outcomes for your business.",
+                        image: "/placeholder.png",
+                    },
+                    {
+                        badgeText: "Step 2",
+                        title: "Customized Strategy Development",
+                        description:
+                            "Based on our initial consultation, we craft a personalized accounting strategy. This plan is designed to address your specific financial challenges and capitalize on opportunities for growth and efficiency.",
+                        image: "/placeholder.png",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "stats",
+            sectionName: "stats",
+            data: {
+                heading: "Delivering Excellence through experise and dedication",
+                imgUrl: "/placeholder.png"
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "faqs",
+            sectionName: "FAQs",
+            data: {
+                heading: "Frequently Asked Questions",
+                faqs: [
+                    {
+                        question: "What types of Businesses do you work with?",
+                        answer:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                    },
+                    {
+                        question: "How do you charge for your services?",
+                        answer:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                    },
+                    {
+                        question: "How often will I receive financial reports?",
+                        answer:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                    },
+                ],
             },
             isFixed: false,
             isEditable: true,
