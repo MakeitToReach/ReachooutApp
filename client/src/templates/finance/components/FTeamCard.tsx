@@ -1,5 +1,3 @@
-// import { Button } from "@/components/ui/button";
-// import { LucideArrowRight } from "lucide-react";
 import Image from "next/image";
 
 interface FTeamCardProps {

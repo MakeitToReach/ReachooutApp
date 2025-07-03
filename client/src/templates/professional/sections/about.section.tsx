@@ -2,6 +2,7 @@ import { PF_ABOUT_SECTION } from "../types/about.types";
 import { motion as m } from "motion/react";
 import { NumberTicker } from "@/components/magicui/number-ticker";
 import { ReadMorePopup } from "@/components/editor-components/popups/readMorePopup";
+import { splitNumericValue } from "@/lib/utils";
 
 export const PFAboutSection = ({
     title,
@@ -39,42 +40,60 @@ export const PFAboutSection = ({
             <div className="px-4 lg:px-0 flex flex-col lg:flex-row w-full lg:gap-20 lg:mt-20">
                 {/* Stats grid */}
                 <div className="grid grid-cols-2 gap-2  lg:gap-5 lg:gap-y-2 lg:mt-20 h-fit lg:w-1/2">
+                    {/* Stat card example */}
                     <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary max-h-48 p-10 overflow-hidden">
-                        {/* <h1 className="font-bold text-5xl lg:text-7xl text-template-text-primary"> */}
-                        {/*     {formatCompactNumber(stats[0].value)} */}
-                        {/* </h1> */}
-                        <NumberTicker
-                            value={stats[0].value || 0}
-                            className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
-                        />
+                        <div className="flex items-baseline gap-1">
+                            <NumberTicker
+                                value={splitNumericValue(stats[0].value).number}
+                                className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
+                            />
+                            <span className="font-bold text-3xl lg:text-5xl text-template-text-accent-secondary">
+                                {splitNumericValue(stats[0].value).suffix}
+                            </span>
+                        </div>
                         <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-template-text-accent-secondary">
                             {stats[0].title}
                         </h2>
                     </div>
-                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary h-48 p-6">
-                        <NumberTicker
-                            value={stats[1].value || 0}
-                            className="font-bold text-5xl lg:text-7xl text-template-text-accent-primary"
-                        />
-                        <h2 className="text-template-text-accent-primary mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
+                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary max-h-48 p-10 overflow-hidden">
+                        <div className="flex items-baseline gap-1">
+                            <NumberTicker
+                                value={splitNumericValue(stats[1].value).number}
+                                className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
+                            />
+                            <span className="font-bold text-3xl lg:text-5xl text-template-text-accent-secondary">
+                                {splitNumericValue(stats[1].value).suffix}
+                            </span>
+                        </div>
+                        <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-template-text-accent-secondary">
                             {stats[1].title}
                         </h2>
                     </div>
-                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary h-48 p-6">
-                        <NumberTicker
-                            value={stats[2].value || 0}
-                            className="font-bold text-5xl lg:text-7xl text-template-text-accent-primary"
-                        />
-                        <h2 className="text-template-text-accent-primary mt-2 text-xl w-full text-center">
+                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary max-h-48 p-10 overflow-hidden">
+                        <div className="flex items-baseline gap-1">
+                            <NumberTicker
+                                value={splitNumericValue(stats[2].value).number}
+                                className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
+                            />
+                            <span className="font-bold text-3xl lg:text-5xl text-template-text-accent-secondary">
+                                {splitNumericValue(stats[2].value).suffix}
+                            </span>
+                        </div>
+                        <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-template-text-accent-secondary">
                             {stats[2].title}
                         </h2>
                     </div>
-                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary h-48 p-6 truncate">
-                        <NumberTicker
-                            value={stats[3].value || 0}
-                            className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
-                        />
-                        <h2 className="text-template-text-accent-secondary mt-2 text-xl w-full text-center overflow-hidden text-ellipsis whitespace-nowrap">
+                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary max-h-48 p-10 overflow-hidden">
+                        <div className="flex items-baseline gap-1">
+                            <NumberTicker
+                                value={splitNumericValue(stats[3].value).number}
+                                className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
+                            />
+                            <span className="font-bold text-3xl lg:text-5xl text-template-text-accent-secondary">
+                                {splitNumericValue(stats[3].value).suffix}
+                            </span>
+                        </div>
+                        <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-template-text-accent-secondary">
                             {stats[3].title}
                         </h2>
                     </div>
@@ -98,9 +117,7 @@ export const PFAboutSection = ({
                         className="uppercase font-medium text-template-text-primary"
                     >
                         {title}{" "}
-                        <span className="text-template-accent-secondary">
-                            {colorTitle}
-                        </span>
+                        <span className="text-template-accent-secondary">{colorTitle}</span>
                     </m.h2>
                     <m.div
                         variants={animateVariants}

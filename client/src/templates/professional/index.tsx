@@ -16,6 +16,9 @@ import {
 import { motion as m } from "motion/react";
 import type { SectionBlock } from "@/schemas/templates.schema";
 import { PFCatalogSection } from "./sections/serviceCatalog.section";
+import { PFNewsletterSection } from "./sections/newsletter.section";
+import { PFFaqSection } from "./sections/faq.section";
+import { PFBlogSection } from "./sections/blogs.section";
 
 type Props = {
   data: {
@@ -25,7 +28,6 @@ type Props = {
 };
 
 export const ProfessionalPortfolio = ({ data }: Props) => {
-
   const navSections = data.sections
     .filter((section) => section.isHidden === false)
     .map((section) => ({
@@ -53,11 +55,28 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             )}
           </>
         );
+
+      case "faqs":
+        return (
+          <>
+            {!section.isHidden && (
+              <PFFaqSection key={`faqs-${index}`} {...section.data} />
+            )}
+          </>
+        );
       case "about":
         return (
           <>
             {!section.isHidden && (
               <PFAboutSection key={`about-${index}`} {...section.data} />
+            )}
+          </>
+        );
+      case "blogs":
+        return (
+          <>
+            {!section.isHidden && (
+              <PFBlogSection key={`blogs-${index}`} {...section.data} />
             )}
           </>
         );
@@ -123,18 +142,14 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             )}
           </>
         );
-      // case "contact-widgets":
-      //     return (
-      //         <>
-      //             {!section.isHidden && (
-      //                 <PFWidgetsSection
-      //                     className="fixed bottom-4 right-4 z-50"
-      //                     key={`contact-widgets-${index}`}
-      //                     {...section.data}
-      //                 />
-      //             )}
-      //         </>
-      //     );
+      case "newsletter":
+        return (
+          <>
+            {!section.isHidden && (
+              <PFNewsletterSection key={`newsletter-${index}`} />
+            )}
+          </>
+        );
       case "contact":
         return (
           <>
@@ -164,7 +179,7 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
         transition={{
           duration: 0.8,
         }}
-        className="space-y-20 bg-template-primary"
+        className="space-y-20 bg-template-primary overflow-x-hidden"
         //TODO: remove the space-y-20 and change it for sections
       >
         {data ? (
@@ -178,14 +193,6 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             </div>
           ))
         ) : (
-          // data.sections.map((section, index) => (
-          //     <div
-          //         key={index}
-          //         style={data.theme}
-          //         className="relative theme-wrapper"
-          //     >
-          //         {renderSection(section, index)}
-          //     </div>
           <div>Loading</div>
         )}
       </m.div>

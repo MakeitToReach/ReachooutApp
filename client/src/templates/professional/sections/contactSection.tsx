@@ -50,12 +50,12 @@ export const PFContactSection = () => {
             className="max-w-6xl mx-auto space-y-10 px-4"
             id="contact"
         >
-            <m.h1
+            <m.h2
                 variants={itemVariants}
                 className="text-4xl font-semibold md:text-6xl text-center text-template-text-primary"
             >
                 Contact
-            </m.h1>
+            </m.h2>
 
             <m.form
                 variants={containerVariants}

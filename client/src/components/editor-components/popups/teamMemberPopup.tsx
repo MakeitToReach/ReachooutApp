@@ -25,8 +25,10 @@ export function AddTeamMemberPopup({
 }: AddTeamMemberPopupProps) {
     const [member, setMember] = useState<PF_TEAM_MEMBER>({
         name: "",
-        avatar: "",
+        imgUrl: "",
         designation: "",
+        description: "",
+        socials: [],
     });
     return (
         <Dialog modal={false}>
@@ -45,19 +47,27 @@ export function AddTeamMemberPopup({
                         label="Member Name"
                         placeholder="Enter name of the member"
                         value={member.name}
+                        onChange={(e) => setMember({ ...member, name: e.target.value })}
+                    />
+
+                    <ReqInput
+                        type="text"
+                        label="Designation"
+                        placeholder="Enter designation of the member"
+                        value={member.designation}
                         onChange={(e) =>
-                            setMember({ ...member, name: e.target.value })
+                            setMember({ ...member, designation: e.target.value })
                         }
                     />
 
                     <div>
-                        <label className="font-semibold">Designation</label>
+                        <label className="font-semibold">Description</label>
                         <textarea
                             placeholder="Chief Executive Officer"
                             className="border p-2 w-full rounded-md h-20"
-                            value={member.designation}
+                            value={member.description}
                             onChange={(e) =>
-                                setMember({ ...member, designation: e.target.value })
+                                setMember({ ...member, description: e.target.value })
                             }
                         />
                     </div>
@@ -69,10 +79,10 @@ export function AddTeamMemberPopup({
                             className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
                             //eslint-disable-next-line
                             onSuccess={(result: any) => {
-                                setMember({ ...member, avatar: result.info.url });
+                                setMember({ ...member, imgUrl: result.info.url });
                             }}
                         >
-                            <ImageSelectButton selectedImgUrl={member.avatar} />
+                            <ImageSelectButton selectedImgUrl={member.imgUrl} />
                         </CldUploadButton>
                     </div>
                 </div>
@@ -84,8 +94,10 @@ export function AddTeamMemberPopup({
                                 onAdd(member);
                                 setMember({
                                     name: "",
-                                    avatar: "",
+                                    imgUrl: "",
                                     designation: "",
+                                    description: "",
+                                    socials: [],
                                 });
                             }}
                         >
@@ -133,8 +145,7 @@ export const EditTeamMemberPopup = ({
             <DialogContent className="space-y-4 z-[100] font-Poppins">
                 <DialogHeader>
                     <DialogTitle>
-                        Edit Team Member{" "}
-                        {memberIdx !== undefined && `#${memberIdx + 1}`}
+                        Edit Team Member {memberIdx !== undefined && `#${memberIdx + 1}`}
                     </DialogTitle>
                 </DialogHeader>
 
@@ -164,10 +175,10 @@ export const EditTeamMemberPopup = ({
                         className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
                         //eslint-disable-next-line
                         onSuccess={(result: any) => {
-                            handleChange("avatar", result.info.url);
+                            handleChange("imgUrl", result.info.url);
                         }}
                     >
-                        <ImageSelectButton selectedImgUrl={member.avatar} />
+                        <ImageSelectButton selectedImgUrl={member.imgUrl} />
                     </CldUploadButton>
                 </div>
 

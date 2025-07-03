@@ -1,79 +1,121 @@
 import * as React from "react";
 import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
 } from "@/components/ui/drawer";
 import Image from "next/image";
 import YouTube from "react-youtube";
 
 import { PF_PROJECT } from "@/templates/professional/types/workSection";
 import { Button } from "@/components/ui/button";
+import { PF_TEAM_MEMBER } from "@/templates/professional/types/teamMember.types";
+import { LucideX } from "lucide-react";
+import { PF_BLOG } from "@/templates/professional/types/blog.types";
+import { PF_CATALOG } from "@/templates/professional/types/serviceCatalog.types";
 
 interface ViewMoreDrawerProps {
-  children: React.ReactNode;
-  Project: PF_PROJECT;
+    children: React.ReactNode;
+    content: PF_PROJECT | PF_TEAM_MEMBER | PF_BLOG | PF_CATALOG;
+    type: "Project" | "TeamMember" | "Blog" | "CatalogService";
 }
 
-export const ViewMoreDrawer = ({ Project, children }: ViewMoreDrawerProps) => {
-  const getYouTubeId = (url: string) => {
-    const regExp =
-      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/embed\/|youtu\.be\/)([^\s?&/]+)/;
-    const match = url.match(regExp);
-    return match ? match[1] : null;
-  };
+export const ViewMoreDrawer = ({
+    content,
+    children,
+    type,
+}: ViewMoreDrawerProps) => {
+    const getYouTubeId = (url: string) => {
+        const regExp =
+            /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/embed\/|youtu\.be\/)([^\s?&/]+)/;
+        const match = url.match(regExp);
+        return match ? match[1] : null;
+    };
 
-  const videoId = getYouTubeId(Project.vidUrl || "");
+    const project = type === "Project" ? (content as PF_PROJECT) : null;
+    const teamMember = type === "TeamMember" ? (content as PF_TEAM_MEMBER) : null;
+    const blog = type === "Blog" ? (content as PF_BLOG) : null;
+    const catalogService =
+        type === "CatalogService" ? (content as PF_CATALOG) : null;
 
-  return (
-    <Drawer>
-      <DrawerTrigger asChild>{children}</DrawerTrigger>
+    const videoId = getYouTubeId(project?.vidUrl || "");
 
-      <DrawerContent
-        className="p-0  max-w-full md:max-w-6xl  bg-white mx-auto min-h-[90vh] flex flex-col"
-      >
-        {/* Header */}
-        <DrawerHeader className="p-4 border-b">
-          <DrawerTitle className="text-left text-xl">
-            {Project.heading}
-          </DrawerTitle>
-        </DrawerHeader>
+    return (
+        <Drawer>
+            <DrawerTrigger asChild>{children}</DrawerTrigger>
 
-        {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {/* Project Media */}
-          <div className="flex justify-center">
-            {videoId && (
-              <YouTube
-                videoId={videoId}
-                className="w-full max-w-full aspect-video"
-              />
-            )}
+            <DrawerContent className="p-0 max-w-full theme-wrapper bg-template-primary sm:max-w-4xl mx-auto min-h-[90vh] flex flex-col">
+                {/* Header */}
+                <DrawerHeader className="p-4 border-b">
+                    <DrawerTitle className="text-left text-xl flex flex-col gap-2">
+                        <span>
+                            {project?.heading ||
+                                teamMember?.name ||
+                                blog?.title ||
+                                catalogService?.title}
+                        </span>
+                        {teamMember && (
+                            <span className="text-left text-sm font-light">
+                                {teamMember?.designation}
+                            </span>
+                        )}
+                    </DrawerTitle>
 
-            {!videoId && Project.imgUrl && (
-              <Image
-                src={Project.imgUrl || Project.imgUrl[0]}
-                alt={Project.heading}
-                width={500}
-                height={400}
-                className="rounded w-full md:h-[400px] object-cover object-center"
-              />
-            )}
-          </div>
+                    <DrawerClose className="absolute top-4 right-4 cursor-pointer">
+                        <LucideX className="size-8" />
+                    </DrawerClose>
+                </DrawerHeader>
 
-          {/* Project Description */}
-          <p className="text-sm text-gray-700">{Project.description}</p>
-        </div>
+                {/* Scrollable Content */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                    {/* Project Media */}
+                    <div className="flex justify-center">
+                        {videoId && (
+                            <YouTube
+                                videoId={videoId}
+                                className="w-full max-w-full aspect-video"
+                            />
+                        )}
 
-        {/* Fixed Footer Button */}
-        <div className="p-4 border-t flex justify-end">
-          <a href={Project.btnLink} target="_blank" rel="noopener noreferrer">
-            <Button>{Project.btnText}</Button>
-          </a>
-        </div>
-      </DrawerContent>
-    </Drawer>
-  );
+                        {!videoId && (
+                            <Image
+                                src={
+                                    project?.imgUrl ||
+                                    teamMember?.imgUrl ||
+                                    blog?.imgUrl ||
+                                    // TODO: have a different image component for catalog services
+                                    catalogService?.imgUrls[0] ||
+                                    "/placeholder.png"
+                                }
+                                alt={`${project?.heading || teamMember?.name}-img`}
+                                width={500}
+                                height={400}
+                                className="rounded w-full md:h-[400px] object-cover object-center"
+                            />
+                        )}
+                    </div>
+
+                    {/* Project Description */}
+                    <p className="text-sm text-gray-700">
+                        {project?.description ||
+                            teamMember?.description ||
+                            blog?.description ||
+                            catalogService?.description}
+                    </p>
+                </div>
+
+                {/* Fixed Footer Button */}
+                {project && (
+                    <div className="p-4 border-t flex justify-start">
+                        <a href={project.btnLink} target="_blank" rel="noopener noreferrer">
+                            <Button>{project.btnText}</Button>
+                        </a>
+                    </div>
+                )}
+            </DrawerContent>
+        </Drawer>
+    );
 };

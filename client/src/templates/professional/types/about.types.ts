@@ -1,6 +1,6 @@
 export type PF_STAT = {
     title: string;
-    value: number;
+    value: string;
 };
 export type PF_ABOUT_SECTION = {
     title: string;

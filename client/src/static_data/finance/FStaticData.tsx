@@ -31,8 +31,10 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             type: "hero",
             sectionName: "Hero",
             data: {
+                // vidUrl:"https://www.youtube.com/watch?v=Nsl5LPka3Nc",
                 imgUrls: [
                     "https://www.okler.net/previews/porto/12.1.0/img/demos/accounting-1/slides/slide-2.jpg",
+                    "/placeholder.png",
                 ],
                 title: "We Transform financial strategies into tangible success",
                 btnText: "Get Started",
@@ -218,14 +220,21 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             isEditable: true,
             isHidden: false,
         },
-        // {
-        //     type: "newsletter",
-        //     sectionName: "Team",
-        //     data: {},
-        //     isFixed: false,
-        //     isEditable: true,
-        //     isHidden: true,
-        // },
+        {
+            type: "newsletter",
+            sectionName: "newsletter",
+            data: {
+                heading: "Subscribe to our newsletter",
+                ctaText: "Subscribe",
+                btn1Text: "Subscribe",
+                btn1Link: "#",
+                btn2Text: "Contact us",
+                btn2Link: "#",
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
         {
             type: "projects",
             sectionName: "Projects",
@@ -380,6 +389,13 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                             "Based on our initial consultation, we craft a personalized accounting strategy. This plan is designed to address your specific financial challenges and capitalize on opportunities for growth and efficiency.",
                         image: "/placeholder.png",
                     },
+                    {
+                        badgeText: "Step 3",
+                        title: "Deployment",
+                        description:
+                            "Based on our initial consultation, we craft a personalized accounting strategy. This plan is designed to address your specific financial challenges and capitalize on opportunities for growth and efficiency.",
+                        image: "/placeholder.png",
+                    },
                 ],
             },
             isFixed: false,
@@ -391,7 +407,26 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             sectionName: "stats",
             data: {
                 heading: "Delivering Excellence through experise and dedication",
-                imgUrl: "/placeholder.png"
+                stats: [
+                    {
+                        statNumber: "10+",
+                        statText: "Years of Experience",
+                        statDescription:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                    },
+                    {
+                        statNumber: "15+",
+                        statText: "Clients Served",
+                        statDescription:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                    },
+                ],
+                imgUrl: "/placeholder.png",
+                ctaText: "Explore further",
+                btn1Text: "Learn more",
+                btn1Link: "#",
+                btn2Text: "Contact us",
+                btn2Link: "#",
             },
             isFixed: false,
             isEditable: true,
@@ -424,14 +459,14 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             isEditable: true,
             isHidden: false,
         },
-        {
-            type: "contact widgets",
-            sectionName: "Contact Widgets",
-            data: {},
-            isFixed: false,
-            isEditable: true,
-            isHidden: false,
-        },
+        // {
+        //     type: "contact widgets",
+        //     sectionName: "Contact Widgets",
+        //     data: {},
+        //     isFixed: false,
+        //     isEditable: true,
+        //     isHidden: false,
+        // },
         {
             type: "footer",
             sectionName: "Footer",
