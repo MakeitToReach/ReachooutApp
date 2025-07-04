@@ -41,7 +41,7 @@ export const PFCatalogServicesCard = ({
     };
 
     return (
-        <div className="relative h-fit sm:w-[20vw] flex flex-col border border-template-accent-primary w-full text-template-text-secondary overflow-visible rounded-lg space-y-6 pb-6">
+        <div className="relative h-fit sm:w-[20vw] flex flex-col border border-template-accent-primary/60 w-full text-template-text-secondary overflow-visible rounded-lg space-y-6 pb-6">
             <div className="relative w-full h-[250px]">
                 <AnimatePresence mode="wait">
                     <motion.div

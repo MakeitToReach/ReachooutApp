@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
 import React from "react";
 import { motion as m } from "motion/react";
+import { Textarea } from "@/components/ui/textarea";
 
 export const PFContactSection = () => {
     const containerVariants = {
@@ -77,7 +78,7 @@ export const PFContactSection = () => {
                 </m.div>
 
                 <m.div variants={itemVariants}>
-                    <textarea
+                    <Textarea
                         placeholder="Your message"
                         className="border p-2 w-full rounded-md h-20"
                     />

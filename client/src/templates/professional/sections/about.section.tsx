@@ -55,31 +55,31 @@ export const PFAboutSection = ({
                             {stats[0].title}
                         </h2>
                     </div>
-                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary max-h-48 p-10 overflow-hidden">
+                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary max-h-48 p-10 overflow-hidden">
                         <div className="flex items-baseline gap-1">
                             <NumberTicker
                                 value={splitNumericValue(stats[1].value).number}
-                                className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
+                                className="font-bold text-5xl lg:text-7xl text-template-text-accent-primary"
                             />
-                            <span className="font-bold text-3xl lg:text-5xl text-template-text-accent-secondary">
+                            <span className="font-bold text-3xl lg:text-5xl text-template-text-accent-primary">
                                 {splitNumericValue(stats[1].value).suffix}
                             </span>
                         </div>
-                        <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-template-text-accent-secondary">
+                        <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-template-text-accent-primary">
                             {stats[1].title}
                         </h2>
                     </div>
-                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary max-h-48 p-10 overflow-hidden">
+                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary max-h-48 p-10 overflow-hidden">
                         <div className="flex items-baseline gap-1">
                             <NumberTicker
                                 value={splitNumericValue(stats[2].value).number}
-                                className="font-bold text-5xl lg:text-7xl text-template-text-accent-secondary"
+                                className="font-bold text-5xl lg:text-7xl text-template-text-accent-primary"
                             />
-                            <span className="font-bold text-3xl lg:text-5xl text-template-text-accent-secondary">
+                            <span className="font-bold text-3xl lg:text-5xl text-template-text-accent-primary">
                                 {splitNumericValue(stats[2].value).suffix}
                             </span>
                         </div>
-                        <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-template-text-accent-secondary">
+                        <h2 className="mt-2 text-xl lg:text-2xl w-full text-center text-template-text-accent-primary">
                             {stats[2].title}
                         </h2>
                     </div>

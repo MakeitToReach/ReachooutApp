@@ -362,7 +362,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             sectionName: "newsletter",
             data: {},
             isFixed: false,
-            isEditable: true,
+            isEditable: false,
             isHidden: false,
         },
         {
@@ -379,6 +379,82 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                         answer:
                             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia.",
                     },
+                    {
+                        question:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia.",
+                        answer:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia.",
+                    },
+                    {
+                        question:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia.",
+                        answer:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia.",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "socials",
+            sectionName: "My Socials",
+            data: {
+                heading: "My Socials",
+                subHeading: "Get latest Updates",
+                socials: [
+                    {
+                        title: "Linkedin",
+                        socialLink: "https://linkedin.com",
+                        followerCounts: "4.2k",
+                        icon: "Linkedin",
+                    },
+                    {
+                        title: "X",
+                        socialLink: "https://x.com",
+                        followerCounts: "4.2k",
+                        icon: "X",
+                    },
+                    {
+                        title: "Instagram",
+                        socialLink: "https://instagram.com",
+                        followerCounts: "4.2k",
+                        icon: "Instagram",
+                    },
+                ],
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
+        {
+            type: "experience",
+            sectionName: "Experience",
+            data: {
+                heading: "My Journey",
+                experiences: [
+                    {
+                        title: "Frontend Developer",
+                        subtitle: "Reachoout",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia.",
+                        timePeriod: "2021 - Present",
+                    },
+                    {
+                        title: "Frontend Developer",
+                        subtitle: "Reachoout",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia.",
+                        timePeriod: "2021 - Present",
+                    },
+                    {
+                        title: "Frontend Developer",
+                        subtitle: "Reachoout",
+                        description:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia.",
+                        timePeriod: "2021 - Present",
+                    },
                 ],
             },
             isFixed: false,
@@ -390,7 +466,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             sectionName: "Contact",
             data: {},
             isFixed: false,
-            isEditable: true,
+            isEditable: false,
             isHidden: false,
         },
         {

@@ -62,8 +62,12 @@ export function getIconFromRegistry(
     return ICONS_REGISTRY.find((item) => item.label === icon)?.icon(props);
 }
 
-export function getSocialIconFromRegistry(icon: string) {
-    return SOCIAL_ICONS_REGISTRY.find((item) => item.label === icon)?.icon;
+export function getSocialIconFromRegistry(
+    icon: string,
+    //eslint-disable-next-line
+    props?: React.ComponentProps<any>,
+) {
+    return SOCIAL_ICONS_REGISTRY.find((item) => item.label === icon)?.icon(props);
 }
 
 export const scrollToSection = (selector: string) => {
