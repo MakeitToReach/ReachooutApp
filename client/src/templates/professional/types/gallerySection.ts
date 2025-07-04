@@ -7,5 +7,6 @@ export type PF_GALLERY_ITEM = {
 };
 
 export type PF_GALLERY_SECTION = {
+    heading: string;
     imgs: PF_GALLERY_IMG[];
 };

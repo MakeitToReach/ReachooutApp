@@ -3,25 +3,21 @@ import { Button } from "@/components/ui/button";
 import { LucidePlus } from "lucide-react";
 import Image from "next/image";
 import { PF_TEAM_MEMBER } from "../types/teamMember.types";
+import { getSocialIconFromRegistry } from "@/lib/utils";
 
-interface PFTeamCardProps {
-    imgUrl: string;
-    name: string;
-    designation: string;
-    description: string;
-}
 export const PFTeamCard = ({
     imgUrl,
     name,
     designation,
     description,
-}: PFTeamCardProps) => {
+    socials,
+}: PF_TEAM_MEMBER) => {
     const teamMemberContent = { imgUrl, name, designation, description };
     return (
         <div className="h-fit sm:w-[20vw] border border-template-accent-primary w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6 text-template-text-primary">
             <Image
                 quality={100}
-                src={imgUrl}
+                src={imgUrl || "/placeholder.png"}
                 alt="blog-img"
                 width={100}
                 height={100}
@@ -43,6 +39,24 @@ export const PFTeamCard = ({
                 <p className="text-xs line-clamp-1 text-template-text-primary/70">
                     {designation}
                 </p>
+
+                <div className="flex gap-2 py-2">
+                    {socials
+                        .filter((social) => social.url)
+                        .map((social, index) => {
+                            return (
+                                <a
+                                    key={index}
+                                    href={social.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-template-text-primary/50 hover:text-template-text-primary transition-colors"
+                                >
+                                    {getSocialIconFromRegistry(social.name)}
+                                </a>
+                            );
+                        })}
+                </div>
             </div>
         </div>
     );

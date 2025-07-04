@@ -74,7 +74,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                             <CarouselItem key={idx}>
                                 <div className="flex flex-col md:flex-row lg:flex-row-reverse mt-10">
                                     <CldImage
-                                        src={project.imgUrl!}
+                                        src={project.imgUrl || "/placeholder.png"}
                                         alt="project-img"
                                         className="md:h-[500px] md:w-[700px] h-[300px] w-full rounded-md object-cover"
                                         width={700}

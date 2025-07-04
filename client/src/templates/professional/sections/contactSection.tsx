@@ -8,8 +8,9 @@ import { Send } from "lucide-react";
 import React from "react";
 import { motion as m } from "motion/react";
 import { Textarea } from "@/components/ui/textarea";
+import { PF_CONTACT_SECTION } from "../types/contact.types";
 
-export const PFContactSection = () => {
+export const PFContactSection = ({ heading }: PF_CONTACT_SECTION) => {
     const containerVariants = {
         initial: {
             opacity: 0,
@@ -55,7 +56,7 @@ export const PFContactSection = () => {
                 variants={itemVariants}
                 className="text-4xl font-semibold md:text-6xl text-center text-template-text-primary"
             >
-                Contact
+                {heading}
             </m.h2>
 
             <m.form

@@ -9,11 +9,11 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { ReqInput } from "../inputs/reqInput";
 import { Button } from "@/components/ui/button";
 import { CldUploadButton } from "next-cloudinary";
-import ImageSelectButton from "../inputs/imageInputBtn";
 import { PF_TEAM_MEMBER } from "@/templates/professional/types/teamMember.types";
+import { ReqInput } from "@/components/editor-components/inputs/reqInput";
+import ImageSelectButton from "@/components/editor-components/inputs/imageInputBtn";
 
 interface AddTeamMemberPopupProps {
     children: React.ReactNode;
@@ -28,15 +28,39 @@ export function AddTeamMemberPopup({
         imgUrl: "",
         designation: "",
         description: "",
-        socials: [],
+        socials: [
+            {
+                name: "X",
+                url: "",
+            },
+            {
+                name: "Linkedin",
+                url: "",
+            },
+            {
+                name: "Instagram",
+                url: "",
+            },
+            {
+                name: "Github",
+                url: "",
+            },
+            {
+                name: "Youtube",
+                url: "",
+            },
+            {
+                name: "Facebook",
+                url: "",
+            },
+        ],
     });
     return (
-        <Dialog modal={false}>
+        <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[600px] font-Poppins"
-                style={{ overflow: "visible" }}
-                onInteractOutside={(e) => e.preventDefault()}
+                className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-scroll"
+                // onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader>
                     <DialogTitle className="md:text-2xl">Add Team Member</DialogTitle>
@@ -84,6 +108,21 @@ export function AddTeamMemberPopup({
                         >
                             <ImageSelectButton selectedImgUrl={member.imgUrl} />
                         </CldUploadButton>
+
+                        <div className="flex flex-col gap-2 mt-2">
+                            {member.socials.map((social, index) => (
+                                <ReqInput
+                                    key={index}
+                                    label={social.name}
+                                    value={social.url}
+                                    onChange={(e) => {
+                                        const updated = [...member.socials];
+                                        updated[index].url = e.target.value;
+                                        setMember({ ...member, socials: updated });
+                                    }}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
 
@@ -134,15 +173,22 @@ export const EditTeamMemberPopup = ({
         setFormData((prev) => ({ ...prev, [key]: val }));
     };
 
+    const handleSocialChange = (index: number, newUrl: string) => {
+        setFormData((prev) => {
+            const updatedSocials = [...prev.socials];
+            updatedSocials[index] = { ...updatedSocials[index], url: newUrl };
+            return { ...prev, socials: updatedSocials };
+        });
+    };
     const handleSave = () => {
         onSave(formData);
         setOpen(false);
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen} modal={false}>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 z-[100] font-Poppins">
+            <DialogContent className="space-y-4 z-[100] font-Poppins max-h-[90vh] overflow-y-scroll">
                 <DialogHeader>
                     <DialogTitle>
                         Edit Team Member {memberIdx !== undefined && `#${memberIdx + 1}`}
@@ -157,13 +203,20 @@ export const EditTeamMemberPopup = ({
                         onChange={(e) => handleChange("name", e.target.value)}
                     />
 
+                    <ReqInput
+                        title="Designation"
+                        label="Designation"
+                        value={formData.designation}
+                        onChange={(e) => handleChange("designation", e.target.value)}
+                    />
+
                     <div>
-                        <label className="font-semibold">Designation</label>
+                        <label className="font-semibold">Description</label>
                         <textarea
-                            placeholder="Designation"
+                            placeholder="Description"
                             className="border p-2 w-full rounded-md h-20"
-                            value={formData.designation}
-                            onChange={(e) => handleChange("designation", e.target.value)}
+                            value={formData.description}
+                            onChange={(e) => handleChange("description", e.target.value)}
                         />
                     </div>
                 </div>
@@ -180,6 +233,18 @@ export const EditTeamMemberPopup = ({
                     >
                         <ImageSelectButton selectedImgUrl={member.imgUrl} />
                     </CldUploadButton>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                    {formData.socials.map((social, index) => (
+                        <ReqInput
+                            placeholder={`https://${social.name.toLowerCase()}.com`}
+                            key={index}
+                            label={social.name}
+                            value={social.url}
+                            onChange={(e) => handleSocialChange(index, e.target.value)}
+                        />
+                    ))}
                 </div>
 
                 <div className="flex justify-end gap-2">

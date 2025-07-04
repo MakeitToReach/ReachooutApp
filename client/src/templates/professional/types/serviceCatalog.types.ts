@@ -9,5 +9,6 @@ export type PF_CATALOG = {
 };
 
 export type PF_CATALOG_SECTION = {
+    heading: string;
     catalogServices: PF_CATALOG[];
 };

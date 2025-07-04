@@ -12,7 +12,7 @@ export const PFBlogCard = ({ imgUrl, title, description }: PFBlogCardProps) => {
         <div className="h-fit sm:w-[20vw] w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6 text-template-text-primary">
             <Image
                 quality={100}
-                src={imgUrl}
+                src={imgUrl || "/placeholder.png"}
                 alt="blog-img"
                 width={100}
                 height={100}

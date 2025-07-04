@@ -21,7 +21,8 @@ export const PFSocialSection = ({
                             <PFSocialCard
                                 key={idx}
                                 title={social.title}
-                                socialLink={social.socialLink}
+                                btnLink={social.btnLink}
+                                btnText={social.btnText}
                                 followerCounts={social.followerCounts}
                                 icon={social.icon}
                             />

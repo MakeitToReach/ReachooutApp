@@ -7,5 +7,6 @@ export type PF_EXPERIENCE_ITEM = {
 
 export interface PF_EXPERIENCE_SECTION {
     heading: string;
+    imgUrl: string;
     experiences: PF_EXPERIENCE_ITEM[];
 }

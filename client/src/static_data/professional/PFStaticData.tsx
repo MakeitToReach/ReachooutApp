@@ -125,6 +125,26 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                         designation: "Senior Software Engineer",
                         description:
                             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, natus cumque! Nemo ratione ullam magni sit suscipit impedit doloremque quae? Reprehenderit magni maxime voluptas iusto assumenda, dolore quaerat quidem quae officiis eveniet nostrum neque provident distinctio debitis ipsum harum rem.",
+                        socials: [
+                            { name: "X", url: "https://x.com" },
+                            {
+                                name: "Linkedin",
+                                url: "https://linkedin.com",
+                            },
+                            { name: "Github", url: "https://github.com" },
+                            {
+                                name: "Instagram",
+                                url: "https://instagram.com",
+                            },
+                            {
+                                name: "Youtube",
+                                url: "https://youtube.com",
+                            },
+                            {
+                                name: "Facebook",
+                                url: "https://facebook.com",
+                            },
+                        ],
                     },
                     {
                         imgUrl: "https://avatar.vercel.sh/jill",
@@ -132,6 +152,26 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                         designation: "UX/UI Designer",
                         description:
                             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, natus cumque! Nemo ratione ullam magni sit suscipit impedit doloremque quae? Reprehenderit magni maxime voluptas iusto assumenda, dolore quaerat quidem quae officiis eveniet nostrum neque provident distinctio debitis ipsum harum rem.",
+                        socials: [
+                            { name: "X", url: "https://x.com" },
+                            {
+                                name: "Linkedin",
+                                url: "https://linkedin.com",
+                            },
+                            { name: "Github", url: "https://github.com" },
+                            {
+                                name: "Instagram",
+                                url: "https://instagram.com",
+                            },
+                            {
+                                name: "Youtube",
+                                url: "https://youtube.com",
+                            },
+                            {
+                                name: "Facebook",
+                                url: "https://facebook.com",
+                            },
+                        ],
                     },
                     {
                         imgUrl: "https://avatar.vercel.sh/jill",
@@ -139,6 +179,26 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                         designation: "UX/UI Designer",
                         description:
                             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, natus cumque! Nemo ratione ullam magni sit suscipit impedit doloremque quae? Reprehenderit magni maxime voluptas iusto assumenda, dolore quaerat quidem quae officiis eveniet nostrum neque provident distinctio debitis ipsum harum rem.",
+                        socials: [
+                            { name: "X", url: "https://x.com" },
+                            {
+                                name: "Linkedin",
+                                url: "https://linkedin.com",
+                            },
+                            { name: "Github", url: "https://github.com" },
+                            {
+                                name: "Instagram",
+                                url: "https://instagram.com",
+                            },
+                            {
+                                name: "Youtube",
+                                url: "https://youtube.com",
+                            },
+                            {
+                                name: "Facebook",
+                                url: "https://facebook.com",
+                            },
+                        ],
                     },
                     {
                         imgUrl: "https://avatar.vercel.sh/jill",
@@ -146,6 +206,26 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                         designation: "UX/UI Designer",
                         description:
                             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, natus cumque! Nemo ratione ullam magni sit suscipit impedit doloremque quae? Reprehenderit magni maxime voluptas iusto assumenda, dolore quaerat quidem quae officiis eveniet nostrum neque provident distinctio debitis ipsum harum rem.",
+                        socials: [
+                            { name: "X", url: "https://x.com" },
+                            {
+                                name: "Linkedin",
+                                url: "https://linkedin.com",
+                            },
+                            { name: "Github", url: "https://github.com" },
+                            {
+                                name: "Instagram",
+                                url: "https://instagram.com",
+                            },
+                            {
+                                name: "Youtube",
+                                url: "https://youtube.com",
+                            },
+                            {
+                                name: "Facebook",
+                                url: "https://facebook.com",
+                            },
+                        ],
                     },
                     {
                         imgUrl: "https://avatar.vercel.sh/jill",
@@ -153,6 +233,26 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                         designation: "UX/UI Designer",
                         description:
                             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, natus cumque! Nemo ratione ullam magni sit suscipit impedit doloremque quae? Reprehenderit magni maxime voluptas iusto assumenda, dolore quaerat quidem quae officiis eveniet nostrum neque provident distinctio debitis ipsum harum rem.",
+                        socials: [
+                            { name: "X", url: "https://x.com" },
+                            {
+                                name: "Linkedin",
+                                url: "https://linkedin.com",
+                            },
+                            { name: "Github", url: "https://github.com" },
+                            {
+                                name: "Instagram",
+                                url: "https://instagram.com",
+                            },
+                            {
+                                name: "Youtube",
+                                url: "https://youtube.com",
+                            },
+                            {
+                                name: "Facebook",
+                                url: "https://facebook.com",
+                            },
+                        ],
                     },
                 ],
             },
@@ -227,6 +327,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             type: "gallery",
             sectionName: "Gallery",
             data: {
+                heading: "Gallery",
                 imgs: [
                     {
                         src: "/placeholder.png",
@@ -323,6 +424,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             type: "service-catalog",
             sectionName: "Service Catalog",
             data: {
+                heading: "My Service Catalog",
                 catalogServices: [
                     {
                         title: "01. Reachoout",
@@ -360,9 +462,11 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
         {
             type: "newsletter",
             sectionName: "newsletter",
-            data: {},
+            data: {
+                heading: "Subscribe to our newsletter",
+            },
             isFixed: false,
-            isEditable: false,
+            isEditable: true,
             isHidden: false,
         },
         {
@@ -464,9 +568,11 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
         {
             type: "contact",
             sectionName: "Contact",
-            data: {},
+            data: {
+                heading: "Contact us",
+            },
             isFixed: false,
-            isEditable: false,
+            isEditable: true,
             isHidden: false,
         },
         {

@@ -9,7 +9,7 @@ import { PF_CATALOG } from "../types/serviceCatalog.types";
 import { ViewMoreDrawer } from "@/components/template-components/professional/viewMoreDrawer";
 
 export const PFCatalogServicesCard = ({
-    imgUrls,
+    imgUrls = ["/placeholder.png"],
     title,
     description,
     btnText,

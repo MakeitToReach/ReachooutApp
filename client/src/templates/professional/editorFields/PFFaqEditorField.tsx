@@ -1,19 +1,19 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { LucideEdit, LucidePlus, LucideTrash } from "lucide-react";
-import { PF_TEAM_MEMBER } from "@/templates/professional/types/teamMember.types";
-import { AddTeamMemberPopup, EditTeamMemberPopup } from "@/templates/professional/popups/PFTeamPopup";
+import { PF_FAQ_ITEM } from "../types/faq.types";
+import { PFAddFaqPopup, PFEditFaqPopup } from "../popups/PFFaqPopup";
 
-interface TeamMemberEditorFieldProps {
-    value: PF_TEAM_MEMBER[];
-    onChange: (val: PF_TEAM_MEMBER[]) => void;
+interface PFFaqEditorFieldProps {
+    value: PF_FAQ_ITEM[];
+    onChange: (val: PF_FAQ_ITEM[]) => void;
 }
-export const TeamMemberEditorField = ({
+export const PFFaqEditorField = ({
     value,
     onChange,
-}: TeamMemberEditorFieldProps) => {
-    const handleAdd = (newMember: PF_TEAM_MEMBER) => {
-        onChange([...value, newMember]);
+}: PFFaqEditorFieldProps) => {
+    const handleAdd = (newFaq: PF_FAQ_ITEM) => {
+        onChange([...value, newFaq]);
     };
 
     const handleRemove = (index: number) => {
@@ -22,42 +22,42 @@ export const TeamMemberEditorField = ({
         onChange(updated);
     };
 
-    const handleEdit = (index: number, newMember: PF_TEAM_MEMBER) => {
+    const handleEdit = (index: number, newFaq: PF_FAQ_ITEM) => {
         const updated = [...value];
-        updated[index] = newMember;
+        updated[index] = newFaq;
         onChange(updated);
     };
 
     return (
         <div className="space-y-3">
             <div className="flex justify-between mb-4">
-                <h1 className="font-semibold">Team Members</h1>
-                <AddTeamMemberPopup onAdd={handleAdd}>
+                <h1 className="font-semibold">FAQs</h1>
+                <PFAddFaqPopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
                         Add{" "}
                         <span>
                             <LucidePlus />
                         </span>
                     </Button>
-                </AddTeamMemberPopup>
+                </PFAddFaqPopup>
             </div>
-            {value.map((member, index) => (
+            {value.map((faq, index) => (
                 <div
                     key={index}
                     className="space-y-4 flex justify-between items-center"
                 >
-                    <h3>Member {index + 1}</h3>
+                    <h3>FAQ {index + 1}</h3>
                     <div className="flex items-center gap-2">
-                        <EditTeamMemberPopup
-                            onSave={(newMember) => handleEdit(index, newMember)}
-                            member={member}
-                            memberIdx={index}
+                        <PFEditFaqPopup
+                            onSave={(newFaq) => handleEdit(index, newFaq)}
+                            faq={faq}
+                            faqIdx={index}
                         >
-                            <Button variant={"ghost"} title="Edit">
+                            <Button variant={"ghost"}>
                                 <LucideEdit />
                             </Button>
-                        </EditTeamMemberPopup>
-                        <Button onClick={() => handleRemove(index)} variant={"ghost"} title="Delete">
+                        </PFEditFaqPopup>
+                        <Button onClick={() => handleRemove(index)} variant={"ghost"}>
                             <LucideTrash className="text-destructive" />
                         </Button>
                     </div>

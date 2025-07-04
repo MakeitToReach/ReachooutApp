@@ -35,7 +35,7 @@ const EditorPage = () => {
         setCurrentEditingSection,
     } = usePortfolioStore();
 
-    const { editorTabIndex, setEditorTabIndex } = useEditorTabIdxStore()
+    const { editorTabIndex, setEditorTabIndex } = useEditorTabIdxStore();
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -61,7 +61,7 @@ const EditorPage = () => {
         }
     }, [slug, isNew]);
 
-    if (!data) return <Loading/>;
+    if (!data) return <Loading />;
     if (!template) return <p>Template not found</p>;
 
     //refactors the data.sections to reorderPopup usable format
@@ -103,7 +103,6 @@ const EditorPage = () => {
 
     return (
         <div className="relative w-full flex overflow-x-hidden">
-
             <div className={cn("hidden md:block", editorOpen ? "w-[30%]" : "w-0")} />
             <AnimatePresence mode="wait">
                 {editorOpen && (
@@ -114,7 +113,7 @@ const EditorPage = () => {
                         animate={{ x: editorOpen ? 0 : "-100%" }}
                         exit={{ x: -600 }}
                         transition={{ type: "spring", duration: 0.5 }}
-                        className="w-full md:w-[30%] fixed top-0 left-0 z-[50] border border-border bg-white"
+                        className="w-full md:w-[30%] fixed top-0 left-0 z-[150] border border-border bg-white"
                     >
                         <EditorPanel
                             toggleEditor={toggleEditor}

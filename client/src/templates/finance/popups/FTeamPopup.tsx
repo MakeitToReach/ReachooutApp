@@ -18,11 +18,15 @@ interface FAddTeamMemberPopupProps {
   onAdd: (member: F_TEAM_MEMBER) => void;
 }
 
-export function FAddTeamMemberPopup({ children, onAdd }: FAddTeamMemberPopupProps) {
+export function FAddTeamMemberPopup({
+  children,
+  onAdd,
+}: FAddTeamMemberPopupProps) {
   const [member, setMember] = useState<F_TEAM_MEMBER>({
     imgUrl: "",
     name: "",
     designation: "",
+    socials: [],
   });
 
   return (
@@ -60,9 +64,7 @@ export function FAddTeamMemberPopup({ children, onAdd }: FAddTeamMemberPopupProp
             label="Image URL"
             placeholder="Enter team member image URL"
             value={member.imgUrl}
-            onChange={(e) =>
-              setMember({ ...member, imgUrl: e.target.value })
-            }
+            onChange={(e) => setMember({ ...member, imgUrl: e.target.value })}
           />
         </div>
 
@@ -75,6 +77,7 @@ export function FAddTeamMemberPopup({ children, onAdd }: FAddTeamMemberPopupProp
                   imgUrl: "",
                   name: "",
                   designation: "",
+                  socials: [],
                 });
               }}
             >

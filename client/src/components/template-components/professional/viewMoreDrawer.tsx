@@ -110,8 +110,23 @@ export const ViewMoreDrawer = ({
                 {/* Fixed Footer Button */}
                 {project && (
                     <div className="p-4 border-t flex justify-start">
-                        <a href={project.btnLink} target="_blank" rel="noopener noreferrer">
-                            <Button>{project.btnText}</Button>
+                        <a
+                            href={project?.btnLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Button>{project?.btnText}</Button>
+                        </a>
+                    </div>
+                )}
+                {catalogService && (
+                    <div className="p-4 border-t flex justify-start">
+                        <a
+                            href={catalogService.btnLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Button>{catalogService.btnText}</Button>
                         </a>
                     </div>
                 )}

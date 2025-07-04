@@ -160,6 +160,16 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                             "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                         name: "Laura Mitchell",
                         designation: "CEO & Founder",
+                        socials: [
+                            {
+                                name: "X",
+                                url: "https://x.com",
+                            },
+                            {
+                                name: "Linkedin",
+                                url: "https://linkedin.com",
+                            },
+                        ],
                     },
                 ],
             },
