@@ -5,17 +5,17 @@ import { LucideArrowRight } from "lucide-react";
 import React from "react";
 
 export const PFSocialCard = ({
-  icon,
   title,
   followerCounts,
   btnLink,
 }: PF_SOCIAL) => {
+  const icon = getSocialIconFromRegistry(title, {
+    className: "size-16 text-template-text-primary",
+  });
   return (
     <div className="w-full p-6 bg-template-primary rounded-md flex items-center gap-6">
       <span>
-        {getSocialIconFromRegistry(icon, {
-          className: "size-16 text-template-text-primary",
-        })}
+        {icon}
       </span>
       <div className="flex flex-col gap-3 text-template-text-primary">
         <div className="space-y-1">

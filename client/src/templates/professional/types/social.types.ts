@@ -1,5 +1,4 @@
 export type PF_SOCIAL = {
-    icon: string;
     title: string;
     followerCounts?: number; 
     btnLink: string;

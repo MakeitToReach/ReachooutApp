@@ -347,7 +347,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     ],
     contact: [
         {
-            label: "Contact",
+            label: "Section Heading",
             type: "text",
             fieldPath: "heading",
         },

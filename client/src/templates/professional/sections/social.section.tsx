@@ -25,7 +25,6 @@ export const PFSocialSection = ({
                                     title={social.title}
                                     btnLink={social.btnLink}
                                     followerCounts={social.followerCounts}
-                                    icon={social.icon}
                                 />
                             ))}
                         </div>
