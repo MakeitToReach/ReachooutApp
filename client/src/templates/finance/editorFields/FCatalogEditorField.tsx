@@ -1,19 +1,22 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { LucideEdit, LucidePlus, LucideTrash } from "lucide-react";
-import { FFAQ_ITEM } from "../types/faq.types";
-import { FAddFaqPopup, FEditFaqPopup } from "../popups/FFaqPopup";
+import { F_CATLOG_SERVICES } from "../types/service-catalog.types";
+import {
+    FAddCatalogPopup,
+    FEditCatalogPopup,
+} from "../popups/FCatalogPopup";
 
-interface FFaqEditorFieldProps {
-    value: FFAQ_ITEM[];
-    onChange: (val: FFAQ_ITEM[]) => void;
+interface FCatalogEditorFieldProps {
+    value: F_CATLOG_SERVICES[];
+    onChange: (val: F_CATLOG_SERVICES[]) => void;
 }
-export const FFaqEditorField = ({
+export const FCatalogEditorField = ({
     value,
     onChange,
-}: FFaqEditorFieldProps) => {
-    const handleAdd = (newFaq: FFAQ_ITEM) => {
-        onChange([...value, newFaq]);
+}: FCatalogEditorFieldProps) => {
+    const handleAdd = (newItem: F_CATLOG_SERVICES) => {
+        onChange([...value, newItem]);
     };
 
     const handleRemove = (index: number) => {
@@ -22,41 +25,41 @@ export const FFaqEditorField = ({
         onChange(updated);
     };
 
-    const handleEdit = (index: number, newFaq: FFAQ_ITEM) => {
+    const handleEdit = (index: number, newItem: F_CATLOG_SERVICES) => {
         const updated = [...value];
-        updated[index] = newFaq;
+        updated[index] = newItem;
         onChange(updated);
     };
 
     return (
         <div className="space-y-3">
             <div className="flex justify-between mb-4">
-                <h1 className="font-semibold">FAQs</h1>
-                <FAddFaqPopup onAdd={handleAdd}>
+                <h1 className="font-semibold">Catalog Services</h1>
+                <FAddCatalogPopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
                         Add{" "}
                         <span>
                             <LucidePlus />
                         </span>
                     </Button>
-                </FAddFaqPopup>
+                </FAddCatalogPopup>
             </div>
-            {value.map((faq, index) => (
+            {value.map((service, index) => (
                 <div
                     key={index}
                     className="space-y-4 flex justify-between items-center"
                 >
-                    <h3>FAQ {index + 1}</h3>
+                    <h3>Service {index + 1}</h3>
                     <div className="flex items-center gap-2">
-                        <FEditFaqPopup
-                            onSave={(newFaq) => handleEdit(index, newFaq)}
-                            faq={faq}
-                            faqIdx={index}
+                        <FEditCatalogPopup
+                            onSave={(newItem) => handleEdit(index, newItem)}
+                            item={service}
+                            itemIdx={index}
                         >
                             <Button variant={"ghost"}>
                                 <LucideEdit />
                             </Button>
-                        </FEditFaqPopup>
+                        </FEditCatalogPopup>
                         <Button onClick={() => handleRemove(index)} variant={"ghost"}>
                             <LucideTrash className="text-destructive" />
                         </Button>
@@ -65,4 +68,4 @@ export const FFaqEditorField = ({
             ))}
         </div>
     );
-};
+}; 

@@ -22,7 +22,10 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         {
             type: "navbar",
             sectionName: "Navbar",
-            data: {},
+            data: {
+                // logoUrl: "/placeholder.png",
+                textLogo: "Finance",
+            },
             isFixed: true,
             isEditable: true,
             isHidden: false,
@@ -46,7 +49,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "featured-services",
-            sectionName: "About",
+            sectionName: "Featured Services",
             data: {
                 featuredServices: [
                     {
@@ -90,7 +93,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "services",
-            sectionName: "About",
+            sectionName: "Services",
             data: {
                 badgeText: "Our services",
                 title: "Accounting Services",
@@ -179,7 +182,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "why-choose-us",
-            sectionName: "Team",
+            sectionName: "Why Choose Us",
             data: {
                 badgeText: "Let's Work Together",
                 title: "Why choose us",
@@ -215,7 +218,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "logos",
-            sectionName: "Team",
+            sectionName: "Our Clients",
             data: {
                 heading: "Our commitment to you",
                 subHeading:
@@ -232,10 +235,9 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "newsletter",
-            sectionName: "newsletter",
+            sectionName: "Newsletter",
             data: {
                 heading: "Subscribe to our newsletter",
-                ctaText: "Subscribe",
                 btn1Text: "Subscribe",
                 btn1Link: "#",
                 btn2Text: "Contact us",
@@ -379,7 +381,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "timeline",
-            sectionName: "Contact",
+            sectionName: "How it works",
             data: {
                 title: "How to set financial goals for your future",
                 subtitle:
@@ -414,7 +416,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "stats",
-            sectionName: "stats",
+            sectionName: "Stats",
             data: {
                 heading: "Delivering Excellence through experise and dedication",
                 stats: [
@@ -480,7 +482,12 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         {
             type: "footer",
             sectionName: "Footer",
-            data: {},
+            data: {
+                textLogo: "Finance",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                experience: "30+",
+            },
             isFixed: true,
             isEditable: true,
             isHidden: false,

@@ -18,7 +18,7 @@ interface FAddFaqPopupProps {
     children: React.ReactNode;
     onAdd: (faq: FFAQ_ITEM) => void;
 }
-export function FAddServicePopup({ children, onAdd }: FAddFaqPopupProps) {
+export function FAddFaqPopup({ children, onAdd }: FAddFaqPopupProps) {
     const [item, setItem] = useState<FFAQ_ITEM>({
         question: "",
         answer: "",
@@ -32,7 +32,7 @@ export function FAddServicePopup({ children, onAdd }: FAddFaqPopupProps) {
                 onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader>
-                    <DialogTitle className="md:text-2xl">Add Service</DialogTitle>
+                    <DialogTitle className="md:text-2xl">Add Faq</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col gap-3">
                     <ReqInput

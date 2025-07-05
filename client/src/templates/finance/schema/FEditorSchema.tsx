@@ -5,6 +5,11 @@ import { FFeaturedServiceEditorField } from "../editorFields/FFeaturedServiceEdi
 import { FTeamEditorField } from "../editorFields/FTeamEditorField";
 import { FWhyChooseUsEditorField } from "../editorFields/FWhyChooseUsEditorField";
 import { FTestimonialEditorField } from "../editorFields/FTestimonialEditorField";
+import { FFaqEditorField } from "../editorFields/FFaqEditorField";
+import { FBlogEditorField } from "../editorFields/FBlogEditorField";
+import { FCatalogEditorField } from "../editorFields/FCatalogEditorField";
+import { FTimelineEditorField } from "../editorFields/FTimelineEditorField";
+import { FStatsEditorField } from "../editorFields/FStatsEditorField";
 export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
   hero: [
     {
@@ -109,8 +114,56 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       label: "Heading",
       fieldPath: "heading",
     },
-    // TODO:add blogs editorField here
+    {
+      type: "component",
+      label: "Blogs",
+      fieldPath: "blogs",
+      component: ({ value, onChange }) => (
+        <FBlogEditorField value={value || []} onChange={onChange} />
+      ),
+    },
   ],
+
+  newsletter: [
+    {
+      type: "text",
+      label: "Heading",
+      fieldPath: "heading",
+    },
+    {
+      type: "group",
+      label: "Button Group",
+      fieldPath: "btnGroup",
+      fields: [
+        {
+          label: "Button 1 Text",
+          fieldPath: "btn1Text",
+        },
+        {
+          label: "Button 1 Link",
+          fieldPath: "btn1Link",
+        },
+      ],
+    },
+    {
+      type: "group",
+      label: "Button Group",
+      fieldPath: "btnGroup",
+      fields: [
+        {
+          label: "Button 2 Text",
+          fieldPath: "btn2Text",
+        },
+        {
+          label: "Button 2 Link",
+          fieldPath: "btn2Link",
+        },
+      ],
+    },
+
+
+  ],
+
 
   team: [
     {
@@ -181,6 +234,21 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     },
     // TODO:add logos editorField here
   ],
+  faqs: [
+    {
+      type: "text",
+      label: "Heading",
+      fieldPath: "heading",
+    },
+    {
+      type: "component",
+      label: "FAQs",
+      fieldPath: "faqs",
+      component: ({ value, onChange }) => (
+        <FFaqEditorField value={value || []} onChange={onChange} />
+      ),
+    },
+  ],
   projects: [
     {
       type: "text",
@@ -215,6 +283,44 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     },
     // TODO:add gallery editorField here
   ],
+  timeline: [
+    {
+      type: "text",
+      label: "Title",
+      fieldPath: "title",
+    },
+    {
+      type: "text",
+      label: "Subtitle",
+      fieldPath: "subtitle",
+    },
+    {
+      type: "component",
+      label: "Timeline",
+      fieldPath: "steps",
+      component: ({ value, onChange }) => (
+        <FTimelineEditorField value={value || []} onChange={onChange} />
+      ),
+    },
+
+  ],
+  stats: [
+    {
+      type: "text",
+      label: "Title",
+      fieldPath: "heading",
+    },
+    {
+      type: "component",
+      label: "Stats",
+      fieldPath: "stats",
+      component: ({ value, onChange }) => (
+        <FStatsEditorField value={value || []} onChange={onChange} />
+      ),
+    },
+
+  ],
+
 
   testimonials: [
     {
@@ -272,7 +378,14 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       type: "text",
       fieldPath: "subtitle",
     },
-    // TODO:add service-catalog editorField here
+    {
+      type: "component",
+      label: "Service Catalog",
+      fieldPath: "catalogServices",
+      component: ({ value, onChange }) => (
+        <FCatalogEditorField value={value || []} onChange={onChange} />
+      ),
+    },
   ],
   contact: [
     {

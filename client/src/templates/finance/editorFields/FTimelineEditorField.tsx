@@ -1,19 +1,19 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { LucideEdit, LucidePlus, LucideTrash } from "lucide-react";
-import { FFAQ_ITEM } from "../types/faq.types";
-import { FAddFaqPopup, FEditFaqPopup } from "../popups/FFaqPopup";
+import { F_TIMELINE_STEP } from "../types/timeline.types";
+import { FAddTimelinePopup, FEditTimelinePopup } from "../popups/FTimelinePopup";
 
-interface FFaqEditorFieldProps {
-    value: FFAQ_ITEM[];
-    onChange: (val: FFAQ_ITEM[]) => void;
+interface FTimelineEditorFieldProps {
+    value: F_TIMELINE_STEP[];
+    onChange: (val: F_TIMELINE_STEP[]) => void;
 }
-export const FFaqEditorField = ({
+export const FTimelineEditorField = ({
     value,
     onChange,
-}: FFaqEditorFieldProps) => {
-    const handleAdd = (newFaq: FFAQ_ITEM) => {
-        onChange([...value, newFaq]);
+}: FTimelineEditorFieldProps) => {
+    const handleAdd = (newStep: F_TIMELINE_STEP) => {
+        onChange([...value, newStep]);
     };
 
     const handleRemove = (index: number) => {
@@ -22,41 +22,41 @@ export const FFaqEditorField = ({
         onChange(updated);
     };
 
-    const handleEdit = (index: number, newFaq: FFAQ_ITEM) => {
+    const handleEdit = (index: number, newStep: F_TIMELINE_STEP) => {
         const updated = [...value];
-        updated[index] = newFaq;
+        updated[index] = newStep;
         onChange(updated);
     };
 
     return (
         <div className="space-y-3">
             <div className="flex justify-between mb-4">
-                <h1 className="font-semibold">FAQs</h1>
-                <FAddFaqPopup onAdd={handleAdd}>
+                <h1 className="font-semibold">Timeline Steps</h1>
+                <FAddTimelinePopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
                         Add{" "}
                         <span>
                             <LucidePlus />
                         </span>
                     </Button>
-                </FAddFaqPopup>
+                </FAddTimelinePopup>
             </div>
-            {value.map((faq, index) => (
+            {value.map((step, index) => (
                 <div
                     key={index}
                     className="space-y-4 flex justify-between items-center"
                 >
-                    <h3>FAQ {index + 1}</h3>
+                    <h3>Step {index + 1}</h3>
                     <div className="flex items-center gap-2">
-                        <FEditFaqPopup
-                            onSave={(newFaq) => handleEdit(index, newFaq)}
-                            faq={faq}
-                            faqIdx={index}
+                        <FEditTimelinePopup
+                            onSave={(newStep) => handleEdit(index, newStep)}
+                            step={step}
+                            stepIdx={index}
                         >
                             <Button variant={"ghost"}>
                                 <LucideEdit />
                             </Button>
-                        </FEditFaqPopup>
+                        </FEditTimelinePopup>
                         <Button onClick={() => handleRemove(index)} variant={"ghost"}>
                             <LucideTrash className="text-destructive" />
                         </Button>
@@ -65,4 +65,4 @@ export const FFaqEditorField = ({
             ))}
         </div>
     );
-};
+}; 
