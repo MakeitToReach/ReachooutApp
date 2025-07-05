@@ -17,17 +17,18 @@ export const PFSocialSection = ({
                         {subHeading}
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        {socials.map((social, idx) => (
-                            <PFSocialCard
-                                key={idx}
-                                title={social.title}
-                                btnLink={social.btnLink}
-                                btnText={social.btnText}
-                                followerCounts={social.followerCounts}
-                                icon={social.icon}
-                            />
-                        ))}
-                    </div>
+                        {socials
+                            .filter((social) => social.btnLink)
+                            .map((social, idx) => (
+                                <PFSocialCard
+                                    key={idx}
+                                    title={social.title}
+                                    btnLink={social.btnLink}
+                                    followerCounts={social.followerCounts}
+                                    icon={social.icon}
+                                />
+                            ))}
+                        </div>
                 </div>
             </div>
         </section>

@@ -32,10 +32,10 @@ export const ProjectEditorField = ({
     return (
         <div className="space-y-3">
             <div className="flex justify-between mb-4">
-                <h1 className="font-semibold">Carousel</h1>
+                <h1 className="font-semibold">Projects</h1>
                 <AddProjectPopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
-                        Add Project{" "}
+                        Add {" "}
                         <span>
                             <LucidePlus />
                         </span>

@@ -526,6 +526,18 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
                         followerCounts: "4.2k",
                         icon: "Instagram",
                     },
+                    {
+                        title: "Youtube",
+                        socialLink: "https://youtube.com",
+                        followerCounts: "4.2k",
+                        icon: "Youtube",
+                    },
+                    {
+                        title: "Facebook",
+                        socialLink: "https://facebook.com",
+                        followerCounts: "4.2k",
+                        icon: "Facebook",
+                    },
                 ],
             },
             isFixed: false,

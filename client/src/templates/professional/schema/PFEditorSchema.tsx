@@ -10,6 +10,7 @@ import { PFBlogEditorField } from "../editorFields/PFBlogEditorField";
 import { PFFaqEditorField } from "../editorFields/PFFaqEditorField";
 import { PFExperienceEditorField } from "../editorFields/PFExperienceEditorField";
 import { PFCatalogEditorField } from "../editorFields/PFCatalogEditorField";
+import { PFSocialEditorField } from "../editorFields/PFSocialEditorField";
 
 export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     navbar: [
@@ -261,6 +262,14 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Subheading",
             type: "text",
             fieldPath: "subHeading",
+        },
+        {
+            label: "Socials",
+            type: "component",
+            fieldPath: "socials",
+            component: ({ value, onChange }) => (
+                <PFSocialEditorField value={value || []} onChange={onChange} />
+            ),
         },
     ],
 

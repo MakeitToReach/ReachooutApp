@@ -168,7 +168,7 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
         return (
           <>
             {!section.isHidden && (
-              <PFNewsletterSection key={`newsletter-${index}`} />
+              <PFNewsletterSection key={`newsletter-${index}`} {...section.data} />
             )}
           </>
         );

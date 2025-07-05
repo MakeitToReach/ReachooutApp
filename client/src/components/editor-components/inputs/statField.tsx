@@ -17,14 +17,6 @@ export const StatsField: React.FC<StatsFieldProps> = ({ value, onChange }) => {
     onChange(updated);
   };
 
-  // const addStat = () => onChange([...value, { title: "", value: "0" }]);
-
-  // const removeStat = (index: number) => {
-  //   const updated = [...value];
-  //   updated.splice(index, 1);
-  //   onChange(updated);
-  // };
-
   return (
     <div className="space-y-3">
       <Label className="text-lg">Counters</Label>
@@ -38,7 +30,7 @@ export const StatsField: React.FC<StatsFieldProps> = ({ value, onChange }) => {
             className="border p-2 rounded w-1/2"
           />
           <input
-            type="number"
+            type="text"
             value={stat.value}
             placeholder="Value"
             onChange={(e) => handleItemChange(idx, "value", e.target.value)}
