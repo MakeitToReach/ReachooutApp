@@ -151,9 +151,14 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         {
             label: "Avatar Image",
             type: "image",
-            fieldPath: "img",
+            fieldPath: "avatarImg",
             fieldPathImg: "avatarImg",
         },
+        {
+            label: "Client Images",
+            type: "multiple-images",
+            fieldPath: "clientImgs",
+        }
     ],
 
     testimonials: [
@@ -220,7 +225,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             type: "text",
             fieldPath: "heading",
         },
-        // multi-image input here
+        {
+            label: "Images",
+            type: "multiple-images",
+            fieldPath: "imgs",
+        }
     ],
 
     team: [

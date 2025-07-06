@@ -23,11 +23,13 @@ export const fetchAllTemplates = async () => {
 export const publishTemplate = async (
     templateName: string,
     data: GenericTemplateSchema,
+    projectId: string,
+    templateId: string,
 ) => {
     const token = getToken();
     const response = await api.post(
-        `/v1/template/publish`,
-        { templateName, data },
+        `/v1/template/publish/${projectId}`,
+            {  data,templateId },
         {
             headers: {
                 Authorization: `Bearer ${token}`,

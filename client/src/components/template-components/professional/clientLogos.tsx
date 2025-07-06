@@ -1,13 +1,9 @@
 import { Marquee } from "@/components/magicui/marquee";
 import Image from "next/image";
 
-type ClientLogo = {
-    src: string;
-    alt?: string;
-};
 
 type ClientLogosProps = {
-    clientImgs: ClientLogo[];
+    clientImgs: string[];
 };
 
 export const ClientLogos = ({ clientImgs }: ClientLogosProps) => {
@@ -17,8 +13,8 @@ export const ClientLogos = ({ clientImgs }: ClientLogosProps) => {
             {clientImgs.map((client, idx) => (
                 <Image
                     key={idx}
-                    src={client.src}
-                    alt={client.alt || `Client ${idx + 1}`}
+                    src={client}
+                    alt={`Client ${idx + 1}`}
                     height={40}
                     width={120}
                     className="object-contain mx-10"

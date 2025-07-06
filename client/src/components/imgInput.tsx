@@ -4,8 +4,16 @@ import { AlertCircleIcon, ImageIcon, UploadIcon, XIcon } from "lucide-react"
 
 import { useFileUpload } from "@/hooks/use-file-upload"
 import { Button } from "@/components/ui/button"
+import { uploadImage } from "@/api/image-upload"
+import { toast } from "sonner"
 
-export default function Component() {
+interface ImageInputProps {
+  onImageUpload?: (imgUrl: string) => void
+  onImageRemove?: () => void
+  initialImgUrl?: string
+}
+
+export function ImageInput({ onImageUpload, onImageRemove, initialImgUrl }: ImageInputProps) {
   const maxSizeMB = 2
   const maxSize = maxSizeMB * 1024 * 1024 // 2MB default
 
@@ -23,9 +31,23 @@ export default function Component() {
   ] = useFileUpload({
     accept: "image/svg+xml,image/png,image/jpeg,image/jpg,image/gif",
     maxSize,
+    initialFiles: initialImgUrl ? [{ url: initialImgUrl, name: "image", size: 100, type: "image", id: "image" }] : [],
+    onFilesAdded: async (addedFiles) => {
+      const fileWithPreview = addedFiles[0].file
+      // console.log("fileWithPreview", fileWithPreview)
+      if (fileWithPreview instanceof File) {
+        try {
+          const url = await uploadImage(fileWithPreview)
+          // console.log("Uploaded to S3:", url)
+          onImageUpload?.(url)
+        } catch (error) {
+          console.error("Failed to upload image:", error)
+          toast.error("Failed to upload image")
+        }
+      }
+    },
   })
   const previewUrl = files[0]?.preview || null
-  // const fileName = files[0]?.file.name || null
 
   return (
     <div className="flex flex-col gap-2">
@@ -84,7 +106,10 @@ export default function Component() {
             <button
               type="button"
               className="focus-visible:border-ring focus-visible:ring-ring/50 z-50 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] outline-none hover:bg-black/80 focus-visible:ring-[3px]"
-              onClick={() => removeFile(files[0]?.id)}
+              onClick={() => {
+                removeFile(files[0]?.id)
+                onImageRemove?.()
+              }}
               aria-label="Remove image"
             >
               <XIcon className="size-4" aria-hidden="true" />
@@ -102,20 +127,6 @@ export default function Component() {
           <span>{errors[0]}</span>
         </div>
       )}
-
-      <p
-        aria-live="polite"
-        role="region"
-        className="text-muted-foreground mt-2 text-center text-xs"
-      >
-        Single image uploader w/ max size (drop area + button) ∙{" "}
-        <a
-          href="https://github.com/origin-space/originui/tree/main/docs/use-file-upload.md"
-          className="hover:text-foreground underline"
-        >
-          API
-        </a>
-      </p>
     </div>
   )
 }

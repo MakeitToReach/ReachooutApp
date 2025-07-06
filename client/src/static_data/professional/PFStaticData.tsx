@@ -270,22 +270,10 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
         avatarImg:
           "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
         clientImgs: [
-          {
-            src: "/apple.svg",
-            alt: "Image 4",
-          },
-          {
-            src: "/next.svg",
-            alt: "Image 1",
-          },
-          {
-            src: "/tailwind.svg",
-            alt: "Image 5",
-          },
-          {
-            src: "/reachout-logo.png",
-            alt: "Image 2",
-          },
+          "/apple.svg",
+          "/next.svg",
+          "/tailwind.svg",
+          "/reachout-logo.png",
         ],
       },
       isFixed: false,
@@ -329,26 +317,10 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
       data: {
         heading: "Gallery",
         imgs: [
-          {
-            src: "/placeholder.png",
-            alt: "Image 1",
-          },
-          {
-            src: "/placeholder.png",
-            alt: "Image 1",
-          },
-          {
-            src: "/placeholder.png",
-            alt: "Image 1",
-          },
-          {
-            src: "/placeholder.png",
-            alt: "Image 1",
-          },
-          {
-            src: "/placeholder.png",
-            alt: "Image 1",
-          },
+          "/placeholder.png",
+          "/placeholder.png",
+          "/placeholder.png",
+          "/placeholder.png",
         ],
       },
       isFixed: false,

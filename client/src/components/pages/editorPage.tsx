@@ -22,6 +22,7 @@ import { SettingsDropdown } from "@/components/editor-components/settingsDropdow
 import { publishTemplate, updateTemplateData } from "@/api/publish-template";
 import { Loading } from "../editor-components/loading";
 import { useEditorTabIdxStore } from "@/store/editorTabIdx.store";
+import { toast } from "sonner";
 
 const EditorPage = () => {
     const params = useParams<{ slug: string }>();
@@ -43,8 +44,8 @@ const EditorPage = () => {
 
     const isNew = searchParams?.has("new");
     const isEditing = searchParams?.has("edit");
-    // const templateId = searchParams?.get("tid");
-    // const projectId = searchParams?.get("pid");
+    const templateId = searchParams?.get("tid");
+    const projectId = searchParams?.get("pid");
 
     // const type = searchParams.get("type");
     // using the type/category parameter, search the backend for the corresponding static data
@@ -86,8 +87,12 @@ const EditorPage = () => {
     const handlePublish = async () => {
         setLoading(true);
         try {
-            await publishTemplate(data.name, data);
-            router.push("/user");
+            if (!projectId || !templateId) {
+                toast.error("No project ID or template ID found");
+                return;
+            }
+            await publishTemplate(data.name, data, projectId, templateId);
+            router.push(`/user/${projectId}`);
         } catch (error) {
             console.error(error);
         } finally {

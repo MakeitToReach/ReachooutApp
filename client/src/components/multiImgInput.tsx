@@ -4,40 +4,16 @@ import { AlertCircleIcon, ImageIcon, UploadIcon, XIcon } from "lucide-react"
 
 import { useFileUpload } from "@/hooks/use-file-upload"
 import { Button } from "@/components/ui/button"
+import { uploadImage } from "@/api/image-upload"
 
-// Create some dummy initial files
-const initialFiles = [
-  {
-    name: "image-01.jpg",
-    size: 1528737,
-    type: "image/jpeg",
-    url: "/placeholder.png",
-    id: "image-01-123456789",
-  },
-  {
-    name: "image-02.jpg",
-    size: 1528737,
-    type: "image/jpeg",
-    url: "/placeholder.png",
-    id: "image-02-123456789",
-  },
-  {
-    name: "image-03.jpg",
-    size: 1528737,
-    type: "image/jpeg",
-    url: "/placeholder.png",
-    id: "image-03-123456789",
-  },
-  {
-    name: "image-04.jpg",
-    size: 1528737,
-    type: "image/jpeg",
-    url: "/placeholder.png",
-    id: "image-04-123456789",
-  },
-]
 
-export function FileUpload() {
+interface MultipleImageInputProps {
+  initialImages?: string[];
+  onImageRemove?: (index: number) => void;
+  onImageAdd?: (imgUrl: string) => void;
+}
+
+export function MultipleImageInput({ initialImages, onImageRemove, onImageAdd }: MultipleImageInputProps) {
   const maxSizeMB = 5
   const maxSize = maxSizeMB * 1024 * 1024 // 5MB default
   const maxFiles = 6
@@ -58,7 +34,40 @@ export function FileUpload() {
     maxSize,
     multiple: true,
     maxFiles,
-    initialFiles,
+    initialFiles: initialImages?.map((imgUrl, index) => ({ 
+      url: imgUrl, 
+      name: `image-${index + 1}`, 
+      size: 100, 
+      type: "image/png", 
+      id: `initial-${index}-${Date.now()}` 
+    })) || [],
+    onFilesAdded: async (addedFiles) => {
+      // Upload all added files to S3 concurrently
+      const fileUploads = addedFiles
+        .filter((fileWithPreview) => fileWithPreview.file instanceof File)
+        .map(async (fileWithPreview) => {
+          const file = fileWithPreview.file as File
+          try {
+            // Assuming you have an uploadImage function for multiImgInput as well
+            // You'll need to import it or pass it as a prop
+            const url = await uploadImage(file)
+            console.log("Uploaded to S3:", url)
+            return url
+          } catch (error) {
+            console.error("Failed to upload image:", error)
+            throw error
+          }
+        })
+
+      try {
+        const urls = await Promise.all(fileUploads)
+        // Call the callback with the uploaded URLs
+        urls.forEach((url: string) => onImageAdd?.(url))
+      } catch (error) {
+        console.error("One or more uploads failed:", error)
+        // You might want to show an error message to the user here
+      }
+    },
   })
 
   return (
@@ -110,7 +119,17 @@ export function FileUpload() {
                     className="size-40 rounded-[inherit] object-cover"
                   />
                   <Button
-                    onClick={() => removeFile(file.id)}
+                    onClick={() => {
+                      removeFile(file.id)
+                      // Call onImageRemove if this is an initial image
+                      if (file.file && typeof file.file === 'object' && 'url' in file.file) {
+                        const fileMetadata = file.file as { url: string }
+                        const initialIndex = initialImages?.indexOf(fileMetadata.url)
+                        if (initialIndex !== undefined && initialIndex >= 0) {
+                          onImageRemove?.(initialIndex)
+                        }
+                      }
+                    }}
                     size="icon"
                     className="border-background focus-visible:border-background absolute -top-2 -right-2 size-6 rounded-full border-2 shadow-none"
                     aria-label="Remove image"

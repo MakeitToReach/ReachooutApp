@@ -16,10 +16,9 @@ import {
     Pagination,
 } from "swiper/modules";
 
-import { PF_GALLERY_IMG } from "../types/gallerySection";
 
 interface CarouselProps {
-    images: PF_GALLERY_IMG[];
+    images: string[];
     autoplayDelay?: number;
     showPagination?: boolean;
     showNavigation?: boolean;
@@ -92,11 +91,11 @@ export const PFGalleryCarousel: React.FC<CarouselProps> = ({
                         <SwiperSlide key={`first-${index}`}>
                             <div className="overflow-hidden rounded-2xl">
                                 <Image
-                                    src={image.src}
+                                    src={image}
                                     width={600}
                                     height={400}
                                     className="rounded-xl object-cover w-full h-auto"
-                                    alt={image.alt}
+                                    alt={`Image-${index}`}
                                 />
                             </div>
                         </SwiperSlide>
@@ -105,11 +104,11 @@ export const PFGalleryCarousel: React.FC<CarouselProps> = ({
                         <SwiperSlide key={`second-${index}`}>
                             <div className="overflow-hidden rounded-2xl">
                                 <Image
-                                    src={image.src}
+                                    src={image}
                                     width={600}
                                     height={400}
                                     className="rounded-xl object-cover w-full h-auto"
-                                    alt={image.alt}
+                                    alt={`Image-${index}`}
                                 />
                             </div>
                         </SwiperSlide>
