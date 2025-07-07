@@ -11,6 +11,7 @@ import { PF_PROJECT } from "@/templates/professional/types/project";
 import { CldUploadButton } from "next-cloudinary";
 import ImageSelectButton from "../inputs/imageInputBtn";
 import { ReqInput } from "../inputs/reqInput";
+import { ImageInput } from "@/components/imgInput";
 
 interface EditProjectPopupProps {
   project: PF_PROJECT;
@@ -77,34 +78,23 @@ export const EditProjectPopup = ({
             value={formData.description}
             onChange={(e) => handleChange("description", e.target.value)}
           />
-          {/* <CldUploadButton */}
-          {/*     uploadPreset="you-view" */}
-          {/*     options={{ sources: ["local", "url", "unsplash"] }} */}
-          {/*     className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]" */}
-          {/*     //eslint-disable-next-line */}
-          {/*     onSuccess={(result: any) => { */}
-          {/*         handleChange("imgUrl", result.info.url); */}
-          {/*     }} */}
-          {/* > */}
-          {/*     <ImageSelectButton selectedImgUrl={formData.imgUrl![0]} /> */}
-          {/* </CldUploadButton> */}
-          <div className="flex items-center md:gap-10 gap-6 w-full">
-            <CldUploadButton
-              uploadPreset="you-view"
-              options={{ sources: ["local", "url", "unsplash"] }}
-              className="cursor-pointer p-2 rounded-lg w-fit"
-              //eslint-disable-next-line
-              onSuccess={(result: any) => {
-                handleChange("imgUrl", result.info.url);
+
+          <div className="flex flex-col items-center md:gap-10 gap-6">
+            <ImageInput
+              initialImgUrl={formData.imgUrl}
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                handleChange("imgUrl", imgUrl);
               }}
-            >
-              <ImageSelectButton selectedImgUrl={formData.imgUrl![0]} />
-              <span className="capitalize">500x500</span>
-            </CldUploadButton>
+              onImageRemove={() =>
+                handleChange("imgUrl", "")
+              }
+            />
 
             <h1 className="text-xs md:text-lg">OR</h1>
 
             <ReqInput
+              className="w-full"
               label="Video URL"
               type="text"
               placeholder="https://youtub.com/watch?v=******"

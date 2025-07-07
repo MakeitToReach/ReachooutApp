@@ -521,6 +521,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
       sectionName: "Experience",
       data: {
         heading: "My Journey",
+        imgUrl: "/placeholder.png",
         experiences: [
           {
             title: "Frontend Developer",

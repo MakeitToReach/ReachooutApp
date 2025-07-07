@@ -1,5 +1,5 @@
 import { LucideMenu } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import { PF_NAVBAR_SECTION } from "../types/navbarSection";
 import { scrollToSection } from "@/lib/utils";
 import {
@@ -24,6 +24,10 @@ export const PFNavbar = ({
             scrollToSection(value);
         }
     };
+
+    useEffect(() => {
+        console.log("logoUrl", logoUrl);
+    }, [logoUrl]);
 
     return (
         <nav

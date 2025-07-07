@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Label } from "@/components/ui/label";
 import { F_PROJECT } from "../types/projects.types";
+import { ImageInput } from "@/components/imgInput";
+import { Textarea } from "@/components/ui/textarea";
 
 interface FAddProjectPopupProps {
   children: React.ReactNode;
@@ -27,7 +29,7 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
     projectUrl: "",
   });
   return (
-    <Dialog modal={false}>
+    <Dialog >
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         className="sm:max-w-[600px] font-Poppins"
@@ -48,7 +50,7 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
 
           <div className="space-y-2">
             <Label className="font-semibold">Description</Label>
-            <textarea
+            <Textarea
               placeholder="Description"
               className="border p-2 w-full rounded-md h-20"
               value={project.description}
@@ -76,6 +78,18 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
               setProject({ ...project, projectUrl: e.target.value })
             }
           />
+
+          <div className="space-y-2">
+            <Label className="font-semibold">Project Image</Label>
+            <ImageInput
+              initialImgUrl={project.imgUrl}
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                setProject({ ...project, imgUrl: imgUrl });
+              }}
+              onImageRemove={() => setProject({ ...project, imgUrl: "" })}
+            />
+          </div>
         </div>
 
         <DialogFooter>
@@ -150,7 +164,7 @@ export const FEditProjectPopup = ({
 
           <div className="space-y-2">
             <Label className="font-semibold">Description</Label>
-            <textarea
+            <Textarea
               placeholder="Description"
               className="border p-2 w-full rounded-md h-20"
               value={formData.description}
@@ -170,7 +184,17 @@ export const FEditProjectPopup = ({
             onChange={(e) => handleChange("projectUrl", e.target.value)}
           />
 
-          {/* TODO:add image input here */}
+          <div className="space-y-2">
+            <Label className="font-semibold">Project Image</Label>
+            <ImageInput
+              initialImgUrl={formData.imgUrl}
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                handleChange("imgUrl", imgUrl);
+              }}
+              onImageRemove={() => handleChange("imgUrl", "")}
+            />
+          </div>
         </div>
 
         <div className="flex justify-end gap-2">

@@ -32,10 +32,10 @@ export const FTestimonialEditorField = ({
     return (
         <div className="space-y-3">
             <div className="flex justify-between mb-4">
-                <h1 className="font-semibold">Your Testimonials</h1>
+                <h1 className="font-semibold">Testimonials</h1>
                 <FAddTestimonialPopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
-                        Add Testimonial{" "}
+                        Add{" "}
                         <span>
                             <LucidePlus />
                         </span>

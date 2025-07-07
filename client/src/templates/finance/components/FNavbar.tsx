@@ -15,6 +15,8 @@ export const FNavbar = ({
     logoUrl,
     textLogo,
     sections,
+    btnText,
+    btnLink,
 }: F_NAVBAR_SECTION) => {
     const visibleSections = sections.slice(2, 6);
     const overflowSections = sections.slice(6, sections.length - 2);
@@ -80,7 +82,11 @@ export const FNavbar = ({
                     )}
                 </div>
 
-                {!isMobile && <FButton btnText="Contact Us" />}
+                {!isMobile && (
+                    <a href={btnLink} target="_blank" rel="noopener noreferrer">
+                        <FButton btnText={btnText} />
+                    </a>
+                )}
                 {/* Mobile Menu Button */}
 
                 {isMobile && (

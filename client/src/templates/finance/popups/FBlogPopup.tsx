@@ -10,10 +10,11 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { CldUploadButton } from "next-cloudinary";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
-import ImageSelectButton from "@/components/editor-components/inputs/imageInputBtn";
 import { F_BLOG } from "../types/blogs.types";
+import { ImageInput } from "@/components/imgInput";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 interface FAddBlogPopupProps {
     children: React.ReactNode;
@@ -54,7 +55,7 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <textarea
+                        <Textarea
                             placeholder="Enter description"
                             className="border p-2 w-full rounded-md h-20"
                             value={blog.description}
@@ -73,37 +74,27 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
                     />
 
                     <div className="space-y-2">
-                        <label className="font-semibold">Blog Image</label>
-                        <div className="space-x-2">
-                            <CldUploadButton
-                                uploadPreset="you-view"
-                                options={{ sources: ["local", "url", "unsplash"] }}
-                                className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                                //eslint-disable-next-line
-                                onSuccess={(result: any) => {
-                                    setBlog({ ...blog, imgUrl: result.info.url });
-                                }}
-                            >
-                                <ImageSelectButton selectedImgUrl={blog.imgUrl} />
-                            </CldUploadButton>
-                        </div>
+                        <Label className="font-semibold">Blog Image</Label>
+                        <ImageInput
+                            initialImgUrl={blog.imgUrl}
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                                setBlog({ ...blog, imgUrl: imgUrl });
+                            }}
+                            onImageRemove={() => setBlog({ ...blog, imgUrl: "" })}
+                        />
                     </div>
 
                     <div className="space-y-2">
-                        <label className="font-semibold">Author Image</label>
-                        <div className="space-x-2">
-                            <CldUploadButton
-                                uploadPreset="you-view"
-                                options={{ sources: ["local", "url", "unsplash"] }}
-                                className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                                //eslint-disable-next-line
-                                onSuccess={(result: any) => {
-                                    setBlog({ ...blog, authorImgUrl: result.info.url });
-                                }}
-                            >
-                                <ImageSelectButton selectedImgUrl={blog.authorImgUrl} />
-                            </CldUploadButton>
-                        </div>
+                        <Label className="font-semibold">Author Image</Label>
+                        <ImageInput
+                            initialImgUrl={blog.authorImgUrl}
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                                setBlog({ ...blog, authorImgUrl: imgUrl });
+                            }}
+                            onImageRemove={() => setBlog({ ...blog, authorImgUrl: "" })}
+                        />
                     </div>
                 </div>
 
@@ -187,8 +178,8 @@ export const FEditBlogPopup = ({
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <textarea
-                            placeholder="Description"
+                        <Textarea
+                            placeholder="Enter description"
                             className="border p-2 w-full rounded-md h-20"
                             value={formData.description}
                             onChange={(e) => handleChange("description", e.target.value)}
@@ -203,37 +194,27 @@ export const FEditBlogPopup = ({
                     />
 
                     <div className="space-y-2">
-                        <label className="font-semibold">Blog Image</label>
-                        <div className="space-x-2">
-                            <CldUploadButton
-                                uploadPreset="you-view"
-                                options={{ sources: ["local", "url", "unsplash"] }}
-                                className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                                //eslint-disable-next-line
-                                onSuccess={(result: any) => {
-                                    handleChange("imgUrl", result.info.url);
-                                }}
-                            >
-                                <ImageSelectButton selectedImgUrl={formData.imgUrl} />
-                            </CldUploadButton>
-                        </div>
+                        <Label className="font-semibold">Blog Image</Label>
+                        <ImageInput
+                            initialImgUrl={formData.imgUrl}
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                                handleChange("imgUrl", imgUrl);
+                            }}
+                            onImageRemove={() => handleChange("imgUrl", "")}
+                        />
                     </div>
 
                     <div className="space-y-2">
-                        <label className="font-semibold">Author Image</label>
-                        <div className="space-x-2">
-                            <CldUploadButton
-                                uploadPreset="you-view"
-                                options={{ sources: ["local", "url", "unsplash"] }}
-                                className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                                //eslint-disable-next-line
-                                onSuccess={(result: any) => {
-                                    handleChange("authorImgUrl", result.info.url);
-                                }}
-                            >
-                                <ImageSelectButton selectedImgUrl={formData.authorImgUrl} />
-                            </CldUploadButton>
-                        </div>
+                        <Label className="font-semibold">Author Image</Label>
+                        <ImageInput
+                            initialImgUrl={formData.authorImgUrl}
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                                handleChange("authorImgUrl", imgUrl);
+                            }}
+                            onImageRemove={() => handleChange("authorImgUrl", "")}
+                        />
                     </div>
                 </div>
 

@@ -15,7 +15,7 @@ import { PFSocialEditorField } from "../editorFields/PFSocialEditorField";
 export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     navbar: [
         {
-            label: "Text Logo",
+            label: "Text",
             type: "image-video",
             fieldPath: "navbar-img",
             fieldPathVid: "textLogo",
@@ -300,11 +300,15 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
 
     experience: [
         {
-            label: "heading",
+            label: "Image",
+            type: "image",
+            fieldPath: "imgUrl",
+        },
+        {
+            label: "Heading",
             type: "text",
             fieldPath: "heading",
         },
-        // img input here
         {
             label: "Experiences",
             type: "component",
@@ -317,7 +321,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
 
     footer: [
         {
-            label: "Text Logo",
+            label: "Text",
             type: "image-video",
             fieldPath: "footer-img",
             fieldPathVid: "logoText",

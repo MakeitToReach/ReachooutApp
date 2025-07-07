@@ -13,6 +13,7 @@ import { PF_CATALOG } from "../types/serviceCatalog.types";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { MultipleImageInput } from "@/components/multiImgInput";
 
 interface PFAddCatalogPopupProps {
     children: React.ReactNode;
@@ -25,7 +26,7 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
         description: "",
         btnText: "",
         btnLink: "",
-        imgUrls: ["https://placehold.co/500"],
+        imgUrls: [],
         category: "",
     });
     return (
@@ -58,7 +59,7 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <textarea
+                        <Textarea
                             placeholder="Description"
                             className="border p-2 w-full rounded-md h-20"
                             value={item.description}
@@ -85,7 +86,20 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
                             onChange={(e) => setItem({ ...item, btnLink: e.target.value })}
                         />
                     </div>
-                    {/* TODO:add multi image input here */}
+                    <div className="space-y-2">
+                        <Label>Images</Label>
+                        <MultipleImageInput
+                            onImageAdd={(imgUrl) => {
+                                setItem((prev) => ({ ...prev, imgUrls: [...prev.imgUrls, imgUrl] }));
+                            }}
+                            onImageRemove={(index) => {
+                                setItem((prev) => ({
+                                    ...prev,
+                                    imgUrls: prev.imgUrls.filter((_, i) => i !== index),
+                                }));
+                            }}
+                        />
+                    </div>
                 </div>
 
                 <DialogFooter>
@@ -98,7 +112,7 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
                                     description: "",
                                     btnText: "",
                                     btnLink: "",
-                                    imgUrls: ["https://placehold.co/500"],
+                                    imgUrls: [],
                                     category: "",
                                 });
                             }}
@@ -178,16 +192,21 @@ export const PFEditCatalogPopup = ({
                             onChange={(e) => handleChange("description", e.target.value)}
                         />
                     </div>
-                    {/* <ReqInput */}
-                    {/*     required={true} */}
-                    {/*     type="text" */}
-                    {/*     label="Description" */}
-                    {/*     placeholder="Enter your catalog description" */}
-                    {/*     value={formData.description} */}
-                    {/*     onChange={(e) => handleChange("description", e.target.value)} */}
-                    {/* /> */}
-
-                    {/* TODO: image or vid url input here */}
+                    <div className="space-y-2">
+                        <Label>Images</Label>
+                        <MultipleImageInput
+                            initialImages={formData.imgUrls}
+                            onImageAdd={(imgUrl) => {
+                                setFormData((prev) => ({ ...prev, imgUrls: [...prev.imgUrls, imgUrl] }));
+                            }}
+                            onImageRemove={(index) => {
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    imgUrls: prev.imgUrls.filter((_, i) => i !== index),
+                                }));
+                            }}
+                        />
+                    </div>
                 </div>
 
                 <div className="flex justify-end gap-2">

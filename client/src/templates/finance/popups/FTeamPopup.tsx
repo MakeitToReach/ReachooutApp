@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { F_TEAM_MEMBER } from "../types/team.types";
+import { ImageInput } from "@/components/imgInput";
 
 interface FAddTeamMemberPopupProps {
   children: React.ReactNode;
@@ -58,8 +59,7 @@ export function FAddTeamMemberPopup({
     <Dialog >
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="sm:max-w-[600px] font-Poppins"
-        style={{ overflow: "visible" }}
+        className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-scroll"
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
@@ -84,13 +84,16 @@ export function FAddTeamMemberPopup({
             }
           />
 
-          <ReqInput
-            type="text"
-            label="Image URL"
-            placeholder="Enter team member image URL"
-            value={member.imgUrl}
-            onChange={(e) => setMember({ ...member, imgUrl: e.target.value })}
-          />
+          <div className="space-y-2">
+            <label className="font-semibold">Team Member Image</label>
+            <ImageInput
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                setMember({ ...member, imgUrl: imgUrl });
+              }}
+              onImageRemove={() => setMember({ ...member, imgUrl: "" })}
+            />
+          </div>
 
           <div className="flex flex-col gap-2 mt-2">
             {member.socials.map((social, index) => (
@@ -223,7 +226,7 @@ export const FEditTeamMemberPopup = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="space-y-4 z-[100] font-Poppins">
+      <DialogContent className="space-y-4 z-[100] font-Poppins max-h-[90vh] overflow-y-scroll">
         <DialogHeader>
           <DialogTitle>
             Edit Team Member {memberIdx !== undefined && `#${memberIdx + 1}`}
@@ -245,12 +248,17 @@ export const FEditTeamMemberPopup = ({
             onChange={(e) => handleChange("designation", e.target.value)}
           />
 
-          <ReqInput
-            type="text"
-            label="Image URL"
-            value={formData.imgUrl}
-            onChange={(e) => handleChange("imgUrl", e.target.value)}
-          />
+          <div className="space-y-2">
+            <label className="font-semibold">Team Member Image</label>
+            <ImageInput
+              initialImgUrl={formData.imgUrl}
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                handleChange("imgUrl", imgUrl);
+              }}
+              onImageRemove={() => handleChange("imgUrl", "")}
+            />
+          </div>
         </div>
 
         <div className="flex flex-col gap-2">

@@ -10,8 +10,46 @@ import { FBlogEditorField } from "../editorFields/FBlogEditorField";
 import { FCatalogEditorField } from "../editorFields/FCatalogEditorField";
 import { FTimelineEditorField } from "../editorFields/FTimelineEditorField";
 import { FStatsEditorField } from "../editorFields/FStatsEditorField";
+import { FNavbarEditorField } from "../editorFields/FNavbarEditorField";
+
 export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
+  navbar: [
+    {
+      type: "group",
+      label: "Button Group",
+      fieldPath: "btnGroup",
+      fields: [
+        {
+          label: "Button Text",
+          fieldPath: "btnText",
+        },
+        {
+          label: "Button Link",
+          fieldPath: "btnLink",
+        },
+      ],
+    },
+    {
+      label: "Text",
+      type: "image-video",
+      fieldPath: "navbar-img",
+      fieldPathVid: "textLogo",
+      fieldPathImg: "logoUrl",
+      imgSubtitle: "Dimensions 64x64",
+    },
+    {
+      label: "Navbar Options",
+      type: "customComponent",
+      fieldPath: "sections",
+      customComponent: () => <FNavbarEditorField />,
+    },
+  ],
   hero: [
+    {
+      label: "Image",
+      type: "multiple-images",
+      fieldPath: "imgUrls",
+    },
     {
       label: "Title",
       type: "text",
@@ -79,7 +117,11 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         },
       ],
     },
-    // TODO:add images input here
+    {
+      label: "Images",
+      type: "multiple-images",
+      fieldPath: "imgUrls",
+    },
   ],
 
   services: [
@@ -160,10 +202,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         },
       ],
     },
-
-
   ],
-
 
   team: [
     {
@@ -232,7 +271,11 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       label: "Sub Heading",
       fieldPath: "subHeading",
     },
-    // TODO:add logos editorField here
+    {
+      label: "Logos",
+      type: "multiple-images",
+      fieldPath: "imgs",
+    },
   ],
   faqs: [
     {
@@ -268,7 +311,6 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         <FProjectEditorField value={value || []} onChange={onChange} />
       ),
     },
-    // TODO:add projects editorField here
   ],
   gallery: [
     {
@@ -281,7 +323,11 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       label: "Subtitle",
       fieldPath: "subtitle",
     },
-    // TODO:add gallery editorField here
+    {
+      label: "Gallery",
+      type: "multiple-images",
+      fieldPath: "imgs",
+    },
   ],
   timeline: [
     {
@@ -302,9 +348,14 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         <FTimelineEditorField value={value || []} onChange={onChange} />
       ),
     },
-
   ],
   stats: [
+    {
+      type: "image",
+      label: "Images",
+      fieldPath: "imgUrl",
+    },
+
     {
       type: "text",
       label: "Title",
@@ -318,9 +369,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         <FStatsEditorField value={value || []} onChange={onChange} />
       ),
     },
-
   ],
-
 
   testimonials: [
     {

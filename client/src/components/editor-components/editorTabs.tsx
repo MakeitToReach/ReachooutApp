@@ -126,8 +126,19 @@ export const EditorTabs = ({
                     )}
 
                     {field.type === "image-video" && (
-                      <div className="flex items-center md:gap-10 gap-6 w-full">
+                      <div className="flex flex-col items-center md:gap-10 gap-6">
                         <ImageInput
+                          initialImgUrl={
+                            sectionData?.data[field.fieldPathImg ?? ""]
+                          }
+                          className="w-full"
+                          onImageUpload={(imgUrl) => {
+                            setSectionField(
+                              section,
+                              field.fieldPathImg ?? "",
+                              imgUrl
+                            );
+                          }}
                           onImageRemove={() =>
                             setSectionField(
                               section,
@@ -135,14 +146,12 @@ export const EditorTabs = ({
                               ""
                             )
                           }
-                          initialImgUrl={
-                            sectionData?.data[field.fieldPath ?? ""]
-                          }
                         />
 
                         <h1 className="text-xs md:text-lg">OR</h1>
 
                         <ReqInput
+                          className="w-full"
                           label={field.label}
                           type="text"
                           subtitle={field.subtitle}
@@ -162,35 +171,33 @@ export const EditorTabs = ({
                     {field.type === "image" && (
                       <ImageInput
                         onImageUpload={(imgUrl) => {
-                        //   console.log("imgUrl", imgUrl);
                           setSectionField(
                             section,
                             field.fieldPath ?? "",
                             imgUrl
-                          )
+                          );
                         }}
-                        initialImgUrl={
-                          sectionData?.data[field.fieldPath ?? ""]
-                        }
+                        initialImgUrl={sectionData?.data[field.fieldPath ?? ""]}
                       />
                     )}
 
                     {field.type === "multiple-images" && (
+                      <div className="space-y-2">
+                        <Label>{field.label}</Label>
                       <MultipleImageInput
+                        initialImages={sectionData?.data[field.fieldPath ?? ""]}
                         onImageAdd={(imgUrl) => {
-                          console.log("imgUrl", imgUrl);
+                          const currentImages = Array.isArray(sectionData?.data[field.fieldPath ?? ""]) ? sectionData.data[field.fieldPath ?? ""] : [];
+                          const updatedImages = [...currentImages, imgUrl];
+                          setSectionField(section, field.fieldPath ?? "", updatedImages);
                         }}
-                        initialImages={
-                          sectionData?.data[field.fieldPath ?? ""]
-                        }
                         onImageRemove={(index) => {
-                          console.log("index", index);
-                        }}
-                        // onImageAdd={(imgUrl) => {
-                        //   const images = sectionData?.data[field.fieldPath ?? ""] || [];
-                        // onImageRemove={(index) => {}}
-                        // onImageAdd={(imgUrl) => {}}
-                      />
+                          const currentImages = Array.isArray(sectionData?.data[field.fieldPath ?? ""]) ? sectionData.data[field.fieldPath ?? ""] : [];
+                          const updatedImages = currentImages.filter((_: string, i: number) => i !== index);
+                            setSectionField(section, field.fieldPath ?? "", updatedImages);
+                          }}
+                        />
+                      </div>
                     )}
 
                     {field.type === "component" &&

@@ -6,16 +6,21 @@ import { useFileUpload } from "@/hooks/use-file-upload"
 import { Button } from "@/components/ui/button"
 import { uploadImage } from "@/api/image-upload"
 import { toast } from "sonner"
+import { cn } from "@/lib/utils"
+import { useState } from "react"
 
 interface ImageInputProps {
   onImageUpload?: (imgUrl: string) => void
   onImageRemove?: () => void
   initialImgUrl?: string
+  className?: string
 }
 
-export function ImageInput({ onImageUpload, onImageRemove, initialImgUrl }: ImageInputProps) {
+export function ImageInput({ onImageUpload, onImageRemove, initialImgUrl, className }: ImageInputProps) {
   const maxSizeMB = 2
   const maxSize = maxSizeMB * 1024 * 1024 // 2MB default
+
+  const [isUploading, setIsUploading] = useState(false)
 
   const [
     { files, isDragging, errors },
@@ -34,15 +39,17 @@ export function ImageInput({ onImageUpload, onImageRemove, initialImgUrl }: Imag
     initialFiles: initialImgUrl ? [{ url: initialImgUrl, name: "image", size: 100, type: "image", id: "image" }] : [],
     onFilesAdded: async (addedFiles) => {
       const fileWithPreview = addedFiles[0].file
-      // console.log("fileWithPreview", fileWithPreview)
       if (fileWithPreview instanceof File) {
         try {
+          setIsUploading(true)
           const url = await uploadImage(fileWithPreview)
           // console.log("Uploaded to S3:", url)
-          onImageUpload?.(url)
+          onImageUpload?.(url.imgUrl || "")
         } catch (error) {
           console.error("Failed to upload image:", error)
           toast.error("Failed to upload image")
+        } finally {
+          setIsUploading(false)
         }
       }
     },
@@ -50,7 +57,7 @@ export function ImageInput({ onImageUpload, onImageRemove, initialImgUrl }: Imag
   const previewUrl = files[0]?.preview || null
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className={cn("flex flex-col gap-2", className)}>
       <div className="relative">
         {/* Drop area */}
         <div
@@ -59,7 +66,7 @@ export function ImageInput({ onImageUpload, onImageRemove, initialImgUrl }: Imag
           onDragOver={handleDragOver}
           onDrop={handleDrop}
           data-dragging={isDragging || undefined}
-          className="border-input data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-[input:focus]:ring-[3px]"
+          className="border-input data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-border p-4 transition-colors has-[input:focus]:ring-[3px]"
         >
           <input
             {...getInputProps()}
@@ -71,7 +78,7 @@ export function ImageInput({ onImageUpload, onImageRemove, initialImgUrl }: Imag
               <img
                 src={previewUrl}
                 alt={files[0]?.file?.name || "Uploaded image"}
-                className="mx-auto max-h-full rounded object-contain"
+                className={cn("mx-auto max-h-full rounded object-contain", isUploading ? "animate-pulse" : "")}
               />
             </div>
           ) : (

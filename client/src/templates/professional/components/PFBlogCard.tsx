@@ -14,8 +14,8 @@ export const PFBlogCard = ({ imgUrl, title, description }: PFBlogCardProps) => {
                 quality={100}
                 src={imgUrl || "/placeholder.png"}
                 alt="blog-img"
-                width={100}
-                height={100}
+                width={400}
+                height={240}
                 className="w-full h-[15rem] object-cover"
             />
             <div className="space-y-2 text-left">

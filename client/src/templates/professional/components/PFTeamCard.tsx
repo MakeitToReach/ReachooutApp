@@ -16,11 +16,10 @@ export const PFTeamCard = ({
     return (
         <div className="h-fit sm:w-[20vw] border border-template-accent-primary w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6 text-template-text-primary">
             <Image
-                quality={100}
                 src={imgUrl || "/placeholder.png"}
-                alt="blog-img"
-                width={100}
-                height={100}
+                alt="team-member-img"
+                width={400}
+                height={240}
                 className="w-full h-[15rem] object-cover"
             />
             <div className="px-6 space-y-1">

@@ -13,6 +13,7 @@ import { F_CATLOG_SERVICES } from "../types/service-catalog.types";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { MultipleImageInput } from "@/components/multiImgInput";
 
 interface FAddCatalogPopupProps {
     children: React.ReactNode;
@@ -55,7 +56,7 @@ export function FAddCatalogPopup({ children, onAdd }: FAddCatalogPopupProps) {
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <textarea
+                        <Textarea
                             placeholder="Description"
                             className="border p-2 w-full rounded-md h-20"
                             value={item.description}
@@ -65,16 +66,20 @@ export function FAddCatalogPopup({ children, onAdd }: FAddCatalogPopupProps) {
                         />
                     </div>
 
-                    <ReqInput
-                        label="Image URLs"
-                        type="text"
-                        placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg"
-                        value={item.imgUrls.join(", ")}
-                        onChange={(e) => {
-                            const urls = e.target.value.split(",").map(url => url.trim()).filter(url => url);
-                            setItem({ ...item, imgUrls: urls });
-                        }}
-                    />
+                    <div className="space-y-2">
+                        <Label>Images</Label>
+                        <MultipleImageInput
+                            onImageAdd={(imgUrl) => {
+                                setItem((prev) => ({ ...prev, imgUrls: [...prev.imgUrls, imgUrl] }));
+                            }}
+                            onImageRemove={(index) => {
+                                setItem((prev) => ({
+                                    ...prev,
+                                    imgUrls: prev.imgUrls.filter((_, i) => i !== index),
+                                }));
+                            }}
+                        />
+                    </div>
                 </div>
 
                 <DialogFooter>
@@ -166,16 +171,21 @@ export const FEditCatalogPopup = ({
                         />
                     </div>
 
-                    <ReqInput
-                        label="Image URLs"
-                        type="text"
-                        placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg"
-                        value={formData.imgUrls.join(", ")}
-                        onChange={(e) => {
-                            const urls = e.target.value.split(",").map(url => url.trim()).filter(url => url);
-                            setFormData({ ...formData, imgUrls: urls });
-                        }}
-                    />
+                    <div className="space-y-2">
+                        <Label>Images</Label>
+                        <MultipleImageInput
+                            initialImages={formData.imgUrls}
+                            onImageAdd={(imgUrl) => {
+                                setFormData((prev) => ({ ...prev, imgUrls: [...prev.imgUrls, imgUrl] }));
+                            }}
+                            onImageRemove={(index) => {
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    imgUrls: prev.imgUrls.filter((_, i) => i !== index),
+                                }));
+                            }}
+                        />
+                    </div>
                 </div>
 
                 <div className="flex justify-end gap-2">

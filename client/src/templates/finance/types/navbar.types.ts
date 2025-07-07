@@ -7,4 +7,6 @@ export type F_NAVBAR_SECTION = {
     logoUrl?: string;
     textLogo?: string;
     sections: F_NAVBAR_SECTION_ITEM[];
+    btnText: string;
+    btnLink: string;
 }; 

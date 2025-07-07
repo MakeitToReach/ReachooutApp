@@ -10,10 +10,11 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { CldUploadButton } from "next-cloudinary";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
-import ImageSelectButton from "@/components/editor-components/inputs/imageInputBtn";
 import { PF_BLOG } from "../types/blog.types";
+import { ImageInput } from "@/components/imgInput";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 interface PFAddBlogPopupProps {
     children: React.ReactNode;
@@ -43,8 +44,8 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <textarea
-                            placeholder="Chief Executive Officer"
+                        <Textarea
+                            placeholder="Enter blog description"
                             className="border p-2 w-full rounded-md h-20"
                             value={blog.description}
                             onChange={(e) =>
@@ -53,18 +54,16 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
                         />
                     </div>
 
-                    <div className="space-x-2">
-                        <CldUploadButton
-                            uploadPreset="you-view"
-                            options={{ sources: ["local", "url", "unsplash"] }}
-                            className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                            //eslint-disable-next-line
-                            onSuccess={(result: any) => {
-                                setBlog({ ...blog, imgUrl: result.info.url });
+                    <div className="space-y-2">
+                        <Label className="font-semibold">Blog Image</Label>
+                        <ImageInput
+                            initialImgUrl={blog.imgUrl}
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                                setBlog({ ...blog, imgUrl: imgUrl });
                             }}
-                        >
-                            <ImageSelectButton selectedImgUrl={blog.imgUrl} />
-                        </CldUploadButton>
+                            onImageRemove={() => setBlog({ ...blog, imgUrl: "" })}
+                        />
                     </div>
                 </div>
 
@@ -80,7 +79,7 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
                                 });
                             }}
                         >
-                            Add member
+                            Add
                         </Button>
                     </DialogClose>
                 </DialogFooter>
@@ -138,8 +137,8 @@ export const PFEditBlogPopup = ({
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <textarea
-                            placeholder="Description"
+                        <Textarea
+                            placeholder="Enter blog description"
                             className="border p-2 w-full rounded-md h-20"
                             value={formData.description}
                             onChange={(e) => handleChange("description", e.target.value)}
@@ -147,18 +146,16 @@ export const PFEditBlogPopup = ({
                     </div>
                 </div>
 
-                <div className="space-x-2">
-                    <CldUploadButton
-                        uploadPreset="you-view"
-                        options={{ sources: ["local", "url", "unsplash"] }}
-                        className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                        //eslint-disable-next-line
-                        onSuccess={(result: any) => {
-                            handleChange("imgUrl", result.info.url);
+                <div className="space-y-2">
+                    <Label className="font-semibold">Blog Image</Label>
+                    <ImageInput
+                        initialImgUrl={formData.imgUrl}
+                        className="w-full"
+                        onImageUpload={(imgUrl) => {
+                            handleChange("imgUrl", imgUrl);
                         }}
-                    >
-                        <ImageSelectButton selectedImgUrl={formData.imgUrl} />
-                    </CldUploadButton>
+                        onImageRemove={() => handleChange("imgUrl", "")}
+                    />
                 </div>
 
                 <div className="flex justify-end gap-2">

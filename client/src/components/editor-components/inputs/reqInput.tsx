@@ -1,22 +1,26 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { InputHTMLAttributes } from "react";
+import { cn } from "@/lib/utils";
 
+// TODO: Add a video input component
 interface ReqInputProps extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     isRequired?: boolean;
     isOptional?: boolean;
     subtitle?: string;
+    className?: string;
 }
 export const ReqInput: React.FC<ReqInputProps> = ({
     isRequired,
     label,
     isOptional,
     subtitle,
+    className,
     ...props
 }) => {
     return (
-        <div className="space-y-2">
+        <div className={cn("space-y-2", className)}>
             {label && (
                 <Label
                     htmlFor="input-02"

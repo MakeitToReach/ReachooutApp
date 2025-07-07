@@ -4,8 +4,8 @@ import { FlipText } from "@/components/template-components/professional/flipText
 import { Button } from "@/components/ui/button";
 import { LucideArrowRight } from "lucide-react";
 import React from "react";
-import { CldImage } from "next-cloudinary";
 import { getYouTubeVideoId } from "@/lib/utils";
+import Image from "next/image";
 
 export const PFHeroSection = ({
     title,
@@ -73,7 +73,7 @@ export const PFHeroSection = ({
                         />
                     </div>
                 ) : (
-                    <CldImage
+                    <Image
                         src={heroImgUrl || "/placeholder.png"}
                         alt="heroimg"
                         className="mt-20 md:max-h-[500px] md:max-w-[500px] rounded-md object-contain"

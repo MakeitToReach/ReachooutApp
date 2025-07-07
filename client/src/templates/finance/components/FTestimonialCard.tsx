@@ -20,7 +20,7 @@ export const FTestimonialCard = ({
             <div className="flex gap-2 items-center">
                 <Avatar className="size-12">
                     <AvatarImage
-                        src={avatarUrl}
+                        src={avatarUrl || "/placeholder.png"}
                         alt="testimonial-user-img"
                         className="object-cover"
                     />

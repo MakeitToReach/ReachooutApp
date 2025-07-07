@@ -4,7 +4,9 @@ import { AlertCircleIcon, ImageIcon, UploadIcon, XIcon } from "lucide-react"
 
 import { useFileUpload } from "@/hooks/use-file-upload"
 import { Button } from "@/components/ui/button"
-import { uploadImage } from "@/api/image-upload"
+import { uploadImage, UploadResponse } from "@/api/image-upload"
+import { useState } from "react"
+import { cn } from "@/lib/utils"
 
 
 interface MultipleImageInputProps {
@@ -14,9 +16,11 @@ interface MultipleImageInputProps {
 }
 
 export function MultipleImageInput({ initialImages, onImageRemove, onImageAdd }: MultipleImageInputProps) {
-  const maxSizeMB = 5
+  const maxSizeMB = 2
   const maxSize = maxSizeMB * 1024 * 1024 // 5MB default
   const maxFiles = 6
+
+  const [isUploading, setIsUploading] = useState(false)
 
   const [
     { files, isDragging, errors },
@@ -48,21 +52,22 @@ export function MultipleImageInput({ initialImages, onImageRemove, onImageAdd }:
         .map(async (fileWithPreview) => {
           const file = fileWithPreview.file as File
           try {
-            // Assuming you have an uploadImage function for multiImgInput as well
-            // You'll need to import it or pass it as a prop
+            setIsUploading(true)
             const url = await uploadImage(file)
             console.log("Uploaded to S3:", url)
             return url
           } catch (error) {
             console.error("Failed to upload image:", error)
             throw error
+          } finally {
+            setIsUploading(false)
           }
         })
 
       try {
         const urls = await Promise.all(fileUploads)
         // Call the callback with the uploaded URLs
-        urls.forEach((url: string) => onImageAdd?.(url))
+        urls.forEach((url: UploadResponse) => onImageAdd?.(url.imgUrl || ""))
       } catch (error) {
         console.error("One or more uploads failed:", error)
         // You might want to show an error message to the user here
@@ -80,7 +85,7 @@ export function MultipleImageInput({ initialImages, onImageRemove, onImageAdd }:
         onDrop={handleDrop}
         data-dragging={isDragging || undefined}
         data-files={files.length > 0 || undefined}
-        className="border-input data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors not-data-[files]:justify-center has-[input:focus]:ring-[3px]"
+        className="border-input data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center overflow-hidden rounded-xl border border-border p-4 transition-colors not-data-[files]:justify-center has-[input:focus]:ring-[3px]"
       >
         <input
           {...getInputProps()}
@@ -116,7 +121,7 @@ export function MultipleImageInput({ initialImages, onImageRemove, onImageAdd }:
                   <img
                     src={file.preview}
                     alt={file.file.name}
-                    className="size-40 rounded-[inherit] object-cover"
+                    className={cn("size-40 rounded-[inherit] object-cover", isUploading ? "animate-pulse" : "")}
                   />
                   <Button
                     onClick={() => {

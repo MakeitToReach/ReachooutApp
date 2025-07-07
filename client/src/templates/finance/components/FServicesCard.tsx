@@ -17,8 +17,8 @@ export const FServicesCard = ({
             <Image
                 src={imgUrl || "/placeholder.png"}
                 alt="blog-img"
-                width={100}
-                height={100}
+                width={400}
+                height={250}
                 className="w-full h-[250px] object-cover"
             />
             <div className="px-6 space-y-1">

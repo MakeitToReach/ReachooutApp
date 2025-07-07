@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Label } from "@/components/ui/label";
 import { F_TESTIMONIAL } from "../types/testimonials.types";
+import { ImageInput } from "@/components/imgInput";
+import { Textarea } from "@/components/ui/textarea";
 
 interface FAddTestimonialPopupProps {
   children: React.ReactNode;
@@ -29,11 +31,10 @@ export function FAddTestimonialPopup({ children, onAdd }: FAddTestimonialPopupPr
   });
 
   return (
-    <Dialog modal={false}>
+    <Dialog >
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="sm:max-w-[600px] font-Poppins"
-        style={{ overflow: "visible" }}
+        className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-scroll"
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
@@ -60,7 +61,7 @@ export function FAddTestimonialPopup({ children, onAdd }: FAddTestimonialPopupPr
 
           <div className="space-y-2">
             <Label className="font-semibold">Message</Label>
-            <textarea
+            <Textarea
               placeholder="Enter testimonial message"
               className="border p-2 w-full rounded-md h-20"
               value={testimonial.message}
@@ -86,15 +87,17 @@ export function FAddTestimonialPopup({ children, onAdd }: FAddTestimonialPopupPr
             <div className="text-sm text-gray-600">Rating: {testimonial.rating}/5</div>
           </div>
 
-          <ReqInput
-            type="text"
-            label="Avatar URL"
-            placeholder="Enter avatar image URL"
-            value={testimonial.avatarUrl}
-            onChange={(e) =>
-              setTestimonial({ ...testimonial, avatarUrl: e.target.value })
-            }
-          />
+          <div className="space-y-2">
+            <Label className="font-semibold">Avatar Image</Label>
+            <ImageInput
+              initialImgUrl={testimonial.avatarUrl}
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                setTestimonial({ ...testimonial, avatarUrl: imgUrl });
+              }}
+              onImageRemove={() => setTestimonial({ ...testimonial, avatarUrl: "" })}
+            />
+          </div>
         </div>
 
         <DialogFooter>
@@ -200,12 +203,17 @@ export const FEditTestimonialPopup = ({
             <div className="text-sm text-gray-600">Rating: {formData.rating}/5</div>
           </div>
 
-          <ReqInput
-            type="text"
-            label="Avatar URL"
-            value={formData.avatarUrl}
-            onChange={(e) => handleChange("avatarUrl", e.target.value)}
-          />
+          <div className="space-y-2">
+            <Label className="font-semibold">Avatar Image</Label>
+            <ImageInput
+              initialImgUrl={formData.avatarUrl}
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                handleChange("avatarUrl", imgUrl);
+              }}
+              onImageRemove={() => handleChange("avatarUrl", "")}
+            />
+          </div>
         </div>
 
         <div className="flex justify-end gap-2">

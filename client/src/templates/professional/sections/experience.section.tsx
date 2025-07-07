@@ -6,6 +6,7 @@ import { PFExperienceItem } from "../components/PFExperienceItem";
 
 export const PFExperienceSection = ({
     heading,
+    imgUrl,
     experiences,
 }: PF_EXPERIENCE_SECTION) => {
     const sectionRef = useRef(null);
@@ -23,7 +24,7 @@ export const PFExperienceSection = ({
                 {/* Responsive image container */}
                 <div className="relative w-[200px] h-[200px] sm:w-[500px] sm:h-[500px] z-10 sm:mt-20 mt-10">
                     <Image
-                        src="/placeholder.png"
+                        src={imgUrl || "/placeholder.png"}
                         alt="Placeholder"
                         fill
                         className="object-cover rounded-md"

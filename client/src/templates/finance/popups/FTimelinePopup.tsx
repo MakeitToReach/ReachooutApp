@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Label } from "@/components/ui/label";
 import { F_TIMELINE_STEP } from "../types/timeline.types";
+import { ImageInput } from "@/components/imgInput";
+import { Textarea } from "@/components/ui/textarea";
 
 interface FAddTimelinePopupProps {
     children: React.ReactNode;
@@ -55,7 +57,7 @@ export function FAddTimelinePopup({ children, onAdd }: FAddTimelinePopupProps) {
 
                     <div className="space-y-2">
                         <Label className="font-semibold">Description</Label>
-                        <textarea
+                        <Textarea
                             placeholder="Enter step description"
                             className="border p-2 w-full rounded-md h-20"
                             value={step.description}
@@ -63,13 +65,16 @@ export function FAddTimelinePopup({ children, onAdd }: FAddTimelinePopupProps) {
                         />
                     </div>
 
-                    <ReqInput
-                        type="text"
-                        label="Image URL"
-                        placeholder="https://example.com/image.jpg"
-                        value={step.image}
-                        onChange={(e) => setStep({ ...step, image: e.target.value })}
-                    />
+                    <div className="space-y-2">
+                        <Label className="font-semibold">Timeline Image</Label>
+                        <ImageInput
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                                setStep({ ...step, image: imgUrl });
+                            }}
+                            onImageRemove={() => setStep({ ...step, image: "" })}
+                        />
+                    </div>
                 </div>
 
                 <DialogFooter>
@@ -150,20 +155,25 @@ export const FEditTimelinePopup = ({
 
                     <div className="space-y-2">
                         <Label className="font-semibold">Description</Label>
-                        <textarea
-                            placeholder="Description"
+                        <Textarea
+                            placeholder="Enter step description"
                             className="border p-2 w-full rounded-md h-20"
                             value={formData.description}
                             onChange={(e) => handleChange("description", e.target.value)}
                         />
                     </div>
 
-                    <ReqInput
-                        type="text"
-                        label="Image URL"
-                        value={formData.image}
-                        onChange={(e) => handleChange("image", e.target.value)}
-                    />
+                    <div className="space-y-2">
+                        <Label className="font-semibold">Timeline Image</Label>
+                        <ImageInput
+                            initialImgUrl={formData.image}
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                                handleChange("image", imgUrl);
+                            }}
+                            onImageRemove={() => handleChange("image", "")}
+                        />
+                    </div>
                 </div>
 
                 <div className="flex justify-end gap-2">

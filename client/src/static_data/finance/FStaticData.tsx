@@ -25,6 +25,8 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             data: {
                 // logoUrl: "/placeholder.png",
                 textLogo: "Finance",
+                btnText: "Contact Us",
+                btnLink: "#contact",
             },
             isFixed: true,
             isEditable: true,
@@ -224,9 +226,9 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                 subHeading:
                     "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati ex doloribus dolore quae illum sint doloremque earum dolorum, voluptates laboriosam?",
                 imgs: [
-                    { src: "/next.svg", alt: "logo1" },
-                    { src: "/reachout-logo.png", alt: "logo2" },
-                    { src: "/apple.svg", alt: "logo3" },
+                    "/next.svg",
+                    "/reachout-logo.png", 
+                    "/apple.svg"
                 ],
             },
             isFixed: false,

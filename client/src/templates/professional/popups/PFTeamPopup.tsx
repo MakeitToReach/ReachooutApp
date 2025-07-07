@@ -10,10 +10,10 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { CldUploadButton } from "next-cloudinary";
 import { PF_TEAM_MEMBER } from "@/templates/professional/types/teamMember.types";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
-import ImageSelectButton from "@/components/editor-components/inputs/imageInputBtn";
+import { ImageInput } from "@/components/imgInput";
+import { Textarea } from "@/components/ui/textarea";
 
 interface AddTeamMemberPopupProps {
     children: React.ReactNode;
@@ -70,7 +70,6 @@ export function AddTeamMemberPopup({
                         type="text"
                         label="Member Name"
                         placeholder="Enter name of the member"
-                        value={member.name}
                         onChange={(e) => setMember({ ...member, name: e.target.value })}
                     />
 
@@ -78,7 +77,6 @@ export function AddTeamMemberPopup({
                         type="text"
                         label="Designation"
                         placeholder="Enter designation of the member"
-                        value={member.designation}
                         onChange={(e) =>
                             setMember({ ...member, designation: e.target.value })
                         }
@@ -86,10 +84,9 @@ export function AddTeamMemberPopup({
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <textarea
+                        <Textarea
                             placeholder="Chief Executive Officer"
                             className="border p-2 w-full rounded-md h-20"
-                            value={member.description}
                             onChange={(e) =>
                                 setMember({ ...member, description: e.target.value })
                             }
@@ -97,24 +94,19 @@ export function AddTeamMemberPopup({
                     </div>
 
                     <div className="space-x-2">
-                        <CldUploadButton
-                            uploadPreset="you-view"
-                            options={{ sources: ["local", "url", "unsplash"] }}
-                            className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                            //eslint-disable-next-line
-                            onSuccess={(result: any) => {
-                                setMember({ ...member, imgUrl: result.info.url });
+                        <ImageInput
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                                setMember({ ...member, imgUrl: imgUrl });
                             }}
-                        >
-                            <ImageSelectButton selectedImgUrl={member.imgUrl} />
-                        </CldUploadButton>
+                            onImageRemove={() => setMember({ ...member, imgUrl: "" })}
+                        />
 
                         <div className="flex flex-col gap-2 mt-2">
                             {member.socials.map((social, index) => (
                                 <ReqInput
                                     key={index}
                                     label={social.name}
-                                    value={social.url}
                                     onChange={(e) => {
                                         const updated = [...member.socials];
                                         updated[index].url = e.target.value;
@@ -212,7 +204,7 @@ export const EditTeamMemberPopup = ({
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <textarea
+                        <Textarea
                             placeholder="Description"
                             className="border p-2 w-full rounded-md h-20"
                             value={formData.description}
@@ -222,17 +214,14 @@ export const EditTeamMemberPopup = ({
                 </div>
 
                 <div className="space-x-2">
-                    <CldUploadButton
-                        uploadPreset="you-view"
-                        options={{ sources: ["local", "url", "unsplash"] }}
-                        className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                        //eslint-disable-next-line
-                        onSuccess={(result: any) => {
-                            handleChange("imgUrl", result.info.url);
+                    <ImageInput
+                        initialImgUrl={formData.imgUrl}
+                        className="w-full"
+                        onImageUpload={(imgUrl) => {
+                            handleChange("imgUrl", imgUrl);
                         }}
-                    >
-                        <ImageSelectButton selectedImgUrl={member.imgUrl} />
-                    </CldUploadButton>
+                        onImageRemove={() => handleChange("imgUrl", "")}
+                    />
                 </div>
 
                 <div className="flex flex-col gap-2">
