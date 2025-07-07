@@ -19,7 +19,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ReorderSectionsPopup } from "@/components/editor-components/popups/SectionsPopup";
 import { ThemePickerDialog } from "@/components/editor-components/popups/colorThemeDialog";
 import { SettingsDropdown } from "@/components/editor-components/settingsDropdown";
-import { publishTemplate, updateTemplateData } from "@/api/publish-template";
+import { publishTemplate, updateTemplateInstanceData } from "@/api/templates";
 import { Loading } from "../editor-components/loading";
 import { useEditorTabIdxStore } from "@/store/editorTabIdx.store";
 import { toast } from "sonner";
@@ -44,23 +44,23 @@ const EditorPage = () => {
 
     const isNew = searchParams?.has("new");
     const isEditing = searchParams?.has("edit");
+    const order = searchParams?.get("order");
     const templateId = searchParams?.get("tid");
     const projectId = searchParams?.get("pid");
 
-    // const type = searchParams.get("type");
-    // using the type/category parameter, search the backend for the corresponding static data
 
     const templateKey = slug as keyof typeof TEMPLATE_REGISTRY;
     const template = TEMPLATE_REGISTRY[templateKey];
 
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        if (template && isNew) {
-            // resetData(template.data);
-            console.log("from editor", data);
-        }
-    }, [slug, isNew]);
+    // useEffect(() => {
+    //     if (template && isNew) {
+    //         // console.log("projectId", projectId);
+    //         // console.log("templateId", templateId);
+    //         // console.log("from editor", data);
+    //     }
+    // }, [slug, isNew]);
 
     if (!data) return <Loading />;
     if (!template) return <p>Template not found</p>;
@@ -76,7 +76,12 @@ const EditorPage = () => {
     const handleSave = async () => {
         setLoading(true);
         try {
-            await updateTemplateData(data);
+            if (!projectId || !templateId || !order) {
+                toast.error("No project ID or template ID found");
+                return;
+            }
+            await updateTemplateInstanceData(data, projectId, templateId, Number(order));
+            router.push(`/user/project/${projectId}`);
         } catch (error) {
             console.error(error);
         } finally {
@@ -91,8 +96,8 @@ const EditorPage = () => {
                 toast.error("No project ID or template ID found");
                 return;
             }
-            await publishTemplate(data.name, data, projectId, templateId);
-            router.push(`/user/${projectId}`);
+            await publishTemplate(data, projectId, templateId);
+            router.push(`/user/project/${projectId}`);
         } catch (error) {
             console.error(error);
         } finally {
@@ -121,10 +126,13 @@ const EditorPage = () => {
                         className="w-full md:w-[30%] fixed top-0 left-0 z-[150] border border-border bg-white"
                     >
                         <EditorPanel
+                            order={Number(order) || 0}
                             toggleEditor={toggleEditor}
                             isEditing={isEditing}
                             templateSchema={template.editorSchema}
                             TabIndex={editorTabIndex}
+                            projectId={projectId || ""}
+                            templateId={templateId || ""}
                         />
                     </motion.div>
                 )}

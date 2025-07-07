@@ -4,10 +4,9 @@ import {
     // addUserTemplate,
     getAllTemplates,
     getTemplateCategories,
+    getProjectTemplateInstanceData,
     publishTemplate,
-    // getUserTemplateData,
-    // getUserTemplates,
-    // updateUserTemplateData,
+    updateTemplateInstance,
 } from "../controllers/template.controller";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 
@@ -15,23 +14,25 @@ const templateRouter = Router();
 
 //v1/template
 templateRouter.post(
-    "/publish/:projectId",
+    "/publish",
     isAuthenticated,
     (req: Request, res: Response) => {
         publishTemplate(req, res);
     },
 );
 
-// templateRouter.get(
-//     "/user/:templateName",
-//     isAuthenticated,
-//     (req: Request, res: Response) => {
-//         getUserTemplateData(req, res);
-//     },
-// );
-
 templateRouter.get("/all", (req: Request, res: Response) => {
     getAllTemplates(req, res);
+});
+
+//v1/template/user/:templateId
+templateRouter.get("/user/:templateId", (req: Request<{ templateId: string }>, res: Response) => {
+    getProjectTemplateInstanceData(req, res);
+});
+//returns the template instance data for the given template from a project
+
+templateRouter.put("/update", isAuthenticated, (req: Request, res: Response) => {
+    updateTemplateInstance(req, res);
 });
 
 templateRouter.get(
@@ -41,7 +42,6 @@ templateRouter.get(
     },
 );
 
-
 templateRouter.delete(
     "/delete/category/:templateId/:categoryName",
     isAuthenticated,
@@ -49,13 +49,5 @@ templateRouter.delete(
         deleteTemplateCategory(req, res);
     }
 )
-
-// templateRouter.put(
-//     "/update/user/:template_id",
-//     isAuthenticated,
-//     (req: Request, res: Response) => {
-//         updateUserTemplateData(req, res);
-//     },
-// );
 
 export default templateRouter;

@@ -1,5 +1,6 @@
 import { LucideChevronRight } from "lucide-react";
 import Image from "next/image";
+import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
 
 interface FBlogCardProps {
     imgUrl: string;
@@ -35,12 +36,14 @@ export const FBlogCard = ({
                 <p className="text-xs line-clamp-3 leading-8 text-gray-600">
                     {description}
                 </p>
-                <button className="flex items-center hover:underline text-template-accent-primary font-semibold ">
-                    Read More
-                    <span>
-                        <LucideChevronRight />
-                    </span>
-                </button>
+                <FViewMoreDrawer type="Blog" content={{ imgUrl, title, description, category, authorImgUrl: avatarUrl, author }}>
+                    <button className="flex items-center hover:underline text-template-accent-primary font-semibold ">
+                        Read More
+                        <span>
+                            <LucideChevronRight />
+                        </span>
+                    </button>
+                </FViewMoreDrawer>
             </div>
             <div className="flex items-center gap-2 px-6">
                 <Image

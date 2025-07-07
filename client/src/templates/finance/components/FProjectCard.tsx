@@ -2,12 +2,14 @@ import { Button } from "@/components/ui/button";
 import { LucideArrowRight } from "lucide-react";
 import Image from "next/image";
 import { F_PROJECT } from "../types/projects.types";
+import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
 
 export const FProjectCard = ({
     imgUrl,
     title,
     description,
     projectUrl = "#",
+    category,
 }: F_PROJECT) => {
     return (
         <div className="h-fit sm:w-[20vw] w-full bg-white rounded-lg overflow-hidden space-y-6 pb-6">
@@ -27,12 +29,14 @@ export const FProjectCard = ({
                 </p>
             </div>
             <div className="w-full flex justify-between items-center px-6">
-                <Button
-                    variant={"link"}
-                    className="flex items-center px-0 text-template-accent-primary font-semibold "
-                >
-                    View Details
-                </Button>
+                <FViewMoreDrawer type="Project" content={{ imgUrl, title, description, projectUrl, category }}>
+                    <Button
+                        variant={"link"}
+                        className="flex items-center px-0 text-template-accent-primary font-semibold "
+                    >
+                        View Details
+                    </Button>
+                </FViewMoreDrawer>
                 <a href={projectUrl}>
                     <Button
                         variant={"outline"}

@@ -89,12 +89,15 @@ const ProjectPage = () => {
                         {templates.length > 0
                             ? templates.map((item, idx) => (
                                 <TemplateCard
+                                    templateId={item.template.id}
                                     key={idx}
                                     imageUrl={item.template.thumbnailUrl || "/placeholder.png"}
                                     previewUrl={`/preview/${item.template.name.toLowerCase()}`}
-                                    editorUrl={`/editor/${item.template.name.toLowerCase()}?new`}
+                                    editorUrl={`/editor/${item.template.name.toLowerCase()}?edit&order=${idx}&pid=${id}&tid=${item.template.id}`}
                                     showPreview={false}
                                     isPublished
+                                    index={idx}
+                                    projectId={id}
                                 />
                             ))
                             : null}

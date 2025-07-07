@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { PF_CATALOG } from "../types/serviceCatalog.types";
-import { ViewMoreDrawer } from "@/components/template-components/professional/viewMoreDrawer";
+import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
 
 export const PFCatalogServicesCard = ({
   imgUrls = ["/placeholder.png"],
@@ -95,11 +95,11 @@ export const PFCatalogServicesCard = ({
         {/* </p> */}
       </div>
 
-      <ViewMoreDrawer type="CatalogService" content={catalogServiceContent}>
+      <FViewMoreDrawer type="Catalog" content={catalogServiceContent}>
         <button className="flex self-center items-center px-2 rounded-md z-30 font-semibold border border-template-accent-primary">
           See More
         </button>
-      </ViewMoreDrawer>
+      </FViewMoreDrawer>
     </div>
   );
 };

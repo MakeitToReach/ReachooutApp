@@ -6,11 +6,8 @@ import { TemplateCard } from "./templateCard";
 import { Skeleton } from "../ui/skeleton";
 import { motion as m } from "motion/react";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
-// import { OnboardingPopup } from "./popups/onboardingPopup";
 import { Button } from "../ui/button";
-import { addTemplateToProject } from "@/api/project";
 import { OnboardingPopup } from "./popups/onboardingPopup";
-// import Link from "next/link";
 
 interface ExploreTabsProps {
     templates: GenericTemplateSchema[];
@@ -21,9 +18,6 @@ export default function ExploreTabs({
     templates,
     projectId,
 }: ExploreTabsProps) {
-    const handleAddTemplate = async (templateId: string, projectId: string) => {
-        await addTemplateToProject(templateId, projectId);
-    };
     return (
         <Tabs defaultValue="tab-1" className="w-full">
             <ScrollArea>
@@ -81,11 +75,11 @@ export default function ExploreTabs({
                     {templates.length > 0 ? (
                         templates.map((template, idx) => (
                             <TemplateCard
-                                id={template.id}
+                                templateId={template.id}
                                 key={idx}
                                 imageUrl={template.thumbnailUrl || "/placeholder.png"}
                                 previewUrl={`/preview/${template.name.toLowerCase()}?new`}
-                                editorUrl={`/editor/${template.name.toLowerCase()}?new`}
+                                editorUrl={"#"}
                                 showPreview={projectId ? false : true}
                                 templateName={template.name}
                             >
@@ -95,7 +89,6 @@ export default function ExploreTabs({
                                         previewUrl={`/editor/${template.name.toLowerCase()}?new&pid=${projectId}&tid=${template.id}`}
                                     >
                                         <Button
-                                            onClick={() => handleAddTemplate(template.id, projectId)}
                                         >
                                             Add
                                         </Button>

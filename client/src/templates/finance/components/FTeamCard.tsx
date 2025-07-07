@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { F_TEAM_MEMBER } from "../types/team.types";
 import { getSocialIconFromRegistry } from "@/lib/utils";
+import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
 
 export const FTeamCard = ({
     imgUrl,
     name,
     designation,
+    description,
     socials,
 }: F_TEAM_MEMBER) => {
     return (
@@ -41,6 +43,12 @@ export const FTeamCard = ({
                             );
                         })}
                 </div>
+                
+                <FViewMoreDrawer type="Team" content={{ imgUrl, name, designation, socials, description }}>
+                    <button className="text-template-accent-primary font-semibold text-sm hover:underline">
+                        View Profile
+                    </button>
+                </FViewMoreDrawer>
             </div>
         </div>
     );

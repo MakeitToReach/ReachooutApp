@@ -69,7 +69,7 @@ export const FHeroSection = ({
                         className="absolute inset-0 w-full h-full"
                     >
                         <Image
-                            src={imgUrls[currentIndex]}
+                            src={imgUrls[currentIndex] || "/placeholder.png"}
                             alt={`hero-img-${currentIndex}`}
                             fill
                             className="object-cover rounded-t-lg"

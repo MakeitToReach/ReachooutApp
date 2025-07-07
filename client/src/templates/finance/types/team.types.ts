@@ -2,6 +2,7 @@ export type F_TEAM_MEMBER = {
     imgUrl: string;
     name: string;
     designation: string;
+    description: string;
     socials: {
         name: string;
         url?: string;
