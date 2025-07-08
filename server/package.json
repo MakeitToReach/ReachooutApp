@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "dev": "nodemon src/server.ts",
     "build": "prisma generate && prisma migrate deploy && tsc",
@@ -17,7 +16,6 @@
   "dependencies": {
     "@google/genai": "^1.5.1",
     "@prisma/client": "^6.6.0",
-    "@types/bcrypt": "^5.0.2",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -32,6 +30,8 @@
     "prisma": "^6.9.0"
   },
   "devDependencies": {
+    "@types/aws-sdk": "^2.7.4",
+    "@types/bcrypt": "^5.0.2",
     "@types/cookie-parser": "^1.4.9",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
