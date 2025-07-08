@@ -5,17 +5,18 @@ import {
   useCallback,
   useRef,
   useState,
+  useEffect,
   type ChangeEvent,
   type DragEvent,
   type InputHTMLAttributes,
 } from "react"
 
 export type FileMetadata = {
-  name: string
-  size: number
-  type: string
+  name?: string
+  size?: number
+  type?: string
   url: string
-  id: string
+  id?: string
 }
 
 export type FileWithPreview = {
@@ -74,7 +75,7 @@ export const useFileUpload = (
   const [state, setState] = useState<FileUploadState>({
     files: initialFiles.map((file) => ({
       file,
-      id: file.id,
+      id: file.id || `${file.name || 'file'}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
       preview: file.url,
     })),
     isDragging: false,
@@ -82,6 +83,20 @@ export const useFileUpload = (
   })
 
   const inputRef = useRef<HTMLInputElement>(null)
+  const hasInitializedRef = useRef(false)
+
+  // Call onFilesChange with initial files when component mounts
+  useEffect(() => {
+    if (!hasInitializedRef.current && onFilesChange && initialFiles.length > 0) {
+      const initialFilesWithPreview = initialFiles.map((file) => ({
+        file,
+        id: file.id || `${file.name || 'file'}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+        preview: file.url,
+      }))
+      onFilesChange(initialFilesWithPreview)
+      hasInitializedRef.current = true
+    }
+  }, [onFilesChange, initialFiles]) // Include dependencies
 
   const validateFile = useCallback(
     (file: File | FileMetadata): string | null => {
@@ -90,15 +105,15 @@ export const useFileUpload = (
           return `File "${file.name}" exceeds the maximum size of ${formatBytes(maxSize)}.`
         }
       } else {
-        if (file.size > maxSize) {
+        if (file.size && file.size > maxSize) {
           return `File "${file.name}" exceeds the maximum size of ${formatBytes(maxSize)}.`
         }
       }
 
       if (accept !== "*") {
         const acceptedTypes = accept.split(",").map((type) => type.trim())
-        const fileType = file instanceof File ? file.type || "" : file.type
-        const fileExtension = `.${file instanceof File ? file.name.split(".").pop() : file.name.split(".").pop()}`
+        const fileType = file instanceof File ? file.type || "" : file.type || ""
+        const fileExtension = `.${file instanceof File ? file.name?.split(".").pop() : file.name?.split(".").pop()}`
 
         const isAccepted = acceptedTypes.some((type) => {
           if (type.startsWith(".")) {
@@ -135,7 +150,7 @@ export const useFileUpload = (
     if (file instanceof File) {
       return `${file.name}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
     }
-    return file.id
+    return file.id || `${file.name || 'file'}-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`
   }, [])
 
   const clearFiles = useCallback(() => {
@@ -210,7 +225,7 @@ export const useFileUpload = (
         }
 
         // Check file size
-        if (file.size > maxSize) {
+        if (file.size && file.size > maxSize) {
           errors.push(
             multiple
               ? `Some files exceed the maximum size of ${formatBytes(maxSize)}.`

@@ -34,17 +34,13 @@ export const createProject = async (
         .toLowerCase();
 
     const uuidv4 = () => {
-        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
-            const r = (Math.random() * 16) | 0,
-                v = c == "x" ? r : (r & 0x3) | 0x8;
-            return v.toString(16);
-        });
+        return crypto.randomUUID();
     };
 
     const project = await prisma.project.create({
         data: {
             name,
-            subDomain: `${parsedUsername}-${uuidv4()}.reachoout.com`,
+            subDomain: `http://${parsedUsername}-${uuidv4()}.localhost:3000`,
             user: {
                 connect: {
                     id: userId,

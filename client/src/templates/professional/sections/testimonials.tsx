@@ -17,15 +17,12 @@ const ReviewCard = ({
         <figure
             className={cn(
                 "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-                // light styles
-                "border-border bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-                // dark styles
-                "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
+                "border-template-accent-primary",
             )}
         >
             <div className="flex flex-row items-center gap-2 text-template-text-primary">
                 {/* eslint-disable-next-line */}
-                <img className="rounded-full" width="32" height="32" alt="" src={img} />
+                <img className="rounded-full" width="32" height="32" alt="" src={img || "/placeholder.png"} />
                 <div className="flex flex-col">
                     <figcaption className="text-sm font-medium ">{name}</figcaption>
                     {username && <p className="text-xs font-medium">{username}</p>}

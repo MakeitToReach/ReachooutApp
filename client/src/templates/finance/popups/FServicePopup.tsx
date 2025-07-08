@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { F_SERVICE } from "../types/services.types";
 import { Label } from "@/components/ui/label";
+import { ImageInput } from "@/components/imgInput";
+import { Textarea } from "@/components/ui/textarea";
 
 interface FAddServicePopupProps {
   children: React.ReactNode;
@@ -26,7 +28,7 @@ export function FAddServicePopup({ children, onAdd }: FAddServicePopupProps) {
     category: "",
   });
   return (
-    <Dialog modal={false}>
+    <Dialog >
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         className="sm:max-w-[600px] font-Poppins"
@@ -47,7 +49,7 @@ export function FAddServicePopup({ children, onAdd }: FAddServicePopupProps) {
 
           <div className="space-y-2">
             <Label className="font-semibold">Description</Label>
-            <textarea
+            <Textarea
               placeholder="Description"
               className="border p-2 w-full rounded-md h-20"
               value={service.description}
@@ -64,6 +66,17 @@ export function FAddServicePopup({ children, onAdd }: FAddServicePopupProps) {
             value={service.category}
             onChange={(e) => setService({ ...service, category: e.target.value })}
           />
+
+          <div className="space-y-2">
+            <Label className="font-semibold">Service Image</Label>
+            <ImageInput
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                setService({ ...service, imgUrl: imgUrl });
+              }}
+              onImageRemove={() => setService({ ...service, imgUrl: "" })}
+            />
+          </div>
         </div>
 
         <DialogFooter>
@@ -118,7 +131,7 @@ export const FEditServicePopup = ({
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen} modal={false}>
+    <Dialog open={open} onOpenChange={setOpen} >
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="space-y-4 z-[100] font-Poppins">
         <DialogHeader>
@@ -137,7 +150,7 @@ export const FEditServicePopup = ({
 
           <div className="space-y-2">
             <Label className="font-semibold">Description</Label>
-            <textarea
+            <Textarea
               placeholder="Description"
               className="border p-2 w-full rounded-md h-20"
               value={formData.description}
@@ -151,7 +164,17 @@ export const FEditServicePopup = ({
             onChange={(e) => handleChange("category", e.target.value)}
           />
 
-          {/* TODO:add image input here */}
+          <div className="space-y-2">
+            <Label className="font-semibold">Service Image</Label>
+            <ImageInput
+              initialImgUrl={formData.imgUrl}
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                handleChange("imgUrl", imgUrl);
+              }}
+              onImageRemove={() => handleChange("imgUrl", "")}
+            />
+          </div>
         </div>
 
         <div className="flex justify-end gap-2">

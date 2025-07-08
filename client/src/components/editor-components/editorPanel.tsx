@@ -9,7 +9,7 @@ import {
     LucideSettings,
     LucideUploadCloud,
 } from "lucide-react";
-import { publishTemplate, updateTemplateData } from "@/api/publish-template";
+import { publishTemplate, updateTemplateInstanceData } from "@/api/templates";
 import { EditorTabs } from "./editorTabs";
 import { ReorderSectionsPopup } from "./popups/SectionsPopup";
 import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema";
@@ -20,18 +20,25 @@ import { SettingsDropdown } from "./settingsDropdown";
 import { ThemePickerDialog } from "./popups/colorThemeDialog";
 import { useRouter } from "next/navigation";
 import { useEditorTabIdxStore } from "@/store/editorTabIdx.store";
+import { toast } from "sonner";
 
 interface EditorPanelProps {
     isEditing?: boolean;
     templateSchema?: GenericEditorFieldSchema;
     toggleEditor: () => void;
     TabIndex?: number;
+    projectId: string;
+    templateId: string;
+    order?: number;
 }
 export const EditorPanel = ({
     isEditing,
     templateSchema = PF_EDITOR_SCHEMA,
     toggleEditor,
     TabIndex,
+    projectId,
+    templateId,
+    order,
 }: EditorPanelProps) => {
     const {
         data,
@@ -70,7 +77,12 @@ export const EditorPanel = ({
     const handleSave = async () => {
         setLoading(true);
         try {
-            await updateTemplateData(data);
+            if (!order) {
+                toast.error("No order found");
+                return;
+            }
+            await updateTemplateInstanceData(data, projectId, templateId, order);
+            router.push(`/user/project/${projectId}`);
         } catch (error) {
             console.error(error);
         } finally {
@@ -81,8 +93,8 @@ export const EditorPanel = ({
     const handlePublish = async () => {
         setLoading(true);
         try {
-            await publishTemplate(data.name, data);
-            router.push("/user");
+            await publishTemplate(data, projectId, templateId);
+            router.push(`/user/project/${projectId}`);
         } catch (error) {
             console.error(error);
         } finally {

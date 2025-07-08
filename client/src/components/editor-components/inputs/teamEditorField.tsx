@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { LucideEdit, LucidePlus, LucideTrash } from "lucide-react";
 import { PF_TEAM_MEMBER } from "@/templates/professional/types/teamMember.types";
-import { AddTeamMemberPopup, EditTeamMemberPopup } from "../popups/teamMemberPopup";
+import { AddTeamMemberPopup, EditTeamMemberPopup } from "@/templates/professional/popups/PFTeamPopup";
 
 interface TeamMemberEditorFieldProps {
     value: PF_TEAM_MEMBER[];

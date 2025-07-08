@@ -159,13 +159,19 @@ export const deleteTemplateCategory = async (req: Request, res: Response) => {
 
 export const publishTemplate = async (req: Request, res: Response) => {
     try {
-        const { projectId } = req.params;
-        const { templateId, data, order = 0 } = req.body;
+        const { projectId, templateId } = req.body;
+        const { data } = req.body;
 
         // Validate required fields
-        if (!templateId) {
+        if (!templateId || !projectId) {
             return res.status(400).json({
-                error: "Template ID is required",
+                error: "Project ID and Template ID are required",
+            });
+        }
+
+        if (!data || typeof data !== 'object') {
+            return res.status(400).json({
+                error: "Template data is required and must be an object",
             });
         }
 
@@ -192,30 +198,22 @@ export const publishTemplate = async (req: Request, res: Response) => {
             });
         }
 
-        // Check if template is already published in this project
-        const existingProjectTemplate = await prisma.projectTemplate.findFirst({
-            where: {
-                projectId,
-                templateId,
-            },
-            orderBy: {
-                createdAt: "desc",
-            },
+        // Get the highest order number for this project
+        const maxOrderResult = await prisma.projectTemplate.findFirst({
+            where: { projectId },
+            orderBy: { order: 'desc' },
+            select: { order: true },
         });
 
-        if (existingProjectTemplate) {
-            return res.status(400).json({
-                error: "Template is already published in this project, edit and save it instead",
-            });
-        }
+        const nextOrder = (maxOrderResult?.order ?? -1) + 1;
 
-        // If template already exists, create a new instance (since composite key includes createdAt)
+        // Create new template instance (allows multiple instances of same template)
         const projectTemplate = await prisma.projectTemplate.create({
             data: {
                 projectId,
                 templateId,
-                data: data || {},
-                order,
+                data: data,
+                order: nextOrder,
             },
             include: {
                 template: {
@@ -230,89 +228,109 @@ export const publishTemplate = async (req: Request, res: Response) => {
         });
 
         res.status(201).json({
-            message: "Template published successfully",
+            message: "Template instance added to project successfully",
             projectTemplate,
         });
     } catch (error) {
-        console.error("Error publishing template:", error);
+        console.error("Error adding template instance:", error);
         res.status(500).json({
             error: "Internal server error",
         });
     }
 };
 
-// export const getUserTemplates = async (req: Request, res: Response) => {
-//     try {
-//         const userId = req.user?.id;
+export const updateTemplateInstance = async (req: Request, res: Response) => {
+    try {
+        const { projectId, templateId, data, order } = req.body;
 
-//         const userTemplates = await prisma.userTemplate.findMany({
-//             where: {
-//                 user_id: userId,
-//             },
-//             include: {
-//                 template: true,
-//             },
-//         });
+        // Validate required fields
+        if (!projectId || !templateId ) {
+            return res.status(400).json({
+                error: "Project ID, Template ID, and Created At timestamp are required",
+            });
+        }
 
-//         if (userTemplates.length === 0) {
-//             return res.status(404).json({ message: "No templates found" });
-//         }
+        if (!data || typeof data !== 'object') {
+            return res.status(400).json({
+                error: "Template data is required and must be an object",
+            });
+        }
 
-//         const formattedTemplates = userTemplates.map((template) => {
-//             return {
-//                 id: template.template_id,
-//                 name: template.template.name,
-//                 thumbnailUrl: template.template.thumbnailUrl,
-//             };
-//         });
+        // Verify project exists and user has access
+        const project = await prisma.project.findUnique({
+            where: { id: projectId },
+            include: { user: true },
+        });
 
-//         return res.status(200).json({ userTemplates: formattedTemplates });
-//     } catch (error) {
-//         console.error("Error fetching user templates:", error);
-//         return res.status(500).json({
-//             message: "Internal server error",
-//             // error: process.env.NODE_ENV === "development" ? error.message : undefined,
-//         });
-//     }
-// };
+        if (!project) {
+            return res.status(404).json({
+                error: "Project not found",
+            });
+        }
 
-// export const updateUserTemplateData = async (req: Request, res: Response) => {
-//     try {
-//         const templateId = req.params.template_id;
-//         const { data } = req.body;
-//         const userId = req.user?.id;
+        // Find the specific template instance
+        const existingInstance = await prisma.projectTemplate.findFirst({
+            where: {
+                projectId,
+                templateId,
+            },
+        });
 
-//         if (!userId || !templateId) {
-//             return res.status(400).json({ error: "Missing userId or templateId" });
-//         }
+        if (!existingInstance) {
+            return res.status(404).json({
+                error: "Template instance not found",
+            });
+        }
 
-//         const existingRecord = await prisma.userTemplate.findUnique({
-//             where: {
-//                 user_id_template_id: {
-//                     user_id: userId,
-//                     template_id: templateId,
-//                 },
-//             },
-//         });
+        // Delete the old instance and create a new one with updated data
+        // (This is necessary due to the composite key constraint)
+        await prisma.projectTemplate.deleteMany({
+            where: {
+                projectId,
+                templateId,
+            },
+        });
 
-//         if (!existingRecord) {
-//             return res.status(404).json({ error: "UserTemplate entry not found." });
-//         }
+        const updatedProjectTemplate = await prisma.projectTemplate.create({
+            data: {
+                projectId,
+                templateId,
+                data: data,
+                order: order !== undefined ? order : existingInstance.order,
+            },
+            include: {
+                template: {
+                    select: {
+                        id: true,
+                        name: true,
+                        thumbnailUrl: true,
+                        tags: true,
+                    },
+                },
+            },
+        });
 
-//         const updatedUserTemplateData = await prisma.userTemplate.update({
-//             where: {
-//                 user_id_template_id: {
-//                     user_id: userId,
-//                     template_id: templateId,
-//                 },
-//             },
-//             data: {
-//                 data,
-//             },
-//         });
+        res.status(200).json({
+            message: "Template instance updated successfully",
+            projectTemplate: updatedProjectTemplate,
+        });
+    } catch (error) {
+        console.error("Error updating template instance:", error);
+        res.status(500).json({
+            error: "Internal server error",
+        });
+    }
+};
 
-//         return res.status(200).json({ updatedUserTemplateData });
-//     } catch (error: any) {
-//         return res.status(500).json({ error: error.message || "Server error" });
-//     }
-// };
+export const getProjectTemplateInstanceData = async (req: Request<{ templateId: string }>, res: Response) => {
+    const { templateId } = req.params;
+    const { order, pid } = req.query;
+    const templateInstance = await prisma.projectTemplate.findFirst({
+        where: {
+            templateId,
+            order: Number(order),
+            projectId: pid as string,
+        },
+    });
+    return res.status(200).json({ template: templateInstance });
+};

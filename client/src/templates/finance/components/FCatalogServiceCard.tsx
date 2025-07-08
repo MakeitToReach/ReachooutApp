@@ -5,17 +5,20 @@ import { Button } from "@/components/ui/button";
 import { LucideArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
 
 interface FCatalogServicesCardProps {
     imgUrls: string[];
     title: string;
     description: string;
+    category?: string;
 }
 
 export const FCatalogServicesCard = ({
     imgUrls,
     title,
     description,
+    category,
 }: FCatalogServicesCardProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -87,12 +90,14 @@ export const FCatalogServicesCard = ({
 
             {/* "View Details" and arrow button (below image) */}
             <div className="w-full flex justify-between items-center px-6">
-                <Button
-                    variant="link"
-                    className="flex items-center px-0 text-template-accent-primary font-semibold"
-                >
-                    View Details
-                </Button>
+                <FViewMoreDrawer type="Catalog" content={{ imgUrls, title, description, category: category || "" }}>
+                    <Button
+                        variant="link"
+                        className="flex items-center px-0 text-template-accent-primary font-semibold"
+                    >
+                        View Details
+                    </Button>
+                </FViewMoreDrawer>
                 <Button
                     variant="outline"
                     className="flex items-center text-black p-2 rounded-full font-semibold"

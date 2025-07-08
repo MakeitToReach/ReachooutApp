@@ -32,10 +32,10 @@ export const FTeamEditorField = ({
     return (
         <div className="space-y-3">
             <div className="flex justify-between mb-4">
-                <h1 className="font-semibold">Your Team</h1>
+                <h1 className="font-semibold">Team Members</h1>
                 <FAddTeamMemberPopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
-                        Add Team Member{" "}
+                        Add
                         <span>
                             <LucidePlus />
                         </span>

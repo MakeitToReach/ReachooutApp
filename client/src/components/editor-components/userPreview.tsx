@@ -1,12 +1,11 @@
 "use client";
 
-import { getUserTemplateData } from "@/api/user-template";
+// import { getUserTemplateData } from "@/api/user-template";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { PageLoader } from "@/components/editor-components/pageLoader";
-import { toast } from "sonner";
 
 export const UserPreview = () => {
     const router = useRouter();
@@ -31,21 +30,23 @@ export const UserPreview = () => {
         if (!templateKey || !template) return;
 
         const fetchData = async () => {
-            try {
-                const fetchedData = await getUserTemplateData(templateKey);
-                if (!fetchedData) {
-                    toast.error("Something went wrong");
-                    router.push(`/`);
-                    return;
-                }
-                setData(fetchedData.userTemplateData);
-            } catch (err) {
-                console.error("Failed to load template data:", err);
-                toast.error("Failed to load data");
-                router.push(`/`);
-            } finally {
-                setIsLoading(false);
-            }
+            setData(null);
+            setIsLoading(false);
+            // try {
+            //     const fetchedData = await getUserTemplateData(templateKey);
+            //     if (!fetchedData) {
+            //         toast.error("Something went wrong");
+            //         router.push(`/`);
+            //         return;
+            //     }
+            //     setData(fetchedData.userTemplateData);
+            // } catch (err) {
+            //     console.error("Failed to load template data:", err);
+            //     toast.error("Failed to load data");
+            //     router.push(`/`);
+            // } finally {
+            //     setIsLoading(false);
+            // }
         };
 
         fetchData();

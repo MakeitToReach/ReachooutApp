@@ -7,8 +7,10 @@ import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
 import React from "react";
 import { motion as m } from "motion/react";
+import { Textarea } from "@/components/ui/textarea";
+import { PF_CONTACT_SECTION } from "../types/contact.types";
 
-export const PFContactSection = () => {
+export const PFContactSection = ({ heading }: PF_CONTACT_SECTION) => {
     const containerVariants = {
         initial: {
             opacity: 0,
@@ -50,12 +52,12 @@ export const PFContactSection = () => {
             className="max-w-6xl mx-auto space-y-10 px-4"
             id="contact"
         >
-            <m.h1
+            <m.h2
                 variants={itemVariants}
                 className="text-4xl font-semibold md:text-6xl text-center text-template-text-primary"
             >
-                Contact
-            </m.h1>
+                {heading}
+            </m.h2>
 
             <m.form
                 variants={containerVariants}
@@ -77,7 +79,7 @@ export const PFContactSection = () => {
                 </m.div>
 
                 <m.div variants={itemVariants}>
-                    <textarea
+                    <Textarea
                         placeholder="Your message"
                         className="border p-2 w-full rounded-md h-20"
                     />

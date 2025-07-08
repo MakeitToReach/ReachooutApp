@@ -12,8 +12,9 @@ import {
 import { ReqInput } from "../inputs/reqInput";
 import { Button } from "@/components/ui/button";
 import { PF_TESTIMONIAL } from "@/templates/professional/types/testimonials.types";
-import { CldUploadButton } from "next-cloudinary";
-import ImageSelectButton from "../inputs/imageInputBtn";
+import { ImageInput } from "@/components/imgInput";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 interface AddTestimonialPopupProps {
     children: React.ReactNode;
@@ -29,7 +30,7 @@ export function AddTestimonialPopup({
         img: "",
     });
     return (
-        <Dialog modal={false}>
+        <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
                 className="sm:max-w-[600px] font-Poppins"
@@ -53,7 +54,7 @@ export function AddTestimonialPopup({
 
                     <div>
                         <label className="font-semibold">Message</label>
-                        <textarea
+                        <Textarea
                             placeholder="Message"
                             className="border p-2 w-full rounded-md h-20"
                             value={testimonial.body}
@@ -63,18 +64,16 @@ export function AddTestimonialPopup({
                         />
                     </div>
 
-                    <div className="space-x-2">
-                        <CldUploadButton
-                            uploadPreset="you-view"
-                            options={{ sources: ["local", "url", "unsplash"] }}
-                            className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                            //eslint-disable-next-line
-                            onSuccess={(result: any) => {
-                                setTestimonial({ ...testimonial, img: result.info.url });
+                    <div className="space-y-2">
+                        <Label className="font-semibold">Client Image</Label>
+                        <ImageInput
+                            initialImgUrl={testimonial.img}
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                                setTestimonial({ ...testimonial, img: imgUrl });
                             }}
-                        >
-                            <ImageSelectButton selectedImgUrl={testimonial.img} />
-                        </CldUploadButton>
+                            onImageRemove={() => setTestimonial({ ...testimonial, img: "" })}
+                        />
                     </div>
                 </div>
 
@@ -129,7 +128,7 @@ export const EditTestimonialPopup = ({
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen} modal={false}>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent className="space-y-4 z-[100] font-Poppins">
                 <DialogHeader>
@@ -149,8 +148,8 @@ export const EditTestimonialPopup = ({
 
                     <div>
                         <label className="font-semibold">Message</label>
-                        <textarea
-                            placeholder="Description"
+                        <Textarea
+                            placeholder="Message"
                             className="border p-2 w-full rounded-md h-20"
                             value={formData.body}
                             onChange={(e) => handleChange("body", e.target.value)}
@@ -158,18 +157,16 @@ export const EditTestimonialPopup = ({
                     </div>
                 </div>
 
-                <div className="space-x-2">
-                    <CldUploadButton
-                        uploadPreset="you-view"
-                        options={{ sources: ["local", "url", "unsplash"] }}
-                        className="cursor-pointer p-1 bg-neutral-800 rounded-lg z-[100]"
-                        //eslint-disable-next-line
-                        onSuccess={(result: any) => {
-                            handleChange("img", result.info.url);
+                <div className="space-y-2">
+                    <Label className="font-semibold">Client Image</Label>
+                    <ImageInput
+                        initialImgUrl={formData.img}
+                        className="w-full"
+                        onImageUpload={(imgUrl) => {
+                            handleChange("img", imgUrl);
                         }}
-                    >
-                        <ImageSelectButton selectedImgUrl={testimonial.img}  />
-                    </CldUploadButton>
+                        onImageRemove={() => handleChange("img", "")}
+                    />
                 </div>
 
                 <div className="flex justify-end gap-2">

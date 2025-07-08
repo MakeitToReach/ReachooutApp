@@ -18,7 +18,7 @@ export const FGallerySection = ({
                     <div className="space-y-6">
                         <div className="h-[55%] bg-red-400 relative overflow-hidden rounded-xl">
                             <Image
-                                src={imgs[0]}
+                                src={imgs[0] || "/placeholder.png"}
                                 fill
                                 className="object-cover"
                                 alt="Image 1"
@@ -26,7 +26,7 @@ export const FGallerySection = ({
                         </div>
                         <div className="h-[40%] bg-red-200 rounded-xl overflow-hidden  relative">
                             <Image
-                                src={imgs[1]}
+                                src={imgs[1] || "/placeholder.png"}
                                 fill
                                 className="object-cover"
                                 alt="Image 1"
@@ -36,7 +36,7 @@ export const FGallerySection = ({
                     <div className="space-y-6">
                         <div className="h-[40%] bg-blue-400 relative overflow-hidden rounded-xl">
                             <Image
-                                src={imgs[2]}
+                                src={imgs[2] || "/placeholder.png"}
                                 fill
                                 className="object-cover"
                                 alt="Image 1"
@@ -44,7 +44,7 @@ export const FGallerySection = ({
                         </div>
                         <div className="h-[55%] bg-blue-200 rounded-xl overflow-hidden relative">
                             <Image
-                                src={imgs[3]}
+                                src={imgs[3] || "/placeholder.png"}
                                 fill
                                 className="object-cover"
                                 alt="Image 1"
@@ -54,7 +54,7 @@ export const FGallerySection = ({
                     <div className="space-y-6">
                         <div className="h-[55%] bg-red-400 relative overflow-hidden rounded-xl">
                             <Image
-                                src={imgs[4]}
+                                src={imgs[4] || "/placeholder.png"}
                                 fill
                                 className="object-cover"
                                 alt="Image 1"
@@ -62,7 +62,7 @@ export const FGallerySection = ({
                         </div>
                         <div className="h-[40%] bg-red-200 rounded-xl overflow-hidden  relative">
                             <Image
-                                src={imgs[5]}
+                                src={imgs[5] || "/placeholder.png"}
                                 fill
                                 className="object-cover"
                                 alt="Image 1"

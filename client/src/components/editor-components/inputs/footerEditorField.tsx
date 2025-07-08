@@ -1,6 +1,4 @@
 import React from "react";
-// import { Button } from "@/components/ui/button";
-// import { LucideEdit, LucidePlus, LucideTrash } from "lucide-react";
 import { PF_SOCIAL } from "@/templates/professional/types/footer.types";
 import { ReqInput } from "./reqInput";
 

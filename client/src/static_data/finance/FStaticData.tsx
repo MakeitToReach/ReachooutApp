@@ -22,7 +22,12 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         {
             type: "navbar",
             sectionName: "Navbar",
-            data: {},
+            data: {
+                // logoUrl: "/placeholder.png",
+                textLogo: "Finance",
+                btnText: "Contact Us",
+                btnLink: "#contact",
+            },
             isFixed: true,
             isEditable: true,
             isHidden: false,
@@ -31,8 +36,10 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             type: "hero",
             sectionName: "Hero",
             data: {
+                // vidUrl:"https://www.youtube.com/watch?v=Nsl5LPka3Nc",
                 imgUrls: [
                     "https://www.okler.net/previews/porto/12.1.0/img/demos/accounting-1/slides/slide-2.jpg",
+                    "/placeholder.png",
                 ],
                 title: "We Transform financial strategies into tangible success",
                 btnText: "Get Started",
@@ -44,7 +51,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "featured-services",
-            sectionName: "About",
+            sectionName: "Featured Services",
             data: {
                 featuredServices: [
                     {
@@ -88,7 +95,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "services",
-            sectionName: "About",
+            sectionName: "Services",
             data: {
                 badgeText: "Our services",
                 title: "Accounting Services",
@@ -158,6 +165,17 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                             "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                         name: "Laura Mitchell",
                         designation: "CEO & Founder",
+                        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. A unde voluptatibus fugiat alias earum itaque. Minus rem officia aliquam eos.",
+                        socials: [
+                            {
+                                name: "X",
+                                url: "https://x.com",
+                            },
+                            {
+                                name: "Linkedin",
+                                url: "https://linkedin.com",
+                            },
+                        ],
                     },
                 ],
             },
@@ -167,7 +185,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "why-choose-us",
-            sectionName: "Team",
+            sectionName: "Why Choose Us",
             data: {
                 badgeText: "Let's Work Together",
                 title: "Why choose us",
@@ -203,29 +221,35 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "logos",
-            sectionName: "Team",
+            sectionName: "Our Clients",
             data: {
                 heading: "Our commitment to you",
                 subHeading:
                     "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati ex doloribus dolore quae illum sint doloremque earum dolorum, voluptates laboriosam?",
                 imgs: [
-                    { src: "/next.svg", alt: "logo1" },
-                    { src: "/reachout-logo.png", alt: "logo2" },
-                    { src: "/apple.svg", alt: "logo3" },
+                    "/next.svg",
+                    "/reachout-logo.png", 
+                    "/apple.svg"
                 ],
             },
             isFixed: false,
             isEditable: true,
             isHidden: false,
         },
-        // {
-        //     type: "newsletter",
-        //     sectionName: "Team",
-        //     data: {},
-        //     isFixed: false,
-        //     isEditable: true,
-        //     isHidden: true,
-        // },
+        {
+            type: "newsletter",
+            sectionName: "Newsletter",
+            data: {
+                heading: "Subscribe to our newsletter",
+                btn1Text: "Subscribe",
+                btn1Link: "#",
+                btn2Text: "Contact us",
+                btn2Link: "#",
+            },
+            isFixed: false,
+            isEditable: true,
+            isHidden: false,
+        },
         {
             type: "projects",
             sectionName: "Projects",
@@ -360,7 +384,7 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "timeline",
-            sectionName: "Contact",
+            sectionName: "How it works",
             data: {
                 title: "How to set financial goals for your future",
                 subtitle:
@@ -380,6 +404,13 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
                             "Based on our initial consultation, we craft a personalized accounting strategy. This plan is designed to address your specific financial challenges and capitalize on opportunities for growth and efficiency.",
                         image: "/placeholder.png",
                     },
+                    {
+                        badgeText: "Step 3",
+                        title: "Deployment",
+                        description:
+                            "Based on our initial consultation, we craft a personalized accounting strategy. This plan is designed to address your specific financial challenges and capitalize on opportunities for growth and efficiency.",
+                        image: "/placeholder.png",
+                    },
                 ],
             },
             isFixed: false,
@@ -388,10 +419,29 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
         },
         {
             type: "stats",
-            sectionName: "stats",
+            sectionName: "Stats",
             data: {
                 heading: "Delivering Excellence through experise and dedication",
-                imgUrl: "/placeholder.png"
+                stats: [
+                    {
+                        statNumber: "10+",
+                        statText: "Years of Experience",
+                        statDescription:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                    },
+                    {
+                        statNumber: "15+",
+                        statText: "Clients Served",
+                        statDescription:
+                            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                    },
+                ],
+                imgUrl: "/placeholder.png",
+                ctaText: "Explore further",
+                btn1Text: "Learn more",
+                btn1Link: "#",
+                btn2Text: "Contact us",
+                btn2Link: "#",
             },
             isFixed: false,
             isEditable: true,
@@ -424,18 +474,23 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
             isEditable: true,
             isHidden: false,
         },
-        {
-            type: "contact widgets",
-            sectionName: "Contact Widgets",
-            data: {},
-            isFixed: false,
-            isEditable: true,
-            isHidden: false,
-        },
+        // {
+        //     type: "contact widgets",
+        //     sectionName: "Contact Widgets",
+        //     data: {},
+        //     isFixed: false,
+        //     isEditable: true,
+        //     isHidden: false,
+        // },
         {
             type: "footer",
             sectionName: "Footer",
-            data: {},
+            data: {
+                textLogo: "Finance",
+                description:
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+                experience: "30+",
+            },
             isFixed: true,
             isEditable: true,
             isHidden: false,

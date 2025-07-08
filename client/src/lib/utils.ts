@@ -6,6 +6,27 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
+export function extractNumericValue(val: string | number): number {
+    if (typeof val === "number") return val;
+    const match = val.match(/^(\d+(\.\d+)?)/); // Matches leading number with optional decimal
+    return match ? parseFloat(match[0]) : 0;
+}
+
+export function splitNumericValue(val: string | number): {
+    number: number;
+    suffix: string;
+} {
+    if (typeof val === "number") return { number: val, suffix: "" };
+
+    const match = val.trim().match(/^(\d+(\.\d+)?)(.*)$/);
+    if (match) {
+        return {
+            number: parseFloat(match[1]),
+            suffix: match[3].trim(), // "Cr", "+", "%", etc.
+        };
+    }
+    return { number: 0, suffix: "" };
+}
 export function formatCompactNumber(number: number, locale: string = "en") {
     return new Intl.NumberFormat(locale, {
         notation: "compact",
@@ -41,8 +62,12 @@ export function getIconFromRegistry(
     return ICONS_REGISTRY.find((item) => item.label === icon)?.icon(props);
 }
 
-export function getSocialIconFromRegistry(icon: string) {
-    return SOCIAL_ICONS_REGISTRY.find((item) => item.label === icon)?.icon;
+export function getSocialIconFromRegistry(
+    icon: string,
+    //eslint-disable-next-line
+    props?: React.ComponentProps<any>,
+) {
+    return SOCIAL_ICONS_REGISTRY.find((item) => item.label === icon)?.icon(props);
 }
 
 export const scrollToSection = (selector: string) => {

@@ -22,14 +22,6 @@ projectRouter.post(
   },
 );
 
-projectRouter.post(
-  "/add/template",
-  isAuthenticated,
-  (req: Request, res: Response) => {
-    addTemplateToProject(req, res);
-  },
-);
-
 projectRouter.delete(
   "/delete/:id",
   isAuthenticated,

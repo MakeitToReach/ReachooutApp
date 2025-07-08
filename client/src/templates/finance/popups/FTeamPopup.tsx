@@ -12,25 +12,55 @@ import {
 import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { F_TEAM_MEMBER } from "../types/team.types";
+import { ImageInput } from "@/components/imgInput";
 
 interface FAddTeamMemberPopupProps {
   children: React.ReactNode;
   onAdd: (member: F_TEAM_MEMBER) => void;
 }
 
-export function FAddTeamMemberPopup({ children, onAdd }: FAddTeamMemberPopupProps) {
+export function FAddTeamMemberPopup({
+  children,
+  onAdd,
+}: FAddTeamMemberPopupProps) {
   const [member, setMember] = useState<F_TEAM_MEMBER>({
     imgUrl: "",
     name: "",
     designation: "",
+    description: "",
+    socials: [
+      {
+        name: "X",
+        url: "",
+      },
+      {
+        name: "Linkedin",
+        url: "",
+      },
+      {
+        name: "Instagram",
+        url: "",
+      },
+      {
+        name: "Github",
+        url: "",
+      },
+      {
+        name: "Youtube",
+        url: "",
+      },
+      {
+        name: "Facebook",
+        url: "",
+      },
+    ],
   });
 
   return (
-    <Dialog modal={false}>
+    <Dialog >
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="sm:max-w-[600px] font-Poppins"
-        style={{ overflow: "visible" }}
+        className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-scroll"
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
@@ -55,15 +85,31 @@ export function FAddTeamMemberPopup({ children, onAdd }: FAddTeamMemberPopupProp
             }
           />
 
-          <ReqInput
-            type="text"
-            label="Image URL"
-            placeholder="Enter team member image URL"
-            value={member.imgUrl}
-            onChange={(e) =>
-              setMember({ ...member, imgUrl: e.target.value })
-            }
-          />
+          <div className="space-y-2">
+            <label className="font-semibold">Team Member Image</label>
+            <ImageInput
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                setMember({ ...member, imgUrl: imgUrl });
+              }}
+              onImageRemove={() => setMember({ ...member, imgUrl: "" })}
+            />
+          </div>
+
+          <div className="flex flex-col gap-2 mt-2">
+            {member.socials.map((social, index) => (
+              <ReqInput
+                key={index}
+                label={social.name}
+                value={social.url || ""}
+                onChange={(e) => {
+                  const updated = [...member.socials];
+                  updated[index].url = e.target.value;
+                  setMember({ ...member, socials: updated });
+                }}
+              />
+            ))}
+          </div>
         </div>
 
         <DialogFooter>
@@ -75,6 +121,33 @@ export function FAddTeamMemberPopup({ children, onAdd }: FAddTeamMemberPopupProp
                   imgUrl: "",
                   name: "",
                   designation: "",
+                  description: "",
+                  socials: [
+                    {
+                      name: "X",
+                      url: "",
+                    },
+                    {
+                      name: "Linkedin",
+                      url: "",
+                    },
+                    {
+                      name: "Instagram",
+                      url: "",
+                    },
+                    {
+                      name: "Github",
+                      url: "",
+                    },
+                    {
+                      name: "Youtube",
+                      url: "",
+                    },
+                    {
+                      name: "Facebook",
+                      url: "",
+                    },
+                  ],
                 });
               }}
             >
@@ -101,6 +174,34 @@ export const FEditTeamMemberPopup = ({
   children,
 }: FEditTeamMemberPopupProps) => {
   const [formData, setFormData] = useState<F_TEAM_MEMBER>(member);
+
+  const initialSocials = [
+    {
+      name: "X",
+      url: "",
+    },
+    {
+      name: "Linkedin",
+      url: "",
+    },
+    {
+      name: "Instagram",
+      url: "",
+    },
+    {
+      name: "Github",
+      url: "",
+    },
+    {
+      name: "Youtube",
+      url: "",
+    },
+    {
+      name: "Facebook",
+      url: "",
+    },
+  ]
+
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -111,15 +212,23 @@ export const FEditTeamMemberPopup = ({
     setFormData((prev) => ({ ...prev, [key]: val }));
   };
 
+  const handleSocialChange = (index: number, newUrl: string) => {
+    setFormData((prev) => {
+      const updatedSocials = [...prev.socials];
+      updatedSocials[index] = { ...updatedSocials[index], url: newUrl };
+      return { ...prev, socials: updatedSocials };
+    });
+  };
+
   const handleSave = () => {
     onSave(formData);
     setOpen(false);
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen} modal={false}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="space-y-4 z-[100] font-Poppins">
+      <DialogContent className="space-y-4 z-[100] font-Poppins max-h-[90vh] overflow-y-scroll">
         <DialogHeader>
           <DialogTitle>
             Edit Team Member {memberIdx !== undefined && `#${memberIdx + 1}`}
@@ -141,12 +250,29 @@ export const FEditTeamMemberPopup = ({
             onChange={(e) => handleChange("designation", e.target.value)}
           />
 
-          <ReqInput
-            type="text"
-            label="Image URL"
-            value={formData.imgUrl}
-            onChange={(e) => handleChange("imgUrl", e.target.value)}
-          />
+          <div className="space-y-2">
+            <label className="font-semibold">Team Member Image</label>
+            <ImageInput
+              initialImgUrl={formData.imgUrl}
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                handleChange("imgUrl", imgUrl);
+              }}
+              onImageRemove={() => handleChange("imgUrl", "")}
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          {initialSocials.map((social, index) => (
+            <ReqInput
+              placeholder={`https://${social.name.toLowerCase()}.com`}
+              key={index}
+              label={social.name}
+              value={formData.socials[index]?.url || ""}
+              onChange={(e) => handleSocialChange(index, e.target.value)}
+            />
+          ))}
         </div>
 
         <div className="flex justify-end gap-2">

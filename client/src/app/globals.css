@@ -4,6 +4,32 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Custom Animations */
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutOverlay {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-in-overlay {
+  animation: fadeInOverlay 300ms ease-out forwards;
+}
+
+.fade-out-overlay {
+  animation: fadeOutOverlay 200ms ease-in forwards;
+}
 @custom-variant dark (&:is(.dark *));
 
 /* * { */
@@ -188,6 +214,9 @@
 }
 
 @layer base {
+  * {
+    box-sizing: border-box;
+  }
   * {
     @apply border-border outline-ring/50;
   }

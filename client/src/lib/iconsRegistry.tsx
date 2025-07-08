@@ -155,30 +155,30 @@ export const ICONS_REGISTRY: IconOption[] = [
     },
 ];
 
-export const SOCIAL_ICONS_REGISTRY = [
+export const SOCIAL_ICONS_REGISTRY: IconOption[] = [
     {
         label: "Facebook",
-        icon: <IconBrandFacebook size={20} />,
+        icon: (props) => <IconBrandFacebook size={20} {...props} />,
     },
 
     {
         label: "Github",
-        icon: <IconBrandGithub size={20} />,
+        icon: (props) => <IconBrandGithub size={20} {...props} />,
     },
     {
         label: "Instagram",
-        icon: <IconBrandInstagram size={20} />,
+        icon: (props) => <IconBrandInstagram size={20} {...props} />,
     },
     {
         label: "Linkedin",
-        icon: <IconBrandLinkedin size={20} />,
+        icon: (props) => <IconBrandLinkedin size={20} {...props} />,
     },
     {
         label: "X",
-        icon: <IconBrandX size={20} />,
+        icon: (props) => <IconBrandX size={20} {...props} />,
     },
     {
         label: "Youtube",
-        icon: <IconBrandYoutube size={20} />,
+        icon: (props) => <IconBrandYoutube size={20} {...props} />,
     },
 ];

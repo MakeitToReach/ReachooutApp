@@ -14,9 +14,7 @@ export const FLogoSection = ({
                 </h2>
                 <p className="text-center line-clamp-4">{subHeading}</p>
                 {/* logos */}
-                <FLogos
-                    imgs={imgs}
-                />
+                <FLogos imgs={imgs} />
                 {/* <div className="w-[100vw] bg-black rounded-lg"></div> */}
             </div>
         </section>
