@@ -62,7 +62,7 @@ const TemplatesDashboardPage = () => {
                             imageUrl={template.thumbnailUrl || "/placeholder.png"}
                             previewUrl={`/preview/${template.name.toLowerCase()}`}
                             editorUrl={`/editor/${template.name.toLowerCase()}?new`}
-                            id={template.id}
+                            templateId={template.id}
                             templateName={template.name}
                             textClassName="text-black"
                         >

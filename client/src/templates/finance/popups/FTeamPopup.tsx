@@ -27,6 +27,7 @@ export function FAddTeamMemberPopup({
     imgUrl: "",
     name: "",
     designation: "",
+    description: "",
     socials: [
       {
         name: "X",
@@ -120,6 +121,7 @@ export function FAddTeamMemberPopup({
                   imgUrl: "",
                   name: "",
                   designation: "",
+                  description: "",
                   socials: [
                     {
                       name: "X",

@@ -8,8 +8,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { PF_PROJECT } from "@/templates/professional/types/project";
-import { CldUploadButton } from "next-cloudinary";
-import ImageSelectButton from "../inputs/imageInputBtn";
 import { ReqInput } from "../inputs/reqInput";
 import { ImageInput } from "@/components/imgInput";
 

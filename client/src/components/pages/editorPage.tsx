@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { EditorPanel } from "@/components/editor-components/editorPanel";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { usePortfolioStore } from "@/store/portfolio.store";
@@ -42,7 +42,6 @@ const EditorPage = () => {
 
     const [editorOpen, setEditorOpen] = useState(true);
 
-    const isNew = searchParams?.has("new");
     const isEditing = searchParams?.has("edit");
     const order = searchParams?.get("order");
     const templateId = searchParams?.get("tid");
