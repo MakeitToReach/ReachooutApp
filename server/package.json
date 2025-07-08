@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon src/server.ts",
     "build": "prisma generate && prisma migrate deploy && tsc",
-    "start": "node --loader ts-node/esm --experimental-specifier-resolution=node src/server.ts",
+    "start": "node dist/server.js",
     "migrate": "npx prisma migrate dev",
     "vercel-build": "pnpm build"
   },
