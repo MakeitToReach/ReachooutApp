@@ -38,14 +38,65 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-    cors({
-        origin: CLIENT_URL || DEV_URL,
-        credentials: true,
-        methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-        allowedHeaders: ["Content-Type", "Authorization"],
-    }),
-);
+// CORS configuration for wildcard subdomains
+const corsOptions = {
+    origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        
+        // Development environment - allow localhost and subdomains
+        if (process.env.NODE_ENV === 'development') {
+            if (origin.startsWith('http://localhost') || 
+                origin.startsWith('https://localhost') ||
+                origin.includes('localhost')) {
+                return callback(null, true);
+            }
+        }
+        
+        // Production environment - allow main domain and subdomains
+        if (process.env.NODE_ENV === 'production') {
+            const allowedDomains = [
+                CLIENT_URL,
+                'https://reachoout.com',
+                'https://*.reachoout.com',
+                'https://app.reachoout.com',
+            ].filter(Boolean);
+            
+            // Check if origin matches any allowed domain or is a subdomain
+            const isAllowed = allowedDomains.some(domain => {
+                if (!domain) return false;
+                
+                // Exact match
+                if (origin === domain) return true;
+                
+                // Subdomain match (e.g., johndoe.reachoout.com)
+                if (domain.includes('*.reachoout.com')) {
+                    const domainPattern = domain.replace('*.', '');
+                    return origin.endsWith(domainPattern) && origin !== domainPattern;
+                }
+                
+                return false;
+            });
+            
+            if (isAllowed) {
+                return callback(null, true);
+            }
+        }
+        
+        // Default fallback to original logic
+        const allowedOrigin = CLIENT_URL || DEV_URL;
+        if (origin === allowedOrigin) {
+            return callback(null, true);
+        }
+        
+        callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
 
 app.use(
     session({

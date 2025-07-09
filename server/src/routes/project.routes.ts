@@ -9,6 +9,8 @@ import {
   deleteProjectById,
   getTemplatesInProject,
   getUserProjects,
+  getProjectBySubdomain,
+  checkSubdomainAvailability,
 } from "../controllers/project.controller";
 
 const projectRouter = Router();
@@ -19,22 +21,6 @@ projectRouter.post(
   isAuthenticated,
   (req: Request, res: Response) => {
     createProject(req, res);
-  },
-);
-
-projectRouter.delete(
-  "/delete/:id",
-  isAuthenticated,
-  (req: Request<{ id: string }>, res: Response) => {
-    deleteProjectById(req, res);
-  },
-);
-
-projectRouter.post(
-  "/add/custom-domain",
-  isAuthenticated,
-  (req: Request, res: Response) => {
-    addCustomDomain(req, res);
   },
 );
 
@@ -49,10 +35,49 @@ projectRouter.get(
 projectRouter.get(
   "/templates/:id",
   isAuthenticated,
-  (req: Request<{ id: string }, {}, {}>, res: Response) => {
+  (req: Request<{ id: string }>, res: Response) => {
     getTemplatesInProject(req, res);
   },
 );
 
+projectRouter.post(
+  "/add-template",
+  isAuthenticated,
+  (req: Request, res: Response) => {
+    addTemplateToProject(req, res);
+  },
+);
+
+projectRouter.delete(
+  "/delete/:id",
+  isAuthenticated,
+  (req: Request<{ id: string }>, res: Response) => {
+    deleteProjectById(req, res);
+  },
+);
+
+projectRouter.post(
+  "/custom-domain",
+  isAuthenticated,
+  (req: Request, res: Response) => {
+    addCustomDomain(req, res);
+  },
+);
+
+// Public route for subdomain access (no authentication required)
+projectRouter.get(
+  "/subdomain/:subdomain",
+  (req: Request, res: Response) => {
+    getProjectBySubdomain(req, res);
+  },
+);
+
+// Public route to check subdomain availability
+projectRouter.get(
+  "/check-subdomain/:subdomain",
+  (req: Request, res: Response) => {
+    checkSubdomainAvailability(req, res);
+  },
+);
 
 export default projectRouter;

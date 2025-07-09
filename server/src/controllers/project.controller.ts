@@ -31,16 +31,19 @@ export const createProject = async (
     const parsedUsername = (user.name ?? "user")
         .split(" ")
         .join("")
-        .toLowerCase();
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, ""); // Remove special characters
 
-    const uuidv4 = () => {
-        return crypto.randomUUID();
+    const generateSubdomain = () => {
+        const timestamp = Date.now().toString(36);
+        const random = Math.random().toString(36).substring(2, 8);
+        return `${parsedUsername}-${timestamp}-${random}`;
     };
 
     const project = await prisma.project.create({
         data: {
             name,
-            subDomain: `http://${parsedUsername}-${uuidv4()}.localhost:3000`,
+            subDomain: generateSubdomain(),
             user: {
                 connect: {
                     id: userId,
@@ -219,4 +222,119 @@ export const deleteProjectById = async (req: Request, res: Response) => {
         console.error("Error deleting project", error);
         res.status(500).json({ error: "Error Deleting Project" });
     }
+};
+
+export const getProjectBySubdomain = async (req: Request, res: Response) => {
+  try {
+    const { subdomain } = req.params;
+
+    if (!subdomain) {
+      return res.status(400).json({ error: "Subdomain is required" });
+    }
+
+    const project = await prisma.project.findUnique({
+      where: {
+        subDomain: subdomain,
+      },
+      include: {
+        templates: {
+          include: {
+            template: true,
+          },
+          orderBy: {
+            order: 'asc',
+          },
+        },
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
+      },
+    });
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    // Transform the data to match the expected format
+    const transformedProject = {
+      id: project.id,
+      name: project.name,
+      subDomain: project.subDomain,
+      customDomain: project.customDomain,
+      user: project.user,
+      templates: project.templates.map(pt => ({
+        templateId: pt.templateId,
+        data: pt.data as any,
+        order: pt.order,
+        template: {
+          id: pt.template.id,
+          name: pt.template.name,
+          thumbnailUrl: pt.template.thumbnailUrl,
+        },
+      })),
+    };
+
+    res.status(200).json(transformedProject);
+  } catch (error) {
+    console.error("Error fetching project by subdomain:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const checkSubdomainAvailability = async (req: Request, res: Response) => {
+  try {
+    const { subdomain } = req.params;
+
+    if (!subdomain) {
+      return res.status(400).json({ error: "Subdomain is required" });
+    }
+
+    // Check if subdomain is valid (alphanumeric and hyphens only)
+    const subdomainRegex = /^[a-z0-9-]+$/;
+    if (!subdomainRegex.test(subdomain)) {
+      return res.status(400).json({ 
+        error: "Subdomain can only contain lowercase letters, numbers, and hyphens" 
+      });
+    }
+
+    // Check if subdomain is too short or too long
+    if (subdomain.length < 3 || subdomain.length > 63) {
+      return res.status(400).json({ 
+        error: "Subdomain must be between 3 and 63 characters long" 
+      });
+    }
+
+    // Check if subdomain starts or ends with hyphen
+    if (subdomain.startsWith('-') || subdomain.endsWith('-')) {
+      return res.status(400).json({ 
+        error: "Subdomain cannot start or end with a hyphen" 
+      });
+    }
+
+    // Check if subdomain is already taken
+    const existingProject = await prisma.project.findUnique({
+      where: {
+        subDomain: subdomain,
+      },
+    });
+
+    if (existingProject) {
+      return res.status(409).json({ 
+        available: false,
+        error: "Subdomain is already taken" 
+      });
+    }
+
+    return res.status(200).json({ 
+      available: true,
+      message: "Subdomain is available" 
+    });
+  } catch (error) {
+    console.error("Error checking subdomain availability:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };
