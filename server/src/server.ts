@@ -49,7 +49,13 @@ app.use(cors({
     origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
         if (!origin) return callback(null, true);
 
-        if (origin === CLIENT_URL || (process.env.NODE_ENV === "development" && origin.includes("localhost"))) {
+        if (
+            origin === CLIENT_URL || 
+            (process.env.NODE_ENV === "development" && origin.includes("localhost")) ||
+            allowedDomains.some((allowed) =>
+                typeof allowed === "string" ? origin === allowed : allowed.test(origin)
+            )
+        ) {
             return callback(null, true);
         }
 
@@ -59,6 +65,9 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+// Handle preflight requests
+app.options("*", cors());
 
 app.use(
   session({
