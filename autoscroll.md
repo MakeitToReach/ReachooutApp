@@ -1,4 +1,4 @@
-Certainly! Below are two implementations for fetching data and rendering a user portfolio with **Server-Side Rendering (SSR)** and **Static Site Generation (SSG)** using Next.js.
+Certainly! Below are two implementations for fetching data and rendering a user portfolio with **Server-Side Rendering (SSR)** and **Static Site Generation (SSG)** using Next.js
 
 ### 1. **Server-Side Rendering (SSR)**
 
