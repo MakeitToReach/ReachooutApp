@@ -45,33 +45,20 @@ const allowedDomains = [
   /\.reachoout\.com$/,
 ];
 
-const corsOptions = {
-  origin: function (
-    origin: string | undefined,
-    callback: (err: Error | null, allow?: boolean) => void
-  ) {
-    if (!origin) return callback(null, true); // Allow no-origin requests (e.g., mobile apps)
+app.use(cors({
+    origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+        if (!origin) return callback(null, true);
 
-    if (
-      origin === CLIENT_URL ||
-      (process.env.NODE_ENV === "development" &&
-        origin.includes("localhost")) ||
-      allowedDomains.some((allowed) =>
-        typeof allowed === "string" ? origin === allowed : allowed.test(origin)
-      )
-    ) {
-      return callback(null, true);
-    }
+        if (origin === CLIENT_URL || (process.env.NODE_ENV === "development" && origin.includes("localhost"))) {
+            return callback(null, true);
+        }
 
-    callback(new Error("Not allowed by CORS"));
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); 
+        callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
 app.use(
   session({
