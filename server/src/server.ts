@@ -38,12 +38,28 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({
-    origin: CLIENT_URL,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-}));
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || origin === process.env.CLIENT_URL) {
+      return callback(null, true);
+    }
+    if (
+      process.env.NODE_ENV === 'production' &&
+      (origin === 'https://app.reachoout.com' || origin.endsWith('.reachoout.com'))
+    ) {
+      return callback(null, true);
+    }
+
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+// 👇 Apply to all requests FIRST
+app.use(cors(corsOptions));
+
 
 app.use(
   session({
