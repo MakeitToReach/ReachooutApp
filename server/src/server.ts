@@ -38,60 +38,29 @@ app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-// CORS configuration for wildcard subdomains
+// Simplified CORS configuration
 const corsOptions = {
     origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
         // Allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
         
-        // Development environment - allow localhost and subdomains
+        // Always allow CLIENT_URL
+        if (origin === CLIENT_URL) {
+            return callback(null, true);
+        }
+        
+        // Development: allow localhost
         if (process.env.NODE_ENV === 'development') {
-            if (origin.startsWith('http://localhost') || 
-                origin.startsWith('https://localhost') ||
-                origin.includes('localhost')) {
+            if (origin.includes('localhost')) {
                 return callback(null, true);
             }
         }
         
-        // Production environment - allow main domain and subdomains
+        // Production: allow reachoout.com and all subdomains
         if (process.env.NODE_ENV === 'production') {
-            const allowedDomains = [
-                CLIENT_URL,
-                'https://reachoout.com',
-                'https://*.reachoout.com',
-                'https://app.reachoout.com',
-            ].filter(Boolean);
-            
-            // Check if origin matches any allowed domain or is a subdomain
-            const isAllowed = allowedDomains.some(domain => {
-                if (!domain) return false;
-                
-                // Exact match
-                if (origin === domain) return true;
-                
-                // Subdomain match (e.g., johndoe.reachoout.com)
-                if (domain.includes('*.reachoout.com')) {
-                    const domainPattern = domain.replace('*.', '');
-                    return origin.endsWith(domainPattern) && origin !== domainPattern;
-                }
-                
-                return false;
-            });
-            
-            if (isAllowed) {
+            if (origin.endsWith('.reachoout.com') || origin === 'https://reachoout.com') {
                 return callback(null, true);
             }
-        }
-        
-        // Always allow CLIENT_URL regardless of environment
-        const allowedOrigin = CLIENT_URL || DEV_URL;
-        if (origin === allowedOrigin) {
-            return callback(null, true);
-        }
-        
-        // Additional check for app.reachoout.com specifically
-        if (origin === 'https://app.reachoout.com' || origin === 'http://app.reachoout.com') {
-            return callback(null, true);
         }
         
         callback(new Error('Not allowed by CORS'));
