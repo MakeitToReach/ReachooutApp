@@ -40,7 +40,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || origin === process.env.CLIENT_URL) {
+    if (!origin || origin === CLIENT_URL || origin === DEV_URL) {
       return callback(null, true);
     }
     if (

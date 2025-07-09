@@ -77,7 +77,7 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={() => onDelete(project.id)}>
-                            <Trash2 className="text-muted-foreground" />
+                            <Trash2 className="text-destructive" />
                             <span>Delete Project</span>
                         </DropdownMenuItem>
                     </DropdownMenuContent>

@@ -26,7 +26,7 @@ export function AddServicesPopup({ children, onAdd }: AddServicesPopupProps) {
         icon: "",
     });
     return (
-        <Dialog modal={false}>
+        <Dialog >
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
                 className="sm:max-w-[600px] font-Poppins"
@@ -118,9 +118,9 @@ export const EditServicePopup = ({
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen} modal={false}>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 z-[100] font-Poppins">
+            <DialogContent className="space-y-4 font-Poppins max-h-[90vh] overflow-y-scroll">
                 <DialogHeader>
                     <DialogTitle>
                         Edit Service {serviceIdx !== undefined && `#${serviceIdx + 1}`}

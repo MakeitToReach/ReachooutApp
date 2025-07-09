@@ -24,11 +24,10 @@ export function PFAddFaqPopup({ children, onAdd }: PFAddFaqPopupProps) {
         answer: "",
     });
     return (
-        <Dialog modal={false}>
+        <Dialog >
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[600px] font-Poppins"
-                style={{ overflow: "visible" }}
+                className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-auto"
                 onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader>
@@ -104,9 +103,9 @@ export const PFEditFaqPopup = ({
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen} modal={false}>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 z-[100] font-Poppins">
+            <DialogContent className="space-y-4 font-Poppins max-h-[90vh] overflow-y-scroll">
                 <DialogHeader>
                     <DialogTitle>
                         Edit Faq {faqIdx !== undefined && `#${faqIdx + 1}`}

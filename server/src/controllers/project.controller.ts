@@ -302,9 +302,9 @@ export const checkSubdomainAvailability = async (req: Request, res: Response) =>
     }
 
     // Check if subdomain is too short or too long
-    if (subdomain.length < 3 || subdomain.length > 63) {
+    if (subdomain.length < 2 || subdomain.length > 63) {
       return res.status(400).json({ 
-        error: "Subdomain must be between 3 and 63 characters long" 
+        error: "Subdomain must be between 2 and 63 characters long" 
       });
     }
 
@@ -335,6 +335,96 @@ export const checkSubdomainAvailability = async (req: Request, res: Response) =>
     });
   } catch (error) {
     console.error("Error checking subdomain availability:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const updateProjectSubdomain = async (
+  req: Request<{}, {}, { projectId: string; newSubdomain: string }>,
+  res: Response
+) => {
+  try {
+    const { projectId, newSubdomain } = req.body;
+    const userId = req.user?.id;
+
+    if (!projectId || !newSubdomain) {
+      return res.status(400).json({ error: "Project ID and new subdomain are required" });
+    }
+
+    // Check if user exists
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Check if project exists and belongs to user
+    const project = await prisma.project.findFirst({
+      where: {
+        id: projectId,
+        userId: userId,
+      },
+    });
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found or access denied" });
+    }
+
+
+    // Validate subdomain format
+    const subdomainRegex = /^[a-z0-9-]+$/;
+    if (!subdomainRegex.test(newSubdomain)) {
+      return res.status(400).json({ 
+        error: "Subdomain can only contain lowercase letters, numbers, and hyphens" 
+      });
+    }
+
+    // Check if subdomain is too short or too long
+    if (newSubdomain.length < 2 || newSubdomain.length > 63) {
+      return res.status(400).json({ 
+        error: "Subdomain must be between 2 and 63 characters long" 
+      });
+    }
+
+    // Check if subdomain starts or ends with hyphen
+    if (newSubdomain.startsWith('-') || newSubdomain.endsWith('-')) {
+      return res.status(400).json({ 
+        error: "Subdomain cannot start or end with a hyphen" 
+      });
+    }
+
+    // Check if new subdomain is already taken by another project
+    const existingProject = await prisma.project.findFirst({
+      where: {
+        subDomain: newSubdomain,
+        id: { not: projectId }, // Exclude current project
+      },
+    });
+
+    if (existingProject) {
+      return res.status(409).json({ 
+        error: "Subdomain is already taken by another project" 
+      });
+    }
+
+    // Update the project subdomain
+    const updatedProject = await prisma.project.update({
+      where: {
+        id: projectId,
+      },
+      data: {
+        subDomain: newSubdomain,
+      },
+    });
+
+    return res.status(200).json({
+      project: updatedProject,
+      message: "Project subdomain updated successfully",
+    });
+  } catch (error) {
+    console.error("Error updating project subdomain:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };

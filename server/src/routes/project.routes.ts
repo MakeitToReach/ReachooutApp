@@ -11,6 +11,7 @@ import {
   getUserProjects,
   getProjectBySubdomain,
   checkSubdomainAvailability,
+  updateProjectSubdomain,
 } from "../controllers/project.controller";
 
 const projectRouter = Router();
@@ -77,6 +78,15 @@ projectRouter.get(
   "/check-subdomain/:subdomain",
   (req: Request, res: Response) => {
     checkSubdomainAvailability(req, res);
+  },
+);
+
+// Update project subdomain (requires authentication)
+projectRouter.put(
+  "/update-subdomain",
+  isAuthenticated,
+  (req: Request, res: Response) => {
+    updateProjectSubdomain(req, res);
   },
 );
 

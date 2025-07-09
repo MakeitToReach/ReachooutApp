@@ -30,15 +30,14 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
         category: "",
     });
     return (
-        <Dialog modal={false}>
+        <Dialog >
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[600px] font-Poppins"
-                style={{ overflow: "visible" }}
+                className="max-w-[600px] font-Poppins max-h-[90vh] overflow-y-auto"
                 onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader>
-                    <DialogTitle className="md:text-2xl">Add Project</DialogTitle>
+                    <DialogTitle className="md:text-2xl">Add Catalog</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col gap-3">
                     <ReqInput
@@ -156,18 +155,19 @@ export const PFEditCatalogPopup = ({
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen} modal={false}>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 z-[100] font-Poppins">
+            <DialogContent
+                className="w-full max-w-[600px] font-Poppins max-h-[90vh] overflow-y-auto"
+                onInteractOutside={(e) => e.preventDefault()}
+            >
                 <DialogHeader>
-                    <DialogTitle>
+                    <DialogTitle className="md:text-2xl">
                         Edit Catalog {itemIdx !== undefined && `#${itemIdx + 1}`}
                     </DialogTitle>
                 </DialogHeader>
-
-                <div className="space-y-2">
+                <div className="flex flex-col gap-3">
                     <ReqInput
-                        required={true}
                         type="text"
                         label="Title"
                         placeholder="Enter your catalog title"
@@ -175,16 +175,15 @@ export const PFEditCatalogPopup = ({
                         onChange={(e) => handleChange("title", e.target.value)}
                     />
                     <ReqInput
-                        required={true}
-                        type="text"
                         label="Category Tag"
+                        type="text"
                         placeholder="Enter your catalog category"
                         value={formData.category}
                         onChange={(e) => handleChange("category", e.target.value)}
                     />
 
-                    <div className="space-y-2">
-                        <Label>Description</Label>
+                    <div>
+                        <label className="font-semibold">Description</label>
                         <Textarea
                             placeholder="Description"
                             className="border p-2 w-full rounded-md h-20"
@@ -192,6 +191,25 @@ export const PFEditCatalogPopup = ({
                             onChange={(e) => handleChange("description", e.target.value)}
                         />
                     </div>
+
+                    <div className="flex gap-2">
+                        <ReqInput
+                            label="Button Text"
+                            type="text"
+                            placeholder="View my project"
+                            value={formData.btnText}
+                            onChange={(e) => handleChange("btnText", e.target.value)}
+                        />
+
+                        <ReqInput
+                            label="Button Link"
+                            type="text"
+                            placeholder="https://reachoout.com"
+                            value={formData.btnLink}
+                            onChange={(e) => handleChange("btnLink", e.target.value)}
+                        />
+                    </div>
+
                     <div className="space-y-2">
                         <Label>Images</Label>
                         <MultipleImageInput
@@ -209,12 +227,12 @@ export const PFEditCatalogPopup = ({
                     </div>
                 </div>
 
-                <div className="flex justify-end gap-2">
+                <DialogFooter>
                     <Button variant="ghost" onClick={() => setOpen(false)}>
                         Cancel
                     </Button>
                     <Button onClick={handleSave}>Save</Button>
-                </div>
+                </DialogFooter>
             </DialogContent>
         </Dialog>
     );

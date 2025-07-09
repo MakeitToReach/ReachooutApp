@@ -122,7 +122,7 @@ const EditorPage = () => {
                         animate={{ x: editorOpen ? 0 : "-100%" }}
                         exit={{ x: -600 }}
                         transition={{ type: "spring", duration: 0.5 }}
-                        className="w-full md:w-[30%] fixed top-0 left-0 z-[150] border border-border bg-white"
+                        className="w-full md:w-[30%] fixed top-0 left-0 z-[60] border border-border bg-white"
                     >
                         <EditorPanel
                             order={Number(order) || 0}
@@ -140,7 +140,7 @@ const EditorPage = () => {
             {!editorOpen && (
                 <Button
                     variant="outline"
-                    className="fixed md:top-4 md:left-4 bottom-4 left-4 z-[100]"
+                    className="fixed md:top-4 md:left-4 bottom-4 left-4 z-[60]"
                     onClick={toggleEditor}
                 >
                     <LucideSidebarOpen className="w-6 h-6" />
@@ -162,7 +162,7 @@ const EditorPage = () => {
                             animate={{ y: 0 }}
                             exit={{ opacity: 0, filter: "blur(10px)" }}
                             transition={{ type: "easeInOut", duration: 0.8 }}
-                            className="w-[30%] hidden md:flex fixed z-[100] bottom-4 right-1/2 translate-x-1/2 bg-white justify-between backdrop-blur-3xl items-center border-border border rounded-md p-2 shadow-xs shadow-gray-300"
+                            className="w-[30%] hidden md:flex fixed z-50 bottom-4 right-1/2 translate-x-1/2 bg-white justify-between backdrop-blur-3xl items-center border-border border rounded-md p-2 shadow-xs shadow-gray-300"
                         >
                             <ReorderSectionsPopup
                                 sections={sections}
