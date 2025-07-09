@@ -83,9 +83,14 @@ const corsOptions = {
             }
         }
         
-        // Default fallback to original logic
+        // Always allow CLIENT_URL regardless of environment
         const allowedOrigin = CLIENT_URL || DEV_URL;
         if (origin === allowedOrigin) {
+            return callback(null, true);
+        }
+        
+        // Additional check for app.reachoout.com specifically
+        if (origin === 'https://app.reachoout.com' || origin === 'http://app.reachoout.com') {
             return callback(null, true);
         }
         
