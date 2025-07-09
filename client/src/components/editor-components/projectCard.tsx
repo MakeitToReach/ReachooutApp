@@ -29,9 +29,7 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
         const baseUrl = process.env.NODE_ENV === 'development' 
             ? 'localhost:3000' 
             : 'reachoout.com';
-        return process.env.NODE_ENV === 'development'
-            ? `http://${project.subDomain}.${baseUrl}`
-            : `https://${project.subDomain}.${baseUrl}`;
+        return `http://${project.subDomain}.${baseUrl}`;
     };
 
     const copyToClipboard = async (url: string) => {
