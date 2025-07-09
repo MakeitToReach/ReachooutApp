@@ -7,7 +7,7 @@ export const PFGallerySection = ({ imgs, heading }: PF_GALLERY_SECTION) => {
     return (
         <section
             id="gallery"
-            className="max-w-6xl mx-auto text-center overflow-hidden"
+            className="max-w-6xl mx-auto text-center overflow-hidden py-20"
         >
             <h1 className="text-4xl font-semibold text-template-text-primary md:text-6xl">
                 {heading}

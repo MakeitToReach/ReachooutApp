@@ -44,7 +44,7 @@ export function PFTestimonialsSection({
     return (
         <section
             id="testimonials"
-            className="relative flex max-w-6xl mx-auto md:my-40 gap-10 flex-col items-center justify-center overflow-hidden"
+            className="relative flex max-w-6xl mx-auto py-20 gap-10 flex-col items-center justify-center overflow-hidden"
         >
             <h1 className="text-4xl font-semibold md:text-6xl text-center text-template-text-primary">
                 {title}

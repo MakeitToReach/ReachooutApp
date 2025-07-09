@@ -6,13 +6,12 @@ import {
     DropdownMenuItem,
     DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-// import { Button } from "@/components/ui/button";
-import { Folder, MoreVertical, Share, Trash2 } from "lucide-react";
-// import Link from "next/link";
+import { Folder, MoreVertical, Trash2, Copy, ExternalLink } from "lucide-react";
 import PreviewButton from "./previewBtn";
 import { Project } from "@/schemas/projects.schema";
 import { useSidebar } from "../ui/sidebar";
 import Link from "next/link";
+import { toast } from "sonner";
 
 interface ProjectCardProps {
     project: Project;
@@ -21,6 +20,29 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, onDelete }: ProjectCardProps) {
     const { isMobile } = useSidebar();
+
+    const getPortfolioUrl = () => {
+        if (project.customDomain) {
+            return `https://${project.customDomain}`;
+        }
+        // For development, use localhost, for production use your domain
+        const baseUrl = process.env.NODE_ENV === 'development' 
+            ? 'localhost:3000' 
+            : 'reachoout.com'; // Replace with your actual domain
+        return `http://${project.subDomain}.${baseUrl}`;
+    };
+
+    const copyToClipboard = async (url: string) => {
+        try {
+            await navigator.clipboard.writeText(url);
+            toast.success("Portfolio URL copied to clipboard!");
+        } catch {
+            toast.error("Failed to copy URL");
+        }
+    };
+
+    const portfolioUrl = getPortfolioUrl();
+
     return (
         <Card className="shadow-2xl hover:shadow-3xl transition-shadow duration-300">
             <CardHeader className="flex flex-row items-center justify-between">
@@ -45,9 +67,13 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
                                 <span>View Project</span>
                             </DropdownMenuItem>
                         </Link>
-                        <DropdownMenuItem>
-                            <Share className="text-muted-foreground" />
-                            <span>Share Project</span>
+                        <DropdownMenuItem onClick={() => copyToClipboard(portfolioUrl)}>
+                            <Copy className="text-muted-foreground" />
+                            <span>Copy URL</span>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => window.open(portfolioUrl, '_blank')}>
+                            <ExternalLink className="text-muted-foreground" />
+                            <span>Open Portfolio</span>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={() => onDelete(project.id)}>
@@ -59,11 +85,7 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
             </CardHeader>
 
             <CardContent className="flex flex-col space-y-4">
-                {project.customDomain ? (
-                    <PreviewButton previewUrl={`https://${project.customDomain}`} />
-                ) : (
-                    <PreviewButton previewUrl={`https://${project.subDomain}`} />
-                )}
+                <PreviewButton previewUrl={portfolioUrl} />
             </CardContent>
         </Card>
     );

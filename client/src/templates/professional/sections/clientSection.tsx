@@ -11,7 +11,7 @@ export const PFClientSection: React.FC<PF_CLIENT_SECTION> = ({
     subtitle,
 }) => {
     return (
-        <section className="px-4 max-w-6xl mx-auto md:my-40" id="client">
+        <section className="px-4 max-w-6xl mx-auto py-20" id="client">
             <div className="flex flex-col gap-4">
                 <Avatar className="size-[80px]">
                     <AvatarImage src={avatarImg} />

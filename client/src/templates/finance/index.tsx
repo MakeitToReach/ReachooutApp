@@ -25,6 +25,7 @@ import {
 type Props = {
   data: {
     sections: SectionBlock[];
+    theme: Record<string, string>;
   };
 };
 export const FinancePortfolio = ({ data }: Props) => {
@@ -208,10 +209,14 @@ export const FinancePortfolio = ({ data }: Props) => {
   };
 
   return (
-    <div className="min-h-screen bg-template-primary overflow-x-hidden">
-      <div className="sm:px-12 px-4">
+    <div className="min-h-screen overflow-x-hidden">
+      <div>
         {data.sections.map((section, idx) => (
-          <div key={idx} className="relative">
+          <div
+            key={idx}
+            style={data.theme}
+            className="relative theme-wrapper bg-template-primary px-4 sm:px-12"
+          >
             {renderSection(section, idx)}
           </div>
         ))}

@@ -5,7 +5,7 @@ export const FTimelineSection = ({title, subtitle, steps} : F_TIMELINE_SECTION) 
     return (
         <section
             id="timeline"
-            className="w-full rounded-lg overflow-hidden my-14 sm:px-6 py-4"
+            className="w-full rounded-lg overflow-hidden py-20 sm:px-6"
         >
             <div className="max-w-6xl mx-auto h-full my-10 space-y-8 overflow-x-visible text-template-text-primary">
                 <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight text-center">

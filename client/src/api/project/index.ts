@@ -91,3 +91,50 @@ export const getTemplatesInProject = async (projectId: string) => {
   });
   return response.data;
 };
+
+
+export const getProjectBySubdomain = async (subdomain: string) => {
+  console.log('🔍 getProjectBySubdomain called with subdomain:', subdomain);
+  console.log('🔍 API base URL:', process.env.NEXT_PUBLIC_BACKEND_URL);
+  console.log('🔍 Full API URL:', `${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/project/subdomain/${subdomain}`);
+  
+  try {
+    console.log('📡 Making API request...');
+    const response = await api.get(`/v1/project/subdomain/${subdomain}`, {
+      withCredentials: false, // Public access, no authentication required
+    });
+
+    console.log('✅ API response received:');
+    console.log('  - Status:', response.status);
+    console.log('  - Status text:', response.statusText);
+    console.log('  - Data:', response.data);
+
+    if (response.status !== 200) {
+      console.log('❌ Non-200 status code, returning null');
+      return null;
+    }
+
+    console.log('✅ Successfully returning project data');
+    return response.data;
+  } catch (error) {
+    console.error('❌ Error fetching project:', error);
+    console.error('❌ Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      name: error instanceof Error ? error.name : 'Unknown',
+      stack: error instanceof Error ? error.stack : undefined
+    });
+    
+    // Log axios specific error details if available
+    if (error && typeof error === 'object' && 'response' in error) {
+      const axiosError = error as { response?: { status?: number; statusText?: string; data?: unknown; headers?: unknown } };
+      console.error('❌ Axios error details:', {
+        status: axiosError.response?.status,
+        statusText: axiosError.response?.statusText,
+        data: axiosError.response?.data,
+        headers: axiosError.response?.headers
+      });
+    }
+    
+    return null;
+  }
+}

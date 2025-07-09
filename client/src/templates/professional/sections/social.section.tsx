@@ -8,7 +8,8 @@ export const PFSocialSection = ({
     subHeading,
 }: PF_SOCIAL_SECTION) => {
     return (
-        <section className="relative" id="socials">
+        <section className="py-20" id="socials">
+        <div className="relative">
             <div className="absolute z-0 w-[80%] h-[110%] right-0 -top-6 md:top-0 bg-template-accent-primary rounded-md"></div>
             <div className="max-w-6xl mx-auto px-4 text-template-text-accent-primary">
                 <div className="z-10 relative flex flex-col gap-6 md:gap-10 md:p-20">
@@ -28,6 +29,7 @@ export const PFSocialSection = ({
                                 />
                             ))}
                         </div>
+                </div>
                 </div>
             </div>
         </section>

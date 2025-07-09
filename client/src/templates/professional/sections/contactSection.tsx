@@ -49,7 +49,7 @@ export const PFContactSection = ({ heading }: PF_CONTACT_SECTION) => {
             initial="initial"
             whileInView="animate"
             viewport={{ amount: 0.5, once: false }}
-            className="max-w-6xl mx-auto space-y-10 px-4"
+            className="max-w-6xl mx-auto space-y-10 px-4 py-20"
             id="contact"
         >
             <m.h2

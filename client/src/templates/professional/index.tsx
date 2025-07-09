@@ -207,15 +207,14 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
         transition={{
           duration: 0.8,
         }}
-        className="space-y-20 bg-template-primary overflow-x-hidden"
-        //TODO: remove the space-y-20 and change it for sections
+        className="overflow-x-hidden"
       >
         {data ? (
           otherSections.map((section, index) => (
             <div
               key={index}
               style={data.theme}
-              className="relative theme-wrapper"
+              className="relative theme-wrapper bg-template-primary"
             >
               {renderSection(section, index)}
             </div>

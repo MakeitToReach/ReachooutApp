@@ -8,7 +8,7 @@ export const PFBlogSection = ({ heading, blogs }: PF_BLOG_SECTION) => {
     return (
         <section
             id="blogs"
-            className="max-w-6xl mx-auto text-center overflow-hidden"
+            className="max-w-6xl mx-auto text-center overflow-hidden py-20"
         >
             <h1 className="text-4xl font-semibold text-template-text-primary md:text-6xl">
                 {heading}

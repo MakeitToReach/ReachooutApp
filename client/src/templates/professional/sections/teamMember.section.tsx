@@ -9,7 +9,7 @@ export const PFTeamMembersSection = ({
 }: PF_TEAM_MEMBER_SECTION) => {
   return (
     <section
-      className="max-w-6xl mx-auto md:my-40 px-4 text-template-text-primary"
+      className="max-w-6xl mx-auto py-20 px-4 text-template-text-primary"
       id="team"
     >
       <h1 className="text-3xl font-semibold md:text-6xl text-center">

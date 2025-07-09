@@ -10,7 +10,17 @@ const nextConfig: NextConfig = {
             },
         ]
 
-    }
+    },
+    // Allow cross-origin requests from subdomains in development
+    allowedDevOrigins: [
+        'localhost',
+        '*.localhost',
+        '*.localhost:3000',
+        '*.reachoout.com',
+        // Allow any subdomain pattern for localhost
+        '*-*.localhost',
+        '*-*.localhost:3000',
+    ],
 };
 
 export default nextConfig;

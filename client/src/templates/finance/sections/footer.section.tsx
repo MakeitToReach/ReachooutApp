@@ -10,7 +10,7 @@ export const FFooterSection = ({
 }: F_FOOTER_SECTION) => {
   return (
     <footer id="footer" className="border-t border-border">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row gap-10 justify-between px-4  py-10">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row gap-10 justify-between px-4  py-10 text-template-text-primary">
         <div className="flex sm:w-1/3 w-full flex-col gap-3">
           {logoUrl && (
             <img
@@ -22,7 +22,7 @@ export const FFooterSection = ({
 
           {textLogo && <h3 className="font-semibold text-xl">{textLogo}</h3>}
 
-          <p className="line-clamp-3 text-black/50">{description}</p>
+          <p className="line-clamp-3 text-template-text-primary/70">{description}</p>
 
           <div className="flex items-center gap-2">
             {experience && (
@@ -41,7 +41,7 @@ export const FFooterSection = ({
         <div className="flex flex-col col-start-3 gap-3">
           <h3 className="font-semibold text-xl">Newsletter</h3>
 
-          <p className="line-clamp-3 text-black/50">
+          <p className="line-clamp-3 text-template-text-primary/70">
             Want to receive news and updates? Enter your email.
           </p>
 
