@@ -7,7 +7,7 @@ import { PageLoader } from "@/components/editor-components/pageLoader";
 
 async function getProject(subdomain: string) {
   console.log("🔍 getProject function called with subdomain:", subdomain);
-  console.log("🔍 Backend URL:", process.env.NEXT_PUBLIC_BACKEND_URL);
+  // console.log("🔍 Backend URL:", process.env.NEXT_PUBLIC_BACKEND_URL);
 
   try {
     console.log("📡 Making API request to getProjectBySubdomain...");
@@ -75,18 +75,24 @@ export default async function PortfolioPage() {
   console.log("🔍 Subdomain extraction result:", subdomain);
 
   if (subdomain) {
+    // Check for special subdomains first, before making any API calls
     if (subdomain === "app") {
+      console.log("🔄 'app' subdomain detected, redirecting to /home");
       const { redirect } = await import("next/navigation");
       redirect("/home");
     }
 
+    // Only make API request for non-special subdomains
+    console.log("📡 Making API request for subdomain:", subdomain);
     const project = await getProject(subdomain);
 
     if (!project) {
+      console.log("❌ Project not found for subdomain:", subdomain);
       const { redirect } = await import("next/navigation");
       redirect("/home");
     }
 
+    console.log("✅ Project found, rendering portfolio");
     return (
       <Suspense fallback={<PageLoader />}>
         <PortfolioView project={project} />
