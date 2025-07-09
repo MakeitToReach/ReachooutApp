@@ -58,6 +58,10 @@ function getSubdomainFromHostname(hostname: string): string | null {
 
   // For production domains (e.g., johndoe.reachoout.com)
   if (parts.length > 2) {
+    if (parts[0] === "app") {
+      return null;
+    }
+
     console.log("  ✅ Production subdomain found:", parts[0]);
     return parts[0];
   }
