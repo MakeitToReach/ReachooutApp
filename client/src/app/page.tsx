@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { headers } from "next/headers";
 import { getProjectBySubdomain } from "@/api/project";
 import PortfolioView from "@/components/portfolio/PortfolioView";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import { PageLoader } from "@/components/editor-components/pageLoader";
 
 async function getProject(subdomain: string) {
@@ -58,10 +58,6 @@ function getSubdomainFromHostname(hostname: string): string | null {
 
   // For production domains (e.g., johndoe.reachoout.com)
   if (parts.length > 2) {
-    if (parts[0] === "app") {
-      return null;
-    }
-
     console.log("  ✅ Production subdomain found:", parts[0]);
     return parts[0];
   }
@@ -87,7 +83,8 @@ export default async function PortfolioPage() {
     const project = await getProject(subdomain);
 
     if (!project) {
-      notFound();
+      const { redirect } = await import("next/navigation");
+      redirect("/home");
     }
 
     return (

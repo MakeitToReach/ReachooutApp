@@ -9,7 +9,7 @@ interface PortfolioPageProps {
   }>;
 }
 
-async function getProjectFromSubdomain(subdomain: string) {
+async function getProject(subdomain: string) {
   try {
     const project = await getProjectBySubdomain(subdomain);
     return project;
@@ -23,7 +23,7 @@ export default async function PortfolioPage({ params }: PortfolioPageProps) {
   const { subdomain } = await params;
   
   // Fetch project data by subdomain
-  const project = await getProjectFromSubdomain(subdomain);
+  const project = await getProject(subdomain);
   
   if (!project) {
     notFound();

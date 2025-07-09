@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
         '*.localhost',
         '*.localhost:3000',
         '*.reachoout.com',
+        '*-*.reachoout.com',
         // Allow any subdomain pattern for localhost
         '*-*.localhost',
         '*-*.localhost:3000',
