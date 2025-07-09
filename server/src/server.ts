@@ -37,37 +37,13 @@ app.use(morgan("dev"));
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-// Simplified CORS configuration
-
-const allowedDomains = [
-  "https://reachoout.com",
-  "https://app.reachoout.com",
-  /\.reachoout\.com$/,
-];
 
 app.use(cors({
-    origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
-        if (!origin) return callback(null, true);
-
-        if (
-            origin === CLIENT_URL || 
-            (process.env.NODE_ENV === "development" && origin.includes("localhost")) ||
-            allowedDomains.some((allowed) =>
-                typeof allowed === "string" ? origin === allowed : allowed.test(origin)
-            )
-        ) {
-            return callback(null, true);
-        }
-
-        callback(new Error("Not allowed by CORS"));
-    },
+    origin: CLIENT_URL,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
-
-// Handle preflight requests
-app.options("*", cors());
 
 app.use(
   session({
