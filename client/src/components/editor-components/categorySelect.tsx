@@ -35,7 +35,7 @@ export const CategorySelect = ({
             <SelectTrigger className="w-full">
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="z-[100]">
                 {categoryItems.map((item) => (
                     <SelectItem key={item.id} value={item.id}>
                         {item.category}
