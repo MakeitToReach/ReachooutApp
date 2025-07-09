@@ -4,6 +4,7 @@ import { getProjectBySubdomain } from "@/api/project";
 import PortfolioView from "@/components/portfolio/PortfolioView";
 // import { notFound } from "next/navigation";
 import { PageLoader } from "@/components/editor-components/pageLoader";
+import { Metadata } from "next";
 
 async function getProject(subdomain: string) {
   console.log("🔍 getProject function called with subdomain:", subdomain);
@@ -64,6 +65,35 @@ function getSubdomainFromHostname(hostname: string): string | null {
 
   console.log("  ❌ No subdomain detected");
   return null;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const hostname = headersList.get("host") || "";
+  const subdomain = getSubdomainFromHostname(hostname);
+
+  // Only generate metadata for valid subdomains
+  if (subdomain && subdomain !== "app") {
+    try {
+      const project = await getProject(subdomain);
+      if (project) {
+        return {
+          title: project.name,
+          description: `${project.name}'s Portfolio`,
+          icons: project.logo ? [{ rel: 'icon', url: project.logo }] : "/favicon.ico",
+        };
+      }
+    } catch (error) {
+      console.error("Error generating metadata:", error);
+    }
+  }
+
+  // Default metadata for non-subdomain requests
+  return {
+    title: "Reachoout - Portfolio Platform",
+    description: "Create and share your professional portfolio",
+    icons: "/favicon.ico",
+  };
 }
 
 export default async function PortfolioPage() {

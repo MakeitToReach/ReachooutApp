@@ -10,6 +10,7 @@ interface Project {
   name: string;
   subDomain: string;
   customDomain?: string;
+  logo?: string; // Optional logo/favicon URL
   templates: Array<{
     templateId: string;
     data: GenericTemplateSchema;
@@ -78,27 +79,25 @@ export default function PortfolioView({ project }: PortfolioViewProps) {
 
   return (
     <div ref={wrapperRef} className="theme-wrapper w-full">
-      {sortedTemplates.map((templateInstance, index) => {
-        const template =
-          TEMPLATE_REGISTRY[
-            templateInstance.data.name as keyof typeof TEMPLATE_REGISTRY
-          ];
+        {sortedTemplates.map((templateInstance, index) => {
+          const template =
+            TEMPLATE_REGISTRY[
+              templateInstance.data.name as keyof typeof TEMPLATE_REGISTRY
+            ];
 
-        if (!template) {
-          console.warn(
-            `Template ${templateInstance.templateId} not found in registry`
+          if (!template) {
+            console.warn(
+              `Template ${templateInstance.templateId} not found in registry`
+            );
+            return null;
+          }
+
+          return (
+            <div key={`${templateInstance.templateId}-${index}`}>
+              <template.component data={templateInstance.data} />
+            </div>
           );
-          return null;
-        }
-
-        return (
-          <div
-            key={`${templateInstance.templateId}-${index}`}
-          >
-            <template.component data={templateInstance.data} />
-          </div>
-        );
-      })}
-    </div>
+        })}
+      </div>
   );
 }
