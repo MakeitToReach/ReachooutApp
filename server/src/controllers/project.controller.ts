@@ -285,12 +285,85 @@ export const getProjectBySubdomain = async (req: Request, res: Response) => {
   }
 };
 
+export const getProjectByCustomDomain = async (req: Request, res: Response) => {
+  try {
+    const { customDomain } = req.params;
+
+    if (!customDomain) {
+      return res.status(400).json({ error: "Custom domain is required" });
+    }
+
+    const project = await prisma.project.findUnique({
+      where: {
+        customDomain: customDomain,
+      },
+      include: {
+        templates: {
+          include: {
+            template: true,
+          },
+          orderBy: {
+            order: 'asc',
+          },
+        },
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
+      },
+    });
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    // Transform the data to match the expected format
+    const transformedProject = {
+      id: project.id,
+      name: project.name,
+      subDomain: project.subDomain,
+      customDomain: project.customDomain,
+      user: project.user,
+      templates: project.templates.map(pt => ({
+        templateId: pt.templateId,
+        data: pt.data as any,
+        order: pt.order,
+        template: {
+          id: pt.template.id,
+          name: pt.template.name,
+          thumbnailUrl: pt.template.thumbnailUrl,
+        },
+      })),
+    };
+
+    res.status(200).json(transformedProject);
+  } catch (error) {
+    console.error("Error fetching project by custom domain:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 export const checkSubdomainAvailability = async (req: Request, res: Response) => {
   try {
     const { subdomain } = req.params;
 
+    const unavailableSubdomains = [
+      "www",
+      "admin",
+      "api",
+      "assets",
+      "app"
+    ];
+
     if (!subdomain) {
       return res.status(400).json({ error: "Subdomain is required" });
+    }
+
+    if (unavailableSubdomains.includes(subdomain)) {
+      return res.status(400).json({ error: "Subdomain is not available" });
     }
 
     // Check if subdomain is valid (alphanumeric and hyphens only)
@@ -427,4 +500,12 @@ export const updateProjectSubdomain = async (
     console.error("Error updating project subdomain:", error);
     res.status(500).json({ error: "Internal server error" });
   }
+};
+
+export const getProjectById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const project = await prisma.project.findUnique({
+    where: { id },
+  });
+  res.status(200).json(project);
 };

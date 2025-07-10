@@ -6,7 +6,7 @@ import {
     DropdownMenuItem,
     DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Folder, MoreVertical, Trash2, Copy, ExternalLink } from "lucide-react";
+import { Folder, MoreVertical, Trash2, Copy, ExternalLink, Settings2 } from "lucide-react";
 import PreviewButton from "./previewBtn";
 import { Project } from "@/schemas/projects.schema";
 import { useSidebar } from "../ui/sidebar";
@@ -75,6 +75,12 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
                             <ExternalLink className="text-muted-foreground" />
                             <span>Open Portfolio</span>
                         </DropdownMenuItem>
+                        <Link href={`/user/project/settings/${project.id}`}>
+                        <DropdownMenuItem >
+                            <Settings2 className="text-muted-foreground" />
+                            <span>Project Settings</span>
+                        </DropdownMenuItem>
+                        </Link>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={() => onDelete(project.id)}>
                             <Trash2 className="text-destructive" />

@@ -1,0 +1,364 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+// import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+// import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import {
+  Globe,
+  Search,
+  Settings,
+  ExternalLink,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
+import { useParams } from "next/navigation";
+import { getProjectById } from "@/api/project";
+import { checkSubdomainAvailability, updateSubdomain } from "@/api/domain";
+import { toast } from "sonner";
+
+const ProjectSettingsPage = () => {
+  const [settings, setSettings] = useState({
+    name: "My Portfolio",
+    description: "A professional portfolio showcasing my work and experience",
+    subDomain: "my-portfolio",
+    customDomain: "",
+  });
+
+  const { id } = useParams<{ id: string }>();
+
+  const [isSubdomainAvailable, setIsSubdomainAvailable] = useState<
+    boolean | null
+  >(null);
+  const [isCustomDomainValid, setIsCustomDomainValid] = useState<
+    boolean | null
+  >(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Google search preview
+  const getGooglePreview = () => {
+    const title = settings.name;
+    const description =
+      "A professional portfolio showcasing my work and experience";
+    const url = settings.customDomain || `${settings.subDomain}.reachoout.com`;
+
+    return {
+      title: title.length > 60 ? title.substring(0, 60) + "..." : title,
+      description:
+        description.length > 160
+          ? description.substring(0, 160) + "..."
+          : description,
+      url: url,
+    };
+  };
+
+  const preview = getGooglePreview();
+
+  // Check subdomain availability
+  const checkSubdomain = async (subdomain: string) => {
+    if (!subdomain || subdomain.length < 3) {
+      setIsSubdomainAvailable(null);
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await checkSubdomainAvailability(subdomain);
+      if (response) {
+        setIsSubdomainAvailable(response.available);
+      } else {
+        setIsSubdomainAvailable(false);
+      }
+    } catch (error) {
+      setIsSubdomainAvailable(false);
+      console.error("Error checking subdomain availability:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Validate custom domain
+  const validateCustomDomain = (domain: string) => {
+    if (!domain) {
+      setIsCustomDomainValid(null);
+      return;
+    }
+
+    const domainRegex =
+      /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/;
+    const isValid = domainRegex.test(domain);
+    setIsCustomDomainValid(isValid);
+  };
+
+  useEffect(() => {
+    const fetchProject = async () => {
+      const project = await getProjectById(id);
+      setSettings(project);
+    };
+    fetchProject();
+  }, [id]);
+
+  // Remove the automatic check on subdomain change
+
+  useEffect(() => {
+    validateCustomDomain(settings.customDomain);
+  }, [settings.customDomain]);
+
+  const handleSave = async (section: string) => {
+    setIsLoading(true);
+    try {
+      if (section === "subdomain") {
+        await updateSubdomain(settings.subDomain, id as string);
+      }
+      // Add other section handlers as needed
+    } catch (error) {
+      console.error("Error updating subdomain:", error);
+      toast.error("Failed to update subdomain");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold">Project Settings</h1>
+        <p className="text-muted-foreground mt-2">
+          Manage your project&apos;s basic information, subdomain, and custom
+          domain settings.
+        </p>
+      </div>
+
+      <div className="space-y-8">
+        {/* Section 1: Name and Description */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Settings className="h-5 w-5" />
+              Basic Information
+            </CardTitle>
+            <CardDescription>
+              Update your project&apos;s name and description. These will be
+              used in search results and social sharing.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="project-name">Project Name</Label>
+              <Input
+                id="project-name"
+                value={settings.name}
+                onChange={(e) =>
+                  setSettings({ ...settings, name: e.target.value })
+                }
+                placeholder="Enter your project name"
+                maxLength={60}
+              />
+              <p className="text-sm text-muted-foreground">
+                {settings.name.length}/60 characters
+              </p>
+            </div>
+
+            {/* <div className="space-y-2">
+              <Label htmlFor="project-description">Project Description</Label>
+              <Textarea
+                id="project-description"
+                value={"Test Description"}
+                onChange={(e) =>
+                  setSettings({ ...settings, description: e.target.value })
+                }
+                placeholder="Describe your project"
+                rows={3}
+                maxLength={160}
+              />
+              <p className="text-sm text-muted-foreground">
+                {160}/160 characters
+              </p>
+            </div> */}
+
+            <Button
+              onClick={() => handleSave("basic")}
+              disabled={isLoading}
+              className="w-full sm:w-auto"
+            >
+              {isLoading ? "Saving..." : "Save Changes"}
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Google Search Preview */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Search className="h-5 w-5" />
+              Google Search Preview
+            </CardTitle>
+            <CardDescription>
+              This is how your site will appear in Google search results.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="border rounded-lg p-4 bg-gray-50 dark:bg-gray-900">
+              <div className="space-y-0">
+                <div className="text-xl text-blue-800 dark:text-blue-200 font-medium">
+                  {preview.title}
+                </div>
+                <div className="text-green-600 text-sm">{preview.url}</div>
+                <div className="text-sm line-clamp-2 text-gray-600 dark:text-gray-400">
+                  {preview.description}
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Section 2: Subdomain Settings */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Globe className="h-5 w-5" />
+              Subdomain Settings
+            </CardTitle>
+            <CardDescription>
+              Choose a custom subdomain for your project. This will be your
+              project&apos;s URL.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="subdomain">Subdomain</Label>
+              <div className="flex items-center space-x-2">
+                <Input
+                  id="subdomain"
+                  value={settings.subDomain}
+                  onChange={(e) =>
+                    setSettings({
+                      ...settings,
+                      subDomain: e.target.value
+                        .toLowerCase()
+                        .replace(/[^a-z0-9-]/g, ""),
+                    })
+                  }
+                  placeholder="your-project"
+                  className="flex-1"
+                />
+                <span className="text-muted-foreground">.reachoout.com</span>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => checkSubdomain(settings.subDomain)}
+                  disabled={isLoading || !settings.subDomain}
+                >
+                  {isLoading ? "Checking..." : "Check Availability"}
+                </Button>
+              </div>
+
+              {isSubdomainAvailable !== null && (
+                <div className="flex items-center gap-2 mt-2">
+                  {isSubdomainAvailable ? (
+                    <>
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span className="text-sm text-green-600">
+                        Subdomain is available
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <AlertCircle className="h-4 w-4 text-red-500" />
+                      <span className="text-sm text-red-600">
+                        Subdomain is not available
+                      </span>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Badge variant="secondary">
+                <ExternalLink className="h-3 w-3 mr-1" />
+                {settings.subDomain}.reachoout.com
+              </Badge>
+            </div>
+
+            <Button
+              onClick={() => handleSave("subdomain")}
+              disabled={isLoading || !isSubdomainAvailable}
+              className="w-full sm:w-auto"
+            >
+              {isLoading ? "Updating..." : "Update Subdomain"}
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Section 3: Custom Domain */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Globe className="h-5 w-5" />
+              Custom Domain
+            </CardTitle>
+            <CardDescription>
+              Connect your own domain to your project. You&apos;ll need to
+              configure DNS settings.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="custom-domain">Custom Domain</Label>
+              <Input
+                id="custom-domain"
+                value={settings.customDomain}
+                onChange={(e) =>
+                  setSettings({ ...settings, customDomain: e.target.value })
+                }
+                placeholder="yourdomain.com"
+              />
+
+              {isCustomDomainValid !== null && settings.customDomain && (
+                <div className="flex items-center gap-2 mt-2">
+                  {isCustomDomainValid ? (
+                    <>
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                      <span className="text-sm text-green-600">
+                        Valid domain format
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <AlertCircle className="h-4 w-4 text-red-500" />
+                      <span className="text-sm text-red-600">
+                        Invalid domain format
+                      </span>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+
+            <Button
+              onClick={() => handleSave("custom-domain")}
+              disabled={isLoading || !isCustomDomainValid}
+              className="w-full sm:w-auto"
+            >
+              {isLoading ? "Connecting..." : "Connect Domain"}
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
+export default ProjectSettingsPage;

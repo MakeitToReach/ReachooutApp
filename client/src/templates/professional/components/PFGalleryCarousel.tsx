@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Lightbox } from "@/components/Lightbox";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -47,6 +48,7 @@ export const PFGalleryCarousel: React.FC<CarouselProps> = ({
             display: block;
             width: 100%;
             height: auto;
+            transition: transform 0.2s ease;
         }
 
         .swiper-3d .swiper-slide-shadow-left,
@@ -56,65 +58,71 @@ export const PFGalleryCarousel: React.FC<CarouselProps> = ({
     `;
 
     return (
-        <section className="w-full px-4">
+        <>
             <style>{css}</style>
-            <div className="w-full mx-auto max-w-7xl">
-                <Swiper
-                    spaceBetween={50}
-                    autoplay={{
-                        delay: autoplayDelay,
-                        disableOnInteraction: false,
-                    }}
-                    effect={"coverflow"}
-                    grabCursor={true}
-                    centeredSlides={true}
-                    loop={true}
-                    slidesPerView={"auto"}
-                    coverflowEffect={{
-                        rotate: 0,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 2.5,
-                    }}
-                    pagination={showPagination}
-                    navigation={
-                        showNavigation
-                            ? {
-                                  nextEl: ".swiper-button-next",
-                                  prevEl: ".swiper-button-prev",
-                              }
-                            : undefined
-                    }
-                    modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
-                >
-                    {images.map((image, index) => (
-                        <SwiperSlide key={`first-${index}`}>
-                            <div className="overflow-hidden rounded-2xl">
-                                <Image
-                                    src={image}
-                                    width={600}
-                                    height={400}
-                                    className="rounded-xl object-cover w-full h-auto"
-                                    alt={`Image-${index}`}
-                                />
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                    {images.map((image, index) => (
-                        <SwiperSlide key={`second-${index}`}>
-                            <div className="overflow-hidden rounded-2xl">
-                                <Image
-                                    src={image}
-                                    width={600}
-                                    height={400}
-                                    className="rounded-xl object-cover w-full h-auto"
-                                    alt={`Image-${index}`}
-                                />
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </div>
-        </section>
+            <section className="w-full px-4">
+                <div className="w-full mx-auto max-w-7xl">
+                    <Swiper
+                        spaceBetween={50}
+                        autoplay={{
+                            delay: autoplayDelay,
+                            disableOnInteraction: false,
+                        }}
+                        effect={"coverflow"}
+                        grabCursor={true}
+                        centeredSlides={true}
+                        loop={true}
+                        slidesPerView={"auto"}
+                        coverflowEffect={{
+                            rotate: 0,
+                            stretch: 0,
+                            depth: 100,
+                            modifier: 2.5,
+                        }}
+                        pagination={showPagination}
+                        navigation={
+                            showNavigation
+                                ? {
+                                      nextEl: ".swiper-button-next",
+                                      prevEl: ".swiper-button-prev",
+                                  }
+                                : undefined
+                        }
+                        modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
+                    >
+                        {images.map((image, index) => (
+                            <SwiperSlide key={`first-${index}`}>
+                                <div className="overflow-hidden rounded-2xl">
+                                    <Lightbox imageUrl={image} alt={`Image-${index}`}>
+                                        <Image
+                                            src={image}
+                                            width={600}
+                                            height={400}
+                                            className="rounded-xl object-cover w-full h-auto"
+                                            alt={`Image-${index}`}
+                                        />
+                                    </Lightbox>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                        {images.map((image, index) => (
+                            <SwiperSlide key={`second-${index}`}>
+                                <div className="overflow-hidden rounded-2xl">
+                                    <Lightbox imageUrl={image} alt={`Image-${index}`}>
+                                        <Image
+                                            src={image}
+                                            width={600}
+                                            height={400}
+                                            className="rounded-xl object-cover w-full h-auto"
+                                            alt={`Image-${index}`}
+                                        />
+                                    </Lightbox>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+            </section>
+        </>
     );
 };

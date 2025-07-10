@@ -1,6 +1,7 @@
 "use client";
 import { MultipleImageInput } from "@/components/multiImgInput";
 import { ImageInput } from "@/components/imgInput";
+import { LightboxExample } from "@/components/LightboxExample";
 // import { FileUpload } from "@/components/comp-546";
 // import { DEV_STATIC_DATA } from "@/static_data/dev/DEVStaticData";
 // import { DevPortfolio } from "@/templates/dev";
@@ -33,20 +34,43 @@ const page = () => {
   // return <LanderPortfolio />;
   // return <DevPortfolio data={DEV_STATIC_DATA} />;
   return (
-    <div className="flex w-full h-screen items-center justify-center bg-neutral-900">
-      {/* <FileUpload /> */}
-      <div className="flex flex-col gap-4 w-full">
-        <ImageInput initialImgUrl="https://github.com/shadcn.png" />
-      </div>
-      <div className="flex flex-col gap-4 w-full">
-      <MultipleImageInput
-        initialImages={[
-          "/placeholder.png",
-          "/placeholder.png",
-          "/placeholder.png",
-          "/placeholder.png",
-        ]}
-      />
+    <div className="flex w-full h-screen items-center justify-center bg-neutral-900 p-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
+        {/* Lightbox Examples */}
+        <div className="space-y-4">
+          <h3 className="text-white text-lg font-semibold">Lightbox Examples</h3>
+          <LightboxExample 
+            imageUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2000&h=1500&fit=crop"
+            alt="Mountain landscape"
+          />
+          <LightboxExample 
+            imageUrl="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=2000&h=1500&fit=crop"
+            alt="Forest landscape"
+          />
+          <LightboxExample 
+            imageUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2000&h=1500&fit=crop"
+            thumbnailUrl="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop"
+            alt="Mountain with custom thumbnail"
+          />
+        </div>
+
+        {/* Original Components */}
+        <div className="space-y-4">
+          <h3 className="text-white text-lg font-semibold">Image Input</h3>
+          <ImageInput initialImgUrl="https://github.com/shadcn.png" />
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-white text-lg font-semibold">Multiple Image Input</h3>
+          <MultipleImageInput
+            initialImages={[
+              "/placeholder.png",
+              "/placeholder.png",
+              "/placeholder.png",
+              "/placeholder.png",
+            ]}
+          />
+        </div>
       </div>
     </div>
   );

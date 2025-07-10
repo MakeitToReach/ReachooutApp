@@ -10,8 +10,10 @@ import {
   getTemplatesInProject,
   getUserProjects,
   getProjectBySubdomain,
+  getProjectByCustomDomain,
   checkSubdomainAvailability,
   updateProjectSubdomain,
+  getProjectById,
 } from "../controllers/project.controller";
 
 const projectRouter = Router();
@@ -22,15 +24,19 @@ projectRouter.post(
   isAuthenticated,
   (req: Request, res: Response) => {
     createProject(req, res);
-  },
+  }
 );
+
+projectRouter.get("/:id", isAuthenticated, (req: Request, res: Response) => {
+  getProjectById(req, res);
+});
 
 projectRouter.get(
   "/user/all",
   isAuthenticated,
   (req: Request, res: Response) => {
     getUserProjects(req, res);
-  },
+  }
 );
 
 projectRouter.get(
@@ -38,7 +44,7 @@ projectRouter.get(
   isAuthenticated,
   (req: Request<{ id: string }>, res: Response) => {
     getTemplatesInProject(req, res);
-  },
+  }
 );
 
 projectRouter.post(
@@ -46,7 +52,7 @@ projectRouter.post(
   isAuthenticated,
   (req: Request, res: Response) => {
     addTemplateToProject(req, res);
-  },
+  }
 );
 
 projectRouter.delete(
@@ -54,7 +60,7 @@ projectRouter.delete(
   isAuthenticated,
   (req: Request<{ id: string }>, res: Response) => {
     deleteProjectById(req, res);
-  },
+  }
 );
 
 projectRouter.post(
@@ -62,23 +68,22 @@ projectRouter.post(
   isAuthenticated,
   (req: Request, res: Response) => {
     addCustomDomain(req, res);
-  },
+  }
 );
 
-// Public route for subdomain access (no authentication required)
-projectRouter.get(
-  "/subdomain/:subdomain",
-  (req: Request, res: Response) => {
-    getProjectBySubdomain(req, res);
-  },
-);
+projectRouter.get("/custom-domain/:customDomain", (req: Request, res: Response) => {
+  getProjectByCustomDomain(req, res);
+});
 
-// Public route to check subdomain availability
+projectRouter.get("/subdomain/:subdomain", (req: Request, res: Response) => {
+  getProjectBySubdomain(req, res);
+});
+
 projectRouter.get(
   "/check-subdomain/:subdomain",
   (req: Request, res: Response) => {
     checkSubdomainAvailability(req, res);
-  },
+  }
 );
 
 // Update project subdomain (requires authentication)
@@ -87,7 +92,7 @@ projectRouter.put(
   isAuthenticated,
   (req: Request, res: Response) => {
     updateProjectSubdomain(req, res);
-  },
+  }
 );
 
 export default projectRouter;

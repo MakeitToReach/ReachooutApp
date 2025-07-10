@@ -1,10 +1,11 @@
 import { Suspense } from "react";
 import { headers } from "next/headers";
-import { getProjectBySubdomain } from "@/api/project";
+import { getProjectBySubdomain, getProjectByCustomDomain } from "@/api/project";
 import PortfolioView from "@/components/portfolio/PortfolioView";
 // import { notFound } from "next/navigation";
 import { PageLoader } from "@/components/editor-components/pageLoader";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 async function getProject(subdomain: string) {
   console.log("🔍 getProject function called with subdomain:", subdomain);
@@ -13,21 +14,30 @@ async function getProject(subdomain: string) {
   try {
     console.log("📡 Making API request to getProjectBySubdomain...");
     const project = await getProjectBySubdomain(subdomain);
-    console.log(
-      "✅ API request successful, project data:",
-      project ? "Found" : "Not found"
-    );
-    if (project) {
-      console.log("📦 Project details:", {
-        id: project.id,
-        name: project.name,
-        subDomain: project.subDomain,
-        templatesCount: project.templates?.length || 0,
-      });
-    }
     return project;
   } catch (error) {
     console.error("❌ Error fetching project:", error);
+    console.error("❌ Error details:", {
+      message: error instanceof Error ? error.message : "Unknown error",
+      stack: error instanceof Error ? error.stack : undefined,
+    });
+    return null;
+  }
+}
+
+async function fetchProjectByCustomDomain(hostname: string) {
+  console.log(
+    "🔍 fetchProjectByCustomDomain function called with hostname:",
+    hostname
+  );
+
+  try {
+    console.log("📡 Making API request to getProjectByCustomDomain...");
+    const project = await getProjectByCustomDomain(hostname);
+
+    return project;
+  } catch (error) {
+    console.error("❌ Error fetching project by custom domain:", error);
     console.error("❌ Error details:", {
       message: error instanceof Error ? error.message : "Unknown error",
       stack: error instanceof Error ? error.stack : undefined,
@@ -67,24 +77,46 @@ function getSubdomainFromHostname(hostname: string): string | null {
   return null;
 }
 
+function isBaseDomain(hostname: string): boolean {
+  return hostname.includes("reachoout.com") || hostname.includes("localhost");
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const hostname = headersList.get("host") || "";
-  const subdomain = getSubdomainFromHostname(hostname);
 
-  // Only generate metadata for valid subdomains
-  if (subdomain && subdomain !== "app") {
-    try {
-      const project = await getProject(subdomain);
-      if (project) {
+  // Handle reachoout.com subdomains
+  if (isBaseDomain(hostname)) {
+    const subdomain = getSubdomainFromHostname(hostname);
+
+    // Only generate metadata for valid subdomains
+    if (subdomain && subdomain !== "app") {
+      try {
+        const project = await getProject(subdomain);
         return {
           title: project.name,
           description: `${project.name}'s Portfolio`,
-          icons: project.logo ? [{ rel: 'icon', url: project.logo }] : "/favicon.ico",
+          icons: project.logo
+            ? [{ rel: "icon", url: project.logo }]
+            : "/favicon.ico",
         };
+      } catch (error) {
+        console.error("Error generating metadata:", error);
       }
+    }
+  } else {
+    // Handle custom domains
+    try {
+      const project = await fetchProjectByCustomDomain(hostname);
+      return {
+        title: project.name,
+        description: `${project.name}'s Portfolio`,
+        icons: project.logo
+          ? [{ rel: "icon", url: project.logo }]
+          : "/favicon.ico",
+      };
     } catch (error) {
-      console.error("Error generating metadata:", error);
+      console.error("Error generating metadata for custom domain:", error);
     }
   }
 
@@ -100,29 +132,46 @@ export default async function PortfolioPage() {
   const headersList = await headers();
   const hostname = headersList.get("host") || "";
 
-  // Check if this is a subdomain request
-  const subdomain = getSubdomainFromHostname(hostname);
-  console.log("🔍 Subdomain extraction result:", subdomain);
+  // Check if this is a reachoout.com subdomain request
+  if (isBaseDomain(hostname)) {
+    const subdomain = getSubdomainFromHostname(hostname);
+    console.log("🔍 Subdomain extraction result:", subdomain);
 
-  if (subdomain) {
-    // Check for special subdomains first, before making any API calls
-    if (subdomain === "app") {
-      console.log("🔄 'app' subdomain detected, redirecting to /home");
-      const { redirect } = await import("next/navigation");
-      redirect("/home");
+    if (subdomain) {
+      // Check for special subdomains first, before making any API calls
+      if (subdomain === "app") {
+        console.log("🔄 'app' subdomain detected, redirecting to /home");
+        const { redirect } = await import("next/navigation");
+        redirect("/home");
+      }
+
+      // Only make API request for non-special subdomains
+      console.log("📡 Making API request for subdomain:", subdomain);
+      const project = await getProject(subdomain);
+
+      if (!project) {
+        console.log("❌ Project not found for subdomain:", subdomain);
+        notFound();
+      }
+
+      console.log("✅ Project found, rendering portfolio");
+      return (
+        <Suspense fallback={<PageLoader />}>
+          <PortfolioView project={project} />
+        </Suspense>
+      );
     }
-
-    // Only make API request for non-special subdomains
-    console.log("📡 Making API request for subdomain:", subdomain);
-    const project = await getProject(subdomain);
+  } else {
+    // Handle custom domain requests
+    console.log("🔍 Custom domain detected:", hostname);
+    const project = await fetchProjectByCustomDomain(hostname);
 
     if (!project) {
-      console.log("❌ Project not found for subdomain:", subdomain);
-      const { redirect } = await import("next/navigation");
-      redirect("/home");
+      console.log("❌ Project not found for custom domain:", hostname);
+      notFound();
     }
 
-    console.log("✅ Project found, rendering portfolio");
+    console.log("✅ Project found for custom domain, rendering portfolio");
     return (
       <Suspense fallback={<PageLoader />}>
         <PortfolioView project={project} />
@@ -130,7 +179,10 @@ export default async function PortfolioPage() {
     );
   }
 
-  console.log("No subdomain detected, redirecting to home");
+  // If we reach here, no valid subdomain or custom domain was found
+  console.log(
+    "No valid subdomain or custom domain detected, redirecting to home"
+  );
   const { redirect } = await import("next/navigation");
   redirect("/home");
 }

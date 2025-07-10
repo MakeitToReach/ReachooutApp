@@ -3,10 +3,6 @@
 import * as React from "react";
 import {
   Frame,
-  LifeBuoy,
-  Map,
-  PieChart,
-  Send,
 } from "lucide-react";
 
 import {
@@ -26,121 +22,34 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const data = {
-  // navMain: [
+  // navSecondary: [
   //   {
-  //     title: "Playground",
+  //     title: "Support",
   //     url: "#",
-  //     icon: SquareTerminal,
-  //     isActive: true,
-  //     items: [
-  //       {
-  //         title: "History",
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Starred",
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Settings",
-  //         url: "#",
-  //       },
-  //     ],
+  //     icon: LifeBuoy,
   //   },
   //   {
-  //     title: "Models",
+  //     title: "Feedback",
   //     url: "#",
-  //     icon: Bot,
-  //     items: [
-  //       {
-  //         title: "Genesis",
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Explorer",
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Quantum",
-  //         url: "#",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: "Documentation",
-  //     url: "#",
-  //     icon: BookOpen,
-  //     items: [
-  //       {
-  //         title: "Introduction",
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Get Started",
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Tutorials",
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Changelog",
-  //         url: "#",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: "Settings",
-  //     url: "#",
-  //     icon: Settings2,
-  //     items: [
-  //       {
-  //         title: "General",
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Team",
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Billing",
-  //         url: "#",
-  //       },
-  //       {
-  //         title: "Limits",
-  //         url: "#",
-  //       },
-  //     ],
+  //     icon: Send,
   //   },
   // ],
-  navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoy,
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
-    },
-  ],
   projects: [
     {
       name: "Your Projects",
       url: "/user",
       icon: Frame,
     },
-    {
-      name: "Analytics",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Settings",
-      url: "#",
-      icon: Map,
-    },
+    // {
+    //   name: "Analytics",
+    //   url: "#",
+    //   icon: PieChart,
+    // },
+    // {
+    //   name: "Settings",
+    //   url: "#",
+    //   icon: Map,
+    // },
   ],
 };
 
