@@ -44,13 +44,14 @@ const corsOptions = {
       return callback(null, true);
     }
     if (
-      process.env.NODE_ENV === 'production' &&
-      (origin === 'https://app.reachoout.com' || origin.endsWith('.reachoout.com'))
+      process.env.NODE_ENV === "production" &&
+      (origin === "https://app.reachoout.com" ||
+        origin.endsWith(".reachoout.com"))
     ) {
       return callback(null, true);
     }
 
-    return callback(new Error('Not allowed by CORS'));
+    return callback(new Error("Not allowed by CORS"));
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
@@ -59,7 +60,6 @@ const corsOptions = {
 
 // 👇 Apply to all requests FIRST
 app.use(cors(corsOptions));
-
 
 app.use(
   session({

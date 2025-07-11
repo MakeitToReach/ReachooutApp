@@ -3,6 +3,7 @@
 /* lato, montserrat, poppins, roboto, inter, abel  */
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 /* Custom Animations */
 @keyframes fadeInOverlay {

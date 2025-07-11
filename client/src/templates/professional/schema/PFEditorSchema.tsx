@@ -83,11 +83,17 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             type: "text",
             fieldPath: "colorTitle",
         },
+        // {
+        //     label: "Description",
+        //     type: "textarea",
+        //     fieldPath: "description",
+        //     subtitle: "Max 300 characters, over 300 will be truncated to a popup",
+        // },
         {
             label: "Description",
-            type: "textarea",
+            type: "RTEditor",
             fieldPath: "description",
-            subtitle: "Max 300 characters, over 300 will be truncated to a popup",
+            // subtitle: "Max 300 characters, over 300 will be truncated to a popup",
         },
         {
             label: "Stats",

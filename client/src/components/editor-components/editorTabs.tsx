@@ -13,6 +13,7 @@ import { LucideArrowLeft, LucideArrowRight } from "lucide-react";
 import { useEditorTabIdxStore } from "@/store/editorTabIdx.store";
 import { ImageInput } from "../imgInput";
 import { MultipleImageInput } from "../multiImgInput";
+import { TipTapEditor } from "../ui/TipTapEditor";
 
 interface EditorTabsProps {
   sections: string[];
@@ -101,6 +102,30 @@ export const EditorTabs = ({
                               e.target.value
                             )
                           }
+                        />
+                        <p className="text-xs text-gray-700">
+                          {field.subtitle}
+                        </p>
+                      </div>
+                    )}
+
+                    {field.type === "RTEditor" && (
+                      <div className="space-y-1">
+                        <Label htmlFor={field.label} className="text-lg">
+                          {field.label}
+                        </Label>
+                        <TipTapEditor
+                          value={sectionData?.data[field.fieldPath] ?? ""}
+                          onChange={(value) =>
+                            setSectionField(
+                              section,
+                              field.fieldPath,
+                              value
+                            )
+                          }
+                          placeholder={field.label}
+                          height="h-36"
+                          showToolbar={true}
                         />
                         <p className="text-xs text-gray-700">
                           {field.subtitle}
