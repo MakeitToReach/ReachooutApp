@@ -81,7 +81,6 @@ export const EditorPanel = ({
         templateId,
         order as number
       );
-      router.push(`/user/project/${projectId}`);
     } catch (error) {
       console.error(error);
     } finally {
