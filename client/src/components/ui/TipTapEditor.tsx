@@ -20,6 +20,7 @@ import {
   Undo,
   Redo,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface TipTapEditorProps {
   value?: string;
@@ -232,9 +233,14 @@ export const TipTapEditor = ({
   }, [value, editor]);
 
   return (
-    <div className={`bg-white rounded-lg overflow-hidden border ${className}`}>
+    <div
+      className={cn(
+        "bg-white rounded-lg overflow-hidden border",
+        className
+      )}
+    >
       {showToolbar && <TipTapToolbar editor={editor} />}
-      <div className={`p-3 ${height} overflow-y-auto`}>
+      <div className={cn("p-3", height, "overflow-y-auto")}>
         <EditorContent editor={editor} />
       </div>
     </div>

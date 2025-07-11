@@ -1,13 +1,13 @@
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { Button } from "../ui/button";
 import {
-    EllipsisVertical,
-    LucideChevronLeft,
-    LucideEye,
-    LucideLoaderCircle,
-    LucidePalette,
-    LucideSettings,
-    LucideUploadCloud,
+  EllipsisVertical,
+  LucideChevronLeft,
+  LucideEye,
+  LucideLoaderCircle,
+  LucidePalette,
+  LucideSettings,
+  LucideUploadCloud,
 } from "lucide-react";
 import { publishTemplate, updateTemplateInstanceData } from "@/api/templates";
 import { EditorTabs } from "./editorTabs";
@@ -20,173 +20,172 @@ import { SettingsDropdown } from "./settingsDropdown";
 import { ThemePickerDialog } from "./popups/colorThemeDialog";
 import { useRouter } from "next/navigation";
 import { useEditorTabIdxStore } from "@/store/editorTabIdx.store";
-import { toast } from "sonner";
 
 interface EditorPanelProps {
-    isEditing?: boolean;
-    templateSchema?: GenericEditorFieldSchema;
-    toggleEditor: () => void;
-    TabIndex?: number;
-    projectId: string;
-    templateId: string;
-    order?: number;
+  isEditing?: boolean;
+  templateSchema?: GenericEditorFieldSchema;
+  toggleEditor: () => void;
+  TabIndex?: number;
+  projectId: string;
+  templateId: string;
+  order?: number;
 }
 export const EditorPanel = ({
-    isEditing,
-    templateSchema = PF_EDITOR_SCHEMA,
-    toggleEditor,
-    TabIndex,
-    projectId,
-    templateId,
-    order,
+  isEditing,
+  templateSchema = PF_EDITOR_SCHEMA,
+  toggleEditor,
+  TabIndex,
+  projectId,
+  templateId,
+  order,
 }: EditorPanelProps) => {
-    const {
+  const {
+    data,
+    reorderSections,
+    setThemeObject,
+    toggleHideSection,
+    setCurrentEditingSection,
+  } = usePortfolioStore();
+  const router = useRouter();
+
+  const { editorTabIndex, setEditorTabIndex } = useEditorTabIdxStore();
+
+  const [loading, setLoading] = useState(false);
+
+  //Sets the editorTabIndex when TabIndex changes
+  useEffect(() => {
+    setEditorTabIndex(TabIndex!);
+  }, [TabIndex]);
+
+  if (!data) return <div>No data found</div>;
+
+  //refactors the data.sections to reorderPopup usable format
+  const sections = data.sections.map((section) => ({
+    id: section.type,
+    name: section.type.replace("Section", ""),
+    isFixed: section.isFixed,
+    isHidden: section.isHidden,
+  }));
+
+  //refactors the data.sections to editorTabs usable format
+  const editorSections = data.sections
+    .filter((section) => section.isEditable)
+    .map((s) => s.type);
+
+  const handleSave = async () => {
+    setLoading(true);
+    try {
+      await updateTemplateInstanceData(
         data,
-        reorderSections,
-        setThemeObject,
-        toggleHideSection,
-        setCurrentEditingSection,
-    } = usePortfolioStore();
-    const router = useRouter();
+        projectId,
+        templateId,
+        order as number
+      );
+      router.push(`/user/project/${projectId}`);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const { editorTabIndex, setEditorTabIndex } = useEditorTabIdxStore();
+  const handlePublish = async () => {
+    setLoading(true);
+    try {
+      await publishTemplate(data, projectId, templateId);
+      router.push(`/user/project/${projectId}`);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    // const [editorTabIndex, setEditorTabIndex] = useState(TabIndex);
-    const [loading, setLoading] = useState(false);
+  const handleReorder = (newOrder: string[]) => {
+    reorderSections(newOrder);
+  };
 
-    //Sets the editorTabIndex when TabIndex changes
-    useEffect(() => {
-        setEditorTabIndex(TabIndex!);
-    }, [TabIndex]);
-
-    if (!data) return <div>No data found</div>;
-
-    //refactors the data.sections to reorderPopup usable format
-    const sections = data.sections.map((section) => ({
-        id: section.type,
-        name: section.type.replace("Section", ""),
-        isFixed: section.isFixed,
-        isHidden: section.isHidden,
-    }));
-
-    //refactors the data.sections to editorTabs usable format
-    const editorSections = data.sections
-        .filter((section) => section.isEditable)
-        .map((s) => s.type);
-
-    const handleSave = async () => {
-        setLoading(true);
-        try {
-            if (!order) {
-                toast.error("No order found");
-                return;
-            }
-            await updateTemplateInstanceData(data, projectId, templateId, order);
-            router.push(`/user/project/${projectId}`);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handlePublish = async () => {
-        setLoading(true);
-        try {
-            await publishTemplate(data, projectId, templateId);
-            router.push(`/user/project/${projectId}`);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleReorder = (newOrder: string[]) => {
-        reorderSections(newOrder);
-    };
-
-    return (
-        <div
-            className={cn(
-                "flex flex-col gap-4 p-4 md:px-6 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full font-Poppins",
-            )}
+  return (
+    <div
+      className={cn(
+        "flex flex-col gap-4 p-4 md:px-6 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full font-Poppins"
+      )}
+    >
+      {/* TODO: Add this to a component ( EditorHeader ) */}
+      <div className="w-full flex justify-between items-center border-border border rounded-md p-2 shadow-xs shadow-gray-300 transition-all">
+        <ReorderSectionsPopup
+          sections={sections}
+          onReorder={(newOrder) => handleReorder(newOrder)}
+          onEdit={(tabIdx) => {
+            setCurrentEditingSection(sections[tabIdx].id);
+            setEditorTabIndex(tabIdx);
+          }}
+          onHide={(sectionType: string) => toggleHideSection(sectionType)}
         >
-            {/* TODO: Add this to a component ( EditorHeader ) */}
-            <div className="w-full flex justify-between items-center border-border border rounded-md p-2 shadow-xs shadow-gray-300 transition-all">
-                <ReorderSectionsPopup
-                    sections={sections}
-                    onReorder={(newOrder) => handleReorder(newOrder)}
-                    onEdit={(tabIdx) => {
-                        setCurrentEditingSection(sections[tabIdx].id);
-                        setEditorTabIndex(tabIdx);
-                    }}
-                    onHide={(sectionType: string) => toggleHideSection(sectionType)}
-                >
-                    <button className="cursor-pointer">
-                        <EllipsisVertical className="size-6" />
-                    </button>
-                </ReorderSectionsPopup>
+          <button className="cursor-pointer">
+            <EllipsisVertical className="size-6" />
+          </button>
+        </ReorderSectionsPopup>
 
-                <div className="flex items-center gap-2">
-                    <ThemePickerDialog
-                        initialTheme={data?.theme}
-                        onThemeChange={(newTheme) => setThemeObject(newTheme)}
-                    >
-                        <LucidePalette className="size-6 cursor-pointer" role="button" />
-                    </ThemePickerDialog>
-                    {isEditing ? (
-                        <Button
-                            onClick={handleSave}
-                            className="cursor-pointer text-black"
-                            variant={"ghost"}
-                        >
-                            {loading ? (
-                                <LucideLoaderCircle className="size-6 animate-spin" />
-                            ) : (
-                                <span className="text-lg">Save</span>
-                            )}
-                        </Button>
-                    ) : (
-                        <>
-                            <Button
-                                onClick={handlePublish}
-                                variant={"ghost"}
-                                className="cursor-pointer flex items-center"
-                            >
-                                {loading ? (
-                                    <LucideLoaderCircle className="size-6 animate-spin" />
-                                ) : (
-                                    <>
-                                        <span className="hidden md:block text-lg">Publish</span>
-                                        <span>
-                                            <LucideUploadCloud className="size-6" />
-                                        </span>
-                                    </>
-                                )}
-                            </Button>
-                        </>
-                    )}
-                    <SettingsDropdown>
-                        <LucideSettings className="size-6" role="button" />
-                    </SettingsDropdown>
+        <div className="flex items-center gap-2">
+          <ThemePickerDialog
+            initialTheme={data?.theme}
+            onThemeChange={(newTheme) => setThemeObject(newTheme)}
+          >
+            <LucidePalette className="size-6 cursor-pointer" role="button" />
+          </ThemePickerDialog>
+          {isEditing ? (
+            <Button
+              onClick={handleSave}
+              className="cursor-pointer text-black"
+              variant={"ghost"}
+            >
+              {loading ? (
+                <LucideLoaderCircle className="size-6 animate-spin" />
+              ) : (
+                <span className="text-lg">Save</span>
+              )}
+            </Button>
+          ) : (
+            <>
+              <Button
+                onClick={handlePublish}
+                variant={"ghost"}
+                className="cursor-pointer flex items-center"
+              >
+                {loading ? (
+                  <LucideLoaderCircle className="size-6 animate-spin" />
+                ) : (
+                  <>
+                    <span className="hidden md:block text-lg">Publish</span>
+                    <span>
+                      <LucideUploadCloud className="size-6" />
+                    </span>
+                  </>
+                )}
+              </Button>
+            </>
+          )}
+          <SettingsDropdown>
+            <LucideSettings className="size-6" role="button" />
+          </SettingsDropdown>
 
-                    <Button
-                        variant={"ghost"}
-                        onClick={() => toggleEditor()}
-                        className="cursor-pointer"
-                    >
-                        <LucideChevronLeft className="size-6 hidden md:block" />
-                        <LucideEye className="size-6 md:hidden" />
-                    </Button>
-                </div>
-            </div>
-            <EditorTabs
-                className="md:mt-2"
-                sections={editorSections}
-                templateEditorSchema={templateSchema}
-                TabIndex={editorTabIndex}
-            />
+          <Button
+            variant={"ghost"}
+            onClick={() => toggleEditor()}
+            className="cursor-pointer"
+          >
+            <LucideChevronLeft className="size-6 hidden md:block" />
+            <LucideEye className="size-6 md:hidden" />
+          </Button>
         </div>
-    );
+      </div>
+      <EditorTabs
+        className="md:mt-2"
+        sections={editorSections}
+        templateEditorSchema={templateSchema}
+        TabIndex={editorTabIndex}
+      />
+    </div>
+  );
 };

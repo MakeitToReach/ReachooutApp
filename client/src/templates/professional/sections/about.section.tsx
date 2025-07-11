@@ -124,8 +124,22 @@ export const PFAboutSection = ({
             content={description}
             className="text-template-text-primary"
           /> */}
+          {/* <div
+            className="prose prose-sm max-w-none text-template-text-primary prose-p:text-template-text-primary prose-p:leading-relaxed prose-p:mb-4 prose-p:whitespace-pre-line prose-strong:text-template-text-primary"
+            dangerouslySetInnerHTML={{ __html: description }}
+          /> */}
           <div
-            className="prose prose-sm max-w-none text-template-text-primary"
+            className="
+    prose prose-sm max-w-none text-template-text-primary
+    prose-p:text-template-text-primary
+    prose-strong:text-template-text-primary
+    prose-h1:text-template-text-primary
+    prose-h2:text-template-text-primary
+    prose-h3:text-template-text-primary
+    prose-h4:text-template-text-primary
+    prose-h5:text-template-text-primary
+    prose-h6:text-template-text-primary
+  "
             dangerouslySetInnerHTML={{ __html: description }}
           />
         </div>

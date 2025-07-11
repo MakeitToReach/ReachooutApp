@@ -40,7 +40,12 @@ app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || origin === CLIENT_URL || origin === DEV_URL) {
+    if (
+      !origin ||
+      origin === CLIENT_URL ||
+      origin === DEV_URL ||
+      origin === "http://localhost:3000"
+    ) {
       return callback(null, true);
     }
     if (
