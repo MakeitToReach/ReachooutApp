@@ -36,10 +36,11 @@ export default function RootLayout({
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        {/* <script
-          crossOrigin="anonymous"
-          src="//unpkg.com/react-scan/dist/auto.global.js"
-        /> */}
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="32c03a2f-3a05-4666-b927-ab34f08c7e1c"
+        ></script>
       </head>
       <body className={`antialiased`}>
         <main>{children}</main>
