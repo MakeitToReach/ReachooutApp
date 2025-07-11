@@ -23,11 +23,11 @@ export const getUserProjects = async () => {
   return response.data;
 };
 
-export const createUserProject = async (name: string) => {
+export const createUserProject = async (name: string, description: string) => {
   const token = getToken();
   const response = await api.post(
     `/v1/project/create`,
-    { name },
+    { name, description },
     {
       headers: { Authorization: `Bearer ${token}` },
       withCredentials: true,
@@ -194,4 +194,27 @@ export const getProjectByCustomDomain = async (customDomain: string) => {
 
     return null;
   }
+};
+
+export const updateProjectFavicon = async (projectId: string, faviconUrl: string) => {
+  const token = getToken();
+  const response = await api.put(
+    `/v1/project/update-favicon`,
+    {
+      projectId: projectId,
+      faviconUrl: faviconUrl,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
+  if (response.status === 200) {
+    toast.success("Favicon updated successfully");
+    return response.data;
+  }
+  toast.error(`Failed to update favicon: ${response.data.error}`);
+  return null;
 };

@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import prisma from "../config/prisma";
 
 export const createProject = async (
-    req: Request<{}, {}, { name: string }>,
+    req: Request<{}, {}, { name: string; description: string }>,
     res: Response,
 ) => {
-    const { name } = req.body;
+    const { name, description } = req.body;
     const userId = req.user?.id;
 
     const user = await prisma.user.findUnique({
@@ -43,6 +43,7 @@ export const createProject = async (
     const project = await prisma.project.create({
         data: {
             name,
+            description,
             subDomain: generateSubdomain(),
             user: {
                 connect: {
@@ -508,4 +509,57 @@ export const getProjectById = async (req: Request, res: Response) => {
     where: { id },
   });
   res.status(200).json(project);
+};
+
+export const updateProjectFavicon = async (
+  req: Request<{}, {}, { projectId: string; faviconUrl: string }>,
+  res: Response
+) => {
+  try {
+    const { projectId, faviconUrl } = req.body;
+    const userId = req.user?.id;
+
+    if (!projectId || !faviconUrl) {
+      return res.status(400).json({ error: "Project ID and favicon URL are required" });
+    }
+
+    // Check if user exists
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Check if project exists and belongs to user
+    const project = await prisma.project.findFirst({
+      where: {
+        id: projectId,
+        userId: userId,
+      },
+    });
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found or access denied" });
+    }
+
+    // Update the project favicon
+    const updatedProject = await prisma.project.update({
+      where: {
+        id: projectId,
+      },
+      data: {
+        faviconUrl: faviconUrl,
+      },
+    });
+
+    return res.status(200).json({
+      project: updatedProject,
+      message: "Project favicon updated successfully",
+    });
+  } catch (error) {
+    console.error("Error updating project favicon:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };

@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -20,11 +14,11 @@ import {
   ExternalLink,
   Settings2,
 } from "lucide-react";
-import PreviewButton from "./previewBtn";
 import { Project } from "@/schemas/projects.schema";
 import { useSidebar } from "../ui/sidebar";
 import Link from "next/link";
 import { toast } from "sonner";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 interface ProjectCardProps {
   project: Project;
@@ -58,15 +52,21 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
   const portfolioUrl = getPortfolioUrl();
 
   return (
-    <Card className="shadow-2xl hover:shadow-3xl transition-shadow duration-300">
-      <CardHeader className="flex flex-row items-center justify-between">
-        <div>
-          <CardTitle className="text-lg">{project.name}</CardTitle>
-          <a href={portfolioUrl} target="_blank">
-            <p className="text-sm text-muted-foreground hover:underline text-xs">
-              {portfolioUrl}
-            </p>
-          </a>
+    <Card className="shadow-2xl hover:shadow-3xl transition-shadow duration-300 px-0">
+      <CardHeader className="flex flex-row justify-between px-2 w-full">
+        <div className="flex flex-row items-center gap-2 min-w-0">
+          <Avatar className="w-10 h-10">
+            <AvatarImage src={project.faviconUrl || "/favicon.ico"} />
+            <AvatarFallback>{project.name.slice(0, 2)}</AvatarFallback>
+          </Avatar>
+          <div className="min-w-0">
+            <CardTitle className="text-sm">{project.name}</CardTitle>
+            <a href={portfolioUrl} target="_blank" className="block max-w-[280px]">
+              <p className="text-xs text-muted-foreground hover:underline truncate max-w-full">
+                {portfolioUrl}
+              </p>
+            </a>
+          </div>
         </div>
 
         {/* Settings Menu */}

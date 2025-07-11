@@ -3,6 +3,8 @@ export interface Project {
   name: string;
   subDomain?: string;
   customDomain?: string;
+  faviconUrl?: string;
+  description?: string;
   // createdAt: Date;
   // updatedAt: Date;
   // userId: string;

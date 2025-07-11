@@ -14,6 +14,7 @@ import {
   checkSubdomainAvailability,
   updateProjectSubdomain,
   getProjectById,
+  updateProjectFavicon,
 } from "../controllers/project.controller";
 
 const projectRouter = Router();
@@ -92,6 +93,15 @@ projectRouter.put(
   isAuthenticated,
   (req: Request, res: Response) => {
     updateProjectSubdomain(req, res);
+  }
+);
+
+// Update project favicon (requires authentication)
+projectRouter.put(
+  "/update-favicon",
+  isAuthenticated,
+  (req: Request, res: Response) => {
+    updateProjectFavicon(req, res);
   }
 );
 

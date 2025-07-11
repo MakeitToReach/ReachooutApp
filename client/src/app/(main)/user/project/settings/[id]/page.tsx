@@ -23,9 +23,11 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useParams } from "next/navigation";
-import { getProjectById } from "@/api/project";
+import { getProjectById, updateProjectFavicon } from "@/api/project";
 import { checkSubdomainAvailability, updateSubdomain } from "@/api/domain";
 import { toast } from "sonner";
+import { Textarea } from "@/components/ui/textarea";
+import { ImageInput } from "@/components/imgInput";
 
 const ProjectSettingsPage = () => {
   const [settings, setSettings] = useState({
@@ -33,6 +35,7 @@ const ProjectSettingsPage = () => {
     description: "A professional portfolio showcasing my work and experience",
     subDomain: "my-portfolio",
     customDomain: "",
+    faviconUrl: "/favicon.ico",
   });
 
   const { id } = useParams<{ id: string }>();
@@ -48,8 +51,7 @@ const ProjectSettingsPage = () => {
   // Google search preview
   const getGooglePreview = () => {
     const title = settings.name;
-    const description =
-      "A professional portfolio showcasing my work and experience";
+    const description = settings.description || "";
     const url = settings.customDomain || `${settings.subDomain}.reachoout.com`;
 
     return {
@@ -119,11 +121,13 @@ const ProjectSettingsPage = () => {
     try {
       if (section === "subdomain") {
         await updateSubdomain(settings.subDomain, id as string);
+      } else if (section === "favicon") {
+        await updateProjectFavicon(id as string, settings.faviconUrl);
       }
       // Add other section handlers as needed
     } catch (error) {
-      console.error("Error updating subdomain:", error);
-      toast.error("Failed to update subdomain");
+      console.error("Error updating settings:", error);
+      toast.error("Failed to update settings");
     } finally {
       setIsLoading(false);
     }
@@ -169,11 +173,11 @@ const ProjectSettingsPage = () => {
               </p>
             </div>
 
-            {/* <div className="space-y-2">
+            <div className="space-y-2">
               <Label htmlFor="project-description">Project Description</Label>
               <Textarea
                 id="project-description"
-                value={"Test Description"}
+                value={settings.description || ""}
                 onChange={(e) =>
                   setSettings({ ...settings, description: e.target.value })
                 }
@@ -184,7 +188,7 @@ const ProjectSettingsPage = () => {
               <p className="text-sm text-muted-foreground">
                 {160}/160 characters
               </p>
-            </div> */}
+            </div>
 
             <Button
               onClick={() => handleSave("basic")}
@@ -208,9 +212,9 @@ const ProjectSettingsPage = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="border rounded-lg p-4 bg-gray-50 dark:bg-gray-900">
+            <div className="border rounded-lg p-4 bg-white ">
               <div className="space-y-0">
-                <div className="text-xl text-blue-800 dark:text-blue-200 font-medium">
+                <div className="text-xl text-blue-800 font-medium">
                   {preview.title}
                 </div>
                 <div className="text-green-600 text-sm">{preview.url}</div>
@@ -302,7 +306,46 @@ const ProjectSettingsPage = () => {
           </CardContent>
         </Card>
 
-        {/* Section 3: Custom Domain */}
+        {/* Section 3: Favicon Settings */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Settings className="h-5 w-5" />
+              Favicon Settings
+            </CardTitle>
+            <CardDescription>
+              Upload a custom favicon for your project. This will appear in browser tabs and bookmarks.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="favicon">Project Favicon</Label>
+              <ImageInput
+                initialImgUrl={settings.faviconUrl}
+                className="w-full"
+                onImageUpload={(imgUrl) => {
+                  setSettings({ ...settings, faviconUrl: imgUrl });
+                }}
+                onImageRemove={() => {
+                  setSettings({ ...settings, faviconUrl: "" });
+                }}
+              />
+              <p className="text-sm text-muted-foreground">
+                Recommended size: 32x32 pixels. Supports SVG, PNG, JPG, or GIF (max 2MB).
+              </p>
+            </div>
+
+            <Button
+              onClick={() => handleSave("favicon")}
+              disabled={isLoading}
+              className="w-full sm:w-auto"
+            >
+              {isLoading ? "Saving..." : "Save Favicon"}
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Section 4: Custom Domain */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">

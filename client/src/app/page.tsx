@@ -96,8 +96,8 @@ export async function generateMetadata(): Promise<Metadata> {
         return {
           title: project.name,
           description: `${project.name}'s Portfolio`,
-          icons: project.logo
-            ? [{ rel: "icon", url: project.logo }]
+          icons: project.faviconUrl
+            ? [{ rel: "icon", url: project.faviconUrl }]
             : "/favicon.ico",
         };
       } catch (error) {
@@ -111,8 +111,8 @@ export async function generateMetadata(): Promise<Metadata> {
       return {
         title: project.name,
         description: `${project.name}'s Portfolio`,
-        icons: project.logo
-          ? [{ rel: "icon", url: project.logo }]
+        icons: project.faviconUrl
+          ? [{ rel: "icon", url: project.faviconUrl }]
           : "/favicon.ico",
       };
     } catch (error) {
