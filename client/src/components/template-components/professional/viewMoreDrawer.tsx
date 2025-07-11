@@ -16,6 +16,7 @@ import { PF_TEAM_MEMBER } from "@/templates/professional/types/teamMember.types"
 import { LucideX } from "lucide-react";
 import { PF_BLOG } from "@/templates/professional/types/blog.types";
 import { PF_CATALOG } from "@/templates/professional/types/serviceCatalog.types";
+import { Description } from "@/components/ui/Description";
 
 interface ViewMoreDrawerProps {
     children: React.ReactNode;
@@ -99,12 +100,15 @@ export const ViewMoreDrawer = ({
                     </div>
 
                     {/* Project Description */}
-                    <p className="text-sm text-gray-700">
-                        {project?.description ||
+                    <Description 
+                        content={
+                            project?.description ||
                             teamMember?.description ||
                             blog?.description ||
-                            catalogService?.description}
-                    </p>
+                            catalogService?.description ||
+                            ""
+                        }
+                    />
                 </div>
 
                 {/* Fixed Footer Button */}

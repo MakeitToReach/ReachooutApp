@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { LucideX, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getSocialIconFromRegistry } from "@/lib/utils";
+import { Description } from "@/components/ui/Description";
 
 // Finance template types
 import { F_BLOG } from "@/templates/finance/types/blogs.types";
@@ -199,13 +200,17 @@ export const FViewMoreDrawer = ({
 
                     {/* Description Section */}
                     <div className="space-y-4">
-                        <p className="text-sm text-gray-700 leading-relaxed">
-                            {blog?.description ||
+                        <Description 
+                            content={
+                                blog?.description ||
                                 project?.description ||
                                 service?.description ||
                                 catalogService?.description ||
-                                teamMember?.description}
-                        </p>
+                                teamMember?.description ||
+                                ""
+                            }
+                            className="text-sm text-gray-700 leading-relaxed"
+                        />
                     </div>
                 </div>
 

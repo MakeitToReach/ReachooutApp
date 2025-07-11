@@ -1,8 +1,9 @@
 import { PF_ABOUT_SECTION } from "../types/about.types";
 import { motion as m } from "motion/react";
 import { NumberTicker } from "@/components/magicui/number-ticker";
-import { ReadMorePopup } from "@/components/editor-components/popups/readMorePopup";
+// import { ReadMorePopup } from "@/components/editor-components/popups/readMorePopup";
 import { splitNumericValue } from "@/lib/utils";
+import { Description } from "@/components/ui/Description";
 
 export const PFAboutSection = ({
     title,
@@ -26,15 +27,15 @@ export const PFAboutSection = ({
         },
     };
 
-    const trimmedDescription = description.trim();
-    const isLong = trimmedDescription.length > 500;
-    const visibleText = isLong
-        ? `${trimmedDescription.slice(0, 500)}...`
-        : trimmedDescription;
+    // const trimmedDescription = description.trim();
+    // const isLong = trimmedDescription.length > 500;
+    // const visibleText = isLong
+    //     ? `${trimmedDescription.slice(0, 500)}...`
+    //     : trimmedDescription;
 
-    const paragraphs = visibleText
-        .split(/\n{2,}/)
-        .filter((para) => para.trim() !== "");
+    // const paragraphs = visibleText
+    //     .split(/\n{2,}/)
+    //     .filter((para) => para.trim() !== "");
     return (
         <section className="max-w-6xl mx-auto py-20" id="about">
             <div className="px-4 lg:px-0 flex flex-col lg:flex-row w-full lg:gap-20 lg:mt-20">
@@ -119,7 +120,8 @@ export const PFAboutSection = ({
                         {title}{" "}
                         <span className="text-template-accent-secondary">{colorTitle}</span>
                     </m.h2>
-                    <m.div
+                    <Description content={description} className="text-template-text-primary" />
+                    {/* <m.div
                         variants={animateVariants}
                         whileInView={"animate"}
                         initial={"initial"}
@@ -141,27 +143,7 @@ export const PFAboutSection = ({
                                 </p>
                             </ReadMorePopup>
                         )}
-                    </m.div>
-                    {/* <ul className="grid grid-cols-2 gap-y-3 gap-x-4 mt-2"> */}
-                    {/*     <li className="flex items-center"> */}
-                    {/*         <span className="inline-block w-4 h-4 mr-2 bg-[#fbe8d3] rounded-sm"></span> */}
-                    {/*         <span className="font-medium">Centers in 3+ cities</span> */}
-                    {/*     </li> */}
-                    {/*     <li className="flex items-center"> */}
-                    {/*         <span className="inline-block w-4 h-4 mr-2 bg-[#d6eef8] rounded-sm"></span> */}
-                    {/*         <span className="font-medium">Founded in 2017</span> */}
-                    {/*     </li> */}
-                    {/*     <li className="flex items-center"> */}
-                    {/*         <span className="inline-block w-4 h-4 mr-2 bg-[#d6eef8] rounded-sm"></span> */}
-                    {/*         <span className="font-medium"> */}
-                    {/*             Savitribai Phule Pune University */}
-                    {/*         </span> */}
-                    {/*     </li> */}
-                    {/*     <li className="flex items-center"> */}
-                    {/*         <span className="inline-block w-4 h-4 mr-2 bg-[#fbe8d3] rounded-sm"></span> */}
-                    {/*         <span className="font-medium">100% +ve reviews</span> */}
-                    {/*     </li> */}
-                    {/* </ul> */}{" "}
+                    </m.div> */}
                 </div>
             </div>
         </section>

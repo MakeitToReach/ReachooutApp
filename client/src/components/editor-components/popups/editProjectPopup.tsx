@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { PF_PROJECT } from "@/templates/professional/types/project";
 import { ReqInput } from "../inputs/reqInput";
 import { ImageInput } from "@/components/imgInput";
+import { Textarea } from "@/components/ui/textarea";
 
 interface EditProjectPopupProps {
   project: PF_PROJECT;
@@ -68,14 +69,16 @@ export const EditProjectPopup = ({
             onChange={(e) => handleChange("category", e.target.value)}
           />
 
-          <ReqInput
-            required={true}
-            type="text"
-            label="Description"
-            placeholder="Enter your project description"
-            value={formData.description}
-            onChange={(e) => handleChange("description", e.target.value)}
-          />
+          <div className="space-y-2">
+            <h1 className="text-sm font-medium">Description</h1>
+            <Textarea
+              required={true}
+              placeholder="Enter your project description"
+              className="h-40"
+              value={formData.description}
+              onChange={(e) => handleChange("description", e.target.value)}
+            />
+          </div>
 
           <div className="flex flex-col items-center md:gap-10 gap-6">
             <ImageInput
@@ -84,9 +87,7 @@ export const EditProjectPopup = ({
               onImageUpload={(imgUrl) => {
                 handleChange("imgUrl", imgUrl);
               }}
-              onImageRemove={() =>
-                handleChange("imgUrl", "")
-              }
+              onImageRemove={() => handleChange("imgUrl", "")}
             />
 
             <h1 className="text-xs md:text-lg">OR</h1>

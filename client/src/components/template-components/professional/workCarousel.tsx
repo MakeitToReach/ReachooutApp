@@ -116,7 +116,6 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                       <h1 className="md:text-xl text-lg font-semibold">
                         {project.heading}
                       </h1>
-                      {/* <h2 className="font-extralight">{project.subtitle}</h2> */}
                       <Badge>{project.category}</Badge>
                     </div>
 
