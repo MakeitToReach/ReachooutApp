@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import { PageLoader } from "@/components/editor-components/pageLoader";
+import { notFound } from "next/navigation";
 
 interface Project {
   id: string;
@@ -60,44 +61,41 @@ export default function PortfolioView({ project }: PortfolioViewProps) {
   if (isLoading) return <PageLoader />;
 
   if (!project.templates.length) {
+    notFound();
+  }
+
+  // Sort templates by order and get the first template
+  const sortedTemplates = [...project.templates].sort(
+    (a, b) => a.order - b.order
+  );
+  const firstTemplate = sortedTemplates[0];
+
+  if (!firstTemplate) {
+    notFound();
+  }
+
+  const template =
+    TEMPLATE_REGISTRY[
+      firstTemplate.data.name as keyof typeof TEMPLATE_REGISTRY
+    ];
+
+  if (!template) {
+    console.warn(`Template ${firstTemplate.templateId} not found in registry`);
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Portfolio Not Found</h1>
+          <h1 className="text-2xl font-bold mb-4">Template Not Found</h1>
           <p className="text-gray-600">
-            This portfolio hasn&apos;t been published yet.
+            The template for this portfolio is not available.
           </p>
         </div>
       </div>
     );
   }
 
-  // Sort templates by order
-  const sortedTemplates = [...project.templates].sort(
-    (a, b) => a.order - b.order
-  );
-
   return (
     <div ref={wrapperRef} className="theme-wrapper w-full">
-        {sortedTemplates.map((templateInstance, index) => {
-          const template =
-            TEMPLATE_REGISTRY[
-              templateInstance.data.name as keyof typeof TEMPLATE_REGISTRY
-            ];
-
-          if (!template) {
-            console.warn(
-              `Template ${templateInstance.templateId} not found in registry`
-            );
-            return null;
-          }
-
-          return (
-            <div key={`${templateInstance.templateId}-${index}`}>
-              <template.component data={templateInstance.data} />
-            </div>
-          );
-        })}
-      </div>
+      <template.component data={firstTemplate.data} />
+    </div>
   );
 }

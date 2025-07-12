@@ -16,11 +16,13 @@ import {
   getProjectById,
   updateProjectFavicon,
   updateProjectMetaData,
+  getProjectBySubdomainAndSlug,
 } from "../controllers/project.controller";
 
 const projectRouter = Router();
 
 // /v1/project
+// Create project
 projectRouter.post(
   "/create",
   isAuthenticated,
@@ -29,10 +31,12 @@ projectRouter.post(
   }
 );
 
+// Get project by project id
 projectRouter.get("/:id", isAuthenticated, (req: Request, res: Response) => {
   getProjectById(req, res);
 });
 
+// Get all projects for the user
 projectRouter.get(
   "/user/all",
   isAuthenticated,
@@ -41,6 +45,7 @@ projectRouter.get(
   }
 );
 
+// Get templates in project by project id
 projectRouter.get(
   "/templates/:id",
   isAuthenticated,
@@ -49,6 +54,7 @@ projectRouter.get(
   }
 );
 
+// Add template to project
 projectRouter.post(
   "/add-template",
   isAuthenticated,
@@ -57,6 +63,7 @@ projectRouter.post(
   }
 );
 
+// Delete project by id
 projectRouter.delete(
   "/delete/:id",
   isAuthenticated,
@@ -65,6 +72,7 @@ projectRouter.delete(
   }
 );
 
+// Add custom domain
 projectRouter.post(
   "/custom-domain",
   isAuthenticated,
@@ -73,14 +81,22 @@ projectRouter.post(
   }
 );
 
+// Get project by custom domain
 projectRouter.get("/custom-domain/:customDomain", (req: Request, res: Response) => {
   getProjectByCustomDomain(req, res);
 });
 
+// Get project by subdomain
 projectRouter.get("/subdomain/:subdomain", (req: Request, res: Response) => {
   getProjectBySubdomain(req, res);
 });
 
+// Get project by subdomain and slug
+projectRouter.get("/subdomain/:subdomain/slug/:slug", (req: Request, res: Response) => {
+  getProjectBySubdomainAndSlug(req, res);
+});
+
+// Check subdomain availability
 projectRouter.get(
   "/check-subdomain/:subdomain",
   (req: Request, res: Response) => {
@@ -88,7 +104,7 @@ projectRouter.get(
   }
 );
 
-// Update project subdomain (requires authentication)
+// Update project subdomain 
 projectRouter.put(
   "/update-subdomain",
   isAuthenticated,
@@ -97,7 +113,7 @@ projectRouter.put(
   }
 );
 
-// Update project favicon (requires authentication)
+// Update project favicon 
 projectRouter.put(
   "/update-favicon",
   isAuthenticated,
@@ -106,6 +122,7 @@ projectRouter.put(
   }
 );
 
+// Update project meta data
 projectRouter.put(
   "/update",
   isAuthenticated,
@@ -113,5 +130,6 @@ projectRouter.put(
     updateProjectMetaData(req, res);
   }
 );
+
 
 export default projectRouter;

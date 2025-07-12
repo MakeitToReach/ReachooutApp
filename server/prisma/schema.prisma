@@ -83,7 +83,13 @@ model ProjectTemplate {
   updatedAt  DateTime @updatedAt
   project    Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
   template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
-
+  
+  // SEO fields for templates with order > 0
+  slug       String?  @unique
+  seoTitle   String?
+  seoDescription String?
+  
   @@id([projectId, templateId, createdAt])
   @@index([projectId, order])
+  @@index([slug])
 }

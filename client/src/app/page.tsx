@@ -14,6 +14,7 @@ async function getProject(subdomain: string) {
   try {
     console.log("📡 Making API request to getProjectBySubdomain...");
     const project = await getProjectBySubdomain(subdomain);
+    console.log("🔍 Project:", project);
     return project;
   } catch (error) {
     console.error("❌ Error fetching project:", error);

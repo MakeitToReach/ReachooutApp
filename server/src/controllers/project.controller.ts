@@ -600,11 +600,24 @@ export const updateProjectMetaData = async (
     data: { name, description },
   });
 
-  return res
-    .status(200)
-    .json({
-      project: updatedProject,
-      message: "Project meta data updated successfully",
-    });
+  return res.status(200).json({
+    project: updatedProject,
+    message: "Project meta data updated successfully",
+  });
 };
 
+export const getProjectBySubdomainAndSlug = async (
+  req: Request,
+  res: Response
+) => {
+  const { subdomain, slug } = req.params;
+  const project = await prisma.project.findUnique({
+    where: { subDomain: subdomain },
+    include: {
+      templates: {
+        where: { slug: slug },
+      },
+    },
+  });
+  res.status(200).json(project);
+};

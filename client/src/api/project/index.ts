@@ -255,3 +255,20 @@ export const updateProjectMetaData = async (
   toast.error(`Failed to update project meta data: ${response.data.error}`);
   return null;
 };
+
+export const getProjectBySubdomainAndSlug = async (
+  subdomain: string,
+  slug: string
+) => {
+  const response = await api.get(
+    `/v1/project/subdomain/${subdomain}/slug/${slug}`
+  );
+  return response.data;
+};
+
+export const getProjectByCustomDomainAndSlug = async (customDomain: string, slug: string) => {
+  const response = await api.get(
+    `/v1/project/custom-domain/${customDomain}/slug/${slug}`
+  );
+  return response.data;
+};
