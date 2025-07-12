@@ -93,48 +93,16 @@ export const getProjectBySubdomain = async (subdomain: string) => {
   );
 
   try {
-    console.log("📡 Making API request...");
     const response = await api.get(`/v1/project/subdomain/${subdomain}`, {
       withCredentials: false, // Public access, no authentication required
     });
 
-    console.log("✅ API response received:");
-    console.log("  - Status:", response.status);
-    console.log("  - Status text:", response.statusText);
-    console.log("  - Data:", response.data);
-
-    if (response.status !== 200) {
-      console.log("❌ Non-200 status code, returning null");
-      return null;
+    if (response.status === 200 || response.status === 304) {
+      return response.data;
     }
-
-    console.log("✅ Successfully returning project data");
-    return response.data;
+    return null;
   } catch (error) {
     console.error("❌ Error fetching project:", error);
-    console.error("❌ Error details:", {
-      message: error instanceof Error ? error.message : "Unknown error",
-      name: error instanceof Error ? error.name : "Unknown",
-      stack: error instanceof Error ? error.stack : undefined,
-    });
-
-    // Log axios specific error details if available
-    if (error && typeof error === "object" && "response" in error) {
-      const axiosError = error as {
-        response?: {
-          status?: number;
-          statusText?: string;
-          data?: unknown;
-          headers?: unknown;
-        };
-      };
-      console.error("❌ Axios error details:", {
-        status: axiosError.response?.status,
-        statusText: axiosError.response?.statusText,
-        data: axiosError.response?.data,
-        headers: axiosError.response?.headers,
-      });
-    }
 
     return null;
   }
@@ -152,7 +120,6 @@ export const getProjectByCustomDomain = async (customDomain: string) => {
   // );
 
   try {
-    console.log("📡 Making API request...");
     const response = await api.get(
       `/v1/project/custom-domain/${customDomain}`,
       {
@@ -160,18 +127,10 @@ export const getProjectByCustomDomain = async (customDomain: string) => {
       }
     );
 
-    // console.log("✅ API response received:");
-    // console.log("  - Status:", response.status);
-    // console.log("  - Status text:", response.statusText);
-    // console.log("  - Data:", response.data);
-
-    if (response.status !== 200) {
-      console.log("❌ Non-200 status code, returning null");
-      return null;
+    if (response.status === 200 || response.status === 304) {
+      return response.data;
     }
-
-    console.log("✅ Successfully returning project data");
-    return response.data;
+    return null;
   } catch (error) {
     console.error("❌ Error fetching project:", error);
     console.error("❌ Error details:", {
@@ -256,6 +215,38 @@ export const updateProjectMetaData = async (
   return null;
 };
 
+export const updateTemplateSEO = async (
+  projectId: string,
+  templateId: string,
+  slug: string,
+  seoTitle: string,
+  seoDescription: string
+) => {
+  const token = getToken();
+  const response = await api.put(
+    `/v1/project/update-template-seo`,
+    {
+      projectId: projectId,
+      templateId: templateId,
+      slug: slug,
+      seoTitle: seoTitle,
+      seoDescription: seoDescription,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
+  if (response.status === 200) {
+    toast.success("Template SEO settings updated successfully");
+    return response.data;
+  }
+  toast.error(`Failed to update template SEO: ${response.data.error}`);
+  return null;
+};
+
 export const getProjectBySubdomainAndSlug = async (
   subdomain: string,
   slug: string
@@ -266,7 +257,10 @@ export const getProjectBySubdomainAndSlug = async (
   return response.data;
 };
 
-export const getProjectByCustomDomainAndSlug = async (customDomain: string, slug: string) => {
+export const getProjectByCustomDomainAndSlug = async (
+  customDomain: string,
+  slug: string
+) => {
   const response = await api.get(
     `/v1/project/custom-domain/${customDomain}/slug/${slug}`
   );

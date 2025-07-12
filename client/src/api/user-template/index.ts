@@ -4,17 +4,23 @@ import { getToken } from "@/lib/isAuthenticated";
 // import { PF_TMP_SCHEMA } from "@/templates/professional/schema/PFTemplateSchema";
 
 //TODO:make it server safe and remove client side usage by using getToken and toast
-export const getProjectTemplateInstanceData = async (templateId: string, projectId: string, order: number) => {
+export const getProjectTemplateInstanceData = async (
+  templateId: string,
+  projectId: string,
+  order: number
+) => {
   const token = getToken();
-  const response = await api.get(`/v1/template/user/${templateId}?pid=${projectId}&order=${order}`, {
-    headers: { Authorization: `Bearer ${token}` },
-    withCredentials: true,
-  });
+  const response = await api.get(
+    `/v1/template/user/${templateId}?pid=${projectId}&order=${order}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    }
+  );
 
-  if (response.status === 200) {
+  if (response.status === 200 || response.status === 304) {
     toast.success("Template fetched successfully");
+    return response.data;
   }
-
-  return response.data;
+  return null;
 };
-

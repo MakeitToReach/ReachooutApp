@@ -322,15 +322,39 @@ export const updateTemplateInstance = async (req: Request, res: Response) => {
     }
 };
 
-export const getProjectTemplateInstanceData = async (req: Request<{ templateId: string }>, res: Response) => {
-    const { templateId } = req.params;
-    const { order, pid } = req.query;
-    const templateInstance = await prisma.projectTemplate.findFirst({
-        where: {
-            templateId,
-            order: Number(order),
-            projectId: pid as string,
-        },
-    });
-    return res.status(200).json({ template: templateInstance });
+export const getProjectTemplateInstanceData = async (
+    req: Request<{ templateId: string }>,
+    res: Response
+) => {
+    try {
+        const { templateId } = req.params;
+        const { order, pid } = req.query;
+
+        if (!templateId) {
+            return res.status(400).json({ error: "Missing templateId parameter" });
+        }
+        if (!pid) {
+            return res.status(400).json({ error: "Missing projectId (pid) query parameter" });
+        }
+        if (order === undefined || isNaN(Number(order))) {
+            return res.status(400).json({ error: "Invalid or missing order query parameter" });
+        }
+
+        const templateInstance = await prisma.projectTemplate.findFirst({
+            where: {
+                templateId,
+                order: Number(order),
+                projectId: pid as string,
+            },
+        });
+
+        if (!templateInstance) {
+            return res.status(404).json({ error: "Template instance not found" });
+        }
+
+        return res.status(200).json({ template: templateInstance });
+    } catch (error) {
+        console.error("Error fetching template instance:", error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
 };

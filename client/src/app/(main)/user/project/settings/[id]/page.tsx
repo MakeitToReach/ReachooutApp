@@ -10,9 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-// import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-// import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import {
   Globe,
@@ -27,11 +25,19 @@ import {
   getProjectById,
   updateProjectFavicon,
   updateProjectMetaData,
+  updateTemplateSEO,
 } from "@/api/project";
 import { checkSubdomainAvailability, updateSubdomain } from "@/api/domain";
 import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
 import { ImageInput } from "@/components/imgInput";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const ProjectSettingsPage = () => {
   const [settings, setSettings] = useState({
@@ -42,16 +48,26 @@ const ProjectSettingsPage = () => {
     faviconUrl: "/favicon.ico",
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [templates, setTemplates] = useState<any[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
+  const [templateSEO, setTemplateSEO] = useState({
+    slug: "",
+    seoTitle: "",
+    seoDescription: "",
+  });
+
   const { id } = useParams<{ id: string }>();
 
   const [isSubdomainAvailable, setIsSubdomainAvailable] = useState<
     boolean | null
   >(null);
+  const [isSlugAvailable, setIsSlugAvailable] = useState<boolean | null>(null);
   // const [isCustomDomainValid, setIsCustomDomainValid] = useState<
   //   boolean | null
   // >(null);
   const [isLoading, setIsLoading] = useState(false);
-
 
   // Google search preview
   const getGooglePreview = () => {
@@ -94,32 +110,48 @@ const ProjectSettingsPage = () => {
     }
   };
 
-  // Validate custom domain
-  // const validateCustomDomain = (domain: string) => {
-  //   if (!domain) {
-  //     setIsCustomDomainValid(null);
-  //     return;
-  //   }
+  // Check slug availability
+  const checkSlugAvailability = async (slug: string) => {
+    if (!slug || slug.length < 2) {
+      setIsSlugAvailable(null);
+      return;
+    }
 
-  //   const domainRegex =
-  //     /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/;
-  //   const isValid = domainRegex.test(domain);
-  //   setIsCustomDomainValid(isValid);
-  // };
+    // For now, we'll just validate the format
+    // In a real implementation, you'd call an API to check global slug availability
+    const slugRegex = /^[a-z0-9-]+$/;
+    const isValid =
+      slugRegex.test(slug) && !slug.startsWith("-") && !slug.endsWith("-");
+    setIsSlugAvailable(isValid);
+  };
 
   useEffect(() => {
     const fetchProject = async () => {
       const project = await getProjectById(id);
       setSettings(project);
+
+      // Set templates if they exist
+      if (project.templates && project.templates.length > 0) {
+        setTemplates(project.templates);
+        // Set the first template with order > 0 as selected, or the first template
+        const additionalTemplates = project.templates.filter(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (t: any) => t.order > 0
+        );
+        if (additionalTemplates.length > 0) {
+          setSelectedTemplate(additionalTemplates[0]);
+          setTemplateSEO({
+            slug: additionalTemplates[0].slug || "",
+            seoTitle: additionalTemplates[0].seoTitle || "",
+            seoDescription: additionalTemplates[0].seoDescription || "",
+          });
+        }
+      }
     };
     fetchProject();
   }, [id]);
 
   // Remove the automatic check on subdomain change
-
-  // useEffect(() => {
-  //   validateCustomDomain(settings.customDomain);
-  // }, [settings.customDomain]);
 
   const handleSave = async (section: string) => {
     setIsLoading(true);
@@ -133,6 +165,14 @@ const ProjectSettingsPage = () => {
           id as string,
           settings.name,
           settings.description
+        );
+      } else if (section === "template-seo" && selectedTemplate) {
+        await updateTemplateSEO(
+          id as string,
+          selectedTemplate.templateId,
+          templateSEO.slug,
+          templateSEO.seoTitle,
+          templateSEO.seoDescription
         );
       }
     } catch (error) {
@@ -356,6 +396,174 @@ const ProjectSettingsPage = () => {
             </Button>
           </CardContent>
         </Card>
+
+        {/* Section 4: Template SEO Settings */}
+        {templates.length > 1 && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Search className="h-5 w-5" />
+                Additional Page SEO Settings
+              </CardTitle>
+              <CardDescription>
+                Configure SEO settings for additional pages in your portfolio.
+                These pages will be accessible via /[slug] URLs.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="template-select">Select Template</Label>
+                <Select
+                  value={selectedTemplate?.templateId || ""}
+                  onValueChange={(value) => {
+                    const template = templates.find(
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      (t: any) => t.templateId === value
+                    );
+                    setSelectedTemplate(template);
+                    if (template) {
+                      setTemplateSEO({
+                        slug: template.slug || "",
+                        seoTitle: template.seoTitle || "",
+                        seoDescription: template.seoDescription || "",
+                      });
+                    }
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a template to configure" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {templates
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      .filter((t: any) => t.order > 0)
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      .map((template: any) => (
+                        <SelectItem
+                          key={template.templateId}
+                          value={template.templateId}
+                        >
+                          Website {template.order}
+                        </SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {selectedTemplate && (
+                <>
+                  <div className="space-y-2">
+                    <Label htmlFor="slug">Page Slug</Label>
+                    <div className="flex items-center space-x-2">
+                      <Input
+                        id="slug"
+                        value={templateSEO.slug}
+                        onChange={(e) => {
+                          const newSlug = e.target.value
+                            .toLowerCase()
+                            .replace(/[^a-z0-9-]/g, "");
+                          setTemplateSEO({
+                            ...templateSEO,
+                            slug: newSlug,
+                          });
+                          checkSlugAvailability(newSlug);
+                        }}
+                        placeholder="about"
+                        className="flex-1"
+                      />
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => checkSlugAvailability(templateSEO.slug)}
+                        disabled={isLoading || !templateSEO.slug}
+                      >
+                        {isLoading ? "Checking..." : "Check"}
+                      </Button>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      This will be your page URL: {settings.subDomain}
+                      .reachoout.com/{templateSEO.slug}
+                    </p>
+                    {isSlugAvailable !== null && templateSEO.slug && (
+                      <div className="flex items-center gap-2 mt-2">
+                        {isSlugAvailable ? (
+                          <>
+                            <CheckCircle className="h-4 w-4 text-green-500" />
+                            <span className="text-sm text-green-600">
+                              Valid slug format
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <AlertCircle className="h-4 w-4 text-red-500" />
+                            <span className="text-sm text-red-600">
+                              Invalid slug format
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    )}
+                    {templateSEO.slug && (
+                      <p className="text-xs text-amber-600">
+                        ⚠️ Make sure this slug is unique within this project
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="seo-title">SEO Title</Label>
+                    <Input
+                      id="seo-title"
+                      value={templateSEO.seoTitle}
+                      onChange={(e) =>
+                        setTemplateSEO({
+                          ...templateSEO,
+                          seoTitle: e.target.value,
+                        })
+                      }
+                      placeholder="About Me - Professional Portfolio"
+                      maxLength={60}
+                    />
+                    <p className="text-sm text-muted-foreground">
+                      {templateSEO.seoTitle.length}/60 characters
+                    </p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="seo-description">SEO Description</Label>
+                    <Textarea
+                      id="seo-description"
+                      value={templateSEO.seoDescription}
+                      onChange={(e) =>
+                        setTemplateSEO({
+                          ...templateSEO,
+                          seoDescription: e.target.value,
+                        })
+                      }
+                      placeholder="Learn more about my background, skills, and experience in web development and design."
+                      rows={3}
+                      maxLength={160}
+                    />
+                    <p className="text-sm text-muted-foreground">
+                      {templateSEO.seoDescription.length}/160 characters
+                    </p>
+                  </div>
+
+                  <Button
+                    onClick={() => handleSave("template-seo")}
+                    disabled={
+                      isLoading || !isSlugAvailable || !templateSEO.slug
+                    }
+                    className="w-full sm:w-auto"
+                  >
+                    {isLoading ? "Saving..." : "Save SEO Settings"}
+                  </Button>
+                </>
+              )}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Section 4: Custom Domain */}
         {/* <Card>

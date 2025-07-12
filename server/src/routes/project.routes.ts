@@ -17,6 +17,7 @@ import {
   updateProjectFavicon,
   updateProjectMetaData,
   getProjectBySubdomainAndSlug,
+  updateTemplateSEO,
 } from "../controllers/project.controller";
 
 const projectRouter = Router();
@@ -131,5 +132,13 @@ projectRouter.put(
   }
 );
 
+// Update template SEO settings
+projectRouter.put(
+  "/update-template-seo",
+  isAuthenticated,
+  (req: Request, res: Response) => {
+    updateTemplateSEO(req, res);
+  }
+);
 
 export default projectRouter;

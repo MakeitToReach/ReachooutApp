@@ -509,8 +509,46 @@ export const getProjectById = async (req: Request, res: Response) => {
   const { id } = req.params;
   const project = await prisma.project.findUnique({
     where: { id },
+    include: {
+      templates: {
+        include: {
+          template: true,
+        },
+        orderBy: {
+          order: "asc",
+        },
+      },
+    },
   });
-  res.status(200).json(project);
+  
+  if (!project) {
+    return res.status(404).json({ error: "Project not found" });
+  }
+
+  // Transform the data to include SEO fields
+  const transformedProject = {
+    id: project.id,
+    name: project.name,
+    subDomain: project.subDomain,
+    customDomain: project.customDomain,
+    faviconUrl: project.faviconUrl,
+    description: project.description,
+    templates: project.templates.map((pt) => ({
+      projectId: pt.projectId,
+      templateId: pt.templateId,
+      order: pt.order,
+      slug: pt.slug,
+      seoTitle: pt.seoTitle,
+      seoDescription: pt.seoDescription,
+      template: {
+        id: pt.template.id,
+        name: pt.template.name,
+        thumbnailUrl: pt.template.thumbnailUrl,
+      },
+    })),
+  };
+
+  res.status(200).json(transformedProject);
 };
 
 export const updateProjectFavicon = async (
@@ -620,4 +658,104 @@ export const getProjectBySubdomainAndSlug = async (
     },
   });
   res.status(200).json(project);
+};
+
+export const updateTemplateSEO = async (
+  req: Request<
+    {},
+    {},
+    { 
+      projectId: string; 
+      templateId: string; 
+      slug: string; 
+      seoTitle: string; 
+      seoDescription: string 
+    }
+  >,
+  res: Response
+) => {
+  try {
+    const { projectId, templateId, slug, seoTitle, seoDescription } = req.body;
+    const userId = req.user?.id;
+
+    if (!projectId || !templateId || !slug || !seoTitle || !seoDescription) {
+      return res.status(400).json({ 
+        error: "Project ID, template ID, slug, SEO title, and SEO description are required" 
+      });
+    }
+
+    // Check if user exists and owns the project
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Check if project exists and belongs to user
+    const project = await prisma.project.findFirst({
+      where: {
+        id: projectId,
+        userId: userId,
+      },
+    });
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found or access denied" });
+    }
+
+    // Check if slug is already taken by another template in the same project
+    const existingTemplate = await prisma.projectTemplate.findFirst({
+      where: {
+        projectId: projectId,
+        slug: slug,
+        templateId: { not: templateId }, // Exclude current template
+      },
+    });
+
+    if (existingTemplate) {
+      return res.status(409).json({ 
+        error: "Slug is already taken by another template in this project. Please choose a different slug." 
+      });
+    }
+
+    // Find the specific template instance to update
+    const templateToUpdate = await prisma.projectTemplate.findFirst({
+      where: {
+        projectId: projectId,
+        templateId: templateId,
+      },
+    });
+
+    if (!templateToUpdate) {
+      return res.status(404).json({ 
+        error: "Template not found in this project" 
+      });
+    }
+
+    // Update the template SEO settings using the composite key
+    const updatedTemplate = await prisma.projectTemplate.update({
+      where: {
+        projectId_templateId_createdAt: {
+          projectId: projectId,
+          templateId: templateId,
+          createdAt: templateToUpdate.createdAt,
+        },
+      },
+      data: {
+        slug: slug,
+        seoTitle: seoTitle,
+        seoDescription: seoDescription,
+      },
+    });
+
+    return res.status(200).json({
+      template: updatedTemplate,
+      message: "Template SEO settings updated successfully",
+    });
+  } catch (error) {
+    console.error("Error updating template SEO:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };
