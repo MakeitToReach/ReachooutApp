@@ -95,6 +95,7 @@ const ProjectPage = () => {
             {templates.length > 0
               ? templates.map((item, idx) => (
                   <TemplateCard
+                    templateName={`Website ${idx + 1}`}
                     templateId={item.template.id}
                     key={idx}
                     imageUrl={item.template.thumbnailUrl || "/placeholder.png"}

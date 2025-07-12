@@ -23,7 +23,11 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useParams } from "next/navigation";
-import { getProjectById, updateProjectFavicon } from "@/api/project";
+import {
+  getProjectById,
+  updateProjectFavicon,
+  updateProjectMetaData,
+} from "@/api/project";
 import { checkSubdomainAvailability, updateSubdomain } from "@/api/domain";
 import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
@@ -43,10 +47,11 @@ const ProjectSettingsPage = () => {
   const [isSubdomainAvailable, setIsSubdomainAvailable] = useState<
     boolean | null
   >(null);
-  const [isCustomDomainValid, setIsCustomDomainValid] = useState<
-    boolean | null
-  >(null);
+  // const [isCustomDomainValid, setIsCustomDomainValid] = useState<
+  //   boolean | null
+  // >(null);
   const [isLoading, setIsLoading] = useState(false);
+
 
   // Google search preview
   const getGooglePreview = () => {
@@ -90,17 +95,17 @@ const ProjectSettingsPage = () => {
   };
 
   // Validate custom domain
-  const validateCustomDomain = (domain: string) => {
-    if (!domain) {
-      setIsCustomDomainValid(null);
-      return;
-    }
+  // const validateCustomDomain = (domain: string) => {
+  //   if (!domain) {
+  //     setIsCustomDomainValid(null);
+  //     return;
+  //   }
 
-    const domainRegex =
-      /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/;
-    const isValid = domainRegex.test(domain);
-    setIsCustomDomainValid(isValid);
-  };
+  //   const domainRegex =
+  //     /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/;
+  //   const isValid = domainRegex.test(domain);
+  //   setIsCustomDomainValid(isValid);
+  // };
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -112,9 +117,9 @@ const ProjectSettingsPage = () => {
 
   // Remove the automatic check on subdomain change
 
-  useEffect(() => {
-    validateCustomDomain(settings.customDomain);
-  }, [settings.customDomain]);
+  // useEffect(() => {
+  //   validateCustomDomain(settings.customDomain);
+  // }, [settings.customDomain]);
 
   const handleSave = async (section: string) => {
     setIsLoading(true);
@@ -123,8 +128,13 @@ const ProjectSettingsPage = () => {
         await updateSubdomain(settings.subDomain, id as string);
       } else if (section === "favicon") {
         await updateProjectFavicon(id as string, settings.faviconUrl);
+      } else if (section === "basic") {
+        await updateProjectMetaData(
+          id as string,
+          settings.name,
+          settings.description
+        );
       }
-      // Add other section handlers as needed
     } catch (error) {
       console.error("Error updating settings:", error);
       toast.error("Failed to update settings");
@@ -314,7 +324,8 @@ const ProjectSettingsPage = () => {
               Favicon Settings
             </CardTitle>
             <CardDescription>
-              Upload a custom favicon for your project. This will appear in browser tabs and bookmarks.
+              Upload a custom favicon for your project. This will appear in
+              browser tabs and bookmarks.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -331,7 +342,8 @@ const ProjectSettingsPage = () => {
                 }}
               />
               <p className="text-sm text-muted-foreground">
-                Recommended size: 32x32 pixels. Supports SVG, PNG, JPG, or GIF (max 2MB).
+                Recommended size: 32x32 pixels. Supports SVG, PNG, JPG, or GIF
+                (max 2MB).
               </p>
             </div>
 
@@ -346,7 +358,7 @@ const ProjectSettingsPage = () => {
         </Card>
 
         {/* Section 4: Custom Domain */}
-        <Card>
+        {/* <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Globe className="h-5 w-5" />
@@ -398,7 +410,7 @@ const ProjectSettingsPage = () => {
               {isLoading ? "Connecting..." : "Connect Domain"}
             </Button>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </div>
   );

@@ -141,7 +141,10 @@ export const getProjectBySubdomain = async (subdomain: string) => {
 };
 
 export const getProjectByCustomDomain = async (customDomain: string) => {
-  console.log("🔍 getProjectByCustomDomain called with customDomain:", customDomain);
+  console.log(
+    "🔍 getProjectByCustomDomain called with customDomain:",
+    customDomain
+  );
   // console.log("🔍 API base URL:", process.env.NEXT_PUBLIC_BACKEND_URL);
   // console.log(
   //   "🔍 Full API URL:",
@@ -150,9 +153,12 @@ export const getProjectByCustomDomain = async (customDomain: string) => {
 
   try {
     console.log("📡 Making API request...");
-    const response = await api.get(`/v1/project/custom-domain/${customDomain}`, {
-      withCredentials: false,
-    });
+    const response = await api.get(
+      `/v1/project/custom-domain/${customDomain}`,
+      {
+        withCredentials: false,
+      }
+    );
 
     // console.log("✅ API response received:");
     // console.log("  - Status:", response.status);
@@ -196,7 +202,10 @@ export const getProjectByCustomDomain = async (customDomain: string) => {
   }
 };
 
-export const updateProjectFavicon = async (projectId: string, faviconUrl: string) => {
+export const updateProjectFavicon = async (
+  projectId: string,
+  faviconUrl: string
+) => {
   const token = getToken();
   const response = await api.put(
     `/v1/project/update-favicon`,
@@ -216,5 +225,33 @@ export const updateProjectFavicon = async (projectId: string, faviconUrl: string
     return response.data;
   }
   toast.error(`Failed to update favicon: ${response.data.error}`);
+  return null;
+};
+
+export const updateProjectMetaData = async (
+  projectId: string,
+  name: string,
+  description: string
+) => {
+  const token = getToken();
+  const response = await api.put(
+    `/v1/project/update`,
+    {
+      projectId: projectId,
+      name: name,
+      description: description,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    }
+  );
+  if (response.status === 200) {
+    toast.success("Project meta data updated successfully");
+    return response.data;
+  }
+  toast.error(`Failed to update project meta data: ${response.data.error}`);
   return null;
 };
