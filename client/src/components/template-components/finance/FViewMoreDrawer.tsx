@@ -200,17 +200,7 @@ export const FViewMoreDrawer = ({
                     {/* Description Section */}
                     <div className="space-y-4">
                         <div
-                            className="
-    prose prose-sm max-w-none text-template-text-primary
-    prose-p:text-template-text-primary
-    prose-strong:text-template-text-primary
-    prose-h1:text-template-text-primary
-    prose-h2:text-template-text-primary
-    prose-h3:text-template-text-primary
-    prose-h4:text-template-text-primary
-    prose-h5:text-template-text-primary
-    prose-h6:text-template-text-primary
-  "
+                            className="prose prose-sm max-w-none"
                             dangerouslySetInnerHTML={{ 
                                 __html: blog?.description ||
                                     project?.description ||

@@ -54,7 +54,7 @@ export function MultipleImageInput({ initialImages, onImageRemove, onImageAdd }:
           try {
             setIsUploading(true)
             const url = await uploadImage(file)
-            console.log("Uploaded to S3:", url)
+            // console.log("Uploaded to S3:", url)
             return url
           } catch (error) {
             console.error("Failed to upload image:", error)

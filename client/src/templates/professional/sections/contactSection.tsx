@@ -16,6 +16,10 @@ export const PFContactSection = ({
   calUrl,
   calTheme,
 }: PF_CONTACT_SECTION) => {
+
+//     const isValidCalLink = (url: string) =>
+//   /^https:\/\/cal\.com\/your-username(\/[\w-]*)?$/.test(url);
+
   useEffect(() => {
     (async function () {
       const Cal = await getCalApi();

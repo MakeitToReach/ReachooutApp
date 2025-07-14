@@ -3,6 +3,7 @@ import { MultipleImageInput } from "@/components/multiImgInput";
 import { ImageInput } from "@/components/imgInput";
 import { TipTapEditor } from "@/components/ui/TipTapEditor";
 import React, { useState } from "react";
+// import { PFCalThemeSelect } from "@/templates/professional/components/PFCalThemeSelect";
 
 const TipTapEditorDemo = () => {
   const [content, setContent] = useState("");

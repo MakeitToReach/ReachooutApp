@@ -1,5 +1,4 @@
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
-// import { LucideCode } from "lucide-react";
 
 export const PF_STATIC_DATA: GenericTemplateSchema = {
   id: "cm91hhx2l0000js04ktn7xof8",

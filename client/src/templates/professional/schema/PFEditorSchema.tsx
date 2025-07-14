@@ -259,6 +259,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             type: "phone",
             fieldPath: "whatsapp_number",
         },
+        {
+            label: "Telephone Number",
+            type: "phone",
+            fieldPath: "telephone_number",
+        },
     ],
 
     socials: [
@@ -370,5 +375,13 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "calUrl",
             subtitle: "ex: rick/get-rick-rolled",
         },
+        // {
+        //     label: "Cal Theme",
+        //     type: "component",
+        //     fieldPath: "calTheme",
+        //     component: ({ value, onChange }) => (
+        //         <PFCalThemeSelect value={value} onChange={onChange} />
+        //     ),
+        // },
     ],
 };

@@ -57,7 +57,7 @@ export async function generateMetadata({
           description: project.seoDescription || `${project.name}'s Portfolio`,
           icons: project.faviconUrl
             ? [{ rel: "icon", url: project.faviconUrl }]
-            : "/favicon.ico",
+            : undefined,
         };
       } catch (error) {
         console.error("Error generating metadata:", error);
@@ -72,7 +72,7 @@ export async function generateMetadata({
         description: project.seoDescription || `${project.name}'s Portfolio`,
         icons: project.faviconUrl
           ? [{ rel: "icon", url: project.faviconUrl }]
-          : "",
+          : undefined,
       };
     } catch (error) {
       console.error("Error generating metadata for custom domain:", error);
@@ -83,7 +83,7 @@ export async function generateMetadata({
   return {
     title: "Reachoout - Portfolio Platform",
     description: "Create and share your professional portfolio",
-    // icons: "/favicon.ico",
+    icons: undefined,
   };
 }
 
