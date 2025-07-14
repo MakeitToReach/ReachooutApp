@@ -5,9 +5,10 @@ import {
   getProjectByCustomDomainAndSlug,
 } from "@/api/project";
 import PortfolioView from "@/components/portfolio/PortfolioView";
-import { PageLoader } from "@/components/editor-components/pageLoader";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { isBaseDomain, getSubdomainFromHostname } from "@/lib/domainUtils";
+import { Loading } from "@/components/editor-components/loading";
 
 async function getProject(subdomain: string, slug: string) {
   try {
@@ -27,7 +28,6 @@ async function fetchProjectByCustomDomain(hostname: string, slug: string) {
 
   try {
     const project = await getProjectByCustomDomainAndSlug(hostname, slug);
-
     return project;
   } catch (error) {
     console.error("❌ Error fetching project by custom domain:", error);
@@ -35,45 +35,10 @@ async function fetchProjectByCustomDomain(hostname: string, slug: string) {
   }
 }
 
-function getSubdomainFromHostname(hostname: string): string | null {
-  console.log("🔍 getSubdomainFromHostname called with hostname:", hostname);
-
-  // Handle localhost for development
-  if (hostname === "localhost") {
-    console.log("  ❌ Hostname is localhost, no subdomain");
-    return null;
-  }
-
-  // Split hostname by dots
-  const parts = hostname.split(".");
-
-  // For localhost:3000 with subdomain (e.g., johndoe.localhost:3000)
-  if (hostname.includes("localhost")) {
-    if (parts.length >= 2 && parts[1] === "localhost:3000") {
-      return parts[0];
-    }
-    console.log("  ❌ No valid subdomain found in localhost");
-    return null;
-  }
-
-  // For production domains (e.g., johndoe.reachoout.com)
-  if (parts.length > 2) {
-    console.log("  ✅ Production subdomain found:", parts[0]);
-    return parts[0];
-  }
-
-  console.log("  ❌ No subdomain detected");
-  return null;
-}
-
-function isBaseDomain(hostname: string): boolean {
-  return hostname.includes("reachoout.com") || hostname.includes("localhost");
-}
-
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
   const headersList = await headers();
@@ -107,7 +72,7 @@ export async function generateMetadata({
         description: project.seoDescription || `${project.name}'s Portfolio`,
         icons: project.faviconUrl
           ? [{ rel: "icon", url: project.faviconUrl }]
-          : "/favicon.ico",
+          : "",
       };
     } catch (error) {
       console.error("Error generating metadata for custom domain:", error);
@@ -118,14 +83,14 @@ export async function generateMetadata({
   return {
     title: "Reachoout - Portfolio Platform",
     description: "Create and share your professional portfolio",
-    icons: "/favicon.ico",
+    // icons: "/favicon.ico",
   };
 }
 
-export default async function PortfolioPage({ 
-  params 
-}: { 
-  params: Promise<{ slug: string }> 
+export default async function PortfolioPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const headersList = await headers();
@@ -155,7 +120,7 @@ export default async function PortfolioPage({
 
       console.log("✅ Project found, rendering portfolio");
       return (
-        <Suspense fallback={<PageLoader />}>
+        <Suspense fallback={<Loading />}>
           <PortfolioView project={project} />
         </Suspense>
       );
@@ -172,7 +137,7 @@ export default async function PortfolioPage({
 
     console.log("✅ Project found for custom domain, rendering portfolio");
     return (
-      <Suspense fallback={<PageLoader />}>
+      <Suspense fallback={<Loading />}>
         <PortfolioView project={project} />
       </Suspense>
     );

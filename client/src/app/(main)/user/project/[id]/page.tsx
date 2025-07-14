@@ -3,13 +3,13 @@
 import { getTemplatesInProject } from "@/api/project";
 import PreviewButton from "@/components/editor-components/previewBtn";
 import { TemplateCard } from "@/components/editor-components/templateCard";
+import AddSlugPopup from "@/components/editor-components/popups/addSlugPopup";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 // import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -110,13 +110,13 @@ const ProjectPage = () => {
                   />
                 ))
               : null}
-            <Link href={`/explore?pid=${id}`}>
+            <AddSlugPopup pid={id as string}>
               <Card className="border bg-transparent h-full border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">
                 <CardContent className="p-4">
                   <Button variant="outline">Create New website</Button>
                 </CardContent>
               </Card>
-            </Link>
+            </AddSlugPopup>
           </>
         )}
       </div>

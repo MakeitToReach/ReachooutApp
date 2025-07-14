@@ -16,7 +16,6 @@ import { PF_TEAM_MEMBER } from "@/templates/professional/types/teamMember.types"
 import { LucideX } from "lucide-react";
 import { PF_BLOG } from "@/templates/professional/types/blog.types";
 import { PF_CATALOG } from "@/templates/professional/types/serviceCatalog.types";
-import { Description } from "@/components/ui/Description";
 
 interface ViewMoreDrawerProps {
     children: React.ReactNode;
@@ -100,14 +99,25 @@ export const ViewMoreDrawer = ({
                     </div>
 
                     {/* Project Description */}
-                    <Description 
-                        content={
-                            project?.description ||
-                            teamMember?.description ||
-                            blog?.description ||
-                            catalogService?.description ||
-                            ""
-                        }
+                    <div
+                        className="
+    prose prose-sm max-w-none text-template-text-primary
+    prose-p:text-template-text-primary
+    prose-strong:text-template-text-primary
+    prose-h1:text-template-text-primary
+    prose-h2:text-template-text-primary
+    prose-h3:text-template-text-primary
+    prose-h4:text-template-text-primary
+    prose-h5:text-template-text-primary
+    prose-h6:text-template-text-primary
+  "
+                        dangerouslySetInnerHTML={{ 
+                            __html: project?.description ||
+                                teamMember?.description ||
+                                blog?.description ||
+                                catalogService?.description ||
+                                ""
+                        }}
                     />
                 </div>
 

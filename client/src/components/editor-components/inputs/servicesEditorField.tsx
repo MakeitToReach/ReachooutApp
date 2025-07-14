@@ -31,7 +31,7 @@ export const ServicesEditorField = ({
     return (
         <div className="space-y-3">
             <div className="flex justify-between mb-4">
-                <h1 className="font-semibold">Your Services</h1>
+                <h1 className="font-semibold">Services</h1>
                 <AddServicesPopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
                         Add Service{" "}

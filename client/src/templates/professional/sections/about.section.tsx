@@ -26,16 +26,6 @@ export const PFAboutSection = ({
       },
     },
   };
-
-  // const trimmedDescription = description.trim();
-  // const isLong = trimmedDescription.length > 500;
-  // const visibleText = isLong
-  //     ? `${trimmedDescription.slice(0, 500)}...`
-  //     : trimmedDescription;
-
-  // const paragraphs = visibleText
-  //     .split(/\n{2,}/)
-  //     .filter((para) => para.trim() !== "");
   return (
     <section className="max-w-6xl mx-auto py-20" id="about">
       <div className="px-4 lg:px-0 flex flex-col lg:flex-row w-full lg:gap-20 lg:mt-20">
@@ -120,14 +110,6 @@ export const PFAboutSection = ({
             {title}{" "}
             <span className="text-template-accent-secondary">{colorTitle}</span>
           </m.h2>
-          {/* <Description
-            content={description}
-            className="text-template-text-primary"
-          /> */}
-          {/* <div
-            className="prose prose-sm max-w-none text-template-text-primary prose-p:text-template-text-primary prose-p:leading-relaxed prose-p:mb-4 prose-p:whitespace-pre-line prose-strong:text-template-text-primary"
-            dangerouslySetInnerHTML={{ __html: description }}
-          /> */}
           <div
             className="
     prose prose-sm max-w-none text-template-text-primary

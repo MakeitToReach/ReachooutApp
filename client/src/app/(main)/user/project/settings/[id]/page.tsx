@@ -504,11 +504,6 @@ const ProjectSettingsPage = () => {
                         )}
                       </div>
                     )}
-                    {templateSEO.slug && (
-                      <p className="text-xs text-amber-600">
-                        ⚠️ Make sure this slug is unique within this project
-                      </p>
-                    )}
                   </div>
 
                   <div className="space-y-2">

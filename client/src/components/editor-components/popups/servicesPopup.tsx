@@ -14,6 +14,7 @@ import { ReqInput } from "../inputs/reqInput";
 import { Button } from "@/components/ui/button";
 import { IconPicker } from "../inputs/iconPicker";
 import { Label } from "@/components/ui/label";
+import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface AddServicesPopupProps {
     children: React.ReactNode;
@@ -48,14 +49,13 @@ export function AddServicesPopup({ children, onAdd }: AddServicesPopupProps) {
                     />
 
                     <div>
-                        <label className="font-semibold">Description</label>
-                        <textarea
-                            placeholder="Description"
-                            className="border p-2 w-full rounded-md h-20"
+                        <Label className="font-semibold">Description</Label>
+                        <TipTapEditor
                             value={service.description}
-                            onChange={(e) =>
-                                setService({ ...service, description: e.target.value })
-                            }
+                            onChange={(value) => setService({ ...service, description: value })}
+                            placeholder="Enter service description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
 
@@ -135,12 +135,13 @@ export const EditServicePopup = ({
                     />
 
                     <div>
-                        <label className="font-semibold">Description</label>
-                        <textarea
-                            placeholder="Description"
-                            className="border p-2 w-full rounded-md h-20"
+                        <Label className="font-semibold">Description</Label>
+                        <TipTapEditor
                             value={formData.description}
-                            onChange={(e) => handleChange("description", e.target.value)}
+                            onChange={(value) => handleChange("description", value)}
+                            placeholder="Enter service description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
 

@@ -40,12 +40,13 @@ export const getCategoriesByTemplateId = async (templateId: string) => {
 export const publishTemplate = async (
   data: GenericTemplateSchema,
   projectId: string,
-  templateId: string
+  templateId: string,
+  slug?: string
 ) => {
   const token = getToken();
   const response = await api.post(
     `/v1/template/publish`,
-    { data, projectId, templateId },
+    { data, projectId, templateId, slug },
     {
       headers: {
         Authorization: `Bearer ${token}`,

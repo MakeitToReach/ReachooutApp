@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Label } from "@/components/ui/label";
 import { PF_FAQ_ITEM } from "../types/faq.types";
+import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface PFAddFaqPopupProps {
     children: React.ReactNode;
@@ -44,11 +45,12 @@ export function PFAddFaqPopup({ children, onAdd }: PFAddFaqPopupProps) {
 
                     <div className="space-y-2">
                         <Label className="font-semibold">Answer</Label>
-                        <textarea
-                            placeholder="Answer"
-                            className="border p-2 w-full rounded-md h-20"
+                        <TipTapEditor
                             value={item.answer}
-                            onChange={(e) => setItem({ ...item, answer: e.target.value })}
+                            onChange={(value) => setItem({ ...item, answer: value })}
+                            placeholder="Answer"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
                 </div>
@@ -122,11 +124,12 @@ export const PFEditFaqPopup = ({
 
                     <div className="space-y-2">
                         <Label className="font-semibold">Answer</Label>
-                        <textarea
-                            placeholder="Answer"
-                            className="border p-2 w-full rounded-md h-20"
+                        <TipTapEditor
                             value={formData.answer}
-                            onChange={(e) => handleChange("answer", e.target.value)}
+                            onChange={(value) => handleChange("answer", value)}
+                            placeholder="Answer"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
 

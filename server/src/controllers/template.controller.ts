@@ -159,7 +159,7 @@ export const deleteTemplateCategory = async (req: Request, res: Response) => {
 
 export const publishTemplate = async (req: Request, res: Response) => {
     try {
-        const { projectId, templateId } = req.body;
+        const { projectId, templateId, slug } = req.body;
         const { data } = req.body;
 
         // Validate required fields
@@ -198,6 +198,22 @@ export const publishTemplate = async (req: Request, res: Response) => {
             });
         }
 
+        // If a slug is provided, check for uniqueness within the same project
+        let finalSlug = slug ? slug : "";
+        if (finalSlug) {
+            const existingSlug = await prisma.projectTemplate.findFirst({
+                where: {
+                    projectId,
+                    slug: finalSlug,
+                },
+            });
+            if (existingSlug) {
+                return res.status(409).json({
+                    error: "Slug already exists in this project. Please choose a different slug.",
+                });
+            }
+        }
+
         // Get the highest order number for this project
         const maxOrderResult = await prisma.projectTemplate.findFirst({
             where: { projectId },
@@ -208,24 +224,36 @@ export const publishTemplate = async (req: Request, res: Response) => {
         const nextOrder = (maxOrderResult?.order ?? -1) + 1;
 
         // Create new template instance (allows multiple instances of same template)
-        const projectTemplate = await prisma.projectTemplate.create({
-            data: {
-                projectId,
-                templateId,
-                data: data,
-                order: nextOrder,
-            },
-            include: {
-                template: {
-                    select: {
-                        id: true,
-                        name: true,
-                        thumbnailUrl: true,
-                        tags: true,
+        let projectTemplate;
+        try {
+            projectTemplate = await prisma.projectTemplate.create({
+                data: {
+                    projectId,
+                    templateId,
+                    data: data,
+                    order: nextOrder,
+                    slug: finalSlug,
+                },
+                include: {
+                    template: {
+                        select: {
+                            id: true,
+                            name: true,
+                            thumbnailUrl: true,
+                            tags: true,
+                        },
                     },
                 },
-            },
-        });
+            });
+        } catch (err: any) {
+            // Handle unique constraint error for slug
+            if (err.code === "P2002" && err.meta?.target?.includes("slug")) {
+                return res.status(409).json({
+                    error: "Slug already exists in this project. Please choose a different slug.",
+                });
+            }
+            throw err;
+        }
 
         res.status(201).json({
             message: "Template instance added to project successfully",

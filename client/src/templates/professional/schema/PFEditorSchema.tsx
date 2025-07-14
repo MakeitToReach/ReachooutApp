@@ -37,7 +37,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         },
         {
             label: "Description",
-            type: "textarea",
+            type: "RTEditor",
             fieldPath: "description",
         },
 
@@ -83,12 +83,6 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             type: "text",
             fieldPath: "colorTitle",
         },
-        // {
-        //     label: "Description",
-        //     type: "textarea",
-        //     fieldPath: "description",
-        //     subtitle: "Max 300 characters, over 300 will be truncated to a popup",
-        // },
         {
             label: "Description",
             type: "RTEditor",
@@ -336,7 +330,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         },
         {
             label: "Description",
-            type: "textarea",
+            type: "RTEditor",
             fieldPath: "description",
         },
 
@@ -369,6 +363,12 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Section Heading",
             type: "text",
             fieldPath: "heading",
+        },
+        {
+            label: "Cal Link",
+            type: "text",
+            fieldPath: "calUrl",
+            subtitle: "ex: rick/get-rick-rolled",
         },
     ],
 };

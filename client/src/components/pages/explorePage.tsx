@@ -11,6 +11,7 @@ const ExplorePage = () => {
     const searchParams = useSearchParams();
 
     const projectId = searchParams?.get("pid");
+    const slug = searchParams?.get("slug");
 
     useEffect(() => {
         if (templates.length === 0) {
@@ -28,6 +29,7 @@ const ExplorePage = () => {
                 <ExploreTabs
                     templates={templates}
                     projectId={projectId ? projectId : undefined}
+                    slug={slug ? slug : undefined}
                 />
             </Suspense>
         </div>

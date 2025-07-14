@@ -33,7 +33,20 @@ export const PFFooter = ({
                                 className="md:size-16 size-12 object-contain"
                             />
                         )}
-                        <p className="mt-2 text-template-text-secondary/50 text-sm max-w-md">{description}</p>
+                        <div
+                            className="
+    prose prose-sm max-w-none text-template-text-secondary/50
+    prose-p:text-template-text-secondary/50
+    prose-strong:text-template-text-secondary/50
+    prose-h1:text-template-text-secondary/50
+    prose-h2:text-template-text-secondary/50
+    prose-h3:text-template-text-secondary/50
+    prose-h4:text-template-text-secondary/50
+    prose-h5:text-template-text-secondary/50
+    prose-h6:text-template-text-secondary/50
+  "
+                            dangerouslySetInnerHTML={{ __html: description }}
+                        />
                     </div>
 
                     {/* Middle Section - Contact Info */}

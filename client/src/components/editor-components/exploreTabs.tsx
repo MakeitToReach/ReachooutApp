@@ -12,11 +12,13 @@ import { OnboardingPopup } from "./popups/onboardingPopup";
 interface ExploreTabsProps {
     templates: GenericTemplateSchema[];
     projectId?: string;
+    slug?: string;
 }
 
 export default function ExploreTabs({
     templates,
     projectId,
+    slug,
 }: ExploreTabsProps) {
     return (
         <Tabs defaultValue="tab-1" className="w-full">
@@ -86,7 +88,7 @@ export default function ExploreTabs({
                                 {projectId && (
                                     <OnboardingPopup
                                         templateId={template.id}
-                                        previewUrl={`/editor/${template.name.toLowerCase()}?new&pid=${projectId}&tid=${template.id}`}
+                                        previewUrl={`/editor/${template.name.toLowerCase()}?new&pid=${projectId}&tid=${template.id}&slug=${slug}`}
                                     >
                                         <Button
                                         >

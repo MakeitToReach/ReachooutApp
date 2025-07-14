@@ -90,9 +90,6 @@ export const PFCatalogServicesCard = ({
       {/* Text content */}
       <div className="px-6 space-y-1 text-center">
         <h2 className="font-semibold text-lg tracking-tight">{title}</h2>
-        {/* <p className="text-xs line-clamp-3 leading-6 text-gray-600"> */}
-        {/*     {description} */}
-        {/* </p> */}
       </div>
 
       <FViewMoreDrawer type="Catalog" content={catalogServiceContent}>

@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { PF_TEAM_MEMBER } from "@/templates/professional/types/teamMember.types";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { ImageInput } from "@/components/imgInput";
-import { Textarea } from "@/components/ui/textarea";
+import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface AddTeamMemberPopupProps {
     children: React.ReactNode;
@@ -84,12 +84,12 @@ export function AddTeamMemberPopup({
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <Textarea
+                        <TipTapEditor
+                            value={member.description}
+                            onChange={(value) => setMember({ ...member, description: value })}
                             placeholder="Chief Executive Officer"
-                            className="border p-2 w-full rounded-md h-20"
-                            onChange={(e) =>
-                                setMember({ ...member, description: e.target.value })
-                            }
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
 
@@ -204,11 +204,12 @@ export const EditTeamMemberPopup = ({
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <Textarea
-                            placeholder="Description"
-                            className="border p-2 w-full rounded-md h-20"
+                        <TipTapEditor
                             value={formData.description}
-                            onChange={(e) => handleChange("description", e.target.value)}
+                            onChange={(value) => handleChange("description", value)}
+                            placeholder="Description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
                 </div>

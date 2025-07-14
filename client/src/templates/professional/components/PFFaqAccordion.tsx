@@ -76,14 +76,23 @@ const PFFaqItem = React.forwardRef<
                         }}
                     >
                         <div className="px-6 pb-4 pt-2">
-                            <motion.p
+                            <motion.div
                                 initial={{ y: -10, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: -10, opacity: 0 }}
-                                className="text-sm text-template-text-primary leading-relaxed"
-                            >
-                                {answer}
-                            </motion.p>
+                                className="
+    prose prose-sm max-w-none text-template-text-primary
+    prose-p:text-template-text-primary
+    prose-strong:text-template-text-primary
+    prose-h1:text-template-text-primary
+    prose-h2:text-template-text-primary
+    prose-h3:text-template-text-primary
+    prose-h4:text-template-text-primary
+    prose-h5:text-template-text-primary
+    prose-h6:text-template-text-primary
+  "
+                                dangerouslySetInnerHTML={{ __html: answer }}
+                            />
                         </div>
                     </motion.div>
                 )}

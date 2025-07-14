@@ -14,12 +14,14 @@ export type GenericEditorFieldSchema = Record<
     //for grouped inputs
     fields?: { label: string; fieldPath: string }[];
 
-    //for custom component inputs
+    //for custom component inputs that handle data manipulation from editorTabs
     component?: (props: {
       value: any; //eslint-disable-line
       onChange: (val: any) => void; //eslint-disable-line
     }) => React.JSX.Element;
 
+
+    //for custom components that handle data manipulation by themselves directly
     customComponent?: () => React.ReactNode;
 
     //for text input subtitle

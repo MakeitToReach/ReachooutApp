@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 import { LucideX, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getSocialIconFromRegistry } from "@/lib/utils";
-import { Description } from "@/components/ui/Description";
 
 // Finance template types
 import { F_BLOG } from "@/templates/finance/types/blogs.types";
@@ -200,16 +199,26 @@ export const FViewMoreDrawer = ({
 
                     {/* Description Section */}
                     <div className="space-y-4">
-                        <Description 
-                            content={
-                                blog?.description ||
-                                project?.description ||
-                                service?.description ||
-                                catalogService?.description ||
-                                teamMember?.description ||
-                                ""
-                            }
-                            className="text-sm text-gray-700 leading-relaxed"
+                        <div
+                            className="
+    prose prose-sm max-w-none text-template-text-primary
+    prose-p:text-template-text-primary
+    prose-strong:text-template-text-primary
+    prose-h1:text-template-text-primary
+    prose-h2:text-template-text-primary
+    prose-h3:text-template-text-primary
+    prose-h4:text-template-text-primary
+    prose-h5:text-template-text-primary
+    prose-h6:text-template-text-primary
+  "
+                            dangerouslySetInnerHTML={{ 
+                                __html: blog?.description ||
+                                    project?.description ||
+                                    service?.description ||
+                                    catalogService?.description ||
+                                    teamMember?.description ||
+                                    ""
+                            }}
                         />
                     </div>
                 </div>

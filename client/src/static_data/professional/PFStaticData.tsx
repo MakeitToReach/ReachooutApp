@@ -555,6 +555,8 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
       sectionName: "Contact",
       data: {
         heading: "Contact us",
+        calUrl: "rick/get-rick-rolled",
+        calTheme: "light",
       },
       isFixed: false,
       isEditable: true,

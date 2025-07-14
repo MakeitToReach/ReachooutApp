@@ -14,7 +14,7 @@ import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { PF_BLOG } from "../types/blog.types";
 import { ImageInput } from "@/components/imgInput";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface PFAddBlogPopupProps {
     children: React.ReactNode;
@@ -44,13 +44,12 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <Textarea
-                            placeholder="Enter blog description"
-                            className="border p-2 w-full rounded-md h-20"
+                        <TipTapEditor
                             value={blog.description}
-                            onChange={(e) =>
-                                setBlog({ ...blog, description: e.target.value })
-                            }
+                            onChange={(value) => setBlog({ ...blog, description: value })}
+                            placeholder="Enter blog description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
 
@@ -137,11 +136,12 @@ export const PFEditBlogPopup = ({
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <Textarea
-                            placeholder="Enter blog description"
-                            className="border p-2 w-full rounded-md h-20"
+                        <TipTapEditor
                             value={formData.description}
-                            onChange={(e) => handleChange("description", e.target.value)}
+                            onChange={(value) => handleChange("description", value)}
+                            placeholder="Enter blog description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
                 </div>

@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Label } from "@/components/ui/label";
 import { PF_EXPERIENCE_ITEM } from "../types/experience.types";
-import { Textarea } from "@/components/ui/textarea";
+import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface PFAddExperiencePopupProps {
     children: React.ReactNode;
@@ -66,13 +66,12 @@ export function PFAddExperiencePopup({
 
                     <div className="space-y-2">
                         <Label className="font-semibold">Description</Label>
-                        <Textarea
-                            placeholder="Description"
-                            className="border p-2 w-full rounded-md h-20"
+                        <TipTapEditor
                             value={item.description}
-                            onChange={(e) =>
-                                setItem({ ...item, description: e.target.value })
-                            }
+                            onChange={(value) => setItem({ ...item, description: value })}
+                            placeholder="Description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
                 </div>
@@ -160,11 +159,12 @@ export const PFEditExperiencePopup = ({
 
                     <div className="space-y-2">
                         <Label className="font-semibold">Description</Label>
-                        <Textarea
-                            placeholder="Description"
-                            className="border p-2 w-full rounded-md h-20"
+                        <TipTapEditor
                             value={formData.description}
-                            onChange={(e) => handleChange("description", e.target.value)}
+                            onChange={(value) => handleChange("description", value)}
+                            placeholder="Description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
                 </div>

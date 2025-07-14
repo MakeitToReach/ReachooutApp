@@ -12,8 +12,8 @@ import { useEffect, useState } from "react";
 import { PF_CATALOG } from "../types/serviceCatalog.types";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { MultipleImageInput } from "@/components/multiImgInput";
+import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface PFAddCatalogPopupProps {
     children: React.ReactNode;
@@ -58,13 +58,12 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <Textarea
-                            placeholder="Description"
-                            className="border p-2 w-full rounded-md h-20"
+                        <TipTapEditor
                             value={item.description}
-                            onChange={(e) =>
-                                setItem({ ...item, description: e.target.value })
-                            }
+                            onChange={(value) => setItem({ ...item, description: value })}
+                            placeholder="Description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
 
@@ -184,11 +183,12 @@ export const PFEditCatalogPopup = ({
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <Textarea
-                            placeholder="Description"
-                            className="border p-2 w-full rounded-md h-20"
+                        <TipTapEditor
                             value={formData.description}
-                            onChange={(e) => handleChange("description", e.target.value)}
+                            onChange={(value) => handleChange("description", value)}
+                            placeholder="Description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
 
