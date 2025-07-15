@@ -94,7 +94,7 @@ export default function PortfolioView({ project }: PortfolioViewProps) {
   }
 
   return (
-    <div ref={wrapperRef} className="theme-wrapper w-full">
+    <div ref={wrapperRef} className="theme-wrapper w-full relative">
       <template.component data={firstTemplate.data} />
     </div>
   );

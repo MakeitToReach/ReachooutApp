@@ -9,11 +9,11 @@ export type USER = {
     avatarUrl?: string;
 };
 interface User {
-    user: USER | undefined;
-    setUser: (user: USER) => void;
+    user: USER | null;
+    setUser: (user: USER | null) => void;
 }
 
 export const useUserStore = create<User>((set) => ({
-    user: undefined,
-    setUser: (user: USER) => set({ user: user }),
+    user: null,
+    setUser: (user: USER | null) => set({ user: user }),
 }));

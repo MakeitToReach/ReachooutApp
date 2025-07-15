@@ -31,7 +31,7 @@ export const FNavbar = ({
     return (
         <nav
             id="navbar"
-            className="bg-template-primary backdrop-blur-md sticky w-full top-0 left-0 z-50"
+            className="bg-template-primary backdrop-blur-md px-2 sm:px-8"
         >
             <div className="h-16 px-4 flex justify-between items-center">
                 {textLogo && (

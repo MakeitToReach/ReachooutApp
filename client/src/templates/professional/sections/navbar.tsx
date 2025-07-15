@@ -32,7 +32,7 @@ export const PFNavbar = ({
     return (
         <nav
             id="navbar"
-            className="bg-template-primary backdrop-blur-md sticky w-full top-0 left-0 z-50"
+            className="bg-template-primary backdrop-blur-md text-template-text-primary"
         >
             <div className="max-w-6xl mx-auto h-16 px-4 flex justify-between items-center">
                 {textLogo && (

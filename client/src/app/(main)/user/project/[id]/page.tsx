@@ -1,7 +1,7 @@
 "use client";
 
 import { getTemplatesInProject } from "@/api/project";
-import PreviewButton from "@/components/editor-components/previewBtn";
+// import PreviewButton from "@/components/editor-components/previewBtn";
 import { TemplateCard } from "@/components/editor-components/templateCard";
 import AddSlugPopup from "@/components/editor-components/popups/addSlugPopup";
 import { Button } from "@/components/ui/button";
@@ -33,7 +33,6 @@ interface TemplateItem {
 const ProjectPage = () => {
   const params = useParams<{ id: string }>();
   const id = params?.id;
-
   const [templates, setTemplates] = useState<TemplateItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -55,34 +54,29 @@ const ProjectPage = () => {
   }, [id]);
 
   const projectName = templates[0]?.project?.name ?? "Project Name";
-  const projectDomain =
-    templates[0]?.project?.customDomain || templates[0]?.project?.subDomain;
+  // const projectDomain =
+  //   templates[0]?.project?.customDomain || templates[0]?.project?.subDomain;
 
   return (
-    <div className="p-2 md:p-4 space-y-6">
+    <div>
       {/* Header */}
-      <header className="flex gap-1">
-        <SidebarTrigger />
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-          <div>
-            <h1 className="text-2xl font-bold mb-2">{projectName}</h1>
-            {projectDomain && (
-              <PreviewButton
-                previewUrl={
-                  process.env.NODE_ENV === "development"
-                    ? `http://${projectDomain}.localhost:3000`
-                    : `http://${projectDomain}.reachoout.com`
-                }
-              />
-            )}
-          </div>
+      <header className="flex h-16 shrink-0 items-center gap-2">
+        <div className="flex items-center gap-2 px-4">
+          <SidebarTrigger className="-ml-1" />
+          <Separator
+            orientation="vertical"
+            className="data-[orientation=vertical]:h-4"
+          />
+        </div>
+        <div className="flex justify-between w-full">
+          <h1 className="text-xl text-black dark:text-white">{projectName}</h1>
         </div>
       </header>
 
       <Separator />
 
       {/* Templates Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
         {isLoading ? (
           Array.from({ length: 3 }).map((_, idx) => (
             <Skeleton
@@ -103,7 +97,7 @@ const ProjectPage = () => {
                     editorUrl={`/editor/${item.template.name.toLowerCase()}?edit&order=${idx}&pid=${id}&tid=${
                       item.template.id
                     }`}
-                    showPreview={false}
+                    // showPreview={true}
                     isPublished
                     index={idx}
                     projectId={id}

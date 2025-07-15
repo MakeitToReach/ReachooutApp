@@ -38,16 +38,16 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
     }));
   const renderSection = (section: SectionBlock, index: number) => {
     switch (section.type) {
-      case "navbar":
-        return (
-          <>
-            <PFNavbar
-              key={`navbar-${index}`}
-              {...section.data}
-              sections={navSections}
-            />
-          </>
-        );
+      // case "navbar":
+      //   return (
+      //     <div className="sticky top-0 left-0 z-50">
+      //       <PFNavbar
+      //         key={`navbar-${index}`}
+      //         {...section.data}
+      //         sections={navSections}
+      //       />
+      //     </div>
+      //   );
 
       case "hero":
         return (
@@ -168,7 +168,10 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
         return (
           <>
             {!section.isHidden && (
-              <PFNewsletterSection key={`newsletter-${index}`} {...section.data} />
+              <PFNewsletterSection
+                key={`newsletter-${index}`}
+                {...section.data}
+              />
             )}
           </>
         );
@@ -188,33 +191,38 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
   };
 
   const widgetsSection = data?.sections.find(
-    (section) => section.type === "contact widgets",
+    (section) => section.type === "contact widgets"
   );
 
-  // const navbarSection = data?.sections.find(
-  //     (section) => section.type === "navbar",
-  // );
+  const navbarSection = data?.sections.find(
+    (section) => section.type === "navbar"
+  );
 
   const otherSections = data?.sections.filter(
-    (section) => section.type !== "contact widgets",
+    (section) => section.type !== "contact widgets" && section.type !== "navbar"
   );
 
   return (
     <>
+      {navbarSection && !navbarSection.isHidden && (
+        <div className="sticky top-0 z-50 theme-wrapper text-template-text-primary">
+          <PFNavbar {...navbarSection.data} sections={navSections} />
+        </div>
+      )}
       <m.div
         initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
         animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
         transition={{
           duration: 0.8,
         }}
-        className="overflow-x-hidden"
+        className="relative"
       >
         {data ? (
           otherSections.map((section, index) => (
             <div
               key={index}
               style={data.theme}
-              className="relative theme-wrapper bg-template-primary"
+              className="theme-wrapper bg-template-primary"
             >
               {renderSection(section, index)}
             </div>

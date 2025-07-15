@@ -8,11 +8,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   Folder,
-  MoreVertical,
   Trash2,
   Copy,
   ExternalLink,
   Settings2,
+  Settings,
 } from "lucide-react";
 import { Project } from "@/schemas/projects.schema";
 import { useSidebar } from "../ui/sidebar";
@@ -21,6 +21,7 @@ import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import React from "react";
 import QRCodeModal from "./QRCodeModal";
+import { useRouter } from "next/navigation";
 
 interface ProjectCardProps {
   project: Project;
@@ -30,6 +31,7 @@ interface ProjectCardProps {
 export function ProjectCard({ project, onDelete }: ProjectCardProps) {
   const { isMobile } = useSidebar();
   const [qrOpen, setQROpen] = React.useState(false);
+  const router = useRouter();
 
   const getPortfolioUrl = () => {
     if (project.customDomain) {
@@ -55,8 +57,14 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
   const portfolioUrl = getPortfolioUrl();
 
   return (
-    <Card className="shadow-2xl hover:shadow-3xl transition-shadow duration-300 px-0">
-      <CardHeader className="flex flex-row justify-between px-2 w-full">
+    <Card
+      className="shadow-2xl hover:shadow-3xl transition-all duration-300 px-0 cursor-pointer hover:border-zinc-600"
+      onClick={() => router.push(`/user/project/${project.id}`)}
+    >
+      <CardHeader
+        className="flex flex-row justify-between items-center px-2 w-full"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex flex-row items-center gap-2 min-w-0">
           <Avatar className="w-10 h-10">
             <AvatarImage src={project.faviconUrl || "/favicon.ico"} />
@@ -77,10 +85,16 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
         </div>
 
         {/* Settings Menu */}
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <div role="button" className="cursor-pointer">
-              <MoreVertical />
+            <div
+              role="button"
+              className="cursor-pointer"
+              title="More Settings"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Settings className="text-muted-foreground hover:text-primary" />
               <span className="sr-only">More</span>
             </div>
           </DropdownMenuTrigger>
@@ -88,6 +102,7 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
             className="w-48"
             side={isMobile ? "bottom" : "right"}
             align={isMobile ? "end" : "start"}
+            onClick={(e) => e.stopPropagation()}
           >
             <Link href={`/user/project/${project.id}`}>
               <DropdownMenuItem>
@@ -118,7 +133,11 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
         </DropdownMenu>
       </CardHeader>
 
-      <QRCodeModal open={qrOpen} onClose={() => setQROpen(false)} value={portfolioUrl}  />
+      <QRCodeModal
+        open={qrOpen}
+        onClose={() => setQROpen(false)}
+        value={portfolioUrl}
+      />
     </Card>
   );
 }

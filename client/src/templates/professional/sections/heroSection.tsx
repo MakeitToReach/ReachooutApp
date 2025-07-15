@@ -35,7 +35,7 @@ export const PFHeroSection = ({
     };
 
     return (
-        <section className="max-w-6xl mx-auto" id="hero">
+        <section className="max-w-6xl mx-auto pt-10 sm:pt-20" id="hero">
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">
                 <div className="space-y-4">
                     <div>
@@ -87,7 +87,7 @@ export const PFHeroSection = ({
                     <Image
                         src={heroImgUrl || "/placeholder.png"}
                         alt="heroimg"
-                        className="mt-20 md:max-h-[500px] md:max-w-[500px] rounded-md object-contain"
+                        className="mt-20 sm:mt-0 sm:max-h-[600px] sm:max-w-[600px] rounded-md object-cover"
                         width={600}
                         height={600}
                     />

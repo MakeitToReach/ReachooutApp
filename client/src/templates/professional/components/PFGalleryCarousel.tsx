@@ -92,12 +92,12 @@ export const PFGalleryCarousel: React.FC<CarouselProps> = ({
                     >
                         {images.map((image, index) => (
                             <SwiperSlide key={`first-${index}`}>
-                                <div className="overflow-hidden rounded-2xl">
+                                <div className="overflow-visible rounded-2xl">
                                     <Lightbox imageUrl={image} alt={`Image-${index}`}>
                                         <Image
                                             src={image}
                                             width={600}
-                                            height={400}
+                                            height={600}
                                             className="rounded-xl object-cover w-full h-auto"
                                             alt={`Image-${index}`}
                                         />
@@ -107,12 +107,12 @@ export const PFGalleryCarousel: React.FC<CarouselProps> = ({
                         ))}
                         {images.map((image, index) => (
                             <SwiperSlide key={`second-${index}`}>
-                                <div className="overflow-hidden rounded-2xl">
+                                <div className="overflow-visible rounded-2xl">
                                     <Lightbox imageUrl={image} alt={`Image-${index}`}>
                                         <Image
                                             src={image}
                                             width={600}
-                                            height={400}
+                                            height={600}
                                             className="rounded-xl object-cover w-full h-auto"
                                             alt={`Image-${index}`}
                                         />

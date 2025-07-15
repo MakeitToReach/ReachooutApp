@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sidebar";
 import { NavProjects } from "@/components/editor-components/userDashboard/navProjects";
 import { NavUser } from "./navUser";
-import { USER } from "@/store/user.store";
+import { USER, useUserStore } from "@/store/user.store";
 import { logoutUser } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -58,9 +58,21 @@ interface UserSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 export const UserSidebar = ({ user }: UserSidebarProps) => {
   const router = useRouter();
+  const { setUser } = useUserStore();
+
   const logoutAndRedirect = () => {
     logoutUser();
+    setUser(null);
     router.push("/");
+  };
+
+  const handleLogoClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    if (e.ctrlKey && e.shiftKey) {
+      e.preventDefault();
+      router.push("/admin");
+    }
   };
   return (
     <Sidebar variant="inset">
@@ -68,7 +80,7 @@ export const UserSidebar = ({ user }: UserSidebarProps) => {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link href="/">
+              <Link href="/" onClick={handleLogoClick}>
                 <img src="/reachout-logo.png" alt="logo" className="size-8" />
                 <div className="grid flex-1 text-left text-xl leading-tight">
                   <span className="truncate font-semibold">Reachoout</span>

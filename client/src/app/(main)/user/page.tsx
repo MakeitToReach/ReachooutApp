@@ -9,14 +9,12 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Project } from "@/schemas/projects.schema";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const ProjectsTab = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const router = useRouter();
 
   const handleDeleteProject = async (projectId: string) => {
     try {
@@ -80,20 +78,18 @@ const ProjectsTab = () => {
           <>
             {projects.length > 0
               ? projects.map((project, idx) => (
-                  <div key={idx} onClick={() => router.push(`/user/project/${project.id}`)} className="cursor-pointer">
-                    <ProjectCard
-                      key={idx}
-                      project={project}
-                      onDelete={(id) => handleDeleteProject(id)}
-                    />
-                  </div>
+                  <ProjectCard
+                    key={idx}
+                    project={project}
+                    onDelete={(id) => handleDeleteProject(id)}
+                  />
                 ))
               : null}
 
             {/* Create Project Card */}
             <CreateUserProjectDialog>
               <Card className="border bg-transparent border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">
-                <CardContent className="p-4">
+                <CardContent>
                   <Button variant="outline">+ Create New Project</Button>
                 </CardContent>
               </Card>

@@ -39,16 +39,16 @@ export const FinancePortfolio = ({ data }: Props) => {
     }));
   const renderSection = (section: SectionBlock, index: number) => {
     switch (section.type) {
-      case "navbar":
-        return (
-          <>
-            <FNavbarSection
-              key={`navbar-${index}`}
-              {...section.data}
-              sections={navSections}
-            />
-          </>
-        );
+      // case "navbar":
+      //   return (
+      //     <>
+      //       <FNavbarSection
+      //         key={`navbar-${index}`}
+      //         {...section.data}
+      //         sections={navSections}
+      //       />
+      //     </>
+      //   );
 
       case "hero":
         return (
@@ -208,19 +208,32 @@ export const FinancePortfolio = ({ data }: Props) => {
     }
   };
 
+  const navbarSection = data?.sections.find(
+    (section) => section.type === "navbar"
+  );
+
+  const otherSections = data?.sections.filter(
+    (section) => section.type !== "navbar"
+  );
+
   return (
-    <div className="min-h-screen overflow-x-hidden">
-      <div>
-        {data.sections.map((section, idx) => (
+    <>
+      <div className="relative">
+        {navbarSection && !navbarSection.isHidden && (
+          <div className="sticky top-0 z-50 theme-wrapper text-template-text-primary">
+            <FNavbarSection {...navbarSection.data} sections={navSections} />
+          </div>
+        )}
+        {otherSections.map((section, idx) => (
           <div
             key={idx}
             style={data.theme}
-            className="relative theme-wrapper bg-template-primary px-4 sm:px-12"
+            className="relative theme-wrapper overflow-x-hidden bg-template-primary px-4 sm:px-12"
           >
             {renderSection(section, idx)}
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
