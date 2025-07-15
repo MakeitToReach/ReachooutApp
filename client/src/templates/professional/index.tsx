@@ -205,7 +205,10 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
   return (
     <>
       {navbarSection && !navbarSection.isHidden && (
-        <div className="sticky top-0 z-50 theme-wrapper text-template-text-primary">
+        <div
+          className="sticky top-0 z-50 theme-wrapper text-template-text-primary"
+          style={data.theme}
+        >
           <PFNavbar {...navbarSection.data} sections={navSections} />
         </div>
       )}
