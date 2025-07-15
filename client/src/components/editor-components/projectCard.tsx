@@ -19,6 +19,8 @@ import { useSidebar } from "../ui/sidebar";
 import Link from "next/link";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import React from "react";
+import QRCodeModal from "./QRCodeModal";
 
 interface ProjectCardProps {
   project: Project;
@@ -27,6 +29,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, onDelete }: ProjectCardProps) {
   const { isMobile } = useSidebar();
+  const [qrOpen, setQROpen] = React.useState(false);
 
   const getPortfolioUrl = () => {
     if (project.customDomain) {
@@ -61,7 +64,11 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
           </Avatar>
           <div className="min-w-0">
             <CardTitle className="text-sm">{project.name}</CardTitle>
-            <a href={portfolioUrl} target="_blank" className="block max-w-[280px]">
+            <a
+              href={portfolioUrl}
+              target="_blank"
+              className="block max-w-[280px]"
+            >
               <p className="text-xs text-muted-foreground hover:underline truncate max-w-full">
                 {portfolioUrl}
               </p>
@@ -92,11 +99,9 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
               <Copy className="text-muted-foreground" />
               <span>Copy URL</span>
             </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => window.open(portfolioUrl, "_blank")}
-            >
+            <DropdownMenuItem onClick={() => setQROpen(true)}>
               <ExternalLink className="text-muted-foreground" />
-              <span>Open Portfolio</span>
+              <span>Show QR Code</span>
             </DropdownMenuItem>
             <Link href={`/user/project/settings/${project.id}`}>
               <DropdownMenuItem>
@@ -113,9 +118,7 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
         </DropdownMenu>
       </CardHeader>
 
-      {/* <CardContent className="flex flex-col space-y-4">
-        <PreviewButton previewUrl={portfolioUrl} />
-      </CardContent> */}
+      <QRCodeModal open={qrOpen} onClose={() => setQROpen(false)} value={portfolioUrl}  />
     </Card>
   );
 }
