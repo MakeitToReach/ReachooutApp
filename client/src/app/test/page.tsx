@@ -3,6 +3,8 @@ import { MultipleImageInput } from "@/components/multiImgInput";
 import { ImageInput } from "@/components/imgInput";
 import { TipTapEditor } from "@/components/ui/TipTapEditor";
 import React, { useState } from "react";
+import { ColorPicker } from "@/components/ui/ColorPicker";
+import { ColorPickerPopup } from "@/components/ui/ColorPicker";
 // import { PFCalThemeSelect } from "@/templates/professional/components/PFCalThemeSelect";
 
 const TipTapEditorDemo = () => {
@@ -36,6 +38,28 @@ const TipTapEditorDemo = () => {
   );
 };
 
+const ColorPickerDemo = () => {
+  const [color, setColor] = useState("#aabbcc");
+  return (
+    <div className="mb-12 prose prose-sm max-w-none">
+      <h3 className="text-white text-lg font-semibold mb-2">Color Picker Demo</h3>
+      <ColorPicker value={color} onChange={setColor} label="Pick a color" />
+      <div className="mt-2 text-white text-sm">Selected color: <span className="font-mono">{color}</span></div>
+    </div>
+  );
+};
+
+const ColorPickerPopupDemo = () => {
+  const [color, setColor] = useState("#aabbcc");
+  return (
+    <div className="mb-12 prose prose-sm max-w-none">
+      <h3 className="text-white text-lg font-semibold mb-2">Popup Color Picker Demo</h3>
+      <ColorPickerPopup value={color} onChange={setColor} label="Pick a color" />
+      <div className="mt-2 text-white text-sm">Selected color: <span className="font-mono">{color}</span></div>
+    </div>
+  );
+};
+
 const page = () => {
   return (
     <div className="min-h-screen bg-neutral-900 p-4 md:p-8">
@@ -44,6 +68,10 @@ const page = () => {
           Component Testing Page
         </h1>
 
+        {/* Color Picker Demo */}
+        <ColorPickerDemo />
+        {/* Popup Color Picker Demo */}
+        <ColorPickerPopupDemo />
         {/* TipTap Editor */}
         <div className="mb-12 prose prose-sm max-w-none">
           <TipTapEditorDemo />

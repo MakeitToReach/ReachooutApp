@@ -9,18 +9,20 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Project } from "@/schemas/projects.schema";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const ProjectsTab = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   const handleDeleteProject = async (projectId: string) => {
     try {
       await deleteProjectById(projectId);
       setProjects((prevProjects) =>
-        prevProjects.filter((project) => project.id !== projectId),
+        prevProjects.filter((project) => project.id !== projectId)
       );
       toast.success("Project deleted successfully");
     } catch (error) {
@@ -78,11 +80,13 @@ const ProjectsTab = () => {
           <>
             {projects.length > 0
               ? projects.map((project, idx) => (
-                  <ProjectCard
-                    key={idx}
-                    project={project}
-                    onDelete={(id) => handleDeleteProject(id)}
-                  />
+                  <div key={idx} onClick={() => router.push(`/user/project/${project.id}`)} className="cursor-pointer">
+                    <ProjectCard
+                      key={idx}
+                      project={project}
+                      onDelete={(id) => handleDeleteProject(id)}
+                    />
+                  </div>
                 ))
               : null}
 
