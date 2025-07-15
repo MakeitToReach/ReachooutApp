@@ -63,14 +63,13 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
     >
       <CardHeader
         className="flex flex-row justify-between items-center px-2 w-full"
-        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-row items-center gap-2 min-w-0">
           <Avatar className="w-10 h-10">
             <AvatarImage src={project.faviconUrl || "/favicon.ico"} />
             <AvatarFallback>{project.name.slice(0, 2)}</AvatarFallback>
           </Avatar>
-          <div className="min-w-0">
+          <div className="min-w-0" onClick={(e) => e.stopPropagation()}>
             <CardTitle className="text-sm">{project.name}</CardTitle>
             <a
               href={portfolioUrl}
