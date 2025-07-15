@@ -220,7 +220,7 @@ export const FinancePortfolio = ({ data }: Props) => {
     <>
       <div className="relative">
         {navbarSection && !navbarSection.isHidden && (
-          <div className="sticky top-0 z-50 theme-wrapper text-template-text-primary">
+          <div className="sticky top-0 z-50 theme-wrapper text-template-text-primary" style={data.theme}>
             <FNavbarSection {...navbarSection.data} sections={navSections} />
           </div>
         )}

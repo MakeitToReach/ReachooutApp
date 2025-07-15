@@ -9,5 +9,6 @@ export type PF_FOOTER_SECTION = {
     address: string;
     email: string;
     phone: string;
+    qrCodeUrl?: string;
     socials: PF_SOCIAL[]
 };
