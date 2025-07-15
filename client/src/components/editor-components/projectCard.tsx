@@ -69,12 +69,13 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
             <AvatarImage src={project.faviconUrl || "/favicon.ico"} />
             <AvatarFallback>{project.name.slice(0, 2)}</AvatarFallback>
           </Avatar>
-          <div className="min-w-0" onClick={(e) => e.stopPropagation()}>
+          <div className="min-w-0">
             <CardTitle className="text-sm">{project.name}</CardTitle>
             <a
               href={portfolioUrl}
               target="_blank"
               className="block max-w-[280px]"
+              onClick={(e) => e.stopPropagation()}
             >
               <p className="text-xs text-muted-foreground hover:underline truncate max-w-full">
                 {portfolioUrl}
