@@ -3,6 +3,9 @@ import { LucideArrowRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { FButton } from "../components/FButton";
+import { toast } from "sonner";
+import { useState } from "react";
+import { submitNewsletterForm } from "@/api/user-template";
 
 export const FNewsletterSection = ({
   heading,
@@ -10,10 +13,26 @@ export const FNewsletterSection = ({
   btn1Link,
   btn2Text,
   btn2Link,
+  receiverEmail,
 }: F_NEWSLETTER_SECTION) => {
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("WIP");
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (receiverEmail: string) => {
+    setIsLoading(true);
+    try {
+      const response = await submitNewsletterForm(email, receiverEmail);
+      if (response) {
+        setEmail("");
+      } else {
+        toast.error("Failed to send message");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while sending the message");
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <section className="w-full min-h-[55vh] flex flex-col items-center justify-center bg-template-secondary rounded-lg overflow-hidden relative">
@@ -24,16 +43,20 @@ export const FNewsletterSection = ({
         </h2>
 
         {/* Newsletter Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="w-full flex flex-col sm:flex-row items-center px-4 justify-center gap-4"
-        >
+        <form className="w-full flex flex-col sm:flex-row items-center px-4 justify-center gap-4">
           <ReqInput
             type="email"
             placeholder="Enter your email"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <FButton btnText="Subscribe" className="self-start" />
+          <FButton
+            disabled={isLoading || !receiverEmail}
+            btnText="Subscribe"
+            className="self-start"
+            onClick={() => receiverEmail && handleSubmit(receiverEmail)}
+          />
         </form>
       </div>
 

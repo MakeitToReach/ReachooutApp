@@ -2,13 +2,17 @@
 import { Request, Response } from "express";
 import { ADMIN_PASSWORD, ADMIN_USERNAME } from "../config/dotenv";
 import prisma from "../config/prisma";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../config/dotenv";
 
 export const loginAdmin = (req: Request, res: Response) => {
   try {
     const { username, password } = req.body;
 
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-      res.status(200).json({ message: "Login successful" });
+      // Issue JWT for admin
+      const token = jwt.sign({ isAdmin: true }, JWT_SECRET, { expiresIn: "2h" });
+      res.status(200).json({ message: "Login successful", token });
     } else {
       res.status(401).json({ message: "Unauthorized, Invalid credentials" });
     }

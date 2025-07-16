@@ -29,6 +29,7 @@ import type { CustomUser } from "./types/express";
 import projectRouter from "./routes/project.routes";
 import genaiRouter from "./routes/genai.routes";
 import uploadRouter from "./routes/upload.routes";
+import userFormsRouter from "./routes/userForms.routes";
 
 const app = express();
 
@@ -226,6 +227,7 @@ app.use("/v1/admin", adminRouter);
 app.use("/v1/project", projectRouter);
 app.use("/v1/genai", genaiRouter);
 app.use("/v1", uploadRouter);
+app.use("/v1/submit-form", userFormsRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-// import { isAuthenticated } from "../middlewares/isAuthenticated";
+import { isAuthenticated } from "../middlewares/isAuthenticated";
 import {
   // addTemplateCategoryData,
   createTemplate,
@@ -22,21 +22,23 @@ adminRouter.post("/login", (req: Request, res: Response) => {
   loginAdmin(req, res);
 });
 
-adminRouter.post("/create/template", (req: Request, res: Response) => {
+// All routes below require admin authentication
+adminRouter.post("/create/template", isAuthenticated, (req: Request, res: Response) => {
   createTemplate(req, res);
 });
 
-adminRouter.post("/update/:id", (req: Request, res: Response) => {
+adminRouter.post("/update/:id", isAuthenticated, (req: Request, res: Response) => {
   updateTemplate(req, res);
 });
 
-adminRouter.delete("/template/:templateId", (req: Request, res: Response) => {
+adminRouter.delete("/template/:templateId", isAuthenticated, (req: Request, res: Response) => {
   deleteTemplateByTemplateId(req, res);
 })
 
 
 adminRouter.post(
   "/create/category/:templateId/:categoryName",
+  isAuthenticated,
   (req: Request, res: Response) => {
     createTemplateCategory(req, res);
   },
@@ -44,12 +46,13 @@ adminRouter.post(
 
 adminRouter.get(
   "/categories/:templateId",
+  isAuthenticated,
   (req: Request<{ templateId: string }>, res: Response) => {
     getTemplateCategoriesByTemplateId(req, res);
   },
 );
 
-adminRouter.delete("/category/:categoryId", (req: Request, res: Response) => {
+adminRouter.delete("/category/:categoryId", isAuthenticated, (req: Request, res: Response) => {
   deleteTemplateCategoryByCategoryId(req, res);
 })
 
@@ -58,11 +61,11 @@ adminRouter.delete("/category/:categoryId", (req: Request, res: Response) => {
 
 // /v1/admin/analytics
 
-adminRouter.get("/analytics/users", (req: Request, res: Response) => {
+adminRouter.get("/analytics/users", isAuthenticated, (req: Request, res: Response) => {
   getTotalUserCount(req, res);
 });
 
-adminRouter.get("/analytics/projects", (req: Request, res: Response) => {
+adminRouter.get("/analytics/projects", isAuthenticated, (req: Request, res: Response) => {
   getTotalProjectCount(req, res);
 });
 

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useId, useState } from "react"
+import React, { useId } from "react"
 import { ChevronDownIcon, PhoneIcon } from "lucide-react"
 import * as RPNInput from "react-phone-number-input"
 import flags from "react-phone-number-input/flags"
@@ -9,12 +9,11 @@ import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 // import { Label } from "@/components/ui/label"
 
-export default function PhnNumberInput() {
+export default function PhnNumberInput({ value, onChange, className }: { value: string, onChange: (value: string) => void, className?: string }) {
     const id = useId()
-    const [value, setValue] = useState("")
 
     return (
-        <div className="*:not-first:mt-2" dir="ltr">
+        <div className={cn("*:not-first:mt-2", className)} dir="ltr">
             {/* <Label htmlFor={id}>PhoneIcon number input</Label> */}
             <RPNInput.default
                 className="flex rounded-md shadow-xs"
@@ -25,7 +24,7 @@ export default function PhnNumberInput() {
                 id={id}
                 placeholder="Enter phone number"
                 value={value}
-                onChange={(newValue) => setValue(newValue ?? "")}
+                onChange={(newValue) => onChange(newValue ?? "")}
             />
         </div>
     )

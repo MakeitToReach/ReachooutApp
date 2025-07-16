@@ -24,3 +24,36 @@ export const getProjectTemplateInstanceData = async (
   }
   return null;
 };
+
+export const submitContactForm = async (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  content: any,
+  receiverEmail: string
+) => {
+  const response = await api.post("/v1/submit-form/contact", {
+    content,
+    receiverEmail,
+  });
+
+  if (response.status === 200 || response.status === 304) {
+    toast.success("Contact form submitted successfully");
+    return response.data;
+  }
+  return null;
+};
+
+export const submitNewsletterForm = async (
+  email: string,
+  receiverEmail: string
+) => {
+  const response = await api.post("/v1/submit-form/newsletter", {
+    email,
+    receiverEmail,
+  });
+
+  if (response.status === 200 || response.status === 304) {
+    toast.success("Newsletter form submitted successfully");
+    return response.data;
+  }
+  return null;
+};

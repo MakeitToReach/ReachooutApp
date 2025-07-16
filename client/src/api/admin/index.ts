@@ -1,9 +1,18 @@
 import { toast } from "sonner";
 import api from "../axios.config";
+import { setCookie } from "../auth";
+import { getAdminToken } from "@/lib/isAuthenticated";
+
+
+export const logoutAdmin = () => {
+    document.cookie = "admin-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    toast.success("Admin Logged out successfully");
+};
 
 export const loginAdmin = async (username: string, password: string) => {
   try {
     const response = await api.post("/v1/admin/login", { username, password });
+    setCookie("admin-token", response.data.token);
     toast.success("Admin logged in successfully");
     return response;
 
@@ -26,6 +35,7 @@ export const createTemplate = async (
   category: string,
   tags: string[],
 ) => {
+  const adminToken = getAdminToken();
   const categories = [
     {
       category: category,
@@ -39,6 +49,10 @@ export const createTemplate = async (
       thumbnailUrl,
       tags,
       categories,
+    },{
+      headers: {
+        Authorization: `Bearer ${adminToken}`,
+      },
     });
     toast.success("Template created successfully");
     return response;
@@ -60,6 +74,7 @@ export const createTemplateCategory = async (
   category: string,
   data: any, //eslint-disable-line
 ) => {
+  const adminToken = getAdminToken();
   try {
     const response = await api.post(
       `/v1/admin/create/category/${templateId}/${category}`,
@@ -68,6 +83,11 @@ export const createTemplateCategory = async (
         category,
         data,
       },
+      {
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+        },
+      }
     );
     toast.success("Template category created successfully");
     return response;
@@ -85,7 +105,12 @@ export const createTemplateCategory = async (
 };
 
 export const getCategoriesByTemplateIdAdmin = async (templateId: string) => {
-  const response = await api.get(`/v1/admin/categories/${templateId}`, {});
+  const adminToken = getAdminToken();
+  const response = await api.get(`/v1/admin/categories/${templateId}`, {
+    headers: {
+      Authorization: `Bearer ${adminToken}`,
+    },
+  });
 
   if (response.status === 200) {
     return response.data;
@@ -97,7 +122,12 @@ export const getCategoriesByTemplateIdAdmin = async (templateId: string) => {
 };
 
 export const deleteCategoryByCategoryId = async (categoryId: string) => {
-  const response = await api.delete(`/v1/admin/category/${categoryId}`);
+  const adminToken = getAdminToken();
+  const response = await api.delete(`/v1/admin/category/${categoryId}`, {
+    headers: {
+      Authorization: `Bearer ${adminToken}`,
+    },
+  });
 
   if (response.status === 200) {
     toast.success("Category deleted successfully");
@@ -110,7 +140,12 @@ export const deleteCategoryByCategoryId = async (categoryId: string) => {
 };
 
 export const deleteTemplateByTemplateId = async (templateId: string) => {
-    const response  = await api.delete(`/v1/admin/template/${templateId}`);
+  const adminToken = getAdminToken();
+  const response = await api.delete(`/v1/admin/template/${templateId}`, {
+    headers: {
+      Authorization: `Bearer ${adminToken}`,
+    },
+  });
 
     if (response.status === 200) {
       toast.success("Template deleted successfully");

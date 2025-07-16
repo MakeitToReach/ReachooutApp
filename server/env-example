@@ -1,5 +1,7 @@
 DATABASE_URL = ******
 BACKEND_URL = *******
+DEV_URL = ******
+CLIENT_URL = *****
 
 ADMIN_USERNAME= *****
 ADMIN_PASSWORD= *******
@@ -8,3 +10,5 @@ GOOGLE_CLIENT_ID = *******
 GOOGLE_CLIENT_SECRET = *******
 
 SESSION_SECRET_KEY = ********
+
+RESENT_API_KEY = *****

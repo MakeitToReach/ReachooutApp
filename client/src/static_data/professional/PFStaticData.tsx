@@ -435,6 +435,7 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
       sectionName: "newsletter",
       data: {
         heading: "Subscribe to our newsletter",
+        receiverEmail: "delivered@resend.dev",
       },
       isFixed: false,
       isEditable: true,
@@ -554,8 +555,9 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
       sectionName: "Contact",
       data: {
         heading: "Contact us",
-        calUrl: "rick/get-rick-rolled",
-        calTheme: "light",
+        // calUrl: "rick/get-rick-rolled",
+        // calTheme: "light",
+        receiverEmail: "",
       },
       isFixed: false,
       isEditable: true,

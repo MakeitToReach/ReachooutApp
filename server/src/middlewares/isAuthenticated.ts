@@ -38,13 +38,18 @@ export const isAuthenticated = (
             // We cast 'decoded' to our custom payload type for type safety
             req.user = decoded as Express.User;
             // 5. Check if the essential user ID exists on the decoded payload
-            if (!req.user || !req.user.id) {
+            // For admin, check isAdmin flag
+            if (!req.user || (!req.user.id && !req.user.isAdmin)) {
                 console.log("JWT PAYLOAD: ", req.user);
-                // Ensure 'id' matches your payload field
-                console.error("JWT payload missing required user identifier field.");
+                // Ensure 'id' or 'isAdmin' matches your payload field
+                console.error("JWT payload missing required user identifier field or isAdmin flag.");
                 return res
                     .status(401)
                     .json({ error: "Unauthorized: Invalid token payload" });
+            }
+            // If this is an admin route, require isAdmin: true
+            if (req.baseUrl.includes('/admin') && !req.user.isAdmin) {
+                return res.status(403).json({ error: "Forbidden: Admin access required" });
             }
 
             // 6. Proceed to the next middleware or route handler

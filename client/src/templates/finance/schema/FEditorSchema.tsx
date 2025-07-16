@@ -173,6 +173,13 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "heading",
     },
     {
+      type: "text",
+      label: "Receiver Email",
+      fieldPath: "receiverEmail",
+      subtitle:
+        "This is the email address that will receive the newsletter form submissions.",
+    },
+    {
       type: "group",
       label: "Button Group",
       fieldPath: "btnGroup",

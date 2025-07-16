@@ -2,11 +2,11 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LucideArrowRight } from "lucide-react";
 
-interface FButtonProps {
+interface FButtonProps extends React.ComponentProps<"button"> {
     btnText: string;
     className?: string;
 }
-export const FButton = ({ btnText, className }: FButtonProps) => {
+export const FButton = ({ btnText, className, ...props }: FButtonProps) => {
     return (
         <Button
             variant={"default"}
@@ -14,6 +14,7 @@ export const FButton = ({ btnText, className }: FButtonProps) => {
                 "py-4 rounded-full bg-black text-white font-semibold flex items-center",
                 className,
             )}
+            {...props}
         >
             {btnText}
             <span>

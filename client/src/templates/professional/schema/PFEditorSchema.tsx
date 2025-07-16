@@ -11,6 +11,7 @@ import { PFFaqEditorField } from "../editorFields/PFFaqEditorField";
 import { PFExperienceEditorField } from "../editorFields/PFExperienceEditorField";
 import { PFCatalogEditorField } from "../editorFields/PFCatalogEditorField";
 import { PFSocialEditorField } from "../editorFields/PFSocialEditorField";
+import { PFCalThemeSelect } from "../components/PFCalThemeSelect";
 
 export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     navbar: [
@@ -370,18 +371,24 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "heading",
         },
         {
+            label: "Receiver Email",
+            type: "text",
+            fieldPath: "receiverEmail",
+            subtitle: "Email to which the contact form submissions will be sent",
+        },
+        {
             label: "Cal Link",
             type: "text",
             fieldPath: "calUrl",
             subtitle: "ex: rick/get-rick-rolled",
         },
-        // {
-        //     label: "Cal Theme",
-        //     type: "component",
-        //     fieldPath: "calTheme",
-        //     component: ({ value, onChange }) => (
-        //         <PFCalThemeSelect value={value} onChange={onChange} />
-        //     ),
-        // },
+        {
+            label: "Cal Theme",
+            type: "component",
+            fieldPath: "calTheme",
+            component: ({ value, onChange }) => (
+                <PFCalThemeSelect value={value} onChange={onChange} />
+            ),
+        },
     ],
 };

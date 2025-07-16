@@ -56,10 +56,10 @@ export const publishTemplate = async (
 
   if (response.status === 200 || response.status === 201) {
     toast.success("Template published successfully");
-  } else if (response.status === 500) {
-    toast.error("Failed to publish template, Server Error");
+  } else if (response.status === 409) {
+    toast.error("Failed to publish template, Slug Conflict");
   } else {
-    toast.error("Failed to publish template");
+    toast.error("Failed to publish template, Server Error");
   }
 
   return response;

@@ -13,13 +13,14 @@ export interface CustomUser {
 declare global {
     namespace Express {
         interface User {
-            id: string;
-            name: string;
-            email: string;
-            avatarUrl: string;
-            accessToken: string;
-            refreshToken: string;
-            profile: Profile;
+            id?: string;
+            name?: string;
+            email?: string;
+            avatarUrl?: string;
+            accessToken?: string;
+            refreshToken?: string;
+            profile?: Profile;
+            isAdmin?: boolean; // Add isAdmin for admin JWTs
         }
         interface Request {
             user?: Express.User;

@@ -4,21 +4,47 @@ import EmailInput from "@/components/template-components/professional/emailInput
 import PhnNumberInput from "@/components/template-components/professional/phoneNumberInput";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Send } from "lucide-react";
-import React, { useEffect } from "react";
+import { Loader2, Send } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import { motion as m } from "motion/react";
 import { Textarea } from "@/components/ui/textarea";
 import { PF_CONTACT_SECTION } from "../types/contact.types";
 import Cal, { getCalApi } from "@calcom/embed-react";
+import { submitContactForm } from "@/api/user-template";
+import { toast } from "sonner";
 
 export const PFContactSection = ({
   heading,
   calUrl,
   calTheme,
+  receiverEmail,
 }: PF_CONTACT_SECTION) => {
+  //     const isValidCalLink = (url: string) =>
+  //   /^https:\/\/cal\.com\/your-username(\/[\w-]*)?$/.test(url);
 
-//     const isValidCalLink = (url: string) =>
-//   /^https:\/\/cal\.com\/your-username(\/[\w-]*)?$/.test(url);
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  const handleSubmit = async (receiverEmail: string) => {
+    setIsLoading(true);
+    try {
+      const response = await submitContactForm(formData, receiverEmail);
+      if (response) {
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        toast.error("Failed to send message");
+      }
+    } catch {
+      toast.error("An error occurred while sending the message");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     (async function () {
@@ -49,7 +75,7 @@ export const PFContactSection = ({
         // },
       });
     })();
-  }, []);
+  }, [calTheme]);
 
   const containerVariants = {
     initial: {
@@ -108,28 +134,55 @@ export const PFContactSection = ({
           className="lg:w-2xl mx-auto space-y-4"
         >
           <m.div variants={itemVariants}>
-            <Input type="text" placeholder="Name" />
+            <Input
+              type="text"
+              placeholder="Name"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+            />
           </m.div>
 
           <m.div variants={itemVariants}>
-            <EmailInput />
+            <EmailInput
+              value={formData.email}
+              onChange={(value) => setFormData({ ...formData, email: value })}
+            />
           </m.div>
 
           <m.div variants={itemVariants}>
-            <PhnNumberInput />
+            <PhnNumberInput
+              value={formData.phone}
+              onChange={(value) => setFormData({ ...formData, phone: value })}
+            />
           </m.div>
 
           <m.div variants={itemVariants}>
             <Textarea
               placeholder="Your message"
               className="border p-2 w-full rounded-md h-20"
+              value={formData.message}
+              onChange={(e) =>
+                setFormData({ ...formData, message: e.target.value })
+              }
             />
           </m.div>
 
           <m.div variants={itemVariants}>
-            <Button className="flex items-center gap-2">
-              Send Message
-              <Send />
+            <Button
+              disabled={!receiverEmail || isLoading}
+              className="flex items-center gap-2"
+              onClick={() => receiverEmail && handleSubmit(receiverEmail)}
+            >
+              {isLoading ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                <>
+                  <Send />
+                  Send Message
+                </>
+              )}
             </Button>
           </m.div>
         </m.form>

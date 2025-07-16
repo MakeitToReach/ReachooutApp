@@ -29,7 +29,7 @@ const ExplorePage = () => {
                 <ExploreTabs
                     templates={templates}
                     projectId={projectId ? projectId : undefined}
-                    slug={slug ? slug : undefined}
+                    slug={slug ? slug : ""}
                 />
             </Suspense>
         </div>

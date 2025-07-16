@@ -1,12 +1,15 @@
 import api from "@/api/axios.config";
+import { getAdminToken } from "@/lib/isAuthenticated";
 import { toast } from "sonner";
 
 export const getTotalUserCount = async () => {
+  const adminToken = getAdminToken();
   try {
-    const response = await api.get("/v1/admin/analytics/users");
-    // if (response.status === 200) {
-    //   toast.success("User count fetched successfully");
-    // }
+    const response = await api.get("/v1/admin/analytics/users", {
+      headers: {
+        Authorization: `Bearer ${adminToken}`,
+      },
+    });
     return response.data;
     //eslint-disable-next-line
   } catch (error: any) {
@@ -21,11 +24,13 @@ export const getTotalUserCount = async () => {
 };
 
 export const getTotalProjectCount = async () => {
+  const adminToken = getAdminToken();
   try {
-    const response = await api.get("/v1/admin/analytics/projects");
-    // if (response.status === 200) {
-    //   toast.success("Project count fetched successfully");
-    // }
+    const response = await api.get("/v1/admin/analytics/projects", {
+      headers: {
+        Authorization: `Bearer ${adminToken}`,
+      },
+    });
     return response.data;
 
     //eslint-disable-next-line

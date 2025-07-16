@@ -31,7 +31,8 @@
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "pg": "^8.15.5",
-    "prisma": "^6.9.0"
+    "prisma": "^6.9.0",
+    "resend": "^4.6.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
