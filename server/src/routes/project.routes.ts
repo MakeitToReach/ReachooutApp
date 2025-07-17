@@ -34,10 +34,14 @@ projectRouter.post(
   }
 );
 
-// Get project by project id
-projectRouter.get("/:id", isAuthenticated, (req: Request, res: Response) => {
-  getProjectById(req, res);
-});
+// Check slug availability
+projectRouter.get(
+  "/check/validate",
+  isAuthenticated,
+  (req: Request, res: Response) => {
+    checkSlug(req, res);
+  }
+);
 
 // Get all projects for the user
 projectRouter.get(
@@ -145,13 +149,10 @@ projectRouter.put(
   }
 );
 
-// Check slug availability
-projectRouter.get(
-  "/check/validate",
-  isAuthenticated,
-  (req: Request, res: Response) => {
-    checkSlug(req, res);
-  }
-);
+// Get project by project id
+projectRouter.get("/:id", isAuthenticated, (req: Request, res: Response) => {
+  getProjectById(req, res);
+});
+
 
 export default projectRouter;
