@@ -96,29 +96,3 @@ export const updateTemplateInstanceData = async (
     throw error;
   }
 };
-
-export const checkSlugAvailability = async (
-  pid: string,
-  slug: string
-): Promise<boolean> => {
-  try {
-    const token = getToken();
-    const response = await api.get(
-      `/v1/template/check-slug?pid=${pid}&slug=${encodeURIComponent(slug)}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    if (response.status === 200) {
-      return response.data.available;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    console.log("Error while checking slug", error);
-    return false;
-  }
-};

@@ -520,7 +520,7 @@ export const getProjectById = async (req: Request, res: Response) => {
       },
     },
   });
-  
+
   if (!project) {
     return res.status(404).json({ error: "Project not found" });
   }
@@ -664,12 +664,12 @@ export const updateTemplateSEO = async (
   req: Request<
     {},
     {},
-    { 
-      projectId: string; 
-      templateId: string; 
-      slug: string; 
-      seoTitle: string; 
-      seoDescription: string 
+    {
+      projectId: string;
+      templateId: string;
+      slug: string;
+      seoTitle: string;
+      seoDescription: string;
     }
   >,
   res: Response
@@ -679,8 +679,9 @@ export const updateTemplateSEO = async (
     const userId = req.user?.id;
 
     if (!projectId || !templateId || !slug || !seoTitle || !seoDescription) {
-      return res.status(400).json({ 
-        error: "Project ID, template ID, slug, SEO title, and SEO description are required" 
+      return res.status(400).json({
+        error:
+          "Project ID, template ID, slug, SEO title, and SEO description are required",
       });
     }
 
@@ -702,7 +703,9 @@ export const updateTemplateSEO = async (
     });
 
     if (!project) {
-      return res.status(404).json({ error: "Project not found or access denied" });
+      return res
+        .status(404)
+        .json({ error: "Project not found or access denied" });
     }
 
     // Check if slug is already taken by another template in the same project
@@ -715,8 +718,9 @@ export const updateTemplateSEO = async (
     });
 
     if (existingTemplate) {
-      return res.status(409).json({ 
-        error: "Slug is already taken by another template in this project. Please choose a different slug." 
+      return res.status(409).json({
+        error:
+          "Slug is already taken by another template in this project. Please choose a different slug.",
       });
     }
 
@@ -729,8 +733,8 @@ export const updateTemplateSEO = async (
     });
 
     if (!templateToUpdate) {
-      return res.status(404).json({ 
-        error: "Template not found in this project" 
+      return res.status(404).json({
+        error: "Template not found in this project",
       });
     }
 
@@ -758,4 +762,56 @@ export const updateTemplateSEO = async (
     console.error("Error updating template SEO:", error);
     res.status(500).json({ error: "Internal server error" });
   }
+};
+
+export const checkSlug = async (req: Request, res: Response) => {
+  const { pid: projectId, slug } = req.query;
+  console.log("Project ID", projectId, "Slug", slug);
+
+  if (!projectId || !slug) {
+    return res.status(400).json({ error: "Missing projectId or slug" });
+  }
+
+  const project = await prisma.project.findUnique({
+    where: { id: projectId as string },
+  });
+
+  if (!project) {
+    return res.status(404).json({ error: "HERE:Project not found" });
+  }
+
+  //TODO: move to a config file
+  const unavailableSlugs = [
+    "pricing",
+    "test",
+    "explore",
+    "admin",
+    "user",
+    "success",
+    "preview",
+    "editor",
+    "dashboard",
+  ];
+
+  if (unavailableSlugs.includes(slug as string)) {
+    return res.status(409).json({
+      available: false,
+    });
+  }
+
+  if (slug) {
+    const existingSlug = await prisma.projectTemplate.findFirst({
+      where: {
+        projectId: projectId as string,
+        slug: slug as string,
+      },
+    });
+    if (existingSlug) {
+      return res.status(409).json({
+        available: false,
+      });
+    }
+  }
+
+  return res.status(200).json({ available: true });
 };

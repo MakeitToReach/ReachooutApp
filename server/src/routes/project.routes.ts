@@ -18,6 +18,8 @@ import {
   updateProjectMetaData,
   getProjectBySubdomainAndSlug,
   updateTemplateSEO,
+  // checkSlugAvailability,
+  checkSlug,
 } from "../controllers/project.controller";
 
 const projectRouter = Router();
@@ -83,9 +85,12 @@ projectRouter.post(
 );
 
 // Get project by custom domain
-projectRouter.get("/custom-domain/:customDomain", (req: Request, res: Response) => {
-  getProjectByCustomDomain(req, res);
-});
+projectRouter.get(
+  "/custom-domain/:customDomain",
+  (req: Request, res: Response) => {
+    getProjectByCustomDomain(req, res);
+  }
+);
 
 // Get project by subdomain
 projectRouter.get("/subdomain/:subdomain", (req: Request, res: Response) => {
@@ -93,9 +98,12 @@ projectRouter.get("/subdomain/:subdomain", (req: Request, res: Response) => {
 });
 
 // Get project by subdomain and slug
-projectRouter.get("/subdomain/:subdomain/slug/:slug", (req: Request, res: Response) => {
-  getProjectBySubdomainAndSlug(req, res);
-});
+projectRouter.get(
+  "/subdomain/:subdomain/slug/:slug",
+  (req: Request, res: Response) => {
+    getProjectBySubdomainAndSlug(req, res);
+  }
+);
 
 // Check subdomain availability
 projectRouter.get(
@@ -105,7 +113,7 @@ projectRouter.get(
   }
 );
 
-// Update project subdomain 
+// Update project subdomain
 projectRouter.put(
   "/update-subdomain",
   isAuthenticated,
@@ -114,7 +122,7 @@ projectRouter.put(
   }
 );
 
-// Update project favicon 
+// Update project favicon
 projectRouter.put(
   "/update-favicon",
   isAuthenticated,
@@ -124,13 +132,9 @@ projectRouter.put(
 );
 
 // Update project meta data
-projectRouter.put(
-  "/update",
-  isAuthenticated,
-  (req: Request, res: Response) => {
-    updateProjectMetaData(req, res);
-  }
-);
+projectRouter.put("/update", isAuthenticated, (req: Request, res: Response) => {
+  updateProjectMetaData(req, res);
+});
 
 // Update template SEO settings
 projectRouter.put(
@@ -138,6 +142,15 @@ projectRouter.put(
   isAuthenticated,
   (req: Request, res: Response) => {
     updateTemplateSEO(req, res);
+  }
+);
+
+// Check slug availability
+projectRouter.get(
+  "/slug/validate",
+  isAuthenticated,
+  (req: Request, res: Response) => {
+    checkSlug(req, res);
   }
 );
 
