@@ -50,5 +50,4 @@ templateRouter.delete(
     }
 )
 
-
 export default templateRouter;
