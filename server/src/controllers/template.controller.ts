@@ -198,9 +198,8 @@ export const publishTemplate = async (req: Request, res: Response) => {
       });
     }
 
-    let finalSlug =
-      typeof slug === "string" && slug !== "undefined" ? slug : "";
-    if (finalSlug !== "") {
+    let finalSlug = typeof slug === "string" && slug.trim() !== "" ? slug : null;
+    if (finalSlug) {
       const existingSlug = await prisma.projectTemplate.findFirst({
         where: {
           projectId,
@@ -233,7 +232,7 @@ export const publishTemplate = async (req: Request, res: Response) => {
           templateId,
           data: data,
           order: nextOrder,
-          slug: finalSlug,
+          slug: finalSlug, // will be null if not provided
         },
         include: {
           template: {
@@ -251,7 +250,7 @@ export const publishTemplate = async (req: Request, res: Response) => {
       if (err.code === "P2002" && err.meta?.target?.includes("slug")) {
         return res.status(409).json({
           error:
-            "Slug already exists in this project. Please choose a different slug.",
+            "DB:Slug already exists in this project. Please choose a different slug.",
         });
       }
       throw err;
