@@ -107,14 +107,15 @@ export const publishTemplate = async (req: Request, res: Response) => {
       });
     }
 
-    // let finalSlug = typeof slug === "string" && slug.trim() !== "" ? slug : null;
+    // Normalize slug: treat empty or whitespace-only as null
+    const finalSlug = typeof slug === "string" && slug.trim() !== "" ? slug.trim() : null;
 
-    console.log("slug", slug);
-    if (slug) {
+    // Only check for slug conflicts if slug is not null
+    if (finalSlug) {
       const existingSlug = await prisma.projectTemplate.findFirst({
         where: {
           projectId,
-          slug: slug,
+          slug: finalSlug,
         },
       });
       if (existingSlug) {
@@ -143,7 +144,7 @@ export const publishTemplate = async (req: Request, res: Response) => {
           templateId,
           data: data,
           order: nextOrder,
-          slug: slug ? slug : null, // will be null if not provided
+          slug: finalSlug, // will be null if not provided or empty
         },
         include: {
           template: {
