@@ -37,7 +37,6 @@ projectRouter.post(
 // Check slug availability
 projectRouter.get(
   "/check/validate",
-  isAuthenticated,
   (req: Request, res: Response) => {
     checkSlug(req, res);
   }
