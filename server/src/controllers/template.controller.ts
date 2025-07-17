@@ -144,7 +144,7 @@ export const publishTemplate = async (req: Request, res: Response) => {
           templateId,
           data: data,
           order: nextOrder,
-          slug: finalSlug ? finalSlug : null, // will be null if not provided or empty
+          slug: finalSlug, // will be null if not provided or empty
         },
         include: {
           template: {
