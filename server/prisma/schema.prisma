@@ -85,10 +85,12 @@ model ProjectTemplate {
   template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
   
   // SEO fields for templates with order > 0
-  slug       String?  @unique
+  slug       String?  
   seoTitle   String?
   seoDescription String?
+
   
+  @@unique([projectId, slug])
   @@id([projectId, templateId, createdAt])
   @@index([projectId, order])
   @@index([slug])

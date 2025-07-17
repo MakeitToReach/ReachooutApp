@@ -317,6 +317,7 @@ export const checkSlugAvailability = async (req: Request, res: Response) => {
     return res.status(404).json({ error: "Project not found" });
   }
 
+  //TODO: move to a config file
   const unavailableSlugs = [
     "pricing",
     "test",
