@@ -10,6 +10,7 @@ interface ReqInputProps extends InputHTMLAttributes<HTMLInputElement> {
     isOptional?: boolean;
     subtitle?: string;
     className?: string;
+    inputClassName?: string;
 }
 export const ReqInput: React.FC<ReqInputProps> = ({
     isRequired,
@@ -17,6 +18,7 @@ export const ReqInput: React.FC<ReqInputProps> = ({
     isOptional,
     subtitle,
     className,
+    inputClassName,
     ...props
 }) => {
     return (
@@ -35,7 +37,7 @@ export const ReqInput: React.FC<ReqInputProps> = ({
                 id="input-02"
                 type="text"
                 required
-                className="font-Montserrat"
+                className={cn("font-Montserrat", inputClassName)}
                 {...props}
             />
             {subtitle && <p className="text-xs text-gray-700">{subtitle}</p>}

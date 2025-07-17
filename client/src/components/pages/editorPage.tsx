@@ -137,6 +137,7 @@ const EditorPage = () => {
               TabIndex={editorTabIndex}
               projectId={projectId || ""}
               templateId={templateId || ""}
+              slug={pageSlug || ""}
             />
           </motion.div>
         )}

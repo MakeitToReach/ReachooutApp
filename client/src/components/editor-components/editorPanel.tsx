@@ -29,6 +29,7 @@ interface EditorPanelProps {
   projectId: string;
   templateId: string;
   order?: number;
+  slug?: string;
 }
 export const EditorPanel = ({
   isEditing,
@@ -38,6 +39,7 @@ export const EditorPanel = ({
   projectId,
   templateId,
   order,
+  slug,
 }: EditorPanelProps) => {
   const {
     data,
@@ -91,7 +93,7 @@ export const EditorPanel = ({
   const handlePublish = async () => {
     setLoading(true);
     try {
-      await publishTemplate(data, projectId, templateId);
+      await publishTemplate(data, projectId, templateId, slug || "");
       router.push(`/user/project/${projectId}`);
     } catch (error) {
       console.error(error);

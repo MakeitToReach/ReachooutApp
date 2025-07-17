@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/dialog";
 import { Search } from "lucide-react";
 import { ReqInput } from "../inputs/reqInput";
+import { checkSlugAvailability } from "@/api/templates";
+import { cn } from "@/lib/utils";
 
 interface AddSlugPopupProps {
   children: React.ReactNode;
@@ -22,14 +24,30 @@ interface AddSlugPopupProps {
 
 export default function AddSlugPopup({ children, pid }: AddSlugPopupProps) {
   const [slug, setSlug] = useState("");
+  const [isAvailable, setIsAvailable] = useState<boolean | null>(false);
+  const [checking, setChecking] = useState(false);
   const router = useRouter();
 
   const handleExploreTemplates = () => {
-    if (slug.trim()) {
+    if (slug.trim() && isAvailable) {
       router.push(
         `/explore?pid=${pid}&slug=${encodeURIComponent(slug.trim())}`
       );
       setSlug("");
+      setIsAvailable(null);
+    }
+  };
+
+  const handleCheckAvailability = async () => {
+    setChecking(true);
+    try {
+      const available = await checkSlugAvailability(pid, slug.trim());
+      setIsAvailable(available);
+    } catch (error) {
+      console.error("Error while checking slug availability", error);
+      setIsAvailable(false);
+    } finally {
+      setChecking(false);
     }
   };
 
@@ -49,20 +67,33 @@ export default function AddSlugPopup({ children, pid }: AddSlugPopupProps) {
             Enter a slug to explore templates with this identifier.
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4">
+        <div className="flex gap-2">
           <ReqInput
             label="Slug"
             placeholder="about"
-            className="w-full"
             value={slug}
-            onChange={(e) => setSlug(e.target.value)}
+            inputClassName={cn(
+              isAvailable === false && "border-red-500 focus:border-red-500"
+            )}
+            onChange={(e) => {
+              setSlug(e.target.value);
+              setIsAvailable(null);
+            }}
             onKeyDown={handleKeyPress}
           />
+          <Button
+            variant="outline"
+            onClick={handleCheckAvailability}
+            disabled={!slug.trim() || checking}
+            className="self-end"
+          >
+            {checking ? "Checking..." : "Check Availability"}
+          </Button>
         </div>
         <DialogFooter className="flex gap-2">
           <Button
             onClick={handleExploreTemplates}
-            disabled={!slug.trim()}
+            disabled={!slug.trim() || isAvailable !== true}
             className="flex items-center gap-2"
           >
             <Search className="h-4 w-4" />

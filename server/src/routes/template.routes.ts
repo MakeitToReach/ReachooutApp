@@ -7,6 +7,7 @@ import {
     getProjectTemplateInstanceData,
     publishTemplate,
     updateTemplateInstance,
+    checkSlugAvailability,
 } from "../controllers/template.controller";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 
@@ -49,5 +50,9 @@ templateRouter.delete(
         deleteTemplateCategory(req, res);
     }
 )
+
+templateRouter.get("/check-slug", (req: Request, res: Response) => {
+    checkSlugAvailability(req, res);
+});
 
 export default templateRouter;

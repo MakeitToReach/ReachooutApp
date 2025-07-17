@@ -65,14 +65,23 @@ export const publishTemplate = async (
   return response;
 };
 
-export const updateTemplateInstanceData = async (data: GenericTemplateSchema, projectId: string, templateId: string, order: number) => {
+export const updateTemplateInstanceData = async (
+  data: GenericTemplateSchema,
+  projectId: string,
+  templateId: string,
+  order: number
+) => {
   try {
     const token = getToken();
-    const response = await api.put("/v1/template/update", { data, projectId, templateId, order }, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await api.put(
+      "/v1/template/update",
+      { data, projectId, templateId, order },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (response.status === 200 || response.status === 201) {
       toast.success("Template updated successfully");
@@ -85,5 +94,31 @@ export const updateTemplateInstanceData = async (data: GenericTemplateSchema, pr
     console.error("Error updating template instance:", error);
     toast.error("Failed to update template");
     throw error;
+  }
+};
+
+export const checkSlugAvailability = async (
+  pid: string,
+  slug: string
+): Promise<boolean> => {
+  try {
+    const token = getToken();
+    const response = await api.get(
+      `/v1/template/check-slug?pid=${pid}&slug=${encodeURIComponent(slug)}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      return response.data.available;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log("Error while checking slug", error);
+    return false;
   }
 };
