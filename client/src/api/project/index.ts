@@ -275,7 +275,7 @@ export const checkSlugAvailability = async (
   try {
     const token = getToken();
     const response = await api.get(
-      `/v1/project/validate?pid=${pid}&slug=${encodeURIComponent(slug)}`,
+      `/v1/project/check/validate?pid=${pid}&slug=${encodeURIComponent(slug)}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
