@@ -14,7 +14,7 @@ import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { F_BLOG } from "../types/blogs.types";
 import { ImageInput } from "@/components/imgInput";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface FAddBlogPopupProps {
     children: React.ReactNode;
@@ -37,6 +37,17 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
                     <DialogTitle className="md:text-2xl">Add Blog</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col gap-3">
+                    <div className="space-y-2">
+                        <Label className="font-semibold">Blog Image</Label>
+                        <ImageInput
+                            initialImgUrl={blog.imgUrl}
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                                setBlog({ ...blog, imgUrl: imgUrl });
+                            }}
+                            onImageRemove={() => setBlog({ ...blog, imgUrl: "" })}
+                        />
+                    </div>
                     <ReqInput
                         type="text"
                         label="Category"
@@ -55,13 +66,12 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <Textarea
-                            placeholder="Enter description"
-                            className="border p-2 w-full rounded-md h-20"
+                        <TipTapEditor
                             value={blog.description}
-                            onChange={(e) =>
-                                setBlog({ ...blog, description: e.target.value })
-                            }
+                            onChange={(value) => setBlog({ ...blog, description: value })}
+                            placeholder="Enter service description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
 
@@ -72,18 +82,6 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
                         value={blog.author}
                         onChange={(e) => setBlog({ ...blog, author: e.target.value })}
                     />
-
-                    <div className="space-y-2">
-                        <Label className="font-semibold">Blog Image</Label>
-                        <ImageInput
-                            initialImgUrl={blog.imgUrl}
-                            className="w-full"
-                            onImageUpload={(imgUrl) => {
-                                setBlog({ ...blog, imgUrl: imgUrl });
-                            }}
-                            onImageRemove={() => setBlog({ ...blog, imgUrl: "" })}
-                        />
-                    </div>
 
                     <div className="space-y-2">
                         <Label className="font-semibold">Author Image</Label>
@@ -162,6 +160,17 @@ export const FEditBlogPopup = ({
                 </DialogHeader>
 
                 <div className="space-y-3">
+                    <div className="space-y-2">
+                        <Label className="font-semibold">Blog Image</Label>
+                        <ImageInput
+                            initialImgUrl={formData.imgUrl}
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                                handleChange("imgUrl", imgUrl);
+                            }}
+                            onImageRemove={() => handleChange("imgUrl", "")}
+                        />
+                    </div>
                     <ReqInput
                         type="text"
                         label="Category"
@@ -178,11 +187,12 @@ export const FEditBlogPopup = ({
 
                     <div>
                         <label className="font-semibold">Description</label>
-                        <Textarea
-                            placeholder="Enter description"
-                            className="border p-2 w-full rounded-md h-20"
-                            value={formData.description}
-                            onChange={(e) => handleChange("description", e.target.value)}
+                        <TipTapEditor
+                            value={blog.description}
+                            onChange={(value) => handleChange("description", value)}
+                            placeholder="Enter service description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
 
@@ -192,19 +202,6 @@ export const FEditBlogPopup = ({
                         value={formData.author}
                         onChange={(e) => handleChange("author", e.target.value)}
                     />
-
-                    <div className="space-y-2">
-                        <Label className="font-semibold">Blog Image</Label>
-                        <ImageInput
-                            initialImgUrl={formData.imgUrl}
-                            className="w-full"
-                            onImageUpload={(imgUrl) => {
-                                handleChange("imgUrl", imgUrl);
-                            }}
-                            onImageRemove={() => handleChange("imgUrl", "")}
-                        />
-                    </div>
-
                     <div className="space-y-2">
                         <Label className="font-semibold">Author Image</Label>
                         <ImageInput
@@ -227,4 +224,4 @@ export const FEditBlogPopup = ({
             </DialogContent>
         </Dialog>
     );
-}; 
+};

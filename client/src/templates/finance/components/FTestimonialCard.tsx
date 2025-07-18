@@ -32,7 +32,20 @@ export const FTestimonialCard = ({
                     <h3 className="font-semibold opacity-50">{designation}</h3>
                 </div>
             </div>
-            <p className="line-clamp-4 text-base">{description}</p>
+            <div
+                className="
+    prose prose-sm max-w-none text-template-text-primary
+    prose-p:text-template-text-primary
+    prose-strong:text-template-text-primary
+    prose-h1:text-template-text-primary
+    prose-h2:text-template-text-primary
+    prose-h3:text-template-text-primary
+    prose-h4:text-template-text-primary
+    prose-h5:text-template-text-primary
+    prose-h6:text-template-text-primary
+  "
+                dangerouslySetInnerHTML={{ __html: description }}
+            />
             <div className="flex gap-1">
                 {Array.from({ length: rating }).map((_, index) => (
                     <IconStarFilled key={index} className="text-yellow-400" />

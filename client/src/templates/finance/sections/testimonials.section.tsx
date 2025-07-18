@@ -3,12 +3,12 @@ import { FTestimonialCard } from "../components/FTestimonialCard";
 import { F_TESTIMONIAL_SECTION } from "../types/testimonials.types";
 
 export const FTestimonialsSection = ({
-    badgeText,
+    testimonials,
     title,
     description,
     btnText,
     btnLink,
-    testimonials,
+    badgeText,
 }: F_TESTIMONIAL_SECTION) => {
     return (
         <section id="testimonials" className="max-w-6xl mx-auto sm:py-20 py-10 px-4">
@@ -21,7 +21,20 @@ export const FTestimonialsSection = ({
                     <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight">
                         {title}
                     </h2>
-                    <p className="line-clamp-2">{description}</p>
+                    <div
+                        className="
+    prose prose-sm max-w-none text-template-text-primary
+    prose-p:text-template-text-primary
+    prose-strong:text-template-text-primary
+    prose-h1:text-template-text-primary
+    prose-h2:text-template-text-primary
+    prose-h3:text-template-text-primary
+    prose-h4:text-template-text-primary
+    prose-h5:text-template-text-primary
+    prose-h6:text-template-text-primary
+  "
+                        dangerouslySetInnerHTML={{ __html: description }}
+                    />
 
                     <div className="flex gap-10 items-center">
                         <a href={btnLink}>

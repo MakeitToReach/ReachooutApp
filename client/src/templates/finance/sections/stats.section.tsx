@@ -13,7 +13,7 @@ export const FStatsSection = ({
   btn2Link = "#",
 }: F_STATS_SECTION) => {
   return (
-    <section className="py-20">
+    <section className="py-20" id="stats">
       <div className="w-full sm:h-[55vh] min-h-fit flex flex-col items-center justify-center bg-template-secondary rounded-lg overflow-hidden relative py-16 px-4">
         {/* Content container */}
         <div className="max-w-6xl py-10 mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-10 text-template-text-secondary mb-20 sm:mb-0">

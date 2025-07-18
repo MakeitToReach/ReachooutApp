@@ -83,9 +83,20 @@ export const FCatalogServicesCard = ({
                 <h2 className="font-semibold text-lg tracking-tight text-black">
                     {title}
                 </h2>
-                <p className="text-xs line-clamp-3 leading-6 text-gray-600">
-                    {description}
-                </p>
+                <div
+                    className="
+    prose prose-sm max-w-none text-gray-600
+    prose-p:text-gray-600
+    prose-strong:text-gray-600
+    prose-h1:text-gray-600
+    prose-h2:text-gray-600
+    prose-h3:text-gray-600
+    prose-h4:text-gray-600
+    prose-h5:text-gray-600
+    prose-h6:text-gray-600
+  "
+                    dangerouslySetInnerHTML={{ __html: description }}
+                />
             </div>
 
             {/* "View Details" and arrow button (below image) */}

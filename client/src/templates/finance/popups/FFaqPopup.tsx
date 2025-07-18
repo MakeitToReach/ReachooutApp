@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Label } from "@/components/ui/label";
 import { FFAQ_ITEM } from "../types/faq.types";
+import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface FAddFaqPopupProps {
     children: React.ReactNode;
@@ -24,7 +25,7 @@ export function FAddFaqPopup({ children, onAdd }: FAddFaqPopupProps) {
         answer: "",
     });
     return (
-        <Dialog modal={false}>
+        <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
                 className="sm:max-w-[600px] font-Poppins"
@@ -44,12 +45,13 @@ export function FAddFaqPopup({ children, onAdd }: FAddFaqPopupProps) {
                     />
 
                     <div className="space-y-2">
-                        <Label className="font-semibold">Answer</Label>
-                        <textarea
-                            placeholder="Answer"
-                            className="border p-2 w-full rounded-md h-20"
+                        <Label>Answer</Label>
+                        <TipTapEditor
                             value={item.answer}
-                            onChange={(e) => setItem({ ...item, answer: e.target.value })}
+                            onChange={(value) => setItem({ ...item, answer: value })}
+                            placeholder="Enter service description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
                 </div>
@@ -104,11 +106,11 @@ export const FEditFaqPopup = ({
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen} modal={false}>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent className="space-y-4 z-[100] font-Poppins">
                 <DialogHeader>
-                    <DialogTitle>
+                    <DialogTitle className="sm:text-2xl">
                         Edit Faq {faqIdx !== undefined && `#${faqIdx + 1}`}
                     </DialogTitle>
                 </DialogHeader>
@@ -122,16 +124,15 @@ export const FEditFaqPopup = ({
                     />
 
                     <div className="space-y-2">
-                        <Label className="font-semibold">Answer</Label>
-                        <textarea
-                            placeholder="Answer"
-                            className="border p-2 w-full rounded-md h-20"
+                        <Label>Answer</Label>
+                        <TipTapEditor
                             value={formData.answer}
-                            onChange={(e) => handleChange("answer", e.target.value)}
+                            onChange={(value) => handleChange("answer", value)}
+                            placeholder="Enter service description"
+                            height="h-36"
+                            showToolbar={true}
                         />
                     </div>
-
-                    {/* TODO:add image input here */}
                 </div>
 
                 <div className="flex justify-end gap-2">

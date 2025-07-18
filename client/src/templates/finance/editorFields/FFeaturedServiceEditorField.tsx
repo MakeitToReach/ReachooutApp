@@ -30,10 +30,10 @@ export const FFeaturedServiceEditorField = ({
     return (
         <div className="space-y-3">
             <div className="flex justify-between mb-4">
-                <h1 className="font-semibold">Your Featured Services</h1>
+                <h1 className="font-semibold">Featured Services</h1>
                 <FAddFeaturedServicePopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
-                        Add Featured Service{" "}
+                        Add 
                         <span>
                             <LucidePlus />
                         </span>

@@ -94,7 +94,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     },
     {
       label: "Description",
-      type: "text",
+      type: "RTEditor",
       fieldPath: "description",
     },
     {
@@ -239,7 +239,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "title",
     },
     {
-      type: "textarea",
+      type: "RTEditor",
       label: "Description",
       fieldPath: "description",
     },
@@ -390,7 +390,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "title",
     },
     {
-      type: "textarea",
+      type: "RTEditor",
       label: "Description",
       fieldPath: "description",
     },
@@ -456,7 +456,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     },
     {
       label: "Subtitle",
-      type: "textarea",
+      type: "RTEditor",
       fieldPath: "subtitle",
     },
     {

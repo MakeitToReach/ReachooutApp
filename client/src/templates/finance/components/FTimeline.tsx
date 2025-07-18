@@ -5,6 +5,7 @@ import { F_TIMELINE_STEP } from "../types/timeline.types";
 interface FTimelineProps {
     steps: F_TIMELINE_STEP[];
 }
+
 export const FTimeline = ({ steps }: FTimelineProps) => {
     return (
         <div className="relative w-full max-w-6xl mx-auto px-4 py-12">
@@ -56,7 +57,20 @@ export const FTimeline = ({ steps }: FTimelineProps) => {
                                         {step.badgeText}
                                     </span>
                                     <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
-                                    <p className="text-gray-600">{step.description}</p>
+                                    <div
+                                        className="
+    prose prose-sm max-w-none text-gray-600
+    prose-p:text-gray-600
+    prose-strong:text-gray-600
+    prose-h1:text-gray-600
+    prose-h2:text-gray-600
+    prose-h3:text-gray-600
+    prose-h4:text-gray-600
+    prose-h5:text-gray-600
+    prose-h6:text-gray-600
+  "
+                                        dangerouslySetInnerHTML={{ __html: step.description }}
+                                    />
                                 </div>
                             </div>
                         </div>

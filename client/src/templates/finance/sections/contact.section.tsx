@@ -51,9 +51,20 @@ export const FContactSection = ({
           <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight">
             {title}
           </h2>
-          <p className="line-clamp-4 text-template-text-primary opacity-60 ">
-            {subtitle}
-          </p>
+          <div
+            className="
+    prose prose-sm max-w-none text-template-text-primary opacity-60
+    prose-p:text-template-text-primary opacity-60
+    prose-strong:text-template-text-primary opacity-60
+    prose-h1:text-template-text-primary opacity-60
+    prose-h2:text-template-text-primary opacity-60
+    prose-h3:text-template-text-primary opacity-60
+    prose-h4:text-template-text-primary opacity-60
+    prose-h5:text-template-text-primary opacity-60
+    prose-h6:text-template-text-primary opacity-60
+  "
+            dangerouslySetInnerHTML={{ __html: subtitle }}
+          />
 
           <div className="flex gap-10 items-center">
             <FContactButton type="tel" value={phoneNumber} />

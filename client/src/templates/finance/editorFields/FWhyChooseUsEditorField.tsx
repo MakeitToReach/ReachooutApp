@@ -32,10 +32,10 @@ export const FWhyChooseUsEditorField = ({
     return (
         <div className="space-y-3">
             <div className="flex justify-between mb-4">
-                <h1 className="font-semibold">Your Features</h1>
+                <h1 className="font-semibold">Features</h1>
                 <FAddFeaturePopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
-                        Add Feature{" "}
+                        Add
                         <span>
                             <LucidePlus />
                         </span>

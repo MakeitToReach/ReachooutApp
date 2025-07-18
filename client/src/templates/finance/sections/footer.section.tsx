@@ -22,7 +22,22 @@ export const FFooterSection = ({
 
           {textLogo && <h3 className="font-semibold text-xl">{textLogo}</h3>}
 
-          <p className="line-clamp-3 text-template-text-primary/70">{description}</p>
+          {description && (
+            <div
+              className="
+    prose prose-sm max-w-none text-template-text-primary/70
+    prose-p:text-template-text-primary/70
+    prose-strong:text-template-text-primary/70
+    prose-h1:text-template-text-primary/70
+    prose-h2:text-template-text-primary/70
+    prose-h3:text-template-text-primary/70
+    prose-h4:text-template-text-primary/70
+    prose-h5:text-template-text-primary/70
+    prose-h6:text-template-text-primary/70
+  "
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
+          )}
 
           <div className="flex items-center gap-2">
             {experience && (

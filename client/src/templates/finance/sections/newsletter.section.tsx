@@ -35,7 +35,7 @@ export const FNewsletterSection = ({
     }
   };
   return (
-    <section className="w-full min-h-[55vh] flex flex-col items-center justify-center bg-template-secondary rounded-lg overflow-hidden relative">
+    <section className="w-full min-h-[55vh] flex flex-col items-center justify-center bg-template-secondary rounded-lg overflow-hidden relative" id="newsletter">
       {/* Centered content */}
       <div className="max-w-2xl w-full flex flex-col items-center text-center gap-8 text-template-text-secondary -translate-y-10">
         <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight">

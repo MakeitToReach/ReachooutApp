@@ -5,10 +5,10 @@ import { F_WHY_CHOOSE_US_SECTION } from "../types/why-choose-us.types";
 export const FWhyChooseUsSection = ({
     features,
     title,
-    badgeText,
     description,
     btnText,
     btnLink,
+    badgeText,
 }: F_WHY_CHOOSE_US_SECTION) => {
     return (
         <section id="why-choose-us" className="max-w-6xl mx-auto sm:py-20 py-10 px-4">
@@ -21,7 +21,20 @@ export const FWhyChooseUsSection = ({
                     <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight">
                         {title}
                     </h2>
-                    <p className="line-clamp-4">{description}</p>
+                    <div
+                        className="
+    prose prose-sm max-w-none text-template-text-primary
+    prose-p:text-template-text-primary
+    prose-strong:text-template-text-primary
+    prose-h1:text-template-text-primary
+    prose-h2:text-template-text-primary
+    prose-h3:text-template-text-primary
+    prose-h4:text-template-text-primary
+    prose-h5:text-template-text-primary
+    prose-h6:text-template-text-primary
+  "
+                        dangerouslySetInnerHTML={{ __html: description }}
+                    />
 
                     <div className="flex gap-10 items-center">
                         <a href={btnLink}>

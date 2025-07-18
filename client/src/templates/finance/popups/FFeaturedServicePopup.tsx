@@ -29,7 +29,7 @@ export function FAddFeaturedServicePopup({
     icon: "",
   });
   return (
-    <Dialog modal={false}>
+    <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         className="sm:max-w-[600px] font-Poppins"
@@ -116,7 +116,7 @@ export const FEditFeaturedServicePopup = ({
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen} modal={false}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="space-y-4 z-[100] font-Poppins">
         <DialogHeader>
