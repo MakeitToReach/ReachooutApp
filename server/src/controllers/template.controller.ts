@@ -111,20 +111,18 @@ export const publishTemplate = async (req: Request, res: Response) => {
     const finalSlug =
       typeof slug === "string" && slug.trim() !== "" ? slug.trim() : null;
 
-    // Only check for slug conflicts if slug is not null
-    if (finalSlug) {
-      const existingSlug = await prisma.projectTemplate.findFirst({
-        where: {
-          projectId,
-          slug: finalSlug,
-        },
+    // Check for slug conflicts (including null slugs)
+    const existingSlug = await prisma.projectTemplate.findFirst({
+      where: {
+        projectId,
+        slug: finalSlug,
+      },
+    });
+    if (existingSlug) {
+      return res.status(409).json({
+        error:
+          "Slug already exists in this project. Please choose a different slug.",
       });
-      if (existingSlug) {
-        return res.status(409).json({
-          error:
-            "Slug already exists in this project. Please choose a different slug.",
-        });
-      }
     }
 
     // Get the highest order number for this project
