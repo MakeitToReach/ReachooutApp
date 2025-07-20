@@ -118,6 +118,9 @@ passport.use(
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server is running!");
 });
+app.get("/testing", (req: Request, res: Response) => {
+  res.send("Express + TypeScript Server is running! testing");
+});
 
 // TODO: move the routes to home router
 app.get(
