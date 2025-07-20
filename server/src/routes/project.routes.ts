@@ -36,7 +36,7 @@ projectRouter.post(
 
 // Check slug availability
 projectRouter.get(
-  "/check/validate",
+  "/validate-slug/:projectId/:slug",
   (req: Request, res: Response) => {
     checkSlug(req, res);
   }

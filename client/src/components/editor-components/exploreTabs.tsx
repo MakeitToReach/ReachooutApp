@@ -110,38 +110,28 @@ export default function ExploreTabs({
         </div>
       </TabsContent>
       <TabsContent value="tab-2">
-        <div className="w-full flex justify-center items-center h-[70vh]">
-          <m.h1
-            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent"
-          >
-            Coming Soon
-          </m.h1>
-        </div>
+        <ComingSoon />
       </TabsContent>
       <TabsContent value="tab-3">
-        <div className="w-full flex justify-center items-center h-[70vh]">
-          <m.h1
-            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent"
-          >
-            Coming Soon
-          </m.h1>
-        </div>
+        <ComingSoon />
       </TabsContent>
       <TabsContent value="tab-4">
-        <div className="w-full flex justify-center items-center h-[70vh]">
-          <m.h1
-            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent"
-          >
-            Coming Soon
-          </m.h1>
-        </div>
+        <ComingSoon />
       </TabsContent>
     </Tabs>
   );
 }
+
+export const ComingSoon = () => {
+  return (
+    <div className="w-full flex justify-center items-center h-[70vh]">
+      <m.h1
+        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        className="text-4xl md:text-7xl md:leading-tight font-bold text-center  bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent"
+      >
+        Coming Soon
+      </m.h1>
+    </div>
+  );
+};

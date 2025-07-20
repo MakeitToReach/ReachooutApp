@@ -64,7 +64,7 @@ export default function AddSlugPopup({ children, pid }: AddSlugPopupProps) {
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold">Add Slug</DialogTitle>
           <DialogDescription className="text-xs text-muted-foreground">
-            Enter a slug to explore templates with this identifier.
+            You can add a slug to your project to create a new website.
           </DialogDescription>
         </DialogHeader>
         <div className="flex gap-2">
@@ -73,7 +73,8 @@ export default function AddSlugPopup({ children, pid }: AddSlugPopupProps) {
             placeholder="about"
             value={slug}
             inputClassName={cn(
-              isAvailable === false && "border-red-500 focus:border-red-500"
+              isAvailable === false && "border-red-500 focus:border-red-500",
+              isAvailable === true && "border-green-500 focus:border-green-500"
             )}
             onChange={(e) => {
               setSlug(e.target.value);

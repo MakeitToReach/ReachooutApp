@@ -7,6 +7,7 @@ import {
     getProjectTemplateInstanceData,
     publishTemplate,
     updateTemplateInstance,
+    deleteTemplateInstanceByOrder,
 } from "../controllers/template.controller";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 
@@ -49,5 +50,9 @@ templateRouter.delete(
         deleteTemplateCategory(req, res);
     }
 )
+
+templateRouter.delete("/delete/instance/:projectId/:slug", isAuthenticated, (req: Request, res: Response) => {
+    deleteTemplateInstanceByOrder(req, res);
+})
 
 export default templateRouter;

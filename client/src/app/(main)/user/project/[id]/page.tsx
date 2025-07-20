@@ -1,34 +1,16 @@
 "use client";
 
 import { getTemplatesInProject } from "@/api/project";
-// import PreviewButton from "@/components/editor-components/previewBtn";
 import { TemplateCard } from "@/components/editor-components/templateCard";
 import AddSlugPopup from "@/components/editor-components/popups/addSlugPopup";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-
-interface TemplateItem {
-  projectId: string;
-  templateId: string;
-  template: {
-    id: string;
-    name: string;
-    thumbnailUrl: string;
-    tags: string[];
-  };
-  project: {
-    id: string;
-    name: string;
-    subDomain: string;
-    customDomain: string | null;
-  };
-}
+import { TemplateItem } from "@/types/projectTemplate.types";
 
 const ProjectPage = () => {
   const params = useParams<{ id: string }>();
@@ -53,9 +35,7 @@ const ProjectPage = () => {
     fetchTemplatesInProject();
   }, [id]);
 
-  const projectName = templates[0]?.project?.name ?? "Project Name";
-  // const projectDomain =
-  //   templates[0]?.project?.customDomain || templates[0]?.project?.subDomain;
+  const projectName = templates[0]?.project?.name ?? "Your project";
 
   return (
     <div>
@@ -93,14 +73,29 @@ const ProjectPage = () => {
                     templateId={item.template.id}
                     key={idx}
                     imageUrl={item.template.thumbnailUrl || "/placeholder.png"}
-                    previewUrl={`/preview/${item.template.name.toLowerCase()}`}
+                    previewUrl={
+                      item && item.order > 0
+                        ? `http://${item.project.subDomain}.${
+                            process.env.NODE_ENV === "development"
+                              ? "localhost:3000"
+                              : "reachoout.com"
+                          }/${item.slug}`
+                        : `http://${item.project.subDomain}.${
+                            process.env.NODE_ENV === "development"
+                              ? "localhost:3000"
+                              : "reachoout.com"
+                          }/`
+                    }
                     editorUrl={`/editor/${item.template.name.toLowerCase()}?edit&order=${idx}&pid=${id}&tid=${
                       item.template.id
                     }`}
-                    // showPreview={true}
                     isPublished
                     index={idx}
                     projectId={id}
+                    slug={item.slug}
+                    onDelete={(newTemplates: TemplateItem[]) => {
+                      setTemplates(newTemplates);
+                    }}
                   />
                 ))
               : null}

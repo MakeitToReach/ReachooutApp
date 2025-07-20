@@ -6,7 +6,18 @@ import { usePortfolioStore } from "@/store/portfolio.store";
 import { getProjectTemplateInstanceData } from "@/api/user-template";
 import { useRouter } from "next/navigation";
 import { OnboardingPopup } from "./popups/onboardingPopup";
-import { LucideEye } from "lucide-react";
+import { Edit, ExternalLink, LucideEye, Settings, Trash2 } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { deleteTemplateInstanceByOrder } from "@/api/templates";
+import { toast } from "sonner";
+import { TemplateItem } from "@/types/projectTemplate.types";
 
 interface TemplateCardProps {
   imageUrl: string;
@@ -18,10 +29,12 @@ interface TemplateCardProps {
   className?: string;
   children?: React.ReactNode;
   onPreviewClick?: () => void; //TODO: remove this later, using temporarily
+  onDelete?: (templates: TemplateItem[]) => void;
   showPreview?: boolean;
   templateId: string;
   index?: number;
   projectId?: string;
+  slug?: string;
 }
 export const TemplateCard = ({
   imageUrl = "",
@@ -37,6 +50,8 @@ export const TemplateCard = ({
   templateId,
   projectId,
   index,
+  slug,
+  onDelete,
 }: TemplateCardProps) => {
   const router = useRouter();
   const { resetData } = usePortfolioStore();
@@ -50,11 +65,30 @@ export const TemplateCard = ({
     if (!fetchedData) router.push(`/`);
 
     if (fetchedData) {
-        resetData(fetchedData.template.data);
-        router.push(editorUrl);
+      resetData(fetchedData.template.data);
+      router.push(editorUrl);
     }
-    // console.log("projectId", projectId);
-    // console.log("fetchedData on edit", fetchedData);
+  };
+
+  const isMobile = useIsMobile();
+
+  const handleDelete = async () => {
+    if (!projectId) {
+      toast.error("Project ID is missing");
+      return;
+    }
+    if (slug === null) {
+      toast.error("You cannot delete the default website");
+      return;
+    }
+    if (!slug) {
+      toast.error("Slug is missing");
+      return;
+    }
+    const newTemplates = await deleteTemplateInstanceByOrder(projectId, slug);
+    if (newTemplates) {
+      onDelete?.(newTemplates.templates);
+    }
   };
   return (
     <div
@@ -94,9 +128,41 @@ export const TemplateCard = ({
           </OnboardingPopup>
         )}
         {isPublished ? (
-          <Button className="md:text-md cursor-pointer" onClick={handleEdit}>
-            Edit
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <div
+                role="button"
+                className="cursor-pointer"
+                title="More Settings"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Settings className="text-muted-foreground hover:text-primary" />
+                <span className="sr-only">More</span>
+              </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              className="w-48"
+              side={isMobile ? "bottom" : "right"}
+              align={isMobile ? "end" : "start"}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <a href={previewUrl} target="_blank">
+                <DropdownMenuItem>
+                  <ExternalLink className="text-muted-foreground" />
+                  <span>View Website</span>
+                </DropdownMenuItem>
+              </a>
+              <DropdownMenuItem onClick={handleEdit}>
+                <Edit className="text-muted-foreground" />
+                <span>Edit Website</span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={handleDelete}>
+                <Trash2 className="text-destructive" />
+                <span>Delete Website</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         ) : (
           <>{children}</>
         )}

@@ -96,3 +96,28 @@ export const updateTemplateInstanceData = async (
     throw error;
   }
 };
+
+export const deleteTemplateInstanceByOrder = async (
+  projectId: string,
+  slug: string
+) => {
+  const token = getToken();
+  const response = await api.delete(
+    `/v1/template/delete/instance/${projectId}/${slug}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (response.status === 200) {
+    toast.success("Template instance deleted successfully");
+    return response.data;
+  } else {
+    toast.error("Failed to delete template instance");
+    return null;
+  }
+
+  return null;
+};

@@ -765,7 +765,7 @@ export const updateTemplateSEO = async (
 };
 
 export const checkSlug = async (req: Request, res: Response) => {
-  const { pid: projectId, slug } = req.query;
+  const { projectId, slug } = req.params;
 
   if (!projectId || !slug) {
     return res.status(400).json({ error: "Missing projectId or slug" });

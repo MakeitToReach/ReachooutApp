@@ -108,7 +108,8 @@ export const publishTemplate = async (req: Request, res: Response) => {
     }
 
     // Normalize slug: treat empty or whitespace-only as null
-    const finalSlug = typeof slug === "string" && slug.trim() !== "" ? slug.trim() : null;
+    const finalSlug =
+      typeof slug === "string" && slug.trim() !== "" ? slug.trim() : null;
 
     // Only check for slug conflicts if slug is not null
     if (finalSlug) {
@@ -304,3 +305,54 @@ export const getProjectTemplateInstanceData = async (
   }
 };
 
+export const deleteTemplateInstanceByOrder = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { projectId, slug } = req.params;
+
+    await prisma.projectTemplate.delete({
+      where: {
+        projectId_slug: {
+          projectId,
+          slug,
+        },
+      },
+    });
+
+    const newTemplates = await prisma.projectTemplate.findMany({
+      where: {
+        projectId,
+      },
+      include: {
+        template: {
+          select: {
+            id: true,
+            name: true,
+            thumbnailUrl: true,
+            tags: true,
+          },
+        },
+        project: {
+          select: {
+            id: true,
+            name: true,
+            subDomain: true,
+            customDomain: true,
+          },
+        },
+      },
+    });
+
+    res.status(200).json({
+      message: "Template instance deleted successfully",
+      templates: newTemplates,
+    });
+  } catch (error) {
+    console.error("Error deleting template instance:", error);
+    res.status(500).json({
+      error: "Internal server error",
+    });
+  }
+};
