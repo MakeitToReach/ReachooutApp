@@ -126,7 +126,7 @@ export const checkSlugAvailability = async (
 ): Promise<boolean> => {
   try {
     const token = getToken();
-    const response = await api.get(`/v1/template/validate-slug/${pid}/${slug}`, {
+    const response = await api.get(`/v1/validate-slug/${pid}/${slug}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
