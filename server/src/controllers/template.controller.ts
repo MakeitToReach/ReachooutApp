@@ -317,14 +317,19 @@ export const deleteTemplateInstanceByOrder = async (
   try {
     const { projectId, slug } = req.params;
 
-    await prisma.projectTemplate.delete({
+    // Delete using the composite unique constraint
+    const deletedTemplate = await prisma.projectTemplate.deleteMany({
       where: {
-        projectId_slug: {
-          projectId,
-          slug,
-        },
+        projectId,
+        slug,
       },
     });
+
+    if (deletedTemplate.count === 0) {
+      return res.status(404).json({
+        error: "Template instance not found",
+      });
+    }
 
     const newTemplates = await prisma.projectTemplate.findMany({
       where: {
