@@ -158,7 +158,14 @@ export const publishTemplate = async (req: Request, res: Response) => {
       });
     } catch (err: any) {
       // Handle unique constraint error for slug
-      if (err.code === "P2002" && err.meta?.target?.includes("slug")) {
+      console.error("Database error details:", {
+        code: err.code,
+        meta: err.meta,
+        target: err.meta?.target,
+        message: err.message
+      });
+      
+      if (err.code === "P2002" && (err.meta?.target?.includes("ProjectTemplate_projectId_slug_key") || err.meta?.target?.includes("slug"))) {
         return res.status(409).json({
           error:
             "DB:Slug already exists in this project. Please choose a different slug.",
