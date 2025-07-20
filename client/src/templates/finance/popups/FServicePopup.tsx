@@ -14,7 +14,6 @@ import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { F_SERVICE } from "../types/services.types";
 import { Label } from "@/components/ui/label";
 import { ImageInput } from "@/components/imgInput";
-import { Textarea } from "@/components/ui/textarea";
 import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface FAddServicePopupProps {

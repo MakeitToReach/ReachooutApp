@@ -2,8 +2,8 @@
 import { ThemeSelectDropdown } from "@/components/editor-components/themeSelectDropdown";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { usePortfolioStore } from "@/store/portfolio.store";
-import { useParams, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import React from "react";
 import { Loading } from "../editor-components/loading";
 
 const PreviewPage = () => {
@@ -12,11 +12,12 @@ const PreviewPage = () => {
 
   // const searchParams = useSearchParams();
   const { data } = usePortfolioStore();
+  // const category = searchParams?.get("category");
 
-  const [loading, setLoading] = useState(false);
 
   const templateKey = slug as keyof typeof TEMPLATE_REGISTRY;
   const SelectedTemplate = TEMPLATE_REGISTRY[templateKey];
+
   // const isNew = searchParams?.has("new");
 
   // useEffect(() => {
@@ -26,7 +27,7 @@ const PreviewPage = () => {
   //     }
   // }, []);
 
-  if (!slug || typeof slug != "string" || loading) {
+  if (!slug || typeof slug != "string") {
     return <Loading />;
   }
   if (!data) {
