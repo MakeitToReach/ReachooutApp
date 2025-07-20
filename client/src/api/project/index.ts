@@ -267,29 +267,3 @@ export const getProjectByCustomDomainAndSlug = async (
   return response.data;
 };
 
-
-export const checkSlugAvailability = async (
-  pid: string,
-  slug: string
-): Promise<boolean> => {
-  try {
-    const token = getToken();
-    const response = await api.get(
-      `/v1/project/validate-slug/${pid}/${slug}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    if (response.status === 200) {
-      return response.data.available;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    console.log("Error while checking slug", error);
-    return false;
-  }
-};

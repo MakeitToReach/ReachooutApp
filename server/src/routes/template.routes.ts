@@ -57,7 +57,7 @@ templateRouter.delete("/delete/instance/:projectId/:slug", isAuthenticated, (req
 })
 
 templateRouter.get(
-  "/validate-slug/:projectId/:slug",
+  "/validate-slug/:projectId/:pageSlug",
   (req: Request, res: Response) => {
     checkSlug(req, res);
   }

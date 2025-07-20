@@ -359,10 +359,10 @@ export const deleteTemplateInstanceByOrder = async (
 
 
 export const checkSlug = async (req: Request, res: Response) => {
-  const { projectId, slug } = req.params;
+  const { projectId, pageSlug } = req.params;
 
-  if (!projectId || !slug) {
-    return res.status(400).json({ error: "Missing projectId or slug" });
+  if (!projectId || !pageSlug) {
+    return res.status(400).json({ error: "Missing projectId or pageSlug" });
   }
 
   const project = await prisma.project.findUnique({
@@ -386,17 +386,17 @@ export const checkSlug = async (req: Request, res: Response) => {
     "dashboard",
   ];
 
-  if (unavailableSlugs.includes(slug as string)) {
+  if (unavailableSlugs.includes(pageSlug as string)) {
     return res.status(409).json({
       available: false,
     });
   }
 
-  if (slug) {
+  if (pageSlug) {
     const existingSlug = await prisma.projectTemplate.findFirst({
       where: {
         projectId: projectId as string,
-        slug: slug as string,
+        slug: pageSlug as string,
       },
     });
     if (existingSlug) {
