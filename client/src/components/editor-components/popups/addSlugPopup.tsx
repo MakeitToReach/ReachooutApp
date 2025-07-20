@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Search } from "lucide-react";
 import { ReqInput } from "../inputs/reqInput";
-import { checkSlugAvailability } from "@/api/project";
+import { checkSlugAvailability } from "@/api/templates";
 import { cn } from "@/lib/utils";
 
 interface AddSlugPopupProps {

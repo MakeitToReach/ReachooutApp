@@ -8,6 +8,7 @@ import {
     publishTemplate,
     updateTemplateInstance,
     deleteTemplateInstanceByOrder,
+    checkSlug,
 } from "../controllers/template.controller";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 
@@ -55,4 +56,10 @@ templateRouter.delete("/delete/instance/:projectId/:slug", isAuthenticated, (req
     deleteTemplateInstanceByOrder(req, res);
 })
 
+templateRouter.get(
+  "/validate-slug/:projectId/:slug",
+  (req: Request, res: Response) => {
+    checkSlug(req, res);
+  }
+);
 export default templateRouter;

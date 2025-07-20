@@ -1,6 +1,5 @@
 import type { Request, Response } from "express";
 import { Router } from "express";
-// import { loginAdmin } from "../controllers/admin.controller";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 import {
   addCustomDomain,
@@ -18,8 +17,6 @@ import {
   updateProjectMetaData,
   getProjectBySubdomainAndSlug,
   updateTemplateSEO,
-  // checkSlugAvailability,
-  checkSlug,
 } from "../controllers/project.controller";
 
 const projectRouter = Router();
@@ -34,13 +31,6 @@ projectRouter.post(
   }
 );
 
-// Check slug availability
-projectRouter.get(
-  "/validate-slug/:projectId/:slug",
-  (req: Request, res: Response) => {
-    checkSlug(req, res);
-  }
-);
 
 // Get all projects for the user
 projectRouter.get(
