@@ -1,5 +1,8 @@
 import { FCatalogServicesCarousel } from "../components/FCatalogServicesCarousel";
 import { F_SERVICE_CATALOG_SECTION } from "../types/service-catalog.types";
+import { motion as m } from "motion/react";
+
+const delay = 0.15;
 
 export const FServiceCatalogSection = ({
   badgeText,
@@ -11,14 +14,46 @@ export const FServiceCatalogSection = ({
     <section className="py-20" id="service-catalog">
       <div className="w-full rounded-lg min-h-[90vh] bg-template-secondary overflow-hidden px-6 py-4">
         <div className="max-w-6xl mx-auto h-full my-10 space-y-8 overflow-x-visible text-template-text-secondary">
-          <div className="w-fit rounded-full translate-x-10 bg-gradient-to-r from-template-secondary/50 via-template-secondary to-black/30 flex items-center justify-center px-4 py-2 uppercase font-semibold text-lg">
+          <m.div
+            initial={{ opacity: 0, x: -40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.5,
+              delay: delay,
+              ease: "easeOut",
+            }}
+            className="w-fit rounded-full translate-x-10 bg-gradient-to-r from-template-secondary/50 via-template-secondary to-black/30 flex items-center justify-center px-4 py-2 uppercase font-semibold text-lg"
+          >
             {badgeText}
-          </div>
+          </m.div>
           <div className="space-y-2">
-            <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight">
+            <m.h2
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.5,
+                delay: delay * 2,
+                ease: "easeOut",
+              }}
+              className="font-semibold sm:text-5xl text-3xl tracking-tight"
+            >
               {title}
-            </h2>
-            <h4 className="text-template-text-secondary/80">{subtitle}</h4>
+            </m.h2>
+            <m.h4
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.5,
+                delay: delay * 3,
+                ease: "easeOut",
+              }}
+              className="text-template-text-secondary/80"
+            >
+              {subtitle}
+            </m.h4>
           </div>
           <div className="sm:w-[130vw] rounded-lg">
             <FCatalogServicesCarousel catalogServices={catalogServices} />

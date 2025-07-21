@@ -2,30 +2,28 @@
 import { ThemeSelectDropdown } from "@/components/editor-components/themeSelectDropdown";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { usePortfolioStore } from "@/store/portfolio.store";
-import { useParams } from "next/navigation";
-import React from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import React, { useEffect } from "react";
 import { Loading } from "../editor-components/loading";
 
 const PreviewPage = () => {
   const params = useParams<{ slug: string }>();
   const slug = params?.slug;
 
-  // const searchParams = useSearchParams();
-  const { data } = usePortfolioStore();
+  const searchParams = useSearchParams();
+  const { data, resetData } = usePortfolioStore();
   // const category = searchParams?.get("category");
-
 
   const templateKey = slug as keyof typeof TEMPLATE_REGISTRY;
   const SelectedTemplate = TEMPLATE_REGISTRY[templateKey];
 
-  // const isNew = searchParams?.has("new");
+  const isNew = searchParams?.has("new");
 
-  // useEffect(() => {
-  //     if (SelectedTemplate && isNew) {
-  //         resetData(SelectedTemplate.data);
-  //         setLoading(false);
-  //     }
-  // }, []);
+  useEffect(() => {
+    if (SelectedTemplate && isNew) {
+      resetData(SelectedTemplate.data);
+    }
+  }, []);
 
   if (!slug || typeof slug != "string") {
     return <Loading />;

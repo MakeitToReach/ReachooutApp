@@ -10,6 +10,9 @@ import { FProjectCard } from "../components/FProjectCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import { motion as m } from "motion/react";
+
+const delay = 0.15;
 
 export const FProjectsSection = ({
   title,
@@ -34,14 +37,46 @@ export const FProjectsSection = ({
         className="w-full rounded-lg overflow-hidden sm:px-6 py-4"
       >
         <div className="max-w-6xl mx-auto h-full my-10 space-y-8 overflow-x-visible text-template-text-primary">
-          <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight text-center">
+          <m.h2
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.5,
+              delay: delay,
+              ease: "easeOut",
+            }}
+            className="font-semibold sm:text-5xl text-3xl tracking-tight text-center"
+          >
             {title}
-          </h2>
-          <p className="text-center line-clamp-4">{subtitle}</p>
+          </m.h2>
+          <m.p
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.5,
+              delay: delay * 2,
+              ease: "easeOut",
+            }}
+            className="text-center line-clamp-4"
+          >
+            {subtitle}
+          </m.p>
         </div>
         <div className="bg-template-secondary sm:w-[100vw] px-4 rounded-xl">
           <div className="max-w-6xl mx-auto py-10 overflow-x-visible">
-            <div className="flex flex-wrap justify-start gap-3 mb-12">
+            <m.div
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.5,
+                delay: delay * 3,
+                ease: "easeOut",
+              }}
+              className="flex flex-wrap justify-start gap-3 mb-12"
+            >
               {categories.map((category) => (
                 <Badge
                   key={category}
@@ -58,7 +93,7 @@ export const FProjectsSection = ({
                   {category}
                 </Badge>
               ))}
-            </div>
+            </m.div>
             <div className="relative">
               <Carousel
                 opts={{
@@ -74,7 +109,18 @@ export const FProjectsSection = ({
                       // className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                       className="sm:basis-1/3 basis-1/1"
                     >
-                      <FProjectCard {...project} />
+                      <m.div
+                        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{
+                          duration: 0.5,
+                          delay: delay * 4,
+                          ease: "easeOut",
+                        }}
+                      >
+                        <FProjectCard {...project} />
+                      </m.div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>

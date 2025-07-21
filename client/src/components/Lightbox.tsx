@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface LightboxProps {
   children: React.ReactNode;
@@ -22,6 +23,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
   alt = "Lightbox image",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -31,7 +33,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
         </div>
       </DialogTrigger>
       <DialogContent
-        showCloseButton={false}
+        showCloseButton={isMobile ? true : false}
         showDarkOverlay={true}
         className="w-screen min-h-screen bg-transparent border-0 shadow-none focus:outline-none focus:ring-0 overflow-scroll"
       >

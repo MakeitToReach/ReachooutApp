@@ -2,6 +2,9 @@ import { Separator } from "@/components/ui/separator";
 import { LucideArrowRight } from "lucide-react";
 import Image from "next/image";
 import { F_STATS_SECTION } from "../types/stat.types";
+import { motion as m } from "motion/react";
+
+const delay = 0.15;
 
 export const FStatsSection = ({
   heading,
@@ -19,13 +22,33 @@ export const FStatsSection = ({
         <div className="max-w-6xl py-10 mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-10 text-template-text-secondary mb-20 sm:mb-0">
           {/* Left: Text Content */}
           <div className="flex flex-col gap-10 sm:w-2/3 w-full">
-            <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight">
+            <m.h2
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.5,
+                delay: delay,
+                ease: "easeOut",
+              }}
+              className="font-semibold sm:text-5xl text-3xl tracking-tight"
+            >
               {heading}
-            </h2>
+            </m.h2>
 
             {/* Stats Block */}
             <div className="flex flex-col sm:flex-row justify-between gap-6 w-full">
-              <div className="space-y-2 flex-1">
+              <m.div
+                initial={{ y: 10, filter: "blur(10px)", scale: 1.2 }}
+                whileInView={{ y: 0, filter: "blur(0px)", scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  duration: 0.5,
+                  delay: delay * 2,
+                  ease: "easeOut",
+                }}
+                className="space-y-2 flex-1"
+              >
                 <div>
                   <h2 className="font-bold text-6xl">{stats[0].statNumber}</h2>
                   <h4 className="italic font-light font-serif text-2xl">
@@ -33,8 +56,18 @@ export const FStatsSection = ({
                   </h4>
                 </div>
                 <p>{stats[0].statDescription}</p>
-              </div>
-              <div className="space-y-2 flex-1">
+              </m.div>
+              <m.div
+                initial={{ y: 10, filter: "blur(10px)", scale: 1.2 }}
+                whileInView={{ y: 0, filter: "blur(0px)", scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  duration: 0.5,
+                  delay: delay * 3,
+                  ease: "easeOut",
+                }}
+                className="space-y-2 flex-1"
+              >
                 <div>
                   <h2 className="font-bold text-6xl">{stats[1].statNumber}</h2>
                   <h4 className="italic font-light font-serif text-2xl">
@@ -42,7 +75,7 @@ export const FStatsSection = ({
                   </h4>
                 </div>
                 <p className="text-sm">{stats[1].statDescription}</p>
-              </div>
+              </m.div>
             </div>
           </div>
 
