@@ -80,7 +80,7 @@ export default function ExploreTabs({
                 key={idx}
                 templateId={template.id}
                 imageUrl={template.thumbnailUrl || "/placeholder.png"}
-                previewUrl={`/preview/${template.name.toLowerCase()}?new`}
+                previewUrl={`/preview/${template.name.toLowerCase()}`}
                 editorUrl={"#"}
                 showPreview={projectId ? false : true}
                 templateName={template.name}
