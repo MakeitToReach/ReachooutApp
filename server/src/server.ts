@@ -34,7 +34,7 @@ import userFormsRouter from "./routes/userForms.routes";
 const app = express();
 
 app.use(express.json());
-app.use(morgan("dev"));
+app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
