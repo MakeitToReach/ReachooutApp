@@ -9,6 +9,7 @@ import {
     updateTemplateInstance,
     deleteTemplateInstanceByOrder,
     checkSlug,
+    getCategoryByTemplateIdAndCategoryName,
 } from "../controllers/template.controller";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 
@@ -41,6 +42,13 @@ templateRouter.get(
     "/categories/:templateId",
     (req: Request<{ templateId: string }>, res: Response) => {
         getTemplateCategories(req, res);
+    },
+);
+
+templateRouter.get(
+    "/category/:templateId/:categoryName",
+    (req: Request<{ templateId: string, categoryName: string }>, res: Response) => {
+        getCategoryByTemplateIdAndCategoryName(req, res);
     },
 );
 

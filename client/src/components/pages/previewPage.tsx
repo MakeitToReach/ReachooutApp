@@ -2,9 +2,10 @@
 import { ThemeSelectDropdown } from "@/components/editor-components/themeSelectDropdown";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { usePortfolioStore } from "@/store/portfolio.store";
-import { useParams, useSearchParams } from "next/navigation";
+import { notFound, useParams, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { Loading } from "../editor-components/loading";
+import { getCategoryByTemplateIdAndCategoryName } from "@/api/templates";
 
 const PreviewPage = () => {
   const params = useParams<{ slug: string }>();
@@ -12,16 +13,30 @@ const PreviewPage = () => {
 
   const searchParams = useSearchParams();
   const { data, resetData } = usePortfolioStore();
-  // const category = searchParams?.get("category");
 
   const templateKey = slug as keyof typeof TEMPLATE_REGISTRY;
   const SelectedTemplate = TEMPLATE_REGISTRY[templateKey];
 
   const isNew = searchParams?.has("new");
+  const category = searchParams?.get("category");
+  const templateId = searchParams?.get("tid");
+
+  const fetchCategoryData = async () => {
+    const response = await getCategoryByTemplateIdAndCategoryName(
+      templateId as string,
+      category as string
+    );
+    if (response) {
+      resetData(response.category);
+    }
+  };
 
   useEffect(() => {
     if (SelectedTemplate && isNew) {
       resetData(SelectedTemplate.data);
+    }
+    if (category) {
+      fetchCategoryData();
     }
   }, []);
 
@@ -32,7 +47,7 @@ const PreviewPage = () => {
     return <Loading />;
   }
   if (!SelectedTemplate) {
-    return <div>Template not found</div>;
+    notFound();
   }
 
   return (

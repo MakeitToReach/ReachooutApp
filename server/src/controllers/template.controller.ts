@@ -162,10 +162,14 @@ export const publishTemplate = async (req: Request, res: Response) => {
         code: err.code,
         meta: err.meta,
         target: err.meta?.target,
-        message: err.message
+        message: err.message,
       });
-      
-      if (err.code === "P2002" && (err.meta?.target?.includes("ProjectTemplate_projectId_slug_key") || err.meta?.target?.includes("slug"))) {
+
+      if (
+        err.code === "P2002" &&
+        (err.meta?.target?.includes("ProjectTemplate_projectId_slug_key") ||
+          err.meta?.target?.includes("slug"))
+      ) {
         return res.status(409).json({
           error:
             "DB:Slug already exists in this project. Please choose a different slug.",
@@ -364,7 +368,6 @@ export const deleteTemplateInstanceByOrder = async (
   }
 };
 
-
 export const checkSlug = async (req: Request, res: Response) => {
   const { projectId, pageSlug } = req.params;
 
@@ -414,4 +417,36 @@ export const checkSlug = async (req: Request, res: Response) => {
   }
 
   return res.status(200).json({ available: true });
+};
+
+export const getCategoryByTemplateIdAndCategoryName = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { templateId, categoryName } = req.params;
+
+    const decodedCategoryName = decodeURIComponent(categoryName);
+
+    console.log(decodedCategoryName);
+
+    const category = await prisma.templateCategory.findFirst({
+      where: {
+        templateId: templateId as string,
+        category: decodedCategoryName,
+      },
+    });
+
+    if (!category) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+
+    return res.status(200).json({ category: category.data });
+  } catch (error) {
+    console.error(
+      "Error fetching category by templateId and categoryName:",
+      error
+    );
+    return res.status(500).json({ error: "Internal server error" });
+  }
 };

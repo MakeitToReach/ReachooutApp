@@ -47,6 +47,17 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
       isHidden: false,
     },
     {
+      type: "testing",
+      sectionName: "Testing",
+      data: {
+        title: "Title",
+        description: "Description",
+      },
+      isFixed: false,
+      isEditable: true,
+      isHidden: true,
+    },
+    {
       type: "about",
       sectionName: "About",
       data: {

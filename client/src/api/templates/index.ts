@@ -37,6 +37,23 @@ export const getCategoriesByTemplateId = async (templateId: string) => {
   return null;
 };
 
+export const getCategoryByTemplateIdAndCategoryName = async (
+  templateId: string,
+  categoryName: string
+) => {
+  const response = await api.get(
+    `/v1/template/category/${templateId}/${categoryName}`
+  );
+
+  if (response.status === 200 || response.status === 304) {
+    return response.data;
+  } else {
+    toast.error("Failed to fetch category");
+  }
+
+  return null;
+};
+
 export const publishTemplate = async (
   data: GenericTemplateSchema,
   projectId: string,
