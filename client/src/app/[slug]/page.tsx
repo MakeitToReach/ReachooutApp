@@ -53,8 +53,8 @@ export async function generateMetadata({
       try {
         const project = await getProject(subdomain, slug);
         return {
-          title: project.seoTitle || project.name,
-          description: project.seoDescription || `${project.name}'s Portfolio`,
+          title: project.seoTitle,
+          description: project.seoDescription,
           icons: project.faviconUrl
             ? [{ rel: "icon", url: project.faviconUrl }]
             : undefined,
@@ -66,10 +66,11 @@ export async function generateMetadata({
   } else {
     // Handle custom domains
     try {
+      //TODO: fetchProjectByCustomDomainAndSlug should be used here instead of fetchProjectByCustomDomain
       const project = await fetchProjectByCustomDomain(hostname, slug);
       return {
-        title: project.seoTitle || project.name,
-        description: project.seoDescription || `${project.name}'s Portfolio`,
+        title: project.seoTitle,
+        description: project.seoDescription,
         icons: project.faviconUrl
           ? [{ rel: "icon", url: project.faviconUrl }]
           : undefined,

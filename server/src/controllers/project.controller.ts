@@ -205,6 +205,9 @@ export const getTemplatesInProject = async (
       template: true,
       project: true,
     },
+    orderBy: {
+      order: "asc",
+    },
   });
   if (!templates || templates.length === 0) {
     return res.status(404).json({ error: "Templates not found" });

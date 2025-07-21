@@ -193,7 +193,7 @@ export const updateTemplateInstance = async (req: Request, res: Response) => {
     // Validate required fields
     if (!projectId || !templateId) {
       return res.status(400).json({
-        error: "Project ID, Template ID, and Created At timestamp are required",
+        error: "Project ID and Template ID are required",
       });
     }
 
@@ -229,19 +229,16 @@ export const updateTemplateInstance = async (req: Request, res: Response) => {
       });
     }
 
-    // Delete the old instance and create a new one with updated data
-    // (This is necessary due to the composite key constraint)
-    await prisma.projectTemplate.deleteMany({
+    // Update the existing instance without deleting it
+    const updatedProjectTemplate = await prisma.projectTemplate.update({
       where: {
-        projectId,
-        templateId,
+        projectId_templateId_order: {
+          projectId,
+          templateId,
+          order: order !== undefined ? order : existingInstance.order,
+        },
       },
-    });
-
-    const updatedProjectTemplate = await prisma.projectTemplate.create({
       data: {
-        projectId,
-        templateId,
         data: data,
         order: order !== undefined ? order : existingInstance.order,
       },

@@ -89,6 +89,7 @@ model ProjectTemplate {
 
   @@id([projectId, templateId, createdAt])
   @@unique([projectId, slug])
+  @@unique([projectId, templateId, order])
   @@index([projectId, order])
   @@index([slug])
 }

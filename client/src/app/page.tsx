@@ -11,16 +11,10 @@ async function getProject(subdomain: string) {
   console.log("🔍 getProject function called with subdomain:", subdomain);
 
   try {
-    console.log("📡 Making API request to getProjectBySubdomain...");
     const project = await getProjectBySubdomain(subdomain);
-    console.log("🔍 Project:", project);
     return project;
   } catch (error) {
     console.error("❌ Error fetching project:", error);
-    console.error("❌ Error details:", {
-      message: error instanceof Error ? error.message : "Unknown error",
-      stack: error instanceof Error ? error.stack : undefined,
-    });
     return null;
   }
 }
@@ -32,16 +26,11 @@ async function fetchProjectByCustomDomain(hostname: string) {
   );
 
   try {
-    console.log("📡 Making API request to getProjectByCustomDomain...");
     const project = await getProjectByCustomDomain(hostname);
 
     return project;
   } catch (error) {
     console.error("❌ Error fetching project by custom domain:", error);
-    console.error("❌ Error details:", {
-      message: error instanceof Error ? error.message : "Unknown error",
-      stack: error instanceof Error ? error.stack : undefined,
-    });
     return null;
   }
 }
@@ -60,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
         const project = await getProject(subdomain);
         return {
           title: project.name,
-          description: `${project.name}'s Portfolio`,
+          description: `${project.name}'s Reachoout Portfolio`,
           icons: project.faviconUrl
             ? [{ rel: "icon", url: project.faviconUrl }]
             : undefined,
@@ -75,7 +64,7 @@ export async function generateMetadata(): Promise<Metadata> {
       const project = await fetchProjectByCustomDomain(hostname);
       return {
         title: project.name,
-        description: `${project.name}'s Portfolio`,
+        description: `${project.name}'s Reachoout Portfolio`,
         icons: project.faviconUrl
           ? [{ rel: "icon", url: project.faviconUrl }]
           : undefined,
@@ -100,18 +89,15 @@ export default async function PortfolioPage() {
   // Check if this is a reachoout.com subdomain request
   if (isBaseDomain(hostname)) {
     const subdomain = getSubdomainFromHostname(hostname);
-    console.log("🔍 Subdomain extraction result:", subdomain);
 
     if (subdomain) {
       // Check for special subdomains first, before making any API calls
       if (subdomain === "app") {
-        console.log("🔄 'app' subdomain detected, redirecting to /home");
         const { redirect } = await import("next/navigation");
         redirect("/home");
       }
 
       // Only make API request for non-special subdomains
-      console.log("📡 Making API request for subdomain:", subdomain);
       const project = await getProject(subdomain);
 
       if (!project) {
