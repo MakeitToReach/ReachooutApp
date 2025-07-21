@@ -2,12 +2,12 @@ import { usePortfolioStore } from "@/store/portfolio.store";
 import { Button } from "../ui/button";
 import {
   EllipsisVertical,
-  LucideChevronLeft,
+  Home,
   LucideEye,
   LucideLoaderCircle,
   LucidePalette,
-  LucideSettings,
   LucideUploadCloud,
+  SidebarClose,
 } from "lucide-react";
 import { publishTemplate, updateTemplateInstanceData } from "@/api/templates";
 import { EditorTabs } from "./editorTabs";
@@ -16,10 +16,10 @@ import { PF_EDITOR_SCHEMA } from "@/templates/professional/schema/PFEditorSchema
 import { GenericEditorFieldSchema } from "@/schemas/editor.schema";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { SettingsDropdown } from "./settingsDropdown";
 import { ThemePickerDialog } from "./popups/colorThemeDialog";
 import { useRouter } from "next/navigation";
 import { useEditorTabIdxStore } from "@/store/editorTabIdx.store";
+import Link from "next/link";
 
 interface EditorPanelProps {
   isEditing?: boolean;
@@ -167,16 +167,16 @@ export const EditorPanel = ({
               </Button>
             </>
           )}
-          <SettingsDropdown>
-            <LucideSettings className="size-6" role="button" />
-          </SettingsDropdown>
+          <Link href="/user">
+            <Home className="size-6" role="button" />
+          </Link>
 
           <Button
             variant={"ghost"}
             onClick={() => toggleEditor()}
             className="cursor-pointer"
           >
-            <LucideChevronLeft className="size-6 hidden md:block" />
+            <SidebarClose className="size-6 hidden md:block" />
             <LucideEye className="size-6 md:hidden" />
           </Button>
         </div>

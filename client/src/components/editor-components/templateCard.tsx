@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -6,7 +6,7 @@ import { usePortfolioStore } from "@/store/portfolio.store";
 import { getProjectTemplateInstanceData } from "@/api/user-template";
 import { useRouter } from "next/navigation";
 import { OnboardingPopup } from "./popups/onboardingPopup";
-import { Edit, ExternalLink, LucideEye, Settings, Trash2 } from "lucide-react";
+import { Edit, ExternalLink, LucideEye, QrCode, Settings, Trash2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +18,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { deleteTemplateInstanceByOrder } from "@/api/templates";
 import { toast } from "sonner";
 import { TemplateItem } from "@/types/projectTemplate.types";
+import QRCodeModal from "./QRCodeModal";
 
 interface TemplateCardProps {
   imageUrl: string;
@@ -55,6 +56,7 @@ export const TemplateCard = ({
 }: TemplateCardProps) => {
   const router = useRouter();
   const { resetData } = usePortfolioStore();
+  const [qrOpen, setQROpen] = useState(false);
 
   const handleEdit = async () => {
     const fetchedData = await getProjectTemplateInstanceData(
@@ -156,6 +158,10 @@ export const TemplateCard = ({
                 <Edit className="text-muted-foreground" />
                 <span>Edit Website</span>
               </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setQROpen(true)}>
+                <QrCode className="text-muted-foreground" />
+                <span>View QR Code</span>
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleDelete}>
                 <Trash2 className="text-destructive" />
@@ -167,6 +173,11 @@ export const TemplateCard = ({
           <>{children}</>
         )}
       </div>
+      <QRCodeModal
+        open={qrOpen}
+        onClose={() => setQROpen(false)}
+        value={previewUrl}
+      />
     </div>
   );
 };
