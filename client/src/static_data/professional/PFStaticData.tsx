@@ -84,6 +84,8 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
           {
             heading: "01. Reachoout",
             subtitle: "B2B Networking Platform",
+            // vidUrl:
+            //   "https://www.youtube.com/watch?v=GedLli_YXEI&list=PLgznSM5fUa9OdpBcvu59RxVZwDQWED42O",
             imgUrl:
               "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
 
