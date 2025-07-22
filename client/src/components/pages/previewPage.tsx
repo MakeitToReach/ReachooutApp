@@ -24,7 +24,7 @@ const PreviewPage = () => {
   const fetchCategoryData = async () => {
     const response = await getCategoryByTemplateIdAndCategoryName(
       templateId as string,
-      category as string
+      category as string,
     );
     if (response) {
       resetData(response.category);
@@ -38,6 +38,9 @@ const PreviewPage = () => {
     if (category) {
       fetchCategoryData();
     }
+    return () => {
+      resetData(null);
+    };
   }, []);
 
   if (!slug || typeof slug != "string") {
