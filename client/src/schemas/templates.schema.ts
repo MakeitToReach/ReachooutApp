@@ -1,7 +1,7 @@
 //eslint-disable-next-line
 export type SectionBlock<T = any> = {
   type: string;
-    sectionName: string;
+  sectionName: string;
   data: T | null;
   isFixed: boolean;
   isEditable: boolean;

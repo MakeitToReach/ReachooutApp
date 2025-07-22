@@ -9,7 +9,7 @@ const genaiRouter = Router();
 // /v1/genai
 genaiRouter.post(
   "/generate",
-  isAuthenticated,
+  // isAuthenticated,
   (req: Request, res: Response) => {
     generateContent(req, res);
   },

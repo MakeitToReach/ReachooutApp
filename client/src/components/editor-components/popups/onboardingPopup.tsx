@@ -48,9 +48,7 @@ export const OnboardingPopup = ({
   const [isAiMode, setIsAiMode] = useState(false);
 
   const [aiForm, setAiForm] = useState({
-    services: "",
-    about: "",
-    projects: "",
+    userInput: "",
   });
 
   const handleDataChange = (data: GenericTemplateSchema, category?: string) => {
@@ -102,14 +100,7 @@ export const OnboardingPopup = ({
 
   const handleAiSubmit = async () => {
     setIsLoading(true);
-    const completeInput =
-      "Services: " +
-      aiForm.services +
-      "About: " +
-      aiForm.about +
-      "Projects: " +
-      aiForm.projects;
-    // console.log("Complete Input:", completeInput);
+    const completeInput = aiForm.userInput;
     const response = await generateContent(completeInput, defaultCategoryData);
 
     if (response) {
@@ -157,56 +148,20 @@ export const OnboardingPopup = ({
           <div className="space-y-10">
             <div className="space-y-2">
               <Label className="text-base">
-                Tell us about the services/products you offer. What do you
-                provide? Who is it for? What makes it valuable?
+                Tell us about yourself, your services, and any relevant experience or projects. 
               </Label>
               <Textarea
-                placeholder="Write about your services here..."
-                value={aiForm.services}
-                onChange={(e) =>
-                  handleAiInputChange("services", e.target.value)
-                }
+                placeholder="Describe yourself, your services, and your experience here..."
+                value={aiForm.userInput}
+                onChange={(e) => handleAiInputChange("userInput", e.target.value)}
                 className="min-h-[100px]"
               />
             </div>
-
-            <div className="space-y-2">
-              <Label className="text-base">
-                Why should someone trust or choose you? Share any results,
-                experience, or unique approach that sets you apart.
-              </Label>
-              <Textarea
-                placeholder="Write about yourself and your experiences here..."
-                value={aiForm.about}
-                onChange={(e) => handleAiInputChange("about", e.target.value)}
-                className="min-h-[100px]"
-              />
-              <p className="text-xs text-gray-500">
-                Include your name, role, and any relevant experience.
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <Label className="text-base">
-                Can you share examples of your past work, projects or client
-                results that show what you do best?
-              </Label>
-              <Textarea
-                placeholder="Write about your projects here..."
-                value={aiForm.projects}
-                onChange={(e) =>
-                  handleAiInputChange("projects", e.target.value)
-                }
-                className="min-h-[100px]"
-              />
-            </div>
-
             <Button
               onClick={handleAiSubmit}
               className="w-full"
               disabled={isLoading}
             >
-              {/* {isLoading ? "Generating..." : "Generate Content"} */}
               {isLoading ? (
                 <p className="flex items-center gap-2">
                   Generating..{" "}
