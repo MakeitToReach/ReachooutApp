@@ -128,23 +128,19 @@ function Home() {
                   <Link href={"/user"}>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
-                      className="cursor-pointer flex items-center justify-center gap-2 bg-white text-black px-2 py-2 rounded-full font-semibold text-sm shadow-md"
+                      className="cursor-pointer flex items-center justify-center gap-2 bg-white text-black px-4 py-3 rounded-md font-semibold text-sm shadow-md"
                     >
-                      Get Started
+                      Get Started <ChevronRight size={20} />
                     </motion.button>
                   </Link>
                 ) : (
                   <AuthPopup>
-                    <motion.div
+                    <motion.button
                       whileHover={{ scale: 1.05 }}
-                      role="button"
                       className="cursor-pointer flex items-center justify-center gap-2 bg-white text-black px-4 py-3 rounded-md font-semibold text-sm shadow-md"
                     >
                       Get Started <ChevronRight size={20} />
-                    </motion.div>
-                    {/* <Button variant="ghost" className="px-2 py-2 self-start rounded-full font-semibold text-sm shadow-md">
-                      Get Started <ChevronRight size={20} />
-                    </Button> */}
+                    </motion.button>
                   </AuthPopup>
                 )}
                 <Link href={"/explore"}>
