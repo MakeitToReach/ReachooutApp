@@ -67,7 +67,7 @@ export const FlipText: React.FC<FlipTextProps> = ({
     }
 
     return (
-        <div className={`relative h-16 overflow-hidden ${className}`}>
+        <div className={`relative h-fit overflow-hidden ${className}`}>
             <AnimatePresence mode="popLayout">
                 <motion.div
                     key={index}
