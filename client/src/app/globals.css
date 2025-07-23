@@ -218,11 +218,24 @@
   * {
     box-sizing: border-box;
   }
+  html {
+    font-size: 16px;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+  }
   * {
     @apply border-border outline-ring/50;
   }
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+@media screen {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 }

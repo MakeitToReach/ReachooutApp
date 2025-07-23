@@ -112,7 +112,7 @@ export const PFAboutSection = ({
           </m.h2>
           <div
             className="
-    prose prose-sm max-w-none text-template-text-primary
+    prose prose-lg max-w-none text-template-text-primary
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
     prose-h1:text-template-text-primary
