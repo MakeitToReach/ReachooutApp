@@ -22,13 +22,19 @@ const ReviewCard = ({
         >
             <div className="flex flex-row items-center gap-2 text-template-text-primary">
                 {/* eslint-disable-next-line */}
-                <img className="rounded-full" width="32" height="32" alt="" src={img || "/placeholder.png"} />
+                <img
+                    className="rounded-full"
+                    width="32"
+                    height="32"
+                    alt=""
+                    src={img || "/placeholder.png"}
+                />
                 <div className="flex flex-col">
-                    <figcaption className="text-sm font-medium ">{name}</figcaption>
+                    <figcaption className="sm:text-base text-xl font-medium ">{name}</figcaption>
                     {username && <p className="text-xs font-medium">{username}</p>}
                 </div>
             </div>
-            <blockquote className="mt-2 text-sm text-template-text-primary">
+            <blockquote className="mt-2 sm:text-base text-xl text-template-text-primary">
                 {body}
             </blockquote>
         </figure>
@@ -39,8 +45,8 @@ export function PFTestimonialsSection({
     title,
     testimonials,
 }: PF_TESTIMONIAL_SECTION) {
-    const firstRow = testimonials.slice(0, testimonials.length / 2);
-    const secondRow = testimonials.slice(testimonials.length / 2);
+    // const firstRow = testimonials.slice(0, testimonials.length / 2);
+    // const secondRow = testimonials.slice(testimonials.length / 2);
     return (
         <section
             id="testimonials"
@@ -51,12 +57,7 @@ export function PFTestimonialsSection({
             </h1>
             <div>
                 <Marquee pauseOnHover className="[--duration:20s]">
-                    {firstRow.map((review, idx) => (
-                        <ReviewCard key={idx} {...review} />
-                    ))}
-                </Marquee>
-                <Marquee reverse pauseOnHover className="[--duration:20s]">
-                    {secondRow.map((review, idx) => (
+                    {testimonials.map((review, idx) => (
                         <ReviewCard key={idx} {...review} />
                     ))}
                 </Marquee>

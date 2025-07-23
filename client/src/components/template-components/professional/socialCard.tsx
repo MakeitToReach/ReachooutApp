@@ -13,7 +13,7 @@ export const PFSocialCard = ({
     className: "size-16 text-template-text-primary",
   });
   return (
-    <div className="w-full p-6 bg-template-primary rounded-md flex items-center gap-6">
+    <div className="w-full p-6 bg-template-primary rounded-xs flex items-center gap-6">
       <span>
         {icon}
       </span>
@@ -29,7 +29,7 @@ export const PFSocialCard = ({
           )}
         </div>
         <a href={btnLink}>
-          <Button>
+          <Button className="rounded-xs">
             Check now
             <span>
               <LucideArrowRight className="size-[20px]" />

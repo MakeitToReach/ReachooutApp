@@ -170,6 +170,23 @@
         }
     },
     {
+        "name": "Monochrome Dark",
+        "theme": {
+            "--template-font": "'Inter', sans-serif",
+            "--template-primary": "#111827",
+            "--template-secondary": "#1f2937",
+            "--template-accent-primary": "#4b5563",
+            "--template-accent-secondary": "#6b7280",
+            "--template-btn": "#f3f4f6",
+            "--template-text-primary": "#ffffff",
+            "--template-text-secondary": "#d1d5db",
+            "--template-text-accent-primary": "#9ca3af",
+            "--template-text-accent-secondary": "#d1d5db",
+            "--template-text-accent-tertiary": "#e5e7eb",
+            "--template-text-btn": "#111827"
+        }
+    },
+    {
         "name": "Deep Ocean",
         "theme": {
             "--template-font": "'Inter', sans-serif",

@@ -8,21 +8,21 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
-  EllipsisVertical,
+  ArrowUpDown,
+  Home,
   LucideLoaderCircle,
   LucidePalette,
-  LucideSettings,
   LucideSidebarOpen,
   LucideUploadCloud,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { ReorderSectionsPopup } from "@/components/editor-components/popups/SectionsPopup";
 import { ThemePickerDialog } from "@/components/editor-components/popups/colorThemeDialog";
-import { SettingsDropdown } from "@/components/editor-components/settingsDropdown";
 import { publishTemplate, updateTemplateInstanceData } from "@/api/templates";
 import { Loading } from "../editor-components/loading";
 import { useEditorTabIdxStore } from "@/store/editorTabIdx.store";
 import { toast } from "sonner";
+import Link from "next/link";
 
 const EditorPage = () => {
   const params = useParams<{ slug: string }>();
@@ -83,7 +83,7 @@ const EditorPage = () => {
         data,
         projectId,
         templateId,
-        Number(order)
+        Number(order),
       );
       router.push(`/user/project/${projectId}`);
     } catch (error) {
@@ -170,30 +170,13 @@ const EditorPage = () => {
               transition={{ type: "easeInOut", duration: 0.8 }}
               className="w-[30%] hidden md:flex fixed z-50 bottom-4 right-1/2 translate-x-1/2 bg-white justify-between backdrop-blur-3xl items-center border-border border rounded-md p-2 shadow-xs shadow-gray-300"
             >
-              <ReorderSectionsPopup
-                sections={sections}
-                onReorder={(newOrder) => handleReorder(newOrder)}
-                onEdit={(tabIdx) => {
-                  setCurrentEditingSection(sections[tabIdx].id);
-                  setEditorTabIndex(tabIdx);
-                  setTimeout(() => toggleEditor(), 600);
-                }}
-                onHide={(sectionType: string) => toggleHideSection(sectionType)}
-              >
-                <button className="cursor-pointer" title="Reorder Sections">
-                  <EllipsisVertical className="size-6" />
-                </button>
-              </ReorderSectionsPopup>
+              <Link href={`/user/project/${projectId}`}>
+                <Button className="cursor-pointer" variant="ghost">
+                  <Home className="size-6" />
+                </Button>
+              </Link>
 
               <div className="flex items-center gap-2">
-                <ThemePickerDialog
-                  initialTheme={data?.theme}
-                  onThemeChange={(newTheme) => setThemeObject(newTheme)}
-                >
-                  <span title="Customize Theme" role="button">
-                    <LucidePalette className="size-6 cursor-pointer" />
-                  </span>
-                </ThemePickerDialog>
                 {isEditing ? (
                   <Button
                     onClick={handleSave}
@@ -228,20 +211,39 @@ const EditorPage = () => {
                     </Button>
                   </>
                 )}
-                <SettingsDropdown>
-                  <span title="Settings">
-                    <LucideSettings className="size-6" role="button" />
+                <ThemePickerDialog
+                  initialTheme={data?.theme}
+                  onThemeChange={(newTheme) => setThemeObject(newTheme)}
+                >
+                  <span title="Customize Theme" role="button">
+                    <LucidePalette className="size-6 cursor-pointer" />
                   </span>
-                </SettingsDropdown>
-
-                {/* <Button */}
-                {/*     variant={"ghost"} */}
-                {/*     onClick={() => toggleEditor()} */}
-                {/*     className="cursor-pointer" */}
-                {/* > */}
-                {/*     <LucideChevronLeft className="size-6 hidden md:block" /> */}
-                {/*     <LucideEye className="size-6 md:hidden" /> */}
-                {/* </Button> */}
+                </ThemePickerDialog>
+                <ReorderSectionsPopup
+                  sections={sections}
+                  onReorder={(newOrder) => handleReorder(newOrder)}
+                  onEdit={(tabIdx) => {
+                    setCurrentEditingSection(sections[tabIdx].id);
+                    setEditorTabIndex(tabIdx);
+                    setTimeout(() => toggleEditor(), 600);
+                  }}
+                  onHide={(sectionType: string) =>
+                    toggleHideSection(sectionType)
+                  }
+                >
+                  <Button
+                    variant="ghost"
+                    className="cursor-pointer"
+                    title="Reorder Sections"
+                  >
+                    <ArrowUpDown className="size-6" />
+                  </Button>
+                </ReorderSectionsPopup>
+                {!editorOpen && (
+                  <Button variant="ghost" onClick={toggleEditor}>
+                    <LucideSidebarOpen className="size-6" />
+                  </Button>
+                )}
               </div>
             </motion.div>
           )}

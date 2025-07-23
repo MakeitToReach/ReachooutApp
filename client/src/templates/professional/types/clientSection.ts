@@ -4,4 +4,5 @@ export type PF_CLIENT_SECTION = {
     clientImgs: string[];
     colorTxt: string;
     subtitle?: string;
+    startText: string;
 };

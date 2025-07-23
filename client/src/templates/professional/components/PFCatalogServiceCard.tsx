@@ -41,8 +41,8 @@ export const PFCatalogServicesCard = ({
   };
 
   return (
-    <div className="relative h-fit sm:w-[20vw] flex flex-col border border-template-accent-primary/60 w-full text-template-text-secondary overflow-visible rounded-lg space-y-6 pb-6">
-      <div className="relative w-full h-[250px]">
+    <div className="relative h-fit bg-template-primary text-template-text-primary flex flex-col border border-template-accent-primary/60 w-full overflow-visible rounded-xs space-y-6 pb-6">
+      <div className="relative w-full h-[30vh]">
         <AnimatePresence mode="wait">
           <motion.div
             layout
@@ -57,7 +57,7 @@ export const PFCatalogServicesCard = ({
               src={imgUrls[currentIndex] || "/placeholder.png"}
               alt={`service-img-${currentIndex}`}
               fill
-              className="object-cover rounded-t-lg"
+              className="object-cover rounded-t-xs"
             />
           </motion.div>
         </AnimatePresence>
@@ -88,15 +88,29 @@ export const PFCatalogServicesCard = ({
       </div>
 
       {/* Text content */}
-      <div className="px-6 space-y-1 text-center">
-        <h2 className="font-semibold text-lg tracking-tight">{title}</h2>
+      <div className="px-6 space-y-3">
+        <h2 className="font-semibold text-xl tracking-tight">{title}</h2>
+        <div
+          className=" 
+                    prose prose-lg max-w-[90%] text-template-text-primary
+                    prose-p:text-template-text-primary
+                    prose-strong:text-template-text-primary
+                    prose-h1:text-template-text-primary
+                    prose-h2:text-template-text-primary
+                    prose-h3:text-template-text-primary
+                    prose-h4:text-template-text-primary
+                    prose-h5:text-template-text-primary
+                    prose-h6:text-template-text-primary
+                    line-clamp-3
+                    "
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+        <FViewMoreDrawer type="Catalog" content={catalogServiceContent}>
+          <Button className="self-start bg-transparent border border-template-accent-primary text-template-text-primary rounded-xs hover:none">
+            View Details
+          </Button>
+        </FViewMoreDrawer>
       </div>
-
-      <FViewMoreDrawer type="Catalog" content={catalogServiceContent}>
-        <button className="flex self-center items-center px-2 rounded-md z-30 font-semibold border border-template-accent-primary">
-          See More
-        </button>
-      </FViewMoreDrawer>
     </div>
   );
 };

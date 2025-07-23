@@ -35,7 +35,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
       <DialogContent
         showCloseButton={isMobile ? true : false}
         showDarkOverlay={true}
-        className="w-screen min-h-screen bg-transparent border-0 shadow-none focus:outline-none focus:ring-0 overflow-scroll"
+        className="w-screen min-h-screen bg-transparent border-0 shadow-none focus:outline-none focus:ring-0 overflow-hidden"
       >
         <DialogHeader className="sr-only hidden">
           <DialogTitle>image-lightbox</DialogTitle>

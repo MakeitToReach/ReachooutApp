@@ -33,7 +33,7 @@ export const PFCatalogServicesCarousel = ({
     return (
         <div>
             {/* categories */}
-            <div className="flex flex-wrap justify-start gap-3 mb-12">
+            <div className="flex flex-wrap justify-center gap-3 mb-12">
                 {categories.map((category) => (
                     <Badge
                         key={category}

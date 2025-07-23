@@ -14,17 +14,17 @@ export const PFTeamCard = ({
 }: PF_TEAM_MEMBER) => {
     const teamMemberContent = { imgUrl, name, designation, description };
     return (
-        <div className="h-fit sm:w-[20vw] border border-template-accent-primary w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6 text-template-text-primary">
+        <div className="h-fit border border-template-accent-primary w-full bg-template-primary rounded-xs overflow-hidden space-y-6 pb-6 text-template-text-primary">
             <Image
                 src={imgUrl || "/placeholder.png"}
                 alt="team-member-img"
                 width={400}
                 height={240}
-                className="w-full h-[15rem] object-cover"
+                className="w-full h-[20rem] sm:h-[15rem] object-cover"
             />
             <div className="px-6 space-y-1">
                 <div className="w-full flex justify-between items-center">
-                    <h2 className="font-semibold text-lg tracking-tight">{name}</h2>
+                    <h2 className="font-semibold text-2xl sm:text-xl tracking-tight">{name}</h2>
 
                     <ViewMoreDrawer
                         type="TeamMember"
@@ -35,7 +35,7 @@ export const PFTeamCard = ({
                         </Button>
                     </ViewMoreDrawer>
                 </div>
-                <p className="text-xs line-clamp-1 text-template-text-primary/70">
+                <p className="text-base line-clamp-1 text-template-text-primary/70">
                     {designation}
                 </p>
 

@@ -29,7 +29,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({
   )?.icon(iconProps);
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} modal>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
@@ -40,8 +40,8 @@ export const IconPicker: React.FC<IconPickerProps> = ({
           {selectedIcon ?? <ChevronDown className="w-4 h-4 opacity-50" />}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-72 p-4 z-[120] rounded-md shadow-md border bg-background">
-        <ScrollArea className="h-64">
+      <PopoverContent className="w-90 p-4 z-[900] rounded-md shadow-md border bg-background">
+        <ScrollArea className="h-90">
           <div className="grid grid-cols-5 gap-3">
             {ICONS_REGISTRY.map((item, idx) => {
               const isSelected = value === item.label;
@@ -50,7 +50,8 @@ export const IconPicker: React.FC<IconPickerProps> = ({
                 <button
                   key={idx}
                   type="button"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     onChange(item.label);
                     setOpen(false);
                   }}
@@ -60,7 +61,7 @@ export const IconPicker: React.FC<IconPickerProps> = ({
                   )}
                   title={item.label}
                 >
-                  <div className="w-5 h-5 text-foreground">
+                  <div className="w-5 h-5 text-foreground cursor-pointer">
                     {item.icon(iconProps)}
                   </div>
                 </button>

@@ -20,15 +20,15 @@ export const PFExperienceSection = ({
   return (
     <section className="py-20" id="experience">
       <div className="relative">
-        <div className="absolute z-0 w-[80%] h-[110%] left-0 -top-6 md:top-0 bg-template-accent-secondary rounded-md" />
-        <div className="max-w-6xl mx-auto px-4 text-template-text-accent-secondary flex flex-col sm:flex-row items-center gap-4 sm:gap-0">
+        <div className="absolute z-0 w-[100%] h-[110%] left-0 -top-6 md:top-0 bg-template-secondary rounded-xs" />
+        <div className="max-w-6xl mx-auto px-4 text-template-text-secondary flex flex-col sm:flex-row items-center gap-4 sm:gap-0">
           {/* Responsive image container */}
           <div className="relative w-[200px] h-[200px] sm:w-[500px] sm:h-[500px] z-10 sm:mt-20 mt-10">
             <Image
               src={imgUrl || "/placeholder.png"}
               alt="Placeholder"
               fill
-              className="object-cover rounded-md"
+              className="object-cover rounded-xs"
               // sizes="(min-width: 768px) 300px, 150px"
             />
           </div>

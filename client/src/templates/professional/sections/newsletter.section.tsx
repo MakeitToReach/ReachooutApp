@@ -45,6 +45,7 @@ export const PFNewsletterSection = ({
         <Button
           disabled={!receiverEmail || isLoading}
           type="submit"
+          className="bg-template-btn text-template-text-btn"
           onClick={() => receiverEmail && handleSubmit(receiverEmail)}
         >
           {isLoading ? (

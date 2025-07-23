@@ -11,4 +11,5 @@ export type PF_PROJECT = {
 
 export type PF_WORK_SECTION = {
     projects: PF_PROJECT[];
+    heading: string;
 };

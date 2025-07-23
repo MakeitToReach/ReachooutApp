@@ -12,12 +12,16 @@ export const ServicesCard = ({
     description,
 }: ServicesCardProps) => {
     return (
-        <div className="flex flex-col p-6 gap-3 text-center items-center justify-center border border-template-accent-primary shadow-xs shadow-template-text-primary rounded-md">
-            <span>{getIconFromRegistry(icon)}</span>
-            <h1 className="text-lg font-semibold">{heading}</h1>
+        <div className="flex flex-col p-6 gap-3 text-center items-center justify-center border border-template-accent-primary rounded-sm">
+            <span>
+                {getIconFromRegistry(icon, {
+                    className: "sm:size-20 size-16 text-template-text-primary",
+                })}
+            </span>
+            <h1 className="text-2xl font-semibold">{heading}</h1>
             <div
                 className="
-    prose prose-sm max-w-none text-template-text-primary
+    prose prose-xl sm:prose-lg max-w-none text-template-text-primary
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
     prose-h1:text-template-text-primary

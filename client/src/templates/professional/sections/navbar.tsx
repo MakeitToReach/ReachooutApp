@@ -31,7 +31,7 @@ export const PFNavbar = ({
     if (value === "view-qr-code") {
       setQrPopupOpen(true);
     }
-    
+
     // Reset the select value after a short delay
     setTimeout(() => {
       if (isMobileSelect) {
@@ -62,7 +62,7 @@ export const PFNavbar = ({
           />
         )}
 
-        <div className="hidden space-x-4 md:flex items-center">
+        <div className="hidden space-x-4 sm:flex items-center">
           {visibleSections.map((section) => (
             <button
               key={section.name}
@@ -77,12 +77,12 @@ export const PFNavbar = ({
           ))}
 
           {overflowSections.length > 0 && (
-            <Select 
+            <Select
               value={desktopSelectValue}
               onValueChange={(value) => handleSelectChange(value, false)}
             >
-              <SelectTrigger className="w-fit px-3 py-1 text-template-text-primary shadow-none bg-transparent border-none hover:underline">
-                <span>More</span>
+              <SelectTrigger className="w-fit px-3 py-1 shadow-none bg-transparent border-none hover:underline">
+                <span className="text-template-text-primary">More</span>
               </SelectTrigger>
               <SelectContent>
                 {overflowSections.map((section) => (
@@ -110,7 +110,7 @@ export const PFNavbar = ({
         {/* Mobile Menu Button */}
 
         {isMobile && (
-          <Select 
+          <Select
             value={mobileSelectValue}
             onValueChange={(value) => handleSelectChange(value, true)}
           >

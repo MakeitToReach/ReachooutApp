@@ -9,6 +9,7 @@ export const PFClientSection: React.FC<PF_CLIENT_SECTION> = ({
     colorTxt,
     clientImgs,
     subtitle,
+    startText,
 }) => {
     return (
         <section className="px-4 max-w-6xl mx-auto py-20" id="client">
@@ -18,7 +19,7 @@ export const PFClientSection: React.FC<PF_CLIENT_SECTION> = ({
                     {/* <AvatarFallback>CN</AvatarFallback> */}
                 </Avatar>
                 <h1 className="font-semibold text-3xl md:text-6xl text-template-text-primary">
-                    Worked with{" "}
+                    {startText}{" "}
                     <span className="text-template-text-accent-tertiary">{colorTxt}</span>{" "}
                     {title}
                 </h1>
@@ -26,7 +27,7 @@ export const PFClientSection: React.FC<PF_CLIENT_SECTION> = ({
                     <h3 className="md:text-2xl text-template-text-primary">{subtitle}</h3>
                 )}
             </div>
-            <div className="relative mt-20 md:mt-40">
+            <div className="relative mt-20 sm:mt-30">
                 <ClientLogos clientImgs={clientImgs} />
                 <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-template-primary"></div>
                 <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-template-primary"></div>

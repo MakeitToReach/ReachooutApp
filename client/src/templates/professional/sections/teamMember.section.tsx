@@ -12,10 +12,10 @@ export const PFTeamMembersSection = ({
       className="max-w-6xl mx-auto py-20 px-4 text-template-text-primary"
       id="team"
     >
-      <h1 className="text-3xl font-semibold md:text-6xl text-center">
+      <h1 className="text-4xl font-semibold sm:text-6xl text-center">
         {title}
       </h1>
-      <h2 className="text-center text-xl text-template-text-primary/50 mt-10">
+      <h2 className="text-center text-xl text-template-text-primary/50 mt-8">
         {subtitle}
       </h2>
       <div className="w-full mt-10">

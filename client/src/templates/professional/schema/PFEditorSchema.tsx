@@ -139,6 +139,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
 
     client: [
         {
+            label: "Starter Text",
+            type: "text",
+            fieldPath: "startText",
+        },
+        {
             label: "Color Text",
             type: "text",
             fieldPath: "colorTxt",
@@ -164,7 +169,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Client Images",
             type: "multiple-images",
             fieldPath: "clientImgs",
-        }
+        },
     ],
 
     testimonials: [
@@ -235,7 +240,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Images",
             type: "multiple-images",
             fieldPath: "imgs",
-        }
+        },
     ],
 
     team: [

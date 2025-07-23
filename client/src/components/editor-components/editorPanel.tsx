@@ -1,7 +1,7 @@
 import { usePortfolioStore } from "@/store/portfolio.store";
 import { Button } from "../ui/button";
 import {
-  EllipsisVertical,
+  ArrowUpDown,
   Home,
   LucideEye,
   LucideLoaderCircle,
@@ -71,7 +71,7 @@ export const EditorPanel = ({
 
   //refactors the data.sections to editorTabs usable format
   const editorSections = data.sections
-    .filter((section) => section.isEditable)
+    .filter((section) => section.isEditable && !section.isHidden)
     .map((s) => s.type);
 
   const handleSave = async () => {
@@ -81,7 +81,7 @@ export const EditorPanel = ({
         data,
         projectId,
         templateId,
-        order as number
+        order as number,
       );
     } catch (error) {
       console.error(error);
@@ -109,32 +109,18 @@ export const EditorPanel = ({
   return (
     <div
       className={cn(
-        "flex flex-col gap-4 p-4 md:px-6 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full font-Poppins"
+        "flex flex-col gap-4 p-4 md:px-6 md:py-2 h-screen overflow-y-scroll overflow-x-hidden w-full font-Poppins",
       )}
     >
       {/* TODO: Add this to a component ( EditorHeader ) */}
       <div className="w-full flex justify-between items-center border-border border rounded-md p-2 shadow-xs shadow-gray-300 transition-all">
-        <ReorderSectionsPopup
-          sections={sections}
-          onReorder={(newOrder) => handleReorder(newOrder)}
-          onEdit={(tabIdx) => {
-            setCurrentEditingSection(sections[tabIdx].id);
-            setEditorTabIndex(tabIdx);
-          }}
-          onHide={(sectionType: string) => toggleHideSection(sectionType)}
-        >
-          <button className="cursor-pointer">
-            <EllipsisVertical className="size-6" />
-          </button>
-        </ReorderSectionsPopup>
+        <Link href="/user">
+          <Button variant={"ghost"} className="cursor-pointer">
+            <Home className="size-6" role="button" />
+          </Button>
+        </Link>
 
         <div className="flex items-center gap-2">
-          <ThemePickerDialog
-            initialTheme={data?.theme}
-            onThemeChange={(newTheme) => setThemeObject(newTheme)}
-          >
-            <LucidePalette className="size-6 cursor-pointer" role="button" />
-          </ThemePickerDialog>
           {isEditing ? (
             <Button
               onClick={handleSave}
@@ -167,9 +153,29 @@ export const EditorPanel = ({
               </Button>
             </>
           )}
-          <Link href="/user">
-            <Home className="size-6" role="button" />
-          </Link>
+
+          <ThemePickerDialog
+            initialTheme={data?.theme}
+            onThemeChange={(newTheme) => setThemeObject(newTheme)}
+          >
+            <Button variant={"ghost"} className="cursor-pointer">
+              <LucidePalette className="size-6" />
+            </Button>
+          </ThemePickerDialog>
+
+          <ReorderSectionsPopup
+            sections={sections}
+            onReorder={(newOrder) => handleReorder(newOrder)}
+            onEdit={(tabIdx) => {
+              setCurrentEditingSection(sections[tabIdx].id);
+              setEditorTabIndex(tabIdx);
+            }}
+            onHide={(sectionType: string) => toggleHideSection(sectionType)}
+          >
+            <Button variant={"ghost"} className="cursor-pointer">
+              <ArrowUpDown className="size-6" />
+            </Button>
+          </ReorderSectionsPopup>
 
           <Button
             variant={"ghost"}

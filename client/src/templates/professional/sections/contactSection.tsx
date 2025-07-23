@@ -172,7 +172,7 @@ export const PFContactSection = ({
           <m.div variants={itemVariants}>
             <Button
               disabled={!receiverEmail || isLoading}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 bg-template-btn text-template-text-btn"
               onClick={() => receiverEmail && handleSubmit(receiverEmail)}
             >
               {isLoading ? (
