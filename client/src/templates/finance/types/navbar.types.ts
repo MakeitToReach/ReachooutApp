@@ -9,4 +9,5 @@ export type F_NAVBAR_SECTION = {
     sections: F_NAVBAR_SECTION_ITEM[];
     btnText: string;
     btnLink: string;
+    qrCodeUrl?: string; // Added for QR code popup support
 }; 

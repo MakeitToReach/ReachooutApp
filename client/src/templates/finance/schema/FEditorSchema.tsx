@@ -38,6 +38,11 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       imgSubtitle: "Dimensions 64x64",
     },
     {
+      label: "QR Code URL",
+      type: "text",
+      fieldPath: "qrCodeUrl",
+    },
+    {
       label: "Navbar Options",
       type: "customComponent",
       fieldPath: "sections",

@@ -12,6 +12,7 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { FButton } from "./FButton";
 import { motion as m } from "motion/react";
+import QRCodePopup from "@/components/editor-components/popups/QRCodePopup";
 
 const delay = 0.15;
 
@@ -21,15 +22,29 @@ export const FNavbar = ({
   sections,
   btnText,
   btnLink,
+  qrCodeUrl,
 }: F_NAVBAR_SECTION) => {
   const visibleSections = sections.slice(2, 6);
   const overflowSections = sections.slice(6, sections.length - 2);
   const isMobile = useIsMobile();
+  const [qrPopupOpen, setQrPopupOpen] = React.useState(false);
+  const [desktopSelectValue, setDesktopSelectValue] = React.useState("");
+  const [mobileSelectValue, setMobileSelectValue] = React.useState("");
 
-  const handleSelectChange = (value: string) => {
+  const handleSelectChange = (value: string, isMobileSelect = false) => {
     if (value) {
       scrollToSection(value);
     }
+    if (value === "view-qr-code") {
+      setQrPopupOpen(true);
+    }
+    setTimeout(() => {
+      if (isMobileSelect) {
+        setMobileSelectValue("");
+      } else {
+        setDesktopSelectValue("");
+      }
+    }, 100);
   };
 
   return (
@@ -98,7 +113,10 @@ export const FNavbar = ({
           ))}
 
           {overflowSections.length > 0 && (
-            <Select onValueChange={handleSelectChange}>
+            <Select 
+              value={desktopSelectValue}
+              onValueChange={(value) => handleSelectChange(value, false)}
+            >
               <SelectTrigger className="w-fit px-3 py-1 text-template-text-primary shadow-none bg-transparent border-none hover:underline">
                 <m.span
                   initial={{ opacity: 0, y: 10, filter: "blur(10px)" }}
@@ -123,6 +141,15 @@ export const FNavbar = ({
                     {section.name}
                   </SelectItem>
                 ))}
+                <QRCodePopup
+                  value={qrCodeUrl || (typeof window !== "undefined" ? window.location.href : "")}
+                  open={qrPopupOpen}
+                  onOpenChange={setQrPopupOpen}
+                >
+                  <SelectItem value="view-qr-code" className="capitalize">
+                    View QR Code
+                  </SelectItem>
+                </QRCodePopup>
               </SelectContent>
             </Select>
           )}
@@ -148,7 +175,10 @@ export const FNavbar = ({
         {/* Mobile Menu Button */}
 
         {isMobile && (
-          <Select onValueChange={handleSelectChange}>
+          <Select 
+            value={mobileSelectValue}
+            onValueChange={(value) => handleSelectChange(value, true)}
+          >
             <SelectTrigger
               showIcon={false}
               className="w-fit px-3 py-1 text-template-text-primary shadow-none bg-transparent border-none hover:underline flex items-center gap-1 [&>[data-slot='icon']]:hidden"
@@ -176,6 +206,15 @@ export const FNavbar = ({
                   {section.name}
                 </SelectItem>
               ))}
+              <QRCodePopup
+                value={qrCodeUrl || (typeof window !== "undefined" ? window.location.href : "")}
+                open={qrPopupOpen}
+                onOpenChange={setQrPopupOpen}
+              >
+                <SelectItem value="view-qr-code" className="capitalize">
+                  View QR Code
+                </SelectItem>
+              </QRCodePopup>
             </SelectContent>
           </Select>
         )}

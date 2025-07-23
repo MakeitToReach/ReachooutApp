@@ -7,6 +7,7 @@ export const FNavbarSection = ({
     sections,
     btnText,
     btnLink,
+    qrCodeUrl,
 }: F_NAVBAR_SECTION) => {
     return (
         <FNavbar
@@ -15,6 +16,7 @@ export const FNavbarSection = ({
             sections={sections}
             btnText={btnText}
             btnLink={btnLink}
+            qrCodeUrl={qrCodeUrl}
         />
     );
 };
