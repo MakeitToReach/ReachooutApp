@@ -11,8 +11,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { PF_PROJECT } from "@/templates/professional/types/project";
 import Autoplay from "embla-carousel-autoplay";
-// import { Badge } from "@/components/ui/badge";
-// import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { cn, getYouTubeVideoId } from "@/lib/utils";
 import { ViewMoreDrawer } from "./viewMoreDrawer";
 import Image from "next/image";
@@ -25,7 +23,7 @@ interface PFWorkCarouselProps {
 
 export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
   const [selectedCategory, setSelectedCategory] = React.useState<string | null>(
-    "All",
+    "All"
   );
 
   const categories = [
@@ -105,7 +103,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                       alt="project-img"
                       className={cn(
                         "sm:h-[50vh] sm:w-[30vw] h-[40vh] w-full rounded-xs object-cover",
-                        "sm:max-h-[50vh] sm:max-w-full max-w-full max-h-[40vh]",
+                        "sm:max-h-[50vh] sm:max-w-full max-w-full max-h-[40vh]"
                       )}
                       width={500}
                       height={500}

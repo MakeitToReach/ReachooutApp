@@ -12,7 +12,7 @@ import { DialogClose } from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { ReqInput } from "../inputs/reqInput";
 import { ImageInput } from "@/components/imgInput";
-import { Textarea } from "@/components/ui/textarea";
+import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface AddProjectPopupProps {
   children: React.ReactNode;
@@ -60,12 +60,12 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
 
           <div>
             <label className="font-semibold">Description</label>
-            <Textarea
+            <TipTapEditor
+              value={project.description}
+              onChange={(value) => setProject({ ...project, description: value })}
               placeholder="Description"
-              className="border p-2 w-full rounded-md h-20"
-              onChange={(e) =>
-                setProject({ ...project, description: e.target.value })
-              }
+              height="h-36"
+              showToolbar={true}
             />
           </div>
 

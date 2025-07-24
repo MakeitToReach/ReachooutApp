@@ -6,7 +6,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { PF_CATALOG } from "../types/serviceCatalog.types";
-import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
+import YouTube from "react-youtube";
+import { getYouTubeVideoId } from "@/lib/utils";
+import { ViewMoreDrawer } from "@/components/template-components/professional/viewMoreDrawer";
 
 export const PFCatalogServicesCard = ({
   imgUrls = ["/placeholder.png"],
@@ -15,6 +17,7 @@ export const PFCatalogServicesCard = ({
   btnText,
   btnLink,
   category,
+  vidUrl,
 }: PF_CATALOG) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const catalogServiceContent = {
@@ -24,7 +27,12 @@ export const PFCatalogServicesCard = ({
     btnText,
     btnLink,
     category,
+    vidUrl,
   };
+
+  // Extract videoId from videoUrl
+  const videoId = getYouTubeVideoId(vidUrl);
+  const showVideo = Boolean(videoId);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,53 +48,80 @@ export const PFCatalogServicesCard = ({
     setCurrentIndex((prev) => (prev === 0 ? imgUrls.length - 1 : prev - 1));
   };
 
+  const opts = {
+    playerVars: {
+      width: "100%",
+      height: "100%",
+      autoplay: 1,
+      loop: 1,
+      playlist: videoId,
+      controls: 0,
+      modestbranding: 1,
+      rel: 0,
+      iv_load_policy: 3,
+      disablekb: 1,
+      fs: 0,
+      mute: 1,
+      playsinline: 1,
+    },
+  };
+
   return (
     <div className="relative h-fit bg-template-primary text-template-text-primary flex flex-col border border-template-accent-primary/60 w-full overflow-visible rounded-xs space-y-6 pb-6">
+      {/* Video or Images */}
       <div className="relative w-full h-[30vh]">
-        <AnimatePresence mode="wait">
-          <motion.div
-            layout
-            key={imgUrls[currentIndex]}
-            initial={{ filter: "blur(10px)", opacity: 0 }}
-            animate={{ filter: "blur(0px)", opacity: 1 }}
-            exit={{ filter: "blur(10px)", opacity: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={imgUrls[currentIndex] || "/placeholder.png"}
-              alt={`service-img-${currentIndex}`}
-              fill
-              className="object-cover rounded-t-xs"
-            />
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Gradient to make arrows visible */}
-        {imgUrls.length > 1 && (
+        {showVideo ? (
+          <YouTube
+            videoId={videoId || ""}
+            opts={opts}
+            className="absolute inset-0 w-full h-full rounded-t-xs"
+            iframeClassName="w-full h-full rounded-t-xs"
+          />
+        ) : (
           <>
-            <div className="absolute h-full bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent z-10" />
-
-            <div className="absolute bottom-2 right-2 z-20 flex gap-2">
-              <Button
-                onClick={prevImage}
-                variant="ghost"
-                className="p-2 rounded-full dark border-white text-white hover:bg-white/10"
+            <AnimatePresence mode="wait">
+              <motion.div
+                layout
+                key={imgUrls[currentIndex]}
+                initial={{ filter: "blur(10px)", opacity: 0 }}
+                animate={{ filter: "blur(0px)", opacity: 1 }}
+                exit={{ filter: "blur(10px)", opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="absolute inset-0 w-full h-full"
               >
-                <ChevronLeft size={16} />
-              </Button>
-              <Button
-                onClick={nextImage}
-                variant="ghost"
-                className="p-2 rounded-full dark border-white text-white hover:bg-white/10"
-              >
-                <ChevronRight size={16} />
-              </Button>
-            </div>
+                <Image
+                  src={imgUrls[currentIndex] || "/placeholder.png"}
+                  alt={`service-img-${currentIndex}`}
+                  fill
+                  className="object-cover rounded-t-xs"
+                />
+              </motion.div>
+            </AnimatePresence>
+            {/* Gradient to make arrows visible */}
+            {imgUrls.length > 1 && (
+              <>
+                <div className="absolute h-full bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent z-10" />
+                <div className="absolute bottom-2 right-2 z-20 flex gap-2">
+                  <Button
+                    onClick={prevImage}
+                    variant="ghost"
+                    className="p-2 rounded-full dark border-white text-white hover:bg-white/10"
+                  >
+                    <ChevronLeft size={16} />
+                  </Button>
+                  <Button
+                    onClick={nextImage}
+                    variant="ghost"
+                    className="p-2 rounded-full dark border-white text-white hover:bg-white/10"
+                  >
+                    <ChevronRight size={16} />
+                  </Button>
+                </div>
+              </>
+            )}
           </>
         )}
       </div>
-
       {/* Text content */}
       <div className="px-6 space-y-3">
         <h2 className="font-semibold text-xl tracking-tight">{title}</h2>
@@ -105,11 +140,11 @@ export const PFCatalogServicesCard = ({
                     "
           dangerouslySetInnerHTML={{ __html: description }}
         />
-        <FViewMoreDrawer type="Catalog" content={catalogServiceContent}>
+        <ViewMoreDrawer type="CatalogService" content={catalogServiceContent}>
           <Button className="self-start bg-transparent border border-template-accent-primary text-template-text-primary rounded-xs hover:none">
             View Details
           </Button>
-        </FViewMoreDrawer>
+        </ViewMoreDrawer>
       </div>
     </div>
   );

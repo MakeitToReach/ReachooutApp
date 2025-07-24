@@ -225,6 +225,42 @@ export const EditorTabs = ({
                       </div>
                     )}
 
+                    {field.type === "multiImg-video" && (
+                      <div className="space-y-2">
+                        <Label>{field.label}</Label>
+                        {/* Multiple Images Input */}
+                        <MultipleImageInput
+                          initialImages={sectionData?.data[field.fieldPathImg ?? ""]}
+                          onImageAdd={(imgUrl) => {
+                            const currentImages = Array.isArray(sectionData?.data[field.fieldPathImg ?? ""]) ? sectionData.data[field.fieldPathImg ?? ""] : [];
+                            const updatedImages = [...currentImages, imgUrl];
+                            setSectionField(section, field.fieldPathImg ?? "", updatedImages);
+                          }}
+                          onImageRemove={(index) => {
+                            const currentImages = Array.isArray(sectionData?.data[field.fieldPathImg ?? ""]) ? sectionData.data[field.fieldPathImg ?? ""] : [];
+                            const updatedImages = currentImages.filter((_: string, i: number) => i !== index);
+                            setSectionField(section, field.fieldPathImg ?? "", updatedImages);
+                          }}
+                        />
+                        {/* Video Input */}
+                        <ReqInput
+                          className="w-full"
+                          label={field.label}
+                          type="text"
+                          subtitle={field.subtitle}
+                          placeholder={field.label}
+                          value={sectionData?.data[field.fieldPathVid ?? ""]}
+                          onChange={(e) =>
+                            setSectionField(
+                              section,
+                              field.fieldPathVid ?? "",
+                              e.target.value
+                            )
+                          }
+                        />
+                      </div>
+                    )}
+
                     {field.type === "component" &&
                       field.component?.({
                         value: sectionData?.data[field.fieldPath],
