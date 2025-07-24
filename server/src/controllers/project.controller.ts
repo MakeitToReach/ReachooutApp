@@ -269,6 +269,7 @@ export const getProjectBySubdomain = async (req: Request, res: Response) => {
       name: project.name,
       subDomain: project.subDomain,
       customDomain: project.customDomain,
+      faviconUrl: project.faviconUrl,
       user: project.user,
       templates: project.templates.map((pt) => ({
         templateId: pt.templateId,

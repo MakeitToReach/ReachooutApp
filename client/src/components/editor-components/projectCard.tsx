@@ -99,7 +99,7 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-48"
+            className="w-fit"
             side={isMobile ? "bottom" : "right"}
             align={isMobile ? "end" : "start"}
             onClick={(e) => e.stopPropagation()}

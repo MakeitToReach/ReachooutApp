@@ -10,7 +10,7 @@ import { notFound } from "next/navigation";
 import { isBaseDomain, getSubdomainFromHostname } from "@/lib/domainUtils";
 import { Loading } from "@/components/editor-components/loading";
 
-async function getProject(subdomain: string, slug: string) {
+async function getProjectBySlug(subdomain: string, slug: string) {
   try {
     const project = await getProjectBySubdomainAndSlug(subdomain, slug);
     return project;
@@ -48,13 +48,12 @@ export async function generateMetadata({
   if (isBaseDomain(hostname)) {
     const subdomain = getSubdomainFromHostname(hostname);
 
-    // Only generate metadata for valid subdomains
     if (subdomain && subdomain !== "app") {
       try {
-        const project = await getProject(subdomain, slug);
+        const project = await getProjectBySlug(subdomain, slug);
         return {
-          title: project.seoTitle,
-          description: project.seoDescription,
+          title: project.templates[0].seoTitle,
+          description: project.templates[0].seoDescription,
           icons: project.faviconUrl
             ? [{ rel: "icon", url: project.faviconUrl }]
             : undefined,
@@ -68,6 +67,7 @@ export async function generateMetadata({
     try {
       //TODO: fetchProjectByCustomDomainAndSlug should be used here instead of fetchProjectByCustomDomain
       const project = await fetchProjectByCustomDomain(hostname, slug);
+      console.log(project.seoTitle, project.secoDescription);
       return {
         title: project.seoTitle,
         description: project.seoDescription,
@@ -100,19 +100,19 @@ export default async function PortfolioPage({
   // Check if this is a reachoout.com subdomain request
   if (isBaseDomain(hostname)) {
     const subdomain = getSubdomainFromHostname(hostname);
-    console.log("🔍 Subdomain extraction result:", subdomain);
+    // console.log("🔍 Subdomain extraction result:", subdomain);
 
     if (subdomain) {
       // Check for special subdomains first, before making any API calls
       if (subdomain === "app") {
-        console.log("🔄 'app' subdomain detected, redirecting to /home");
+        // console.log("🔄 'app' subdomain detected, redirecting to /home");
         const { redirect } = await import("next/navigation");
         redirect("/home");
       }
 
       // Only make API request for non-special subdomains
-      console.log("📡 Making API request for subdomain:", subdomain);
-      const project = await getProject(subdomain, slug);
+      // console.log("📡 Making API request for subdomain:", subdomain);
+      const project = await getProjectBySlug(subdomain, slug);
 
       if (!project) {
         console.log("❌ Project not found for subdomain:", subdomain);
@@ -132,7 +132,7 @@ export default async function PortfolioPage({
     const project = await fetchProjectByCustomDomain(hostname, slug);
 
     if (!project) {
-      console.log("❌ Project not found for custom domain:", hostname);
+      // console.log("❌ Project not found for custom domain:", hostname);
       notFound();
     }
 

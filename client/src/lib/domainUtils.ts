@@ -3,7 +3,7 @@ export function isBaseDomain(hostname: string): boolean {
 }
 
 export function getSubdomainFromHostname(hostname: string): string | null {
-  console.log("🔍 getSubdomainFromHostname called with hostname:", hostname);
+  // console.log("🔍 getSubdomainFromHostname called with hostname:", hostname);
 
   // Handle localhost for development
   if (hostname === "localhost") {
@@ -19,13 +19,13 @@ export function getSubdomainFromHostname(hostname: string): string | null {
     if (parts.length >= 2 && parts[1] === "localhost:3000") {
       return parts[0];
     }
-    console.log("  ❌ No valid subdomain found in localhost");
+    // console.log("  ❌ No valid subdomain found in localhost");
     return null;
   }
 
   // For production domains (e.g., johndoe.reachoout.com)
   if (parts.length > 2) {
-    console.log("  ✅ Production subdomain found:", parts[0]);
+    // console.log("  ✅ Production subdomain found:", parts[0]);
     return parts[0];
   }
 

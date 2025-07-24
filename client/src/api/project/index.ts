@@ -85,12 +85,7 @@ export const getTemplatesInProject = async (projectId: string) => {
 };
 
 export const getProjectBySubdomain = async (subdomain: string) => {
-  console.log("🔍 getProjectBySubdomain called with subdomain:", subdomain);
-  console.log("🔍 API base URL:", process.env.NEXT_PUBLIC_BACKEND_URL);
-  console.log(
-    "🔍 Full API URL:",
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/v1/project/subdomain/${subdomain}`
-  );
+  // console.log("🔍 getProjectBySubdomain called with subdomain:", subdomain);
 
   try {
     const response = await api.get(`/v1/project/subdomain/${subdomain}`, {

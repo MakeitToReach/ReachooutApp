@@ -8,7 +8,7 @@ import { isBaseDomain, getSubdomainFromHostname } from "@/lib/domainUtils";
 import { Loading } from "@/components/editor-components/loading";
 
 async function getProject(subdomain: string) {
-  console.log("🔍 getProject function called with subdomain:", subdomain);
+  // console.log("🔍 getProject function called with subdomain:", subdomain);
 
   try {
     const project = await getProjectBySubdomain(subdomain);
@@ -47,6 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
     if (subdomain && subdomain !== "app") {
       try {
         const project = await getProject(subdomain);
+        console.log("faviconURL", project);
         return {
           title: project.name,
           description: `${project.name}'s Reachoout Portfolio`,
