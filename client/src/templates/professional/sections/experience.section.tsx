@@ -24,16 +24,8 @@ export const PFExperienceSection = ({
       <div className="relative">
         <div className="max-w-6xl mx-auto px-4 text-template-text-secondary flex flex-col sm:flex-row items-center gap-4 py-20 min-w-0">
           {/* Responsive image container */}
-          <m.div
-            initial={{ opacity: 0, x: -100, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            transition={{
-              duration: 0.5,
-              delay: delay,
-              ease: "easeOut",
-            }}
-            viewport={{ amount: 1, once: true }}
-            className="relative min-w-[200px] min-h-[200px] w-[200px] h-[200px] sm:w-[500px] sm:h-[500px] z-10 sm:mt-20 mt-10 flex-shrink-0"
+          <div
+            className="relative w-[200px] h-[200px] sm:w-[500px] sm:h-[500px] z-10 sm:mt-20 mt-10"
           >
             <Image
               src={imgUrl || "/placeholder.png"}
@@ -42,7 +34,7 @@ export const PFExperienceSection = ({
               className="object-cover rounded-sm"
               // sizes="(min-width: 768px) 300px, 150px"
             />
-          </m.div>
+          </div>
 
           <div className="z-10 relative flex flex-col gap-6 md:gap-10 md:p-20">
             <m.h1

@@ -63,7 +63,7 @@ export const FTimeline = ({ steps }: FTimelineProps) => {
                 {/* Text Content */}
                 <div
                   className={cn(
-                    "w-full sm:w-1/2 backdrop-blur-xl text-template-text-primary",
+                    "w-full sm:w-1/2 bg-template-primary text-template-text-primary",
                     isEven ? "order-2" : "sm:order-1"
                   )}
                 >
