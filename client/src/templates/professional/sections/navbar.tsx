@@ -11,6 +11,9 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import QRCodePopup from "@/components/editor-components/popups/QRCodePopup";
 import Image from "next/image";
+import { motion as m } from "motion/react";
+
+const delay = 0.15;
 
 export const PFNavbar = ({
   logoUrl,
@@ -44,15 +47,22 @@ export const PFNavbar = ({
   };
 
   return (
-    <nav
-      id="navbar"
-      className="bg-template-primary text-template-text-primary"
-    >
+    <nav id="navbar" className="bg-template-primary text-template-text-primary">
       <div className="max-w-6xl mx-auto h-20 px-4 py-4 flex justify-between items-center">
         {textLogo && (
-          <h1 className="font-semibold text-2xl text-template-text-primary">
+          <m.h1
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.5,
+              delay: delay,
+              ease: "easeOut",
+            }}
+            className="font-semibold text-2xl text-template-text-primary"
+          >
             {textLogo}
-          </h1>
+          </m.h1>
         )}
 
         {logoUrl && (
@@ -61,13 +71,21 @@ export const PFNavbar = ({
             alt="logo"
             width={100}
             height={100}
-            className="sm:size-20 size-16 object-contain my-2"
+            className="sm:w-[140px] sm:h-[48px] w-[100px] h-[36px] object-contain my-2"
           />
         )}
 
         <div className="hidden space-x-4 sm:flex items-center">
-          {visibleSections.map((section) => (
-            <button
+          {visibleSections.map((section, index) => (
+            <m.button
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.5,
+                delay: delay * index,
+                ease: "easeOut",
+              }}
               key={section.name}
               className="text-template-text-primary hover:underline cursor-pointer capitalize"
               onClick={(e) => {
@@ -76,7 +94,7 @@ export const PFNavbar = ({
               }}
             >
               {section.name}
-            </button>
+            </m.button>
           ))}
 
           {overflowSections.length > 0 && (
@@ -84,10 +102,20 @@ export const PFNavbar = ({
               value={desktopSelectValue}
               onValueChange={(value) => handleSelectChange(value, false)}
             >
-              <SelectTrigger className="w-fit px-3 py-1 shadow-none bg-transparent border-none hover:underline text-red-400">
-                <span className="text-template-text-primary text-base">
+              <SelectTrigger className="w-fit px-3 py-1 shadow-none bg-transparent border-none hover:underline text-template-text-primary">
+                <m.span
+                  initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: delay * 4,
+                    ease: "easeOut",
+                  }}
+                  className="text-template-text-primary text-base"
+                >
                   More
-                </span>
+                </m.span>
               </SelectTrigger>
               <SelectContent>
                 {overflowSections.map((section) => (
@@ -126,7 +154,18 @@ export const PFNavbar = ({
               showIcon={false}
               className="w-fit px-3 py-1 text-template-text-primary shadow-none bg-transparent border-none hover:underline flex items-center gap-1 [&>[data-slot='icon']]:hidden"
             >
-              <LucideMenu size={20} />
+              <m.span
+                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  duration: 0.5,
+                  delay: delay,
+                  ease: "easeOut",
+                }}
+              >
+                <LucideMenu size={20} />
+              </m.span>
             </SelectTrigger>
             <SelectContent>
               {sections.slice(2, sections.length - 2).map((section) => (

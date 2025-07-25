@@ -7,6 +7,9 @@ import { PF_NEWSLETTER_SECTION } from "../types/newsletter.types";
 import { submitNewsletterForm } from "@/api/user-template";
 import { toast } from "sonner";
 import { Loader2, Send } from "lucide-react";
+import { motion as m } from "motion/react";
+
+const delay = 0.15;
 
 export const PFNewsletterSection = ({
   heading,
@@ -32,32 +35,58 @@ export const PFNewsletterSection = ({
     }
   };
   return (
-    <section
-      className="py-20 max-w-6xl mx-auto flex flex-col justify-center items-center space-y-10 px-4"
-      id="newsletter"
-    >
-      <h2 className="text-4xl font-semibold md:text-6xl text-center text-template-text-primary">
-        {heading}
-      </h2>
-
-      <form className="flex flex-col md:flex-row gap-4">
-        <EmailInput value={email} onChange={(value) => setEmail(value)} />
-        <Button
-          disabled={!receiverEmail || isLoading}
-          type="submit"
-          className="bg-template-btn text-template-text-btn"
-          onClick={() => receiverEmail && handleSubmit(receiverEmail)}
+    <section className="bg-template-secondary py-20">
+      <div
+        className="py-20 max-w-6xl mx-auto flex flex-col justify-center items-center space-y-10 px-4"
+        id="newsletter"
+      >
+        <m.h2
+          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{
+            duration: 0.5,
+            delay: delay,
+            ease: "easeOut",
+          }}
+          viewport={{ amount: 1, once: true }}
+          className="text-4xl font-semibold md:text-6xl text-center text-template-text-secondary"
         >
-          {isLoading ? (
-            <Loader2 className="animate-spin" />
-          ) : (
-            <>
-              <Send />
-              Subscribe
-            </>
-          )}
-        </Button>
-      </form>
+          {heading}
+        </m.h2>
+
+        <m.form
+          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{
+            duration: 0.5,
+            delay: delay * 2,
+            ease: "easeOut",
+          }}
+          viewport={{ amount: 1, once: true }}
+          className="flex flex-col md:flex-row gap-4"
+        >
+          <EmailInput
+            value={email}
+            onChange={(value) => setEmail(value)}
+            className="bg-template-text-secondary"
+          />
+          <Button
+            disabled={!receiverEmail || isLoading}
+            type="submit"
+            className="bg-template-btn text-template-text-btn hover:bg-template-btn cursor-pointer"
+            onClick={() => receiverEmail && handleSubmit(receiverEmail)}
+          >
+            {isLoading ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              <>
+                <Send />
+                Subscribe
+              </>
+            )}
+          </Button>
+        </m.form>
+      </div>
     </section>
   );
 };

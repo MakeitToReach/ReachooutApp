@@ -133,7 +133,9 @@ export const OnboardingPopup = ({
                 </Tooltip>
               </div>
             ) : (
-              <h2 className="text-xl font-semibold">Choose your content category</h2>
+              <span className="text-xl font-semibold">
+                Choose your content category
+              </span>
             )}
           </DialogTitle>
           {isAiMode && (
@@ -148,12 +150,15 @@ export const OnboardingPopup = ({
           <div className="space-y-10">
             <div className="space-y-2">
               <Label className="text-base">
-                Tell us about yourself, your services, and any relevant experience or projects. 
+                Tell us about yourself, your services, and any relevant
+                experience or projects.
               </Label>
               <Textarea
                 placeholder="Describe yourself, your services, and your experience here..."
                 value={aiForm.userInput}
-                onChange={(e) => handleAiInputChange("userInput", e.target.value)}
+                onChange={(e) =>
+                  handleAiInputChange("userInput", e.target.value)
+                }
                 className="min-h-[100px]"
               />
             </div>

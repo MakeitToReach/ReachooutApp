@@ -19,7 +19,7 @@ export const PFWidgetsSection = ({
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
           id="call-widget"
           className={cn(
-            "md:size-16 size-10 rounded-full bg-blue-500 flex justify-center items-center text-white",
+            "size-16 rounded-full bg-blue-500 flex justify-center items-center text-white",
             className
           )}
         >
@@ -30,7 +30,7 @@ export const PFWidgetsSection = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <PhoneCall className="size-6 md:size-8" />
+            <PhoneCall className="size-10" />
           </a>
         </motion.section>
       )}
@@ -41,7 +41,7 @@ export const PFWidgetsSection = ({
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
           id="contact widgets"
           className={cn(
-            "md:size-16 size-10 rounded-full bg-green-400 flex justify-center items-center text-white",
+            "size-16 rounded-full bg-green-400 flex justify-center items-center text-white",
             className
           )}
         >
@@ -50,7 +50,7 @@ export const PFWidgetsSection = ({
             target={"_blank"}
             rel="noopener noreferrer"
           >
-            <IconBrandWhatsapp className="md:size-8" />
+            <IconBrandWhatsapp className="size-10" />
           </a>
         </motion.section>
       )}

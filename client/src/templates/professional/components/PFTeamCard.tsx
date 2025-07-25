@@ -12,7 +12,7 @@ export const PFTeamCard = ({
     description,
     socials,
 }: PF_TEAM_MEMBER) => {
-    const teamMemberContent = { imgUrl, name, designation, description };
+    const teamMemberContent = { imgUrl, name, designation, description, socials };
     return (
         <div className="h-fit border border-template-accent-primary w-full bg-template-primary rounded-sm overflow-hidden space-y-6 pb-6 text-template-text-primary">
             <Image

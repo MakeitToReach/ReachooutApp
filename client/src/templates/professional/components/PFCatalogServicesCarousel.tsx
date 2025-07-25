@@ -11,6 +11,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PF_CATALOG } from "../types/serviceCatalog.types";
 import { PFCatalogServicesCard } from "./PFCatalogServiceCard";
 import { cn } from "@/lib/utils";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const PFCatalogServicesCarousel = ({
     catalogServices,
@@ -34,23 +35,25 @@ export const PFCatalogServicesCarousel = ({
     return (
         <div>
             {/* categories */}
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
-                {categories.map((category) => (
-                    <Badge
-                        key={category}
-                        variant={selectedCategory === category ? "default" : "outline"}
-                        className={cn(
-                            "cursor-pointer px-4 py-2 text-sm font-medium transition-all duration-200 text-lg",
-                            selectedCategory === category
-                                ? "bg-white text-slate-800 hover:bg-gray-100"
-                                : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"
-                        )}
-                        onClick={() => setSelectedCategory(category)}
-                    >
-                        {category}
-                    </Badge>
-                ))}
-            </div>
+            <ScrollArea className="w-full whitespace-nowrap mb-12 max-w-full overflow-x-auto">
+                <div className="flex flex-nowrap justify-center gap-3 px-2">
+                    {categories.map((category) => (
+                        <Badge
+                            key={category}
+                            variant={selectedCategory === category ? "default" : "outline"}
+                            className={cn(
+                                "cursor-pointer px-4 py-2 text-sm font-medium transition-all duration-200 text-lg",
+                                selectedCategory === category
+                                    ? "bg-white text-slate-800 hover:bg-gray-100"
+                                    : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"
+                            )}
+                            onClick={() => setSelectedCategory(category)}
+                        >
+                            {category}
+                        </Badge>
+                    ))}
+                </div>
+            </ScrollArea>
             <div className="relative w-full">
                 <Carousel
                     opts={{

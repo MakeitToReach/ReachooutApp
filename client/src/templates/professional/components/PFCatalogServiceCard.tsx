@@ -141,7 +141,7 @@ export const PFCatalogServicesCard = ({
           dangerouslySetInnerHTML={{ __html: description }}
         />
         <ViewMoreDrawer type="CatalogService" content={catalogServiceContent}>
-          <Button className="self-start bg-transparent border border-template-accent-primary text-template-text-primary rounded-sm hover:none">
+          <Button className="self-start bg-transparent border border-template-accent-primary text-template-text-primary rounded-sm hover:bg-transparent cursor-pointer">
             View Details
           </Button>
         </ViewMoreDrawer>

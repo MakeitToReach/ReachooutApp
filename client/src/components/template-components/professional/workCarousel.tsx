@@ -16,6 +16,7 @@ import { ViewMoreDrawer } from "./viewMoreDrawer";
 import Image from "next/image";
 import YouTube from "react-youtube";
 import { Badge } from "@/components/ui/badge";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface PFWorkCarouselProps {
   Projects: PF_PROJECT[];
@@ -58,23 +59,25 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
   return (
     <div className="sm:space-y-20 space-y-8 w-full">
       {/* Filter Bar */}
-      <div className="flex flex-wrap justify-center gap-3 mb-12">
-        {categories.map((category) => (
-          <Badge
-            key={category}
-            variant={selectedCategory === category ? "default" : "outline"}
-            className={cn(
-              "cursor-pointer px-4 py-2 text-sm font-medium transition-all duration-200 text-lg",
-              selectedCategory === category
-                ? "bg-white text-slate-800 hover:bg-gray-100"
-                : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"
-            )}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </Badge>
-        ))}
-      </div>
+      <ScrollArea className="w-full whitespace-nowrap mb-12 max-w-full overflow-x-auto">
+        <div className="flex flex-nowrap justify-center gap-3 px-2">
+          {categories.map((category) => (
+            <Badge
+              key={category}
+              variant={selectedCategory === category ? "default" : "outline"}
+              className={cn(
+                "cursor-pointer px-4 py-2 text-sm font-medium transition-all duration-200 text-lg",
+                selectedCategory === category
+                  ? "bg-white text-slate-800 hover:bg-gray-100"
+                  : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"
+              )}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </Badge>
+          ))}
+        </div>
+      </ScrollArea>
       {/* Carousel */}
       <Carousel
         opts={{ loop: filteredProjects.length > 1, align: "center" }}
@@ -136,7 +139,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                     />
                     <div className="space-x-2">
                       <ViewMoreDrawer content={project} type="Project">
-                        <Button className="text-template-text-btn bg-template-btn rounded-sm text-lg">
+                        <Button className="text-template-text-btn bg-template-btn rounded-sm text-lg hover:bg-template-btn cursor-pointer">
                           View Details
                         </Button>
                       </ViewMoreDrawer>
@@ -145,7 +148,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Button className="text-template-text-btn bg-template-btn rounded-sm text-lg">
+                        <Button className="text-template-text-btn bg-template-btn rounded-sm text-lg hover:bg-template-btn cursor-pointer">
                           {project.btnText}
                         </Button>
                       </a>

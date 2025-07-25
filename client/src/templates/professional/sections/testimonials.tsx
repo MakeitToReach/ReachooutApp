@@ -1,6 +1,9 @@
 import { Marquee } from "@/components/magicui/marquee";
 import { cn } from "@/lib/utils";
 import { PF_TESTIMONIAL_SECTION } from "../types/testimonials.types";
+import { motion as m } from "motion/react";
+
+const delay = 0.15;
 
 const ReviewCard = ({
   img,
@@ -16,7 +19,7 @@ const ReviewCard = ({
   return (
     <figure
       className={cn(
-        "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+        "relative h-full w-64 cursor-pointer overflow-hidden rounded-sm border p-4",
         "border-template-accent-primary"
       )}
     >
@@ -54,9 +57,19 @@ export function PFTestimonialsSection({
       id="testimonials"
       className="relative flex max-w-6xl mx-auto py-20 gap-10 flex-col items-center justify-center overflow-hidden"
     >
-      <h1 className="text-4xl font-semibold sm:text-6xl text-center text-template-text-primary">
+      <m.h1
+        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{
+          duration: 0.5,
+          delay: delay,
+          ease: "easeOut",
+        }}
+        viewport={{ amount: 1, once: true }}
+        className="text-4xl font-semibold sm:text-6xl text-center text-template-text-primary"
+      >
         {title}
-      </h1>
+      </m.h1>
       <div>
         <Marquee pauseOnHover className="[--duration:20s]">
           {testimonials.map((review, idx) => (

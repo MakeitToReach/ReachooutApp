@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { PF_EXPERIENCE_SECTION } from "../types/experience.types";
 import { PFExperienceItem } from "../components/PFExperienceItem";
+import { motion as m, useScroll, useTransform } from "motion/react";
+
+const delay = 0.15;
 
 export const PFExperienceSection = ({
   heading,
@@ -18,12 +20,21 @@ export const PFExperienceSection = ({
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section className="py-20" id="experience">
+    <section className="bg-template-secondary" id="experience">
       <div className="relative">
-        <div className="absolute z-0 w-[100%] h-[110%] left-0 -top-6 md:top-0 bg-template-secondary rounded-sm" />
-        <div className="max-w-6xl mx-auto px-4 text-template-text-secondary flex flex-col sm:flex-row items-center gap-4 sm:gap-0">
+        <div className="max-w-6xl mx-auto px-4 text-template-text-secondary flex flex-col sm:flex-row items-center gap-4 sm:gap-0 py-20">
           {/* Responsive image container */}
-          <div className="relative w-[200px] h-[200px] sm:w-[500px] sm:h-[500px] z-10 sm:mt-20 mt-10">
+          <m.div
+            initial={{ opacity: 0, x: -100, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.5,
+              delay: delay,
+              ease: "easeOut",
+            }}
+            viewport={{ amount: 1, once: true }}
+            className="relative w-[200px] h-[200px] sm:w-[500px] sm:h-[500px] z-10 sm:mt-20 mt-10"
+          >
             <Image
               src={imgUrl || "/placeholder.png"}
               alt="Placeholder"
@@ -31,28 +42,61 @@ export const PFExperienceSection = ({
               className="object-cover rounded-sm"
               // sizes="(min-width: 768px) 300px, 150px"
             />
-          </div>
+          </m.div>
 
           <div className="z-10 relative flex flex-col gap-6 md:gap-10 md:p-20">
-            <h1 className="text-4xl font-semibold md:text-6xl">{heading}</h1>
-            <div className="flex gap-10">
+            <m.h1
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{
+                duration: 0.5,
+                delay: delay,
+                ease: "easeOut",
+              }}
+              viewport={{ amount: 1, once: true }}
+              className="text-4xl font-semibold md:text-6xl"
+            >
+              {heading}
+            </m.h1>
+            <m.div
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{
+                duration: 0.5,
+                delay: delay * 2,
+                ease: "easeOut",
+              }}
+              viewport={{ amount: 1, once: true }}
+              className="flex gap-10"
+            >
               {/* Animated vertical line */}
-              <motion.div
+              <m.div
                 className="bg-template-accent-primary w-0.5 origin-top"
                 style={{ scaleY }}
               />
-              <div className="flex flex-col gap-10">
+              <m.div className="flex flex-col gap-10">
                 {experiences.map((experience, idx) => (
-                  <PFExperienceItem
+                  <m.div
                     key={idx}
-                    title={experience.title}
-                    subtitle={experience.subtitle}
-                    description={experience.description}
-                    timePeriod={experience.timePeriod}
-                  />
+                    initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{
+                      duration: 0.5,
+                      delay: delay * (idx + 1),
+                      ease: "easeOut",
+                    }}
+                    viewport={{ amount: 1, once: true }}
+                  >
+                    <PFExperienceItem
+                      title={experience.title}
+                      subtitle={experience.subtitle}
+                      description={experience.description}
+                      timePeriod={experience.timePeriod}
+                    />
+                  </m.div>
                 ))}
-              </div>
-            </div>
+              </m.div>
+            </m.div>
           </div>
         </div>
       </div>

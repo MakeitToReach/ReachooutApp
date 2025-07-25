@@ -24,7 +24,7 @@ export const PFClientSection: React.FC<PF_CLIENT_SECTION> = ({
                     {title}
                 </h1>
                 {subtitle && (
-                    <h3 className="text-xl sm:text-2xl text-template-text-primary">{subtitle}</h3>
+                    <h3 className="text-xl sm:text-2xl text-template-text-primary opacity-50">{subtitle}</h3>
                 )}
             </div>
             <div className="relative mt-20 sm:mt-30">

@@ -7,7 +7,6 @@ import flags from "react-phone-number-input/flags"
 
 import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
-// import { Label } from "@/components/ui/label"
 
 export default function PhnNumberInput({ value, onChange, className }: { value: string, onChange: (value: string) => void, className?: string }) {
     const id = useId()
@@ -16,7 +15,7 @@ export default function PhnNumberInput({ value, onChange, className }: { value: 
         <div className={cn("*:not-first:mt-2", className)} dir="ltr">
             {/* <Label htmlFor={id}>PhoneIcon number input</Label> */}
             <RPNInput.default
-                className="flex rounded-md shadow-xs"
+                className={cn("flex rounded-md shadow-xs")}
                 international
                 flagComponent={FlagComponent}
                 countrySelectComponent={CountrySelect}

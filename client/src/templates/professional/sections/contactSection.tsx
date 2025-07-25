@@ -137,6 +137,7 @@ export const PFContactSection = ({
             <Input
               type="text"
               placeholder="Name"
+              className="border p-2 w-full rounded-sm"
               value={formData.name}
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
@@ -148,6 +149,7 @@ export const PFContactSection = ({
             <EmailInput
               value={formData.email}
               onChange={(value) => setFormData({ ...formData, email: value })}
+              className="border p-2 w-full rounded-sm"
             />
           </m.div>
 
@@ -161,18 +163,18 @@ export const PFContactSection = ({
           <m.div variants={itemVariants}>
             <Textarea
               placeholder="Your message"
-              className="border p-2 w-full rounded-sm h-20"
               value={formData.message}
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
               }
+              className="border p-2 w-full rounded-sm h-20"
             />
           </m.div>
 
           <m.div variants={itemVariants}>
             <Button
               disabled={!receiverEmail || isLoading}
-              className="flex items-center gap-2 bg-template-btn text-template-text-btn"
+              className="flex items-center gap-2 bg-template-btn text-template-text-btn hover:bg-template-btn cursor-pointer"
               onClick={() => receiverEmail && handleSubmit(receiverEmail)}
             >
               {isLoading ? (

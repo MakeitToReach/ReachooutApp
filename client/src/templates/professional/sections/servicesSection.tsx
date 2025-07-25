@@ -1,6 +1,9 @@
 import { ServicesCard } from "@/components/template-components/professional/servicesCard";
 import React from "react";
 import { PF_SERVICE_SECTION } from "../types/serviceSection";
+import { motion as m } from "motion/react";
+
+const delay = 0.15;
 
 export const PFServicesSection = ({
   title,
@@ -12,20 +15,52 @@ export const PFServicesSection = ({
       className="max-w-6xl mx-auto py-20 px-4 text-template-text-primary"
       id="services"
     >
-      <h1 className="text-4xl font-semibold sm:text-6xl text-center">
+      <m.h1
+        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{
+          duration: 0.5,
+          delay: delay,
+          ease: "easeOut",
+        }}
+        viewport={{ amount: 1, once: true }}
+        className="text-4xl font-semibold sm:text-6xl text-center"
+      >
         {title}
-      </h1>
-      <h2 className="text-center text-xl text-template-text-primary/50 mt-8">
+      </m.h1>
+      <m.h2
+        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{
+          duration: 0.5,
+          delay: delay * 2,
+          ease: "easeOut",
+        }}
+        viewport={{ amount: 1, once: true }}
+        className="text-center text-xl text-template-text-primary/50 mt-8"
+      >
         {subtitle}
-      </h2>
-      <div className="flex flex-col md:flex-row gap-3 mt-10">
+      </m.h2>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-10 justify-items-center">
         {services.map((service, idx) => (
-          <ServicesCard
+          <m.div
             key={idx}
-            icon={service.icon}
-            heading={service.heading}
-            description={service.description}
-          />
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.5,
+              delay: delay * idx,
+              ease: "easeOut",
+            }}
+            viewport={{ amount: 1, once: true }}
+          >
+            <ServicesCard
+              key={idx}
+              icon={service.icon}
+              heading={service.heading}
+              description={service.description}
+            />
+          </m.div>
         ))}
       </div>
     </section>

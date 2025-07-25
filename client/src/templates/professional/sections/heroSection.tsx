@@ -39,7 +39,7 @@ export const PFHeroSection = ({
 
   return (
     <section className="max-w-6xl mx-auto pt-10 sm:pt-20" id="hero">
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">
+      <m.div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">
         <div className="space-y-4">
           <div>
             <m.h1
@@ -108,7 +108,7 @@ export const PFHeroSection = ({
                 ease: "easeOut",
               }}
             >
-              <Button className="p-6 text-md rounded-sm bg-template-btn">
+              <Button className="p-6 text-md rounded-sm bg-template-btn hover:bg-template-btn cursor-pointer">
                 <span className="text-template-text-btn">{btnText}</span>
                 <span>
                   <LucideArrowRight className="text-template-text-btn" />
@@ -137,15 +137,27 @@ export const PFHeroSection = ({
             />
           </m.div>
         ) : (
-          <Image
-            src={heroImgUrl || "/placeholder.png"}
-            alt="heroimg"
-            className="mt-20 sm:mt-0 sm:max-h-[600px] sm:max-w-[600px] rounded-sm object-cover"
-            width={600}
-            height={600}
-          />
+          <m.div
+            initial={{ opacity: 0, x: 40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.5,
+              delay: delay * 5,
+              ease: "easeOut",
+            }}
+            className="mt-20 sm:mt-0 sm:max-h-[500px] sm:max-w-[500px] rounded-sm object-cover w-full h-full relative"
+          >
+            <Image
+              src={heroImgUrl || "https://placehold.co/600x600"}
+              alt="heroimg"
+              className="object-cover w-full h-full"
+              width={500}
+              height={500}
+            />
+          </m.div>
         )}
-      </div>
+      </m.div>
     </section>
   );
 };

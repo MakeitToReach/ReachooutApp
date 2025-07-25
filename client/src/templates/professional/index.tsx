@@ -213,7 +213,7 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
           <PFNavbar {...navbarSection.data} sections={navSections} />
         </div>
       )}
-      <div className="relative">
+      <div className="relative overflow-x-hidden">
         {data ? (
           otherSections.map((section, index) => (
             <div

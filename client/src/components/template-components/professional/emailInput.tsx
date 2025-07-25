@@ -1,18 +1,27 @@
-import { useId } from "react"
-import { MailIcon } from "lucide-react"
+import { useId } from "react";
+import { MailIcon } from "lucide-react";
 
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 // import { Label } from "@/components/ui/label"
 
-export default function EmailInput({ value, onChange }: { value: string, onChange: (value: string) => void }) {
-  const id = useId()
+export default function EmailInput({
+  value,
+  onChange,
+  className,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  className?: string;
+}) {
+  const id = useId();
   return (
     <div className="*:not-first:mt-2">
       {/* <Label htmlFor={id}>Input with end icon</Label> */}
       <div className="relative">
         <Input
           id={id}
-          className="peer pe-9"
+          className={cn("peer pe-9", className)}
           placeholder="Email"
           type="email"
           value={value}
@@ -23,5 +32,5 @@ export default function EmailInput({ value, onChange }: { value: string, onChang
         </div>
       </div>
     </div>
-  )
+  );
 }
