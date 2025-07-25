@@ -22,7 +22,7 @@ export const PFExperienceSection = ({
   return (
     <section className="bg-template-secondary" id="experience">
       <div className="relative">
-        <div className="max-w-6xl mx-auto px-4 text-template-text-secondary flex flex-col sm:flex-row items-center gap-4 sm:gap-0 py-20">
+        <div className="max-w-6xl mx-auto px-4 text-template-text-secondary flex flex-col sm:flex-row items-center gap-4 py-20 min-w-0">
           {/* Responsive image container */}
           <m.div
             initial={{ opacity: 0, x: -100, filter: "blur(10px)" }}
@@ -33,7 +33,7 @@ export const PFExperienceSection = ({
               ease: "easeOut",
             }}
             viewport={{ amount: 1, once: true }}
-            className="relative w-[200px] h-[200px] sm:w-[500px] sm:h-[500px] z-10 sm:mt-20 mt-10"
+            className="relative min-w-[200px] min-h-[200px] w-[200px] h-[200px] sm:w-[500px] sm:h-[500px] z-10 sm:mt-20 mt-10 flex-shrink-0"
           >
             <Image
               src={imgUrl || "/placeholder.png"}
