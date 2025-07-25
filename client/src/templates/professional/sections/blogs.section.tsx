@@ -17,7 +17,7 @@ export const PFBlogSection = ({ heading, blogs }: PF_BLOG_SECTION) => {
             id="blogs"
             className="max-w-6xl mx-auto text-center overflow-hidden py-20"
         >
-            <h1 className="text-4xl font-semibold text-template-text-primary md:text-6xl">
+            <h1 className="text-4xl font-semibold text-template-text-primary sm:text-6xl text-center">
                 {heading}
             </h1>
             <div className="relative w-full mt-10 px-4 sm:px-0">

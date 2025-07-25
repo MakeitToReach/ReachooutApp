@@ -22,14 +22,14 @@ export function NavProjects({
 }) {
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <SidebarGroupLabel className="text-xl">Projects</SidebarGroupLabel>
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <a href={item.url}>
                 <item.icon />
-                <span>{item.name}</span>
+                <span className="text-lg">{item.name}</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -37,8 +37,8 @@ export function NavProjects({
         <SidebarMenuItem>
           <Link href={"/explore"}>
             <SidebarMenuButton>
-              <Search className="w-4 h-4" />
-              <span>Explore Templates</span>
+              <Search className="w-6 h-6" />
+              <span className="text-lg">Explore Templates</span>
             </SidebarMenuButton>
           </Link>
         </SidebarMenuItem>

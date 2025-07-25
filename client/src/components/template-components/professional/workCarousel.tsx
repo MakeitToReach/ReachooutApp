@@ -136,7 +136,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                     />
                     <div className="space-x-2">
                       <ViewMoreDrawer content={project} type="Project">
-                        <Button className="text-template-text-btn bg-template-btn rounded-xs">
+                        <Button className="text-template-text-btn bg-template-btn rounded-xs text-lg">
                           View Details
                         </Button>
                       </ViewMoreDrawer>
@@ -145,7 +145,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Button className="text-template-text-btn bg-template-btn rounded-xs">
+                        <Button className="text-template-text-btn bg-template-btn rounded-xs text-lg">
                           {project.btnText}
                         </Button>
                       </a>

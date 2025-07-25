@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/select";
 import { useIsMobile } from "@/hooks/use-mobile";
 import QRCodePopup from "@/components/editor-components/popups/QRCodePopup";
+import Image from "next/image";
 
 export const PFNavbar = ({
   logoUrl,
@@ -47,18 +48,20 @@ export const PFNavbar = ({
       id="navbar"
       className="bg-template-primary backdrop-blur-md text-template-text-primary"
     >
-      <div className="max-w-6xl mx-auto h-16 px-4 flex justify-between items-center">
+      <div className="max-w-6xl mx-auto h-20 px-4 py-4 flex justify-between items-center">
         {textLogo && (
-          <h1 className="font-semibold text-xl text-template-text-primary">
+          <h1 className="font-semibold text-2xl text-template-text-primary">
             {textLogo}
           </h1>
         )}
 
         {logoUrl && (
-          <img
+          <Image
             src={logoUrl}
             alt="logo"
-            className="md:size-16 size-12 object-contain my-2"
+            width={100}
+            height={100}
+            className="sm:size-20 size-16 object-contain my-2"
           />
         )}
 

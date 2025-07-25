@@ -18,9 +18,10 @@ import {
   PFNewsletterSection,
 } from "./sections";
 // import { PageLoader } from "@/components/editor-components/pageLoader";
-import { motion as m } from "motion/react";
+// import { motion as m } from "motion/react";
 import type { SectionBlock } from "@/schemas/templates.schema";
 import { PFExperienceSection } from "./sections/experience.section";
+import { Loading } from "@/components/editor-components/loading";
 
 type Props = {
   data: {
@@ -212,14 +213,7 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
           <PFNavbar {...navbarSection.data} sections={navSections} />
         </div>
       )}
-      <m.div
-        initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
-        animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-        transition={{
-          duration: 0.8,
-        }}
-        className="relative"
-      >
+      <div className="relative">
         {data ? (
           otherSections.map((section, index) => (
             <div
@@ -231,9 +225,9 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             </div>
           ))
         ) : (
-          <div>Loading</div>
+          <Loading />
         )}
-      </m.div>
+      </div>
 
       {widgetsSection && !widgetsSection.isHidden && (
         <div className="fixed md:bottom-10 md:right-10 bottom-4 right-4 z-10">

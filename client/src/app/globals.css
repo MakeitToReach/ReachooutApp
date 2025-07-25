@@ -224,7 +224,7 @@
 
   @media (max-width: 768px) {
     html {
-      font-size: 16px;
+      font-size: 100%;
     }
   }
 

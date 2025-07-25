@@ -61,7 +61,7 @@ const ProjectsTab = () => {
           />
         </div>
         <div className="flex justify-between w-full">
-          <h1 className="text-xl text-black dark:text-white">Your Projects</h1>
+          <h1 className="text-2xl text-black dark:text-white">Your Projects</h1>
         </div>
       </header>
 

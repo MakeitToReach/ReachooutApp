@@ -20,6 +20,7 @@ import { USER, useUserStore } from "@/store/user.store";
 import { logoutUser } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 const data = {
   // navSecondary: [
@@ -81,8 +82,14 @@ export const UserSidebar = ({ user }: UserSidebarProps) => {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/" onClick={handleLogoClick}>
-                <img src="/reachout-logo.png" alt="logo" className="size-8" />
-                <div className="grid flex-1 text-left text-xl leading-tight">
+                <Image
+                  src="/reachout-logo.png"
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  className="size-12"
+                />
+                <div className="grid flex-1 text-left text-2xl leading-tight">
                   <span className="truncate font-semibold">Reachoout</span>
                 </div>
               </Link>

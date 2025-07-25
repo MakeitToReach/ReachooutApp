@@ -18,13 +18,13 @@ export const PFClientSection: React.FC<PF_CLIENT_SECTION> = ({
                     <AvatarImage src={avatarImg} />
                     {/* <AvatarFallback>CN</AvatarFallback> */}
                 </Avatar>
-                <h1 className="font-semibold text-3xl md:text-6xl text-template-text-primary">
+                <h1 className="font-semibold text-4xl sm:text-6xl text-template-text-primary">
                     {startText}{" "}
                     <span className="text-template-text-accent-tertiary">{colorTxt}</span>{" "}
                     {title}
                 </h1>
                 {subtitle && (
-                    <h3 className="md:text-2xl text-template-text-primary">{subtitle}</h3>
+                    <h3 className="text-xl sm:text-2xl text-template-text-primary">{subtitle}</h3>
                 )}
             </div>
             <div className="relative mt-20 sm:mt-30">

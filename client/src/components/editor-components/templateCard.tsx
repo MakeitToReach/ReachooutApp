@@ -118,36 +118,38 @@ export const TemplateCard = ({
           className="w-full object-contain object-top" //1280x720
         />
         {/* Overlay with View and Edit buttons */}
-        <div
-          className={cn(
-            "absolute inset-0 flex items-center justify-center bg-black/60 transition-opacity z-10",
-            isMobile
-              ? "opacity-100 visible"
-              : "opacity-0 group-hover:opacity-100 group-hover:visible invisible"
-          )}
-        >
-          <div className="flex gap-4">
-            <a href={previewUrl} target="_blank">
+        {isPublished && (
+          <div
+            className={cn(
+              "absolute inset-0 flex items-center justify-center bg-black/60 transition-opacity z-10",
+              isMobile
+                ? "opacity-100 visible"
+                : "opacity-0 group-hover:opacity-100 group-hover:visible invisible"
+            )}
+          >
+            <div className="flex gap-4">
+              <a href={previewUrl} target="_blank">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="flex items-center gap-1"
+                >
+                  <LucideEye className="w-4 h-4" />
+                  <span>View</span>
+                </Button>
+              </a>
               <Button
                 variant="secondary"
                 size="sm"
+                onClick={handleEdit}
                 className="flex items-center gap-1"
               >
-                <LucideEye className="w-4 h-4" />
-                <span>View</span>
+                <Edit className="w-4 h-4" />
+                <span>Edit</span>
               </Button>
-            </a>
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={handleEdit}
-              className="flex items-center gap-1"
-            >
-              <Edit className="w-4 h-4" />
-              <span>Edit</span>
-            </Button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="px-4 py-2 flex justify-between items-center">
         <h3
@@ -189,7 +191,7 @@ export const TemplateCard = ({
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent
-                className="w-48"
+                className="w-fit"
                 side={isMobile ? "bottom" : "right"}
                 align={isMobile ? "end" : "start"}
                 onClick={(e) => e.stopPropagation()}

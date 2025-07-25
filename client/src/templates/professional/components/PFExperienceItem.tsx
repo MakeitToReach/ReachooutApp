@@ -15,7 +15,7 @@ export const PFExperienceItem = ({
       {description && (
         <div
           className="
-    prose prose-sm max-w-none text-template-text-secondary
+    prose prose-lg sm:prose-base max-w-none text-template-text-secondary
     prose-p:text-template-text-secondary
     prose-strong:text-template-text-secondary
     prose-h1:text-template-text-secondary

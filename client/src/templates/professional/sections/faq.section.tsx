@@ -11,7 +11,7 @@ export const PFFaqSection = React.forwardRef<HTMLElement, PF_FAQ_SECTION>(
       <section
         ref={ref}
         id="faqs"
-        className={cn("py-16 max-w-6xl mx-auto")}
+        className={cn("py-20 max-w-6xl mx-auto px-4")}
         {...props}
       >
         <div className="container">
@@ -22,11 +22,11 @@ export const PFFaqSection = React.forwardRef<HTMLElement, PF_FAQ_SECTION>(
             transition={{ duration: 0.5 }}
             className="text-center space-y-6 sm:space-y-10 mb-12"
           >
-            <h2 className="text-4xl font-semibold md:text-6xl text-center text-template-text-primary">
+            <h2 className="text-4xl font-semibold sm:text-6xl text-center text-template-text-primary">
               {heading}
             </h2>
             {subHeading && (
-              <p className="text-sm text-template-text-primary opacity-60">
+              <p className="text-lg sm:text-xl text-center text-template-text-primary opacity-60">
                 {subHeading}
               </p>
             )}
@@ -46,6 +46,6 @@ export const PFFaqSection = React.forwardRef<HTMLElement, PF_FAQ_SECTION>(
         </div>
       </section>
     );
-  },
+  }
 );
 PFFaqSection.displayName = "PFFaqSection";
