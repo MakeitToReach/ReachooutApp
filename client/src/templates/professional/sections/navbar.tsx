@@ -46,7 +46,7 @@ export const PFNavbar = ({
   return (
     <nav
       id="navbar"
-      className="bg-template-primary backdrop-blur-md text-template-text-primary"
+      className="bg-template-primary text-template-text-primary"
     >
       <div className="max-w-6xl mx-auto h-20 px-4 py-4 flex justify-between items-center">
         {textLogo && (
@@ -85,14 +85,16 @@ export const PFNavbar = ({
               onValueChange={(value) => handleSelectChange(value, false)}
             >
               <SelectTrigger className="w-fit px-3 py-1 shadow-none bg-transparent border-none hover:underline">
-                <span className="text-template-text-primary">More</span>
+                <span className="text-template-text-primary text-base">
+                  More
+                </span>
               </SelectTrigger>
               <SelectContent>
                 {overflowSections.map((section) => (
                   <SelectItem
                     key={section.name}
                     value={section.href}
-                    className="capitalize"
+                    className="capitalize text-base"
                   >
                     {section.name}
                   </SelectItem>
@@ -102,7 +104,10 @@ export const PFNavbar = ({
                   open={qrPopupOpen}
                   onOpenChange={setQrPopupOpen}
                 >
-                  <SelectItem value="view-qr-code" className="capitalize">
+                  <SelectItem
+                    value="view-qr-code"
+                    className="capitalize text-base"
+                  >
                     View QR Code
                   </SelectItem>
                 </QRCodePopup>
