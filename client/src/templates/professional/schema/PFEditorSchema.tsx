@@ -12,6 +12,7 @@ import { PFExperienceEditorField } from "../editorFields/PFExperienceEditorField
 import { PFCatalogEditorField } from "../editorFields/PFCatalogEditorField";
 import { PFSocialEditorField } from "../editorFields/PFSocialEditorField";
 import { PFCalThemeSelect } from "../components/PFCalThemeSelect";
+import { PFCertificationEditorField } from "../editorFields/PFCertificationEditorField";
 
 export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     navbar: [
@@ -213,6 +214,22 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             ),
         },
     ],
+    certifications: [
+        {
+            label: "Section heading",
+            type: "text",
+            fieldPath: "heading",
+        },
+        {
+            label: "Certifications",
+            type: "component",
+            fieldPath: "certifications",
+            component: ({ value, onChange }) => (
+                <PFCertificationEditorField value={value || []} onChange={onChange} />
+            ),
+        },
+    ],
+            
     newsletter: [
         {
             label: "Section heading",

@@ -524,33 +524,28 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
         socials: [
           {
             title: "Linkedin",
-            socialLink: "https://linkedin.com",
+            btnLink: "https://linkedin.com",
             followerCounts: "4.2k",
-            icon: "Linkedin",
           },
           {
             title: "X",
-            socialLink: "https://x.com",
+            btnLink: "https://x.com",
             followerCounts: "4.2k",
-            icon: "X",
           },
           {
             title: "Instagram",
-            socialLink: "https://instagram.com",
+            btnLink: "https://instagram.com",
             followerCounts: "4.2k",
-            icon: "Instagram",
           },
           {
             title: "Youtube",
-            socialLink: "https://youtube.com",
+            btnLink: "https://youtube.com",
             followerCounts: "4.2k",
-            icon: "Youtube",
           },
           {
             title: "Facebook",
-            socialLink: "https://facebook.com",
+            btnLink: "https://facebook.com",
             followerCounts: "4.2k",
-            icon: "Facebook",
           },
         ],
       },
