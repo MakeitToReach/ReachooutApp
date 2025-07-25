@@ -84,7 +84,7 @@ export const PFNavbar = ({
               value={desktopSelectValue}
               onValueChange={(value) => handleSelectChange(value, false)}
             >
-              <SelectTrigger className="w-fit px-3 py-1 shadow-none bg-transparent border-none hover:underline">
+              <SelectTrigger className="w-fit px-3 py-1 shadow-none bg-transparent border-none hover:underline text-red-400">
                 <span className="text-template-text-primary text-base">
                   More
                 </span>

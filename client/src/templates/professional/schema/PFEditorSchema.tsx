@@ -80,6 +80,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     ],
     about: [
         {
+            label: "Section Heading",
+            type: "text",
+            fieldPath: "heading",
+        },
+        {
             label: "Title",
             type: "text",
             fieldPath: "title",
@@ -105,6 +110,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         },
     ],
     projects: [
+        {
+            label: "Section Heading",
+            type: "text",
+            fieldPath: "heading",
+        },
         {
             label: "Projects",
             type: "component",

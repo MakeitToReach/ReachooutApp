@@ -14,7 +14,7 @@ export const PFTeamCard = ({
 }: PF_TEAM_MEMBER) => {
     const teamMemberContent = { imgUrl, name, designation, description };
     return (
-        <div className="h-fit border border-template-accent-primary w-full bg-template-primary rounded-xs overflow-hidden space-y-6 pb-6 text-template-text-primary">
+        <div className="h-fit border border-template-accent-primary w-full bg-template-primary rounded-sm overflow-hidden space-y-6 pb-6 text-template-text-primary">
             <Image
                 src={imgUrl || "/placeholder.png"}
                 alt="team-member-img"

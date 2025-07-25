@@ -20,7 +20,7 @@ export const PFTeamCarousel = ({ team }: { team: PF_TEAM_MEMBER[] }) => {
           }}
           className="w-full"
         >
-          <CarouselContent className="flex rounded-md">
+          <CarouselContent className="flex rounded-sm">
             {team.map((team, idx) => (
               <CarouselItem key={idx} className="sm:basis-1/3 basis-1/1">
                 <PFTeamCard {...team} />

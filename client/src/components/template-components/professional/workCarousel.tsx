@@ -90,7 +90,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                 <div className="flex flex-col sm:flex-row-reverse sm:justify-between overflow-hidden">
                   <dialog>test dialog</dialog>
                   {project.vidUrl ? (
-                    <div className="relative sm:h-[50vh] sm:w-[30vw] aspect-video h-[40vh] w-full rounded-xs">
+                    <div className="relative sm:h-[50vh] sm:w-[30vw] aspect-video h-[40vh] w-full rounded-sm">
                       <YouTube
                         videoId={videoId ?? ""}
                         className="absolute top-0 left-0 w-full h-full"
@@ -103,7 +103,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                       src={project.imgUrl || "/placeholder.png"}
                       alt="project-img"
                       className={cn(
-                        "sm:h-[50vh] sm:w-[30vw] h-[40vh] w-full rounded-xs object-cover",
+                        "sm:h-[50vh] sm:w-[30vw] h-[40vh] w-full rounded-sm object-cover",
                         "sm:max-h-[50vh] sm:max-w-full max-w-full max-h-[40vh]"
                       )}
                       width={500}
@@ -136,7 +136,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                     />
                     <div className="space-x-2">
                       <ViewMoreDrawer content={project} type="Project">
-                        <Button className="text-template-text-btn bg-template-btn rounded-xs text-lg">
+                        <Button className="text-template-text-btn bg-template-btn rounded-sm text-lg">
                           View Details
                         </Button>
                       </ViewMoreDrawer>
@@ -145,7 +145,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Button className="text-template-text-btn bg-template-btn rounded-xs text-lg">
+                        <Button className="text-template-text-btn bg-template-btn rounded-sm text-lg">
                           {project.btnText}
                         </Button>
                       </a>

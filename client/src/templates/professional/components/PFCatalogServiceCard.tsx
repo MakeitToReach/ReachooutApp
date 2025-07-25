@@ -67,7 +67,7 @@ export const PFCatalogServicesCard = ({
   };
 
   return (
-    <div className="relative h-fit bg-template-primary text-template-text-primary flex flex-col border border-template-accent-primary/60 w-full overflow-visible rounded-xs space-y-6 pb-6">
+    <div className="relative h-fit bg-template-primary text-template-text-primary flex flex-col border border-template-accent-primary/60 w-full overflow-visible rounded-sm space-y-6 pb-6">
       {/* Video or Images */}
       <div className="relative w-full h-[30vh]">
         {showVideo ? (
@@ -141,7 +141,7 @@ export const PFCatalogServicesCard = ({
           dangerouslySetInnerHTML={{ __html: description }}
         />
         <ViewMoreDrawer type="CatalogService" content={catalogServiceContent}>
-          <Button className="self-start bg-transparent border border-template-accent-primary text-template-text-primary rounded-xs hover:none">
+          <Button className="self-start bg-transparent border border-template-accent-primary text-template-text-primary rounded-sm hover:none">
             View Details
           </Button>
         </ViewMoreDrawer>

@@ -33,7 +33,7 @@ export const PFAboutSection = ({
                 {/* Stats grid */}
                 <div className="grid grid-cols-2 gap-2  lg:gap-5 lg:gap-y-2 lg:mt-20 h-fit lg:w-1/2">
                     {/* Stat card example */}
-                    <div className="flex flex-col justify-center items-center rounded-xs bg-template-accent-secondary max-h-48 p-10 overflow-hidden">
+                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary max-h-48 p-10 overflow-hidden">
                         <div className="flex items-baseline gap-1">
                             <NumberTicker
                                 value={splitNumericValue(stats[0].value).number}
@@ -47,7 +47,7 @@ export const PFAboutSection = ({
                             {stats[0].title}
                         </h2>
                     </div>
-                    <div className="flex flex-col justify-center items-center rounded-xs bg-template-accent-primary max-h-48 p-10 overflow-hidden">
+                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary max-h-48 p-10 overflow-hidden">
                         <div className="flex items-baseline gap-1">
                             <NumberTicker
                                 value={splitNumericValue(stats[1].value).number}
@@ -61,7 +61,7 @@ export const PFAboutSection = ({
                             {stats[1].title}
                         </h2>
                     </div>
-                    <div className="flex flex-col justify-center items-center rounded-xs bg-template-accent-primary max-h-48 p-10 overflow-hidden">
+                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-primary max-h-48 p-10 overflow-hidden">
                         <div className="flex items-baseline gap-1">
                             <NumberTicker
                                 value={splitNumericValue(stats[2].value).number}
@@ -75,7 +75,7 @@ export const PFAboutSection = ({
                             {stats[2].title}
                         </h2>
                     </div>
-                    <div className="flex flex-col justify-center items-center rounded-xs bg-template-accent-secondary max-h-48 p-10 overflow-hidden">
+                    <div className="flex flex-col justify-center items-center rounded-sm bg-template-accent-secondary max-h-48 p-10 overflow-hidden">
                         <div className="flex items-baseline gap-1">
                             <NumberTicker
                                 value={splitNumericValue(stats[3].value).number}
@@ -128,7 +128,7 @@ export const PFAboutSection = ({
                         dangerouslySetInnerHTML={{ __html: description }}
                     />
                     <ViewMoreDrawer type="About" content={description}>
-                        <Button className="self-start rounded-xs bg-template-btn text-template-text-btn text-lg">
+                        <Button className="self-start rounded-sm bg-template-btn text-template-text-btn text-lg">
                             Read more
                         </Button>
                     </ViewMoreDrawer>

@@ -161,7 +161,7 @@ export const PFContactSection = ({
           <m.div variants={itemVariants}>
             <Textarea
               placeholder="Your message"
-              className="border p-2 w-full rounded-md h-20"
+              className="border p-2 w-full rounded-sm h-20"
               value={formData.message}
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
