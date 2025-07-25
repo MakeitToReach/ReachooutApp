@@ -63,11 +63,12 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
           <Badge
             key={category}
             variant={selectedCategory === category ? "default" : "outline"}
-            className={`cursor-pointer px-4 py-2 text-sm font-medium transition-all duration-200 ${
+            className={cn(
+              "cursor-pointer px-4 py-2 text-sm font-medium transition-all duration-200 text-lg",
               selectedCategory === category
                 ? "bg-white text-slate-800 hover:bg-gray-100"
                 : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"
-            }`}
+            )}
             onClick={() => setSelectedCategory(category)}
           >
             {category}
@@ -116,7 +117,6 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                       <h1 className="sm:text-4xl text-2xl font-semibold">
                         {project.heading}
                       </h1>
-                      {/* <Badge className="text-xs">{project.category}</Badge> */}
                     </div>
 
                     <div

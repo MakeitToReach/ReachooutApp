@@ -52,7 +52,7 @@ export const CreateUserProjectDialog = ({
       <DialogContent className="">
         <DialogHeader className="text-left">
           <DialogTitle className="text-xl">Create Project</DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-base">
             These details will be used for the metadata for your website
           </DialogDescription>
         </DialogHeader>

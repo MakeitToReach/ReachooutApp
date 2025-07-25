@@ -33,7 +33,7 @@ export const PFFooter = ({
             )}
             <div
               className="
-    prose prose-sm max-w-none text-template-text-secondary/50
+    prose prose-base max-w-none text-template-text-secondary/50
     prose-p:text-template-text-secondary/50
     prose-strong:text-template-text-secondary/50
     prose-h1:text-template-text-secondary/50
@@ -49,9 +49,9 @@ export const PFFooter = ({
 
           {/* Middle Section - Contact Info */}
           <div className="flex-1">
-            <h3 className="text-lg font-semibold mb-2">Contact Info</h3>
-            <p className="text-template-text-secondary/50 text-sm">{address}</p>
-            <p className="text-template-text-secondary/50 text-sm mt-2">
+            <h3 className="text-xl font-semibold mb-2">Contact Info</h3>
+            <p className="text-template-text-secondary/50 text-base">{address}</p>
+            <p className="text-template-text-secondary/50 text-base mt-2">
               <a
                 href={`mailto:${email}`}
                 className="hover:text-white transition-colors"
@@ -59,7 +59,7 @@ export const PFFooter = ({
                 {email}
               </a>
             </p>
-            <p className="text-template-text-secondary/50 text-sm mt-2">
+            <p className="text-template-text-secondary/50 text-base mt-2">
               <a
                 href={`tel:${phone}`}
                 className="hover:text-white transition-colors"
@@ -72,7 +72,7 @@ export const PFFooter = ({
           {/* Right Section - Socials */}
           <div className="flex justify-end ">
             <div className="flex flex-col items-start">
-              <h3 className="text-lg font-semibold mb-4">Connect with Me</h3>
+              <h3 className="text-xl font-semibold mb-4">Connect with Me</h3>
               <div className="flex gap-4">
                 {socials
                   .filter((social) => social.url)

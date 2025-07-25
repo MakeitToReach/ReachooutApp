@@ -95,7 +95,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                   {type === "Register" ? (
                     <span className="text-red-400">Register</span>
                   ) : (
-                    <div>
+                    <div className="text-left">
                       Login to{" "}
                       <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-600">
                         Reachoout
@@ -147,7 +147,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   type="text"
-                  className="lowercase"
+                  inputClassName="lowercase"
                 />
               </m.div>
 

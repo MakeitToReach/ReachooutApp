@@ -62,8 +62,10 @@ export default function AddSlugPopup({ children, pid }: AddSlugPopupProps) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">Add Slug</DialogTitle>
-          <DialogDescription className="text-xs text-muted-foreground">
+          <DialogTitle className="text-xl text-left font-semibold">
+            Add Slug
+          </DialogTitle>
+          <DialogDescription className="text-base text-left text-muted-foreground">
             You can add a slug to your project to create a new website.
           </DialogDescription>
         </DialogHeader>
@@ -74,7 +76,8 @@ export default function AddSlugPopup({ children, pid }: AddSlugPopupProps) {
             value={slug}
             inputClassName={cn(
               isAvailable === false && "border-red-500 focus:border-red-500",
-              isAvailable === true && "border-green-500 focus:border-green-500"
+              isAvailable === true && "border-green-500 focus:border-green-500",
+              "lowercase"
             )}
             onChange={(e) => {
               setSlug(e.target.value);

@@ -133,7 +133,7 @@ export const OnboardingPopup = ({
                 </Tooltip>
               </div>
             ) : (
-              "Choose your content Category"
+              <h2 className="text-xl font-semibold">Choose your content category</h2>
             )}
           </DialogTitle>
           {isAiMode && (

@@ -11,6 +11,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { TemplateItem } from "@/types/projectTemplate.types";
+import { SettingsIcon } from "lucide-react";
+import Link from "next/link";
 
 const ProjectPage = () => {
   const params = useParams<{ id: string }>();
@@ -48,8 +50,13 @@ const ProjectPage = () => {
             className="data-[orientation=vertical]:h-4"
           />
         </div>
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full items-center">
           <h1 className="text-2xl text-black dark:text-white">{projectName}</h1>
+          <Link href={`/user/project/settings/${id}`}>
+            <Button variant="outline">
+              <span className="hidden sm:block">Settings</span> <SettingsIcon />
+            </Button>
+          </Link>
         </div>
       </header>
 
