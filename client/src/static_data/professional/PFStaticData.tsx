@@ -275,6 +275,30 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
       isHidden: false,
     },
     {
+      type: "certifications",
+      sectionName: "Certifications",
+      data: {
+        heading: "Certifications & Achievements",
+        certifications: [
+          {
+            imgUrl: "/placeholder.png",
+            subtitle: "AWS Certified Solutions Architect"
+          },
+          {
+            imgUrl: "/placeholder.png",
+            subtitle: "Google Cloud Professional"
+          },
+          {
+            imgUrl: "/placeholder.png",
+            subtitle: "Scrum Master Certified"
+          }
+        ]
+      },
+      isFixed: false,
+      isEditable: true,
+      isHidden: false,
+    },
+    {
       type: "client",
       sectionName: "Client",
       data: {

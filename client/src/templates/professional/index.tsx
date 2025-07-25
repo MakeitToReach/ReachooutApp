@@ -16,6 +16,7 @@ import {
   PFBlogSection,
   PFCatalogSection,
   PFNewsletterSection,
+  PFCertificationSection,
 } from "./sections";
 // import { PageLoader } from "@/components/editor-components/pageLoader";
 // import { motion as m } from "motion/react";
@@ -181,6 +182,14 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
           <>
             {!section.isHidden && (
               <PFContactSection key={`contact-${index}`} {...section.data} />
+            )}
+          </>
+        );
+      case "certifications":
+        return (
+          <>
+            {!section.isHidden && (
+              <PFCertificationSection key={`certifications-${index}`} {...section.data} />
             )}
           </>
         );

@@ -16,3 +16,4 @@ export * from "./newsletter.section";
 export * from "./faq.section";
 export * from "./blogs.section";
 export * from "./social.section";
+export * from "./certification.section";
