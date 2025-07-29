@@ -29,6 +29,7 @@ import {
     IconBrandGithub,
     IconBrandInstagram,
     IconBrandLinkedin,
+    IconBrandDribbble,
 } from "@tabler/icons-react";
 
 import {
@@ -180,5 +181,13 @@ export const SOCIAL_ICONS_REGISTRY: IconOption[] = [
     {
         label: "Youtube",
         icon: (props) => <IconBrandYoutube size={20} {...props} />,
+    },
+    {
+        label: "Dribble",
+        icon: (props) => <IconBrandDribbble size={20} {...props} />,
+    },
+    {
+        label: "Website",
+        icon: (props) => <Globe size={20} {...props} />,
     },
 ];

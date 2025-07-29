@@ -14,7 +14,7 @@ import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Label } from "@/components/ui/label";
 import { F_TIMELINE_STEP } from "../types/timeline.types";
 import { ImageInput } from "@/components/imgInput";
-import { Textarea } from "@/components/ui/textarea";
+import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface FAddTimelinePopupProps {
     children: React.ReactNode;
@@ -57,11 +57,11 @@ export function FAddTimelinePopup({ children, onAdd }: FAddTimelinePopupProps) {
 
                     <div className="space-y-2">
                         <Label className="font-semibold">Description</Label>
-                        <Textarea
+                        <TipTapEditor
                             placeholder="Enter step description"
-                            className="border p-2 w-full rounded-md h-20"
                             value={step.description}
-                            onChange={(e) => setStep({ ...step, description: e.target.value })}
+                            onChange={(value) => setStep({ ...step, description: value })}
+                            height="h-20"
                         />
                     </div>
 
@@ -155,11 +155,11 @@ export const FEditTimelinePopup = ({
 
                     <div className="space-y-2">
                         <Label className="font-semibold">Description</Label>
-                        <Textarea
+                        <TipTapEditor
                             placeholder="Enter step description"
-                            className="border p-2 w-full rounded-md h-20"
                             value={formData.description}
-                            onChange={(e) => handleChange("description", e.target.value)}
+                            onChange={(value) => handleChange("description", value)}
+                            height="h-20"
                         />
                     </div>
 

@@ -12,13 +12,13 @@ export const ServicesCard = ({
     description,
 }: ServicesCardProps) => {
     return (
-        <div className="flex flex-col p-6 gap-3 text-center items-center justify-center border border-template-accent-primary rounded-sm">
+        <div className="flex flex-col p-6 gap-3 text-center items-center justify-center rounded-sm bg-template-primary text-template-secondary">
             <span>
                 {getIconFromRegistry(icon, {
                     className: "sm:size-20 size-16 text-template-text-primary",
                 })}
             </span>
-            <h1 className="text-2xl font-semibold">{heading}</h1>
+            <h1 className="text-2xl font-semibold text-template-text-primary">{heading}</h1>
             <div
                 className="
     prose prose-xl sm:prose-lg max-w-none text-template-text-primary

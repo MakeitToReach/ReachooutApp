@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { PF_CATALOG } from "../types/serviceCatalog.types";
@@ -52,7 +52,6 @@ export const PFCatalogServicesCard = ({
     playerVars: {
       width: "100%",
       height: "100%",
-      autoplay: 1,
       loop: 1,
       playlist: videoId,
       controls: 0,
@@ -123,7 +122,7 @@ export const PFCatalogServicesCard = ({
         )}
       </div>
       {/* Text content */}
-      <div className="px-6 space-y-3">
+      <div className="px-6 space-y-3 space-x-2">
         <h2 className="font-semibold text-xl tracking-tight">{title}</h2>
         <div
           className=" 
@@ -143,8 +142,16 @@ export const PFCatalogServicesCard = ({
         <ViewMoreDrawer type="CatalogService" content={catalogServiceContent}>
           <Button className="self-start bg-transparent border border-template-accent-primary text-template-text-primary rounded-sm hover:bg-transparent cursor-pointer">
             View Details
+            <ArrowUpRight size={16} className="ml-1" />
           </Button>
         </ViewMoreDrawer>
+        {btnLink && (
+          <a href={btnLink} target="_blank" rel="noopener noreferrer">
+            <Button className="bg-transparent border border-template-accent-primary text-template-text-primary rounded-sm hover:bg-transparent cursor-pointer">
+              {btnText}
+            </Button>
+          </a>
+        )}
       </div>
     </div>
   );

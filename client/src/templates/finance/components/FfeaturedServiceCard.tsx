@@ -12,13 +12,13 @@ export const FFeaturedServiceCard = ({
 }: FFeaturedServiceCardProps) => {
     return (
         <div className="flex gap-4 items-center text-template-text-primary">
-            <div className="size-20 bg-template-accent-primary  rounded-full flex items-center justify-center">
-                {getIconFromRegistry(icon, { className: "sm:size-20 size-14 text-template-text-accent-primary" })}
+            <div className="p-2 bg-template-accent-primary  rounded-full flex items-center justify-center">
+                {getIconFromRegistry(icon, { className: "sm:size-16 size-14 text-template-text-accent-primary" })}
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2">
                 <h2 className="font-semibold text-lg tracking-tight">{title}</h2>
-                <p className="text-xs">{subtitle}</p>
+                <p className="text-sm">{subtitle}</p>
             </div>
         </div>
     );

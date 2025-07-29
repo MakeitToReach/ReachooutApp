@@ -57,7 +57,7 @@ export const FContactSection = ({
               delay: delay,
               ease: "easeOut",
             }}
-            className="w-fit rounded-full translate-x-10 bg-gradient-to-r from-template-primary to-template-accent-primary via-template-accent-primary/10 text-template-text-accent-primary flex items-center justify-center px-4 py-2 uppercase font-semibold text-lg"
+            className="w-fit rounded-full bg-template-accent-primary text-template-text-accent-primary flex items-center justify-center px-6 py-2 uppercase font-semibold text-lg"
           >
             {badgeText}
           </m.div>
@@ -83,7 +83,7 @@ export const FContactSection = ({
               ease: "easeOut",
             }}
             className="
-    prose prose-sm max-w-none text-template-text-primary opacity-60
+    prose prose-xl sm:prose-base max-w-none text-template-text-primary opacity-60
     prose-p:text-template-text-primary opacity-60
     prose-strong:text-template-text-primary opacity-60
     prose-h1:text-template-text-primary opacity-60
@@ -105,7 +105,7 @@ export const FContactSection = ({
               delay: delay * 4,
               ease: "easeOut",
             }}
-            className="flex gap-10 items-center"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-10"
           >
             <FContactButton type="tel" value={phoneNumber} />
             <FContactButton type="email" value={emailAddress} />

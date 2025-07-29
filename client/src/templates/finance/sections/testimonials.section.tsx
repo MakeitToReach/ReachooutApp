@@ -30,7 +30,7 @@ export const FTestimonialsSection = ({
               delay: delay,
               ease: "easeOut",
             }}
-            className="w-fit rounded-full translate-x-10 bg-gradient-to-r from-template-primary to-template-accent-primary via-template-accent-primary/10 flex items-center justify-center px-4 py-2 uppercase font-semibold text-lg text-template-text-accent-primary"
+            className="w-fit rounded-full bg-template-accent-primary text-template-text-accent-primary flex items-center justify-center px-6 py-2 uppercase font-semibold text-lg"
           >
             {badgeText}
           </m.div>
@@ -57,7 +57,7 @@ export const FTestimonialsSection = ({
               ease: "easeOut",
             }}
             className="
-    prose prose-sm max-w-none text-template-text-primary
+    prose prose-xl sm:prose-base max-w-none text-template-text-primary
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
     prose-h1:text-template-text-primary

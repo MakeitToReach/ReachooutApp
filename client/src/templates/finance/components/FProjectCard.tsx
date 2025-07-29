@@ -12,7 +12,7 @@ export const FProjectCard = ({
     category,
 }: F_PROJECT) => {
     return (
-        <div className="h-fit sm:w-[20vw] w-full bg-white rounded-lg overflow-hidden space-y-6 pb-6">
+        <div className="h-fit sm:w-[20vw] w-full bg-template-primary text-template-text-primary rounded-lg overflow-hidden space-y-6 pb-6">
             <Image
                 src={imgUrl || "/placeholder.png"}
                 alt="blog-img"
@@ -21,20 +21,20 @@ export const FProjectCard = ({
                 className="w-full h-[250px] object-cover"
             />
             <div className="px-6 space-y-1">
-                <h2 className="font-semibold text-lg tracking-tight text-black">
+                <h2 className="font-semibold text-lg tracking-tight text-template-text-primary">
                     {title}
                 </h2>
                 <div
                     className="
-    prose prose-sm max-w-none text-gray-600
-    prose-p:text-gray-600
-    prose-strong:text-gray-600
-    prose-h1:text-gray-600
-    prose-h2:text-gray-600
-    prose-h3:text-gray-600
-    prose-h4:text-gray-600
-    prose-h5:text-gray-600
-    prose-h6:text-gray-600
+    prose prose-xl sm:prose-base max-w-none text-template-text-primary/80
+    prose-p:text-template-text-primary/80
+    prose-strong:text-template-text-primary/80
+    prose-h1:text-template-text-primary/80
+    prose-h2:text-template-text-primary/80
+    prose-h3:text-template-text-primary/80
+    prose-h4:text-template-text-primary/80
+    prose-h5:text-template-text-primary/80
+    prose-h6:text-template-text-primary/80
   "
                     dangerouslySetInnerHTML={{ __html: description }}
                 />
@@ -51,7 +51,7 @@ export const FProjectCard = ({
                 <a href={projectUrl}>
                     <Button
                         variant={"outline"}
-                        className="flex items-center text-black p-2 rounded-full font-semibold "
+                        className="flex items-center bg-transparent border-template-text-primary text-template-text-primary p-2 rounded-full font-semibold "
                     >
                         <LucideArrowRight size={40} className="font-semibold" />
                     </Button>

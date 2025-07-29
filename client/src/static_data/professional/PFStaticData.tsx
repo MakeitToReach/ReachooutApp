@@ -528,6 +528,14 @@ export const PF_STATIC_DATA: GenericTemplateSchema = {
             followerCounts: "4.2k",
           },
           {
+            title: "Dribble",
+            btnLink: "https://dribble.com",
+          },
+          {
+            title: "Website",
+            btnLink: "https://omkar.com",
+          },
+          {
             title: "X",
             btnLink: "https://x.com",
             followerCounts: "4.2k",

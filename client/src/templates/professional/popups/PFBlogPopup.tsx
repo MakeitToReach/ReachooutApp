@@ -25,6 +25,8 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
         title: "",
         imgUrl: "",
         description: "",
+        btnText: "",
+        btnLink: "",
     });
     return (
         <Dialog>
@@ -75,6 +77,8 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
                                     title: "",
                                     imgUrl: "",
                                     description: "",
+                                    btnText: "",
+                                    btnLink: "",
                                 });
                             }}
                         >
@@ -144,6 +148,22 @@ export const PFEditBlogPopup = ({
                             showToolbar={true}
                         />
                     </div>
+
+                    <ReqInput
+                        type="text"
+                        label="Button Text"
+                        placeholder="Enter button text"
+                        value={formData.btnText}
+                        onChange={(e) => handleChange("btnText", e.target.value)}
+                    />
+
+                    <ReqInput
+                        type="text"
+                        label="Button Link"
+                        placeholder="Enter button link"
+                        value={formData.btnLink}
+                        onChange={(e) => handleChange("btnLink", e.target.value)}
+                    />
                 </div>
 
                 <div className="space-y-2">

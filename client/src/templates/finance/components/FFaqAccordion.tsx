@@ -23,11 +23,11 @@ export function FFaqAccordion({ faqs }: FFaqAccordionProps) {
         >
             {faqs.map((faq, idx) => (
                 <AccordionItem value={`item-${idx}`} key={idx}>
-                    <AccordionTrigger className="text-template-text-secondary">{faq.question}</AccordionTrigger>
+                    <AccordionTrigger className="text-template-text-secondary text-lg">{faq.question}</AccordionTrigger>
                     <AccordionContent className="text-template-text-secondary">
                         <div
                             className="
-    prose prose-sm max-w-none text-template-text-secondary
+    prose prose-xl sm:prose-base max-w-none text-template-text-secondary
     prose-p:text-template-text-secondary
     prose-strong:text-template-text-secondary
     prose-h1:text-template-text-secondary

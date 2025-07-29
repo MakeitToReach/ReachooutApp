@@ -9,7 +9,7 @@ export const FAboutSection = ({
   badgeText,
   title,
   description,
-  imgUrls,
+  imgUrl,
   btnText,
   btnLink,
   experience,
@@ -28,7 +28,7 @@ export const FAboutSection = ({
               delay: delay,
               ease: "easeOut",
             }}
-            className="w-fit rounded-full translate-x-10 bg-gradient-to-r from-template-primary to-template-accent-primary via-template-accent-primary/10 text-template-text-accent-primary flex items-center justify-center px-4 py-2 uppercase font-semibold text-lg"
+            className="w-fit rounded-full bg-template-accent-primary text-template-text-accent-primary flex items-center justify-center px-6 py-2 uppercase font-semibold text-lg"
           >
             {badgeText}
           </m.div>
@@ -55,7 +55,7 @@ export const FAboutSection = ({
               ease: "easeOut",
             }}
             className="
-    prose prose-sm max-w-none text-template-text-primary
+    prose prose-xl sm:prose-base max-w-none text-template-text-primary
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
     prose-h1:text-template-text-primary
@@ -84,7 +84,7 @@ export const FAboutSection = ({
                 <h2 className="font-bold text-7xl  bg-gradient-to-b from-template-primary to-template-accent-primary via-template-accent-primary/10 text-template-text-accent-primary">
                   {experience}
                 </h2>
-                <h3 className="font-extralight sm:text-3xl text-2xl tracking-tighter font-serif italic">
+                <h3 className="font-extralight sm:text-3xl text-2xl tracking-tighter italic">
                   Years of Experience
                 </h3>
               </>
@@ -109,39 +109,13 @@ export const FAboutSection = ({
         </div>
 
         <div className="self-end relative w-full max-w-[420px] mx-auto sm:h-[500px] h-[400px]">
-          {/* Background image */}
-          <div className="absolute top-0 right-0 w-[70%] sm:w-[300px] aspect-[3/4] overflow-hidden z-0 drop-shadow-xl rounded-xl">
+          <div className="absolute inset-0 w-full h-full overflow-hidden drop-shadow-xl rounded-2xl">
             <Image
-              src={imgUrls[1]}
-              alt="Background Masked"
+              src={imgUrl}
+              alt="Profile"
               fill
               style={{
                 objectFit: "cover",
-                WebkitMaskImage: "url('/mask-image-2.png')",
-                WebkitMaskRepeat: "no-repeat",
-                WebkitMaskSize: "cover",
-                maskImage: "url('/mask-image-2.png')",
-                maskRepeat: "no-repeat",
-                maskSize: "cover",
-              }}
-              priority
-            />
-          </div>
-
-          {/* Foreground image */}
-          <div className="absolute bottom-0 left-0 w-[80%] sm:w-[300px] aspect-[3/4] overflow-hidden z-10 drop-shadow-xl rounded-2xl">
-            <Image
-              src={imgUrls[0]}
-              alt="Foreground Masked"
-              fill
-              style={{
-                objectFit: "cover",
-                WebkitMaskImage: "url('/mask-image-3.png')",
-                WebkitMaskRepeat: "no-repeat",
-                WebkitMaskSize: "cover",
-                maskImage: "url('/mask-image-3.png')",
-                maskRepeat: "no-repeat",
-                maskSize: "cover",
               }}
               priority
             />

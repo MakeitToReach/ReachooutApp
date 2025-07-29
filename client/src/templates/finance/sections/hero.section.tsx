@@ -38,7 +38,7 @@ export const FHeroSection = ({
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prev) => (prev + 1) % imgUrls.length);
-        }, 7000);
+        }, 3500);
         return () => clearInterval(interval);
     }, [imgUrls.length]);
     return (

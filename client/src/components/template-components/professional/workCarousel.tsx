@@ -7,8 +7,10 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 import { PF_PROJECT } from "@/templates/professional/types/project";
 import Autoplay from "embla-carousel-autoplay";
 import { cn, getYouTubeVideoId } from "@/lib/utils";
@@ -23,6 +25,9 @@ interface PFWorkCarouselProps {
 }
 
 export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+  const [count, setCount] = React.useState(0);
   const [selectedCategory, setSelectedCategory] = React.useState<string | null>(
     "All"
   );
@@ -42,7 +47,6 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
 
   const youtubeOpts = {
     playerVars: {
-      autoplay: 1,
       loop: 1,
       playlist: videoId,
       controls: 1,
@@ -55,6 +59,19 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
       playsinline: 1,
     },
   };
+
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
 
   return (
     <div className="sm:space-y-20 space-y-8 w-full">
@@ -80,6 +97,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
       </ScrollArea>
       {/* Carousel */}
       <Carousel
+        setApi={setApi}
         opts={{ loop: filteredProjects.length > 1, align: "center" }}
         plugins={filteredProjects.length > 1 ? [Autoplay({ delay: 6000 })] : []}
       >
@@ -141,6 +159,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                       <ViewMoreDrawer content={project} type="Project">
                         <Button className="text-template-text-btn bg-template-btn rounded-sm text-lg hover:bg-template-btn cursor-pointer">
                           View Details
+                          <ArrowUpRight size={16} className="ml-1" />
                         </Button>
                       </ViewMoreDrawer>
                       <a
@@ -168,6 +187,24 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
           </div>
         )}
       </Carousel>
+
+      {/* Mobile Dots */}
+      {filteredProjects.length > 1 && (
+        <div className="flex justify-center gap-2 mt-4 md:hidden">
+          {Array.from({ length: count }).map((_, index) => (
+            <button
+              key={index}
+              className={cn(
+                "w-2 h-2 rounded-full transition-all duration-300",
+                current === index + 1
+                  ? "bg-template-text-secondary"
+                  : "bg-template-text-secondary/30"
+              )}
+              onClick={() => api?.scrollTo(index)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

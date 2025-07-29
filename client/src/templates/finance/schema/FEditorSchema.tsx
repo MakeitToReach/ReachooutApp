@@ -123,9 +123,9 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       ],
     },
     {
-      label: "Images",
-      type: "multiple-images",
-      fieldPath: "imgUrls",
+      label: "Image",
+      type: "image",
+      fieldPath: "imgUrl",
     },
   ],
 

@@ -7,7 +7,7 @@ interface PFCertificationCardProps {
 
 export const PFCertificationCard = ({ imgUrl, subtitle }: PFCertificationCardProps) => {
     return (
-        <div className="h-fit w-full bg-template-primary rounded-sm overflow-hidden flex flex-col items-center p-4 text-template-text-primary border border-template-accent-primary">
+        <div className="h-fit w-full bg-template-primary rounded-sm overflow-hidden flex flex-col items-center p-4 text-template-text-primary">
             <Image
                 quality={100}
                 src={imgUrl || "/placeholder.png"}

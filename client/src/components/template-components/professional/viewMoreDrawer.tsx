@@ -74,7 +74,7 @@ export const ViewMoreDrawer = ({
   return (
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
-      <DrawerContent className="p-0 max-w-full theme-wrapper bg-template-primary sm:max-w-4xl mx-auto min-h-[90vh] flex flex-col">
+      <DrawerContent className="p-0 max-w-full theme-wrapper bg-template-primary sm:max-w-4xl mx-auto min-h-[90vh] sm:min-h-[95vh] flex flex-col rounded-xs">
         {/* Header */}
         <DrawerHeader className="p-4 border-b">
           <DrawerTitle className="text-left text-2xl flex flex-col gap-1">
@@ -228,6 +228,13 @@ export const ViewMoreDrawer = ({
               rel="noopener noreferrer"
             >
               <Button>{catalogService.btnText}</Button>
+            </a>
+          </div>
+        )}
+        {blog && blog.btnLink && (
+          <div className="p-4 border-t flex justify-start">
+            <a href={blog.btnLink} target="_blank" rel="noopener noreferrer">
+              <Button>{blog.btnText}</Button>
             </a>
           </div>
         )}

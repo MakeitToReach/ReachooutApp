@@ -1,13 +1,16 @@
 import { ViewMoreDrawer } from "@/components/template-components/professional/viewMoreDrawer";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 
 interface PFBlogCardProps {
     imgUrl: string;
     title: string;
     description: string;
+    btnText?: string;
+    btnLink?: string;
 }
-export const PFBlogCard = ({ imgUrl, title, description }: PFBlogCardProps) => {
-    const blogContent = { imgUrl, title, description };
+export const PFBlogCard = ({ imgUrl, title, description, btnText, btnLink }: PFBlogCardProps) => {
+    const blogContent = { imgUrl, title, description, btnText, btnLink };
     return (
         <div className="h-fit w-full bg-template-primary rounded-sm overflow-hidden space-y-6 pb-6 text-template-text-primary">
             <Image
@@ -19,11 +22,11 @@ export const PFBlogCard = ({ imgUrl, title, description }: PFBlogCardProps) => {
                 className="w-full h-[15rem] object-cover"
             />
             <div className="space-y-2 text-left">
-                <h2 className="font-semibold sm:text-lg text-2xl tracking-tight">{title}</h2>
+                <h2 className="font-semibold sm:text-lg text-2xl tracking-tight line-clamp-2">{title}</h2>
 
                 <div
                     className="
-    prose prose-xl sm:prose-base max-w-none text-template-text-primary
+    prose prose-xl sm:prose-base max-w-none text-template-text-primary prose-p:line-clamp-2
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
     prose-h1:text-template-text-primary
@@ -36,7 +39,7 @@ export const PFBlogCard = ({ imgUrl, title, description }: PFBlogCardProps) => {
                     dangerouslySetInnerHTML={{ __html: description }}
                 />
                 <ViewMoreDrawer type="Blog" content={blogContent}>
-                    <button className="hover:underline text-xl sm:text-base">Read more...</button>
+                    <button className="hover:underline text-xl sm:text-base flex items-center gap-1">Read more <ArrowUpRight size={16} className="text-template-accent-primary" /></button>
                 </ViewMoreDrawer>
             </div>
         </div>

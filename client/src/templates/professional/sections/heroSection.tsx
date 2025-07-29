@@ -38,7 +38,7 @@ export const PFHeroSection = ({
   };
 
   return (
-    <section className="max-w-6xl mx-auto pt-10 sm:pt-20" id="hero">
+    <section className="max-w-6xl mx-auto py-10 sm:py-10" id="hero">
       <m.div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">
         <div className="space-y-4">
           <div>
@@ -146,7 +146,7 @@ export const PFHeroSection = ({
               delay: delay * 5,
               ease: "easeOut",
             }}
-            className="mt-20 sm:mt-0 sm:max-h-[500px] sm:max-w-[500px] rounded-sm object-cover w-full h-full relative"
+            className="mt-20 sm:mt-0 sm:max-h-[500px] sm:max-w-[500px] rounded-sm object-cover w-full h-full relative overflow-hidden"
           >
             <Image
               src={heroImgUrl || "https://placehold.co/600x600"}

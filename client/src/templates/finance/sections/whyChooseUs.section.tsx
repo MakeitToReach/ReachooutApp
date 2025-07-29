@@ -16,11 +16,11 @@ export const FWhyChooseUsSection = ({
   return (
     <section
       id="why-choose-us"
-      className="max-w-6xl mx-auto sm:py-20 py-10 px-4"
+      className="max-w-6xl mx-auto sm:py-20 py-10 px-4 relative"
     >
       <div className="flex flex-col sm:flex-row gap-10">
         {/* text content */}
-        <div className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full text-template-text-primary">
+        <div className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full text-template-text-primary sticky">
           <m.div
             initial={{ opacity: 0, x: -40, filter: "blur(10px)" }}
             whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
@@ -30,7 +30,7 @@ export const FWhyChooseUsSection = ({
               delay: delay,
               ease: "easeOut",
             }}
-            className="w-fit rounded-full translate-x-10 bg-gradient-to-r from-template-primary to-template-accent-primary via-template-accent-primary/10 text-template-text-accent-primary flex items-center justify-center px-4 py-2 uppercase font-semibold text-lg"
+            className="w-fit rounded-full bg-template-accent-primary text-template-text-accent-primary flex items-center justify-center px-6 py-2 uppercase font-semibold text-lg"
           >
             {badgeText}
           </m.div>
@@ -57,7 +57,7 @@ export const FWhyChooseUsSection = ({
               ease: "easeOut",
             }}
             className="
-    prose prose-sm max-w-none text-template-text-primary
+    prose prose-xl sm:prose-base max-w-none text-template-text-primary
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
     prose-h1:text-template-text-primary
