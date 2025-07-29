@@ -11,6 +11,7 @@ import { FCatalogEditorField } from "../editorFields/FCatalogEditorField";
 import { FTimelineEditorField } from "../editorFields/FTimelineEditorField";
 import { FStatsEditorField } from "../editorFields/FStatsEditorField";
 import { FNavbarEditorField } from "../editorFields/FNavbarEditorField";
+import { PFCalThemeSelect } from "@/templates/professional/components/PFCalThemeSelect";
 
 export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
   navbar: [
@@ -478,6 +479,26 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
           fieldPath: "emailAddress",
         },
       ],
+    },
+    {
+      label: "Receiver Email",
+      type: "text",
+      fieldPath: "receiverEmail",
+      subtitle: "Email to which the contact form submissions will be sent",
+    },
+    {
+      label: "Cal Link",
+      type: "text",
+      fieldPath: "calUrl",
+      subtitle: "ex: rick/get-rick-rolled",
+    },
+    {
+      label: "Cal Theme",
+      type: "component",
+      fieldPath: "calTheme",
+      component: ({ value, onChange }) => (
+        <PFCalThemeSelect value={value} onChange={onChange} />
+      ),
     },
   ],
 };

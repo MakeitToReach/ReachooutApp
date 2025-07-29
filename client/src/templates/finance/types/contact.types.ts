@@ -4,4 +4,6 @@ export interface F_CONTACT_SECTION {
     subtitle: string;
     phoneNumber: number;
     emailAddress: string;
+    calUrl?: string;
+    calTheme?: "light" | "dark";
 }
