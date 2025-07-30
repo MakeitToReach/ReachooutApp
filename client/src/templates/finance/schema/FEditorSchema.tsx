@@ -63,6 +63,11 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "title",
     },
     {
+      label: "Subtitle",
+      type: "text",
+      fieldPath: "subtitle",
+    },
+    {
       type: "group",
       label: "Button Group",
       fieldPath: "btnGroup",

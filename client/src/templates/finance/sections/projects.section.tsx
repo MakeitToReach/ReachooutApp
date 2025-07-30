@@ -32,40 +32,35 @@ export const FProjectsSection = ({
 
   return (
     <section className="py-20">
-      <div
-        id="projects"
-        className="w-full rounded-lg overflow-hidden sm:px-6 py-4"
-      >
-        <div className="bg-template-secondary sm:w-[100vw] px-4 py-10 rounded-xl">
-          <div className="max-w-6xl mx-auto h-full space-y-8 overflow-x-visible text-template-text-secondary">
-            <m.h2
-              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                duration: 0.5,
-                delay: delay,
-                ease: "easeOut",
-              }}
-              className="font-semibold sm:text-5xl text-3xl tracking-tight text-center"
-            >
-              {title}
-            </m.h2>
-            <m.p
-              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                duration: 0.5,
-                delay: delay * 2,
-                ease: "easeOut",
-              }}
-              className="text-center line-clamp-4"
-            >
-              {subtitle}
-            </m.p>
-          </div>
-          <div className="max-w-6xl mx-auto py-10 overflow-x-visible">
+      <div id="projects" className="w-full rounded-lg bg-template-secondary overflow-hidden px-6 py-4">
+        <div className="max-w-6xl mx-auto h-full text-white my-10 space-y-8 overflow-x-visible">
+          <m.h2
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.5,
+              delay: delay,
+              ease: "easeOut",
+            }}
+            className="font-semibold sm:text-5xl text-3xl tracking-tight text-center text-template-text-secondary"
+          >
+            {title}
+          </m.h2>
+          <m.p
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.5,
+              delay: delay * 2,
+              ease: "easeOut",
+            }}
+            className="text-center line-clamp-4 text-template-text-secondary"
+          >
+            {subtitle}
+          </m.p>
+          <div className="sm:w-[130vw] rounded-lg">
             <m.div
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
