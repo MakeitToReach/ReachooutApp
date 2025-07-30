@@ -15,7 +15,7 @@ import { PFCalThemeSelect } from "@/templates/professional/components/PFCalTheme
 import { FooterEditorField } from "@/components/editor-components/inputs/footerEditorField";
 
 export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
-  navbar: [
+  menu: [
     {
       type: "group",
       label: "Button Group",

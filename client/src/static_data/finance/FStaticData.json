@@ -18,7 +18,7 @@
   },
   "sections": [
     {
-      "type": "navbar",
+      "type": "menu",
       "sectionName": "Navbar",
       "data": {
         "textLogo": "Finance",

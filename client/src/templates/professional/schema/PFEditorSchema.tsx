@@ -15,7 +15,7 @@ import { PFCalThemeSelect } from "../components/PFCalThemeSelect";
 import { PFCertificationEditorField } from "../editorFields/PFCertificationEditorField";
 
 export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
-    navbar: [
+    menu: [
         {
             label: "Text",
             type: "image-video",
@@ -30,7 +30,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "qrCodeUrl",
         },
         {
-            label: "Navbar Options",
+            label: "Menu Options",
             type: "customComponent",
             fieldPath: "sections",
             customComponent: () => <NavbarEditorField />,

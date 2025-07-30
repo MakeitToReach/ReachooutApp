@@ -209,11 +209,11 @@ export const FinancePortfolio = ({ data }: Props) => {
   };
 
   const navbarSection = data?.sections.find(
-    (section) => section.type === "navbar"
+    (section) => section.type === "menu"
   );
 
   const otherSections = data?.sections.filter(
-    (section) => section.type !== "navbar"
+    (section) => section.type !== "menu"
   );
 
   return (
