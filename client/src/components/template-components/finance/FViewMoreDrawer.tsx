@@ -65,7 +65,7 @@ export const FViewMoreDrawer = ({
     <Drawer>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
-      <DrawerContent className="p-0 max-w-full theme-wrapper bg-template-primary sm:max-w-4xl mx-auto min-h-[90vh] flex flex-col">
+      <DrawerContent className="p-0 max-w-full theme-wrapper bg-template-primary sm:max-w-4xl mx-auto sm:min-h-[95vh] min-h-[90vh] flex flex-col">
         {/* Header */}
         <DrawerHeader className="p-4 border-b">
           <DrawerTitle className="text-left text-xl flex flex-col gap-2">
@@ -76,11 +76,6 @@ export const FViewMoreDrawer = ({
                 catalogService?.title ||
                 teamMember?.name}
             </span>
-            {blog && (
-              <span className="text-left text-sm font-light">
-                By {blog.author}
-              </span>
-            )}
             {teamMember && (
               <span className="text-left text-sm font-light">
                 {teamMember.designation}

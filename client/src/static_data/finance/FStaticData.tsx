@@ -42,6 +42,8 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
           "/placeholder.png",
         ],
         title: "We Transform financial strategies into tangible success",
+        subtitle:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
         btnText: "Get Started",
         btnLink: "#",
       },
@@ -484,10 +486,41 @@ export const F_STATIC_DATA: GenericTemplateSchema = {
       type: "footer",
       sectionName: "Footer",
       data: {
-        textLogo: "Finance",
+        logoText: "Omkar",
+        // logoUrl: "/next.svg",
         description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-        experience: "30+",
+          "Showcasing my work and passion for creating innovative solutions. Connect with me to collaborate or learn more about my projects.",
+        address: "1234 Creative Street, Innovation City, CA 90210",
+        email: "omkar@reachoout.com",
+        phone: "+1 (555) 123-4567",
+        socials: [
+          { title: "X", btnLink: "https://x.com", followerCounts: 1000 },
+          {
+            title: "Linkedin",
+            btnLink: "https://linkedin.com",
+            followerCounts: 1000,
+          },
+          {
+            title: "Github",
+            btnLink: "https://github.com",
+            followerCounts: 1000,
+          },
+          {
+            title: "Instagram",
+            btnLink: "https://instagram.com",
+            followerCounts: 1000,
+          },
+          {
+            title: "Youtube",
+            btnLink: "https://youtube.com",
+            followerCounts: 1000,
+          },
+          {
+            name: "Facebook",
+            btnLink: "https://facebook.com",
+            followerCounts: 1000,
+          },
+        ],
       },
       isFixed: true,
       isEditable: true,

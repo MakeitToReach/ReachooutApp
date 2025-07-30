@@ -126,8 +126,8 @@ export const FContactSection = ({
             </m.div>
           </div>
 
-          <div className="grid md:grid-cols-2 h-fit grid-cols-1 gap-4 space-y-4 text-template-text-primary mt-10">
-            <div className="space-y-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 h-fit gap-4 text-template-text-primary mt-10">
+            <div className="space-y-1 col-span-1 sm:col-span-2 w-full">
               <Label className="uppercase font-semibold">Full Name</Label>
               <Input
                 placeholder="Enter your name"
@@ -137,7 +137,7 @@ export const FContactSection = ({
                 }
               />
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1 col-span-1">
               <Label className="uppercase font-semibold">Phone number</Label>
               <Input
                 placeholder="Enter your phone number"
@@ -148,18 +148,18 @@ export const FContactSection = ({
                 }
               />
             </div>
-            <div className="space-y-1 col-span-2">
+            <div className="space-y-1 col-span-1">
               <Label className="uppercase font-semibold">Email Address</Label>
               <EmailInput
                 value={formData.email}
                 onChange={(value) => setFormData({ ...formData, email: value })}
               />
             </div>
-            <div className="space-y-2 col-span-2">
+            <div className="space-y-2 col-span-1 sm:col-span-2">
               <Label className="uppercase font-semibold">Message</Label>
               <Textarea
                 placeholder="Enter your message"
-                className="col-span-2 h-36"
+                className="h-36"
                 value={formData.message}
                 onChange={(e) =>
                   setFormData({ ...formData, message: e.target.value })

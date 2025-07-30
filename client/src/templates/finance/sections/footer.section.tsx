@@ -1,67 +1,104 @@
-import { Input } from "@/components/ui/input";
-import { FButton } from "../components/FButton";
-import type { F_FOOTER_SECTION } from "../types/footer.types";
+import { getSocialIconFromRegistry } from "@/lib/utils";
+import { F_FOOTER_SECTION } from "../types/footer.types";
+import QRCodePopup from "@/components/editor-components/popups/QRCodePopup";
 
 export const FFooterSection = ({
+  logoText,
   logoUrl,
-  textLogo,
   description,
-  experience,
+  address,
+  email,
+  phone,
+  socials,
+  qrCodeUrl,
 }: F_FOOTER_SECTION) => {
+//   const [qrPopupOpen, setQrPopupOpen] = useState(false);
   return (
-    <footer id="footer" className="border-t border-border">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row gap-10 justify-between px-4  py-10 text-template-text-primary">
-        <div className="flex sm:w-1/3 w-full flex-col gap-3">
-          {logoUrl && (
-            <img
-              src={logoUrl}
-              alt="logo"
-              className="md:size-16 size-12 object-contain my-2"
-            />
-          )}
+    <footer
+      id="footer"
+      className="bg-template-secondary text-template-text-secondary py-8 rounded-t-xl"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-8">
+          {/* Left Section - Logo and Description */}
+          <div className="flex-1">
+            {logoText && <h2 className="text-2xl font-bold">{logoText}</h2>}
 
-          {textLogo && <h3 className="font-semibold text-xl">{textLogo}</h3>}
-
-          {description && (
+            {logoUrl && (
+              <img
+                src={logoUrl}
+                alt="logo"
+                className="md:size-16 size-12 object-contain"
+              />
+            )}
             <div
               className="
-    prose prose-sm max-w-none text-template-text-primary/70
-    prose-p:text-template-text-primary/70
-    prose-strong:text-template-text-primary/70
-    prose-h1:text-template-text-primary/70
-    prose-h2:text-template-text-primary/70
-    prose-h3:text-template-text-primary/70
-    prose-h4:text-template-text-primary/70
-    prose-h5:text-template-text-primary/70
-    prose-h6:text-template-text-primary/70
+    prose prose-base max-w-none text-template-text-secondary/50
+    prose-p:text-template-text-secondary/50
+    prose-strong:text-template-text-secondary/50
+    prose-h1:text-template-text-secondary/50
+    prose-h2:text-template-text-secondary/50
+    prose-h3:text-template-text-secondary/50
+    prose-h4:text-template-text-secondary/50
+    prose-h5:text-template-text-secondary/50
+    prose-h6:text-template-text-secondary/50
   "
               dangerouslySetInnerHTML={{ __html: description }}
             />
-          )}
-
-          <div className="flex items-center gap-2">
-            {experience && (
-              <>
-                <h2 className="font-bold text-3xl bg-gradient-to-b from-template-primary to-template-accent-primary via-template-accent-primary/10 text-template-text-accent-primary">
-                  {experience}
-                </h2>
-                <h3 className="font-extralight sm:text-3xl text-base tracking-tighter font-serif italic">
-                  Years of Experience
-                </h3>
-              </>
-            )}
           </div>
-        </div>
 
-        <div className="flex flex-col col-start-3 gap-3">
-          <h3 className="font-semibold text-xl">Newsletter</h3>
+          {/* Middle Section - Contact Info */}
+          <div className="flex-1">
+            <h3 className="text-xl font-semibold mb-2">Contact Info</h3>
+            <p className="text-template-text-secondary/50 text-base">{address}</p>
+            <p className="text-template-text-secondary/50 text-base mt-2">
+              <a
+                href={`mailto:${email}`}
+                className="hover:text-white transition-colors"
+              >
+                {email}
+              </a>
+            </p>
+            <p className="text-template-text-secondary/50 text-base mt-2">
+              <a
+                href={`tel:${phone}`}
+                className="hover:text-white transition-colors"
+              >
+                {phone}
+              </a>
+            </p>
+          </div>
 
-          <p className="line-clamp-3 text-template-text-primary/70">
-            Want to receive news and updates? Enter your email.
-          </p>
-
-          <Input placeholder="Enter your email" className="mt-2" />
-          <FButton btnText="Submit" className="py-3 px-5 self-start" />
+          {/* Right Section - Socials */}
+          <div className="flex justify-end ">
+            <div className="flex flex-col items-start">
+              <h3 className="text-xl font-semibold mb-4">Connect with Me</h3>
+              <div className="flex gap-4">
+                {socials
+                  .filter((social) => social.url)
+                  .map((social, index) => {
+                    return (
+                      <a
+                        key={index}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-template-text-secondary/50 hover:text-white transition-colors"
+                      >
+                        {getSocialIconFromRegistry(social.name)}
+                      </a>
+                    );
+                  })}
+              </div>
+              <QRCodePopup value={qrCodeUrl || window?.location?.href}>
+                <button
+                  className="text-template-text-secondary/50 hover:text-white transition-colors"
+                >
+                  View QR Code
+                </button>
+              </QRCodePopup>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

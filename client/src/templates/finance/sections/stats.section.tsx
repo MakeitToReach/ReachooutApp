@@ -16,10 +16,10 @@ export const FStatsSection = ({
   btn2Link = "#",
 }: F_STATS_SECTION) => {
   return (
-    <section className="py-20" id="stats">
-      <div className="w-full sm:h-[55vh] min-h-fit flex flex-col items-center justify-center bg-template-secondary rounded-lg overflow-hidden relative py-16 px-4">
+    <section className="py-10" id="stats">
+      <div className="w-full sm:h-[55vh] min-h-fit flex flex-col items-center justify-center bg-template-secondary rounded-lg overflow-hidden relative px-4">
         {/* Content container */}
-        <div className="max-w-6xl py-10 mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-10 text-template-text-secondary mb-20 sm:mb-0">
+        <div className="max-w-6xl mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-10 text-template-text-secondary mb-20 sm:mb-0">
           {/* Left: Text Content */}
           <div className="flex flex-col gap-10 sm:w-2/3 w-full">
             <m.h2
@@ -51,7 +51,7 @@ export const FStatsSection = ({
               >
                 <div>
                   <h2 className="font-bold text-6xl">{stats[0].statNumber}</h2>
-                  <h4 className="italic font-light font-serif text-2xl">
+                  <h4 className="italic font-light text-2xl">
                     {stats[0].statText}
                   </h4>
                 </div>
@@ -70,11 +70,11 @@ export const FStatsSection = ({
               >
                 <div>
                   <h2 className="font-bold text-6xl">{stats[1].statNumber}</h2>
-                  <h4 className="italic font-light font-serif text-2xl">
+                  <h4 className="italic font-light text-2xl">
                     {stats[1].statText}
                   </h4>
                 </div>
-                <p className="text-sm">{stats[1].statDescription}</p>
+                <p>{stats[1].statDescription}</p>
               </m.div>
             </div>
           </div>

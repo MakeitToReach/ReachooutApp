@@ -6,6 +6,7 @@ import { FButton } from "../components/FButton";
 import { toast } from "sonner";
 import { useState } from "react";
 import { submitNewsletterForm } from "@/api/user-template";
+import { cn } from "@/lib/utils";
 
 export const FNewsletterSection = ({
   heading,
@@ -35,7 +36,10 @@ export const FNewsletterSection = ({
     }
   };
   return (
-    <section className="w-full min-h-[55vh] flex flex-col items-center justify-center bg-template-secondary rounded-lg overflow-hidden relative" id="newsletter">
+    <section
+      className="w-full min-h-[55vh] flex flex-col items-center justify-center bg-template-secondary rounded-lg overflow-hidden relative"
+      id="newsletter"
+    >
       {/* Centered content */}
       <div className="max-w-2xl w-full flex flex-col items-center text-center gap-8 text-template-text-secondary -translate-y-10">
         <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight">
@@ -47,6 +51,8 @@ export const FNewsletterSection = ({
           <ReqInput
             type="email"
             placeholder="Enter your email"
+            className="w-full sm:w-[20vw] text-template-text-secondary"
+            inputClassName="text-template-text-secondary placeholder:text-template-text-secondary/70 border border-template-text-secondary/70"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -54,7 +60,10 @@ export const FNewsletterSection = ({
           <FButton
             disabled={isLoading || !receiverEmail}
             btnText="Subscribe"
-            className="self-start"
+            className={cn(
+              "w-full sm:w-fit rounded-md",
+              !receiverEmail && "cursor-not-allowed"
+            )}
             onClick={() => receiverEmail && handleSubmit(receiverEmail)}
           />
         </form>

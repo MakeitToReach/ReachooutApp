@@ -11,7 +11,7 @@ export const FButton = ({ btnText, className, ...props }: FButtonProps) => {
         <Button
             variant={"default"}
             className={cn(
-                "py-4 rounded-full bg-black text-white font-semibold flex items-center",
+                "py-4 rounded-full bg-black text-white font-semibold flex items-center text-lg sm:text-base",
                 className,
             )}
             {...props}

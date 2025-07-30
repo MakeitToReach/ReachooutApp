@@ -12,6 +12,7 @@ import { FTimelineEditorField } from "../editorFields/FTimelineEditorField";
 import { FStatsEditorField } from "../editorFields/FStatsEditorField";
 import { FNavbarEditorField } from "../editorFields/FNavbarEditorField";
 import { PFCalThemeSelect } from "@/templates/professional/components/PFCalThemeSelect";
+import { FooterEditorField } from "@/components/editor-components/inputs/footerEditorField";
 
 export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
   navbar: [
@@ -498,6 +499,45 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "calTheme",
       component: ({ value, onChange }) => (
         <PFCalThemeSelect value={value} onChange={onChange} />
+      ),
+    },
+  ],
+  footer: [
+    {
+      label: "Text",
+      type: "image-video",
+      fieldPath: "footer-img",
+      fieldPathVid: "logoText",
+      fieldPathImg: "logoUrl",
+      imgSubtitle: "Dimensions 64x64",
+    },
+    {
+      label: "Description",
+      type: "RTEditor",
+      fieldPath: "description",
+    },
+
+    {
+      label: "Address",
+      type: "textarea",
+      fieldPath: "address",
+    },
+    {
+      label: "Email",
+      type: "text",
+      fieldPath: "email",
+    },
+    {
+      label: "Phone Number",
+      type: "phone",
+      fieldPath: "phone",
+    },
+    {
+      label: "Socials",
+      type: "component",
+      fieldPath: "socials",
+      component: ({ value, onChange }) => (
+        <FooterEditorField value={value || []} onChange={onChange} />
       ),
     },
   ],

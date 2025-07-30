@@ -41,7 +41,7 @@ export const FGallerySection = ({
         >
           {subtitle}
         </m.p>
-        <div className="grid h-[90vh] sm:grid-cols-3 grid-cols-1 gap-6 mt-10">
+        <div className="grid sm:h-[90vh] h-fit sm:grid-cols-3 grid-cols-1 gap-6 mt-10">
           {/* column 1 */}
           <div className="space-y-6">
             <m.div
@@ -53,7 +53,7 @@ export const FGallerySection = ({
                 delay: delay * 1,
                 ease: "easeOut",
               }}
-              className="h-[55%] bg-red-400 relative overflow-hidden rounded-xl"
+              className="sm:h-[55%] h-[20vh] bg-red-400 relative overflow-hidden rounded-xl"
             >
               <Image
                 src={imgs[0] || "/placeholder.png"}
@@ -71,7 +71,7 @@ export const FGallerySection = ({
                 delay: delay * 1.5,
                 ease: "easeOut",
               }}
-              className="h-[40%] bg-red-200 rounded-xl overflow-hidden  relative"
+              className="sm:h-[40%] h-[20vh] bg-red-200 rounded-xl overflow-hidden  relative"
             >
               <Image
                 src={imgs[1] || "/placeholder.png"}
@@ -91,7 +91,7 @@ export const FGallerySection = ({
                 delay: delay * 2,
                 ease: "easeOut",
               }}
-              className="h-[40%] bg-blue-400 relative overflow-hidden rounded-xl">
+              className="sm:h-[40%] h-[20vh] bg-blue-400 relative overflow-hidden rounded-xl">
               <Image
                 src={imgs[2] || "/placeholder.png"}
                 fill
@@ -108,7 +108,7 @@ export const FGallerySection = ({
                 delay: delay * 2.5,
                 ease: "easeOut",
               }}
-              className="h-[55%] bg-blue-200 rounded-xl overflow-hidden relative">
+              className="sm:h-[55%] h-[20vh] bg-blue-200 rounded-xl overflow-hidden relative">
               <Image
                 src={imgs[3] || "/placeholder.png"}
                 fill
@@ -127,7 +127,7 @@ export const FGallerySection = ({
                 delay: delay * 3,
                 ease: "easeOut",
               }}
-              className="h-[55%] bg-red-400 relative overflow-hidden rounded-xl">
+              className="sm:h-[55%] h-[20vh] bg-red-400 relative overflow-hidden rounded-xl">
               <Image
                 src={imgs[4] || "/placeholder.png"}
                 fill
@@ -144,7 +144,7 @@ export const FGallerySection = ({
                 delay: delay * 3.5,
                 ease: "easeOut",
               }}
-              className="h-[40%] bg-red-200 rounded-xl overflow-hidden  relative">
+              className="sm:h-[40%] h-[20vh] bg-red-200 rounded-xl overflow-hidden  relative">
               <Image
                 src={imgs[5] || "/placeholder.png"}
                 fill

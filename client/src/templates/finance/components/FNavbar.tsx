@@ -55,54 +55,43 @@ export const FNavbar = ({
       <div className="h-16 px-4 flex justify-between items-center">
         {textLogo && (
           <m.h1
-            initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{
               duration: 0.5,
               delay: delay,
               ease: "easeOut",
             }}
-            className="font-semibold text-xl text-template-text-primary"
+            className="font-semibold text-2xl text-template-text-primary"
           >
             {textLogo}
           </m.h1>
         )}
 
         {logoUrl && (
-          <m.div
-            initial={{ opacity: 0, x: -20, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.5,
-              delay: delay,
-              ease: "easeOut",
-            }}
-          >
-            <Image
-              src={logoUrl}
-              alt="logo"
-              width={64}
-              height={64}
-              className="md:size-16 size-12 object-contain my-2"
-            />
-          </m.div>
+          <Image
+            src={logoUrl}
+            alt="logo"
+            width={100}
+            height={100}
+            className="sm:w-[140px] sm:h-[48px] w-[100px] h-[36px] object-contain my-2"
+          />
         )}
 
         <div className="hidden space-x-4 md:flex items-center">
           {visibleSections.map((section, index) => (
             <m.button
-              initial={{ opacity: 0, y: 10, filter: "blur(10px)" }}
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{
                 duration: 0.5,
-                delay: delay * (index + 1),
+                delay: delay * index,
                 ease: "easeOut",
               }}
               key={section.name}
-              className="text-template-text-primary hover:underline cursor-pointer capitalize font-semibold"
+              className="text-template-text-primary hover:underline cursor-pointer capitalize"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection(section.href);
@@ -117,16 +106,17 @@ export const FNavbar = ({
               value={desktopSelectValue}
               onValueChange={(value) => handleSelectChange(value, false)}
             >
-              <SelectTrigger className="w-fit px-3 py-1 text-template-text-primary shadow-none bg-transparent border-none hover:underline">
+              <SelectTrigger className="w-fit px-3 py-1 shadow-none bg-transparent border-none hover:underline text-template-text-primary">
                 <m.span
-                  initial={{ opacity: 0, y: 10, filter: "blur(10px)" }}
+                  initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
                   whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{
                     duration: 0.5,
-                    delay: delay * 2,
+                    delay: delay * 4,
                     ease: "easeOut",
                   }}
+                  className="text-template-text-primary text-base"
                 >
                   More
                 </m.span>
@@ -136,17 +126,20 @@ export const FNavbar = ({
                   <SelectItem
                     key={section.name}
                     value={section.href}
-                    className="capitalize"
+                    className="capitalize text-base"
                   >
                     {section.name}
                   </SelectItem>
                 ))}
                 <QRCodePopup
-                  value={qrCodeUrl || (typeof window !== "undefined" ? window.location.href : "")}
+                  value={qrCodeUrl || window?.location?.href}
                   open={qrPopupOpen}
                   onOpenChange={setQrPopupOpen}
                 >
-                  <SelectItem value="view-qr-code" className="capitalize">
+                  <SelectItem
+                    value="view-qr-code"
+                    className="capitalize text-base"
+                  >
                     View QR Code
                   </SelectItem>
                 </QRCodePopup>
@@ -184,8 +177,8 @@ export const FNavbar = ({
               className="w-fit px-3 py-1 text-template-text-primary shadow-none bg-transparent border-none hover:underline flex items-center gap-1 [&>[data-slot='icon']]:hidden"
             >
               <m.span
-                initial={{ opacity: 0, x: 20, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{
                   duration: 0.5,
@@ -201,17 +194,17 @@ export const FNavbar = ({
                 <SelectItem
                   key={section.name}
                   value={section.href}
-                  className="capitalize"
+                  className="capitalize text-lg"
                 >
                   {section.name}
                 </SelectItem>
               ))}
               <QRCodePopup
-                value={qrCodeUrl || (typeof window !== "undefined" ? window.location.href : "")}
+                value={qrCodeUrl || window?.location?.href}
                 open={qrPopupOpen}
                 onOpenChange={setQrPopupOpen}
               >
-                <SelectItem value="view-qr-code" className="capitalize">
+                <SelectItem value="view-qr-code" className="capitalize text-lg">
                   View QR Code
                 </SelectItem>
               </QRCodePopup>
