@@ -10,9 +10,9 @@ import { FBlogEditorField } from "../editorFields/FBlogEditorField";
 import { FCatalogEditorField } from "../editorFields/FCatalogEditorField";
 import { FTimelineEditorField } from "../editorFields/FTimelineEditorField";
 import { FStatsEditorField } from "../editorFields/FStatsEditorField";
-import { FNavbarEditorField } from "../editorFields/FNavbarEditorField";
-import { PFCalThemeSelect } from "@/templates/professional/components/PFCalThemeSelect";
+import { PFCalThemeSelect as FCalThemeSelect } from "@/templates/professional/components/PFCalThemeSelect";
 import { FooterEditorField } from "@/components/editor-components/inputs/footerEditorField";
+import { NavbarEditorField } from "@/components/editor-components/inputs/navbarEditorField";
 
 export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
   menu: [
@@ -48,7 +48,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       label: "Navbar Options",
       type: "customComponent",
       fieldPath: "sections",
-      customComponent: () => <FNavbarEditorField />,
+      customComponent: () => <NavbarEditorField />,
     },
   ],
   hero: [
@@ -503,7 +503,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       type: "component",
       fieldPath: "calTheme",
       component: ({ value, onChange }) => (
-        <PFCalThemeSelect value={value} onChange={onChange} />
+        <FCalThemeSelect value={value} onChange={onChange} />
       ),
     },
   ],
