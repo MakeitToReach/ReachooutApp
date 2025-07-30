@@ -37,7 +37,7 @@ export const FLogoSection = ({
             delay: delay * 2,
             ease: "easeOut",
           }}
-          className="text-center line-clamp-4"
+          className="text-center text-xl sm:text-lg line-clamp-4"
         >
           {subHeading}
         </m.p>

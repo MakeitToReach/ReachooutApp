@@ -19,8 +19,8 @@ export const PFCertificationCarousel = ({ certifications }: PFCertificationCarou
           ))}
         </CarouselContent>
         <div className="sm:flex gap-2 mt-8 justify-start hidden">
-          <CarouselPrevious className="static translate-y-0 bg-transparent border-template-text-primary/80 text-template-text-primary" />
-          <CarouselNext className="static translate-y-0 bg-transparent border-template-text-primary/80 text-template-text-primary" />
+          <CarouselPrevious className="static translate-y-0 bg-transparent border-template-text-secondary/80 text-template-text-secondary" />
+          <CarouselNext className="static translate-y-0 bg-transparent border-template-text-secondary/80 text-template-text-secondary" />
         </div>
       </Carousel>
     </div>

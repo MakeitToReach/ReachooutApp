@@ -103,7 +103,7 @@ export const FTimeline = ({ steps }: FTimelineProps) => {
                       ease: "easeOut",
                     }}
                     className="
-    prose prose-xl sm:prose-base max-w-none text-gray-600
+    prose prose-xl sm:prose-lg max-w-none text-gray-600
     prose-p:text-gray-600
     prose-strong:text-gray-600
     prose-h1:text-gray-600

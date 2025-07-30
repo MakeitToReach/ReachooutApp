@@ -30,6 +30,7 @@ export const ServicesCard = ({
     prose-h4:text-template-text-primary
     prose-h5:text-template-text-primary
     prose-h6:text-template-text-primary
+    line-clamp-6
   "
                 dangerouslySetInnerHTML={{ __html: description }}
             />

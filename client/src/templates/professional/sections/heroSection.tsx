@@ -92,6 +92,7 @@ export const PFHeroSection = ({
     prose-h4:text-template-text-primary
     prose-h5:text-template-text-primary
     prose-h6:text-template-text-primary
+    line-clamp-3
   "
                 dangerouslySetInnerHTML={{ __html: description }}
               />

@@ -132,7 +132,7 @@ export const PFAboutSection = ({
             }}
             viewport={{ amount: 1, once: true }}
             className="
-    prose prose-xl sm:prose-lg max-w-none text-template-text-primary prose-p:line-clamp-[11]
+    prose prose-xl sm:prose-lg max-w-none text-template-text-primary 
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
     prose-h1:text-template-text-primary
@@ -141,6 +141,7 @@ export const PFAboutSection = ({
     prose-h4:text-template-text-primary
     prose-h5:text-template-text-primary
     prose-h6:text-template-text-primary
+    line-clamp-11 
   "
             dangerouslySetInnerHTML={{ __html: description }}
           />

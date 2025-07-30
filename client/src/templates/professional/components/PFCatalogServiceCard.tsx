@@ -140,14 +140,14 @@ export const PFCatalogServicesCard = ({
           dangerouslySetInnerHTML={{ __html: description }}
         />
         <ViewMoreDrawer type="CatalogService" content={catalogServiceContent}>
-          <Button className="self-start bg-transparent border border-template-accent-primary text-template-text-primary rounded-sm hover:bg-transparent cursor-pointer">
+          <Button className="self-start bg-transparent border border-template-text-primary/30 text-template-text-primary rounded-sm hover:bg-transparent cursor-pointer">
             View Details
             <ArrowUpRight size={16} className="ml-1" />
           </Button>
         </ViewMoreDrawer>
         {btnLink && (
           <a href={btnLink} target="_blank" rel="noopener noreferrer">
-            <Button className="bg-transparent border border-template-accent-primary text-template-text-primary rounded-sm hover:bg-transparent cursor-pointer">
+            <Button className="bg-transparent border border-template-text-primary/30 text-template-text-primary rounded-sm hover:bg-transparent cursor-pointer">
               {btnText}
             </Button>
           </a>

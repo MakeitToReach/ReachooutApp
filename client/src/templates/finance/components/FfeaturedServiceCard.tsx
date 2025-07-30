@@ -17,8 +17,8 @@ export const FFeaturedServiceCard = ({
             </div>
 
             <div className="flex flex-col gap-2">
-                <h2 className="font-semibold text-lg tracking-tight">{title}</h2>
-                <p className="text-sm">{subtitle}</p>
+                <h2 className="font-semibold text-xl tracking-tight">{title}</h2>
+                <p className="text-md">{subtitle}</p>
             </div>
         </div>
     );

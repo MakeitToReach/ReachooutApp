@@ -182,8 +182,8 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
         {/* Conditional nav buttons */}
         {filteredProjects.length > 1 && (
           <div className="hidden md:block">
-            <CarouselPrevious className="-left-10 bg-template-btn border-template-text-secondary text-template-text-btn" />
-            <CarouselNext className="-right-10 bg-template-btn text-template-text-btn border-template-text-secondary" />
+            <CarouselPrevious className="bg-template-btn border-template-text-secondary text-template-text-btn" />
+            <CarouselNext className="bg-template-btn text-template-text-btn border-template-text-secondary" />
           </div>
         )}
       </Carousel>

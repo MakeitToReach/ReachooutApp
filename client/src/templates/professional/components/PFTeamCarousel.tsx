@@ -30,10 +30,10 @@ export const PFTeamCarousel = ({ team }: { team: PF_TEAM_MEMBER[] }) => {
 
           {/* Custom Navigation Buttons */}
           <div className="flex gap-2 mt-8">
-            <CarouselPrevious className="static translate-y-0 bg-template-primary border-template-accent-primary text-template-text-primary hover:bg-template-secondary hover:text-template-text-secondary">
+            <CarouselPrevious className="static translate-y-0 bg-template-primary border-template-text-primary/40 text-template-text-primary hover:bg-template-secondary hover:text-template-text-secondary">
               <ChevronLeft className="h-4 w-4" />
             </CarouselPrevious>
-            <CarouselNext className="static translate-y-0 bg-template-primary border-template-accent-primary text-template-text-primary hover:bg-template-secondary hover:text-template-text-secondary">
+            <CarouselNext className="static translate-y-0 bg-template-primary border-template-text-primary/40 text-template-text-primary hover:bg-template-secondary hover:text-template-text-secondary">
               <ChevronRight className="h-4 w-4" />
             </CarouselNext>
           </div>

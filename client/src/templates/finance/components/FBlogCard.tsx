@@ -34,7 +34,7 @@ export const FBlogCard = ({
         </h2>
         <div
           className="
-    prose line-clamp-3 prose-xl sm:prose-base max-w-none text-template-text-primary/80
+    prose line-clamp-3 prose-xl sm:prose-lg max-w-none text-template-text-primary/80
     prose-p:text-template-text-primary/80
     prose-strong:text-template-text-primary/80
     prose-h1:text-template-text-primary/80

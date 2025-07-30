@@ -28,7 +28,7 @@ export const PFExperienceItem = ({
           dangerouslySetInnerHTML={{ __html: description }}
         />
       )}
-      <p>{timePeriod}</p>
+      <p className="text-sm text-template-text-secondary/70">{timePeriod}</p>
     </div>
   );
 };

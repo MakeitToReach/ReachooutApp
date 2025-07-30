@@ -43,24 +43,13 @@
       "isHidden": false
     },
     {
-      "type": "testing",
-      "sectionName": "Testing",
-      "data": {
-        "title": "Title",
-        "description": "Description"
-      },
-      "isFixed": false,
-      "isEditable": true,
-      "isHidden": true
-    },
-    {
       "type": "about",
       "sectionName": "About",
       "data": {
         "heading": "About me",
         "title": "Founder of ",
         "colorTitle": "Reachoout",
-        "description": "I'm a passionate developer with a strong focus on building intuitive, scalable web applications. With experience in both frontend and backend technologies, I love bringing ideas to life through clean design and efficient code.",
+        "description": "<p>Hello! I'm Omkar, a passionate developer and the founder of <strong>Reachoout</strong>. My journey in technology began at a young age, and since then, I've dedicated myself to building impactful digital solutions.</p>\n<p>Over the years, I've worked with a diverse range of clients, helping them bring their ideas to life through innovative web applications and user-centric designs. My expertise spans across <strong>full-stack development</strong>, <strong>UI/UX design</strong>, and <strong>CRM consulting</strong>.</p>\n<ul>\n  <li>Founder of Reachoout, a B2B networking platform connecting professionals worldwide.</li>\n  <li>Developed and launched over <strong>15,000 projects</strong> for clients in various industries.</li>\n  <li>Recognized for delivering high-quality solutions and exceptional client service.</li>\n  <li>Skilled in modern frameworks like <strong>Next.js</strong>, <strong>React</strong>, and <strong>Tailwind CSS</strong>.</li>\n  <li>Experienced in building scalable backend systems and RESTful APIs.</li>\n  <li>Proficient in designing intuitive user interfaces that enhance user engagement.</li>\n  <li>Consulted for startups and enterprises to optimize their CRM workflows.</li>\n  <li>Recipient of multiple industry awards for innovation and leadership.</li>\n  <li>Active contributor to open-source projects and tech communities.</li>\n  <li>Mentor to aspiring developers and designers, sharing knowledge and best practices.</li>\n  <li>Always eager to learn new technologies and take on challenging projects.</li>\n</ul>\n<p>When I'm not coding, you can find me exploring new design trends, reading about emerging tech, or collaborating with fellow innovators. Let's connect and create something amazing together!</p>",
         "stats": [
           { "title": "Projects", "value": "15k" },
           { "title": "Clients", "value": "10+" },
@@ -82,7 +71,7 @@
             "heading": "01. Reachoout",
             "subtitle": "B2B Networking Platform",
             "imgUrl": "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque debitis modi molestias officiis? Magnam explicabo sunt quaerat reprehenderit distinctio fugit hic velit, debitis unde adipisci et aspernatur non ratione facere? Blanditiis obcaecati, sapiente quas harum ad recusandae facilis natus aperiam expedita, dignissimos, vitae doloribus voluptatem saepe maxime delectus mollitia accusamus! Ex cum distinctio aut perferendis, id ratione natus amet optio. Voluptates magni, magnam facilis quae dolor adipisci dolorem vitae placeat ipsum est beatae eius ullam vero. Alias ut quod sint quo aspernatur, quia asperiores corporis voluptas eius saepe accusamus quaerat sed est eum nulla obcaecati possimus, amet voluptatibus cum blanditiis.",
+            "description": "<p><strong>Reachoout</strong> is a B2B networking platform designed to connect professionals and businesses worldwide. The platform offers real-time messaging, advanced search, and personalized recommendations to foster meaningful business relationships. Built with <strong>Next.js</strong>, <strong>React</strong>, and <strong>Node.js</strong>, Reachoout features a scalable architecture and a user-friendly interface. Unique aspects include AI-powered matchmaking and robust privacy controls. Targeted at entrepreneurs, recruiters, and business owners, I led the full-stack development, UI/UX design, and deployment of the platform.</p>",
             "btnText": "View Project",
             "btnLink": "#",
             "category": "Full Stack"
@@ -523,11 +512,31 @@
         "phone": "+1 (555) 123-4567",
         "socials": [
           { "title": "X", "btnLink": "https://x.com", "followerCounts": 1000 },
-          { "title": "Linkedin", "btnLink": "https://linkedin.com", "followerCounts": 1000 },
-          { "title": "Github", "btnLink": "https://github.com", "followerCounts": 1000 },
-          { "title": "Instagram", "btnLink": "https://instagram.com", "followerCounts": 1000 },
-          { "title": "Youtube", "btnLink": "https://youtube.com", "followerCounts": 1000 },
-          { "name": "Facebook", "btnLink": "https://facebook.com", "followerCounts": 1000 }
+          {
+            "title": "Linkedin",
+            "btnLink": "https://linkedin.com",
+            "followerCounts": 1000
+          },
+          {
+            "title": "Github",
+            "btnLink": "https://github.com",
+            "followerCounts": 1000
+          },
+          {
+            "title": "Instagram",
+            "btnLink": "https://instagram.com",
+            "followerCounts": 1000
+          },
+          {
+            "title": "Youtube",
+            "btnLink": "https://youtube.com",
+            "followerCounts": 1000
+          },
+          {
+            "name": "Facebook",
+            "btnLink": "https://facebook.com",
+            "followerCounts": 1000
+          }
         ]
       },
       "isFixed": true,

@@ -56,7 +56,7 @@ export const FProjectsSection = ({
               delay: delay * 2,
               ease: "easeOut",
             }}
-            className="text-center line-clamp-4 text-template-text-secondary"
+            className="text-center text-xl sm:text-lg line-clamp-4 text-template-text-secondary"
           >
             {subtitle}
           </m.p>

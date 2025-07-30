@@ -37,7 +37,7 @@ export const FTimelineSection = ({
             delay: delay * 2,
             ease: "easeOut",
           }}
-          className="text-center line-clamp-4 text-template-text-primary/80"
+          className="text-center text-xl sm:text-lg line-clamp-4 text-template-text-primary/80"
         >
           {subtitle}
         </m.p>

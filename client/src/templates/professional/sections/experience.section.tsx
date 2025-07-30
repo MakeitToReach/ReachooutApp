@@ -63,7 +63,7 @@ export const PFExperienceSection = ({
             >
               {/* Animated vertical line */}
               <m.div
-                className="bg-template-accent-primary w-0.5 origin-top"
+                className="bg-template-text-accent-tertiary w-0.5 origin-top"
                 style={{ scaleY }}
               />
               <m.div className="flex flex-col gap-10">

@@ -97,7 +97,7 @@ export const FContactSection = ({
                 ease: "easeOut",
               }}
               className="
-    prose prose-xl sm:prose-base max-w-none text-template-text-primary opacity-60
+    prose prose-xl sm:prose-lg max-w-none text-template-text-primary opacity-60
     prose-p:text-template-text-primary opacity-60
     prose-strong:text-template-text-primary opacity-60
     prose-h1:text-template-text-primary opacity-60
@@ -213,7 +213,7 @@ export const FContactSection = ({
                 ease: "easeOut",
               }}
               className="
-    prose prose-xl sm:prose-base max-w-2xl mx-auto text-template-text-primary opacity-60
+    prose prose-xl sm:prose-lg max-w-2xl mx-auto text-template-text-primary opacity-60
     prose-p:text-template-text-primary opacity-60
     prose-strong:text-template-text-primary opacity-60
     prose-h1:text-template-text-primary opacity-60

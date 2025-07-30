@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/drawer";
 import Image from "next/image";
 import YouTube from "react-youtube";
-import { getYouTubeVideoId } from "@/lib/utils";
+import { cn, getYouTubeVideoId } from "@/lib/utils";
 import { getSocialIconFromRegistry } from "@/lib/utils";
 
 import { PF_PROJECT } from "@/templates/professional/types/workSection";
@@ -188,7 +188,10 @@ export const ViewMoreDrawer = ({
                   alt={`${project?.heading || teamMember?.name}-img`}
                   width={500}
                   height={400}
-                  className="rounded w-full md:h-[400px] object-cover object-center"
+                  className={cn(
+                    "rounded w-full sm:h-[400px] object-cover object-center",
+                    project?.imgUrl && "w-1/2"
+                  )}
                 />
               )
             )}

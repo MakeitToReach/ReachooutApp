@@ -19,7 +19,7 @@ export const PFBlogCard = ({ imgUrl, title, description, btnText, btnLink }: PFB
                 alt="blog-img"
                 width={400}
                 height={240}
-                className="w-full h-[15rem] object-cover"
+                className="w-full h-[15rem] rounded-sm object-cover"
             />
             <div className="space-y-2 text-left">
                 <h2 className="font-semibold sm:text-lg text-2xl tracking-tight line-clamp-2">{title}</h2>
@@ -35,11 +35,12 @@ export const PFBlogCard = ({ imgUrl, title, description, btnText, btnLink }: PFB
     prose-h4:text-template-text-primary
     prose-h5:text-template-text-primary
     prose-h6:text-template-text-primary
+    line-clamp-2
   "
                     dangerouslySetInnerHTML={{ __html: description }}
                 />
                 <ViewMoreDrawer type="Blog" content={blogContent}>
-                    <button className="hover:underline text-xl sm:text-base flex items-center gap-1">Read more <ArrowUpRight size={16} className="text-template-accent-primary" /></button>
+                    <button className="hover:underline text-xl sm:text-base flex items-center gap-1">Read more <ArrowUpRight size={16} className="text-template-text-accent-tertiary" /></button>
                 </ViewMoreDrawer>
             </div>
         </div>

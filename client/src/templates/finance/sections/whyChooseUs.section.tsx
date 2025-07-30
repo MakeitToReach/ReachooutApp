@@ -57,7 +57,7 @@ export const FWhyChooseUsSection = ({
               ease: "easeOut",
             }}
             className="
-    prose prose-xl sm:prose-base max-w-none text-template-text-primary
+    prose prose-xl sm:prose-lg max-w-none text-template-text-primary
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
     prose-h1:text-template-text-primary
