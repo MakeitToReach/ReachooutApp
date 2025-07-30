@@ -91,7 +91,7 @@ export const FHeroSection = ({
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-white sm:text-center sm:w-[40%] w-full"
+          className="text-white sm:text-center text-xl sm:w-[40%] max-w-[90%] w-full"
         >
           {subtitle}
         </m.p>

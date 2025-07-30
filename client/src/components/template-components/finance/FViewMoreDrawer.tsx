@@ -8,10 +8,12 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import Image from "next/image";
+import YouTube from "react-youtube";
+import { cn, getYouTubeVideoId } from "@/lib/utils";
+import { getSocialIconFromRegistry } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { LucideX, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { getSocialIconFromRegistry } from "@/lib/utils";
 
 // Finance template types
 import { F_BLOG } from "@/templates/finance/types/blogs.types";
@@ -39,6 +41,11 @@ export const FViewMoreDrawer = ({
   const catalogService =
     type === "Catalog" ? (content as F_CATLOG_SERVICES) : null;
   const teamMember = type === "Team" ? (content as F_TEAM_MEMBER) : null;
+
+  const videoId = getYouTubeVideoId(
+    project?.vidUrl || catalogService?.vidUrl || ""
+  );
+  const catalogVideoId = getYouTubeVideoId(catalogService?.vidUrl || "");
 
   // Reset image index when drawer opens
   React.useEffect(() => {
@@ -99,20 +106,103 @@ export const FViewMoreDrawer = ({
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {/* Media Section */}
           <div className="flex justify-center">
+            {type === "Catalog" && catalogVideoId ? (
+              <YouTube
+                videoId={catalogVideoId}
+                className="w-full max-w-full aspect-video"
+                iframeClassName="w-full h-full"
+              />
+            ) : videoId ? (
+              <YouTube
+                videoId={videoId}
+                className="w-full max-w-full aspect-video"
+                iframeClassName="w-full h-full"
+              />
+            ) : type === "Catalog" &&
+              catalogService &&
+              catalogService.imgUrls &&
+              catalogService.imgUrls.length > 0 ? (
+              <div className="relative w-full h-[400px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={catalogService.imgUrls[currentImageIndex]}
+                    initial={{ filter: "blur(10px)", opacity: 0 }}
+                    animate={{ filter: "blur(0px)", opacity: 1 }}
+                    exit={{ filter: "blur(10px)", opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="absolute inset-0 w-full h-full"
+                  >
+                    <Image
+                      src={
+                        catalogService.imgUrls[currentImageIndex] ||
+                        "/placeholder.png"
+                      }
+                      alt={`${catalogService.title}-img-${currentImageIndex}`}
+                      fill
+                      className="object-cover rounded"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Navigation buttons for catalog images */}
+                {catalogService.imgUrls.length > 1 && (
+                  <>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/30" />
+                    <div className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20">
+                      <Button
+                        onClick={prevImage}
+                        variant="ghost"
+                        className="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 border border-white/30"
+                      >
+                        <ChevronLeft size={20} />
+                      </Button>
+                    </div>
+                    <div className="absolute top-1/2 right-4 transform -translate-y-1/2 z-20">
+                      <Button
+                        onClick={nextImage}
+                        variant="ghost"
+                        className="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 border border-white/30"
+                      >
+                        <ChevronRight size={20} />
+                      </Button>
+                    </div>
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
+                      <div className="flex gap-2">
+                        {catalogService.imgUrls.map((_, index) => (
+                          <div
+                            key={index}
+                            className={`w-2 h-2 rounded-full transition-colors ${
+                              index === currentImageIndex
+                                ? "bg-white"
+                                : "bg-white/50"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : (
+              !blog &&
+              !service &&
+              !teamMember && (
+                <Image
+                  src={project?.imgUrl || "/placeholder.png"}
+                  alt={`${project?.title}-img`}
+                  width={500}
+                  height={400}
+                  className={cn(
+                    "rounded w-full sm:h-[400px] object-cover object-center"
+                  )}
+                />
+              )
+            )}
+
             {blog && (
               <Image
                 src={blog.imgUrl || "/placeholder.png"}
                 alt={`${blog.title}-img`}
-                width={500}
-                height={400}
-                className="rounded w-full md:h-[400px] object-cover object-center"
-              />
-            )}
-
-            {project && (
-              <Image
-                src={project.imgUrl || "/placeholder.png"}
-                alt={`${project.title}-img`}
                 width={500}
                 height={400}
                 className="rounded w-full md:h-[400px] object-cover object-center"
@@ -128,72 +218,6 @@ export const FViewMoreDrawer = ({
                 className="rounded w-full md:h-[400px] object-cover object-center"
               />
             )}
-
-            {catalogService &&
-              catalogService.imgUrls &&
-              catalogService.imgUrls.length > 0 && (
-                <div className="relative w-full h-[400px]">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={catalogService.imgUrls[currentImageIndex]}
-                      initial={{ filter: "blur(10px)", opacity: 0 }}
-                      animate={{ filter: "blur(0px)", opacity: 1 }}
-                      exit={{ filter: "blur(10px)", opacity: 0 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                      className="absolute inset-0 w-full h-full"
-                    >
-                      <Image
-                        src={
-                          catalogService.imgUrls[currentImageIndex] ||
-                          "/placeholder.png"
-                        }
-                        alt={`${catalogService.title}-img-${currentImageIndex}`}
-                        fill
-                        className="object-cover rounded"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-
-                  {/* Navigation buttons for catalog images */}
-                  {catalogService.imgUrls.length > 1 && (
-                    <>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/30" />
-                      <div className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20">
-                        <Button
-                          onClick={prevImage}
-                          variant="ghost"
-                          className="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 border border-white/30"
-                        >
-                          <ChevronLeft size={20} />
-                        </Button>
-                      </div>
-                      <div className="absolute top-1/2 right-4 transform -translate-y-1/2 z-20">
-                        <Button
-                          onClick={nextImage}
-                          variant="ghost"
-                          className="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 border border-white/30"
-                        >
-                          <ChevronRight size={20} />
-                        </Button>
-                      </div>
-                      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
-                        <div className="flex gap-2">
-                          {catalogService.imgUrls.map((_, index) => (
-                            <div
-                              key={index}
-                              className={`w-2 h-2 rounded-full transition-colors ${
-                                index === currentImageIndex
-                                  ? "bg-white"
-                                  : "bg-white/50"
-                              }`}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-              )}
 
             {teamMember && (
               <Image

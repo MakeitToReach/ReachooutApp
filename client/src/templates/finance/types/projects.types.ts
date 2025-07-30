@@ -4,6 +4,7 @@ export type F_PROJECT = {
     imgUrl: string;
     projectUrl: string;
     category: string;
+    vidUrl?: string;
 }
 export interface F_PROJECTS_SECTION {
     title: string;

@@ -21,7 +21,7 @@ export const FProjectCard = ({
                 className="w-full h-[250px] object-cover"
             />
             <div className="px-6 space-y-1">
-                <h2 className="font-semibold text-lg tracking-tight text-template-text-primary">
+                <h2 className="font-semibold text-xl tracking-tight text-template-text-primary">
                     {title}
                 </h2>
                 <div
@@ -35,6 +35,7 @@ export const FProjectCard = ({
     prose-h4:text-template-text-primary/80
     prose-h5:text-template-text-primary/80
     prose-h6:text-template-text-primary/80
+    line-clamp-6
   "
                     dangerouslySetInnerHTML={{ __html: description }}
                 />
@@ -43,7 +44,7 @@ export const FProjectCard = ({
                 <FViewMoreDrawer type="Project" content={{ imgUrl, title, description, projectUrl, category }}>
                     <Button
                         variant={"link"}
-                        className="flex items-center px-0 text-template-accent-primary font-semibold "
+                        className="flex items-center px-0 text-lg text-template-text-primary font-semibold "
                     >
                         View Details
                     </Button>

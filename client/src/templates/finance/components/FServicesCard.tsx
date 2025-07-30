@@ -25,7 +25,7 @@ export const FServicesCard = ({
                 className="w-full h-[250px] object-cover"
             />
             <div className="px-6 space-y-1">
-                <h2 className="font-semibold text-lg tracking-tight text-template-text-primary">
+                <h2 className="font-semibold text-xl tracking-tight text-template-text-primary">
                     {title}
                 </h2>
                 <div
@@ -47,7 +47,7 @@ export const FServicesCard = ({
                 <FViewMoreDrawer type="Services" content={{ imgUrl, title, description, category: category || "" }}>
                     <Button
                         variant={"link"}
-                        className="flex items-center px-0 text-template-accent-primary font-semibold "
+                        className="flex items-center px-0 text-template-text-primary font-semibold text-xl sm:text-base"
                     >
                         View Details
                     </Button>

@@ -21,8 +21,8 @@ export const FTeamCard = ({
         className="w-full h-[300px] object-cover"
       />
       <div className="px-6 space-y-1 text-template-text-primary">
-        <h2 className="font-semibold text-lg tracking-tight">{name}</h2>
-        <p className="text-xs line-clamp-1 text-template-text-primary/80">
+        <h2 className="font-semibold text-xl tracking-tight">{name}</h2>
+        <p className="text-sm line-clamp-1 text-template-text-primary/80">
           {designation}
         </p>
 
@@ -48,7 +48,7 @@ export const FTeamCard = ({
           type="Team"
           content={{ imgUrl, name, designation, socials, description }}
         >
-          <button className="text-template-accent-primary font-semibold text-sm hover:underline">
+          <button className="text-template-text-primary font-semibold text-lg sm:text-base hover:underline">
             View Profile
           </button>
         </FViewMoreDrawer>

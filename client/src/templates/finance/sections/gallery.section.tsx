@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { F_GALLERY_SECTION } from "../types/gallery.types";
 import { motion as m } from "motion/react";
+import { Lightbox } from "@/components/Lightbox";
 
 const delay = 0.15;
 
@@ -53,14 +54,16 @@ export const FGallerySection = ({
                 delay: delay * 1,
                 ease: "easeOut",
               }}
-              className="sm:h-[55%] h-[20vh] bg-red-400 relative overflow-hidden rounded-xl"
+              className="sm:h-[55%] h-[20vh] bg-zinc-950 relative overflow-hidden rounded-xl"
             >
-              <Image
-                src={imgs[0] || "/placeholder.png"}
-                fill
-                className="object-cover"
-                alt="Image 1"
-              />
+              <Lightbox imageUrl={imgs[0] || "/placeholder.png"}>
+                <Image
+                  src={imgs[0] || "/placeholder.png"}
+                  fill
+                  className="object-cover"
+                  alt="Image 1"
+                />
+              </Lightbox>
             </m.div>
             <m.div
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
@@ -71,14 +74,16 @@ export const FGallerySection = ({
                 delay: delay * 1.5,
                 ease: "easeOut",
               }}
-              className="sm:h-[40%] h-[20vh] bg-red-200 rounded-xl overflow-hidden  relative"
+              className="sm:h-[40%] h-[20vh] bg-zinc-950 rounded-xl overflow-hidden  relative"
             >
-              <Image
-                src={imgs[1] || "/placeholder.png"}
-                fill
-                className="object-cover"
-                alt="Image 1"
-              />
+              <Lightbox imageUrl={imgs[1] || "/placeholder.png"}>
+                <Image
+                  src={imgs[1] || "/placeholder.png"}
+                  fill
+                  className="object-cover"
+                  alt="Image 1"
+                />
+              </Lightbox>
             </m.div>
           </div>
           <div className="space-y-6">
@@ -91,13 +96,16 @@ export const FGallerySection = ({
                 delay: delay * 2,
                 ease: "easeOut",
               }}
-              className="sm:h-[40%] h-[20vh] bg-blue-400 relative overflow-hidden rounded-xl">
-              <Image
-                src={imgs[2] || "/placeholder.png"}
-                fill
-                className="object-cover"
-                alt="Image 1"
-              />
+              className="sm:h-[40%] h-[20vh] bg-zinc-950 relative overflow-hidden rounded-xl"
+            >
+              <Lightbox imageUrl={imgs[2] || "/placeholder.png"}>
+                <Image
+                  src={imgs[2] || "/placeholder.png"}
+                  fill
+                  className="object-cover"
+                  alt="Image 1"
+                />
+              </Lightbox>
             </m.div>
             <m.div
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
@@ -108,13 +116,16 @@ export const FGallerySection = ({
                 delay: delay * 2.5,
                 ease: "easeOut",
               }}
-              className="sm:h-[55%] h-[20vh] bg-blue-200 rounded-xl overflow-hidden relative">
-              <Image
-                src={imgs[3] || "/placeholder.png"}
-                fill
-                className="object-cover"
-                alt="Image 1"
-              />
+              className="sm:h-[55%] h-[20vh] bg-zinc-950 rounded-xl overflow-hidden relative"
+            >
+              <Lightbox imageUrl={imgs[3] || "/placeholder.png"}>
+                <Image
+                  src={imgs[3] || "/placeholder.png"}
+                  fill
+                  className="object-cover"
+                  alt="Image 1"
+                />
+              </Lightbox>
             </m.div>
           </div>
           <div className="space-y-6">
@@ -127,13 +138,16 @@ export const FGallerySection = ({
                 delay: delay * 3,
                 ease: "easeOut",
               }}
-              className="sm:h-[55%] h-[20vh] bg-red-400 relative overflow-hidden rounded-xl">
-              <Image
-                src={imgs[4] || "/placeholder.png"}
-                fill
-                className="object-cover"
-                alt="Image 1"
-              />
+              className="sm:h-[55%] h-[20vh] bg-zinc-950 relative overflow-hidden rounded-xl"
+            >
+              <Lightbox imageUrl={imgs[4] || "/placeholder.png"}>
+                <Image
+                  src={imgs[4] || "/placeholder.png"}
+                  fill
+                  className="object-cover"
+                  alt="Image 1"
+                />
+              </Lightbox>
             </m.div>
             <m.div
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
@@ -144,13 +158,16 @@ export const FGallerySection = ({
                 delay: delay * 3.5,
                 ease: "easeOut",
               }}
-              className="sm:h-[40%] h-[20vh] bg-red-200 rounded-xl overflow-hidden  relative">
-              <Image
-                src={imgs[5] || "/placeholder.png"}
-                fill
-                className="object-cover"
-                alt="Image 1"
-              />
+              className="sm:h-[40%] h-[20vh] bg-zinc-950 rounded-xl overflow-hidden  relative"
+            >
+              <Lightbox imageUrl={imgs[5] || "/placeholder.png"}>
+                <Image
+                  src={imgs[5] || "/placeholder.png"}
+                  fill
+                  className="object-cover"
+                  alt="Image 1"
+                />
+              </Lightbox>
             </m.div>
           </div>
         </div>

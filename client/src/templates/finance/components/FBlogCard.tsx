@@ -29,7 +29,7 @@ export const FBlogCard = ({
         <Badge className="font-semibold w-fit rounded-full bg-template-accent-primary text-template-text-accent-primary px-3 py-1 uppercase">
           {category}
         </Badge>
-        <h2 className="font-semibold line-clamp-2 text-lg tracking-tight text-template-text-primary">
+        <h2 className="font-semibold line-clamp-2 text-xl tracking-tight text-template-text-primary">
           {title}
         </h2>
         <div
@@ -50,10 +50,10 @@ export const FBlogCard = ({
           type="Blog"
           content={{ imgUrl, title, description, category }}
         >
-          <button className="flex items-center hover:underline text-template-accent-primary font-semibold ">
+          <button className="flex items-center hover:underline text-template-text-primary font-semibold ">
             Read More
             <span>
-              <LucideChevronRight />
+              <LucideChevronRight className="text-template-text-accent-primary" />
             </span>
           </button>
         </FViewMoreDrawer>

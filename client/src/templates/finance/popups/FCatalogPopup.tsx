@@ -25,6 +25,7 @@ export function FAddCatalogPopup({ children, onAdd }: FAddCatalogPopupProps) {
         description: "",
         imgUrls: [],
         category: "",
+        vidUrl: "",
     });
     return (
         <Dialog modal={false}>
@@ -68,17 +69,28 @@ export function FAddCatalogPopup({ children, onAdd }: FAddCatalogPopupProps) {
 
                     <div className="space-y-2">
                         <Label>Images</Label>
-                        <MultipleImageInput
-                            onImageAdd={(imgUrl) => {
-                                setItem((prev) => ({ ...prev, imgUrls: [...prev.imgUrls, imgUrl] }));
-                            }}
-                            onImageRemove={(index) => {
-                                setItem((prev) => ({
-                                    ...prev,
-                                    imgUrls: prev.imgUrls.filter((_, i) => i !== index),
-                                }));
-                            }}
-                        />
+                        <div className="flex flex-col md:gap-6 gap-6 w-full">
+                            <MultipleImageInput
+                                onImageAdd={(imgUrl) => {
+                                    setItem((prev) => ({ ...prev, imgUrls: [...prev.imgUrls, imgUrl] }));
+                                }}
+                                onImageRemove={(index) => {
+                                    setItem((prev) => ({
+                                        ...prev,
+                                        imgUrls: prev.imgUrls.filter((_, i) => i !== index),
+                                    }));
+                                }}
+                            />
+                            <h2 className="text-sm font-semibold text-center">OR</h2>
+                            <ReqInput
+                                className="w-full"
+                                label="Video URL"
+                                type="text"
+                                placeholder="https://youtube.com/watch?v=******"
+                                value={item.vidUrl}
+                                onChange={(e) => setItem({ ...item, vidUrl: e.target.value })}
+                            />
+                        </div>
                     </div>
                 </div>
 
@@ -92,6 +104,7 @@ export function FAddCatalogPopup({ children, onAdd }: FAddCatalogPopupProps) {
                                     description: "",
                                     imgUrls: [],
                                     category: "",
+                                    vidUrl: "",
                                 });
                             }}
                         >
@@ -173,18 +186,29 @@ export const FEditCatalogPopup = ({
 
                     <div className="space-y-2">
                         <Label>Images</Label>
-                        <MultipleImageInput
-                            initialImages={formData.imgUrls}
-                            onImageAdd={(imgUrl) => {
-                                setFormData((prev) => ({ ...prev, imgUrls: [...prev.imgUrls, imgUrl] }));
-                            }}
-                            onImageRemove={(index) => {
-                                setFormData((prev) => ({
-                                    ...prev,
-                                    imgUrls: prev.imgUrls.filter((_, i) => i !== index),
-                                }));
-                            }}
-                        />
+                        <div className="flex flex-col md:gap-6 gap-6 w-full">
+                            <MultipleImageInput
+                                initialImages={formData.imgUrls}
+                                onImageAdd={(imgUrl) => {
+                                    setFormData((prev) => ({ ...prev, imgUrls: [...prev.imgUrls, imgUrl] }));
+                                }}
+                                onImageRemove={(index) => {
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        imgUrls: prev.imgUrls.filter((_, i) => i !== index),
+                                    }));
+                                }}
+                            />
+                            <h2 className="text-sm font-semibold text-center">OR</h2>
+                            <ReqInput
+                                className="w-full"
+                                label="Video URL"
+                                type="text"
+                                placeholder="https://youtube.com/watch?v=******"
+                                value={formData.vidUrl}
+                                onChange={(e) => handleChange("vidUrl", e.target.value)}
+                            />
+                        </div>
                     </div>
                 </div>
 

@@ -3,6 +3,9 @@ export type F_CATLOG_SERVICES = {
     description: string;
     imgUrls: string[];
     category: string;
+    btnText?: string;
+    btnLink?: string;
+    vidUrl?: string;
 };
 
 export interface F_SERVICE_CATALOG_SECTION {

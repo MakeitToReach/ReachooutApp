@@ -317,7 +317,34 @@
             "title": "Service 1",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
             "imgUrls": ["/placeholder.png", "https://github.com/shadcn.png"],
-            "category": "Business"
+            "vidUrl": "https://www.youtube.com/watch?v=uDG3LXMNul4",
+            "category": "Business",
+            "btnText": "View Details",
+            "btnLink": "#"
+          },
+          {
+            "title": "Service 1",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+            "imgUrls": ["/placeholder.png", "https://github.com/shadcn.png"],
+            "category": "Business",
+            "btnText": "View Details",
+            "btnLink": "#"
+          },
+          {
+            "title": "Service 1",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+            "imgUrls": ["/placeholder.png", "https://github.com/shadcn.png"],
+            "category": "Business",
+            "btnText": "View Details",
+            "btnLink": "#"
+          },
+          {
+            "title": "Service 1",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+            "imgUrls": ["/placeholder.png", "https://github.com/shadcn.png"],
+            "category": "Business",
+            "btnText": "View Details",
+            "btnLink": "#"
           }
         ]
       },
@@ -433,11 +460,31 @@
         "phone": "+1 (555) 123-4567",
         "socials": [
           { "title": "X", "btnLink": "https://x.com", "followerCounts": 1000 },
-          { "title": "Linkedin", "btnLink": "https://linkedin.com", "followerCounts": 1000 },
-          { "title": "Github", "btnLink": "https://github.com", "followerCounts": 1000 },
-          { "title": "Instagram", "btnLink": "https://instagram.com", "followerCounts": 1000 },
-          { "title": "Youtube", "btnLink": "https://youtube.com", "followerCounts": 1000 },
-          { "name": "Facebook", "btnLink": "https://facebook.com", "followerCounts": 1000 }
+          {
+            "title": "Linkedin",
+            "btnLink": "https://linkedin.com",
+            "followerCounts": 1000
+          },
+          {
+            "title": "Github",
+            "btnLink": "https://github.com",
+            "followerCounts": 1000
+          },
+          {
+            "title": "Instagram",
+            "btnLink": "https://instagram.com",
+            "followerCounts": 1000
+          },
+          {
+            "title": "Youtube",
+            "btnLink": "https://youtube.com",
+            "followerCounts": 1000
+          },
+          {
+            "name": "Facebook",
+            "btnLink": "https://facebook.com",
+            "followerCounts": 1000
+          }
         ]
       },
       "isFixed": true,
