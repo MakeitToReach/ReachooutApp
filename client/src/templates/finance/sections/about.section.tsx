@@ -82,7 +82,7 @@ export const FAboutSection = ({
           >
             {experience && (
               <>
-                <h2 className="font-bold text-7xl  bg-gradient-to-b from-template-primary to-template-accent-primary via-template-accent-primary/10 text-template-text-accent-primary">
+                <h2 className="font-bold text-7xl bg-gradient-to-b from-template-primary to-template-text-accent-tertiary via-template-text-accent-tertiary/10 text-template-text-accent-primary">
                   {experience}
                 </h2>
                 <h3 className="font-extralight sm:text-3xl text-2xl tracking-tighter italic">

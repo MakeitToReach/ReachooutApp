@@ -1,7 +1,15 @@
+
+import { useIsMobile } from "@/hooks/use-mobile";
 import { FButton } from "../components/FButton";
 import { FWhyChooseUsCard } from "../components/FWhyChooseUsCard";
 import { F_WHY_CHOOSE_US_SECTION } from "../types/why-choose-us.types";
-import { motion as m } from "motion/react";
+import {
+  easeOut,
+  motion as m,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import React, { useRef } from "react";
 
 const delay = 0.15;
 
@@ -13,14 +21,35 @@ export const FWhyChooseUsSection = ({
   btnLink,
   badgeText,
 }: F_WHY_CHOOSE_US_SECTION) => {
+  const containerRef = useRef(null);
+
+  // Scroll progress for the section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Transform scroll progress to make left content follow scroll downward
+  const leftContentY = useTransform(scrollYProgress, [0, 0.5, 1], [0, 450, 450], {
+    ease: easeOut,
+  });
+
+  const isMobile = useIsMobile();
+
   return (
     <section
       id="why-choose-us"
-      className="max-w-6xl mx-auto sm:py-20 py-10 px-4 relative"
+      ref={containerRef}
+      className="max-w-6xl mx-auto sm:py-20 py-10 px-4 relative overflow-hidden"
     >
       <div className="flex flex-col sm:flex-row gap-10">
-        {/* text content */}
-        <div className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full text-template-text-primary sticky">
+        {/* Left sticky + animated content */}
+        <m.div
+          style={{
+            y: !isMobile ? leftContentY : 0,
+          }}
+          className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full text-template-text-primary"
+        >
           <m.div
             initial={{ opacity: 0, x: -40, filter: "blur(10px)" }}
             whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
@@ -85,8 +114,9 @@ export const FWhyChooseUsSection = ({
               <FButton btnText={btnText} className="py-7 px-10" />
             </a>
           </m.div>
-        </div>
+        </m.div>
 
+        {/* Right features list */}
         <div className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full">
           {features.map((card, index) => (
             <FWhyChooseUsCard

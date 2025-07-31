@@ -138,6 +138,7 @@ export const FCatalogServicesCard = ({
     prose-h4:text-template-text-primary/80
     prose-h5:text-template-text-primary/80
     prose-h6:text-template-text-primary/80
+    line-clamp-6
   "
           dangerouslySetInnerHTML={{ __html: description }}
         />

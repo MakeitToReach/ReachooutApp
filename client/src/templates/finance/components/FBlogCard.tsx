@@ -17,7 +17,7 @@ export const FBlogCard = ({
   description,
 }: FBlogCardProps) => {
   return (
-    <div className="w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6">
+    <div className="w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6 border border-template-accent-primary/40">
       <Image
         src={imgUrl || "/placeholder.png"}
         alt="blog-img"
@@ -25,7 +25,7 @@ export const FBlogCard = ({
         height={100}
         className="w-full h-[20vh] object-cover"
       />
-      <div className="space-y-1">
+      <div className="space-y-1 px-4">
         <Badge className="font-semibold w-fit rounded-full bg-template-accent-primary text-template-text-accent-primary px-3 py-1 uppercase">
           {category}
         </Badge>

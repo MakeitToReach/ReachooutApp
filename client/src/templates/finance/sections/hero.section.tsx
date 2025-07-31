@@ -78,7 +78,7 @@ export const FHeroSection = ({
           </motion.div>
         </AnimatePresence>
       )}
-      <div className="absolute h-full w-full bg-black/50 flex flex-col gap-3 sm:gap-8 justify-end items-start p-4 sm:p-0 sm:items-center sm:justify-center">
+      <div className="absolute h-full w-full bg-black/60 flex flex-col gap-3 sm:gap-8 justify-end items-start p-4 sm:p-0 sm:items-center sm:justify-center">
         <m.h1
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
