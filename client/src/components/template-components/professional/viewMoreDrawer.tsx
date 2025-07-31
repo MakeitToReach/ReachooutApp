@@ -68,7 +68,7 @@ export const ViewMoreDrawer = ({
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
-    }, 300); // 300ms delay
+    }, 800); // 300ms delay
   };
 
   const nextImage = () => {

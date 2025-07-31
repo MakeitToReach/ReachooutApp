@@ -82,7 +82,7 @@
             "imgUrl": "https://res.cloudinary.com/do0wlwyez/image/upload/v1741188160/qnxm2kk9nhiujmsnyqlm.jpg",
             "description": "A customizable portfolio generator built with Next.js and Tailwind CSS, aimed at helping developers showcase their work online.",
             "btnText": "GitHub Repo",
-            "btnLink": "#",
+            "btnLink": "#blogs",
             "category": "Frontend"
           },
           {
@@ -357,7 +357,7 @@
             ],
             "description": "A customizable portfolio generator built with Next.js and Tailwind CSS, aimed at helping developers showcase their work online.",
             "btnText": "GitHub Repo",
-            "btnLink": "#",
+            "btnLink": "#blogs",
             "category": "Frontend"
           }
         ]
