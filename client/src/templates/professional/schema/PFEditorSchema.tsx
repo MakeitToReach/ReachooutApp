@@ -30,7 +30,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "qrCodeUrl",
         },
         {
-            label: "Menu Options",
+            label: "Edit Menu Options",
             type: "customComponent",
             fieldPath: "sections",
             customComponent: () => <NavbarEditorField />,

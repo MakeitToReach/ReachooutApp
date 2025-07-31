@@ -17,7 +17,7 @@ export const NavbarEditorField = () => {
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="navbar-options">
           <AccordionTrigger>
-            <h1 className="font-semibold text-xl">Menu Options</h1>
+            <h1 className="font-semibold text-xl">Edit Menu Options</h1>
           </AccordionTrigger>
           <AccordionContent className="space-y-2">
             {visibleSections &&
