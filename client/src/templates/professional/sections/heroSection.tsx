@@ -98,7 +98,7 @@ export const PFHeroSection = ({
               />
             )}
           </div>
-          <a href={btnLink} rel="noopener noreferrer" target="_blank">
+          <a href={btnLink}>
             <m.div
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}

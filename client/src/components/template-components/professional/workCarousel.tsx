@@ -164,8 +164,8 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                       </ViewMoreDrawer>
                       <a
                         href={project.btnLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        // target="_blank"
+                        // rel="noopener noreferrer"
                       >
                         <Button className="text-template-text-btn bg-template-btn rounded-sm text-lg hover:bg-template-btn cursor-pointer">
                           {project.btnText}

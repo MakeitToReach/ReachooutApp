@@ -69,10 +69,11 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
             />
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex w-full gap-2">
             <ReqInput
               label="Button Text"
               type="text"
+              className="w-full"
               placeholder="View my project"
               onChange={(e) =>
                 setProject({ ...project, btnText: e.target.value })
@@ -82,6 +83,7 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
             <ReqInput
               label="Button Link"
               type="text"
+              className="w-full"
               placeholder="https://reachoout.com"
               value={project.btnLink}
               onChange={(e) =>

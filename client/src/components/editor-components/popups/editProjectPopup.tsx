@@ -44,7 +44,7 @@ export const EditProjectPopup = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="space-y-4 font-Poppins max-h-[90vh] overflow-y-scroll">
+      <DialogContent className="space-y-4 font-Poppins max-h-[90vh] sm:max-w-[40vw] overflow-y-scroll">
         <DialogHeader>
           <DialogTitle>
             Edit Project {projectIdx !== undefined && `#${projectIdx + 1}`}
@@ -77,6 +77,26 @@ export const EditProjectPopup = ({
               placeholder="Enter your project description"
               height="h-40"
               showToolbar={true}
+            />
+          </div>
+
+          <div className="flex w-full gap-2">
+            <ReqInput
+              label="Button Text"
+              type="text"
+              className="w-full"
+              value={formData.btnText}
+              placeholder="View my project"
+              onChange={(e) => handleChange("btnText", e.target.value)}
+            />
+
+            <ReqInput
+              label="Button Link"
+              type="text"
+              className="w-full"
+              placeholder="https://reachoout.com"
+              value={formData.btnLink}
+              onChange={(e) => handleChange("btnLink", e.target.value)}
             />
           </div>
 
