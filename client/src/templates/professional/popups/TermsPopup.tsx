@@ -20,26 +20,26 @@ export function TermsPopup({ children, content }: TermsPopupProps) {
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-auto"
+                className="max-w-[95vw] font-Poppins max-h-[90vh] overflow-y-auto"
                 onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader>
-                    <DialogTitle className="md:text-2xl">Terms and Conditions</DialogTitle>
+                    <DialogTitle className="text-2xl">Terms and Conditions</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col gap-3">
                     <div 
-                        className="prose prose-sm max-w-none"
+                        className="prose prose-xl sm:prose-lg max-w-none"
                         dangerouslySetInnerHTML={{ __html: content }}
                     />
                 </div>
                 <DialogFooter className="flex gap-2">
                     <DialogClose asChild>
-                        <Button variant="outline">
+                        <Button variant="outline" className="text-lg">
                             I Disagree
                         </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                        <Button>
+                        <Button className="text-lg">
                             I Agree
                         </Button>
                     </DialogClose>
