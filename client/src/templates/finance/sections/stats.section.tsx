@@ -3,6 +3,7 @@ import { LucideArrowRight } from "lucide-react";
 import Image from "next/image";
 import { F_STATS_SECTION } from "../types/stat.types";
 import { motion as m } from "motion/react";
+import { getIconFromRegistry } from "@/lib/utils";
 
 const delay = 0.15;
 
@@ -16,10 +17,10 @@ export const FStatsSection = ({
   btn2Link = "#",
 }: F_STATS_SECTION) => {
   return (
-    <section className="py-10" id="stats">
-      <div className="w-full sm:h-[55vh] min-h-fit flex flex-col items-center justify-center bg-template-secondary rounded-lg overflow-hidden relative px-4">
+    <section id="stats">
+      <div className="w-full min-h-fit flex flex-col items-center justify-center bg-template-secondary rounded-lg overflow-hidden relative px-4 py-10">
         {/* Content container */}
-        <div className="max-w-6xl mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-10 text-template-text-secondary mb-20 sm:mb-0">
+        <div className="max-w-6xl mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-10 text-template-text-secondary mb-20 sm:mb-10">
           {/* Left: Text Content */}
           <div className="flex flex-col gap-10 sm:w-2/3 w-full">
             <m.h2
@@ -31,7 +32,7 @@ export const FStatsSection = ({
                 delay: delay,
                 ease: "easeOut",
               }}
-              className="font-semibold sm:text-5xl text-3xl tracking-tight"
+              className="font-semibold sm:text-5xl text-4xl tracking-tight"
             >
               {heading}
             </m.h2>
@@ -50,12 +51,24 @@ export const FStatsSection = ({
                 className="space-y-2 flex-1"
               >
                 <div>
-                  <h2 className="font-bold text-6xl">{stats[0].statNumber}</h2>
+                  <div className="flex items-center gap-2">
+                    <h2 className="font-bold text-7xl">
+                      {stats[0].statNumber}
+                    </h2>
+                    <span>
+                      {getIconFromRegistry(stats[0].statIcon, {
+                        className:
+                          "sm:size-20 size-16 text-template-text-accent-tertiary",
+                      })}
+                    </span>
+                  </div>
                   <h4 className="italic font-light text-2xl">
                     {stats[0].statText}
                   </h4>
                 </div>
-                <p>{stats[0].statDescription}</p>
+                <p className="text-lg sm:text-base">
+                  {stats[0].statDescription}
+                </p>
               </m.div>
               <m.div
                 initial={{ y: 10, filter: "blur(10px)", scale: 1.2 }}
@@ -69,7 +82,17 @@ export const FStatsSection = ({
                 className="space-y-2 flex-1"
               >
                 <div>
-                  <h2 className="font-bold text-6xl">{stats[1].statNumber}</h2>
+                  <div className="flex items-center gap-2">
+                    <h2 className="font-bold text-7xl">
+                      {stats[1].statNumber}
+                    </h2>
+                    <span>
+                      {getIconFromRegistry(stats[1].statIcon, {
+                        className:
+                          "sm:size-20 size-16 text-template-text-accent-tertiary",
+                      })}
+                    </span>
+                  </div>
                   <h4 className="italic font-light text-2xl">
                     {stats[1].statText}
                   </h4>
@@ -80,13 +103,13 @@ export const FStatsSection = ({
           </div>
 
           {/* Right: Image */}
-          <div className="sm:w-1/3 w-full flex justify-center">
+          <div className="sm:w-1/3 w-full flex justify-center items-center mb-10">
             <Image
               src={imgUrl || "/placeholder.png"}
               width={300}
               height={300}
               alt="stats"
-              className="rounded-lg object-contain"
+              className="rounded-lg max-w-[18vw] object-contain"
             />
           </div>
         </div>

@@ -206,7 +206,7 @@ export const ViewMoreDrawer = ({
                   height={400}
                   className={cn(
                     "rounded w-full sm:h-[400px] object-cover object-center",
-                    project?.imgUrl && "w-1/2"
+                    project?.imgUrl && "sm:w-1/2"
                   )}
                 />
               )
@@ -228,7 +228,7 @@ export const ViewMoreDrawer = ({
         </div>
 
         {/* Fixed Footer Button */}
-        {project && (
+        {project && project.btnText && (
           <div className="p-4 border-t flex justify-start">
             {project?.btnLink?.startsWith("#") ? (
               <Button onClick={() => handleInternalLink(project.btnLink)}>

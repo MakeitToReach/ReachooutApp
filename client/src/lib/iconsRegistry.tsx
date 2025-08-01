@@ -30,6 +30,7 @@ import {
     IconBrandInstagram,
     IconBrandLinkedin,
     IconBrandDribbble,
+    IconArrowUpRight,
 } from "@tabler/icons-react";
 
 import {
@@ -47,6 +48,7 @@ import {
     Layers,
     UploadCloud,
     Archive,
+    TrendingUp,
 } from "lucide-react";
 
 type IconOption = {
@@ -58,6 +60,9 @@ type IconOption = {
 export const ICONS_REGISTRY: IconOption[] = [
     { label: "Cloud", icon: (props) => <IconCloud size={20} {...props} /> },
     { label: "Security", icon: (props) => <IconShield size={20} {...props} /> },
+    { label: "ArrowUpRight", icon: (props) => <IconArrowUpRight size={20} {...props} /> },
+    { label: "TrendingUp", icon: (props) => <TrendingUp size={20} {...props} /> },
+
     {
         label: "Analytics",
         icon: (props) => <IconChartBar size={20} {...props} />,

@@ -11,4 +11,6 @@ export type F_FOOTER_SECTION = {
     phone: string;
     qrCodeUrl?: string;
     socials: F_SOCIAL[]
+    privacyPolicyContent?: string;
+    termsAndConditionsContent?: string;
 };

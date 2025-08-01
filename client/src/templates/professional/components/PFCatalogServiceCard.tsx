@@ -139,19 +139,22 @@ export const PFCatalogServicesCard = ({
                     "
           dangerouslySetInnerHTML={{ __html: description }}
         />
-        <ViewMoreDrawer type="CatalogService" content={catalogServiceContent}>
-          <Button className="self-start bg-transparent border border-template-text-primary/30 text-template-text-primary rounded-sm hover:bg-transparent cursor-pointer">
-            View Details
-            <ArrowUpRight size={16} className="ml-1" />
-          </Button>
-        </ViewMoreDrawer>
-        {btnLink && (
-          <a href={btnLink} target="_blank" rel="noopener noreferrer">
-            <Button className="bg-transparent border border-template-text-primary/30 text-template-text-primary rounded-sm hover:bg-transparent cursor-pointer">
-              {btnText}
+        <div className="flex gap-2">
+          <ViewMoreDrawer type="CatalogService" content={catalogServiceContent}>
+            {/* <Button className="self-start bg-template-text-primary border text-template-primary rounded-sm hover:bg-transparent cursor-pointer"> */}
+            <Button className="self-start text-template-text-btn bg-template-btn rounded-sm text-lg hover:bg-template-btn cursor-pointer">
+              View Details
+              <ArrowUpRight size={16} />
             </Button>
-          </a>
-        )}
+          </ViewMoreDrawer>
+          {btnLink && (
+            <a href={btnLink} target="_blank" rel="noopener noreferrer">
+              <Button className="text-template-btn bg-template-text-btn rounded-sm text-lg hover:bg-template-text-btn/80 cursor-pointer flex items-center gap-2 border border-template-btn/40">
+                <span className="flex items-center">{btnText}</span>
+              </Button>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );

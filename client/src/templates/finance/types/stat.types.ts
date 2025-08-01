@@ -2,6 +2,7 @@ export type F_STAT = {
     statNumber: string;
     statText: string;
     statDescription: string;
+    statIcon: string;
 }
 export interface F_STATS_SECTION {
     heading: string;

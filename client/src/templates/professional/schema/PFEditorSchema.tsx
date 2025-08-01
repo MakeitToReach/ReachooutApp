@@ -400,6 +400,16 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
                 <FooterEditorField value={value || []} onChange={onChange} />
             ),
         },
+        {
+            label: "Privacy policy",
+            type: "RTEditor",
+            fieldPath: "privacyPolicyContent",
+        },
+        {
+            label: "Terms and conditions",
+            type: "RTEditor",
+            fieldPath: "termsAndConditionsContent",
+        },
     ],
     contact: [
         {

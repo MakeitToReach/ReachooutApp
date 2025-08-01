@@ -545,5 +545,15 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         <FooterEditorField value={value || []} onChange={onChange} />
       ),
     },
+    {
+      label: "Privacy Policy",
+      type: "RTEditor",
+      fieldPath: "privacyPolicyContent",
+    },
+    {
+      label: "Terms and Conditions",
+      type: "RTEditor",
+      fieldPath: "termsAndConditionsContent",
+    },
   ],
 };

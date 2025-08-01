@@ -81,7 +81,6 @@
         "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque velit blanditiis quas libero veniam, eum voluptates ab provident accusamus ipsum hic beatae perspiciatis, sed repellat doloribus inventore illo voluptate, eaque est impedit aperiam tempore fugiat? Nisi voluptatibus veritatis eligendi iste?",
         "imgUrl": "https://reachooutassets.s3.ap-south-1.amazonaws.com/static/placeholder.png",
         "btnText": "Learn More",
-        "btnLink": "#",
         "experience": "30+"
       },
       "isFixed": false,
@@ -317,7 +316,6 @@
             "title": "Service 1",
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
             "imgUrls": ["/placeholder.png", "https://github.com/shadcn.png"],
-            "vidUrl": "https://www.youtube.com/watch?v=uDG3LXMNul4",
             "category": "Business",
             "btnText": "View Details",
             "btnLink": "#"
@@ -406,12 +404,14 @@
           {
             "statNumber": "10+",
             "statText": "Years of Experience",
-            "statDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."
+            "statDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+            "statIcon": "TrendingUp"
           },
           {
             "statNumber": "15+",
             "statText": "Clients Served",
-            "statDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos."
+            "statDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+            "statIcon": "TrendingUp"
           }
         ],
         "imgUrl": "/placeholder.png",
@@ -459,33 +459,30 @@
         "email": "omkar@reachoout.com",
         "phone": "+1 (555) 123-4567",
         "socials": [
-          { "title": "X", "btnLink": "https://x.com", "followerCounts": 1000 },
+          { "name": "X", "url": "https://x.com" },
           {
-            "title": "Linkedin",
-            "btnLink": "https://linkedin.com",
-            "followerCounts": 1000
+            "name": "Linkedin",
+            "url": "https://linkedin.com"
           },
           {
-            "title": "Github",
-            "btnLink": "https://github.com",
-            "followerCounts": 1000
+            "name": "Github",
+            "url": "https://github.com"
           },
           {
-            "title": "Instagram",
-            "btnLink": "https://instagram.com",
-            "followerCounts": 1000
+            "name": "Instagram",
+            "url": "https://instagram.com"
           },
           {
-            "title": "Youtube",
-            "btnLink": "https://youtube.com",
-            "followerCounts": 1000
+            "name": "Youtube",
+            "url": "https://youtube.com"
           },
           {
             "name": "Facebook",
-            "btnLink": "https://facebook.com",
-            "followerCounts": 1000
+            "url": "https://facebook.com"
           }
-        ]
+        ],
+        "privacyPolicyContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia.",
+        "termsAndConditionsContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia."
       },
       "isFixed": true,
       "isEditable": true,

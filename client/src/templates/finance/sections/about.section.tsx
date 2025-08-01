@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FButton } from "../components/FButton";
 import { F_ABOUT_SECTION } from "../types/about.types";
 import { motion as m } from "motion/react";
+import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
 
 const delay = 0.15;
 
@@ -11,9 +12,13 @@ export const FAboutSection = ({
   description,
   imgUrl,
   btnText,
-  btnLink,
   experience,
 }: F_ABOUT_SECTION) => {
+  const aboutContent = {
+    title,
+    description,
+    imgUrl,
+  };
   return (
     <section id="about" className="max-w-6xl mx-auto sm:py-20 py-10 px-4">
       <div className="flex flex-col sm:flex-row justify-between gap-10">
@@ -103,9 +108,12 @@ export const FAboutSection = ({
             }}
             className="flex gap-10 items-center"
           >
-            <a href={btnLink}>
+            <FViewMoreDrawer
+              type="About"
+              content={aboutContent as F_ABOUT_SECTION}
+            >
               <FButton btnText={btnText} className="py-7 px-10" />
-            </a>
+            </FViewMoreDrawer>
           </m.div>
         </div>
 

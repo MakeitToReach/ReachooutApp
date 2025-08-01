@@ -4,6 +4,5 @@ export interface F_ABOUT_SECTION {
     description: string;
     imgUrl: string;
     btnText: string;
-    btnLink: string;
     experience: string;
 }

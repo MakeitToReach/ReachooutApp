@@ -21,11 +21,12 @@ import { F_PROJECT } from "@/templates/finance/types/projects.types";
 import { F_SERVICE } from "@/templates/finance/types/services.types";
 import { F_CATLOG_SERVICES } from "@/templates/finance/types/service-catalog.types";
 import { F_TEAM_MEMBER } from "@/templates/finance/types/team.types";
+import { F_ABOUT_SECTION } from "@/templates/finance/types/about.types";
 
 interface FViewMoreDrawerProps {
   children: React.ReactNode;
-  content: F_BLOG | F_PROJECT | F_SERVICE | F_CATLOG_SERVICES | F_TEAM_MEMBER;
-  type: "Blog" | "Project" | "Services" | "Catalog" | "Team";
+  content: F_BLOG | F_PROJECT | F_SERVICE | F_CATLOG_SERVICES | F_TEAM_MEMBER | F_ABOUT_SECTION;
+  type: "Blog" | "Project" | "Services" | "Catalog" | "Team"| "About";
 }
 
 export const FViewMoreDrawer = ({
@@ -41,6 +42,7 @@ export const FViewMoreDrawer = ({
   const catalogService =
     type === "Catalog" ? (content as F_CATLOG_SERVICES) : null;
   const teamMember = type === "Team" ? (content as F_TEAM_MEMBER) : null;
+  const aboutSection = type === "About" ? (content as F_ABOUT_SECTION) : null;
 
   const videoId = getYouTubeVideoId(
     project?.vidUrl || catalogService?.vidUrl || ""
@@ -81,7 +83,8 @@ export const FViewMoreDrawer = ({
                 project?.title ||
                 service?.title ||
                 catalogService?.title ||
-                teamMember?.name}
+                teamMember?.name ||
+                aboutSection?.title}
             </span>
             {teamMember && (
               <span className="text-left text-sm font-light">
@@ -186,7 +189,8 @@ export const FViewMoreDrawer = ({
             ) : (
               !blog &&
               !service &&
-              !teamMember && (
+              !teamMember &&
+              !aboutSection && (
                 <Image
                   src={project?.imgUrl || "/placeholder.png"}
                   alt={`${project?.title}-img`}
@@ -228,12 +232,22 @@ export const FViewMoreDrawer = ({
                 className="rounded w-full md:h-[400px] object-cover object-center"
               />
             )}
+
+            {aboutSection && (
+              <Image
+                src={aboutSection.imgUrl || "/placeholder.png"}
+                alt={`${aboutSection.title}-img`}
+                width={500}
+                height={400}
+                className="rounded w-full md:h-[400px] object-cover object-center"
+              />
+            )}
           </div>
 
           {/* Description Section */}
           <div className="space-y-4">
             <div
-              className="prose prose-sm max-w-none"
+              className="prose prose-base max-w-none"
               dangerouslySetInnerHTML={{
                 __html:
                   blog?.description ||
@@ -241,6 +255,7 @@ export const FViewMoreDrawer = ({
                   service?.description ||
                   catalogService?.description ||
                   teamMember?.description ||
+                  aboutSection?.description ||
                   "",
               }}
             />

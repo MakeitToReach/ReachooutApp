@@ -1,6 +1,7 @@
 import { getSocialIconFromRegistry } from "@/lib/utils";
 import { F_FOOTER_SECTION } from "../types/footer.types";
-import QRCodePopup from "@/components/editor-components/popups/QRCodePopup";
+import { TermsPopup } from "@/templates/professional/popups/TermsPopup";
+import { PrivacyPolicyPopup } from "@/templates/professional/popups/PrivacyPolicyPopup";
 
 export const FFooterSection = ({
   logoText,
@@ -10,9 +11,9 @@ export const FFooterSection = ({
   email,
   phone,
   socials,
-  qrCodeUrl,
+  privacyPolicyContent,
+  termsAndConditionsContent,
 }: F_FOOTER_SECTION) => {
-//   const [qrPopupOpen, setQrPopupOpen] = useState(false);
   return (
     <footer
       id="footer"
@@ -72,7 +73,7 @@ export const FFooterSection = ({
           {/* Right Section - Socials */}
           <div className="flex justify-end ">
             <div className="flex flex-col items-start">
-              <h3 className="text-xl font-semibold mb-4">Connect with Me</h3>
+              <h3 className="text-xl font-semibold mb-2">Connect with Me</h3>
               <div className="flex gap-4">
                 {socials
                   .filter((social) => social.url)
@@ -90,13 +91,20 @@ export const FFooterSection = ({
                     );
                   })}
               </div>
-              <QRCodePopup value={qrCodeUrl || window?.location?.href}>
-                <button
-                  className="text-template-text-secondary/50 hover:text-white transition-colors"
-                >
-                  View QR Code
-                </button>
-              </QRCodePopup>
+              {privacyPolicyContent && (
+                <PrivacyPolicyPopup content={privacyPolicyContent}>
+                  <p className="text-template-text-secondary/50 mt-2 hover:text-white transition-colors">
+                    Privacy Policy
+                  </p>
+                </PrivacyPolicyPopup>
+              )}
+              {termsAndConditionsContent && (
+                <TermsPopup content={termsAndConditionsContent}>
+                  <p className="text-template-text-secondary/50 mt-2 hover:text-white transition-colors">
+                    Terms and Conditions
+                  </p>
+                </TermsPopup>
+              )}
             </div>
           </div>
         </div>

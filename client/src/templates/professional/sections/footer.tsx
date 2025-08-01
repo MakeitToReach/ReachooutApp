@@ -1,6 +1,7 @@
 import { getSocialIconFromRegistry } from "@/lib/utils";
 import { PF_FOOTER_SECTION } from "../types/footer.types";
-import QRCodePopup from "@/components/editor-components/popups/QRCodePopup";
+import { PrivacyPolicyPopup } from "../popups/PrivacyPolicyPopup";
+import { TermsPopup } from "../popups/TermsPopup";
 
 export const PFFooter = ({
   logoText,
@@ -10,9 +11,9 @@ export const PFFooter = ({
   email,
   phone,
   socials,
-  qrCodeUrl,
+  privacyPolicyContent,
+  termsAndConditionsContent,
 }: PF_FOOTER_SECTION) => {
-//   const [qrPopupOpen, setQrPopupOpen] = useState(false);
   return (
     <footer
       id="footer"
@@ -50,7 +51,9 @@ export const PFFooter = ({
           {/* Middle Section - Contact Info */}
           <div className="flex-1">
             <h3 className="text-xl font-semibold mb-2">Contact Info</h3>
-            <p className="text-template-text-secondary/50 text-base">{address}</p>
+            <p className="text-template-text-secondary/50 text-base">
+              {address}
+            </p>
             <p className="text-template-text-secondary/50 text-base mt-2">
               <a
                 href={`mailto:${email}`}
@@ -72,7 +75,7 @@ export const PFFooter = ({
           {/* Right Section - Socials */}
           <div className="flex justify-end ">
             <div className="flex flex-col items-start">
-              <h3 className="text-xl font-semibold mb-4">Connect with Me</h3>
+              <h3 className="text-xl font-semibold mb-2">Connect with Me</h3>
               <div className="flex gap-4">
                 {socials
                   .filter((social) => social.url)
@@ -90,13 +93,20 @@ export const PFFooter = ({
                     );
                   })}
               </div>
-              <QRCodePopup value={qrCodeUrl || window?.location?.href}>
-                <button
-                  className="text-template-text-secondary/50 hover:text-white transition-colors"
-                >
-                  View QR Code
-                </button>
-              </QRCodePopup>
+              {privacyPolicyContent && (
+                <PrivacyPolicyPopup content={privacyPolicyContent}>
+                  <p className="text-template-text-secondary/50 mt-2 hover:text-white transition-colors">
+                    Privacy Policy
+                  </p>
+                </PrivacyPolicyPopup>
+              )}
+              {termsAndConditionsContent && (
+                <TermsPopup content={termsAndConditionsContent}>
+                  <p className="text-template-text-secondary/50 mt-2 hover:text-white transition-colors">
+                    Terms and Conditions
+                  </p>
+                </TermsPopup>
+              )}
             </div>
           </div>
         </div>
