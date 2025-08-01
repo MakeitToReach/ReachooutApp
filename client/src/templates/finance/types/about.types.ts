@@ -3,6 +3,7 @@ export interface F_ABOUT_SECTION {
     title: string;
     description: string;
     imgUrl: string;
+    vidUrl?: string;
     btnText: string;
     experience: string;
 }

@@ -53,9 +53,16 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
   ],
   hero: [
     {
-      label: "Image",
-      type: "multiple-images",
-      fieldPath: "imgUrls",
+      label: "Video URL",
+      type: "multiImg-video",
+      fieldPath: "imgUrl",
+      fieldPathImg: "imgUrls",
+      fieldPathVid: "vidUrl",
+    },
+    {
+      label: "Brand Heading",
+      type: "text",
+      fieldPath: "subheading",
     },
     {
       label: "Title",
@@ -130,9 +137,11 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       ],
     },
     {
-      label: "Image",
-      type: "image",
+      label: "Video URL",
+      type: "image-video",
       fieldPath: "imgUrl",
+      fieldPathVid: "vidUrl",
+      fieldPathImg: "imgUrl",
     },
   ],
 

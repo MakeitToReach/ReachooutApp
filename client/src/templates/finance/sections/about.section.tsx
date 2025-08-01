@@ -1,8 +1,9 @@
-import Image from "next/image";
 import { FButton } from "../components/FButton";
 import { F_ABOUT_SECTION } from "../types/about.types";
 import { motion as m } from "motion/react";
 import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
+import { ImageVideo } from "@/components/ImageVideo";
+import { getYouTubeVideoId } from "@/lib/utils";
 
 const delay = 0.15;
 
@@ -11,6 +12,7 @@ export const FAboutSection = ({
   title,
   description,
   imgUrl,
+  vidUrl,
   btnText,
   experience,
 }: F_ABOUT_SECTION) => {
@@ -18,7 +20,13 @@ export const FAboutSection = ({
     title,
     description,
     imgUrl,
+    vidUrl,
   };
+
+  // Check if video should be displayed
+  const videoId = getYouTubeVideoId(vidUrl);
+  const showVideo = Boolean(videoId);
+
   return (
     <section id="about" className="max-w-6xl mx-auto sm:py-20 py-10 px-4">
       <div className="flex flex-col sm:flex-row justify-between gap-10">
@@ -117,16 +125,23 @@ export const FAboutSection = ({
           </m.div>
         </div>
 
-        <div className="self-end relative w-full max-w-[420px] mx-auto sm:h-[500px] h-[400px]">
-          <div className="absolute inset-0 w-full h-full overflow-hidden drop-shadow-xl rounded-2xl">
-            <Image
-              src={imgUrl}
+        <div className={`self-center relative w-full mx-auto ${
+          showVideo 
+            ? "max-w-[600px] aspect-video" 
+            : "max-w-[420px] sm:h-[500px] h-[400px]"
+        }`}>
+          <div className={`absolute inset-0 w-full h-full overflow-hidden drop-shadow-xl rounded-2xl ${
+            showVideo ? "aspect-video" : ""
+          }`}>
+            <ImageVideo
+              imgUrl={imgUrl}
+              vidUrl={vidUrl}
               alt="Profile"
-              fill
-              style={{
-                objectFit: "cover",
-              }}
-              priority
+              width={showVideo ? 600 : 420}
+              height={showVideo ? 337 : 500}
+              imageClassName="w-full h-full object-cover"
+              embedClassName="w-full h-full"
+              iframeClassName="w-full h-full"
             />
           </div>
         </div>

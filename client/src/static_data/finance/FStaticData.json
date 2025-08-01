@@ -100,6 +100,36 @@
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
             "category": "Business",
             "imgUrl": "/placeholder.png"
+          },
+          {
+            "title": "Service 1",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
+            "category": "Business",
+            "imgUrl": "/placeholder.png"
+          },
+          {
+            "title": "Service 1",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
+            "category": "Business",
+            "imgUrl": "/placeholder.png"
+          },
+          {
+            "title": "Service 1",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
+            "category": "Business",
+            "imgUrl": "/placeholder.png"
+          },
+          {
+            "title": "Service 1",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
+            "category": "Business",
+            "imgUrl": "/placeholder.png"
+          },
+          {
+            "title": "Service 1",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officiis facere qui quisquam at molestiae incidunt vel totam expedita nihil.",
+            "category": "Business",
+            "imgUrl": "/placeholder.png"
           }
         ]
       },
@@ -149,6 +179,70 @@
       "data": {
         "heading": "Meet the professionals full of expertise and dedication",
         "team": [
+          {
+            "imgUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "name": "Laura Mitchell",
+            "designation": "CEO & Founder",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. A unde voluptatibus fugiat alias earum itaque. Minus rem officia aliquam eos.",
+            "socials": [
+              {
+                "name": "X",
+                "url": "https://x.com"
+              },
+              {
+                "name": "Linkedin",
+                "url": "https://linkedin.com"
+              }
+            ]
+          },
+          {
+            "imgUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "name": "Laura Mitchell",
+            "designation": "CEO & Founder",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. A unde voluptatibus fugiat alias earum itaque. Minus rem officia aliquam eos.",
+            "socials": [
+              {
+                "name": "X",
+                "url": "https://x.com"
+              },
+              {
+                "name": "Linkedin",
+                "url": "https://linkedin.com"
+              }
+            ]
+          },
+          {
+            "imgUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "name": "Laura Mitchell",
+            "designation": "CEO & Founder",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. A unde voluptatibus fugiat alias earum itaque. Minus rem officia aliquam eos.",
+            "socials": [
+              {
+                "name": "X",
+                "url": "https://x.com"
+              },
+              {
+                "name": "Linkedin",
+                "url": "https://linkedin.com"
+              }
+            ]
+          },
+          {
+            "imgUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "name": "Laura Mitchell",
+            "designation": "CEO & Founder",
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. A unde voluptatibus fugiat alias earum itaque. Minus rem officia aliquam eos.",
+            "socials": [
+              {
+                "name": "X",
+                "url": "https://x.com"
+              },
+              {
+                "name": "Linkedin",
+                "url": "https://linkedin.com"
+              }
+            ]
+          },
           {
             "imgUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "name": "Laura Mitchell",
@@ -235,6 +329,37 @@
         "title": "Proudly Showcase the diverse range of projects",
         "subtitle": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure repudiandae esse facere recusandae laudantium iste quam hic, similique placeat excepturi?",
         "projects": [
+          {
+            "title": "Project 1",
+            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+            "imgUrl": "/placeholder.png",
+            "vidUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "projectUrl": "#",
+            "category": "Business",
+            "btnText": "View Project",
+            "btnLink": "#"
+          },
+          {
+            "title": "Project 1",
+            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+            "imgUrl": "/placeholder.png",
+            "projectUrl": "#",
+            "category": "Business"
+          },
+          {
+            "title": "Project 1",
+            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+            "imgUrl": "/placeholder.png",
+            "projectUrl": "#",
+            "category": "Business"
+          },
+          {
+            "title": "Project 1",
+            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
+            "imgUrl": "/placeholder.png",
+            "projectUrl": "#",
+            "category": "Business"
+          },
           {
             "title": "Project 1",
             "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",

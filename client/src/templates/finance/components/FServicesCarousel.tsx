@@ -14,7 +14,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export const FServicesCarousel = ({ services }: { services: F_SERVICE[] }) => {
     const [selectedCategory, setSelectedCategory] = useState("All");
 
-const categories = ["All", ...Array.from(new Set(services.map(service => service.category)))];
+    const categories = ["All", ...Array.from(new Set(services.map(service => service.category)))];
 
     const filteredServices =
         selectedCategory === "All"
@@ -22,7 +22,7 @@ const categories = ["All", ...Array.from(new Set(services.map(service => service
             : services.filter((service) => service.category === selectedCategory);
 
     return (
-        <div>
+        <div className="w-full overflow-x-visible">
             {/* categories */}
             <div className="flex flex-wrap justify-start gap-3 mb-12">
                 {categories.map((category) => (
@@ -39,20 +39,19 @@ const categories = ["All", ...Array.from(new Set(services.map(service => service
                     </Badge>
                 ))}
             </div>
-            <div className="relative w-full">
+            <div className="relative">
                 <Carousel
                     opts={{
                         align: "start",
                         loop: true,
                     }}
-                    className="w-full"
+                    className="w-[85vw]"
                 >
                     <CarouselContent className="md:-ml-4">
                         {filteredServices.map((service, idx) => (
                             <CarouselItem
                                 key={idx}
-                                // className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-                                className="sm:basis-1/6 gap-2 basis-1/1"
+                                className="sm:basis-1/4 basis-1/1"
                             >
                                 <FServicesCard {...service} />
                             </CarouselItem>

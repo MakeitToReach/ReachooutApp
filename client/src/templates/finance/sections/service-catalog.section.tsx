@@ -55,7 +55,7 @@ export const FServiceCatalogSection = ({
               {subtitle}
             </m.h4>
           </div>
-          <div className="sm:w-[130vw] rounded-lg">
+          <div className="rounded-lg ">
             <FCatalogServicesCarousel catalogServices={catalogServices} />
           </div>
         </div>

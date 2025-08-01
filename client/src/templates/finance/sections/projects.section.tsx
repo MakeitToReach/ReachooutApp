@@ -32,7 +32,10 @@ export const FProjectsSection = ({
 
   return (
     <section className="py-20">
-      <div id="projects" className="w-full rounded-lg bg-template-secondary overflow-hidden px-6 py-4">
+      <div
+        id="projects"
+        className="w-full rounded-lg bg-template-secondary overflow-hidden px-6 py-4"
+      >
         <div className="max-w-6xl mx-auto h-full text-white my-10 space-y-8 overflow-x-visible">
           <m.h2
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
@@ -60,7 +63,7 @@ export const FProjectsSection = ({
           >
             {subtitle}
           </m.p>
-          <div className="sm:w-[130vw] rounded-lg">
+          <div className="rounded-lg">
             <m.div
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -95,14 +98,14 @@ export const FProjectsSection = ({
                   align: "start",
                   loop: true,
                 }}
-                className="w-full"
+                className="w-[90vw]"
               >
                 <CarouselContent className="md:-ml-4">
                   {filteredProjects.map((project, idx) => (
                     <CarouselItem
                       key={idx}
                       // className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-                      className="sm:basis-1/3 basis-1/1"
+                      className="sm:basis-1/4 basis-1/1"
                     >
                       <m.div
                         initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}

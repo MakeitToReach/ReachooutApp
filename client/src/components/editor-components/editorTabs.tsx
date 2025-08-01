@@ -242,6 +242,7 @@ export const EditorTabs = ({
                             setSectionField(section, field.fieldPathImg ?? "", updatedImages);
                           }}
                         />
+                        <h1 className="text-xs md:text-lg text-center">OR</h1>
                         {/* Video Input */}
                         <ReqInput
                           className="w-full"

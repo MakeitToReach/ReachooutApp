@@ -31,7 +31,7 @@ export const FCatalogServicesCarousel = ({
         );
 
   return (
-    <div>
+    <div className="w-full overflow-x-visible">
       {/* categories */}
       <div className="flex flex-wrap justify-start gap-3 mb-12">
         {categories.map((category) => (
@@ -49,21 +49,17 @@ export const FCatalogServicesCarousel = ({
           </Badge>
         ))}
       </div>
-      <div className="relative w-full">
+      <div className="relative">
         <Carousel
           opts={{
             align: "start",
             loop: true,
           }}
-          className="w-full overflow-visible"
+          className="w-[80vw]"
         >
-          <CarouselContent className="md:-ml-4 overflow-visible w-full">
+          <CarouselContent className="">
             {filteredServices.map((service, idx) => (
-              <CarouselItem
-                key={idx}
-                // className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-                className="sm:basis-1/3 sm:-mr-[17vw]  basis-1/1"
-              >
+              <CarouselItem key={idx} className="basis-1/1 sm:basis-1/3">
                 <FCatalogServicesCard {...service} />
               </CarouselItem>
             ))}
