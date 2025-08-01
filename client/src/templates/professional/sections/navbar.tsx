@@ -71,7 +71,7 @@ export const PFNavbar = ({
             alt="logo"
             width={100}
             height={100}
-            className="sm:w-[140px] sm:h-[48px] w-[100px] h-[36px] object-contain my-2"
+            className="sm:w-[150px] sm:h-[58px] object-left w-[110px] h-[46px] object-contain my-2"
           />
         )}
 

@@ -155,7 +155,7 @@ export const FViewMoreDrawer = ({
                       <Button
                         onClick={prevImage}
                         variant="ghost"
-                        className="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 border border-white/30"
+                        className="p-2 rounded-full bg-white/80 text-black hover:bg-white/30 border border-white/30"
                       >
                         <ChevronLeft size={20} />
                       </Button>
@@ -164,7 +164,7 @@ export const FViewMoreDrawer = ({
                       <Button
                         onClick={nextImage}
                         variant="ghost"
-                        className="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 border border-white/30"
+                        className="p-2 rounded-full bg-white/80 text-black hover:bg-white/30 border border-white/30"
                       >
                         <ChevronRight size={20} />
                       </Button>

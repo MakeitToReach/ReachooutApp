@@ -17,7 +17,7 @@ export const FBlogCard = ({
   description,
 }: FBlogCardProps) => {
   return (
-    <div className="w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6 border border-template-accent-primary/40">
+    <div className="w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6 border border-template-accent-primary">
       <Image
         src={imgUrl || "/placeholder.png"}
         alt="blog-img"
@@ -53,7 +53,7 @@ export const FBlogCard = ({
           <button className="flex items-center hover:underline text-template-text-primary font-semibold ">
             Read More
             <span>
-              <LucideChevronRight className="text-template-text-accent-primary" />
+              <LucideChevronRight className="text-template-text-accent-tertiary" />
             </span>
           </button>
         </FViewMoreDrawer>

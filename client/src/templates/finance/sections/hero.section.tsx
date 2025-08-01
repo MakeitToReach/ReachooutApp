@@ -10,6 +10,7 @@ export const FHeroSection = ({
   imgUrls,
   title,
   subtitle,
+  subheading,
   btnText,
   btnLink,
   vidUrl,
@@ -78,12 +79,17 @@ export const FHeroSection = ({
           </motion.div>
         </AnimatePresence>
       )}
-      <div className="absolute h-full w-full bg-black/60 flex flex-col gap-3 sm:gap-8 justify-end items-start p-4 sm:p-0 sm:items-center sm:justify-center">
+      <div className="absolute h-full w-full bg-black/60 flex flex-col gap-3 sm:gap-8 justify-end items-start p-5 sm:p-0 sm:items-center sm:justify-center">
+        {subheading && (
+          <p className="text-2xl font-semibold text-template-text-accent-tertiary">
+            {subheading}
+          </p>
+        )}
         <m.h1
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="font-semibold sm:text-6xl text-3xl tracking-tight text-white sm:text-center sm:w-[40%] w-full"
+          className="font-semibold sm:text-6xl text-3xl tracking-tight text-white sm:text-center sm:w-[60%]  w-full"
         >
           {title}
         </m.h1>
@@ -103,7 +109,7 @@ export const FHeroSection = ({
           <a href={btnLink}>
             <FButton
               btnText={btnText}
-              className="py-7 dark px-10 text-black bg-white"
+              className="py-6 dark px-10 text-black bg-white"
             />
           </a>
         </m.div>

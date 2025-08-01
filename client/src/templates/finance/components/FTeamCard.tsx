@@ -49,7 +49,7 @@ export const FTeamCard = ({
           content={{ imgUrl, name, designation, socials, description }}
         >
           <button className="text-template-text-primary font-semibold text-lg sm:text-base hover:underline">
-            View Profile
+            View Details
           </button>
         </FViewMoreDrawer>
       </div>

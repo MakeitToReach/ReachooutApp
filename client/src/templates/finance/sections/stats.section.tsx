@@ -58,7 +58,7 @@ export const FStatsSection = ({
                     <span>
                       {getIconFromRegistry(stats[0].statIcon, {
                         className:
-                          "sm:size-20 size-16 text-template-text-accent-tertiary",
+                          "sm:size-18 size-16 text-template-text-accent-tertiary",
                       })}
                     </span>
                   </div>
@@ -89,7 +89,7 @@ export const FStatsSection = ({
                     <span>
                       {getIconFromRegistry(stats[1].statIcon, {
                         className:
-                          "sm:size-20 size-16 text-template-text-accent-tertiary",
+                          "sm:size-18 size-16 text-template-text-accent-tertiary",
                       })}
                     </span>
                   </div>

@@ -161,7 +161,7 @@ export const ViewMoreDrawer = ({
                       <Button
                         onClick={prevImage}
                         variant="ghost"
-                        className="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 border border-white/30"
+                        className="p-2 rounded-full bg-white/80 text-black hover:bg-white/30 border border-white/30"
                       >
                         <ChevronLeft size={20} />
                       </Button>
@@ -170,7 +170,7 @@ export const ViewMoreDrawer = ({
                       <Button
                         onClick={nextImage}
                         variant="ghost"
-                        className="p-2 rounded-full bg-white/20 text-white hover:bg-white/30 border border-white/30"
+                        className="p-2 rounded-full bg-white/80 text-black hover:bg-white/30 border border-white/30"
                       >
                         <ChevronRight size={20} />
                       </Button>
@@ -228,7 +228,7 @@ export const ViewMoreDrawer = ({
         </div>
 
         {/* Fixed Footer Button */}
-        {project && project.btnText && (
+        {project && project.btnLink && (
           <div className="p-4 border-t flex justify-start">
             {project?.btnLink?.startsWith("#") ? (
               <Button onClick={() => handleInternalLink(project.btnLink)}>
@@ -245,7 +245,7 @@ export const ViewMoreDrawer = ({
             )}
           </div>
         )}
-        {catalogService && (
+        {catalogService && catalogService.btnLink && (
           <div className="p-4 border-t flex justify-start">
             {catalogService?.btnLink?.startsWith("#") ? (
               <Button
@@ -271,25 +271,23 @@ export const ViewMoreDrawer = ({
             </a>
           </div>
         )}
-        {teamMember && (
+        {teamMember && teamMember.socials && teamMember.socials.length > 0 && (
           <div className="p-4 border-t flex justify-start items-center">
-            {teamMember.socials && teamMember.socials.length > 0 && (
-              <div className="flex gap-2">
-                {teamMember.socials
-                  .filter((social) => social.url)
-                  .map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.url || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors"
-                    >
-                      {getSocialIconFromRegistry(social.name)}
-                    </a>
-                  ))}
-              </div>
-            )}
+            <div className="flex gap-2">
+              {teamMember.socials
+                .filter((social) => social.url)
+                .map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors"
+                  >
+                    {getSocialIconFromRegistry(social.name)}
+                  </a>
+                ))}
+            </div>
           </div>
         )}
       </DrawerContent>

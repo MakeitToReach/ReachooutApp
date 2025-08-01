@@ -9,6 +9,7 @@ export type PF_FOOTER_SECTION = {
     address: string;
     email: string;
     phone: string;
+    connectHeading?: string;
     socials: PF_SOCIAL[]
     privacyPolicyContent?: string;
     termsAndConditionsContent?: string;
