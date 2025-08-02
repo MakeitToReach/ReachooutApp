@@ -184,12 +184,43 @@ export const getUserProjects = async (req: Request, res: Response) => {
     where: {
       userId: userId,
     },
+    include: {
+      templates: true,
+    },
   });
+
   if (!projects) {
     return res.status(404).json({ error: "Projects not found" });
   }
 
-  res.status(200).json(projects);
+  // Find projects that have no templates
+  const projectsToDelete = projects.filter(
+    (project) => project.templates.length === 0
+  );
+
+  if (projectsToDelete.length > 0) {
+    await Promise.all(
+      projectsToDelete.map((project) =>
+        prisma.project
+          .delete({
+            where: { id: project.id },
+          })
+          .catch((err) => {
+            console.error(
+              `Failed to delete project with id ${project.id}:`,
+              err
+            );
+          })
+      )
+    );
+  }
+
+  // Filter out projects that have no templates
+  const projectsWithTemplates = projects.filter(
+    (project) => project.templates.length > 0
+  );
+
+  res.status(200).json(projectsWithTemplates);
 };
 
 export const getTemplatesInProject = async (
