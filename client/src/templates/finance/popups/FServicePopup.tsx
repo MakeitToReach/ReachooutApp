@@ -13,8 +13,8 @@ import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { F_SERVICE } from "../types/services.types";
 import { Label } from "@/components/ui/label";
-import { ImageInput } from "@/components/imgInput";
 import { TipTapEditor } from "@/components/ui/TipTapEditor";
+import { ImageVideoInput } from "@/components/editor-components/inputs/ImageVideoInput";
 
 interface FAddServicePopupProps {
   children: React.ReactNode;
@@ -27,42 +27,40 @@ export function FAddServicePopup({ children, onAdd }: FAddServicePopupProps) {
     imgUrl: "",
     category: "",
     btnText: "",
+    vidUrl: "",
     btnLink: "",
   });
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="sm:max-w-[600px] font-Poppins"
-        style={{ overflow: "visible" }}
+        className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-scroll"
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
           <DialogTitle className="md:text-2xl">Add Service</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-3">
-          <div className="space-y-2">
-            <Label className="font-semibold">Service Image</Label>
-            <ImageInput
-              className="w-full"
-              onImageUpload={(imgUrl) => {
-                setService({ ...service, imgUrl: imgUrl });
-              }}
-              onImageRemove={() => setService({ ...service, imgUrl: "" })}
-            />
-          </div>
+          <ImageVideoInput
+            className="w-full"
+            onImageUpload={(imgUrl) => {
+              setService({ ...service, imgUrl: imgUrl });
+            }}
+            onImageRemove={() => setService({ ...service, imgUrl: "" })}
+            onVideoUrlChange={(vidUrl) => {
+              setService({ ...service, vidUrl: vidUrl });
+            }}
+          />
           <ReqInput
             type="text"
             label="Title"
             placeholder="Enter your service title"
-            value={service.title}
             onChange={(e) => setService({ ...service, title: e.target.value })}
           />
 
           <div className="space-y-2">
             <Label className="font-semibold">Description</Label>
             <TipTapEditor
-              value={service.description}
               onChange={(value) =>
                 setService({ ...service, description: value })
               }
@@ -76,7 +74,6 @@ export function FAddServicePopup({ children, onAdd }: FAddServicePopupProps) {
             type="text"
             label="Category"
             placeholder="Enter your service category"
-            value={service.category}
             onChange={(e) =>
               setService({ ...service, category: e.target.value })
             }
@@ -84,16 +81,18 @@ export function FAddServicePopup({ children, onAdd }: FAddServicePopupProps) {
           <div className="flex gap-2 w-full">
             <ReqInput
               type="text"
+              placeholder="View Service"
+              className="w-full"
               label="Button Text"
-              value={service.btnText}
               onChange={(e) =>
                 setService({ ...service, btnText: e.target.value })
               }
             />
             <ReqInput
               type="text"
+              placeholder="https://example.com"
+              className="w-full"
               label="Button Link"
-              value={service.btnLink}
               onChange={(e) =>
                 setService({ ...service, btnLink: e.target.value })
               }
@@ -113,6 +112,7 @@ export function FAddServicePopup({ children, onAdd }: FAddServicePopupProps) {
                   imgUrl: "",
                   btnText: "",
                   btnLink: "",
+                  vidUrl: "",
                 });
               }}
             >
@@ -157,25 +157,26 @@ export const FEditServicePopup = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="space-y-4 z-[100] font-Poppins">
+      <DialogContent className="space-y-4 z-[100] max-h-[90vh] overflow-y-scroll font-Poppins">
         <DialogHeader>
-          <DialogTitle>
+          <DialogTitle className="sm:text-2xl">
             Edit Service {serviceIdx !== undefined && `#${serviceIdx + 1}`}
           </DialogTitle>
         </DialogHeader>
 
         <div className="space-y-3">
-          <div className="space-y-2">
-            <Label className="font-semibold">Service Image</Label>
-            <ImageInput
-              initialImgUrl={formData.imgUrl}
-              className="w-full"
-              onImageUpload={(imgUrl) => {
-                handleChange("imgUrl", imgUrl);
-              }}
-              onImageRemove={() => handleChange("imgUrl", "")}
-            />
-          </div>
+          <ImageVideoInput
+            initialImgUrl={formData.imgUrl}
+            className="w-full"
+            onImageUpload={(imgUrl) => {
+              handleChange("imgUrl", imgUrl);
+            }}
+            onImageRemove={() => handleChange("imgUrl", "")}
+            onVideoUrlChange={(vidUrl) => {
+              handleChange("vidUrl", vidUrl);
+            }}
+          />
+
           <ReqInput
             type="text"
             label="Title"
