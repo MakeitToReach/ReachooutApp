@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { X } from "lucide-react";
 
 interface LightboxProps {
   children: React.ReactNode;
@@ -23,7 +23,6 @@ export const Lightbox: React.FC<LightboxProps> = ({
   alt = "Lightbox image",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const isMobile = useIsMobile();
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -33,21 +32,30 @@ export const Lightbox: React.FC<LightboxProps> = ({
         </div>
       </DialogTrigger>
       <DialogContent
-        showCloseButton={isMobile ? true : false}
+        showCloseButton={false}
         showDarkOverlay={true}
-        className="w-screen min-h-screen bg-transparent border-0 shadow-none focus:outline-none focus:ring-0 overflow-hidden"
+        className="min-w-screen min-h-screen bg-transparent border-0 shadow-none focus:outline-none focus:ring-0 overflow-hidden"
       >
         <DialogHeader className="sr-only hidden">
           <DialogTitle>image-lightbox</DialogTitle>
         </DialogHeader>
-
-        <Image
-          src={imageUrl}
-          fill
-          className="object-contain"
-          alt={alt}
-          priority
-        />
+        
+        <div className="relative w-full h-full">
+          <Image
+            src={imageUrl}
+            fill
+            className="object-contain"
+            alt={alt}
+            priority
+          />
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute sm:top-0 top-8 right-4 z-10 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors"
+            aria-label="Close lightbox"
+          >
+            <X className="w-6 h-6 text-black" />
+          </button>
+        </div>
       </DialogContent>
     </Dialog>
   );

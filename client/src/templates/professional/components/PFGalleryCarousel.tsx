@@ -54,7 +54,6 @@ export const PFGalleryCarousel: React.FC<CarouselProps> = ({
               <div className="overflow-visible rounded-2xl">
                 <Lightbox imageUrl={image} alt={`Image-${idx}`}>
                   <Image
-
                     src={image}
                     width={600}
                     height={600}

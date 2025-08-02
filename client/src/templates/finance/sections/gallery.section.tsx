@@ -38,7 +38,7 @@ export const FGallerySection = ({
             delay: delay * 2,
             ease: "easeOut",
           }}
-          className="text-center text-xl line-clamp-4 text-template-text-primary/80"
+          className="text-center text-xl line-clamp-4"
         >
           {subtitle}
         </m.p>
