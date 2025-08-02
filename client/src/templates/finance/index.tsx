@@ -23,7 +23,6 @@ import {
   FCertificationSection,
   FSocialSection,
 } from "./sections";
-import { PFWidgetsSection } from "../professional/sections";
 import { FWidgetsSection } from "./sections/widgets.section";
 
 type Props = {
