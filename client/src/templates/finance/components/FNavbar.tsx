@@ -162,7 +162,7 @@ export const FNavbar = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FButton btnText={btnText} />
+            <FButton btnText={btnText} className="text-xl" />
           </m.a>
         )}
         {/* Mobile Menu Button */}
@@ -186,7 +186,7 @@ export const FNavbar = ({
                   ease: "easeOut",
                 }}
               >
-                <LucideMenu size={20} />
+                <LucideMenu className="size-10" />
               </m.span>
             </SelectTrigger>
             <SelectContent>

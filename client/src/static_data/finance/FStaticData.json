@@ -300,7 +300,7 @@
       "type": "logos",
       "sectionName": "Our Clients",
       "data": {
-        "heading": "Our commitment to you",
+        "heading": "Our Clients",
         "subHeading": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati ex doloribus dolore quae illum sint doloremque earum dolorum, voluptates laboriosam?",
         "imgs": ["/next.svg", "/reachout-logo.png", "/apple.svg"]
       },
@@ -400,7 +400,7 @@
       "type": "gallery",
       "sectionName": "Gallery",
       "data": {
-        "title": "Our commitment to you",
+        "title": "Our Gallery",
         "subtitle": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid ducimus temporibus fugit beatae. Amet harum sint exercitationem, nemo sequi repellendus?",
         "imgs": [
           "/placeholder.png",
