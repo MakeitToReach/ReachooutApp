@@ -75,7 +75,7 @@ export const FNavbar = ({
             alt="logo"
             width={100}
             height={100}
-            className="sm:w-[140px] sm:h-[48px] w-[100px] h-[36px] object-contain my-2"
+            className="sm:w-[150px] sm:h-[58px] object-left w-[110px] h-[46px] object-contain my-2"
           />
         )}
 
@@ -102,7 +102,7 @@ export const FNavbar = ({
           ))}
 
           {overflowSections.length > 0 && (
-            <Select 
+            <Select
               value={desktopSelectValue}
               onValueChange={(value) => handleSelectChange(value, false)}
             >
@@ -168,7 +168,7 @@ export const FNavbar = ({
         {/* Mobile Menu Button */}
 
         {isMobile && (
-          <Select 
+          <Select
             value={mobileSelectValue}
             onValueChange={(value) => handleSelectChange(value, true)}
           >

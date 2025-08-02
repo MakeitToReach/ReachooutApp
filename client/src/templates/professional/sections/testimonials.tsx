@@ -2,6 +2,7 @@ import { Marquee } from "@/components/magicui/marquee";
 import { cn } from "@/lib/utils";
 import { PF_TESTIMONIAL_SECTION } from "../types/testimonials.types";
 import { motion as m } from "motion/react";
+import { useState } from "react";
 
 const delay = 0.15;
 
@@ -16,6 +17,11 @@ const ReviewCard = ({
   username?: string;
   body: string;
 }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  // Check if content is longer than 8 lines (approximate)
+  const shouldShowReadMore = body.length > 200; // Rough estimate for 8 lines
+
   return (
     <figure
       className={cn(
@@ -39,9 +45,25 @@ const ReviewCard = ({
           {username && <p className="text-xs font-medium">{username}</p>}
         </div>
       </div>
-      <blockquote className="mt-2 sm:text-base text-xl text-template-text-primary">
+      <blockquote 
+        className={cn(
+          "mt-2 sm:text-base text-xl text-template-text-primary",
+          !isExpanded && shouldShowReadMore && "line-clamp-8"
+        )}
+      >
         {body}
       </blockquote>
+      {shouldShowReadMore && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsExpanded(!isExpanded);
+          }}
+          className="mt-2 text-sm font-medium text-template-text-primary hover:text-template-accent-primary/80 transition-colors"
+        >
+          {isExpanded ? "Read less" : "Read more"}
+        </button>
+      )}
     </figure>
   );
 };

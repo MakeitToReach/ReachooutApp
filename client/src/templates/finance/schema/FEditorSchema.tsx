@@ -13,6 +13,8 @@ import { FStatsEditorField } from "../editorFields/FStatsEditorField";
 import { PFCalThemeSelect as FCalThemeSelect } from "@/templates/professional/components/PFCalThemeSelect";
 import { FooterEditorField } from "@/components/editor-components/inputs/footerEditorField";
 import { NavbarEditorField } from "@/components/editor-components/inputs/navbarEditorField";
+import { FCertificationEditorField } from "../editorFields/FCertificationEditorField";
+import { FSocialEditorField } from "../editorFields/FSocialEditorField";
 
 export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
   menu: [
@@ -232,6 +234,47 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     },
   ],
 
+  certifications: [
+    {
+      type: "text",
+      label: "Heading",
+      fieldPath: "heading",
+    },
+    {
+      type: "text",
+      label: "Sub Heading",
+      fieldPath: "subHeading",
+    },
+    {
+      type: "component",
+      label: "Certifications",
+      fieldPath: "certifications",
+      component: ({ value, onChange }) => (
+        <FCertificationEditorField value={value || []} onChange={onChange} />
+      ),
+    },
+  ],
+
+  socials: [
+    {
+      type: "text",
+      label: "Heading",
+      fieldPath: "heading",
+    },
+    {
+      type: "text",
+      label: "Sub Heading",
+      fieldPath: "subHeading",
+    },
+    {
+      type: "component",
+      label: "Socials",
+      fieldPath: "socials",
+      component: ({ value, onChange }) => (
+        <FSocialEditorField value={value || []} onChange={onChange} />
+      ),
+    },
+  ],
   team: [
     {
       type: "text",

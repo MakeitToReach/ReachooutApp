@@ -2,7 +2,6 @@ export type F_PROJECT = {
     title: string;
     description: string;
     imgUrl: string;
-    projectUrl: string;
     category: string;
     vidUrl?: string;
     btnText?: string;

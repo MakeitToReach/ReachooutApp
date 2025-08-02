@@ -21,13 +21,13 @@ export const FTeamCarousel = ({ team }: { team: F_TEAM_MEMBER[] }) => {
                         align: "start",
                         loop: true,
                     }}
-                    className="w-[85vw]"
+                    className="sm:w-[65vw] w-full"
                 >
                     <CarouselContent className="md:-ml-4">
                         {team.map((team, idx) => (
                             <CarouselItem
                                 key={idx}
-                                className="sm:basis-1/4 basis-1/1"
+                                className="sm:basis-1/3 basis-1/1"
                             >
                                 <FTeamCard {...team} />
                             </CarouselItem>

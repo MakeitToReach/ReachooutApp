@@ -20,6 +20,8 @@ import {
   FTestimonialsSection,
   FTimelineSection,
   FWhyChooseUsSection,
+  FCertificationSection,
+  FSocialSection,
 } from "./sections";
 
 type Props = {
@@ -177,6 +179,14 @@ export const FinancePortfolio = ({ data }: Props) => {
             )}
           </>
         );
+      case "socials":
+        return (
+          <>
+            {!section.isHidden && (
+              <FSocialSection key={`socials-${index}`} {...section.data} />
+            )}
+          </>
+        );
       case "contact":
         return (
           <>
@@ -198,6 +208,14 @@ export const FinancePortfolio = ({ data }: Props) => {
           <>
             {!section.isHidden && (
               <FFaqSection key={`faqs-${index}`} {...section.data} />
+            )}
+          </>
+        );
+      case "certifications":
+        return (
+          <>
+            {!section.isHidden && (
+              <FCertificationSection key={`certifications-${index}`} {...section.data} />
             )}
           </>
         );

@@ -16,7 +16,7 @@ export const PFAboutSection = ({
 }: PF_ABOUT_SECTION) => {
   const aboutContent = { title, colorTitle, description, heading, stats };
   return (
-    <section className="max-w-6xl mx-auto py-20" id="about">
+    <section className="max-w-6xl mx-auto py-10" id="about">
       <div className="px-4 lg:px-0 flex flex-col lg:flex-row w-full lg:gap-20 lg:mt-20">
         {/* Stats grid */}
         <div className="grid grid-cols-2 gap-2  lg:gap-5 lg:gap-y-2 lg:mt-20 h-fit lg:w-1/2">

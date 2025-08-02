@@ -10,7 +10,6 @@ export const FProjectCard = ({
   imgUrl,
   title,
   description,
-  projectUrl = "#",
   category,
   btnText,
   btnLink,
@@ -79,35 +78,22 @@ export const FProjectCard = ({
       </div>
       <div className="flex gap-2 px-6">
         <FViewMoreDrawer
-          content={{ imgUrl, title, description, projectUrl, category, vidUrl }}
+          content={{ imgUrl, title, description, category, vidUrl, btnLink, btnText }}
           type="Project"
         >
-          <Button className="text-template-text-btn bg-template-btn rounded-sm text-lg hover:bg-template-btn cursor-pointer">
+          <Button className="text-template-text-btn bg-template-btn rounded-full text-lg hover:bg-template-btn cursor-pointer">
             View Details
             <ArrowUpRight size={16} />
           </Button>
         </FViewMoreDrawer>
         {btnLink && (
           <a href={btnLink} target="_blank" rel="noopener noreferrer">
-            <Button className="text-template-btn bg-template-text-btn rounded-sm text-lg hover:bg-template-text-btn/80 cursor-pointer flex items-center gap-2 border border-template-btn/40">
+            <Button className="text-template-btn bg-template-text-btn rounded-full text-lg hover:bg-template-text-btn/80 cursor-pointer flex items-center gap-2 border border-template-btn/40">
               {btnText}
             </Button>
           </a>
         )}
       </div>
-      {/* <div className="w-full flex justify-between items-center px-6">
-        <FViewMoreDrawer
-          type="Project"
-          content={{ imgUrl, title, description, projectUrl, category }}
-        >
-          <Button
-            variant={"link"}
-            className="flex items-center px-0 text-lg text-template-text-primary font-semibold "
-          >
-            View Details
-          </Button>
-        </FViewMoreDrawer>
-      </div> */}
     </div>
   );
 };

@@ -25,8 +25,14 @@ import { F_ABOUT_SECTION } from "@/templates/finance/types/about.types";
 
 interface FViewMoreDrawerProps {
   children: React.ReactNode;
-  content: F_BLOG | F_PROJECT | F_SERVICE | F_CATLOG_SERVICES | F_TEAM_MEMBER | F_ABOUT_SECTION;
-  type: "Blog" | "Project" | "Services" | "Catalog" | "Team"| "About";
+  content:
+    | F_BLOG
+    | F_PROJECT
+    | F_SERVICE
+    | F_CATLOG_SERVICES
+    | F_TEAM_MEMBER
+    | F_ABOUT_SECTION;
+  type: "Blog" | "Project" | "Services" | "Catalog" | "Team" | "About";
 }
 
 export const FViewMoreDrawer = ({
@@ -264,37 +270,55 @@ export const FViewMoreDrawer = ({
 
         {/* Fixed Footer Buttons */}
 
-        {(project || teamMember) && (
+        {project && project.btnLink && (
           <div className="p-4 border-t flex justify-between items-center">
-            {/* Project button */}
-            {project && project.projectUrl && (
-              <a
-                href={project.projectUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button>View Project</Button>
-              </a>
-            )}
+            <a
+              href={project.btnLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button>{project.btnText}</Button>
+            </a>
+          </div>
+        )}
+        {teamMember && teamMember.socials.length > 0 && (
+          <div className="flex gap-2">
+            {teamMember.socials
+              .filter((social) => social.url)
+              .map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors"
+                >
+                  {getSocialIconFromRegistry(social.name)}
+                </a>
+              ))}
+          </div>
+        )}
+        {catalogService && catalogService.btnLink && (
+          <div className="p-4 border-t flex justify-between items-center">
+            <a
+              href={catalogService.btnLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button>{catalogService.btnText}</Button>
+            </a>
+          </div>
+        )}
 
-            {/* Social buttons for team members */}
-            {teamMember && teamMember.socials.length > 0 && (
-              <div className="flex gap-2">
-                {teamMember.socials
-                  .filter((social) => social.url)
-                  .map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors"
-                    >
-                      {getSocialIconFromRegistry(social.name)}
-                    </a>
-                  ))}
-              </div>
-            )}
+        {service && service.btnLink && (
+          <div className="p-4 border-t flex justify-between items-center">
+            <a
+              href={service.btnLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button>{service.btnText}</Button>
+            </a>
           </div>
         )}
       </DrawerContent>

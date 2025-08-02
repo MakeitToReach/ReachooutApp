@@ -26,8 +26,9 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
     description: "",
     category: "",
     imgUrl: "",
-    projectUrl: "",
     vidUrl: "",
+    btnText: "",
+    btnLink: "",
   });
   return (
     <Dialog>
@@ -82,15 +83,26 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
               setProject({ ...project, category: e.target.value })
             }
           />
-          <ReqInput
-            type="text"
-            label="Project URL"
-            placeholder="Enter your project url"
-            value={project.projectUrl}
-            onChange={(e) =>
-              setProject({ ...project, projectUrl: e.target.value })
-            }
-          />
+          <div className="flex gap-2 w-full">
+            <ReqInput
+              type="text"
+              label="Button Text"
+              placeholder="Enter your button text"
+              value={project.btnText}
+              onChange={(e) =>
+                setProject({ ...project, btnText: e.target.value })
+              }
+            />
+            <ReqInput
+              type="text"
+              label="Button Link"
+              placeholder="Enter your button link"
+              value={project.btnLink}
+              onChange={(e) =>
+                setProject({ ...project, btnLink: e.target.value })
+              }
+            />
+          </div>
         </div>
 
         <DialogFooter>
@@ -103,8 +115,9 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
                   description: "",
                   category: "",
                   imgUrl: "",
-                  projectUrl: "",
                   vidUrl: "",
+                  btnText: "",
+                  btnLink: "",
                 });
               }}
             >
@@ -194,12 +207,20 @@ export const FEditProjectPopup = ({
             value={formData.category}
             onChange={(e) => handleChange("category", e.target.value)}
           />
-          <ReqInput
-            type="text"
-            label="Project URL"
-            value={formData.projectUrl}
-            onChange={(e) => handleChange("projectUrl", e.target.value)}
-          />
+          <div className="flex gap-2 w-full">
+            <ReqInput
+              type="text"
+              label="Button Text"
+              value={formData.btnText}
+              onChange={(e) => handleChange("btnText", e.target.value)}
+            />
+            <ReqInput
+              type="text"
+              label="Button Link"
+              value={formData.btnLink}
+              onChange={(e) => handleChange("btnLink", e.target.value)}
+            />
+          </div>
         </div>
 
         <div className="flex justify-end gap-2">

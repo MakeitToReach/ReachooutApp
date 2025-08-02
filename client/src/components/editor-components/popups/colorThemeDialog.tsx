@@ -91,7 +91,7 @@ export function ThemePickerDialog({
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="font-Poppins overflow-visible">
+      <DialogContent className="font-Poppins overflow-visible max-h-[90vh]">
         <DialogHeader>
           <DialogTitle>Customize Theme Colors and Font</DialogTitle>
         </DialogHeader>

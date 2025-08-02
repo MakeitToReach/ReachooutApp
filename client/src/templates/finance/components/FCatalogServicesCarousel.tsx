@@ -55,11 +55,11 @@ export const FCatalogServicesCarousel = ({
             align: "start",
             loop: true,
           }}
-          className="w-[80vw]"
+          className="w-full"
         >
           <CarouselContent className="">
             {filteredServices.map((service, idx) => (
-              <CarouselItem key={idx} className="basis-1/1 sm:basis-1/3">
+              <CarouselItem key={idx} className="basis-1/1 sm:basis-1/2">
                 <FCatalogServicesCard {...service} />
               </CarouselItem>
             ))}

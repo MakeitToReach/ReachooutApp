@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ArrowUpRight,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
@@ -183,7 +179,7 @@ export const FCatalogServicesCard = ({
         >
           <Button
             variant="default"
-            className="flex items-center text-template-text-primary border border-template-text-primary/50 rounded-full font-semibold bg-template-primary"
+            className="flex items-center text-template-text-primary border border-template-text-primary/50 hover:bg-template-text-primary/10 rounded-full font-semibold bg-template-primary"
           >
             <ArrowUpRight size={20} />
           </Button>

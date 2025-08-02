@@ -10,7 +10,7 @@ export const FFeaturedServicesSection = ({
         <section id="featured-services">
             <div className="max-w-6xl mx-auto py-10">
                 {/* Add staggered fade-in and slide-up animation using Framer Motion */}
-                <div className="flex flex-col sm:flex-row gap-10 items-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch">
                     {featuredServices.map((service, index) => (
                         <motion.div
                             key={index}

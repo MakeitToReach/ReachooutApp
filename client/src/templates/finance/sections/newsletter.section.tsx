@@ -61,7 +61,7 @@ export const FNewsletterSection = ({
             disabled={isLoading || !receiverEmail}
             btnText="Subscribe"
             className={cn(
-              "w-full sm:w-fit rounded-md",
+              "w-full sm:w-fit",
               !receiverEmail && "cursor-not-allowed"
             )}
             onClick={() => receiverEmail && handleSubmit(receiverEmail)}

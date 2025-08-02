@@ -4,17 +4,17 @@
   "thumbnailUrl": "/finance_template.png",
   "theme": {
     "--template-font": "'Poppins', sans-serif",
-    "--template-primary": "#f4f4f4",
-    "--template-secondary": "#1F2F28",
-    "--template-accent-primary": "#3b82f6",
-    "--template-accent-secondary": "#60a5fa",
-    "--template-btn": "#2563eb",
-    "--template-text-primary": "#00000",
-    "--template-text-secondary": "#cbd5e1",
-    "--template-text-accent-primary": "#93c5fd",
-    "--template-text-accent-secondary": "#bae6fd",
-    "--template-text-accent-tertiary": "#11111",
-    "--template-text-btn": "#ffffff"
+    "--template-primary": "#fffffc",
+    "--template-secondary": "#1e3a8a",
+    "--template-accent-primary": "#d6eef8",
+    "--template-accent-secondary": "#fbe8d3",
+    "--template-btn": "#111111",
+    "--template-text-primary": "#111111",
+    "--template-text-secondary": "#fffffc",
+    "--template-text-accent-primary": "#111111",
+    "--template-text-accent-secondary": "#111111",
+    "--template-text-accent-tertiary": "#4ade80",
+    "--template-text-btn": "#fffffc"
   },
   "sections": [
     {
@@ -334,7 +334,6 @@
             "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
             "imgUrl": "/placeholder.png",
             "vidUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            "projectUrl": "#",
             "category": "Business",
             "btnText": "View Project",
             "btnLink": "#"
@@ -343,29 +342,53 @@
             "title": "Project 1",
             "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
             "imgUrl": "/placeholder.png",
-            "projectUrl": "#",
-            "category": "Business"
+            "category": "Business",
+            "btnText": "View Project",
+            "btnLink": ""
+          }
+        ]
+      },
+      "isFixed": false,
+      "isEditable": true,
+      "isHidden": false
+    },
+    {
+      "type": "socials",
+      "sectionName": "Socials",
+      "data": {
+        "heading": "Our Socials",
+        "subHeading": "Lorem ipsum dolor sit amet consectetur adipisicing elit. A unde voluptatibus fugiat alias earum itaque. Minus rem officia aliquam eos.",
+        "socials": [
+          {
+            "title": "X",
+            "btnLink": "#",
+            "followerCounts": 1000
           },
           {
-            "title": "Project 1",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-            "imgUrl": "/placeholder.png",
-            "projectUrl": "#",
-            "category": "Business"
+            "title": "Linkedin",
+            "btnLink": "#",
+            "followerCounts": 1000
+          }
+        ]
+      },
+      "isFixed": false,
+      "isEditable": true,
+      "isHidden": false
+    },
+    {
+      "type": "certifications",
+      "sectionName": "Certifications",
+      "data": {
+        "heading": "Our Certifications",
+        "subHeading": "Lorem ipsum dolor sit amet consectetur adipisicing elit. A unde voluptatibus fugiat alias earum itaque. Minus rem officia aliquam eos.",
+        "certifications": [
+          {
+            "imgUrl": "https://reachooutassets.s3.ap-south-1.amazonaws.com/static/placeholder.png",
+            "title": "Certification 1"
           },
           {
-            "title": "Project 1",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-            "imgUrl": "/placeholder.png",
-            "projectUrl": "#",
-            "category": "Business"
-          },
-          {
-            "title": "Project 1",
-            "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore laborum minima porro natus fugiat a animi. Aperiam adipisci porro consequatur?",
-            "imgUrl": "/placeholder.png",
-            "projectUrl": "#",
-            "category": "Business"
+            "imgUrl": "https://reachooutassets.s3.ap-south-1.amazonaws.com/static/placeholder.png",
+            "title": "Certification 2"
           }
         ]
       },

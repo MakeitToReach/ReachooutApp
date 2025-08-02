@@ -3,6 +3,8 @@ export type F_SERVICE = {
     description: string;
     imgUrl: string;
     category: string;
+    btnText?: string;
+    btnLink?: string;
 };
 
 export interface F_SERVICE_SECTION {

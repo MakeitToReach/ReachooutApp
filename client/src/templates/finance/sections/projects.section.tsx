@@ -98,14 +98,14 @@ export const FProjectsSection = ({
                   align: "start",
                   loop: true,
                 }}
-                className="w-[90vw]"
+                className="sm:w-[70vw] w-full"
               >
                 <CarouselContent className="md:-ml-4">
                   {filteredProjects.map((project, idx) => (
                     <CarouselItem
                       key={idx}
                       // className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-                      className="sm:basis-1/4 basis-1/1"
+                      className="sm:basis-1/3 basis-1/1"
                     >
                       <m.div
                         initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
