@@ -36,7 +36,7 @@ const PFFaqItem = React.forwardRef<
             >
                 <h3
                     className={cn(
-                        "text-base font-medium w-full text-left break-words whitespace-normal",
+                        "text-xl font-medium w-full text-left break-words whitespace-normal",
                         "text-template-text-primary opacity-70",
                         isOpen && "text-template-text-primary opacity-40",
                     )}
@@ -81,7 +81,7 @@ const PFFaqItem = React.forwardRef<
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: -10, opacity: 0 }}
                                 className="
-    prose prose-sm max-w-none text-template-text-primary
+    prose prose-lg max-w-none text-template-text-primary
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
     prose-h1:text-template-text-primary

@@ -48,7 +48,7 @@ export const PFNavbar = ({
 
   return (
     <nav id="navbar" className="bg-template-primary text-template-text-primary">
-      <div className="max-w-6xl mx-auto h-20 px-4 py-4 flex justify-between items-center">
+      <div className="max-w-6xl mx-auto h-25 px-4 py-4 flex justify-between items-center">
         {textLogo && (
           <m.h1
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
@@ -69,9 +69,9 @@ export const PFNavbar = ({
           <Image
             src={logoUrl}
             alt="logo"
-            width={100}
-            height={100}
-            className="sm:w-[150px] sm:h-[58px] object-left w-[110px] h-[46px] object-contain my-2"
+            width={1000}
+            height={1000}
+            className="sm:w-[170px] sm:h-[78px] object-left w-[130px] h-[66px] object-contain my-2"
           />
         )}
 
@@ -87,7 +87,7 @@ export const PFNavbar = ({
                 ease: "easeOut",
               }}
               key={section.name}
-              className="text-template-text-primary hover:underline cursor-pointer capitalize"
+              className="text-template-text-primary text-xl hover:underline cursor-pointer capitalize"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection(section.href);
@@ -112,7 +112,7 @@ export const PFNavbar = ({
                     delay: delay * 4,
                     ease: "easeOut",
                   }}
-                  className="text-template-text-primary text-base"
+                  className="text-template-text-primary text-xl"
                 >
                   More
                 </m.span>
@@ -134,7 +134,7 @@ export const PFNavbar = ({
                 >
                   <SelectItem
                     value="view-qr-code"
-                    className="capitalize text-base"
+                    className="capitalize text-xl"
                   >
                     View QR Code
                   </SelectItem>
@@ -164,7 +164,7 @@ export const PFNavbar = ({
                   ease: "easeOut",
                 }}
               >
-                <LucideMenu size={20} />
+                <LucideMenu className="size-10" />
               </m.span>
             </SelectTrigger>
             <SelectContent>
@@ -172,7 +172,7 @@ export const PFNavbar = ({
                 <SelectItem
                   key={section.name}
                   value={section.href}
-                  className="capitalize text-lg"
+                  className="capitalize text-xl"
                 >
                   {section.name}
                 </SelectItem>
@@ -182,7 +182,7 @@ export const PFNavbar = ({
                 open={qrPopupOpen}
                 onOpenChange={setQrPopupOpen}
               >
-                <SelectItem value="view-qr-code" className="capitalize text-lg">
+                <SelectItem value="view-qr-code" className="capitalize text-xl">
                   View QR Code
                 </SelectItem>
               </QRCodePopup>

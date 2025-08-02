@@ -1,10 +1,9 @@
 export type F_BLOG = {
-    category: string;
     title: string;
     description: string;
     imgUrl: string;
-    author: string;
-    authorImgUrl: string;
+    btnLink?: string;
+    btnText?: string;
 };
 export interface F_BLOGS_SECTION {
     heading: string;

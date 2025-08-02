@@ -28,7 +28,7 @@ export const PFBlogCard = ({
         className="w-full h-[15rem] rounded-sm object-cover"
       />
       <div className="space-y-2 text-left">
-        <h2 className="font-semibold sm:text-lg text-2xl tracking-tight line-clamp-2">
+        <h2 className="font-semibold sm:text-xl text-3xl tracking-tight line-clamp-2">
           {title}
         </h2>
 

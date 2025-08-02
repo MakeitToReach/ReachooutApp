@@ -10,7 +10,7 @@ export const PFExperienceItem = ({
     <div className="flex flex-col gap-2 text-template-text-secondary">
       <div>
         <h3 className="font-semibold text-xl">{title}</h3>
-        <p>{subtitle}</p>
+        <p className="sm:text-lg text-xl">{subtitle}</p>
       </div>
       {description && (
         <div

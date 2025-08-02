@@ -52,7 +52,7 @@ export const FNavbar = ({
       id="navbar"
       className="bg-template-primary backdrop-blur-md px-2 sm:px-8"
     >
-      <div className="h-16 px-4 flex justify-between items-center">
+      <div className="h-20 px-4 flex justify-between items-center">
         {textLogo && (
           <m.h1
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
@@ -73,9 +73,9 @@ export const FNavbar = ({
           <Image
             src={logoUrl}
             alt="logo"
-            width={100}
-            height={100}
-            className="sm:w-[150px] sm:h-[58px] object-left w-[110px] h-[46px] object-contain my-2"
+            width={1000}
+            height={1000}
+            className="sm:w-[170px] sm:h-[78px] object-left w-[130px] h-[66px] object-contain my-2"
           />
         )}
 
@@ -91,7 +91,7 @@ export const FNavbar = ({
                 ease: "easeOut",
               }}
               key={section.name}
-              className="text-template-text-primary hover:underline cursor-pointer capitalize"
+              className="text-template-text-primary hover:underline cursor-pointer capitalize text-lg"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection(section.href);
@@ -116,7 +116,7 @@ export const FNavbar = ({
                     delay: delay * 4,
                     ease: "easeOut",
                   }}
-                  className="text-template-text-primary text-base"
+                  className="text-template-text-primary text-lg"
                 >
                   More
                 </m.span>
@@ -126,7 +126,7 @@ export const FNavbar = ({
                   <SelectItem
                     key={section.name}
                     value={section.href}
-                    className="capitalize text-base"
+                    className="capitalize text-lg"
                   >
                     {section.name}
                   </SelectItem>

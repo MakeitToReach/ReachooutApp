@@ -1,21 +1,15 @@
 import { LucideChevronRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
+import { F_BLOG } from "../types/blogs.types";
 
-interface FBlogCardProps {
-  imgUrl: string;
-  category: string;
-  title: string;
-  description: string;
-  date?: string;
-}
 export const FBlogCard = ({
   imgUrl,
   title,
-  category,
   description,
-}: FBlogCardProps) => {
+  btnLink,
+  btnText,
+}: F_BLOG) => {
   return (
     <div className="w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6 border border-template-accent-primary">
       <Image
@@ -23,12 +17,9 @@ export const FBlogCard = ({
         alt="blog-img"
         width={400}
         height={100}
-        className="w-full h-[20vh] object-cover"
+        className="w-full h-[15rem] object-cover"
       />
       <div className="space-y-1 px-4">
-        <Badge className="font-semibold w-fit rounded-full bg-template-accent-primary text-template-text-accent-primary px-3 py-1 uppercase">
-          {category}
-        </Badge>
         <h2 className="font-semibold line-clamp-2 text-xl tracking-tight text-template-text-primary">
           {title}
         </h2>
@@ -48,7 +39,13 @@ export const FBlogCard = ({
         />
         <FViewMoreDrawer
           type="Blog"
-          content={{ imgUrl, title, description, category }}
+          content={{
+            imgUrl,
+            title,
+            description,
+            btnLink,
+            btnText,
+          }}
         >
           <button className="flex items-center hover:underline text-template-text-primary font-semibold ">
             Read More

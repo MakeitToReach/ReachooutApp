@@ -9,7 +9,7 @@ export const FSocialCard = ({ title, followerCounts, btnLink }: F_SOCIAL) => {
     className: "size-16 text-template-text-primary",
   });
   return (
-    <div className="w-full p-6 bg-template-primary rounded-sm flex items-center gap-6">
+    <div className="w-full p-6 bg-template-primary rounded-lg flex items-center gap-6">
       <span>{icon}</span>
       <div className="flex flex-col gap-3 text-template-text-primary">
         <div className="space-y-1">

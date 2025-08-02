@@ -62,11 +62,11 @@ export const FStatsSection = ({
                       })}
                     </span>
                   </div>
-                  <h4 className="italic font-light text-2xl">
+                  <h4 className="italic font-light text-3xl">
                     {stats[0].statText}
                   </h4>
                 </div>
-                <p className="text-lg sm:text-base">
+                <p className="text-lg leading-tight">
                   {stats[0].statDescription}
                 </p>
               </m.div>
@@ -93,11 +93,11 @@ export const FStatsSection = ({
                       })}
                     </span>
                   </div>
-                  <h4 className="italic font-light text-2xl">
+                  <h4 className="italic font-light text-3xl">
                     {stats[1].statText}
                   </h4>
                 </div>
-                <p>{stats[1].statDescription}</p>
+                <p className="text-lg leading-tight">{stats[1].statDescription}</p>
               </m.div>
             </div>
           </div>
@@ -109,7 +109,7 @@ export const FStatsSection = ({
               width={300}
               height={300}
               alt="stats"
-              className="rounded-lg max-w-[18vw] object-contain"
+              className="rounded-lg object-cover w-full h-auto max-w-[320px] max-h-[320px] sm:max-w-[18vw] sm:max-h-[18vw] aspect-square"
             />
           </div>
         </div>

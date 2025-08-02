@@ -123,7 +123,7 @@ export const PFCatalogServicesCard = ({
       </div>
       {/* Text content */}
       <div className="px-6 space-y-3 space-x-2">
-        <h2 className="font-semibold text-xl tracking-tight">{title}</h2>
+        <h2 className="font-semibold text-2xl tracking-tight">{title}</h2>
         <div
           className=" 
                     prose prose-lg max-w-[90%] text-template-text-primary

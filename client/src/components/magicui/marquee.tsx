@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef, useState } from "react";
 
 interface MarqueeProps extends ComponentPropsWithoutRef<"div"> {
   /**
@@ -16,6 +16,11 @@ interface MarqueeProps extends ComponentPropsWithoutRef<"div"> {
    * @default false
    */
   pauseOnHover?: boolean;
+  /**
+   * Whether to pause the animation on click
+   * @default false
+   */
+  onClickPause?: boolean;
   /**
    * Content to be displayed in the marquee
    */
@@ -36,21 +41,32 @@ export function Marquee({
   className,
   reverse = false,
   pauseOnHover = false,
+  onClickPause = true,
   children,
   vertical = false,
   repeat = 4,
   ...props
 }: MarqueeProps) {
+  const [isPaused, setIsPaused] = useState(false);
+
+  const handleClick = () => {
+    if (onClickPause) {
+      setIsPaused(!isPaused);
+    }
+  };
+
   return (
     <div
       {...props}
+      onClick={handleClick}
       className={cn(
         "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]",
         {
           "flex-row": !vertical,
           "flex-col": vertical,
+          "cursor-pointer": onClickPause,
         },
-        className,
+        className
       )}
     >
       {Array(repeat)
@@ -63,6 +79,7 @@ export function Marquee({
               "animate-marquee-vertical flex-col": vertical,
               "group-hover:[animation-play-state:paused]": pauseOnHover,
               "[animation-direction:reverse]": reverse,
+              "[animation-play-state:paused]": isPaused,
             })}
           >
             {children}

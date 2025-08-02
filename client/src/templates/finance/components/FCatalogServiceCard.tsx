@@ -64,7 +64,7 @@ export const FCatalogServicesCard = ({
   };
 
   return (
-    <div className="h-fit sm:w-[25vw] w-full bg-template-primary text-template-text-primary rounded-lg overflow-hidden space-y-6 pb-6">
+    <div className="h-fit w-full bg-template-primary text-template-text-primary rounded-lg overflow-hidden space-y-6 pb-6">
       <div className="relative w-full h-[250px]">
         {showVideo ? (
           <YouTube

@@ -59,7 +59,7 @@ export const FWhyChooseUsSection = ({
               delay: delay,
               ease: "easeOut",
             }}
-            className="w-fit rounded-full bg-template-accent-primary text-template-text-accent-primary flex items-center justify-center px-6 py-2 uppercase font-semibold text-lg"
+            className="w-fit rounded-full bg-template-accent-secondary text-template-text-accent-secondary flex items-center justify-center px-6 py-2 uppercase font-semibold text-lg"
           >
             {badgeText}
           </m.div>

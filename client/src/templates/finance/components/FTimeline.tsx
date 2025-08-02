@@ -13,7 +13,7 @@ export const FTimeline = ({ steps }: FTimelineProps) => {
   return (
     <div className="relative w-full max-w-6xl mx-auto px-4 py-12">
       {/* Vertical line */}
-      <div className="absolute left-1/2 top-0 w-1 bg-gray-200 h-full transform -translate-x-1/2 z-0" />
+      <div className="absolute left-1/2 top-0 w-1 bg-template-accent-primary h-full transform -translate-x-1/2 z-0" />
 
       <div className="flex flex-col gap-16">
         {steps.map((step, index) => {
@@ -76,7 +76,7 @@ export const FTimeline = ({ steps }: FTimelineProps) => {
                       delay: delay * (index + 1),
                       ease: "easeOut",
                     }}
-                    className="text-sm font-semibold text-template-text-accent-primary bg-template-accent-primary px-3 py-1 rounded-full inline-block mb-2"
+                    className="text-sm font-semibold text-template-text-accent-secondary bg-template-accent-secondary px-3 py-1 rounded-full inline-block mb-2"
                   >
                     {step.badgeText}
                   </m.span>

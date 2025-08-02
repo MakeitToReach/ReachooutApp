@@ -39,7 +39,7 @@ export const FSocialSection = ({
               delay: delay * 2,
               ease: "easeOut",
             }}
-            className="text-center text-xl sm:text-lg line-clamp-4 text-template-text-secondary"
+            className="text-center text-xl line-clamp-4 text-template-text-secondary"
           >
             {subHeading}
           </m.p>

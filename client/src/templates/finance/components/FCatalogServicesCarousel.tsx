@@ -38,7 +38,7 @@ export const FCatalogServicesCarousel = ({
           <Badge
             key={category}
             variant={selectedCategory === category ? "default" : "outline"}
-            className={`cursor-pointer px-4 py-2 text-sm font-medium transition-all duration-200 ${
+            className={`cursor-pointer px-4 py-2 text-lg font-medium transition-all duration-200 ${
               selectedCategory === category
                 ? "bg-white text-slate-800 hover:bg-gray-100"
                 : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"

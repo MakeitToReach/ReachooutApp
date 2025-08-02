@@ -54,6 +54,7 @@ export const PFGalleryCarousel: React.FC<CarouselProps> = ({
               <div className="overflow-visible rounded-2xl">
                 <Lightbox imageUrl={image} alt={`Image-${idx}`}>
                   <Image
+
                     src={image}
                     width={600}
                     height={600}
@@ -70,7 +71,7 @@ export const PFGalleryCarousel: React.FC<CarouselProps> = ({
           ))}
         </CarouselContent>
         {showNavigation && (
-          <div className="sm:flex gap-2 mt-8 justify-start hidden">
+          <div className="sm:flex gap-2 mt-8 justify-center hidden">
             <CarouselPrevious className="static translate-y-0 bg-transparent border-template-text-primary/80 text-template-text-primary" />
             <CarouselNext className="static translate-y-0 bg-transparent border-template-text-primary/80 text-template-text-primary" />
           </div>

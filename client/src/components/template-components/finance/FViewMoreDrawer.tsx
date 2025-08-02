@@ -253,7 +253,7 @@ export const FViewMoreDrawer = ({
           {/* Description Section */}
           <div className="space-y-4">
             <div
-              className="prose prose-base max-w-none"
+              className="prose prose-lg max-w-none"
               dangerouslySetInnerHTML={{
                 __html:
                   blog?.description ||

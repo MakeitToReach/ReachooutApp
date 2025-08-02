@@ -3,6 +3,7 @@ export type F_SERVICE = {
     description: string;
     imgUrl: string;
     category: string;
+    vidUrl?: string;
     btnText?: string;
     btnLink?: string;
 };

@@ -50,7 +50,7 @@ export const FServiceCatalogSection = ({
                 delay: delay * 3,
                 ease: "easeOut",
               }}
-              className="text-xl sm:text-lg text-template-text-secondary/80"
+              className="text-xl text-template-text-secondary/80"
             >
               {subtitle}
             </m.h4>

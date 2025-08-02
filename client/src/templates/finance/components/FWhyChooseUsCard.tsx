@@ -20,7 +20,7 @@ export const FWhyChooseUsCard = ({
             <h2 className="font-semibold text-2xl tracking-tight">{title}</h2>
             <div
                 className="
-    prose prose-xl sm:prose-base max-w-none text-template-text-primary
+    prose prose-xl sm:prose-lg max-w-none text-template-text-primary
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
     prose-h1:text-template-text-primary

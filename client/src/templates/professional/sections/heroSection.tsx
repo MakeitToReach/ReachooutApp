@@ -83,7 +83,7 @@ export const PFHeroSection = ({
                   ease: "easeOut",
                 }}
                 className="
-    prose prose-lg max-w-none text-template-text-primary
+    prose prose-xl max-w-none text-template-text-primary
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
     prose-h1:text-template-text-primary

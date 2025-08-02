@@ -14,7 +14,7 @@ const delay = 0.15;
 
 export const FBlogsSection = ({ heading, blogs }: F_BLOGS_SECTION) => {
     return (
-        <section id="blogs" className="w-full rounded-lg min-h-[75vh] overflow-hidden py-24">
+        <section id="blogs" className="w-full rounded-lg overflow-hidden py-20">
             <div className="max-w-6xl mx-auto h-full my-10 space-y-8 overflow-x-visible ">
                 <m.h2
                 initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
@@ -53,7 +53,6 @@ export const FBlogsSection = ({ heading, blogs }: F_BLOGS_SECTION) => {
                                         imgUrl={blog.imgUrl}
                                         title={blog.title}
                                         description={blog.description}
-                                        category={blog.category}
                                     />
                                 </CarouselItem>
                             ))}
