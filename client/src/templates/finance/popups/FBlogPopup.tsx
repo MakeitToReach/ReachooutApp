@@ -70,6 +70,7 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
             <ReqInput
               type="text"
               label="Button Text"
+              className="w-full"
               placeholder="Enter button text"
               value={blog.btnText}
               onChange={(e) => setBlog({ ...blog, btnText: e.target.value })}
@@ -77,6 +78,7 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
             <ReqInput
               type="text"
               label="Button Link"
+              className="w-full"
               placeholder="Enter button link"
               value={blog.btnLink}
               onChange={(e) => setBlog({ ...blog, btnLink: e.target.value })}
@@ -139,9 +141,9 @@ export const FEditBlogPopup = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="space-y-4 z-[100] font-Poppins max-h-[90vh] overflow-y-scroll">
+      <DialogContent className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-scroll">
         <DialogHeader>
-          <DialogTitle>
+          <DialogTitle className="sm:text-2xl">
             Edit Blog {blogIdx !== undefined && `#${blogIdx + 1}`}
           </DialogTitle>
         </DialogHeader>
@@ -180,12 +182,14 @@ export const FEditBlogPopup = ({
           <div className="flex gap-2 w-full items-center">
             <ReqInput
               type="text"
+              className="w-full"
               label="Button Text"
               value={formData.btnText}
               onChange={(e) => handleChange("btnText", e.target.value)}
             />
             <ReqInput
               type="text"
+              className="w-full"
               label="Button Link"
               value={formData.btnLink}
               onChange={(e) => handleChange("btnLink", e.target.value)}

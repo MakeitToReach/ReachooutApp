@@ -28,11 +28,10 @@ export function FAddCatalogPopup({ children, onAdd }: FAddCatalogPopupProps) {
         vidUrl: "",
     });
     return (
-        <Dialog modal={false}>
+        <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[600px] font-Poppins"
-                style={{ overflow: "visible" }}
+                className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-scroll"
                 onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader>
@@ -147,11 +146,14 @@ export const FEditCatalogPopup = ({
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen} modal={false}>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 z-[100] font-Poppins">
+            <DialogContent
+                className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-scroll"
+                onInteractOutside={(e) => e.preventDefault()}
+            >
                 <DialogHeader>
-                    <DialogTitle>
+                    <DialogTitle className="md:text-2xl">
                         Edit Catalog Service {itemIdx !== undefined && `#${itemIdx + 1}`}
                     </DialogTitle>
                 </DialogHeader>

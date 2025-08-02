@@ -34,7 +34,7 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="sm:max-w-[50vw] max-h-[90vh] overflow-y-scroll font-Poppins"
+        className="sm:max-w-[600px] max-h-[90vh] overflow-y-scroll font-Poppins"
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
@@ -57,14 +57,12 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
             type="text"
             label="Title"
             placeholder="Enter your project title"
-            value={project.title}
             onChange={(e) => setProject({ ...project, title: e.target.value })}
           />
 
           <div className="space-y-2">
             <Label>Description</Label>
             <TipTapEditor
-              value={project.description}
               onChange={(value) =>
                 setProject({ ...project, description: value })
               }
@@ -78,7 +76,6 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
             type="text"
             label="Category"
             placeholder="Enter your project category"
-            value={project.category}
             onChange={(e) =>
               setProject({ ...project, category: e.target.value })
             }
@@ -87,8 +84,8 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
             <ReqInput
               type="text"
               label="Button Text"
+              className="w-full"
               placeholder="Enter your button text"
-              value={project.btnText}
               onChange={(e) =>
                 setProject({ ...project, btnText: e.target.value })
               }
@@ -96,8 +93,8 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
             <ReqInput
               type="text"
               label="Button Link"
+              className="w-full"
               placeholder="Enter your button link"
-              value={project.btnLink}
               onChange={(e) =>
                 setProject({ ...project, btnLink: e.target.value })
               }
@@ -163,7 +160,7 @@ export const FEditProjectPopup = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="sm:max-w-[50vw] max-h-[90vh] overflow-y-scroll font-Poppins"
+        className="sm:max-w-[600px] max-h-[90vh] overflow-y-scroll font-Poppins"
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
@@ -211,11 +208,13 @@ export const FEditProjectPopup = ({
             <ReqInput
               type="text"
               label="Button Text"
+              className="w-full"
               value={formData.btnText}
               onChange={(e) => handleChange("btnText", e.target.value)}
             />
             <ReqInput
               type="text"
+              className="w-full"
               label="Button Link"
               value={formData.btnLink}
               onChange={(e) => handleChange("btnLink", e.target.value)}
