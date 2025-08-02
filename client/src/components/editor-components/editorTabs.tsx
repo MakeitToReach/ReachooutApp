@@ -320,7 +320,7 @@ export const EditorTabs = ({
               </div>
 
               {/* Navigation buttons */}
-              <div className="sticky bottom-0 shadow-xs shadow-gray-300 right-0 w-full bg-white border border-border rounded-md flex justify-between p-3">
+              <div className="sticky sm:bottom-0 bottom-8 shadow-xs shadow-gray-300 right-0 w-full bg-white border border-border rounded-md flex justify-between p-3">
                 <Button
                   variant="outline"
                   onClick={goToPrev}

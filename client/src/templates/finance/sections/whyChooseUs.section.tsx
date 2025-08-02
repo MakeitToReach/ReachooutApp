@@ -30,7 +30,7 @@ export const FWhyChooseUsSection = ({
   });
 
   // Transform scroll progress to make left content follow scroll downward
-  const leftContentY = useTransform(scrollYProgress, [0, 0.5, 1], [0, 450, 450], {
+  const leftContentY = useTransform(scrollYProgress, [0, 0.5, 1], [0, 450, 400], {
     ease: easeOut,
   });
 
