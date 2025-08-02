@@ -635,6 +635,17 @@
       "isFixed": true,
       "isEditable": true,
       "isHidden": false
+    },
+    {
+      "type": "contact widgets",
+      "sectionName": "Contact Widgets",
+      "data": {
+        "whatsapp_number": 8888888888,
+        "telephone_number": "1234567890"
+      },
+      "isFixed": false,
+      "isEditable": true,
+      "isHidden": false
     }
   ]
 }

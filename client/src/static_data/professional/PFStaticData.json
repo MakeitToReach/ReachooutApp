@@ -21,7 +21,7 @@
       "type": "menu",
       "sectionName": "Navbar",
       "data": {
-        "logoUrl": "/next.svg"
+        "textLogo": "Omkar"
       },
       "isFixed": true,
       "isEditable": true,

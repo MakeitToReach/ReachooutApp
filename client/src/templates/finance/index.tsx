@@ -23,6 +23,8 @@ import {
   FCertificationSection,
   FSocialSection,
 } from "./sections";
+import { PFWidgetsSection } from "../professional/sections";
+import { FWidgetsSection } from "./sections/widgets.section";
 
 type Props = {
   data: {
@@ -215,7 +217,10 @@ export const FinancePortfolio = ({ data }: Props) => {
         return (
           <>
             {!section.isHidden && (
-              <FCertificationSection key={`certifications-${index}`} {...section.data} />
+              <FCertificationSection
+                key={`certifications-${index}`}
+                {...section.data}
+              />
             )}
           </>
         );
@@ -234,11 +239,18 @@ export const FinancePortfolio = ({ data }: Props) => {
     (section) => section.type !== "menu"
   );
 
+  const widgetsSection = data?.sections.find(
+    (section) => section.type === "contact widgets"
+  );
+
   return (
     <>
       <div className="relative">
         {navbarSection && !navbarSection.isHidden && (
-          <div className="sticky top-0 z-50 theme-wrapper text-template-text-primary" style={data.theme}>
+          <div
+            className="sticky top-0 z-50 theme-wrapper text-template-text-primary"
+            style={data.theme}
+          >
             <FNavbarSection {...navbarSection.data} sections={navSections} />
           </div>
         )}
@@ -251,6 +263,15 @@ export const FinancePortfolio = ({ data }: Props) => {
             {renderSection(section, idx)}
           </div>
         ))}
+
+        {widgetsSection && !widgetsSection.isHidden && (
+          <div
+            className="fixed md:bottom-10 md:right-10 bottom-4 right-4 z-10"
+            style={data.theme}
+          >
+            <FWidgetsSection {...widgetsSection.data} />
+          </div>
+        )}
       </div>
     </>
   );

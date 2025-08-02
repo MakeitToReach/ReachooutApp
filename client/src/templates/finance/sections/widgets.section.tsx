@@ -1,15 +1,15 @@
 import React from "react";
-import { PF_WIDGETS_SECTION } from "../types/widgets.types";
 import { cn } from "@/lib/utils";
 import { IconBrandWhatsapp } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { PhoneCall } from "lucide-react";
+import { F_WIDGETS_SECTION } from "../types/widgets.types";
 
-export const PFWidgetsSection = ({
+export const FWidgetsSection = ({
   whatsapp_number,
   telephone_number,
   className,
-}: PF_WIDGETS_SECTION) => {
+}: F_WIDGETS_SECTION) => {
   return (
     <div className="flex flex-col items-center gap-2">
       {telephone_number && (
@@ -56,4 +56,4 @@ export const PFWidgetsSection = ({
       )}
     </div>
   );
-};
+}; 

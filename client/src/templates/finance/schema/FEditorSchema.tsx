@@ -608,4 +608,16 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "termsAndConditionsContent",
     },
   ],
+  "contact widgets": [
+    {
+      label: "Whatsapp Number",
+      type: "phone",
+      fieldPath: "whatsapp_number",
+    },
+    {
+      label: "Telephone Number",
+      type: "phone",
+      fieldPath: "telephone_number",
+    },
+  ],
 };
