@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { EditorPanel } from "@/components/editor-components/editorPanel";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { usePortfolioStore } from "@/store/portfolio.store";
@@ -52,6 +52,38 @@ const EditorPage = () => {
   const template = TEMPLATE_REGISTRY[templateKey];
 
   const [loading, setLoading] = useState(false);
+
+  // Handle tab refresh and close events
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = "Are you sure you want to refresh? Doing this will delete all your changes.";
+      return "Are you sure you want to refresh? Doing this will delete all your changes.";
+    };
+
+    // Handle browser back button
+    const handlePopState = (e: PopStateEvent) => {
+      const confirmed = window.confirm("Are you sure you want to go back? Doing this will delete all your changes.");
+      if (!confirmed) {
+        e.preventDefault();
+        // Push the current state back to prevent navigation
+        window.history.pushState(null, "", window.location.href);
+      }
+    };
+
+    // Add event listeners
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("popstate", handlePopState);
+
+    // Push current state to enable popstate detection
+    window.history.pushState(null, "", window.location.href);
+
+    // Cleanup event listeners
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
 
   // useEffect(() => {
   //     if (template && isNew) {
