@@ -24,7 +24,7 @@ export const FLogoSection = ({
             delay: delay,
             ease: "easeOut",
           }}
-          className="font-semibold sm:text-5xl text-3xl tracking-tight text-center"
+          className="font-semibold text-5xl tracking-tight text-center"
         >
           {heading}
         </m.h2>

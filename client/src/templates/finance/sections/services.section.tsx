@@ -40,7 +40,7 @@ export const FServicesSection = ({
                 delay: delay * 2,
                 ease: "easeOut",
               }}
-              className="font-semibold sm:text-5xl text-3xl tracking-tight"
+              className="font-semibold text-5xl tracking-tight"
             >
               {title}
             </m.h2>
@@ -58,7 +58,7 @@ export const FServicesSection = ({
               {subtitle}
             </m.h4>
           </div>
-          <div className="sm:w-[130vw] rounded-lg">
+          <div className="rounded-lg">
             <FServicesCarousel services={services} />
           </div>
         </div>

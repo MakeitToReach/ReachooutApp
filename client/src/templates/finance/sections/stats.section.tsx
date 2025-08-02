@@ -66,7 +66,7 @@ export const FStatsSection = ({
                     {stats[0].statText}
                   </h4>
                 </div>
-                <p className="text-lg leading-tight">
+                <p className="text-lg leading-tight line-clamp-3">
                   {stats[0].statDescription}
                 </p>
               </m.div>
@@ -97,7 +97,9 @@ export const FStatsSection = ({
                     {stats[1].statText}
                   </h4>
                 </div>
-                <p className="text-lg leading-tight">{stats[1].statDescription}</p>
+                <p className="text-lg leading-tight line-clamp-3">
+                  {stats[1].statDescription}
+                </p>
               </m.div>
             </div>
           </div>
@@ -115,36 +117,38 @@ export const FStatsSection = ({
         </div>
 
         {/* Bottom CTA Bar */}
-        <div className="bg-template-accent-primary w-full sm:flex absolute bottom-0">
-          <div className="max-w-6xl mx-auto sm:flex-row flex flex-col gap-4 divide-black sm:gap-20 items-center justify-between py-6 px-4">
-            <a href={btn1Link}>
-              <button
-                type="button"
-                className="flex items-center text-template-text-accent-primary gap-2 hover:underline"
-              >
-                {btn1Text}
-                <span>
-                  <LucideArrowRight />
-                </span>
-              </button>
-            </a>
-            <Separator
-              orientation="vertical"
-              className="h-10 w-0.5 bg-template-text-accent-primary"
-            />
-            <a href={btn2Link}>
-              <button
-                type="button"
-                className="flex items-center text-template-text-accent-primary gap-2 hover:underline"
-              >
-                {btn2Text}
-                <span>
-                  <LucideArrowRight />
-                </span>
-              </button>
-            </a>
+        {btn1Link && btn2Link && (
+          <div className="bg-template-accent-primary w-full sm:flex absolute bottom-0">
+            <div className="max-w-6xl mx-auto sm:flex-row flex flex-col gap-4 divide-black sm:gap-20 items-center justify-between py-6 px-4">
+              <a href={btn1Link}>
+                <button
+                  type="button"
+                  className="flex text-lg items-center text-template-text-accent-primary gap-2 hover:underline"
+                >
+                  {btn1Text}
+                  <span>
+                    <LucideArrowRight />
+                  </span>
+                </button>
+              </a>
+              <Separator
+                orientation="vertical"
+                className="h-10 w-0.5 bg-template-text-accent-primary"
+              />
+              <a href={btn2Link}>
+                <button
+                  type="button"
+                  className="flex text-lg items-center text-template-text-accent-primary gap-2 hover:underline"
+                >
+                  {btn2Text}
+                  <span>
+                    <LucideArrowRight />
+                  </span>
+                </button>
+              </a>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

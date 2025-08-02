@@ -42,7 +42,7 @@ export const FNewsletterSection = ({
     >
       {/* Centered content */}
       <div className="max-w-2xl w-full flex flex-col items-center text-center gap-8 text-template-text-secondary -translate-y-10">
-        <h2 className="font-semibold sm:text-5xl text-3xl tracking-tight">
+        <h2 className="font-semibold text-5xl tracking-tight">
           {heading}
         </h2>
 
@@ -70,12 +70,13 @@ export const FNewsletterSection = ({
       </div>
 
       {/* Bottom CTA Bar */}
+      {btn1Link && btn2Link && (
       <div className="bg-template-accent-primary w-full sm:flex absolute bottom-0">
         <div className="max-w-6xl mx-auto sm:flex-row flex flex-col gap-4 divide-black sm:gap-20 items-center justify-between py-6 px-4">
           <a href={btn1Link}>
             <button
               type="button"
-              className="flex items-center text-template-text-accent-primary gap-2 hover:underline"
+              className="flex items-center text-template-text-accent-primary gap-2 hover:underline text-lg"
             >
               {btn1Text}
               <span>
@@ -90,7 +91,7 @@ export const FNewsletterSection = ({
           <a href={btn2Link}>
             <button
               type="button"
-              className="flex items-center text-template-text-accent-primary gap-2 hover:underline"
+              className="flex items-center text-template-text-accent-primary gap-2 hover:underline text-lg"
             >
               {btn2Text}
               <span>
@@ -98,8 +99,9 @@ export const FNewsletterSection = ({
               </span>
             </button>
           </a>
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

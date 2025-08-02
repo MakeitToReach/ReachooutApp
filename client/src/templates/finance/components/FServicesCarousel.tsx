@@ -29,7 +29,7 @@ export const FServicesCarousel = ({ services }: { services: F_SERVICE[] }) => {
                     <Badge
                         key={category}
                         variant={selectedCategory === category ? "default" : "outline"}
-                        className={`cursor-pointer px-4 py-2 text-sm font-medium transition-all duration-200 ${selectedCategory === category
+                        className={`cursor-pointer px-4 py-2 text-lg font-medium transition-all duration-200 ${selectedCategory === category
                                 ? "bg-white text-slate-800 hover:bg-gray-100"
                                 : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"
                             }`}
@@ -45,7 +45,7 @@ export const FServicesCarousel = ({ services }: { services: F_SERVICE[] }) => {
                         align: "start",
                         loop: true,
                     }}
-                    className="sm:w-[70vw] w-full"
+                    className="sm:w-[68vw] w-full"
                 >
                     <CarouselContent className="md:-ml-4">
                         {filteredServices.map((service, idx) => (

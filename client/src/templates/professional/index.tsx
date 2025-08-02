@@ -239,7 +239,10 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
       </div>
 
       {widgetsSection && !widgetsSection.isHidden && (
-        <div className="fixed md:bottom-10 md:right-10 bottom-4 right-4 z-10">
+        <div
+          className="fixed md:bottom-10 md:right-10 bottom-4 right-4 z-10"
+          style={data.theme}
+        >
           <PFWidgetsSection {...widgetsSection.data} />
         </div>
       )}

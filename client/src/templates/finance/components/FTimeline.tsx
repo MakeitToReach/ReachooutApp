@@ -95,7 +95,7 @@ export const FTimeline = ({ steps }: FTimelineProps) => {
                   </m.h3>
                   <m.div
                     initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    whileInView={{ opacity: 0.8, y: 0, filter: "blur(0px)" }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{
                       duration: 0.5,
@@ -103,15 +103,16 @@ export const FTimeline = ({ steps }: FTimelineProps) => {
                       ease: "easeOut",
                     }}
                     className="
-    prose prose-xl sm:prose-lg max-w-none text-gray-600
-    prose-p:text-gray-600
-    prose-strong:text-gray-600
-    prose-h1:text-gray-600
-    prose-h2:text-gray-600
-    prose-h3:text-gray-600
-    prose-h4:text-gray-600
-    prose-h5:text-gray-600
-    prose-h6:text-gray-600
+    prose prose-xl sm:prose-lg max-w-none text-template-text-primary
+    prose-p:text-template-text-primary
+    prose-strong:text-template-text-primary
+    prose-h1:text-template-text-primary
+    prose-h2:text-template-text-primary
+    prose-h3:text-template-text-primary
+    prose-h4:text-template-text-primary
+    prose-h5:text-template-text-primary
+    prose-h6:text-template-text-primary
+    line-clamp-5
   "
                     dangerouslySetInnerHTML={{ __html: step.description }}
                   />

@@ -18,7 +18,7 @@ export const FTeamSection = ({ team, heading }: F_TEAM_SECTION) => {
                     delay: delay,
                     ease: "easeOut",
                 }}
-                className="font-semibold sm:text-5xl text-3xl tracking-tight text-center text-template-text-secondary">
+                className="font-semibold text-5xl tracking-tight text-center text-template-text-secondary">
                     {heading}
                 </m.h2>
                 <div className="sm:w-[130vw] rounded-lg">

@@ -24,13 +24,13 @@ export const FTimelineSection = ({
             delay: delay,
             ease: "easeOut",
           }}
-          className="font-semibold sm:text-5xl text-3xl tracking-tight text-center"
+          className="font-semibold text-5xl max-w-2xl mx-auto tracking-tight text-center"
         >
           {title}
         </m.h2>
         <m.p
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          whileInView={{ opacity: 0.6, y: 0, filter: "blur(0px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{
             duration: 0.5,

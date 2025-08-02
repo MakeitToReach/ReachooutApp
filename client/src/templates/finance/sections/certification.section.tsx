@@ -27,7 +27,7 @@ export const FCertificationSection = ({
                             delay: delay,
                             ease: "easeOut",
                         }}
-                        className="font-semibold sm:text-5xl text-3xl tracking-tight text-center text-template-text-secondary"
+                        className="font-semibold text-5xl tracking-tight text-center text-template-text-secondary"
                     >
                         {heading}
                     </m.h2>
@@ -41,7 +41,7 @@ export const FCertificationSection = ({
                                 delay: delay * 2,
                                 ease: "easeOut",
                             }}
-                            className="text-center text-xl line-clamp-4 text-template-text-secondary"
+                            className="text-center text-xl line-clamp-4 text-template-text-secondary/80"
                         >
                             {subHeading}
                         </m.p>

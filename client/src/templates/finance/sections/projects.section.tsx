@@ -46,7 +46,7 @@ export const FProjectsSection = ({
               delay: delay,
               ease: "easeOut",
             }}
-            className="font-semibold sm:text-5xl text-3xl tracking-tight text-center text-template-text-secondary"
+            className="font-semibold text-5xl tracking-tight text-center text-template-text-secondary"
           >
             {title}
           </m.h2>
@@ -59,7 +59,7 @@ export const FProjectsSection = ({
               delay: delay * 2,
               ease: "easeOut",
             }}
-            className="text-center text-xl line-clamp-4 text-template-text-secondary"
+            className="text-center text-xl line-clamp-4 text-template-text-secondary/80"
           >
             {subtitle}
           </m.p>
@@ -98,7 +98,7 @@ export const FProjectsSection = ({
                   align: "start",
                   loop: true,
                 }}
-                className="sm:w-[70vw] w-full"
+                className="sm:w-[68vw] w-full"
               >
                 <CarouselContent className="md:-ml-4">
                   {filteredProjects.map((project, idx) => (

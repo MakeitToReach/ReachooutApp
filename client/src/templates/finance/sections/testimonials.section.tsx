@@ -44,7 +44,7 @@ export const FTestimonialsSection = ({
               delay: delay * 1,
               ease: "easeOut",
             }}
-            className="font-semibold sm:text-5xl text-3xl tracking-tight"
+            className="font-semibold text-5xl tracking-tight"
           >
             {title}
           </m.h2>

@@ -138,7 +138,7 @@ export const FNavbar = ({
                 >
                   <SelectItem
                     value="view-qr-code"
-                    className="capitalize text-base"
+                    className="capitalize text-lg"
                   >
                     View QR Code
                   </SelectItem>

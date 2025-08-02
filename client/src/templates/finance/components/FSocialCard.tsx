@@ -15,7 +15,7 @@ export const FSocialCard = ({ title, followerCounts, btnLink }: F_SOCIAL) => {
         <div className="space-y-1">
           <h1 className="font-semibold text-xl">{title}</h1>
           {followerCounts && followerCounts > 0 ? (
-            <h4 className="text-template-text-primary/60 text-base">
+            <h4 className="text-template-text-primary/60 text-lg">
               {formatCompactNumber(followerCounts, "en-US")} followers
             </h4>
           ) : null}

@@ -84,7 +84,7 @@ export const FContactSection = ({
                 delay: delay * 2,
                 ease: "easeOut",
               }}
-              className="font-semibold sm:text-5xl text-3xl tracking-tight">
+              className="font-semibold text-5xl tracking-tight">
               {title}
             </m.h2>
             <m.div
@@ -121,14 +121,14 @@ export const FContactSection = ({
               }}
               className="flex flex-col sm:flex-row gap-4 sm:gap-10"
             >
-              <FContactButton type="tel" value={phoneNumber} />
-              <FContactButton type="email" value={emailAddress} />
+              <FContactButton type="tel" value={phoneNumber} className="text-lg" />
+              <FContactButton type="email" value={emailAddress} className="text-lg" />
             </m.div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 h-fit gap-4 text-template-text-primary mt-10">
             <div className="space-y-1 col-span-1 sm:col-span-2 w-full">
-              <Label className="uppercase font-semibold">Full Name</Label>
+              <Label className="uppercase font-semibold text-lg">Full Name</Label>
               <Input
                 placeholder="Enter your name"
                 value={formData.name}
@@ -138,7 +138,7 @@ export const FContactSection = ({
               />
             </div>
             <div className="space-y-1 col-span-1">
-              <Label className="uppercase font-semibold">Phone number</Label>
+              <Label className="uppercase font-semibold text-lg">Phone number</Label>
               <Input
                 placeholder="Enter your phone number"
                 type="tel"
@@ -149,14 +149,14 @@ export const FContactSection = ({
               />
             </div>
             <div className="space-y-1 col-span-1">
-              <Label className="uppercase font-semibold">Email Address</Label>
+              <Label className="uppercase font-semibold text-lg">Email Address</Label>
               <EmailInput
                 value={formData.email}
                 onChange={(value) => setFormData({ ...formData, email: value })}
               />
             </div>
             <div className="space-y-2 col-span-1 sm:col-span-2">
-              <Label className="uppercase font-semibold">Message</Label>
+              <Label className="uppercase font-semibold text-lg">Message</Label>
               <Textarea
                 placeholder="Enter your message"
                 className="h-36"
@@ -199,7 +199,7 @@ export const FContactSection = ({
                 delay: delay * 2,
                 ease: "easeOut",
               }}
-              className="font-semibold sm:text-5xl text-3xl tracking-tight text-template-text-primary mb-6"
+              className="font-semibold text-5xl tracking-tight text-template-text-primary mb-6"
             >
               {title}
             </m.h2>
