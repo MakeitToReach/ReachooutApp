@@ -5,6 +5,7 @@ import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
 import { notFound } from "next/navigation";
 import { Loading } from "../editor-components/loading";
+import { PortfolioAnalytics } from "../analytics/PortfolioAnalytics";
 
 interface Project {
   id: string;
@@ -12,6 +13,7 @@ interface Project {
   subDomain: string;
   customDomain?: string;
   logo?: string; // Optional logo/favicon URL
+  trackingId?: string; // Analytics tracking ID
   templates: Array<{
     templateId: string;
     data: GenericTemplateSchema;
@@ -94,8 +96,22 @@ export default function PortfolioView({ project }: PortfolioViewProps) {
   }
 
   return (
-    <div ref={wrapperRef} className="theme-wrapper w-full relative">
-      <template.component data={firstTemplate.data} />
-    </div>
+    <>
+      {/* Analytics Component */}
+      <PortfolioAnalytics
+        projectId={project.id}
+        projectName={project.name}
+        subdomain={project.subDomain}
+        customDomain={project.customDomain}
+        googleTrackingId={project.trackingId}
+        umamiWebsiteId="32c03a2f-3a05-4666-b927-ab34f08c7e1c" // Your existing Umami ID
+        analyticsType={project.trackingId ? "both" : "umami"}
+      />
+      
+      {/* Portfolio Content */}
+      <div ref={wrapperRef} className="theme-wrapper w-full relative">
+        <template.component data={firstTemplate.data} />
+      </div>
+    </>
   );
 }
