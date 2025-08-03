@@ -20,7 +20,7 @@ export const FStatsSection = ({
     <section id="stats">
       <div className="w-full min-h-fit flex flex-col items-center justify-center bg-template-secondary rounded-lg overflow-hidden relative px-4 py-10">
         {/* Content container */}
-        <div className="max-w-6xl mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-10 text-template-text-secondary mb-20 sm:mb-10">
+        <div className="max-w-6xl mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-10 text-template-text-secondary mb-20 sm:mb-20">
           {/* Left: Text Content */}
           <div className="flex flex-col gap-10 sm:w-2/3 w-full">
             <m.h2
@@ -66,7 +66,7 @@ export const FStatsSection = ({
                     {stats[0].statText}
                   </h4>
                 </div>
-                <p className="text-lg leading-tight line-clamp-3">
+                <p className="text-lg leading-tight line-clamp-5">
                   {stats[0].statDescription}
                 </p>
               </m.div>
@@ -97,7 +97,7 @@ export const FStatsSection = ({
                     {stats[1].statText}
                   </h4>
                 </div>
-                <p className="text-lg leading-tight line-clamp-3">
+                <p className="text-lg leading-tight line-clamp-5">
                   {stats[1].statDescription}
                 </p>
               </m.div>

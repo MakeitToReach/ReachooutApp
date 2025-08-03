@@ -24,7 +24,7 @@ export const PFServicesSection = ({
                         delay: delay,
                         ease: "easeOut",
                     }}
-                    viewport={{ amount: 1, once: true }}
+                    viewport={{ amount: 0.5, once: true }}
                     className="text-4xl font-semibold sm:text-6xl text-center"
                 >
                     {title}
@@ -37,7 +37,7 @@ export const PFServicesSection = ({
                         delay: delay * 2,
                         ease: "easeOut",
                     }}
-                    viewport={{ amount: 1, once: true }}
+                    viewport={{ amount: 0.5, once: true }}
                     className="text-center sm:text-xl text-lg text-template-text-secondary/50 mt-8"
                 >
                     {subtitle}
@@ -53,7 +53,7 @@ export const PFServicesSection = ({
                                 delay: delay * idx,
                                 ease: "easeOut",
                             }}
-                            viewport={{ amount: 1, once: true }}
+                            viewport={{ amount: 0.5, once: true }}
                         >
                             <ServicesCard
                                 key={idx}

@@ -37,7 +37,7 @@ export const FProjectCard = ({
   };
 
   return (
-    <div className="h-fit sm:w-[22vw] w-full bg-template-primary text-template-text-primary rounded-lg overflow-hidden space-y-6 pb-6">
+    <div className="h-fit w-full bg-template-primary text-template-text-primary rounded-lg overflow-hidden space-y-6 pb-6">
       {showVideo ? (
         <div className="w-full h-[250px]">
           <YouTube

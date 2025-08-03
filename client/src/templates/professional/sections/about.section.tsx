@@ -96,7 +96,7 @@ export const PFAboutSection = ({
           <m.h1
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ amount: 1, once: true }}
+            viewport={{ amount: 0.5, once: true }}
             transition={{
               duration: 0.5,
               delay: delay,
@@ -114,7 +114,7 @@ export const PFAboutSection = ({
               delay: delay * 2,
               ease: "easeOut",
             }}
-            viewport={{ amount: 1, once: true }}
+            viewport={{ amount: 0.5, once: true }}
             className="uppercase font-medium text-template-text-primary text-xl"
           >
             {title}{" "}
@@ -130,7 +130,7 @@ export const PFAboutSection = ({
               delay: delay,
               ease: "easeOut",
             }}
-            viewport={{ amount: 1, once: true }}
+            viewport={{ amount: 0.5, once: true }}
             className="
     prose prose-xl sm:prose-lg max-w-none text-template-text-primary 
     prose-p:text-template-text-primary

@@ -106,6 +106,7 @@ export const FContactSection = ({
     prose-h4:text-template-text-primary opacity-60
     prose-h5:text-template-text-primary opacity-60
     prose-h6:text-template-text-primary opacity-60
+    line-clamp-6
   "
               dangerouslySetInnerHTML={{ __html: subtitle }}
             />

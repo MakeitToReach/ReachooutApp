@@ -36,7 +36,7 @@ export const FBlogsSection = ({ heading, blogs }: F_BLOGS_SECTION) => {
                         delay: delay * 2,
                         ease: "easeOut",
                     }}
-                    viewport={{ amount: 1, once: true }}
+                    viewport={{ amount: 0.5, once: true }}
                     className="relative w-full mt-10 px-4 sm:px-0"
                 >
                     <Carousel

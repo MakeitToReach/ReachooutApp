@@ -23,7 +23,7 @@ export const PFTeamMembersSection = ({
           delay: delay,
           ease: "easeOut",
         }}
-        viewport={{ amount: 1, once: true }}
+        viewport={{ amount: 0.5, once: true }}
         className="text-4xl font-semibold sm:text-6xl text-center"
       >
         {title}
@@ -36,7 +36,7 @@ export const PFTeamMembersSection = ({
           delay: delay * 2,
           ease: "easeOut",
         }}
-        viewport={{ amount: 1, once: true }}
+        viewport={{ amount: 0.5, once: true }}
         className="text-center text-xl text-template-text-primary/50 mt-8"
       >
         {subtitle}
@@ -49,7 +49,7 @@ export const PFTeamMembersSection = ({
           delay: delay * 3,
           ease: "easeOut",
         }}
-        viewport={{ amount: 1, once: true }}
+        viewport={{ amount: 0, once: true }}
         className="w-full mt-10"
       >
         <PFTeamCarousel team={teamMembers} />

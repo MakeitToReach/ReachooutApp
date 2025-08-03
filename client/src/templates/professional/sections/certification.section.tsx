@@ -24,7 +24,7 @@ export const PFCertificationSection = ({
                         delay: delay,
                         ease: "easeOut",
                     }}
-                    viewport={{ amount: 1, once: true }}
+                    viewport={{ amount: 0.5, once: true }}
                     className="text-4xl font-semibold text-template-text-secondary sm:text-6xl text-center mb-10"
                 >
                     {heading}

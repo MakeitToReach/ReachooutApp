@@ -112,7 +112,7 @@ export const FTimeline = ({ steps }: FTimelineProps) => {
     prose-h4:text-template-text-primary
     prose-h5:text-template-text-primary
     prose-h6:text-template-text-primary
-    line-clamp-5
+    line-clamp-6
   "
                     dangerouslySetInnerHTML={{ __html: step.description }}
                   />

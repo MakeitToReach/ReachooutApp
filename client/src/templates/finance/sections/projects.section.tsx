@@ -11,6 +11,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { motion as m } from "motion/react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const delay = 0.15;
 
@@ -67,30 +68,34 @@ export const FProjectsSection = ({
             <m.div
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0 }}
               transition={{
                 duration: 0.5,
                 delay: delay * 3,
                 ease: "easeOut",
               }}
-              className="flex flex-wrap justify-start gap-3 mb-12"
+              className="mb-12"
             >
-              {categories.map((category) => (
-                <Badge
-                  key={category}
-                  variant={
-                    selectedCategory === category ? "default" : "outline"
-                  }
-                  className={`cursor-pointer px-4 py-2 text-lg font-medium transition-all duration-200 ${
-                    selectedCategory === category
-                      ? "bg-white text-slate-800 hover:bg-gray-100"
-                      : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"
-                  }`}
-                  onClick={() => setSelectedCategory(category)}
-                >
-                  {category}
-                </Badge>
-              ))}
+              <ScrollArea className="w-full">
+                <div className="flex gap-3 pb-4">
+                  {categories.map((category) => (
+                    <Badge
+                      key={category}
+                      variant={
+                        selectedCategory === category ? "default" : "outline"
+                      }
+                      className={`cursor-pointer px-4 py-2 text-lg font-medium transition-all duration-200 whitespace-nowrap ${
+                        selectedCategory === category
+                          ? "bg-white text-slate-800 hover:bg-gray-100"
+                          : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"
+                      }`}
+                      onClick={() => setSelectedCategory(category)}
+                    >
+                      {category}
+                    </Badge>
+                  ))}
+                </div>
+              </ScrollArea>
             </m.div>
             <div className="relative">
               <Carousel
@@ -98,7 +103,7 @@ export const FProjectsSection = ({
                   align: "start",
                   loop: true,
                 }}
-                className="sm:w-[68vw] w-full"
+                className="w-full"
               >
                 <CarouselContent className="md:-ml-4">
                   {filteredProjects.map((project, idx) => (

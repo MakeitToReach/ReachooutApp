@@ -282,7 +282,7 @@ export const FViewMoreDrawer = ({
           </div>
         )}
         {teamMember && teamMember.socials.length > 0 && (
-          <div className="flex gap-2">
+          <div className="p-4 border-t flex gap-2 items-center">
             {teamMember.socials
               .filter((social) => social.url)
               .map((social, index) => (

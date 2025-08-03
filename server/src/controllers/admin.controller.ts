@@ -315,3 +315,38 @@ export const deleteTemplateByTemplateId = async (
     return res.status(500).json({ error: "Failed to process request" });
   }
 };
+
+export const getAllUsersWithProjects = async (req: Request, res: Response) => {
+  try {
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        createdAt: true,
+        projects: {
+          select: {
+            id: true,
+            name: true,
+            subDomain: true,
+            customDomain: true,
+            createdAt: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    const usersWithProjectCount = users.map(user => ({
+      ...user,
+      projectCount: user.projects.length,
+    }));
+
+    return res.status(200).json({ users: usersWithProjectCount });
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return res.status(500).json({ error: "Failed to fetch users" });
+  }
+};

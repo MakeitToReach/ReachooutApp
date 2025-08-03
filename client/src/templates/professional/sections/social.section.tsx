@@ -23,7 +23,7 @@ export const PFSocialSection = ({
                 delay: delay,
                 ease: "easeOut",
               }}
-              viewport={{ amount: 1, once: true }}
+              viewport={{ amount: 0.5, once: true }}
               className="text-4xl font-semibold md:text-6xl"
             >
               {heading}
@@ -36,7 +36,7 @@ export const PFSocialSection = ({
                 delay: delay * 2,
                 ease: "easeOut",
               }}
-              viewport={{ amount: 1, once: true }}
+              viewport={{ amount: 0.5, once: true }}
               className="text-xl text-template-text-secondary/60"
             >
               {subHeading}
@@ -54,7 +54,7 @@ export const PFSocialSection = ({
                       delay: delay * (idx + 1),
                       ease: "easeOut",
                     }}
-                    viewport={{ amount: 1, once: true }}
+                    viewport={{ amount: 0.5, once: true }}
                   >
                     <PFSocialCard
                       key={idx}

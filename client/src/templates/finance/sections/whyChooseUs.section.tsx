@@ -30,9 +30,11 @@ export const FWhyChooseUsSection = ({
   });
 
   // Transform scroll progress to make left content follow scroll downward
-  const leftContentY = useTransform(scrollYProgress, [0, 0.5, 1], [0, 450, 400], {
+  const leftContentY = useTransform(scrollYProgress, [0, 0.6, 1], [0, 400, 400], {
     ease: easeOut,
   });
+
+  const leftContentOpacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 0.95, 0.9]);
 
   const isMobile = useIsMobile();
 
@@ -47,6 +49,7 @@ export const FWhyChooseUsSection = ({
         <m.div
           style={{
             y: !isMobile ? leftContentY : 0,
+            opacity: !isMobile ? leftContentOpacity : 1,
           }}
           className="flex flex-col sm:gap-8 gap-10 sm:w-1/2 w-full text-template-text-primary"
         >
@@ -95,6 +98,7 @@ export const FWhyChooseUsSection = ({
     prose-h4:text-template-text-primary
     prose-h5:text-template-text-primary
     prose-h6:text-template-text-primary
+    line-clamp-6
   "
             dangerouslySetInnerHTML={{ __html: description }}
           />

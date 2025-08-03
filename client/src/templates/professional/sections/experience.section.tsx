@@ -45,7 +45,7 @@ export const PFExperienceSection = ({
                 delay: delay,
                 ease: "easeOut",
               }}
-              viewport={{ amount: 1, once: true }}
+              viewport={{ amount: 0.5, once: true }}
               className="text-4xl font-semibold md:text-6xl"
             >
               {heading}
@@ -58,7 +58,7 @@ export const PFExperienceSection = ({
                 delay: delay * 2,
                 ease: "easeOut",
               }}
-              viewport={{ amount: 1, once: true }}
+              viewport={{ amount: 0.5, once: true }}
               className="flex gap-10"
             >
               {/* Animated vertical line */}
@@ -77,7 +77,7 @@ export const PFExperienceSection = ({
                       delay: delay * (idx + 1),
                       ease: "easeOut",
                     }}
-                    viewport={{ amount: 1, once: true }}
+                    viewport={{ amount: 0, once: true }}
                   >
                     <PFExperienceItem
                       title={experience.title}

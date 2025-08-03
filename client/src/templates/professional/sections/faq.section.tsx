@@ -27,7 +27,7 @@ export const PFFaqSection = React.forwardRef<HTMLElement, PF_FAQ_SECTION>(
                 delay: delay,
                 ease: "easeOut",
               }}
-              viewport={{ amount: 1, once: true }}
+              viewport={{ amount: 0.5, once: true }}
               className="text-4xl font-semibold sm:text-6xl text-center text-template-text-primary"
             >
               {heading}
@@ -41,7 +41,7 @@ export const PFFaqSection = React.forwardRef<HTMLElement, PF_FAQ_SECTION>(
                   delay: delay * 2,
                   ease: "easeOut",
                 }}
-                viewport={{ amount: 1, once: true }}
+                viewport={{ amount: 0.5, once: true }}
                 className="text-lg sm:text-xl text-center text-template-text-primary opacity-50"
               >
                 {subHeading}
@@ -61,7 +61,7 @@ export const PFFaqSection = React.forwardRef<HTMLElement, PF_FAQ_SECTION>(
                   delay: delay * (index + 1),
                   ease: "easeOut",
                 }}
-                viewport={{ amount: 1, once: true }}
+                viewport={{ amount: 0.5, once: true }}
               >
                 <PFFaqItem
                   key={index}

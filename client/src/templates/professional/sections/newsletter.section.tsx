@@ -48,7 +48,7 @@ export const PFNewsletterSection = ({
             delay: delay,
             ease: "easeOut",
           }}
-          viewport={{ amount: 1, once: true }}
+          viewport={{ amount: 0.5, once: true }}
           className="text-4xl font-semibold md:text-6xl text-center text-template-text-secondary"
         >
           {heading}
@@ -62,13 +62,13 @@ export const PFNewsletterSection = ({
             delay: delay * 2,
             ease: "easeOut",
           }}
-          viewport={{ amount: 1, once: true }}
-          className="flex flex-col md:flex-row gap-4"
+          viewport={{ amount: 0.5, once: true }}
+          className="flex flex-col md:flex-row gap-4 max-w-4xl mx-auto "
         >
           <EmailInput
             value={email}
             onChange={(value) => setEmail(value)}
-            className="bg-template-text-secondary"
+            className="bg-template-text-secondary w-full"
           />
           <Button
             disabled={!receiverEmail || isLoading}

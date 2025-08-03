@@ -139,7 +139,7 @@ export const PFHeroSection = ({
           </m.div>
         ) : (
           <m.div
-            initial={{ opacity: 0, x: 40, filter: "blur(10px)" }}
+            initial={{ opacity: 0, x: "4vw", filter: "blur(10px)" }}
             whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{
@@ -147,7 +147,7 @@ export const PFHeroSection = ({
               delay: delay * 5,
               ease: "easeOut",
             }}
-            className="mt-10 sm:mt-0 sm:min-h-[500px] sm:min-w-[500px] sm:max-h-[500px] sm:max-w-[500px] relative rounded-sm min-w-[300px] min-h-[300px] overflow-hidden"
+            className="mt-10 sm:mt-0 sm:min-h-[50vh] sm:min-w-[28vw] sm:max-h-[50vh] sm:max-w-[28vw] relative rounded-sm min-w-[30vw] min-h-[30vh] overflow-hidden"
           >
             <Image
               src={heroImgUrl || "https://placehold.co/500x500"}

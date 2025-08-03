@@ -20,7 +20,7 @@ export const PFWorkSection = ({ projects, heading }: PF_WORK_SECTION) => {
             delay: delay,
             ease: "easeOut",
           }}
-          viewport={{ amount: 1, once: true }}
+          viewport={{ amount: 0.5, once: true }}
           className="text-center font-semibold text-4xl sm:text-6xl p-4 mb-4"
         >
           {heading}

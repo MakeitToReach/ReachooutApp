@@ -28,7 +28,7 @@ export const PFBlogSection = ({ heading, blogs }: PF_BLOG_SECTION) => {
           delay: delay,
           ease: "easeOut",
         }}
-        viewport={{ amount: 1, once: true }}
+        viewport={{ amount: 0.5, once: true }}
         className="text-4xl font-semibold text-template-text-primary sm:text-6xl text-center"
       >
         {heading}
@@ -41,7 +41,7 @@ export const PFBlogSection = ({ heading, blogs }: PF_BLOG_SECTION) => {
           delay: delay * 2,
           ease: "easeOut",
         }}
-        viewport={{ amount: 1, once: true }}
+        viewport={{ amount: 0.5, once: true }}
         className="relative w-full mt-10 px-4 sm:px-0"
       >
         <Carousel

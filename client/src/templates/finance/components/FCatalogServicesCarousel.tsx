@@ -10,6 +10,7 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { F_CATLOG_SERVICES } from "../types/service-catalog.types";
 import { FCatalogServicesCard } from "./FCatalogServiceCard";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const FCatalogServicesCarousel = ({
   catalogServices,
@@ -33,21 +34,25 @@ export const FCatalogServicesCarousel = ({
   return (
     <div className="w-full overflow-x-visible">
       {/* categories */}
-      <div className="flex flex-wrap justify-start gap-3 mb-12">
-        {categories.map((category) => (
-          <Badge
-            key={category}
-            variant={selectedCategory === category ? "default" : "outline"}
-            className={`cursor-pointer px-4 py-2 text-lg font-medium transition-all duration-200 ${
-              selectedCategory === category
-                ? "bg-white text-slate-800 hover:bg-gray-100"
-                : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"
-            }`}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </Badge>
-        ))}
+      <div className="mb-12">
+        <ScrollArea className="w-full">
+          <div className="flex gap-3 pb-4">
+            {categories.map((category) => (
+              <Badge
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
+                className={`cursor-pointer px-4 py-2 text-lg font-medium transition-all duration-200 whitespace-nowrap ${
+                  selectedCategory === category
+                    ? "bg-white text-slate-800 hover:bg-gray-100"
+                    : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"
+                }`}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </Badge>
+            ))}
+          </div>
+        </ScrollArea>
       </div>
       <div className="relative">
         <Carousel

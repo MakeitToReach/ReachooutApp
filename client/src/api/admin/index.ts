@@ -157,3 +157,23 @@ export const deleteTemplateByTemplateId = async (templateId: string) => {
     return null;
 
 }
+
+export const getAllUsers = async () => {
+  const adminToken = getAdminToken();
+  try {
+    const response = await api.get("/v1/admin/users", {
+      headers: {
+        Authorization: `Bearer ${adminToken}`,
+      },
+    });
+    return response.data;
+  } catch (error: any) {
+    console.log(error);
+    if (error.status === 401) {
+      toast.error("Unauthorized access");
+    }
+    if (error.status === 500) {
+      toast.error("Internal server error");
+    }
+  }
+};

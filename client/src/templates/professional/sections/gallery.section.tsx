@@ -20,7 +20,7 @@ export const PFGallerySection = ({ imgs, heading }: PF_GALLERY_SECTION) => {
           delay: delay,
           ease: "easeOut",
         }}
-        viewport={{ amount: 1, once: true }}
+        viewport={{ amount: 0.5, once: true }}
         className="text-4xl font-semibold text-template-text-primary sm:text-6xl text-center"
       >
         {heading}
@@ -33,7 +33,7 @@ export const PFGallerySection = ({ imgs, heading }: PF_GALLERY_SECTION) => {
           delay: delay * 2,
           ease: "easeOut",
         }}
-        viewport={{ amount: 1, once: true }}
+        viewport={{ amount: 0, once: true }}
         className="flex px-4 mt-10 items-center justify-center"
       >
         <PFGalleryCarousel images={imgs} />

@@ -21,7 +21,7 @@ export const FTeamCarousel = ({ team }: { team: F_TEAM_MEMBER[] }) => {
                         align: "start",
                         loop: true,
                     }}
-                    className="sm:w-[62vw] w-full"
+                    className="w-full"
                 >
                     <CarouselContent className="md:-ml-4">
                         {team.map((team, idx) => (

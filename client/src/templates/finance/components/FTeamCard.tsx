@@ -11,7 +11,7 @@ export const FTeamCard = ({
   socials,
 }: F_TEAM_MEMBER) => {
   return (
-    <div className="h-fit sm:w-[20vw] w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6">
+    <div className="h-fit w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6">
       <Image
         quality={100}
         src={imgUrl || "/placeholder.png"}

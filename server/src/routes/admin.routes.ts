@@ -7,6 +7,7 @@ import {
   deleteTemplateByTemplateId,
   deleteTemplateCategoryByCategoryId,
   getTemplateCategoriesByTemplateId,
+  getAllUsersWithProjects,
   loginAdmin,
   updateTemplate,
 } from "../controllers/admin.controller";
@@ -67,6 +68,10 @@ adminRouter.get("/analytics/users", isAuthenticated, (req: Request, res: Respons
 
 adminRouter.get("/analytics/projects", isAuthenticated, (req: Request, res: Response) => {
   getTotalProjectCount(req, res);
+});
+
+adminRouter.get("/users", isAuthenticated, (req: Request, res: Response) => {
+  getAllUsersWithProjects(req, res);
 });
 
 export default adminRouter;

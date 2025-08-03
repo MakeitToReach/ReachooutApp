@@ -21,7 +21,7 @@ export const FTeamSection = ({ team, heading }: F_TEAM_SECTION) => {
                 className="font-semibold text-5xl tracking-tight text-center text-template-text-secondary">
                     {heading}
                 </m.h2>
-                <div className="sm:w-[130vw] rounded-lg">
+                <div className="w-full rounded-lg">
                     <FTeamCarousel team={team} />
                     </div>
                 </div>
