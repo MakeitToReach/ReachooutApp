@@ -164,7 +164,7 @@ export const PFNavbar = ({
                   ease: "easeOut",
                 }}
               >
-                <LucideMenu className="size-10" />
+                <LucideMenu className="size-8" />
               </m.span>
             </SelectTrigger>
             <SelectContent>
