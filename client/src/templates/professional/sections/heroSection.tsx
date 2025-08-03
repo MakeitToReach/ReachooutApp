@@ -147,14 +147,13 @@ export const PFHeroSection = ({
               delay: delay * 5,
               ease: "easeOut",
             }}
-            className="mt-20 sm:mt-0 sm:min-h-[500px] sm:min-w-[500px] sm:max-h-[500px] sm:max-w-[500px] rounded-sm object-cover w-full h-full relative overflow-hidden"
+            className="mt-10 sm:mt-0 sm:min-h-[500px] sm:min-w-[500px] sm:max-h-[500px] relative rounded-sm min-w-[300px] min-h-[300px] overflow-hidden"
           >
             <Image
-              src={heroImgUrl || "https://placehold.co/600x600"}
+              src={heroImgUrl || "https://placehold.co/500x500"}
               alt="heroimg"
-              className="object-cover w-full h-full"
-              width={500}
-              height={500}
+              fill
+              className="object-cover"
             />
           </m.div>
         )}
