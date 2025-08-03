@@ -1,5 +1,6 @@
 import { toast } from "sonner";
 import { api } from "../axios.config";
+import { getToken } from "@/lib/isAuthenticated";
 
 export const setCookie = (name: string, value: string, days = 1) => {
     const expires = new Date();
@@ -43,15 +44,24 @@ export const logoutUser = () => {
     toast.success("Logged out successfully");
 };
 
-export const getUserFromToken = async (token: string) => {
+export const getUserFromToken = async (token?: string) => {
     try {
+        // Use provided token or get from cookies
+        const authToken = token || getToken();
+        
+        if (!authToken) {
+            console.error("No token available for getUserFromToken");
+            return null;
+        }
+
         const response = await api.get("/v1/auth/me", {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${authToken}`,
             },
         });
         return response.data;
     } catch (error) {
-        console.error(error);
+        console.error("Error in getUserFromToken:", error);
+        return null;
     }
 };
