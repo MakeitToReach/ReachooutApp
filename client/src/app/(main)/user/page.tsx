@@ -9,12 +9,14 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Project } from "@/schemas/projects.schema";
+import { useTrialStatus } from "@/hooks/use-trial-status";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const ProjectsTab = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { isTrialUser } = useTrialStatus();
 
   const handleDeleteProject = async (projectId: string) => {
     try {
@@ -86,14 +88,30 @@ const ProjectsTab = () => {
                 ))
               : null}
 
-            {/* Create Project Card */}
-            <CreateUserProjectDialog>
-              <Card className="border bg-transparent border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">
-                <CardContent>
-                  <Button variant="outline">+ Create New Project</Button>
-                </CardContent>
-              </Card>
-            </CreateUserProjectDialog>
+            {/* 
+              If the user is a trial user and has less than 1 project, show the create button.
+              If the user is a trial user and already has 1 or more projects, do not show the create button.
+              If the user is NOT a trial user, always show the create button.
+            */}
+            {isTrialUser ? (
+              projects.length < 1 ? (
+                <CreateUserProjectDialog>
+                  <Card className="border bg-transparent border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">
+                    <CardContent>
+                      <Button variant="outline">+ Create New Project</Button>
+                    </CardContent>
+                  </Card>
+                </CreateUserProjectDialog>
+              ) : null
+            ) : (
+              <CreateUserProjectDialog>
+                <Card className="border bg-transparent border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">
+                  <CardContent>
+                    <Button variant="outline">+ Create New Project</Button>
+                  </CardContent>
+                </Card>
+              </CreateUserProjectDialog>
+            )}
           </>
         )}
       </div>

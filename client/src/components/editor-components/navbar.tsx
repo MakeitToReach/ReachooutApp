@@ -1,20 +1,19 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
-import { getUserFromToken, logoutUser } from "@/api/auth";
+import React from "react";
+import { logoutUser } from "@/api/auth";
 import { useUserStore } from "@/store/user.store";
 import { useRouter } from "next/navigation";
 import AvatarDropdown from "./userAvatarDropdown";
-import { getToken } from "@/lib/isAuthenticated";
 
 export const Navbar = () => {
-  const { user, setUser } = useUserStore();
+  const { user, updateUserFromServer } = useUserStore();
   const router = useRouter();
 
   const logoutAndRedirect = () => {
     logoutUser();
-    setUser(null);
+    updateUserFromServer(null);
     router.push("/");
   };
 
@@ -27,20 +26,7 @@ export const Navbar = () => {
     }
   };
 
-  useEffect(() => {
-    if (!user) {
-      async function getUser() {
-        const token = getToken();
-        if (token) {
-          const user = await getUserFromToken(token);
-          if (user) {
-            setUser(user);
-          }
-        }
-      }
-      getUser();
-    }
-  }, [user, logoutAndRedirect]);
+  // User fetching is now handled by AuthProvider
 
   return (
     <div className="w-full h-[10vh] bg-neutral-950 backdrop-blur p-4 flex justify-between items-center md:px-40">

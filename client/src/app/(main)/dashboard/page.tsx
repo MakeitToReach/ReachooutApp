@@ -14,12 +14,10 @@ import { AnimatePresence, LayoutGroup } from "motion/react";
 import { motion as m } from "motion/react";
 import { useUserStore } from "@/store/user.store";
 import { Skeleton } from "@/components/ui/skeleton";
-// import Link from "next/link";
 import { toast } from "sonner";
 import { Project } from "@/schemas/projects.schema";
 import { CreateUserProjectDialog } from "@/components/editor-components/popups/createUserProject";
-import { getToken } from "@/lib/isAuthenticated";
-import { getUserFromToken } from "@/api/auth";
+
 import { IconPlus } from "@tabler/icons-react";
 import { ProjectCard } from "@/components/editor-components/projectCard";
 
@@ -30,7 +28,7 @@ function App() {
     const [projects, setProjects] = useState<Project[]>([]);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const { user, setUser } = useUserStore();
+    const { user } = useUserStore();
 
     useEffect(() => {
         const fetchUserProjects = async () => {
@@ -52,24 +50,7 @@ function App() {
         fetchUserProjects();
     }, []);
 
-    useEffect(() => {
-        const token = getToken();
-
-        if (token) {
-            const fetchUserDetails = async () => {
-                try {
-                    const response = await getUserFromToken(token);
-                    if (response) {
-                        setUser(response.user);
-                    }
-                } catch (error) {
-                    console.error(error);
-                }
-            };
-
-            fetchUserDetails();
-        }
-    }, []);
+    // User fetching is now handled by AuthProvider
 
     const tabs = [
         { id: "projects", name: "Your Projects", icon: LayoutTemplate },

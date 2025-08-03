@@ -20,13 +20,13 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { USER } from "@/store/user.store";
+import { PUBLIC_USER } from "@/store/user.store";
 
 export function NavUser({
   user,
   handleLogout,
 }: {
-  user: USER;
+  user: PUBLIC_USER;
   handleLogout: () => void;
 }) {
   const { isMobile } = useSidebar();

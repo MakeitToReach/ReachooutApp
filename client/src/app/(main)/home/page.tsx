@@ -7,15 +7,12 @@ import Image from "next/image";
 import { TEMPLATES_STATIC } from "@/static_data/templates";
 import { AuthPopup } from "@/components/editor-components/popups/authPopup";
 import { getToken } from "@/lib/isAuthenticated";
-import { useUserStore } from "@/store/user.store";
-import { getUserFromToken } from "@/api/auth";
 import { Navbar } from "@/components/editor-components/navbar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { FlipText } from "@/components/template-components/professional/flipText";
 import { Button } from "@/components/ui/button";
 
 function Home() {
-  const { setUser } = useUserStore();
   const rotatingWords = ["Portfolio", "Brandsite"];
   const [wordIndex, setWordIndex] = useState(0);
   const isMobile = useIsMobile();
@@ -42,26 +39,10 @@ function Home() {
     },
   };
 
+  // Get token for UI state only - user fetching is handled by AuthProvider
   useEffect(() => {
     const token = getToken();
-
-    if (token) {
-      const fetchUserDetails = async () => {
-        try {
-          const response = await getUserFromToken(token);
-          if (response) {
-            setUser(response.user);
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      fetchUserDetails();
-      setToken(token);
-    } else {
-      setToken("");
-    }
+    setToken(token || "");
   }, []);
 
   return (

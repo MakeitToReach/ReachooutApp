@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sidebar";
 import { NavProjects } from "@/components/editor-components/userDashboard/navProjects";
 import { NavUser } from "./navUser";
-import { USER, useUserStore } from "@/store/user.store";
+import { PUBLIC_USER, useUserStore } from "@/store/user.store";
 import { logoutUser } from "@/api/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -55,15 +55,15 @@ const data = {
 };
 
 interface UserSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  user?: USER;
+  user?: PUBLIC_USER;
 }
 export const UserSidebar = ({ user }: UserSidebarProps) => {
   const router = useRouter();
-  const { setUser } = useUserStore();
+  const { updateUserFromServer } = useUserStore();
 
   const logoutAndRedirect = () => {
     logoutUser();
-    setUser(null);
+    updateUserFromServer(null);
     router.push("/");
   };
 

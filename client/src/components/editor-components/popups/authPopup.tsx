@@ -18,7 +18,7 @@ import { toast } from "sonner";
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
 
 export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
-  const { setUser } = useUserStore();
+  const { updateUserFromServer } = useUserStore();
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -34,7 +34,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
       const response = await registerUser(email, username, password);
 
       if (response?.status === 201 && response.data?.user) {
-        setUser(response.data.user);
+        updateUserFromServer(response.data.user);
         setOpen(false);
         router.push("/user");
       }
@@ -57,7 +57,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
       const response = await loginUser(username, password);
 
       if (response?.status === 200 && response.data?.user) {
-        setUser(response.data.user);
+        updateUserFromServer(response.data.user);
         setOpen(false);
         router.push("/user");
       }
