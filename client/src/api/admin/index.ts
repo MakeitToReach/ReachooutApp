@@ -3,10 +3,10 @@ import api from "../axios.config";
 import { setCookie } from "../auth";
 import { getAdminToken } from "@/lib/isAuthenticated";
 
-
 export const logoutAdmin = () => {
-    document.cookie = "admin-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    toast.success("Admin Logged out successfully");
+  document.cookie =
+    "admin-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  toast.success("Admin Logged out successfully");
 };
 
 export const loginAdmin = async (username: string, password: string) => {
@@ -33,7 +33,7 @@ export const createTemplate = async (
   data: string,
   thumbnailUrl: string,
   category: string,
-  tags: string[],
+  tags: string[]
 ) => {
   const adminToken = getAdminToken();
   const categories = [
@@ -43,17 +43,21 @@ export const createTemplate = async (
     },
   ];
   try {
-    const response = await api.post("/v1/admin/create/template", {
-      name,
-      data,
-      thumbnailUrl,
-      tags,
-      categories,
-    },{
-      headers: {
-        Authorization: `Bearer ${adminToken}`,
+    const response = await api.post(
+      "/v1/admin/create/template",
+      {
+        name,
+        data,
+        thumbnailUrl,
+        tags,
+        categories,
       },
-    });
+      {
+        headers: {
+          Authorization: `Bearer ${adminToken}`,
+        },
+      }
+    );
     toast.success("Template created successfully");
     return response;
 
@@ -72,7 +76,7 @@ export const createTemplate = async (
 export const createTemplateCategory = async (
   templateId: string,
   category: string,
-  data: any, //eslint-disable-line
+  data: any //eslint-disable-line
 ) => {
   const adminToken = getAdminToken();
   try {
@@ -147,16 +151,15 @@ export const deleteTemplateByTemplateId = async (templateId: string) => {
     },
   });
 
-    if (response.status === 200) {
-      toast.success("Template deleted successfully");
-      return response.data;
-    } else {
-      toast.error("Failed to delete template");
-    }
-  
-    return null;
+  if (response.status === 200) {
+    toast.success("Template deleted successfully");
+    return response.data;
+  } else {
+    toast.error("Failed to delete template");
+  }
 
-}
+  return null;
+};
 
 export const getAllUsers = async () => {
   const adminToken = getAdminToken();
@@ -167,6 +170,7 @@ export const getAllUsers = async () => {
       },
     });
     return response.data;
+    //eslint-disable-next-line
   } catch (error: any) {
     console.log(error);
     if (error.status === 401) {

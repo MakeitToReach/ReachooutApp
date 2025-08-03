@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import { F_CATLOG_SERVICES } from "../types/service-catalog.types";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { MultipleImageInput } from "@/components/multiImgInput";
 import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
