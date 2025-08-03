@@ -2,6 +2,7 @@ export type PF_BLOG = {
     title: string;
     imgUrl: string;
     description: string;
+    vidUrl?: string;
     btnText?: string;
     btnLink?: string;
 }

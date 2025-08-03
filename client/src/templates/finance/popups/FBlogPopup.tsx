@@ -12,8 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { F_BLOG } from "../types/blogs.types";
-import { ImageInput } from "@/components/imgInput";
-import { Label } from "@/components/ui/label";
+import { ImageVideoInput } from "@/components/editor-components/inputs/ImageVideoInput";
 import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface FAddBlogPopupProps {
@@ -25,6 +24,7 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
     title: "",
     description: "",
     imgUrl: "",
+    vidUrl: "",
     btnLink: "",
     btnText: "",
   });
@@ -36,17 +36,18 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
           <DialogTitle className="md:text-2xl">Add Blog</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-3">
-          <div className="space-y-2">
-            <Label className="font-semibold">Blog Image</Label>
-            <ImageInput
-              initialImgUrl={blog.imgUrl}
-              className="w-full"
-              onImageUpload={(imgUrl) => {
-                setBlog({ ...blog, imgUrl: imgUrl });
-              }}
-              onImageRemove={() => setBlog({ ...blog, imgUrl: "" })}
-            />
-          </div>
+          <ImageVideoInput
+            initialImgUrl={blog.imgUrl}
+            initialVideoUrl={blog.vidUrl}
+            onImageUpload={(imgUrl) => {
+              setBlog({ ...blog, imgUrl: imgUrl });
+            }}
+            onImageRemove={() => setBlog({ ...blog, imgUrl: "" })}
+            onVideoUrlChange={(vidUrl) => {
+              setBlog({ ...blog, vidUrl: vidUrl });
+            }}
+            className="w-full"
+          />
           <ReqInput
             type="text"
             label="Title"
@@ -95,6 +96,7 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
                   title: "",
                   description: "",
                   imgUrl: "",
+                  vidUrl: "",
                   btnLink: "",
                   btnText: "",
                 });
@@ -149,17 +151,18 @@ export const FEditBlogPopup = ({
         </DialogHeader>
 
         <div className="space-y-3">
-          <div className="space-y-2">
-            <Label className="font-semibold">Blog Image</Label>
-            <ImageInput
-              initialImgUrl={formData.imgUrl}
-              className="w-full"
-              onImageUpload={(imgUrl) => {
-                handleChange("imgUrl", imgUrl);
-              }}
-              onImageRemove={() => handleChange("imgUrl", "")}
-            />
-          </div>
+          <ImageVideoInput
+            initialImgUrl={formData.imgUrl}
+            initialVideoUrl={formData.vidUrl}
+            onImageUpload={(imgUrl) => {
+              handleChange("imgUrl", imgUrl);
+            }}
+            onImageRemove={() => handleChange("imgUrl", "")}
+            onVideoUrlChange={(vidUrl) => {
+              handleChange("vidUrl", vidUrl);
+            }}
+            className="w-full"
+          />
 
           <ReqInput
             type="text"

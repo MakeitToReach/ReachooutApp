@@ -2,6 +2,7 @@ export type F_BLOG = {
     title: string;
     description: string;
     imgUrl: string;
+    vidUrl?: string;
     btnLink?: string;
     btnText?: string;
 };

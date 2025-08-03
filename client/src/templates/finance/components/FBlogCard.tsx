@@ -1,10 +1,11 @@
 import { LucideChevronRight } from "lucide-react";
-import Image from "next/image";
+import { ImageVideo } from "@/components/ImageVideo";
 import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
 import { F_BLOG } from "../types/blogs.types";
 
 export const FBlogCard = ({
   imgUrl,
+  vidUrl,
   title,
   description,
   btnLink,
@@ -12,13 +13,16 @@ export const FBlogCard = ({
 }: F_BLOG) => {
   return (
     <div className="w-full bg-template-primary rounded-lg overflow-hidden space-y-6 pb-6 border border-template-accent-primary">
-      <Image
-        src={imgUrl || "/placeholder.png"}
-        alt="blog-img"
-        width={400}
-        height={100}
-        className="w-full h-[15rem] object-cover"
-      />
+      <div className="w-full h-[15rem]">
+        <ImageVideo
+          imgUrl={imgUrl}
+          vidUrl={vidUrl}
+          alt="blog-img"
+          width={400}
+          height={100}
+          imageClassName="w-full h-full object-cover"
+        />
+      </div>
       <div className="space-y-1 px-4">
         <h2 className="font-semibold line-clamp-2 text-xl tracking-tight text-template-text-primary">
           {title}
@@ -41,6 +45,7 @@ export const FBlogCard = ({
           type="Blog"
           content={{
             imgUrl,
+            vidUrl,
             title,
             description,
             btnLink,

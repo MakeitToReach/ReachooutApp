@@ -12,8 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { PF_BLOG } from "../types/blog.types";
-import { ImageInput } from "@/components/imgInput";
-import { Label } from "@/components/ui/label";
+import { ImageVideoInput } from "@/components/editor-components/inputs/ImageVideoInput";
 import { TipTapEditor } from "@/components/ui/TipTapEditor";
 
 interface PFAddBlogPopupProps {
@@ -24,6 +23,7 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
     const [blog, setBlog] = useState<PF_BLOG>({
         title: "",
         imgUrl: "",
+        vidUrl: "",
         description: "",
         btnText: "",
         btnLink: "",
@@ -55,17 +55,18 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <Label className="font-semibold">Blog Image</Label>
-                        <ImageInput
-                            initialImgUrl={blog.imgUrl}
-                            className="w-full"
-                            onImageUpload={(imgUrl) => {
-                                setBlog({ ...blog, imgUrl: imgUrl });
-                            }}
-                            onImageRemove={() => setBlog({ ...blog, imgUrl: "" })}
-                        />
-                    </div>
+                    <ImageVideoInput
+                        initialImgUrl={blog.imgUrl}
+                        initialVideoUrl={blog.vidUrl}
+                        onImageUpload={(imgUrl) => {
+                            setBlog({ ...blog, imgUrl: imgUrl });
+                        }}
+                        onImageRemove={() => setBlog({ ...blog, imgUrl: "" })}
+                        onVideoUrlChange={(vidUrl) => {
+                            setBlog({ ...blog, vidUrl: vidUrl });
+                        }}
+                        className="w-full"
+                    />
                 </div>
 
                 <DialogFooter>
@@ -76,6 +77,7 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
                                 setBlog({
                                     title: "",
                                     imgUrl: "",
+                                    vidUrl: "",
                                     description: "",
                                     btnText: "",
                                     btnLink: "",
@@ -166,17 +168,18 @@ export const PFEditBlogPopup = ({
                     />
                 </div>
 
-                <div className="space-y-2">
-                    <Label className="font-semibold">Blog Image</Label>
-                    <ImageInput
-                        initialImgUrl={formData.imgUrl}
-                        className="w-full"
-                        onImageUpload={(imgUrl) => {
-                            handleChange("imgUrl", imgUrl);
-                        }}
-                        onImageRemove={() => handleChange("imgUrl", "")}
-                    />
-                </div>
+                <ImageVideoInput
+                    initialImgUrl={formData.imgUrl}
+                    initialVideoUrl={formData.vidUrl}
+                    onImageUpload={(imgUrl) => {
+                        handleChange("imgUrl", imgUrl);
+                    }}
+                    onImageRemove={() => handleChange("imgUrl", "")}
+                    onVideoUrlChange={(vidUrl) => {
+                        handleChange("vidUrl", vidUrl);
+                    }}
+                    className="w-full"
+                />
 
                 <div className="flex justify-end gap-2">
                     <Button variant="ghost" onClick={() => setOpen(false)}>
