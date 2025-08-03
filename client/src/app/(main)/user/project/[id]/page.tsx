@@ -53,7 +53,7 @@ const ProjectPage = () => {
         <div className="flex justify-between w-full items-center">
           <h1 className="text-2xl text-black dark:text-white">{projectName}</h1>
           <Link href={`/user/project/settings/${id}`}>
-            <Button variant="outline">
+            <Button variant="default" className="bg-white text-black text-lg">
               <span className="hidden sm:block">Settings</span> <SettingsIcon />
             </Button>
           </Link>

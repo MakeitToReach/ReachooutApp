@@ -33,13 +33,12 @@ export function NavUser({
 
   return (
     <SidebarMenu>
-      <SidebarMenuItem>
+      <SidebarMenuItem className="bg-foreground p-2 text-black rounded-lg">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-            >
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground" >
               <Avatar className="h-10 w-10 rounded-lg">
                 <AvatarImage src={user.avatarUrl} alt={user.name} />
                 <AvatarFallback className="rounded-lg">

@@ -7,12 +7,12 @@ import { getProjectTemplateInstanceData } from "@/api/user-template";
 import { useRouter } from "next/navigation";
 import { OnboardingPopup } from "./popups/onboardingPopup";
 import {
+  Bolt,
   Copy,
   Edit,
   ExternalLink,
   LucideEye,
   QrCode,
-  Settings,
   Trash2,
 } from "lucide-react";
 import {
@@ -186,7 +186,7 @@ export const TemplateCard = ({
                   title="More Settings"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Settings className="text-muted-foreground hover:text-primary" />
+                  <Bolt className="text-muted-foreground hover:text-primary" />
                   <span className="sr-only">More</span>
                 </div>
               </DropdownMenuTrigger>

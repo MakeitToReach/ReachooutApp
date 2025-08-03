@@ -147,7 +147,7 @@ export const PFHeroSection = ({
               delay: delay * 5,
               ease: "easeOut",
             }}
-            className="mt-20 sm:mt-0 sm:max-h-[500px] sm:max-w-[500px] rounded-sm object-cover w-full h-full relative overflow-hidden"
+            className="mt-20 sm:mt-0 sm:min-h-[500px] sm:min-w-[500px] sm:max-h-[500px] sm:max-w-[500px] rounded-sm object-cover w-full h-full relative overflow-hidden"
           >
             <Image
               src={heroImgUrl || "https://placehold.co/600x600"}
