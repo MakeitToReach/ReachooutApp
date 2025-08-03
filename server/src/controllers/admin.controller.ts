@@ -324,6 +324,7 @@ export const getAllUsersWithProjects = async (req: Request, res: Response) => {
         email: true,
         name: true,
         createdAt: true,
+        isTrialUser: true,
         projects: {
           select: {
             id: true,

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, ChevronRight, ExternalLink } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface Project {
   id: string;
@@ -21,6 +22,7 @@ interface User {
   createdAt: string;
   projects: Project[];
   projectCount: number;
+  isTrialUser: boolean;
 }
 
 interface UsersTableProps {
@@ -62,7 +64,13 @@ export const UsersTable = ({ users }: UsersTableProps) => {
       <CardContent>
         <div className="space-y-4">
           {users.map((user) => (
-            <div key={user.id} className="border rounded-lg p-4">
+            <div
+              key={user.id}
+              className={cn(
+                "border rounded-lg p-4",
+                user.isTrialUser ? "border border" : "border-black"
+              )}
+            >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
                   <Button
@@ -79,23 +87,26 @@ export const UsersTable = ({ users }: UsersTableProps) => {
                   </Button>
                   <div>
                     <div className="font-medium">{user.name}</div>
-                    <div className="text-sm text-muted-foreground">{user.email}</div>
+                    <div className="text-sm text-muted-foreground">
+                      {user.email}
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="text-right">
                     <div className="text-sm text-muted-foreground">Created</div>
-                    <div className="text-sm font-medium">{formatDate(user.createdAt)}</div>
+                    <div className="text-sm font-medium">
+                      {formatDate(user.createdAt)}
+                    </div>
                   </div>
-                  <Badge variant="secondary">{user.projectCount} projects</Badge>
+                  <Badge variant="secondary">
+                    {user.projectCount} projects
+                  </Badge>
                 </div>
               </div>
-              
+
               {expandedUsers.has(user.id) && user.projects.length > 0 && (
                 <div className="mt-4 ml-8 space-y-2">
-                  <div className="text-sm font-medium text-muted-foreground mb-2">
-                    Projects:
-                  </div>
                   {user.projects.map((project) => (
                     <div
                       key={project.id}
@@ -104,7 +115,8 @@ export const UsersTable = ({ users }: UsersTableProps) => {
                       <div>
                         <div className="font-medium">{project.name}</div>
                         <div className="text-sm text-muted-foreground">
-                          {project.customDomain || `${project.subDomain}.reachout.com`}
+                          {project.customDomain ||
+                            `${project.subDomain}.reachout.com`}
                         </div>
                         <div className="text-xs text-muted-foreground">
                           Created: {formatDate(project.createdAt)}
@@ -123,7 +135,7 @@ export const UsersTable = ({ users }: UsersTableProps) => {
                   ))}
                 </div>
               )}
-              
+
               {expandedUsers.has(user.id) && user.projects.length === 0 && (
                 <div className="mt-4 ml-8 text-sm text-muted-foreground">
                   No projects created yet.
@@ -135,4 +147,4 @@ export const UsersTable = ({ users }: UsersTableProps) => {
       </CardContent>
     </Card>
   );
-}; 
+};

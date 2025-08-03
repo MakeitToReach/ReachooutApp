@@ -13,12 +13,14 @@ import React, { useEffect, useState } from "react";
 import { TemplateItem } from "@/types/projectTemplate.types";
 import { SettingsIcon } from "lucide-react";
 import Link from "next/link";
+import { useUserStore } from "@/store/user.store";
 
 const ProjectPage = () => {
   const params = useParams<{ id: string }>();
   const id = params?.id;
   const [templates, setTemplates] = useState<TemplateItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useUserStore();
 
   useEffect(() => {
     if (!id) return;
@@ -106,6 +108,7 @@ const ProjectPage = () => {
                   />
                 ))
               : null}
+
             <AddSlugPopup pid={id as string}>
               <Card className="border bg-transparent h-full border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">
                 <CardContent className="p-4">

@@ -24,6 +24,7 @@ interface User {
     createdAt: string;
   }[];
   projectCount: number;
+  isTrialUser: boolean;
 }
 
 const DashboardAnalyticsPage = () => {

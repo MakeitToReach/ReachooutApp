@@ -18,6 +18,7 @@ model User {
   updatedAt DateTime       @updatedAt
   projects  Project[]
   templates UserTemplate[]
+  isTrialUser Boolean     @default(true)
 }
 
 model Project {
