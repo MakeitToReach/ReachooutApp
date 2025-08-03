@@ -18,8 +18,6 @@ import {
   PFNewsletterSection,
   PFCertificationSection,
 } from "./sections";
-// import { PageLoader } from "@/components/editor-components/pageLoader";
-// import { motion as m } from "motion/react";
 import type { SectionBlock } from "@/schemas/templates.schema";
 import { PFExperienceSection } from "./sections/experience.section";
 import { Loading } from "@/components/editor-components/loading";

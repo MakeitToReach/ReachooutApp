@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { TEMPLATE_REGISTRY } from "@/lib/templateRegistry";
 import { GenericTemplateSchema } from "@/schemas/templates.schema";
-import { PageLoader } from "@/components/editor-components/pageLoader";
 import { notFound } from "next/navigation";
+import { Loading } from "../editor-components/loading";
 
 interface Project {
   id: string;
@@ -58,7 +58,7 @@ export default function PortfolioView({ project }: PortfolioViewProps) {
     });
   }, [project.templates]);
 
-  if (isLoading) return <PageLoader />;
+  if (isLoading) return <Loading />;
 
   if (!project.templates.length) {
     notFound();
