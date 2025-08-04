@@ -42,9 +42,13 @@ const ColorPickerDemo = () => {
   const [color, setColor] = useState("#aabbcc");
   return (
     <div className="mb-12 prose prose-sm max-w-none">
-      <h3 className="text-white text-lg font-semibold mb-2">Color Picker Demo</h3>
+      <h3 className="text-white text-lg font-semibold mb-2">
+        Color Picker Demo
+      </h3>
       <ColorPicker value={color} onChange={setColor} label="Pick a color" />
-      <div className="mt-2 text-white text-sm">Selected color: <span className="font-mono">{color}</span></div>
+      <div className="mt-2 text-white text-sm">
+        Selected color: <span className="font-mono">{color}</span>
+      </div>
     </div>
   );
 };
@@ -53,9 +57,17 @@ const ColorPickerPopupDemo = () => {
   const [color, setColor] = useState("#aabbcc");
   return (
     <div className="mb-12 prose prose-sm max-w-none">
-      <h3 className="text-white text-lg font-semibold mb-2">Popup Color Picker Demo</h3>
-      <ColorPickerPopup value={color} onChange={setColor} label="Pick a color" />
-      <div className="mt-2 text-white text-sm">Selected color: <span className="font-mono">{color}</span></div>
+      <h3 className="text-white text-lg font-semibold mb-2">
+        Popup Color Picker Demo
+      </h3>
+      <ColorPickerPopup
+        value={color}
+        onChange={setColor}
+        label="Pick a color"
+      />
+      <div className="mt-2 text-white text-sm">
+        Selected color: <span className="font-mono">{color}</span>
+      </div>
     </div>
   );
 };
@@ -97,6 +109,35 @@ const page = () => {
           />
         </div>
       </div>
+
+      {/* <iframe
+        src="https://02289d6dc04b407d8b49527a81878d95.elf.site"
+        frameborder="0"
+      ></iframe> */}
+      <div className="w-[95vw] h-screen overflow-x-hidden">
+        <iframe
+          src="https://02289d6dc04b407d8b49527a81878d95.elf.site"
+          style={{
+            border: "none",
+            width: "100%",
+            height: "100%",
+            display: "block",
+          }}
+          title="Embedded Demo"
+          allow="clipboard-write; clipboard-read"
+          loading="lazy"
+        ></iframe>
+      </div>
+      {/* Elfsight Instagram Feed | Untitled Instagram Feed */}
+      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+      {/* <script
+        src="https://static.elfsight.com/platform/platform.js"
+        async
+      ></script>
+      <div
+        className="elfsight-app-02289d6d-c04b-407d-8b49-527a81878d95"
+        data-elfsight-app-lazy={true}
+      /> */}
     </div>
   );
 };

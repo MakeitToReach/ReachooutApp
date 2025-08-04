@@ -17,6 +17,7 @@ import {
   PFCatalogSection,
   PFNewsletterSection,
   PFCertificationSection,
+  PFFeedSection,
 } from "./sections";
 import type { SectionBlock } from "@/schemas/templates.schema";
 import { PFExperienceSection } from "./sections/experience.section";
@@ -58,6 +59,15 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
           </>
         );
 
+      case "feed":
+        return (
+          <>
+            {!section.isHidden && (
+              <PFFeedSection key={`feed-${index}`} {...section.data} />
+            )}
+          </>
+        );
+
       case "socials":
         return (
           <>
@@ -66,6 +76,7 @@ export const ProfessionalPortfolio = ({ data }: Props) => {
             )}
           </>
         );
+
       case "experience":
         return (
           <>

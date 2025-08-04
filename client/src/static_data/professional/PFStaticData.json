@@ -62,6 +62,16 @@
       "isHidden": false
     },
     {
+      "type": "feed",
+      "sectionName": "Feed",
+      "data": {
+        "feedUrl": "https://02289d6dc04b407d8b49527a81878d95.elf.site"
+      },
+      "isFixed": false,
+      "isEditable": true,
+      "isHidden": false
+    },
+    {
       "type": "projects",
       "sectionName": "Projects",
       "data": {

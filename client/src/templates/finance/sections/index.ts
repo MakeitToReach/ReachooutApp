@@ -19,3 +19,4 @@ export * from "./timeline.section";
 export * from "./whyChooseUs.section";
 export * from "./certification.section";
 export * from "./social.section";
+export * from "./feed.section";

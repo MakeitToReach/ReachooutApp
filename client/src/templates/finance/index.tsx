@@ -22,6 +22,7 @@ import {
   FWhyChooseUsSection,
   FCertificationSection,
   FSocialSection,
+  FFeedSection,
 } from "./sections";
 import { FWidgetsSection } from "./sections/widgets.section";
 
@@ -69,6 +70,14 @@ export const FinancePortfolio = ({ data }: Props) => {
                 key={`about-${index}`}
                 {...section.data}
               />
+            )}
+          </>
+        );
+      case "feed":
+        return (
+          <>
+            {!section.isHidden && (
+              <FFeedSection key={`feed-${index}`} {...section.data} />
             )}
           </>
         );
@@ -220,6 +229,14 @@ export const FinancePortfolio = ({ data }: Props) => {
                 key={`certifications-${index}`}
                 {...section.data}
               />
+            )}
+          </>
+        );
+      case "feed":
+        return (
+          <>
+            {!section.isHidden && (
+              <FFeedSection key={`feed-${index}`} {...section.data} />
             )}
           </>
         );

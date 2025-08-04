@@ -17,3 +17,4 @@ export * from "./faq.section";
 export * from "./blogs.section";
 export * from "./social.section";
 export * from "./certification.section";
+export * from "./feed.section";
