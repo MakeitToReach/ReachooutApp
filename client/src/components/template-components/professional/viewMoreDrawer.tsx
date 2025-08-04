@@ -51,6 +51,7 @@ export const ViewMoreDrawer = ({
     project?.vidUrl || catalogService?.vidUrl || ""
   );
   const catalogVideoId = getYouTubeVideoId(catalogService?.vidUrl || "");
+  const blogVideoId = getYouTubeVideoId(blog?.vidUrl || "");
 
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
   React.useEffect(() => {
@@ -120,6 +121,12 @@ export const ViewMoreDrawer = ({
             {type === "CatalogService" && catalogVideoId ? (
               <YouTube
                 videoId={catalogVideoId}
+                className="w-full max-w-full aspect-video"
+                iframeClassName="w-full h-full"
+              />
+            ) : blogVideoId ? (
+              <YouTube
+                videoId={blogVideoId}
                 className="w-full max-w-full aspect-video"
                 iframeClassName="w-full h-full"
               />
@@ -264,6 +271,7 @@ export const ViewMoreDrawer = ({
             )}
           </div>
         )}
+
         {blog && blog.btnLink && (
           <div className="p-4 border-t flex justify-start">
             <a href={blog.btnLink} target="_blank" rel="noopener noreferrer">
@@ -271,6 +279,7 @@ export const ViewMoreDrawer = ({
             </a>
           </div>
         )}
+
         {teamMember && teamMember.socials && teamMember.socials.length > 0 && (
           <div className="p-4 border-t flex justify-start items-center">
             <div className="flex gap-2">

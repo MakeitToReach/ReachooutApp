@@ -236,6 +236,12 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             type: "text",
             fieldPath: "heading",
         },
+        {
+            label: "Receiver Email",
+            type: "text",
+            fieldPath: "receiverEmail",
+            subtitle: "Email to which the contact form submissions will be sent",
+        },
     ],
     faqs: [
         {
