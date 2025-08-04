@@ -178,9 +178,9 @@ export const EditorPanel = ({
           </ReorderSectionsPopup>
 
           <Button
-            variant={"ghost"}
+            variant={"default"}
             onClick={() => toggleEditor()}
-            className="cursor-pointer"
+            className="cursor-pointer bg-orange-400 text-black hover:bg-orange-500"
           >
             <SidebarClose className="size-6 hidden md:block" />
             <LucideEye className="size-6 md:hidden" />
