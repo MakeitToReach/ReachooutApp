@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogTrigger,
@@ -53,6 +53,12 @@ export const ReorderSectionsPopup = ({
   const reorderableIds = sections.filter((s) => !s.isFixed).map((s) => s.id);
   const [order, setOrder] = useState(reorderableIds);
 
+  // Update order when sections change (e.g., when sections are hidden/unhidden)
+  useEffect(() => {
+    const newReorderableIds = sections.filter((s) => !s.isFixed).map((s) => s.id);
+    setOrder(newReorderableIds);
+  }, [sections]);
+
   const sensors = useSensors(useSensor(PointerSensor));
 
   //eslint-disable-next-line
@@ -75,24 +81,40 @@ export const ReorderSectionsPopup = ({
           <FixedSectionItem
             key={section.id}
             name={section.name}
-            tabIdx={sections.findIndex((s) => s.id === section.id)}
+            sectionId={section.id}
+            sections={sections}
             onEdit={onEdit}
           />
         );
       } else {
-        const reorderedId = order[reorderIndex++];
+        // Find the section in the current order, or use the original section if not found
+        const reorderedId = order[reorderIndex];
         const reorderedSection = sections.find((s) => s.id === reorderedId);
+        
+        // If the section is not in the order array (e.g., newly unhidden), use the original section
+        const sectionToRender = reorderedSection || section;
+        
+        if (reorderedSection) {
+          reorderIndex++;
+        }
+        
         return (
           <SortableSectionItem
-            // key={reorderedSection.id}
-            // id={reorderedSection.id}
-            key={reorderedId}
-            id={reorderedId}
-            name={reorderedSection!.name}
-            isHidden={reorderedSection!.isHidden}
-            tabIdx={sections.findIndex((s) => s.id === reorderedSection!.id)}
+            key={sectionToRender.id}
+            id={sectionToRender.id}
+            name={sectionToRender.name}
+            isHidden={sectionToRender.isHidden}
+            sectionId={sectionToRender.id}
+            sections={sections}
             onEdit={onEdit}
-            toggleHideSection={onHide}
+            toggleHideSection={(sectionType) => {
+              onHide(sectionType);
+              // Update order after hiding/unhiding to ensure proper reordering
+              setTimeout(() => {
+                const newReorderableIds = sections.filter((s) => !s.isFixed).map((s) => s.id);
+                setOrder(newReorderableIds);
+              }, 0);
+            }}
           />
         );
       }
@@ -149,14 +171,16 @@ export const ReorderSectionsPopup = ({
 const SortableSectionItem = ({
   id,
   name,
-  tabIdx,
+  sectionId,
+  sections,
   onEdit,
   toggleHideSection,
   isHidden,
 }: {
   id: string;
   name: string;
-  tabIdx: number;
+  sectionId: string;
+  sections: { id: string; name: string; isFixed: boolean; isHidden: boolean }[];
   onEdit: (tabIdx: number) => void;
   toggleHideSection: (sectionType: string) => void;
   isHidden: boolean;
@@ -208,7 +232,12 @@ const SortableSectionItem = ({
         </Button>
         <DialogClose asChild>
           <Button
-            onClick={() => onEdit(tabIdx)}
+            onClick={() => {
+              // Find the actual tab index by filtering out hidden sections
+              const visibleSections = sections.filter(s => !s.isHidden);
+              const actualTabIdx = visibleSections.findIndex(s => s.id === sectionId);
+              onEdit(actualTabIdx);
+            }}
             variant={"outline"}
             disabled={isHidden}
           >
@@ -225,11 +254,13 @@ const SortableSectionItem = ({
 
 const FixedSectionItem = ({
   name,
-  tabIdx,
+  sectionId,
+  sections,
   onEdit,
 }: {
   name: string;
-  tabIdx: number;
+  sectionId: string;
+  sections: { id: string; name: string; isFixed: boolean; isHidden: boolean }[];
   onEdit: (tabIdx: number) => void;
 }) => {
   return (
@@ -240,8 +271,13 @@ const FixedSectionItem = ({
       </div>
       <DialogClose asChild className="z-10">
         <Button
-          onClick={() => onEdit(tabIdx)}
-          className="bg-white text-black border border-border"
+          onClick={() => {
+            // Find the actual tab index by filtering out hidden sections
+            const visibleSections = sections.filter(s => !s.isHidden);
+            const actualTabIdx = visibleSections.findIndex(s => s.id === sectionId);
+            onEdit(actualTabIdx);
+          }}
+          className="bg-white text-black border border-border hover:bg-zinc-100 hover:text-black cursor-pointer"
           variant={"default"}
         >
           Edit{" "}

@@ -47,7 +47,7 @@ export const PFNavbar = ({
   };
 
   return (
-    <nav id="navbar" className="bg-template-primary text-template-text-primary">
+    <nav id="menu" className="bg-template-primary text-template-text-primary">
       <div className="max-w-6xl mx-auto h-25 px-4 py-4 flex justify-between items-center">
         {textLogo && (
           <m.h1
