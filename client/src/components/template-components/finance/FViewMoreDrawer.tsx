@@ -51,9 +51,10 @@ export const FViewMoreDrawer = ({
   const aboutSection = type === "About" ? (content as F_ABOUT_SECTION) : null;
 
   const videoId = getYouTubeVideoId(
-    project?.vidUrl || catalogService?.vidUrl || ""
+    project?.vidUrl || catalogService?.vidUrl || blog?.vidUrl || ""
   );
   const catalogVideoId = getYouTubeVideoId(catalogService?.vidUrl || "");
+  const blogVideoId = getYouTubeVideoId(blog?.vidUrl || "");
 
   // Reset image index when drawer opens
   React.useEffect(() => {
@@ -118,6 +119,12 @@ export const FViewMoreDrawer = ({
             {type === "Catalog" && catalogVideoId ? (
               <YouTube
                 videoId={catalogVideoId}
+                className="w-full max-w-full aspect-video"
+                iframeClassName="w-full h-full"
+              />
+            ) : blogVideoId ? (
+              <YouTube
+                videoId={blogVideoId}
                 className="w-full max-w-full aspect-video"
                 iframeClassName="w-full h-full"
               />
@@ -209,12 +216,12 @@ export const FViewMoreDrawer = ({
               )
             )}
 
-            {blog && (
+            {blog && !blog.vidUrl && (
               <Image
                 src={blog.imgUrl || "/placeholder.png"}
                 alt={`${blog.title}-img`}
-                width={500}
-                height={400}
+                width={1000}
+                height={1000}
                 className="rounded w-full md:h-[400px] object-cover object-center"
               />
             )}
@@ -223,8 +230,8 @@ export const FViewMoreDrawer = ({
               <Image
                 src={service.imgUrl || "/placeholder.png"}
                 alt={`${service.title}-img`}
-                width={500}
-                height={400}
+                width={1000}
+                height={1000}
                 className="rounded w-full md:h-[400px] object-cover object-center"
               />
             )}
@@ -233,8 +240,8 @@ export const FViewMoreDrawer = ({
               <Image
                 src={teamMember.imgUrl || "/placeholder.png"}
                 alt={`${teamMember.name}-img`}
-                width={500}
-                height={400}
+                width={1000}
+                height={1000}
                 className="rounded w-full md:h-[400px] object-cover object-center"
               />
             )}
@@ -243,8 +250,8 @@ export const FViewMoreDrawer = ({
               <Image
                 src={aboutSection.imgUrl || "/placeholder.png"}
                 alt={`${aboutSection.title}-img`}
-                width={500}
-                height={400}
+                width={1000}
+                height={1000}
                 className="rounded w-full md:h-[400px] object-cover object-center"
               />
             )}
@@ -281,8 +288,10 @@ export const FViewMoreDrawer = ({
             </a>
           </div>
         )}
-        {teamMember && teamMember.socials.length > 0 && (
-          <div className="p-4 border-t flex gap-2 items-center">
+
+        {teamMember && teamMember.socials && teamMember.socials.length > 0 && (
+          <div className="p-4 flex justify-start items-center">
+            <div className="flex gap-2">
             {teamMember.socials
               .filter((social) => social.url)
               .map((social, index) => (
@@ -293,9 +302,10 @@ export const FViewMoreDrawer = ({
                   rel="noopener noreferrer"
                   className="p-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors"
                 >
-                  {getSocialIconFromRegistry(social.name)}
-                </a>
-              ))}
+                    {getSocialIconFromRegistry(social.name)}
+                  </a>
+                ))}
+            </div>
           </div>
         )}
         {catalogService && catalogService.btnLink && (
@@ -306,6 +316,14 @@ export const FViewMoreDrawer = ({
               rel="noopener noreferrer"
             >
               <Button>{catalogService.btnText}</Button>
+            </a>
+          </div>
+        )}
+
+        {blog && blog.btnLink && (
+          <div className="p-4 border-t flex justify-between items-center">
+            <a href={blog.btnLink} target="_blank" rel="noopener noreferrer">
+              <Button>{blog.btnText}</Button>
             </a>
           </div>
         )}

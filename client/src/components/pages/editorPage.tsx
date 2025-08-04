@@ -177,11 +177,11 @@ const EditorPage = () => {
 
       {!editorOpen && (
         <Button
-          variant="outline"
-          className="fixed md:top-4 md:left-4 bottom-4 left-4 z-[60]"
+          variant="default"
+          className="fixed md:top-4 md:left-4 bottom-4 left-4 z-[60] bg-orange-400 text-black hover:bg-orange-500"
           onClick={toggleEditor}
         >
-          <LucideSidebarOpen className="w-6 h-6" />
+          <LucideSidebarOpen className="w-6 h-6 text-black" />
         </Button>
       )}
 

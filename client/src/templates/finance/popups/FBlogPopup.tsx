@@ -52,7 +52,6 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
             type="text"
             label="Title"
             placeholder="Enter title"
-            value={blog.title}
             onChange={(e) => setBlog({ ...blog, title: e.target.value })}
           />
 
@@ -73,7 +72,6 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
               label="Button Text"
               className="w-full"
               placeholder="Enter button text"
-              value={blog.btnText}
               onChange={(e) => setBlog({ ...blog, btnText: e.target.value })}
             />
             <ReqInput
@@ -81,7 +79,6 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
               label="Button Link"
               className="w-full"
               placeholder="Enter button link"
-              value={blog.btnLink}
               onChange={(e) => setBlog({ ...blog, btnLink: e.target.value })}
             />
           </div>
@@ -102,7 +99,7 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
                 });
               }}
             >
-              Add Blog
+              Add
             </Button>
           </DialogClose>
         </DialogFooter>

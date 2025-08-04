@@ -19,7 +19,9 @@ export const FBlogCard = ({
           vidUrl={vidUrl}
           alt="blog-img"
           width={400}
-          height={100}
+          height={240}
+          fallbackImgUrl="https://github.com/shadcn.png"
+          iframeClassName="w-full h-full"
           imageClassName="w-full h-full object-cover"
         />
       </div>

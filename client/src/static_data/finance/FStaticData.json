@@ -360,14 +360,37 @@
         "subHeading": "Lorem ipsum dolor sit amet consectetur adipisicing elit. A unde voluptatibus fugiat alias earum itaque. Minus rem officia aliquam eos.",
         "socials": [
           {
-            "title": "X",
-            "btnLink": "#",
-            "followerCounts": 1000
+            "title": "Linkedin",
+            "btnLink": "https://linkedin.com",
+            "followerCounts": 4000
           },
           {
-            "title": "Linkedin",
-            "btnLink": "#",
-            "followerCounts": 1000
+            "title": "Dribble",
+            "btnLink": "https://dribble.com"
+          },
+          {
+            "title": "Website",
+            "btnLink": "https://omkar.com"
+          },
+          {
+            "title": "X",
+            "btnLink": "https://x.com",
+            "followerCounts": 4000
+          },
+          {
+            "title": "Instagram",
+            "btnLink": "https://instagram.com",
+            "followerCounts": 4000
+          },
+          {
+            "title": "Youtube",
+            "btnLink": "https://youtube.com",
+            "followerCounts": 4000
+          },
+          {
+            "title": "Facebook",
+            "btnLink": "https://facebook.com",
+            "followerCounts": 4000
           }
         ]
       },
@@ -598,6 +621,17 @@
       "isHidden": false
     },
     {
+      "type": "contact widgets",
+      "sectionName": "Contact Widgets",
+      "data": {
+        "whatsapp_number": 8888888888,
+        "telephone_number": "1234567890"
+      },
+      "isFixed": true,
+      "isEditable": true,
+      "isHidden": false
+    },
+    {
       "type": "footer",
       "sectionName": "Footer",
       "data": {
@@ -633,17 +667,6 @@
         "termsAndConditionsContent": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia."
       },
       "isFixed": true,
-      "isEditable": true,
-      "isHidden": false
-    },
-    {
-      "type": "contact widgets",
-      "sectionName": "Contact Widgets",
-      "data": {
-        "whatsapp_number": 8888888888,
-        "telephone_number": "1234567890"
-      },
-      "isFixed": false,
       "isEditable": true,
       "isHidden": false
     }

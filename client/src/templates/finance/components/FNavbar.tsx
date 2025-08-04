@@ -49,7 +49,7 @@ export const FNavbar = ({
 
   return (
     <nav
-      id="navbar"
+      id="menu"
       className="bg-template-primary backdrop-blur-md px-2 sm:px-8"
     >
       <div className="h-20 px-4 flex justify-between items-center">

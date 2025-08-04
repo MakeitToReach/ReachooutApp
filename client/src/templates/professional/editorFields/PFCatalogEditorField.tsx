@@ -34,7 +34,7 @@ export const PFCatalogEditorField = ({
     return (
         <div className="space-y-3">
             <div className="flex justify-between mb-4">
-                <h1 className="font-semibold">Experience</h1>
+                <h1 className="font-semibold">Catalogs</h1>
                 <PFAddCatalogPopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
                         Add{" "}

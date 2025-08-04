@@ -371,7 +371,7 @@
       "sectionName": "newsletter",
       "data": {
         "heading": "Subscribe to our newsletter",
-        "receiverEmail": "delivered@resend.dev"
+        "receiverEmail": ""
       },
       "isFixed": false,
       "isEditable": true,
@@ -412,7 +412,7 @@
           {
             "title": "Linkedin",
             "btnLink": "https://linkedin.com",
-            "followerCounts": "4.2k"
+            "followerCounts": 4000
           },
           {
             "title": "Dribble",
@@ -425,22 +425,22 @@
           {
             "title": "X",
             "btnLink": "https://x.com",
-            "followerCounts": "4.2k"
+            "followerCounts": 4000
           },
           {
             "title": "Instagram",
             "btnLink": "https://instagram.com",
-            "followerCounts": "4.2k"
+            "followerCounts": 4000
           },
           {
             "title": "Youtube",
             "btnLink": "https://youtube.com",
-            "followerCounts": "4.2k"
+            "followerCounts": 4000
           },
           {
             "title": "Facebook",
             "btnLink": "https://facebook.com",
-            "followerCounts": "4.2k"
+            "followerCounts": 4000
           }
         ]
       },
@@ -497,7 +497,7 @@
         "whatsapp_number": 8888888888,
         "telephone_number": "1234567890"
       },
-      "isFixed": false,
+      "isFixed": true,
       "isEditable": true,
       "isHidden": false
     },
