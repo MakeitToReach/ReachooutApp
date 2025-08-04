@@ -440,6 +440,36 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
         <FStatsEditorField value={value || []} onChange={onChange} />
       ),
     },
+    {
+      type: "group",
+      label: "Button Group",
+      fieldPath: "btnGroup",
+      fields: [
+        {
+          label: "Button 1 Text",
+          fieldPath: "btn1Text",
+        },
+        {
+          label: "Button 1 Link",
+          fieldPath: "btn1Link",
+        },
+      ],
+    },
+    {
+      type: "group",
+      label: "Button Group",
+      fieldPath: "btnGroup",
+      fields: [
+        {
+          label: "Button 2 Text",
+          fieldPath: "btn2Text",
+        },
+        {
+          label: "Button 2 Link",
+          fieldPath: "btn2Link",
+        },
+      ],
+    },
   ],
 
   testimonials: [
