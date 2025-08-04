@@ -5,6 +5,7 @@ import { TipTapEditor } from "@/components/ui/TipTapEditor";
 import React, { useState } from "react";
 import { ColorPicker } from "@/components/ui/ColorPicker";
 import { ColorPickerPopup } from "@/components/ui/ColorPicker";
+import { ImageCroppingExamples } from "@/components/examples/ImageCroppingExamples";
 // import { PFCalThemeSelect } from "@/templates/professional/components/PFCalThemeSelect";
 
 const TipTapEditorDemo = () => {
@@ -95,6 +96,11 @@ const page = () => {
               "/placeholder.png",
             ]}
           />
+        </div>
+
+        {/* Image Cropping Examples */}
+        <div className="mt-12">
+          <ImageCroppingExamples />
         </div>
       </div>
     </div>

@@ -107,7 +107,7 @@ export const CropModal = ({
 
   return (
     <Dialog open={true} onOpenChange={onCancel}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+      <DialogContent className="sm:min-w-7xl w-full max-h-[90vh] overflow-hidden">
         <DialogHeader>
           <DialogTitle>Crop Image</DialogTitle>
           <DialogDescription>
@@ -115,9 +115,9 @@ export const CropModal = ({
           </DialogDescription>
         </DialogHeader>
         
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-full">
           {/* Controls */}
-          <div className="flex items-center justify-center gap-4 p-4 bg-muted rounded-lg">
+          <div className="flex items-center justify-start gap-4 p-4 bg-muted rounded-lg">
             <Button
               variant="outline"
               size="sm"
@@ -160,7 +160,7 @@ export const CropModal = ({
           </div>
 
           {/* Crop Area */}
-          <div className="flex justify-center overflow-auto max-h-96">
+          <div className="flex sm:justify-center justify-start overflow-auto max-h-96 w-full">
             <ReactCrop
               crop={crop}
               onChange={(_, percentCrop) => setCrop(percentCrop)}
@@ -177,7 +177,7 @@ export const CropModal = ({
                 alt="Crop preview"
                 style={{
                   transform: `rotate(${rotation}deg) scale(${scale})`,
-                  maxHeight: '400px',
+                  maxHeight: '300px',
                   objectFit: 'contain'
                 }}
               />
