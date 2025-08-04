@@ -281,7 +281,7 @@ export const ViewMoreDrawer = ({
         )}
 
         {teamMember && teamMember.socials && teamMember.socials.length > 0 && (
-          <div className="p-4 border-t flex justify-start items-center">
+          <div className="p-4 flex justify-start items-center">
             <div className="flex gap-2">
               {teamMember.socials
                 .filter((social) => social.url)

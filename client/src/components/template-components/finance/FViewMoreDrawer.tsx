@@ -289,8 +289,9 @@ export const FViewMoreDrawer = ({
           </div>
         )}
 
-        {teamMember && teamMember.socials.length > 0 && (
-          <div className="p-4 border-t flex gap-2 items-center">
+        {teamMember && teamMember.socials && teamMember.socials.length > 0 && (
+          <div className="p-4 flex justify-start items-center">
+            <div className="flex gap-2">
             {teamMember.socials
               .filter((social) => social.url)
               .map((social, index) => (
@@ -301,9 +302,10 @@ export const FViewMoreDrawer = ({
                   rel="noopener noreferrer"
                   className="p-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors"
                 >
-                  {getSocialIconFromRegistry(social.name)}
-                </a>
-              ))}
+                    {getSocialIconFromRegistry(social.name)}
+                  </a>
+                ))}
+            </div>
           </div>
         )}
         {catalogService && catalogService.btnLink && (
