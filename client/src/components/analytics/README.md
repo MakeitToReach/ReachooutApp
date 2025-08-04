@@ -1,6 +1,6 @@
 # Portfolio Analytics Integration
 
-This directory contains the analytics integration for portfolio tracking. The system supports both **Umami** and **Google Analytics** with project-specific tracking.
+This directory contains the analytics integration for portfolio tracking. The system now supports only **Google Analytics** with basic page view tracking.
 
 ## 🚀 Quick Start
 
@@ -25,59 +25,31 @@ model Project {
 
 ## 📊 Analytics Options
 
-### Option 1: Umami Analytics (Default)
-
-- **Pros**: Privacy-focused, GDPR compliant, lightweight
-- **Cons**: Less features than Google Analytics
-- **Setup**: Already configured in `layout.tsx`
-
-### Option 2: Google Analytics
+### Google Analytics (Default)
 
 - **Pros**: Feature-rich, familiar interface, powerful insights
-- **Cons**: Privacy concerns, heavier tracking
 - **Setup**: Add `trackingId` to project data
-
-### Option 3: Both
-
-- **Pros**: Best of both worlds
-- **Cons**: More complex setup
-- **Setup**: Configure both systems
+- **Tracking**: Basic page views only (no scroll tracking, click tracking, etc.)
 
 ## 🎯 Tracking Events
 
 ### Automatic Events
 
 - Page views with project data
-- Scroll tracking (50% scroll threshold)
-- Portfolio load events
+- Basic Google Analytics integration
 
 ### Manual Events
 
-Use the utility functions in `lib/analytics.ts`:
+Use the utility function in `lib/analytics.ts`:
 
 ```typescript
-import {
-  trackLinkClick,
-  trackElementInteraction,
-  trackVideoPlay,
-  trackFormSubmission,
-} from "@/lib/analytics";
+import { trackPageView } from "@/lib/analytics";
 
-// Track link clicks
-trackLinkClick("social", "https://linkedin.com/in/user", "LinkedIn");
-
-// Track button interactions
-trackElementInteraction("button", "click", "contact-btn");
-
-// Track video plays
-trackVideoPlay(
-  "project",
-  "https://youtube.com/watch?v=example",
-  "Project Demo"
-);
-
-// Track form submissions
-trackFormSubmission("contact", { has_name: true, has_email: true });
+// Track custom page view events
+trackPageView("custom_event", {
+  event_category: "engagement",
+  event_label: "portfolio_view",
+});
 ```
 
 ## 🔧 Configuration
@@ -93,16 +65,8 @@ The `PortfolioView` component automatically includes analytics:
   subdomain={project.subDomain}
   customDomain={project.customDomain}
   googleTrackingId={project.trackingId}
-  umamiWebsiteId="your-umami-id"
-  analyticsType={project.trackingId ? "both" : "umami"}
 />
 ```
-
-### Analytics Type Options
-
-- `"umami"`: Use only Umami (default)
-- `"google"`: Use only Google Analytics
-- `"both"`: Use both systems
 
 ## 📈 Tracked Data
 
@@ -117,28 +81,21 @@ The `PortfolioView` component automatically includes analytics:
 
 ### User Interactions
 
-- Link clicks (with link type and URL)
-- Button interactions
-- Form submissions
-- Video plays
-- Image views
-- File downloads
-- Section views
-- Scroll behavior
+- Basic page views only
+- No detailed user interaction tracking
 
 ## 🔒 Privacy Considerations
 
 ### Data Collected
 
 - ✅ Project metadata (non-personal)
-- ✅ User interactions (anonymized)
-- ✅ Page views and navigation
+- ✅ Basic page views
 - ❌ Personal information (names, emails, etc.)
 - ❌ Sensitive form data
+- ❌ Detailed user interactions
 
 ### GDPR Compliance
 
-- Umami is GDPR compliant by default
 - Google Analytics requires additional setup for GDPR compliance
 - All tracking respects user privacy preferences
 
@@ -148,48 +105,16 @@ The `PortfolioView` component automatically includes analytics:
 
 ```typescript
 // In your portfolio component
-import { trackPortfolioEvent } from "@/lib/analytics";
+import { trackPageView } from "@/lib/analytics";
 
 const handleCustomAction = () => {
-  trackPortfolioEvent("custom_action", {
-    action_type: "special_feature",
-    user_type: "premium",
-    timestamp: Date.now(),
+  trackPageView("custom_action", {
+    event_category: "engagement",
+    event_label: "portfolio_interaction",
   });
 };
 ```
 
-### Custom Analytics Provider
-
-To add a new analytics provider:
-
-1. Create a new component in `analytics/` directory
-2. Follow the pattern of `UmamiAnalytics.tsx` or `GoogleAnalytics.tsx`
-3. Add it to `PortfolioAnalytics.tsx`
-4. Update the interface to include your new provider
-
 ## 📋 Example Usage
 
-See `ExampleUsage.tsx` for complete examples of how to integrate analytics into portfolio components.
-
-## 🚨 Troubleshooting
-
-### Analytics Not Working
-
-1. Check browser console for errors
-2. Verify tracking IDs are correct
-3. Ensure analytics scripts are loading
-4. Check ad blockers (they may block analytics)
-
-### Privacy Issues
-
-1. Use Umami for privacy-focused tracking
-2. Implement cookie consent if required
-3. Respect user privacy preferences
-4. Don't track sensitive information
-
-## 📚 Resources
-
-- [Umami Documentation](https://umami.is/docs)
-- [Google Analytics Documentation](https://developers.google.com/analytics)
-- [GDPR Compliance Guide](https://gdpr.eu/)
+The analytics are automatically integrated into portfolio components. No additional setup required.

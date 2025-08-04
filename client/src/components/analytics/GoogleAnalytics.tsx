@@ -14,7 +14,6 @@ declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
     dataLayer?: any[];
-    scrollTracked?: boolean;
   }
 }
 
@@ -70,44 +69,9 @@ export const GoogleAnalytics = ({
       }
     };
 
-    // Track custom events for portfolio interactions
-    const trackPortfolioEvent = (eventName: string, additionalData?: Record<string, any>) => {
-      if (window.gtag) {
-        window.gtag("event", eventName, {
-          project_id: projectId,
-          project_name: projectName,
-          subdomain: subdomain,
-          custom_domain: customDomain,
-          ...additionalData,
-        });
-      }
-    };
-
-    // Expose tracking function globally for portfolio components
-    (window as any).trackPortfolioEvent = trackPortfolioEvent;
-
     // Load GA and track initial page view
     loadGoogleAnalytics();
     trackPageView();
-
-    // Track when user scrolls to different sections
-    const handleScroll = () => {
-      const scrollPercentage = Math.round(
-        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-      );
-      
-      if (scrollPercentage > 50 && !window.scrollTracked) {
-        trackPortfolioEvent("scroll_50_percent");
-        window.scrollTracked = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      delete (window as any).trackPortfolioEvent;
-    };
   }, [trackingId, projectId, projectName, subdomain, customDomain]);
 
   return null; // This component doesn't render anything

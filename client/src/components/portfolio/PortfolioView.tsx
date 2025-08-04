@@ -104,8 +104,6 @@ export default function PortfolioView({ project }: PortfolioViewProps) {
         subdomain={project.subDomain}
         customDomain={project.customDomain}
         googleTrackingId={project.trackingId}
-        umamiWebsiteId="32c03a2f-3a05-4666-b927-ab34f08c7e1c" // Your existing Umami ID
-        analyticsType={project.trackingId ? "both" : "umami"}
       />
       
       {/* Portfolio Content */}
