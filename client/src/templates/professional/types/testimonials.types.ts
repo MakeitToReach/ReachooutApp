@@ -5,5 +5,6 @@ export type PF_TESTIMONIAL = {
 }
 export type PF_TESTIMONIAL_SECTION = {
     title: string;
+    subtitle?: string;
     testimonials: PF_TESTIMONIAL[];
 }

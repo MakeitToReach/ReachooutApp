@@ -6,7 +6,7 @@ import { motion as m } from "motion/react";
 
 const delay = 0.15;
 
-export const PFGallerySection = ({ imgs, heading }: PF_GALLERY_SECTION) => {
+export const PFGallerySection = ({ imgs, heading, subheading }: PF_GALLERY_SECTION) => {
   return (
     <section
       id="gallery"
@@ -25,6 +25,21 @@ export const PFGallerySection = ({ imgs, heading }: PF_GALLERY_SECTION) => {
       >
         {heading}
       </m.h1>
+      {subheading && (
+        <m.p
+          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{
+            duration: 0.5,
+            delay: delay * 1.5,
+            ease: "easeOut",
+          }}
+          viewport={{ amount: 0.5, once: true }}
+          className="text-lg sm:text-xl text-center text-template-text-primary/50 max-w-2xl mx-auto my-10"
+        >
+          {subheading}
+        </m.p>
+      )}
       <m.div
         initial={{ opacity: 0, filter: "blur(10px)" }}
         whileInView={{ opacity: 1, filter: "blur(0px)" }}

@@ -8,5 +8,6 @@ export type F_BLOG = {
 };
 export interface F_BLOGS_SECTION {
     heading: string;
+    subheading?: string;
     blogs: F_BLOG[];
 }

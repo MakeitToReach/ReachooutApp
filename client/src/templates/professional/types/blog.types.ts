@@ -9,5 +9,6 @@ export type PF_BLOG = {
 
 export interface PF_BLOG_SECTION {
     heading: string;
+    subheading?: string;
     blogs: PF_BLOG[];
 }

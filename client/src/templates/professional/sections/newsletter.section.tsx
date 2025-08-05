@@ -14,6 +14,7 @@ const delay = 0.15;
 export const PFNewsletterSection = ({
   heading,
   receiverEmail,
+  subheading,
 }: PF_NEWSLETTER_SECTION) => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -53,7 +54,21 @@ export const PFNewsletterSection = ({
         >
           {heading}
         </m.h2>
-
+        {subheading && (
+          <m.p
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.5,
+              delay: delay,
+              ease: "easeOut",
+            }}
+            viewport={{ amount: 0.5, once: true }}
+            className="text-lg sm:text-xl text-center text-template-text-secondary/50 max-w-2xl mx-auto"
+          >
+            {subheading}
+          </m.p>
+        )}
         <m.form
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}

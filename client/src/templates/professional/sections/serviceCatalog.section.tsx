@@ -8,6 +8,7 @@ const delay = 0.15;
 export const PFCatalogSection = ({
   catalogServices,
   heading,
+  subheading,
 }: PF_CATALOG_SECTION) => {
   return (
     <section
@@ -28,6 +29,21 @@ export const PFCatalogSection = ({
         >
           {heading}
         </m.h1>
+        {subheading && (
+          <m.p
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.5,
+              delay: delay,
+              ease: "easeOut",
+            }}
+            viewport={{ amount: 0.5, once: true }}
+            className="text-center text-lg text-template-text-secondary/50 mb-8"
+          >
+            {subheading}
+          </m.p>
+        )}
         <PFCatalogServicesCarousel catalogServices={catalogServices} />
       </div>
     </section>

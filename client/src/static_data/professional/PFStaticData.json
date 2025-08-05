@@ -66,6 +66,7 @@
       "sectionName": "Projects",
       "data": {
         "heading": "My Work",
+        "subheading": "View My latest projects",
         "projects": [
           {
             "heading": "01. Reachoout",
@@ -188,6 +189,7 @@
       "sectionName": "Certifications",
       "data": {
         "heading": "Certifications & Achievements",
+        "subheading": "View My certifications and achievements",
         "certifications": [
           {
             "imgUrl": "/placeholder.png",
@@ -260,6 +262,7 @@
       "sectionName": "Gallery",
       "data": {
         "heading": "Gallery",
+        "subheading": "View My gallery",
         "imgs": [
           "/placeholder.png",
           "/placeholder.png",
@@ -276,6 +279,7 @@
       "sectionName": "Testimonials",
       "data": {
         "title": "Testimonials",
+        "subtitle": "What my clients say about me",
         "testimonials": [
           {
             "name": "Jack",
@@ -308,6 +312,7 @@
       "sectionName": "Blogs",
       "data": {
         "heading": "Latest Blogs and Articles",
+        "subheading": "View My latest blogs and articles",
         "blogs": [
           {
             "title": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quia.",
@@ -335,6 +340,7 @@
       "sectionName": "Service Catalog",
       "data": {
         "heading": "My Service Catalog",
+        "subheading": "View My service catalog",
         "catalogServices": [
           {
             "title": "01. Reachoout",
@@ -371,6 +377,7 @@
       "sectionName": "newsletter",
       "data": {
         "heading": "Subscribe to our newsletter",
+        "subheading": "Subscribe to our newsletter to get the latest updates",
         "receiverEmail": ""
       },
       "isFixed": false,
@@ -453,6 +460,7 @@
       "sectionName": "Experience",
       "data": {
         "heading": "My Journey",
+        "subheading": "View My journey",
         "imgUrl": "/placeholder.png",
         "experiences": [
           {
@@ -484,6 +492,7 @@
       "sectionName": "Contact",
       "data": {
         "heading": "Contact us",
+        "subheading": "Contact us",
         "receiverEmail": ""
       },
       "isFixed": false,

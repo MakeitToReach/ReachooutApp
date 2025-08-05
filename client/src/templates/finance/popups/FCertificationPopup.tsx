@@ -28,11 +28,11 @@ export function FAddCertificationPopup({ children, onAdd }: FAddCertificationPop
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[50vw] max-h-[90vh] overflow-y-scroll font-Poppins"
+                className="sm:max-w-[30vw] w-full max-h-[90vh] overflow-y-scroll font-Poppins"
                 onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader>
-                    <DialogTitle className="sm:text-2xl">Add Certification</DialogTitle>
+                    <DialogTitle className="sm:text-2xl">Add</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col gap-3">
                     <div className="space-y-2">

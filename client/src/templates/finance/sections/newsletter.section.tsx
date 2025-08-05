@@ -15,6 +15,7 @@ export const FNewsletterSection = ({
   btn2Text,
   btn2Link,
   receiverEmail,
+  subheading,
 }: F_NEWSLETTER_SECTION) => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +46,11 @@ export const FNewsletterSection = ({
         <h2 className="font-semibold text-5xl tracking-tight">
           {heading}
         </h2>
-
+        {subheading && (
+          <p className="text-xl text-template-text-secondary/80">
+            {subheading}
+          </p>
+        )}
         {/* Newsletter Form */}
         <form className="w-full flex flex-col sm:flex-row items-center px-4 justify-center gap-4">
           <ReqInput

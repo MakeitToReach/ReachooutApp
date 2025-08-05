@@ -70,6 +70,7 @@ const ReviewCard = ({
 
 export function PFTestimonialsSection({
   title,
+  subtitle,
   testimonials,
 }: PF_TESTIMONIAL_SECTION) {
   // const firstRow = testimonials.slice(0, testimonials.length / 2);
@@ -92,6 +93,21 @@ export function PFTestimonialsSection({
       >
         {title}
       </m.h1>
+      {subtitle && (
+        <m.p
+          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{
+            duration: 0.5,
+            delay: delay * 1.5,
+            ease: "easeOut",
+          }}
+          viewport={{ amount: 0.5, once: true }}
+          className="text-lg sm:text-xl text-center text-template-text-primary/50 max-w-2xl"
+        >
+          {subtitle}
+        </m.p>
+      )}
       <div>
         <Marquee pauseOnHover className="[--duration:20s]">
           {testimonials.map((review, idx) => (

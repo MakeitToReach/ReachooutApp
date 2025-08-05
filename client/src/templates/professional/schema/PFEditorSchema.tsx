@@ -117,6 +117,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "heading",
         },
         {
+            label: "Subheading",
+            type: "text",
+            fieldPath: "subheading",
+        },
+        {
             label: "Projects",
             type: "component",
             fieldPath: "projects",
@@ -131,7 +136,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             type: "text",
             fieldPath: "title",
         },
-
+        {
+            label: "Subheading",
+            type: "text",
+            fieldPath: "subheading",
+        },
         {
             label: "Subtitle",
             type: "text",
@@ -190,6 +199,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "title",
         },
         {
+            label: "Subtitle",
+            type: "text",
+            fieldPath: "subtitle",
+        },
+        {
             label: "testimonials",
             type: "component",
             fieldPath: "testimonials",
@@ -206,6 +220,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "heading",
         },
         {
+            label: "Subheading",
+            type: "text",
+            fieldPath: "subheading",
+        },
+        {
             label: "Blogs",
             type: "component",
             fieldPath: "blogs",
@@ -219,6 +238,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Section heading",
             type: "text",
             fieldPath: "heading",
+        },
+        {
+            label: "Subheading",
+            type: "text",
+            fieldPath: "subheading",
         },
         {
             label: "Certifications",
@@ -268,6 +292,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Section heading",
             type: "text",
             fieldPath: "heading",
+        },
+        {
+            label: "Subheading",
+            type: "text",
+            fieldPath: "subheading",
         },
         {
             label: "Images",
@@ -338,6 +367,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "heading",
         },
         {
+            label: "Subheading",
+            type: "text",
+            fieldPath: "subheading",
+        },
+        {
             label: "Services",
             type: "component",
             fieldPath: "catalogServices",
@@ -357,6 +391,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Heading",
             type: "text",
             fieldPath: "heading",
+        },
+        {
+            label: "Subheading",
+            type: "text",
+            fieldPath: "subheading",
         },
         {
             label: "Experiences",
@@ -427,6 +466,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Section Heading",
             type: "text",
             fieldPath: "heading",
+        },
+        {
+            label: "Subheading",
+            type: "text",
+            fieldPath: "subheading",
         },
         {
             label: "Receiver Email",

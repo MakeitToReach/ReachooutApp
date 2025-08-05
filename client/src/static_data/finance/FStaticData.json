@@ -142,6 +142,7 @@
       "sectionName": "Blogs",
       "data": {
         "heading": "Latest Blogs",
+        "subheading": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
         "blogs": [
           {
             "imgUrl": "/placeholder.png",
@@ -178,6 +179,7 @@
       "sectionName": "Team",
       "data": {
         "heading": "Meet the professionals full of expertise and dedication",
+        "subheading": "Get to know our team",
         "team": [
           {
             "imgUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -313,6 +315,7 @@
       "sectionName": "Newsletter",
       "data": {
         "heading": "Subscribe to our newsletter",
+        "subheading": "Stay updated with our latest news and updates",
         "btn1Text": "Subscribe",
         "btn1Link": "#",
         "btn2Text": "Contact us",
@@ -601,6 +604,7 @@
       "sectionName": "FAQs",
       "data": {
         "heading": "Frequently Asked Questions",
+        "subheading": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
         "faqs": [
           {
             "question": "What types of Businesses do you work with?",

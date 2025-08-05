@@ -11,6 +11,7 @@ export type F_CATLOG_SERVICES = {
 export interface F_SERVICE_CATALOG_SECTION {
     badgeText: string;
     title: string;
+    subheading?: string;
     subtitle: string;
     catalogServices: F_CATLOG_SERVICES[];
 }

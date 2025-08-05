@@ -1,6 +1,7 @@
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { F_CERTIFICATION } from "../types/certification.types";
-import { LucideEdit, LucideTrash, Plus } from "lucide-react";
+import { LucideEdit, LucidePlus, LucideTrash } from "lucide-react";
 import {
   FAddCertificationPopup,
   FEditCertificationPopup,
@@ -25,47 +26,47 @@ export const FCertificationEditorField = ({
     onChange(newValue);
   };
 
-  const handleDelete = (index: number) => {
-    const newValue = value.filter((_, i) => i !== index);
-    onChange(newValue);
+  const handleRemove = (index: number) => {
+    const updated = [...value];
+    updated.splice(index, 1);
+    onChange(updated);
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold">Certifications</h3>
+    <div className="space-y-3">
+      <div className="flex justify-between mb-4">
+        <h1 className="font-semibold">Certifications</h1>
         <FAddCertificationPopup onAdd={handleAdd}>
-          <Button className="flex items-center gap-2">
-            <Plus className="h-4 w-4" />
-            Add Certification
+          <Button variant={"outline"}>
+            Add{" "}
+            <span>
+              <LucidePlus />
+            </span>
           </Button>
         </FAddCertificationPopup>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {value.map((cert, index) => (
-          <div
-            key={index}
-            className="space-y-4 flex justify-between items-center"
-          >
-            <h3>Certification {index + 1}</h3>
-            <div className="flex items-center gap-2">
-              <FEditCertificationPopup
-                onSave={(newCert) => handleEdit(index, newCert)}
-                certification={cert}
-                certificationIdx={index}
-              >
-                <Button variant={"ghost"}>
-                  <LucideEdit />
-                </Button>
-              </FEditCertificationPopup>
-              <Button onClick={() => handleDelete(index)} variant={"ghost"}>
-                <LucideTrash className="text-destructive" />
+      {value.map((cert, index) => (
+        <div
+          key={index}
+          className="space-y-4 flex justify-between items-center"
+        >
+          <h3>Certification {index + 1}</h3>
+          <div className="flex items-center gap-2">
+            <FEditCertificationPopup
+              onSave={(newCert) => handleEdit(index, newCert)}
+              certification={cert}
+              certificationIdx={index}
+            >
+              <Button variant={"ghost"}>
+                <LucideEdit />
               </Button>
-            </div>
+            </FEditCertificationPopup>
+            <Button onClick={() => handleRemove(index)} variant={"ghost"}>
+              <LucideTrash className="text-destructive" />
+            </Button>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };

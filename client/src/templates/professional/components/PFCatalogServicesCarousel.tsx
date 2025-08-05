@@ -37,7 +37,7 @@ export const PFCatalogServicesCarousel = ({
             {/* categories */}
             <div className="mb-12">
                 <ScrollArea className="w-full">
-                    <div className="flex gap-3 pb-4">
+                    <div className="flex justify-center gap-3 pb-4">
                         {categories.map((category) => (
                             <Badge
                                 key={category}

@@ -8,6 +8,7 @@ const delay = 0.15;
 
 export const PFExperienceSection = ({
   heading,
+  subheading,
   imgUrl,
   experiences,
 }: PF_EXPERIENCE_SECTION) => {
@@ -50,6 +51,21 @@ export const PFExperienceSection = ({
             >
               {heading}
             </m.h1>
+            {subheading && (
+              <m.p
+                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{
+                  duration: 0.5,
+                  delay: delay * 1.5,
+                  ease: "easeOut",
+                }}
+                viewport={{ amount: 0.5, once: true }}
+                className="text-lg sm:text-xl text-template-text-secondary/50 max-w-2xl mb-2"
+              >
+                {subheading}
+              </m.p>
+            )}
             <m.div
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}

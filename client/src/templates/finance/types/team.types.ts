@@ -11,5 +11,6 @@ export type F_TEAM_MEMBER = {
 
 export interface F_TEAM_SECTION {
     heading: string;
+    subheading?: string;
     team: F_TEAM_MEMBER[];
 }

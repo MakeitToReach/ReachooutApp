@@ -5,7 +5,7 @@ import { motion as m } from "motion/react";
 
 const delay = 0.15;
 
-export const PFWorkSection = ({ projects, heading }: PF_WORK_SECTION) => {
+export const PFWorkSection = ({ projects, heading, subheading }: PF_WORK_SECTION) => {
   return (
     <section
       id="projects"
@@ -25,6 +25,21 @@ export const PFWorkSection = ({ projects, heading }: PF_WORK_SECTION) => {
         >
           {heading}
         </m.h1>
+        {subheading && (
+          <m.p
+            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.5,
+              delay: delay * 1.5,
+              ease: "easeOut",
+            }}
+            viewport={{ amount: 0.5, once: true }}
+            className="text-center text-lg sm:text-xl text-template-text-secondary/50 max-w-2xl mb-6"
+          >
+            {subheading}
+          </m.p>
+        )}
         <PFWorkCarousel Projects={projects} />
       </div>
     </section>

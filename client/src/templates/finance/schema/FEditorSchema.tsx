@@ -180,6 +180,11 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "heading",
     },
     {
+      type: "text",
+      label: "Subheading",
+      fieldPath: "subheading",
+    },
+    {
       type: "component",
       label: "Blogs",
       fieldPath: "blogs",
@@ -282,6 +287,11 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "heading",
     },
     {
+      type: "text",
+      label: "Subheading",
+      fieldPath: "subheading",
+    },
+    {
       type: "component",
       label: "Team",
       fieldPath: "team",
@@ -353,6 +363,11 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       type: "text",
       label: "Heading",
       fieldPath: "heading",
+    },
+    {
+      type: "text",
+      label: "Subheading",
+      fieldPath: "subheading",
     },
     {
       type: "component",

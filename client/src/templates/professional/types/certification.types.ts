@@ -5,5 +5,6 @@ export type PF_CERTIFICATION = {
 
 export interface PF_CERTIFICATION_SECTION {
     heading: string;
+    subheading?: string;
     certifications: PF_CERTIFICATION[];
 } 

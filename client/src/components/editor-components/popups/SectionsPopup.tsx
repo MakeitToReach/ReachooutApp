@@ -55,7 +55,9 @@ export const ReorderSectionsPopup = ({
 
   // Update order when sections change (e.g., when sections are hidden/unhidden)
   useEffect(() => {
-    const newReorderableIds = sections.filter((s) => !s.isFixed).map((s) => s.id);
+    const newReorderableIds = sections
+      .filter((s) => !s.isFixed)
+      .map((s) => s.id);
     setOrder(newReorderableIds);
   }, [sections]);
 
@@ -90,14 +92,14 @@ export const ReorderSectionsPopup = ({
         // Find the section in the current order, or use the original section if not found
         const reorderedId = order[reorderIndex];
         const reorderedSection = sections.find((s) => s.id === reorderedId);
-        
+
         // If the section is not in the order array (e.g., newly unhidden), use the original section
         const sectionToRender = reorderedSection || section;
-        
+
         if (reorderedSection) {
           reorderIndex++;
         }
-        
+
         return (
           <SortableSectionItem
             key={sectionToRender.id}
@@ -111,7 +113,9 @@ export const ReorderSectionsPopup = ({
               onHide(sectionType);
               // Update order after hiding/unhiding to ensure proper reordering
               setTimeout(() => {
-                const newReorderableIds = sections.filter((s) => !s.isFixed).map((s) => s.id);
+                const newReorderableIds = sections
+                  .filter((s) => !s.isFixed)
+                  .map((s) => s.id);
                 setOrder(newReorderableIds);
               }, 0);
             }}
@@ -205,7 +209,7 @@ const SortableSectionItem = ({
       style={style}
       className={cn(
         "flex items-center justify-between p-3 border rounded-lg bg-white shadow-sm",
-        isDragging && "opacity-50 ring-2 ring-blue-500",
+        isDragging && "opacity-50 ring-2 ring-blue-500"
       )}
     >
       <div className="flex items-center gap-3">
@@ -219,7 +223,11 @@ const SortableSectionItem = ({
         <span className="font-medium">{name}</span>
       </div>
       <div className="flex items-center gap-2">
-        <Button onClick={() => toggleHideSection(name)} variant={"outline"}>
+        <Button
+          onClick={() => toggleHideSection(name)}
+          variant={"outline"}
+          className={cn(isHidden && "bg-zinc-800 text-white transition-colors")}
+        >
           {isHidden ? (
             <span>
               <LucideEyeOff />
@@ -234,8 +242,10 @@ const SortableSectionItem = ({
           <Button
             onClick={() => {
               // Find the actual tab index by filtering out hidden sections
-              const visibleSections = sections.filter(s => !s.isHidden);
-              const actualTabIdx = visibleSections.findIndex(s => s.id === sectionId);
+              const visibleSections = sections.filter((s) => !s.isHidden);
+              const actualTabIdx = visibleSections.findIndex(
+                (s) => s.id === sectionId
+              );
               onEdit(actualTabIdx);
             }}
             variant={"outline"}
@@ -273,8 +283,10 @@ const FixedSectionItem = ({
         <Button
           onClick={() => {
             // Find the actual tab index by filtering out hidden sections
-            const visibleSections = sections.filter(s => !s.isHidden);
-            const actualTabIdx = visibleSections.findIndex(s => s.id === sectionId);
+            const visibleSections = sections.filter((s) => !s.isHidden);
+            const actualTabIdx = visibleSections.findIndex(
+              (s) => s.id === sectionId
+            );
             onEdit(actualTabIdx);
           }}
           className="bg-white text-black border border-border hover:bg-zinc-100 hover:text-black cursor-pointer"

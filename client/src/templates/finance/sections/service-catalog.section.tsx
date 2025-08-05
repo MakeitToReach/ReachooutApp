@@ -7,6 +7,7 @@ const delay = 0.15;
 export const FServiceCatalogSection = ({
   badgeText,
   title,
+  subheading,
   subtitle,
   catalogServices,
 }: F_SERVICE_CATALOG_SECTION) => {
@@ -41,6 +42,21 @@ export const FServiceCatalogSection = ({
             >
               {title}
             </m.h2>
+            {subheading && (
+              <m.p
+                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{
+                  duration: 0.5,
+                  delay: delay * 2.5,
+                  ease: "easeOut",
+                }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="text-lg sm:text-xl text-template-text-secondary/80 max-w-2xl mx-auto text-center"
+              >
+                {subheading}
+              </m.p>
+            )}
             <m.h4
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}

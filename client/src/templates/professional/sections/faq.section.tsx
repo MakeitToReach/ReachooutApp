@@ -42,7 +42,7 @@ export const PFFaqSection = React.forwardRef<HTMLElement, PF_FAQ_SECTION>(
                   ease: "easeOut",
                 }}
                 viewport={{ amount: 0.5, once: true }}
-                className="text-lg sm:text-xl text-center text-template-text-primary opacity-50"
+                className="text-lg sm:text-xl text-center text-template-text-primary/50"
               >
                 {subHeading}
               </m.p>

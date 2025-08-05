@@ -15,6 +15,7 @@ import { toast } from "sonner";
 
 export const PFContactSection = ({
   heading,
+  subheading,
   calUrl,
   calTheme,
   receiverEmail,
@@ -124,6 +125,14 @@ export const PFContactSection = ({
       >
         {heading}
       </m.h2>
+      {subheading && (
+        <m.p
+          variants={itemVariants}
+          className="text-lg sm:text-xl text-center text-template-text-primary/50 max-w-2xl mx-auto"
+        >
+          {subheading}
+        </m.p>
+      )}
 
       {!calUrl ? (
         <m.form

@@ -4,5 +4,6 @@ export type FFAQ_ITEM = {
 }
 export interface FFAQ_SECTION {
     heading: string;
+    subheading?: string;
     faqs: FFAQ_ITEM[];
 }
