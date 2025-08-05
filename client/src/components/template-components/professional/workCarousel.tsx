@@ -85,8 +85,8 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
               className={cn(
                 "cursor-pointer px-4 py-2 font-medium transition-all duration-200 text-lg",
                 selectedCategory === category
-                  ? "bg-white text-slate-800 hover:bg-gray-100"
-                  : "border-white/30 text-white hover:bg-white/10 hover:border-white/50"
+                  ? "bg-template-text-secondary text-template-secondary hover:bg-template-text-secondary/80"
+                  : "border-template-text-secondary/30 text-template-text-secondary hover:bg-template-text-secondary/10 hover:border-template-text-secondary/50"
               )}
               onClick={() => setSelectedCategory(category)}
             >
