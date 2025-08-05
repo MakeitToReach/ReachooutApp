@@ -202,6 +202,11 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
     },
     {
       type: "text",
+      label: "Subheading",
+      fieldPath: "subheading",
+    },
+    {
+      type: "text",
       label: "Receiver Email",
       fieldPath: "receiverEmail",
       subtitle:

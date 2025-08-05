@@ -43,16 +43,15 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "title",
         },
         {
-            label: "Description",
-            type: "RTEditor",
-            fieldPath: "description",
-        },
-
-        {
             label: "Animated Texts",
             type: "text",
             fieldPath: "professions",
             subtitle: "Comma separated values",
+        },
+        {
+            label: "Description",
+            type: "RTEditor",
+            fieldPath: "description",
         },
         {
             type: "group",
@@ -259,6 +258,11 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             label: "Section heading",
             type: "text",
             fieldPath: "heading",
+        },
+        {
+            label: "Subheading",
+            type: "text",
+            fieldPath: "subheading",
         },
         {
             label: "Receiver Email",
