@@ -41,6 +41,7 @@ export const FViewMoreDrawer = ({
   type,
 }: FViewMoreDrawerProps) => {
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
 
   const blog = type === "Blog" ? (content as F_BLOG) : null;
   const project = type === "Project" ? (content as F_PROJECT) : null;
@@ -77,8 +78,23 @@ export const FViewMoreDrawer = ({
     }
   };
 
+  // Add handleInternalLink function (after useEffect)
+  const handleInternalLink = (link: string) => {
+    setOpen(false); // Close the drawer first
+    if (link === "#") {
+      return;
+      // scrollTo({ top: 0, behavior: "smooth" });
+    }
+    setTimeout(() => {
+      const element = document.querySelector(link);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 800);
+  };
+
   return (
-    <Drawer>
+    <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent className="p-0 max-w-full theme-wrapper bg-template-primary sm:max-w-4xl mx-auto sm:min-h-[95vh] min-h-[90vh] flex flex-col">
@@ -278,30 +294,36 @@ export const FViewMoreDrawer = ({
         {/* Fixed Footer Buttons */}
 
         {project && project.btnLink && (
-          <div className="p-4 border-t flex justify-between items-center">
-            <a
-              href={project.btnLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button>{project.btnText}</Button>
-            </a>
+          <div className="p-4 border-t flex justify-start">
+            {project.btnLink.startsWith("#") ? (
+              <Button onClick={() => handleInternalLink(project.btnLink!)}>
+                {project.btnText}
+              </Button>
+            ) : (
+              <a
+                href={project.btnLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button>{project.btnText}</Button>
+              </a>
+            )}
           </div>
         )}
 
         {teamMember && teamMember.socials && teamMember.socials.length > 0 && (
-          <div className="p-4 flex justify-start items-center">
+          <div className="p-4 flex justify-start">
             <div className="flex gap-2">
-            {teamMember.socials
-              .filter((social) => social.url)
-              .map((social, index) => (
-                <a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors"
-                >
+              {teamMember.socials
+                .filter((social) => social.url)
+                .map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full border border-gray-300 hover:bg-gray-50 transition-colors"
+                  >
                     {getSocialIconFromRegistry(social.name)}
                   </a>
                 ))}
@@ -309,34 +331,54 @@ export const FViewMoreDrawer = ({
           </div>
         )}
         {catalogService && catalogService.btnLink && (
-          <div className="p-4 border-t flex justify-between items-center">
-            <a
-              href={catalogService.btnLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button>{catalogService.btnText}</Button>
-            </a>
+          <div className="p-4 border-t flex justify-start">
+            {catalogService.btnLink.startsWith("#") ? (
+              <Button
+                onClick={() => handleInternalLink(catalogService.btnLink!)}
+              >
+                {catalogService.btnText}
+              </Button>
+            ) : (
+              <a
+                href={catalogService.btnLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button>{catalogService.btnText}</Button>
+              </a>
+            )}
           </div>
         )}
 
         {blog && blog.btnLink && (
-          <div className="p-4 border-t flex justify-between items-center">
-            <a href={blog.btnLink} target="_blank" rel="noopener noreferrer">
-              <Button>{blog.btnText}</Button>
-            </a>
+          <div className="p-4 border-t flex justify-start">
+            {blog.btnLink.startsWith("#") ? (
+              <Button onClick={() => handleInternalLink(blog.btnLink!)}>
+                {blog.btnText}
+              </Button>
+            ) : (
+              <a href={blog.btnLink} target="_blank" rel="noopener noreferrer">
+                <Button>{blog.btnText}</Button>
+              </a>
+            )}
           </div>
         )}
 
         {service && service.btnLink && (
-          <div className="p-4 border-t flex justify-between items-center">
-            <a
-              href={service.btnLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button>{service.btnText}</Button>
-            </a>
+          <div className="p-4 border-t flex justify-start">
+            {service.btnLink.startsWith("#") ? (
+              <Button onClick={() => handleInternalLink(service.btnLink!)}>
+                {service.btnText}
+              </Button>
+            ) : (
+              <a
+                href={service.btnLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button>{service.btnText}</Button>
+              </a>
+            )}
           </div>
         )}
       </DrawerContent>
