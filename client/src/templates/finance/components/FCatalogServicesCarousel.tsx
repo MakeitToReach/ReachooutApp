@@ -12,6 +12,7 @@ import { F_CATLOG_SERVICES } from "../types/service-catalog.types";
 import { FCatalogServicesCard } from "./FCatalogServiceCard";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import Autoplay from "embla-carousel-autoplay";
 
 export const FCatalogServicesCarousel = ({
   catalogServices,
@@ -29,7 +30,7 @@ export const FCatalogServicesCarousel = ({
     selectedCategory === "All"
       ? catalogServices
       : catalogServices.filter(
-          (service) => service.category === selectedCategory
+          (service) => service.category === selectedCategory,
         );
 
   return (
@@ -46,7 +47,7 @@ export const FCatalogServicesCarousel = ({
                   "cursor-pointer px-4 py-2 font-medium transition-all duration-200 text-lg",
                   selectedCategory === category
                     ? "bg-template-text-secondary text-template-secondary hover:bg-template-text-secondary/80"
-                    : "border-template-text-secondary/30 text-template-text-secondary hover:bg-template-text-secondary/10 hover:border-template-text-secondary/50"
+                    : "border-template-text-secondary/30 text-template-text-secondary hover:bg-template-text-secondary/10 hover:border-template-text-secondary/50",
                 )}
                 onClick={() => setSelectedCategory(category)}
               >
@@ -62,6 +63,9 @@ export const FCatalogServicesCarousel = ({
             align: "start",
             loop: true,
           }}
+          plugins={
+            filteredServices.length > 1 ? [Autoplay({ delay: 6000 })] : []
+          }
           className="w-full"
         >
           <CarouselContent className="">

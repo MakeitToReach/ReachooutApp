@@ -226,7 +226,7 @@ export const FViewMoreDrawer = ({
                   width={500}
                   height={400}
                   className={cn(
-                    "rounded w-full sm:h-[400px] object-cover object-center"
+                    "rounded w-full sm:h-[400px] object-contain object-center"
                   )}
                 />
               )
@@ -258,7 +258,7 @@ export const FViewMoreDrawer = ({
                 alt={`${teamMember.name}-img`}
                 width={1000}
                 height={1000}
-                className="rounded w-full md:h-[400px] object-cover object-center"
+                className="rounded w-full sm:h-[400px] object-contain object-center"
               />
             )}
 
