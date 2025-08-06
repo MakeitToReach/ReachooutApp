@@ -202,7 +202,7 @@ userFormsRouter.post("/newsletter", async (req, res) => {
   const html = NEWSLETTER_TEMPLATE.replace("[EMAIL]", email);
 
   const { data, error } = await resend.emails.send({
-    from: "Reachoout <onboarding@resend.dev>",
+    from: "Reachoout <notif.reachoout.com>",
     to: receiverEmail,
     subject: "Newsletter Subscription",
     html,
@@ -223,7 +223,7 @@ userFormsRouter.post("/contact", async (req, res) => {
     .replace("[MESSAGE]", content.message || "");
 
   const { data, error } = await resend.emails.send({
-    from: "Reachoout <onboarding@resend.dev>",
+    from: "Reachoout <notif.reachoout.com>",
     to: receiverEmail,
     subject: "New Message from Reachoout Contact Form",
     html,
