@@ -25,6 +25,7 @@ export type ThemeObject = {
 export interface GenericTemplateSchema<T extends SectionBlock = SectionBlock> {
   id: string;
   name: string;
+  displayName?: string;
   sections: T[];
   theme: ThemeObject;
   thumbnailUrl?: string;

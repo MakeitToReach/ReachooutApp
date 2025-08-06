@@ -83,7 +83,7 @@ export default function ExploreTabs({
                 previewUrl={`/preview/${template.name.toLowerCase()}`}
                 editorUrl={"#"}
                 showPreview={projectId ? false : true}
-                templateName={template.name}
+                templateName={template.displayName}
               >
                 {projectId && (
                   <OnboardingPopup

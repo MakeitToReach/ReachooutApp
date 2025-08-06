@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Code2, ChevronRight, Sparkles } from "lucide-react";
+import { ChevronRight, Sparkles } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
+import Image from "next/image";
 import { AuthPopup } from "@/components/editor-components/popups/authPopup";
 import { getToken } from "@/lib/isAuthenticated";
 import { Navbar } from "@/components/editor-components/navbar";
@@ -44,7 +45,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 text-white font-Inter overflow-x-hidden">
+    <div className="min-h-screen relative bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 text-white font-Inter overflow-x-hidden">
       {/* Hero Section */}
       {isMobile ? (
         <>
@@ -137,7 +138,7 @@ function Home() {
       ) : (
         <>
           <Navbar />
-          <header className="h-screen mx-auto px-6 py-24 md:py-20">
+          <header className="container mx-auto px-6 py-24 md:py-20">
             <motion.div
               initial="initial"
               animate="animate"
@@ -252,17 +253,81 @@ function Home() {
         </>
       )}
 
+      <section className="container mx-auto px-6 sm:py-24 flex justify-center">
+        <Image
+          src="https://reachoout.com/wp-content/uploads/2025/06/Reachoout-15secs.gif"
+          alt="gif"
+          width={1000}
+          height={1000}
+          className="bg-white rounded-xl"
+        />
+      </section>
+
+      {/* Templates Section */}
+      {/* <motion.section */}
+      {/*   initial={{ opacity: 0 }} */}
+      {/*   whileInView={{ opacity: 1 }} */}
+      {/*   transition={{ duration: 0.8 }} */}
+      {/*   viewport={{ once: true }} */}
+      {/*   className="container mx-auto px-6 sm:py-24" */}
+      {/* > */}
+      {/*   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"> */}
+      {/*     {TEMPLATES_STATIC.map((template, idx) => ( */}
+      {/*       <motion.div */}
+      {/*         key={idx} */}
+      {/*         initial={{ opacity: 0, scale: 0.95 }} */}
+      {/*         whileInView={{ opacity: 1, scale: 1 }} */}
+      {/*         whileHover={{ y: -8 }} */}
+      {/*         transition={{ duration: 0.4 }} */}
+      {/*         viewport={{ once: true }} */}
+      {/*         className="group relative rounded-xl overflow-hidden" */}
+      {/*       > */}
+      {/*         <Image */}
+      {/*           src={template.imageUrl} */}
+      {/*           alt={`Template ${template}`} */}
+      {/*           width={100} */}
+      {/*           height={500} */}
+      {/*           loading="lazy" */}
+      {/*           loader={() => template.imageUrl} */}
+      {/*           className="w-full h-[500px] object-cover object-top brightness-75 group-hover:brightness-100 transition duration-500" */}
+      {/*         /> */}
+      {/*         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"> */}
+      {/*           <div className="absolute bottom-0 p-8"> */}
+      {/*             <h3 className="text-2xl font-semibold mb-3"> */}
+      {/*               Template {idx + 1} */}
+      {/*             </h3> */}
+      {/*             <p className="text-gray-300 mb-4"> */}
+      {/*               A minimal design that puts your work in the spotlight. */}
+      {/*             </p> */}
+      {/*             <Link href={template.previewUrl}> */}
+      {/*               <button className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg font-medium hover:bg-white/20 transition"> */}
+      {/*                 Preview Template */}
+      {/*               </button> */}
+      {/*             </Link> */}
+      {/*           </div> */}
+      {/*         </div> */}
+      {/*       </motion.div> */}
+      {/*     ))} */}
+      {/*   </div> */}
+      {/* </motion.section> */}
+
       {/* Footer */}
-      <footer className="container mx-auto px-6 py-12 border-t border-white/10">
+      <footer className="container absolute bottom-0 sm:static  mx-auto px-6 py-12 border-t border-white/10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-1"
           >
-            <Code2 size={24} className="text-purple-400" />
-            <span className="font-semibold text-xl">ReachoOut</span>
+            <Image
+              src="/reachout-logo.png"
+              alt="logo"
+              width={100}
+              height={100}
+              className="cursor-pointer object-cover size-[50px] md:size-[50px]"
+            />
+            <span className="font-semibold text-xl">Reachoout</span>
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}
@@ -270,13 +335,22 @@ function Home() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex items-center gap-8 text-gray-400"
           >
-            <a href="https://reachoout.com" className="hover:text-white transition">
+            <a
+              href="https://reachoout.com"
+              className="hover:text-white transition"
+            >
               Home
             </a>
-            <a href="https://reachoout.com/support" className="hover:text-white transition">
+            <a
+              href="https://reachoout.com/support"
+              className="hover:text-white transition"
+            >
               Support
             </a>
-            <a href="https://reachoout.com/resources" className="hover:text-white transition">
+            <a
+              href="https://reachoout.com/resources"
+              className="hover:text-white transition"
+            >
               Tutorials
             </a>
           </motion.div>
