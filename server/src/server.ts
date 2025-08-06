@@ -40,21 +40,48 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
+  //eslint-disable-next-line
   origin: function (origin, callback) {
-    if (
-      !origin ||
-      origin === CLIENT_URL ||
-      origin === DEV_URL ||
-      origin === "http://localhost:3000"
-    ) {
+    console.log("🔍 Incoming Origin:", origin || "(no origin header)");
+
+    if (!origin) {
+      console.log(
+        "✅ Allowed: No Origin (likely server-to-server or curl request)",
+      );
       return callback(null, true);
     }
-    if (
-      process.env.NODE_ENV === "production" &&
-      (origin === "https://app.reachoout.com" ||
-        origin.endsWith(".reachoout.com"))
-    ) {
-      return callback(null, true);
+
+    try {
+      const { hostname, protocol } = new URL(origin);
+      console.log("📌 Parsed Hostname:", hostname);
+      console.log("📌 Parsed Protocol:", protocol);
+
+      // Development whitelist
+      if (
+        hostname === "localhost" ||
+        hostname === "127.0.0.1" ||
+        origin === CLIENT_URL ||
+        origin === DEV_URL
+      ) {
+        console.log("✅ Allowed: Development origin");
+        return callback(null, true);
+      }
+
+      // Production wildcard for multi-tenancy
+      if (process.env.NODE_ENV === "production") {
+        if (
+          hostname === "app.reachoout.com" ||
+          hostname.endsWith(".reachoout.com")
+        ) {
+          console.log("✅ Allowed: Production subdomain match");
+          return callback(null, true);
+        }
+      }
+
+      console.log("❌ Blocked: Origin not allowed");
+    } catch (err) {
+      console.log("❌ Invalid Origin format:", err.message);
+      return callback(new Error("Invalid Origin"));
     }
 
     return callback(new Error("Not allowed by CORS"));
@@ -62,9 +89,9 @@ const corsOptions = {
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 200, // Prevents 500 errors for OPTIONS in some setups
 };
 
-// 👇 Apply to all requests FIRST
 app.use(cors(corsOptions));
 
 app.use(
@@ -72,7 +99,7 @@ app.use(
     secret: SESSION_SECRET_KEY || "secret",
     resave: false,
     saveUninitialized: false,
-  })
+  }),
 );
 
 app.use(passport.initialize());
@@ -100,7 +127,7 @@ passport.use(
       refreshToken: string,
       params: GoogleCallbackParameters,
       profile: Profile,
-      done: VerifyCallback
+      done: VerifyCallback,
     ) {
       return done(null, {
         accessToken: accessToken,
@@ -111,8 +138,8 @@ passport.use(
         email: profile.emails?.[0]?.value!,
         avatarUrl: profile.photos?.[0]?.value!,
       });
-    }
-  )
+    },
+  ),
 );
 
 app.get("/", (req: Request, res: Response) => {
@@ -127,7 +154,7 @@ app.get(
   "/auth/google",
   passport.authenticate("google", {
     scope: ["profile", "email"],
-  })
+  }),
 );
 
 app.get(
@@ -221,7 +248,7 @@ app.get(
       console.error("Google OAuth callback error:", error);
       res.redirect(`${CLIENT_URL || DEV_URL}/failed?error=auth_failed`);
     }
-  }
+  },
 );
 
 app.use("/v1/auth", authRouter);
