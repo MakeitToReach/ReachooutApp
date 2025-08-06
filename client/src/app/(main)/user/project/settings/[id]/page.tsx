@@ -136,7 +136,7 @@ const ProjectSettingsPage = () => {
         // Set the first template with order > 0 as selected, or the first template
         const additionalTemplates = project.templates.filter(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (t: any) => t.order > 0
+          (t: any) => t.order > 0,
         );
         if (additionalTemplates.length > 0) {
           setSelectedTemplate(additionalTemplates[0]);
@@ -164,7 +164,7 @@ const ProjectSettingsPage = () => {
         await updateProjectMetaData(
           id as string,
           settings.name,
-          settings.description
+          settings.description,
         );
       } else if (section === "template-seo" && selectedTemplate) {
         await updateTemplateSEO(
@@ -172,7 +172,7 @@ const ProjectSettingsPage = () => {
           selectedTemplate.templateId,
           templateSEO.slug,
           templateSEO.seoTitle,
-          templateSEO.seoDescription
+          templateSEO.seoDescription,
         );
       }
     } catch (error) {
@@ -208,7 +208,7 @@ const ProjectSettingsPage = () => {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="project-name">Project Name</Label>
+              <Label htmlFor="project-name">Website Name</Label>
               <Input
                 id="project-name"
                 value={settings.name}
@@ -224,7 +224,7 @@ const ProjectSettingsPage = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="project-description">Project Description</Label>
+              <Label htmlFor="project-description">Website Description</Label>
               <Textarea
                 id="project-description"
                 value={settings.description || ""}
@@ -412,13 +412,13 @@ const ProjectSettingsPage = () => {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="template-select">Select Template</Label>
+                <Label htmlFor="template-select">Select Website</Label>
                 <Select
                   value={selectedTemplate?.templateId || ""}
                   onValueChange={(value) => {
                     const template = templates.find(
                       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                      (t: any) => t.templateId === value
+                      (t: any) => t.templateId === value,
                     );
                     setSelectedTemplate(template);
                     if (template) {
@@ -443,7 +443,7 @@ const ProjectSettingsPage = () => {
                           key={template.templateId}
                           value={template.templateId}
                         >
-                          Website {template.order}
+                          Website {template.order + 1}
                         </SelectItem>
                       ))}
                   </SelectContent>
@@ -453,7 +453,7 @@ const ProjectSettingsPage = () => {
               {selectedTemplate && (
                 <>
                   <div className="space-y-2">
-                    <Label htmlFor="slug">Page Slug</Label>
+                    <Label htmlFor="slug">Page URL</Label>
                     <div className="flex items-center space-x-2">
                       <Input
                         id="slug"

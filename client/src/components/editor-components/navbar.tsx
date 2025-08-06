@@ -18,7 +18,7 @@ export const Navbar = () => {
   };
 
   const handleLogoClick = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
   ) => {
     if (e.ctrlKey && e.shiftKey) {
       e.preventDefault();
@@ -58,10 +58,9 @@ export const Navbar = () => {
             handleLogout={logoutAndRedirect}
           />
         )}
-        <p>About</p>
-        <p>Pricing</p>
-        <p>FAQs</p>
-        <p>Templates</p>
+        <a href="https://reachoout.com">Home</a>
+        <a href="https://reachoout.com/support">Support</a>
+        <a href="https://reachoout.com/resources">Tutorials</a>
       </div>
     </div>
   );

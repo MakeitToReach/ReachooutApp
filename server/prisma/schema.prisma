@@ -40,6 +40,7 @@ model Project {
 model Template {
   id           String             @id @default(cuid())
   name         String             @unique
+  displayName  String             @default("")
   thumbnailUrl String
   createdAt    DateTime           @default(now())
   tags         String[]
