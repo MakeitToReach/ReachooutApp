@@ -1,6 +1,12 @@
 import prisma from "../config/prisma";
 import type { Request, Response } from "express";
 
+// Utility function to check if a project template is expired
+const isProjectTemplateExpired = (expiresAt: Date | null): boolean => {
+  if (!expiresAt) return false; // No expiry set
+  return new Date() > expiresAt;
+};
+
 export const getAllTemplates = async (req: Request, res: Response) => {
   const templates = await prisma.template.findMany();
 
@@ -304,6 +310,15 @@ export const getProjectTemplateInstanceData = async (
       return res.status(404).json({ error: "Template instance not found" });
     }
 
+    // Check if template is expired
+    if (isProjectTemplateExpired(templateInstance.expiresAt)) {
+      return res.status(410).json({ 
+        error: "Project expired",
+        message: "project expired",
+        template: null 
+      });
+    }
+
     return res.status(200).json({ template: templateInstance });
   } catch (error) {
     console.error("Error fetching template instance:", error);
@@ -448,5 +463,90 @@ export const getCategoryByTemplateIdAndCategoryName = async (
       error
     );
     return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const setTemplateExpiry = async (req: Request, res: Response) => {
+  try {
+    const { projectId, templateId, order, expiresAt } = req.body;
+
+    // Validate required fields
+    if (!projectId || !templateId) {
+      return res.status(400).json({
+        error: "Project ID and Template ID are required",
+      });
+    }
+
+    // Verify project exists and user has access
+    const project = await prisma.project.findUnique({
+      where: { id: projectId },
+      include: { user: true },
+    });
+
+    if (!project) {
+      return res.status(404).json({
+        error: "Project not found",
+      });
+    }
+
+    // Find the specific template instance
+    const templateInstance = await prisma.projectTemplate.findFirst({
+      where: {
+        projectId,
+        templateId,
+        order: order || 0,
+      },
+    });
+
+    if (!templateInstance) {
+      return res.status(404).json({
+        error: "Template instance not found",
+      });
+    }
+
+    // Parse the expiry date
+    let parsedExpiresAt: Date | null = null;
+    if (expiresAt) {
+      parsedExpiresAt = new Date(expiresAt);
+      if (isNaN(parsedExpiresAt.getTime())) {
+        return res.status(400).json({
+          error: "Invalid expiry date format",
+        });
+      }
+    }
+
+    // Update the template with expiry
+    const updatedTemplate = await prisma.projectTemplate.update({
+      where: {
+        projectId_templateId_createdAt: {
+          projectId,
+          templateId,
+          createdAt: templateInstance.createdAt,
+        },
+      },
+      data: {
+        expiresAt: parsedExpiresAt,
+      },
+      include: {
+        template: {
+          select: {
+            id: true,
+            name: true,
+            thumbnailUrl: true,
+            tags: true,
+          },
+        },
+      },
+    });
+
+    res.status(200).json({
+      message: "Template expiry updated successfully",
+      projectTemplate: updatedTemplate,
+    });
+  } catch (error) {
+    console.error("Error updating template expiry:", error);
+    res.status(500).json({
+      error: "Internal server error",
+    });
   }
 };

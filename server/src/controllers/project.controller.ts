@@ -1,6 +1,12 @@
 import { Request, Response } from "express";
 import prisma from "../config/prisma";
 
+// Utility function to check if a project template is expired
+const isProjectTemplateExpired = (expiresAt: Date | null): boolean => {
+  if (!expiresAt) return false; // No expiry set
+  return new Date() > expiresAt;
+};
+
 export const createProject = async (
   req: Request<{}, {}, { name: string; description: string }>,
   res: Response
@@ -240,10 +246,14 @@ export const getTemplatesInProject = async (
       order: "asc",
     },
   });
-  if (!templates || templates.length === 0) {
+  
+  // Filter out expired templates
+  const activeTemplates = templates.filter((template) => !isProjectTemplateExpired(template.expiresAt));
+  
+  if (!activeTemplates || activeTemplates.length === 0) {
     return res.status(404).json({ error: "Templates not found" });
   }
-  res.status(200).json(templates);
+  res.status(200).json(activeTemplates);
 };
 
 export const deleteProjectById = async (req: Request, res: Response) => {
@@ -294,7 +304,7 @@ export const getProjectBySubdomain = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "Project not found" });
     }
 
-    // Transform the data to match the expected format
+    // Transform the data to match the expected format and filter out expired templates
     const transformedProject = {
       id: project.id,
       name: project.name,
@@ -302,16 +312,18 @@ export const getProjectBySubdomain = async (req: Request, res: Response) => {
       customDomain: project.customDomain,
       faviconUrl: project.faviconUrl,
       user: project.user,
-      templates: project.templates.map((pt) => ({
-        templateId: pt.templateId,
-        data: pt.data as any,
-        order: pt.order,
-        template: {
-          id: pt.template.id,
-          name: pt.template.name,
-          thumbnailUrl: pt.template.thumbnailUrl,
-        },
-      })),
+      templates: project.templates
+        .filter((pt) => !isProjectTemplateExpired(pt.expiresAt))
+        .map((pt) => ({
+          templateId: pt.templateId,
+          data: pt.data as any,
+          order: pt.order,
+          template: {
+            id: pt.template.id,
+            name: pt.template.name,
+            thumbnailUrl: pt.template.thumbnailUrl,
+          },
+        })),
     };
 
     res.status(200).json(transformedProject);
@@ -356,23 +368,25 @@ export const getProjectByCustomDomain = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "Project not found" });
     }
 
-    // Transform the data to match the expected format
+    // Transform the data to match the expected format and filter out expired templates
     const transformedProject = {
       id: project.id,
       name: project.name,
       subDomain: project.subDomain,
       customDomain: project.customDomain,
       user: project.user,
-      templates: project.templates.map((pt) => ({
-        templateId: pt.templateId,
-        data: pt.data as any,
-        order: pt.order,
-        template: {
-          id: pt.template.id,
-          name: pt.template.name,
-          thumbnailUrl: pt.template.thumbnailUrl,
-        },
-      })),
+      templates: project.templates
+        .filter((pt) => !isProjectTemplateExpired(pt.expiresAt))
+        .map((pt) => ({
+          templateId: pt.templateId,
+          data: pt.data as any,
+          order: pt.order,
+          template: {
+            id: pt.template.id,
+            name: pt.template.name,
+            thumbnailUrl: pt.template.thumbnailUrl,
+          },
+        })),
     };
 
     res.status(200).json(transformedProject);
@@ -560,7 +574,7 @@ export const getProjectById = async (req: Request, res: Response) => {
     return res.status(404).json({ error: "Project not found" });
   }
 
-  // Transform the data to include SEO fields
+  // Transform the data to include SEO fields and filter out expired templates
   const transformedProject = {
     id: project.id,
     name: project.name,
@@ -568,19 +582,21 @@ export const getProjectById = async (req: Request, res: Response) => {
     customDomain: project.customDomain,
     faviconUrl: project.faviconUrl,
     description: project.description,
-    templates: project.templates.map((pt) => ({
-      projectId: pt.projectId,
-      templateId: pt.templateId,
-      order: pt.order,
-      slug: pt.slug,
-      seoTitle: pt.seoTitle,
-      seoDescription: pt.seoDescription,
-      template: {
-        id: pt.template.id,
-        name: pt.template.name,
-        thumbnailUrl: pt.template.thumbnailUrl,
-      },
-    })),
+    templates: project.templates
+      .filter((pt) => !isProjectTemplateExpired(pt.expiresAt))
+      .map((pt) => ({
+        projectId: pt.projectId,
+        templateId: pt.templateId,
+        order: pt.order,
+        slug: pt.slug,
+        seoTitle: pt.seoTitle,
+        seoDescription: pt.seoDescription,
+        template: {
+          id: pt.template.id,
+          name: pt.template.name,
+          thumbnailUrl: pt.template.thumbnailUrl,
+        },
+      })),
   };
 
   res.status(200).json(transformedProject);
@@ -692,6 +708,23 @@ export const getProjectBySubdomainAndSlug = async (
       },
     },
   });
+  
+  if (!project) {
+    return res.status(404).json({ error: "Project not found" });
+  }
+  
+  // Check if the template is expired
+  if (project.templates.length > 0) {
+    const template = project.templates[0];
+    if (isProjectTemplateExpired(template.expiresAt)) {
+      return res.status(410).json({ 
+        error: "Project expired",
+        message: "project expired",
+        project: null 
+      });
+    }
+  }
+  
   res.status(200).json(project);
 };
 

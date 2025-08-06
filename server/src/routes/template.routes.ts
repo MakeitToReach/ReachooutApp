@@ -10,6 +10,7 @@ import {
     deleteTemplateInstanceByOrder,
     checkSlug,
     getCategoryByTemplateIdAndCategoryName,
+    setTemplateExpiry,
 } from "../controllers/template.controller";
 import { isAuthenticated } from "../middlewares/isAuthenticated";
 
@@ -70,4 +71,9 @@ templateRouter.get(
     checkSlug(req, res);
   }
 );
+
+templateRouter.put("/expiry", isAuthenticated, (req: Request, res: Response) => {
+    setTemplateExpiry(req, res);
+});
+
 export default templateRouter;
