@@ -42,19 +42,19 @@ app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
     //eslint-disable-next-line
     origin: function (origin, callback) {
-        console.log("🔍 Incoming Origin:", origin || "(no origin header)");
+        // console.log("🔍 Incoming Origin:", origin || "(no origin header)");
 
         if (!origin) {
-            console.log(
-                "✅ Allowed: No Origin (likely server-to-server or curl request)",
-            );
+            // console.log(
+            //     "✅ Allowed: No Origin (likely server-to-server or curl request)",
+            // );
             return callback(null, true);
         }
 
         try {
-            const { hostname, protocol } = new URL(origin);
-            console.log("📌 Parsed Hostname:", hostname);
-            console.log("📌 Parsed Protocol:", protocol);
+            const { hostname } = new URL(origin);
+            // console.log("📌 Parsed Hostname:", hostname);
+            // console.log("📌 Parsed Protocol:", protocol);
 
             // Dev allowed
             if (
@@ -63,7 +63,7 @@ const corsOptions = {
                 origin === CLIENT_URL ||
                 origin === DEV_URL
             ) {
-                console.log("✅ Allowed: Development origin");
+                // console.log("✅ Allowed: Development origin");
                 return callback(null, true);
             }
 
@@ -72,7 +72,7 @@ const corsOptions = {
                 hostname === "app.reachoout.com" ||
                 hostname.endsWith(".reachoout.com")
             ) {
-                console.log("✅ Allowed: Subdomain match");
+                // console.log("✅ Allowed: Subdomain match");
                 return callback(null, true);
             }
 
