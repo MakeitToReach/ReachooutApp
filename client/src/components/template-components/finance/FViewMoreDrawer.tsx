@@ -97,10 +97,10 @@ export const FViewMoreDrawer = ({
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
-      <DrawerContent className="p-0 max-w-full theme-wrapper bg-template-primary sm:max-w-4xl mx-auto sm:min-h-[95vh] min-h-[90vh] flex flex-col">
+      <DrawerContent className="sm:px-8 max-w-full theme-wrapper bg-template-primary sm:max-w-7xl mx-auto sm:min-h-[95vh] min-h-[90vh] flex flex-col">
         {/* Header */}
         <DrawerHeader className="p-4 border-b">
-          <DrawerTitle className="text-left text-xl flex flex-col gap-2">
+          <DrawerTitle className="text-left text-3xl flex flex-col gap-2">
             <span>
               {blog?.title ||
                 project?.title ||
@@ -110,12 +110,12 @@ export const FViewMoreDrawer = ({
                 aboutSection?.title}
             </span>
             {teamMember && (
-              <span className="text-left text-sm font-light">
+              <span className="text-left text-xl font-light">
                 {teamMember.designation}
               </span>
             )}
             {(project || service || catalogService) && (
-              <span className="text-left text-sm font-light">
+              <span className="text-left text-xl font-light">
                 {project?.category ||
                   service?.category ||
                   catalogService?.category}
@@ -171,7 +171,7 @@ export const FViewMoreDrawer = ({
                       }
                       alt={`${catalogService.title}-img-${currentImageIndex}`}
                       fill
-                      className="object-cover rounded"
+                      className="object-contain rounded-xl"
                     />
                   </motion.div>
                 </AnimatePresence>
@@ -226,7 +226,7 @@ export const FViewMoreDrawer = ({
                   width={500}
                   height={400}
                   className={cn(
-                    "rounded w-full sm:h-[400px] object-contain object-center"
+                    "rounded-xl w-full sm:h-[400px] object-contain object-center"
                   )}
                 />
               )
@@ -238,7 +238,7 @@ export const FViewMoreDrawer = ({
                 alt={`${blog.title}-img`}
                 width={1000}
                 height={1000}
-                className="rounded w-full md:h-[400px] object-cover object-center"
+                className="rounded-xl w-full md:h-[400px] object-contain object-center"
               />
             )}
 
@@ -248,7 +248,7 @@ export const FViewMoreDrawer = ({
                 alt={`${service.title}-img`}
                 width={1000}
                 height={1000}
-                className="rounded w-full md:h-[400px] object-cover object-center"
+                className="rounded-xl w-full md:h-[400px] object-contain object-center"
               />
             )}
 
@@ -258,7 +258,7 @@ export const FViewMoreDrawer = ({
                 alt={`${teamMember.name}-img`}
                 width={1000}
                 height={1000}
-                className="rounded w-full sm:h-[400px] object-contain object-center"
+                className="rounded-xl w-full sm:h-[400px] object-contain object-center"
               />
             )}
 
@@ -268,7 +268,7 @@ export const FViewMoreDrawer = ({
                 alt={`${aboutSection.title}-img`}
                 width={1000}
                 height={1000}
-                className="rounded w-full md:h-[400px] object-cover object-center"
+                className="rounded-xl w-full md:h-[400px] object-contain object-center"
               />
             )}
           </div>
