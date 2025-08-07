@@ -1,11 +1,9 @@
-import YouTube from "react-youtube";
 import { PF_HERO_SECTION } from "../types/heroSection";
 import { FlipText } from "@/components/template-components/professional/flipText";
 import { Button } from "@/components/ui/button";
 import { LucideArrowRight } from "lucide-react";
 import React from "react";
 import { getYouTubeVideoId } from "@/lib/utils";
-import Image from "next/image";
 import { motion as m } from "motion/react";
 import { ImageVideo } from "@/components/ImageVideo";
 
@@ -22,23 +20,6 @@ export const PFHeroSection = ({
 }: PF_HERO_SECTION) => {
     const videoId = getYouTubeVideoId(heroVidUrl);
     const showVideo = Boolean(videoId);
-
-    const opts = {
-        playerVars: {
-            autoplay: 1,
-            loop: 1,
-            playlist: videoId,
-            controls: 0,
-            modestbranding: 1,
-            rel: 0,
-            iv_load_policy: 3,
-            disablekb: 1,
-            fs: 0,
-            mute: 1,
-            playsinline: 1,
-        },
-    };
-
     return (
         <section className="max-w-6xl mx-auto py-10 sm:py-10" id="hero">
             <m.div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">
