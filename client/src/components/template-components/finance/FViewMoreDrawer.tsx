@@ -131,7 +131,7 @@ export const FViewMoreDrawer = ({
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {/* Media Section */}
-          <div className="flex justify-center">
+          <div className="flex justify-center sm:h-[55vh]">
             {type === "Catalog" && catalogVideoId ? (
               <YouTube
                 videoId={catalogVideoId}

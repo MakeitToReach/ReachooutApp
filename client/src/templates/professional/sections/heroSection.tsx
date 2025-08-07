@@ -7,82 +7,84 @@ import React from "react";
 import { getYouTubeVideoId } from "@/lib/utils";
 import Image from "next/image";
 import { motion as m } from "motion/react";
+import { ImageVideo } from "@/components/ImageVideo";
 
 const delay = 0.15;
 
 export const PFHeroSection = ({
-  title,
-  professions,
-  btnLink = "#",
-  btnText,
-  heroImgUrl,
-  heroVidUrl,
-  description,
+    title,
+    professions,
+    btnLink = "#",
+    btnText,
+    heroImgUrl,
+    heroVidUrl,
+    description,
 }: PF_HERO_SECTION) => {
-  const videoId = getYouTubeVideoId(heroVidUrl);
+    const videoId = getYouTubeVideoId(heroVidUrl);
+    const showVideo = Boolean(videoId);
 
-  const opts = {
-    playerVars: {
-      autoplay: 1,
-      loop: 1,
-      playlist: videoId,
-      controls: 0,
-      modestbranding: 1,
-      rel: 0,
-      iv_load_policy: 3,
-      disablekb: 1,
-      fs: 0,
-      mute: 1,
-      playsinline: 1,
-    },
-  };
+    const opts = {
+        playerVars: {
+            autoplay: 1,
+            loop: 1,
+            playlist: videoId,
+            controls: 0,
+            modestbranding: 1,
+            rel: 0,
+            iv_load_policy: 3,
+            disablekb: 1,
+            fs: 0,
+            mute: 1,
+            playsinline: 1,
+        },
+    };
 
-  return (
-    <section className="max-w-6xl mx-auto py-10 sm:py-10" id="hero">
-      <m.div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">
-        <div className="space-y-4">
-          <div>
-            <m.h1
-              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                duration: 0.5,
-                delay: delay,
-                ease: "easeOut",
-              }}
-              className="text-5xl sm:text-6xl font-bold text-template-text-primary"
-            >
-              {title}
-            </m.h1>
-            {professions && (
-              <m.div
-                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.5,
-                  delay: delay * 2,
-                  ease: "easeOut",
-                }}
-              >
-                <FlipText
-                  texts={professions}
-                  className="text-4xl sm:text-5xl sm:leading-16 leading-12 font-bold text-template-text-accent-tertiary"
-                />
-              </m.div>
-            )}
-            {description && (
-              <m.div
-                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.5,
-                  delay: delay * 3,
-                  ease: "easeOut",
-                }}
-                className="
+    return (
+        <section className="max-w-6xl mx-auto py-10 sm:py-10" id="hero">
+            <m.div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">
+                <div className="space-y-4">
+                    <div>
+                        <m.h1
+                            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{
+                                duration: 0.5,
+                                delay: delay,
+                                ease: "easeOut",
+                            }}
+                            className="text-5xl sm:text-6xl font-bold text-template-text-primary"
+                        >
+                            {title}
+                        </m.h1>
+                        {professions && (
+                            <m.div
+                                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{
+                                    duration: 0.5,
+                                    delay: delay * 2,
+                                    ease: "easeOut",
+                                }}
+                            >
+                                <FlipText
+                                    texts={professions}
+                                    className="text-4xl sm:text-5xl sm:leading-16 leading-12 font-bold text-template-text-accent-tertiary"
+                                />
+                            </m.div>
+                        )}
+                        {description && (
+                            <m.div
+                                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{
+                                    duration: 0.5,
+                                    delay: delay * 3,
+                                    ease: "easeOut",
+                                }}
+                                className="
     prose prose-xl max-w-none text-template-text-primary
     prose-p:text-template-text-primary
     prose-strong:text-template-text-primary
@@ -94,70 +96,92 @@ export const PFHeroSection = ({
     prose-h6:text-template-text-primary
     line-clamp-5
   "
-                dangerouslySetInnerHTML={{ __html: description }}
-              />
-            )}
-          </div>
-          <a href={btnLink}>
-            <m.div
-              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                duration: 0.5,
-                delay: delay * 4,
-                ease: "easeOut",
-              }}
-            >
-              <Button className="p-6 text-md rounded-sm bg-template-btn hover:bg-template-btn cursor-pointer">
-                <span className="text-template-text-btn">{btnText}</span>
-                <span>
-                  <LucideArrowRight className="text-template-text-btn" />
-                </span>
-              </Button>
+                                dangerouslySetInnerHTML={{ __html: description }}
+                            />
+                        )}
+                    </div>
+                    <a href={btnLink}>
+                        <m.div
+                            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{
+                                duration: 0.5,
+                                delay: delay * 4,
+                                ease: "easeOut",
+                            }}
+                        >
+                            <Button className="p-6 text-md rounded-sm bg-template-btn hover:bg-template-btn cursor-pointer">
+                                <span className="text-template-text-btn">{btnText}</span>
+                                <span>
+                                    <LucideArrowRight className="text-template-text-btn" />
+                                </span>
+                            </Button>
+                        </m.div>
+                    </a>
+                </div>
+                <div
+                    className={`self-center relative w-full mx-auto ${showVideo
+                            ? "max-w-[600px] aspect-video"
+                            : "max-w-[420px] sm:h-[500px] h-[400px]"
+                        }`}
+                >
+                    <div
+                        className={`absolute inset-0 w-full h-full overflow-hidden drop-shadow-xl rounded-sm ${showVideo ? "aspect-video" : ""
+                            }`}
+                    >
+                        <ImageVideo
+                            imgUrl={heroImgUrl}
+                            vidUrl={heroVidUrl}
+                            alt="Profile"
+                            width={showVideo ? 600 : 420}
+                            height={showVideo ? 337 : 500}
+                            imageClassName="w-full h-full object-cover"
+                            embedClassName="w-full h-full"
+                            iframeClassName="w-full h-full"
+                        />
+                    </div>
+                </div>
+                {/* {videoId ? ( */}
+                {/*   <m.div */}
+                {/*     initial={{ opacity: 0, y: 40, filter: "blur(10px)" }} */}
+                {/*     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} */}
+                {/*     viewport={{ once: true, amount: 0.3 }} */}
+                {/*     transition={{ */}
+                {/*       duration: 0.5, */}
+                {/*       delay: delay * 5, */}
+                {/*       ease: "easeOut", */}
+                {/*     }} */}
+                {/*     className="relative w-full max-w-[600px] aspect-video rounded-sm overflow-hidden" */}
+                {/*   > */}
+                {/*     <YouTube */}
+                {/*       videoId={videoId} */}
+                {/*       className="absolute top-0 left-0 w-full h-full" */}
+                {/*       iframeClassName="w-full h-full" */}
+                {/*       opts={opts} */}
+                {/*     /> */}
+                {/*   </m.div> */}
+                {/* ) : ( */}
+                {/*   <m.div */}
+                {/*     initial={{ opacity: 0, x: "4vw", filter: "blur(10px)" }} */}
+                {/*     whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} */}
+                {/*     viewport={{ once: true, amount: 0.3 }} */}
+                {/*     transition={{ */}
+                {/*       duration: 0.5, */}
+                {/*       delay: delay * 5, */}
+                {/*       ease: "easeOut", */}
+                {/*     }} */}
+                {/*     className="mt-10 sm:mt-0 sm:min-h-[50vh] sm:min-w-[28vw] sm:max-h-[50vh] sm:max-w-[28vw] relative rounded-sm min-w-[30vw] min-h-[30vh] overflow-hidden" */}
+                {/*   > */}
+                {/*     <Image */}
+                {/*       src={heroImgUrl || "https://placehold.co/500x500"} */}
+                {/*       alt="heroimg" */}
+                {/*       fill */}
+                {/*       className="object-cover" */}
+                {/*     /> */}
+                {/*   </m.div> */}
+                {/* )} */}
             </m.div>
-          </a>
-        </div>
-        {videoId ? (
-          <m.div
-            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.5,
-              delay: delay * 5,
-              ease: "easeOut",
-            }}
-            className="relative w-full max-w-[600px] aspect-video rounded-sm overflow-hidden"
-          >
-            <YouTube
-              videoId={videoId}
-              className="absolute top-0 left-0 w-full h-full"
-              iframeClassName="w-full h-full"
-              opts={opts}
-            />
-          </m.div>
-        ) : (
-          <m.div
-            initial={{ opacity: 0, x: "4vw", filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.5,
-              delay: delay * 5,
-              ease: "easeOut",
-            }}
-            className="mt-10 sm:mt-0 sm:min-h-[50vh] sm:min-w-[28vw] sm:max-h-[50vh] sm:max-w-[28vw] relative rounded-sm min-w-[30vw] min-h-[30vh] overflow-hidden"
-          >
-            <Image
-              src={heroImgUrl || "https://placehold.co/500x500"}
-              alt="heroimg"
-              fill
-              className="object-cover"
-            />
-          </m.div>
-        )}
-      </m.div>
-    </section>
-  );
+        </section>
+    );
 };
