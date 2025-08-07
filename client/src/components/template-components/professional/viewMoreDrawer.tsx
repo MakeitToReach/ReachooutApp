@@ -145,7 +145,7 @@ export const ViewMoreDrawer = ({
               catalogService &&
               catalogService.imgUrls &&
               catalogService.imgUrls.length > 0 ? (
-              <div className="relative w-full h-[400px]">
+              <div className="relative w-full h-full">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={catalogService.imgUrls[currentImageIndex]}
