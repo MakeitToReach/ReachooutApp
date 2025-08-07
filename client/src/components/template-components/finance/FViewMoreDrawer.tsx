@@ -226,7 +226,7 @@ export const FViewMoreDrawer = ({
                   width={500}
                   height={400}
                   className={cn(
-                    "rounded-xl w-full sm:h-[400px] object-contain object-center"
+                    "rounded-xl w-full h-full object-contain object-center"
                   )}
                 />
               )
@@ -238,7 +238,7 @@ export const FViewMoreDrawer = ({
                 alt={`${blog.title}-img`}
                 width={1000}
                 height={1000}
-                className="rounded-xl w-full md:h-[400px] object-contain object-center"
+                className="rounded-xl w-full h-full object-contain object-center"
               />
             )}
 
@@ -248,7 +248,7 @@ export const FViewMoreDrawer = ({
                 alt={`${service.title}-img`}
                 width={1000}
                 height={1000}
-                className="rounded-xl w-full md:h-[400px] object-contain object-center"
+                className="rounded-xl w-full h-full object-contain object-center"
               />
             )}
 
@@ -258,7 +258,7 @@ export const FViewMoreDrawer = ({
                 alt={`${teamMember.name}-img`}
                 width={1000}
                 height={1000}
-                className="rounded-xl w-full sm:h-[400px] object-contain object-center"
+                className="rounded-xl w-full h-full object-contain object-center"
               />
             )}
 
@@ -268,7 +268,7 @@ export const FViewMoreDrawer = ({
                 alt={`${aboutSection.title}-img`}
                 width={1000}
                 height={1000}
-                className="rounded-xl w-full md:h-[400px] object-contain object-center"
+                className="rounded-xl w-full h-full object-contain object-center"
               />
             )}
           </div>

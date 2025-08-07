@@ -212,7 +212,7 @@ export const ViewMoreDrawer = ({
                   width={500}
                   height={400}
                   className={cn(
-                    "rounded-sm w-full sm:h-[400px] object-contain object-center",
+                    "rounded-sm w-full h-full object-contain object-center",
                   )}
                 />
               )
