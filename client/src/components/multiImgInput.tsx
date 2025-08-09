@@ -16,8 +16,8 @@ interface MultipleImageInputProps {
 }
 
 export function MultipleImageInput({ initialImages, onImageRemove, onImageAdd }: MultipleImageInputProps) {
-  const maxSizeMB = 2
-  const maxSize = maxSizeMB * 1024 * 1024 // 5MB default
+  const maxSizeMB = 1
+  const maxSize = maxSizeMB * 1024 * 1024 
   const maxFiles = 6
 
   const [isUploading, setIsUploading] = useState(false)
