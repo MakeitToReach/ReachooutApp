@@ -8,7 +8,7 @@ export const PORT = process.env.PORT || 5000;
 
 export const DATABASE_URL = process.env.DATABASE_URL;
 export const CLIENT_URL = process.env.CLIENT_URL;
-export const DEV_URL = process.env.DEV_URL || "http://app.localhost:3000";
+export const DEV_URL = process.env.DEV_URL || "http://localhost:3000";
 export const BACKEND_URL = process.env.BACKEND_URL;
 
 export const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
@@ -21,3 +21,5 @@ export const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 export const AWS_REGION = process.env.AWS_REGION;
 export const AWS_S3_BUCKET_NAME = process.env.AWS_S3_BUCKET_NAME;
 export const RESEND_API_KEY = process.env.RESEND_API_KEY;
+export const RAZORPAY_KEY_ID = process.env.RAZORPAY_KEY_ID;
+export const RAZORPAY_KEY_SECRET = process.env.RAZORPAY_KEY_SECRET;

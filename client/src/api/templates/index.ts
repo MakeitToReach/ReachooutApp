@@ -39,10 +39,10 @@ export const getCategoriesByTemplateId = async (templateId: string) => {
 
 export const getCategoryByTemplateIdAndCategoryName = async (
   templateId: string,
-  categoryName: string
+  categoryName: string,
 ) => {
   const response = await api.get(
-    `/v1/template/category/${templateId}/${categoryName}`
+    `/v1/template/category/${templateId}/${categoryName}`,
   );
 
   if (response.status === 200 || response.status === 304) {
@@ -58,17 +58,19 @@ export const publishTemplate = async (
   data: GenericTemplateSchema,
   projectId: string,
   templateId: string,
-  slug?: string
+  slug?: string,
+  expiryDays?: number,
 ) => {
   const token = getToken();
   const response = await api.post(
     `/v1/template/publish`,
-    { data, projectId, templateId, slug },
+    { data, projectId, templateId, slug, expiryDays },
     {
       headers: {
         Authorization: `Bearer ${token}`,
+        withCredentials: true,
       },
-    }
+    },
   );
 
   if (response.status === 200 || response.status === 201) {
@@ -86,7 +88,7 @@ export const updateTemplateInstanceData = async (
   data: GenericTemplateSchema,
   projectId: string,
   templateId: string,
-  order: number
+  order: number,
 ) => {
   try {
     const token = getToken();
@@ -97,7 +99,7 @@ export const updateTemplateInstanceData = async (
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
 
     if (response.status === 200 || response.status === 201) {
@@ -116,7 +118,7 @@ export const updateTemplateInstanceData = async (
 
 export const deleteTemplateInstanceByOrder = async (
   projectId: string,
-  slug: string
+  slug: string,
 ) => {
   const token = getToken();
   const response = await api.delete(
@@ -125,7 +127,7 @@ export const deleteTemplateInstanceByOrder = async (
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 
   if (response.status === 200) {
@@ -139,7 +141,7 @@ export const deleteTemplateInstanceByOrder = async (
 
 export const checkSlugAvailability = async (
   pid: string,
-  slug: string
+  slug: string,
 ): Promise<boolean> => {
   try {
     const token = getToken();

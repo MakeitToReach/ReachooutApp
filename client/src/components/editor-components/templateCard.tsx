@@ -65,22 +65,30 @@ export const TemplateCard = ({
   const router = useRouter();
   const { resetData } = usePortfolioStore();
   const [qrOpen, setQROpen] = useState(false);
+  // const [changePlanOpen, setChangePlanOpen] = useState(false);
+
+  const isMobile = useIsMobile();
 
   const handleEdit = async () => {
     const fetchedData = await getProjectTemplateInstanceData(
       templateId,
       projectId!,
-      index || 0
+      index || 0,
     );
-    if (!fetchedData) router.push(`/`);
+
+    if (fetchedData.error) {
+      alert("opening popup");
+    }
+    if (!fetchedData) {
+      alert("Something went wrong");
+      // router.push(`/`);
+    }
 
     if (fetchedData) {
       resetData(fetchedData.template.data);
       router.push(editorUrl);
     }
   };
-
-  const isMobile = useIsMobile();
 
   const handleDelete = async () => {
     if (!projectId) {
@@ -104,7 +112,7 @@ export const TemplateCard = ({
     <div
       className={cn(
         className,
-        "relative border border-border rounded-xl overflow-hidden group"
+        "relative border border-border rounded-xl overflow-hidden group",
       )}
     >
       <div className="relative w-full">
@@ -124,7 +132,7 @@ export const TemplateCard = ({
               "absolute inset-0 flex items-center justify-center bg-black/60 transition-opacity z-10",
               isMobile
                 ? "opacity-100 visible"
-                : "opacity-0 group-hover:opacity-100 group-hover:visible invisible"
+                : "opacity-0 group-hover:opacity-100 group-hover:visible invisible",
             )}
           >
             <div className="flex gap-4">

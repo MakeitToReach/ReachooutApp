@@ -14,6 +14,7 @@ import { TemplateItem } from "@/types/projectTemplate.types";
 import { SettingsIcon } from "lucide-react";
 import Link from "next/link";
 import { useTrialStatus } from "@/hooks/use-trial-status";
+// import { isProjectTemplateExpired } from "@/lib/utils";
 
 const ProjectPage = () => {
   const params = useParams<{ id: string }>();
@@ -28,6 +29,7 @@ const ProjectPage = () => {
     const fetchTemplatesInProject = async () => {
       try {
         const response = await getTemplatesInProject(id as string);
+        // console.log(response);
         setTemplates(response || []);
       } catch (error) {
         console.error("Error fetching templates:", error);
