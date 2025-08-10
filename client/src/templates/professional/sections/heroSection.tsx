@@ -1,12 +1,11 @@
-import YouTube from "react-youtube";
 import { PF_HERO_SECTION } from "../types/heroSection";
 import { FlipText } from "@/components/template-components/professional/flipText";
 import { Button } from "@/components/ui/button";
 import { LucideArrowRight } from "lucide-react";
 import React from "react";
-import { getYouTubeVideoId } from "@/lib/utils";
-import Image from "next/image";
+import { cn, getYouTubeVideoId } from "@/lib/utils";
 import { motion as m } from "motion/react";
+import { ImageVideo } from "@/components/ImageVideo";
 
 const delay = 0.15;
 
@@ -20,23 +19,7 @@ export const PFHeroSection = ({
   description,
 }: PF_HERO_SECTION) => {
   const videoId = getYouTubeVideoId(heroVidUrl);
-
-  const opts = {
-    playerVars: {
-      autoplay: 1,
-      loop: 1,
-      playlist: videoId,
-      controls: 0,
-      modestbranding: 1,
-      rel: 0,
-      iv_load_policy: 3,
-      disablekb: 1,
-      fs: 0,
-      mute: 1,
-      playsinline: 1,
-    },
-  };
-
+  const showVideo = Boolean(videoId);
   return (
     <section className="max-w-6xl mx-auto py-10 sm:py-10" id="hero">
       <m.div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 px-4">
@@ -118,45 +101,70 @@ export const PFHeroSection = ({
             </m.div>
           </a>
         </div>
-        {videoId ? (
-          <m.div
-            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.5,
-              delay: delay * 5,
-              ease: "easeOut",
-            }}
-            className="relative w-full max-w-[600px] aspect-video rounded-sm overflow-hidden"
+        <div
+          className={cn(
+            "self-center relative w-full mx-auto",
+            showVideo
+              ? "max-w-[600px] aspect-video"
+              : "max-w-[420px] sm:h-[500px] h-[50vh]",
+          )}
+        >
+          <div
+            className={`absolute inset-0 w-full h-full overflow-hidden drop-shadow-xl rounded-sm ${
+              showVideo ? "aspect-video" : ""
+            }`}
           >
-            <YouTube
-              videoId={videoId}
-              className="absolute top-0 left-0 w-full h-full"
+            <ImageVideo
+              imgUrl={heroImgUrl}
+              vidUrl={heroVidUrl}
+              alt="Profile"
+              width={showVideo ? 600 : 420}
+              height={showVideo ? 337 : 500}
+              imageClassName="w-full h-full object-cover"
+              embedClassName="w-full h-full"
               iframeClassName="w-full h-full"
-              opts={opts}
             />
-          </m.div>
-        ) : (
-          <m.div
-            initial={{ opacity: 0, x: "4vw", filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.5,
-              delay: delay * 5,
-              ease: "easeOut",
-            }}
-            className="mt-10 sm:mt-0 sm:min-h-[50vh] sm:min-w-[28vw] sm:max-h-[50vh] sm:max-w-[28vw] relative rounded-sm min-w-[30vw] min-h-[30vh] overflow-hidden"
-          >
-            <Image
-              src={heroImgUrl || "https://placehold.co/500x500"}
-              alt="heroimg"
-              fill
-              className="object-cover"
-            />
-          </m.div>
-        )}
+          </div>
+        </div>
+        {/* {videoId ? ( */}
+        {/*   <m.div */}
+        {/*     initial={{ opacity: 0, y: 40, filter: "blur(10px)" }} */}
+        {/*     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} */}
+        {/*     viewport={{ once: true, amount: 0.3 }} */}
+        {/*     transition={{ */}
+        {/*       duration: 0.5, */}
+        {/*       delay: delay * 5, */}
+        {/*       ease: "easeOut", */}
+        {/*     }} */}
+        {/*     className="relative w-full max-w-[600px] aspect-video rounded-sm overflow-hidden" */}
+        {/*   > */}
+        {/*     <YouTube */}
+        {/*       videoId={videoId} */}
+        {/*       className="absolute top-0 left-0 w-full h-full" */}
+        {/*       iframeClassName="w-full h-full" */}
+        {/*       opts={opts} */}
+        {/*     /> */}
+        {/*   </m.div> */}
+        {/* ) : ( */}
+        {/*   <m.div */}
+        {/*     initial={{ opacity: 0, x: "4vw", filter: "blur(10px)" }} */}
+        {/*     whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} */}
+        {/*     viewport={{ once: true, amount: 0.3 }} */}
+        {/*     transition={{ */}
+        {/*       duration: 0.5, */}
+        {/*       delay: delay * 5, */}
+        {/*       ease: "easeOut", */}
+        {/*     }} */}
+        {/*     className="mt-10 sm:mt-0 sm:min-h-[50vh] sm:min-w-[28vw] sm:max-h-[50vh] sm:max-w-[28vw] relative rounded-sm min-w-[30vw] min-h-[30vh] overflow-hidden" */}
+        {/*   > */}
+        {/*     <Image */}
+        {/*       src={heroImgUrl || "https://placehold.co/500x500"} */}
+        {/*       alt="heroimg" */}
+        {/*       fill */}
+        {/*       className="object-cover" */}
+        {/*     /> */}
+        {/*   </m.div> */}
+        {/* )} */}
       </m.div>
     </section>
   );

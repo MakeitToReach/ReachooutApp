@@ -48,7 +48,7 @@ export const ViewMoreDrawer = ({
   const about = type === "About" ? (content as PF_ABOUT_SECTION) : null;
 
   const videoId = getYouTubeVideoId(
-    project?.vidUrl || catalogService?.vidUrl || ""
+    project?.vidUrl || catalogService?.vidUrl || "",
   );
   const catalogVideoId = getYouTubeVideoId(catalogService?.vidUrl || "");
   const blogVideoId = getYouTubeVideoId(blog?.vidUrl || "");
@@ -75,7 +75,7 @@ export const ViewMoreDrawer = ({
   const nextImage = () => {
     if (catalogService?.imgUrls) {
       setCurrentImageIndex(
-        (prev) => (prev + 1) % catalogService.imgUrls.length
+        (prev) => (prev + 1) % catalogService.imgUrls.length,
       );
     }
   };
@@ -83,7 +83,7 @@ export const ViewMoreDrawer = ({
   const prevImage = () => {
     if (catalogService?.imgUrls) {
       setCurrentImageIndex((prev) =>
-        prev === 0 ? catalogService.imgUrls.length - 1 : prev - 1
+        prev === 0 ? catalogService.imgUrls.length - 1 : prev - 1,
       );
     }
   };
@@ -91,10 +91,10 @@ export const ViewMoreDrawer = ({
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>{children}</DrawerTrigger>
-      <DrawerContent className="p-0 max-w-full theme-wrapper bg-template-primary sm:max-w-4xl mx-auto min-h-[90vh] sm:min-h-[95vh] flex flex-col rounded-xs">
+      <DrawerContent className="sm:px-8 max-w-full theme-wrapper bg-template-primary sm:max-w-7xl mx-auto min-h-[90vh] sm:min-h-[95vh] flex flex-col rounded-xs">
         {/* Header */}
         <DrawerHeader className="p-4 border-b">
-          <DrawerTitle className="text-left text-2xl flex flex-col gap-1">
+          <DrawerTitle className="text-left text-3xl flex flex-col gap-1">
             <span>
               {project?.heading ||
                 teamMember?.name ||
@@ -103,7 +103,7 @@ export const ViewMoreDrawer = ({
                 about?.heading}
             </span>
             {teamMember && (
-              <span className="text-left text-base font-light">
+              <span className="text-left text-xl font-light">
                 {teamMember?.designation}
               </span>
             )}
@@ -117,7 +117,12 @@ export const ViewMoreDrawer = ({
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
           {/* Project Media */}
-          <div className="flex justify-center">
+          <div
+            className={cn(
+              "flex justify-center sm:h-[55vh]",
+              about ? "hidden" : "",
+            )}
+          >
             {type === "CatalogService" && catalogVideoId ? (
               <YouTube
                 videoId={catalogVideoId}
@@ -140,7 +145,7 @@ export const ViewMoreDrawer = ({
               catalogService &&
               catalogService.imgUrls &&
               catalogService.imgUrls.length > 0 ? (
-              <div className="relative w-full h-[400px]">
+              <div className="relative w-full h-full">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={catalogService.imgUrls[currentImageIndex]}
@@ -157,7 +162,7 @@ export const ViewMoreDrawer = ({
                       }
                       alt={`${catalogService.title}-img-${currentImageIndex}`}
                       fill
-                      className="object-cover rounded"
+                      className="object-contain rounded-sm"
                     />
                   </motion.div>
                 </AnimatePresence>
@@ -212,8 +217,7 @@ export const ViewMoreDrawer = ({
                   width={500}
                   height={400}
                   className={cn(
-                    "rounded w-full sm:h-[400px] object-cover object-center",
-                    project?.imgUrl && "object-contain"
+                    "rounded-sm w-full h-full object-contain object-center",
                   )}
                 />
               )

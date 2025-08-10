@@ -3,7 +3,7 @@ import { F_ABOUT_SECTION } from "../types/about.types";
 import { motion as m } from "motion/react";
 import { FViewMoreDrawer } from "@/components/template-components/finance/FViewMoreDrawer";
 import { ImageVideo } from "@/components/ImageVideo";
-import { getYouTubeVideoId } from "@/lib/utils";
+import { cn, getYouTubeVideoId } from "@/lib/utils";
 
 const delay = 0.15;
 
@@ -125,14 +125,19 @@ export const FAboutSection = ({
           </m.div>
         </div>
 
-        <div className={`self-center relative w-full mx-auto ${
-          showVideo 
-            ? "max-w-[600px] aspect-video" 
-            : "max-w-[420px] sm:h-[500px] h-[400px]"
-        }`}>
-          <div className={`absolute inset-0 w-full h-full overflow-hidden drop-shadow-xl rounded-2xl ${
-            showVideo ? "aspect-video" : ""
-          }`}>
+        <div
+          className={cn(
+            "self-center relative w-full mx-auto",
+            showVideo
+              ? "max-w-[600px] aspect-video"
+              : "max-w-[420px] sm:h-[500px] h-[50vh]",
+          )}
+        >
+          <div
+            className={`absolute inset-0 w-full h-full overflow-hidden drop-shadow-xl rounded-2xl ${
+              showVideo ? "aspect-video" : ""
+            }`}
+          >
             <ImageVideo
               imgUrl={imgUrl}
               vidUrl={vidUrl}

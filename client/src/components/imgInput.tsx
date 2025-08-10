@@ -17,7 +17,7 @@ interface ImageInputProps {
 }
 
 export function ImageInput({ onImageUpload, onImageRemove, initialImgUrl, className }: ImageInputProps) {
-  const maxSizeMB = 2
+  const maxSizeMB = 1
   const maxSize = maxSizeMB * 1024 * 1024 // 2MB default
 
   const [isUploading, setIsUploading] = useState(false)

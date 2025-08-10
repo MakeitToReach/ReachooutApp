@@ -26,7 +26,7 @@ export const PFExperienceSection = ({
         <div className="max-w-6xl mx-auto px-4 text-template-text-secondary flex flex-col sm:flex-row items-center gap-4 py-20 min-w-0">
           {/* Responsive image container */}
           <div
-            className="relative w-[200px] h-[200px] sm:w-[500px] sm:h-[500px] z-10 sm:mt-20 mt-10"
+            className="relative w-full h-[50vh] sm:w-[30vw] sm:h-[60vh] z-10 sm:mt-20 mt-10"
           >
             <Image
               src={imgUrl || "/placeholder.png"}
