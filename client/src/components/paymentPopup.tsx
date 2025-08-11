@@ -24,10 +24,13 @@ export function PaymentPopup({ children, handlePublish }: PaymentPopupProps) {
   const [value, setValue] = useState("2");
   const [isRzpOpen, setIsRzpOpen] = useState(false);
 
+  const monthlyPrice = 349;
+  const yearlyPrice = 249 * 12;
+
   const planAmounts: Record<string, number> = {
     "1": 0,
-    "2": 200,
-    "3": 180 * 12,
+    "2": monthlyPrice,
+    "3": yearlyPrice,
   };
 
   const handlePayment = async () => {
@@ -50,13 +53,12 @@ export function PaymentPopup({ children, handlePublish }: PaymentPopupProps) {
       //eslint-disable-next-line
       handler: function (response: any) {
         console.log("Payment Successful", response);
+        console.log(order.amount);
         switch (order.amount) {
-          case 200:
+          case monthlyPrice * 100:
             handlePublish(31);
-          case 180 * 12:
+          case yearlyPrice * 100:
             handlePublish(365);
-          default:
-            handlePublish(7);
         }
       },
       theme: {
@@ -133,7 +135,7 @@ export function PaymentPopup({ children, handlePublish }: PaymentPopupProps) {
                   id={`${id}-2-description`}
                   className="text-muted-foreground text-xs"
                 >
-                  ₹200 for one month
+                  ₹{monthlyPrice} for one month
                 </p>
               </div>
             </div>
@@ -151,7 +153,7 @@ export function PaymentPopup({ children, handlePublish }: PaymentPopupProps) {
                   id={`${id}-3-description`}
                   className="text-muted-foreground text-xs"
                 >
-                  ₹{180 * 12} for one year
+                  ₹{yearlyPrice} for one year
                 </p>
               </div>
             </div>
