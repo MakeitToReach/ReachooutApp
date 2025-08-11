@@ -34,8 +34,6 @@ export const FTeamCard = ({
                 <a
                   key={index}
                   href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-template-text-primary/80 transition-colors"
                 >
                   {getSocialIconFromRegistry(social.name)}

@@ -1,10 +1,28 @@
 import { Router } from "express";
+import type { Request } from "express";
 import { Resend } from "resend";
 import { RESEND_API_KEY } from "../config/dotenv";
-import { Request, Response } from "express";
 
 const userFormsRouter = Router();
 const resend = new Resend(RESEND_API_KEY);
+
+function getRequestSource(req: Request) {
+    return req.get("origin") || req.headers.referer || "Unknown source";
+}
+
+// Utility function to get readable date & time
+function getFormattedDateTime() {
+    const now = new Date();
+    return now.toLocaleString("en-US", {
+        weekday: "short",
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+    });
+}
 
 const NEWSLETTER_TEMPLATE = `
 <!DOCTYPE html>
@@ -29,13 +47,13 @@ const NEWSLETTER_TEMPLATE = `
       padding: 32px 28px;
     }
     .header {
-      border-bottom: 2px solid #28a745;
+      border-bottom: 2px solid #FF9933;
       margin-bottom: 24px;
       padding-bottom: 12px;
       text-align: center;
     }
     .header h1 {
-      color: #28a745;
+      color: #FF9933;
       margin: 0;
       font-size: 26px;
     }
@@ -55,6 +73,12 @@ const NEWSLETTER_TEMPLATE = `
       color: #007bff;
       word-break: break-all;
     }
+    .timestamp {
+      font-size: 13px;
+      color: #666;
+      font-style: italic;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -65,6 +89,8 @@ const NEWSLETTER_TEMPLATE = `
     <div class="content">
       <p><span class="email">[EMAIL]</span> has subscribed to your newsletter.</p>
       <p>You are requested to add this email to your newsletter list on your respective provider.</p>
+      <p class="timestamp">Submitted on: [DATE_TIME]</p>
+      <p class="timestamp">Source: <a href="[SOURCE_URL]" target="_blank">[SOURCE_URL]</a></p>
     </div>
     <div class="footer">
       <p>This message was sent via your Reachoout website newsletter form.</p>
@@ -97,13 +123,13 @@ const CONTACT_TEMPLATE = `
       padding: 36px 32px;
     }
     .header {
-      border-bottom: 2px solid #28a745;
+      border-bottom: 2px solid #FF9933;
       margin-bottom: 28px;
       padding-bottom: 14px;
       text-align: center;
     }
     .header h1 {
-      color: #28a745;
+      color: #FF9933;
       margin: 0;
       font-size: 28px;
     }
@@ -124,7 +150,7 @@ const CONTACT_TEMPLATE = `
     }
     .field-label {
       font-weight: bold;
-      color: #28a745;
+      color: #FF9933;
       margin-bottom: 2px;
       display: block;
       font-size: 15px;
@@ -135,8 +161,14 @@ const CONTACT_TEMPLATE = `
       padding-left: 2px;
       word-break: break-word;
     }
+    .timestamp {
+      font-size: 13px;
+      color: #666;
+      font-style: italic;
+      margin-top: 8px;
+    }
     .reply-button {
-      background-color: #28a745;
+      background-color: #FF9933;
       color: white;
       padding: 12px 24px;
       text-decoration: none;
@@ -182,6 +214,12 @@ const CONTACT_TEMPLATE = `
           <span class="field-label">Message:</span>
           <span class="field-value">[MESSAGE]</span>
         </div>
+        <div class="timestamp">
+          Submitted on: [DATE_TIME]
+        </div>
+        <div class="timestamp">
+          Source: <a href="[SOURCE_URL]" target="_blank">[SOURCE_URL]</a> 
+        </div>
       </div>
       <a href="mailto:[EMAIL]?subject=Re: [SUBJECT]" class="reply-button">
         📧 Reply to Contact
@@ -195,43 +233,54 @@ const CONTACT_TEMPLATE = `
 </html>
 `;
 
-//v1/submit-form/newsletter
+// v1/submit-form/newsletter
 userFormsRouter.post("/newsletter", async (req, res) => {
-  const { email, receiverEmail } = req.body;
+    const { email, receiverEmail } = req.body;
+    const dateTime = getFormattedDateTime();
+    const sourceUrl = getRequestSource(req);
 
-  const html = NEWSLETTER_TEMPLATE.replace("[EMAIL]", email);
+    const html = NEWSLETTER_TEMPLATE.replace("[EMAIL]", email)
+        .replace("[DATE_TIME]", dateTime)
+        .replace("[SOURCE_URL]", sourceUrl);
 
-  const { data, error } = await resend.emails.send({
-    from: "Reachoout <noreply@notif.reachoout.com>",
-    to: receiverEmail,
-    subject: "Newsletter Subscription",
-    html,
-  });
-  if (error) {
-    res.status(400).json({ resendError: error });
-  }
-  res.status(200).json({ data });
+    const { data, error } = await resend.emails.send({
+        from: "Reachoout <noreply@notif.reachoout.com>",
+        to: receiverEmail,
+        subject: "Newsletter Subscription",
+        html,
+    });
+
+    if (error) {
+        return res.status(400).json({ resendError: error });
+    }
+    res.status(200).json({ data });
 });
 
-//v1/submit-form/contact
+// v1/submit-form/contact
 userFormsRouter.post("/contact", async (req, res) => {
-  const { receiverEmail, content } = req.body;
+    const { receiverEmail, content } = req.body;
+    const dateTime = getFormattedDateTime();
+    const sourceUrl = getRequestSource(req);
 
-  const html = CONTACT_TEMPLATE.replace("[NAME]", content.name || "")
-    .replace("[EMAIL]", content.email || "")
-    .replace("[PHONE]", content.phone || "")
-    .replace("[MESSAGE]", content.message || "");
+    const html = CONTACT_TEMPLATE.replace("[NAME]", content.name || "")
+        .replace("[EMAIL]", content.email || "")
+        .replace("[PHONE]", content.phone || "")
+        .replace("[MESSAGE]", content.message || "")
+        .replace("[DATE_TIME]", dateTime)
+        .replace("[SUBJECT]", "Your Inquiry")
+        .replace("[SOURCE_URL]", sourceUrl);
 
-  const { data, error } = await resend.emails.send({
-    from: "Reachoout <noreply@notif.reachoout.com>",
-    to: receiverEmail,
-    subject: "New Message from Reachoout Contact Form",
-    html,
-  });
-  if (error) {
-    res.status(400).json({ resendError: error });
-  }
-  res.status(200).json({ data });
+    const { data, error } = await resend.emails.send({
+        from: "Reachoout <noreply@notif.reachoout.com>",
+        to: receiverEmail,
+        subject: "New Message from Reachoout Contact Form",
+        html,
+    });
+
+    if (error) {
+        return res.status(400).json({ resendError: error });
+    }
+    res.status(200).json({ data });
 });
 
 export default userFormsRouter;

@@ -47,8 +47,6 @@ export const PFTeamCard = ({
                                 <a
                                     key={index}
                                     href={social.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
                                     className="text-template-text-primary/50 hover:text-template-text-primary transition-colors"
                                 >
                                     {getSocialIconFromRegistry(social.name)}
