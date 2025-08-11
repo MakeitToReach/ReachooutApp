@@ -118,8 +118,8 @@ export const publishTemplate = async (req: Request, res: Response) => {
             });
         }
 
-        const expiresAtDate = new Date(Date.now() + expiryDays * 24 * 60 * 60 * 1000); 
-        // const expiresAtDate = new Date(Date.now() + 3 * 60 * 1000);//testing only
+        // const expiresAtDate = new Date(Date.now() + expiryDays * 24 * 60 * 60 * 1000); 
+        const expiresAtDate = new Date(Date.now() + 1 * 10 * 1000);//testing only
 
         // Normalize slug: treat empty or whitespace-only as null
         const finalSlug =

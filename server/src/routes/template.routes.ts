@@ -72,6 +72,7 @@ templateRouter.get(
   }
 );
 
+//v1/template/expiry
 templateRouter.put("/expiry", isAuthenticated, (req: Request, res: Response) => {
     setTemplateExpiry(req, res);
 });
