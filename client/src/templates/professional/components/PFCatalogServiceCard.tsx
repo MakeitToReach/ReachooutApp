@@ -148,7 +148,7 @@ export const PFCatalogServicesCard = ({
             </Button>
           </ViewMoreDrawer>
           {btnLink && (
-            <a href={btnLink} target="_blank" rel="noopener noreferrer">
+            <a href={btnLink}>
               <Button className="text-template-btn bg-template-text-btn rounded-sm text-lg hover:bg-template-text-btn/80 cursor-pointer flex items-center gap-2 border border-template-btn/40">
                 <span className="flex items-center">{btnText}</span>
               </Button>

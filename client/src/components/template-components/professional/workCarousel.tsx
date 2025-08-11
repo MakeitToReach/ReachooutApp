@@ -114,8 +114,8 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                     <div className="relative sm:h-[50vh] sm:w-[30vw] aspect-video h-[40vh] w-full rounded-sm">
                       <YouTube
                         videoId={videoId ?? ""}
-                        className="absolute top-0 left-0 w-full h-full"
-                        iframeClassName="w-full h-full"
+                        className="absolute top-0 left-0 w-full h-[90%] aspect-video"
+                        iframeClassName="w-full h-full aspect-video"
                         opts={youtubeOpts}
                       />
                     </div>
