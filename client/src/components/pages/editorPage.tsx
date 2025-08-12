@@ -57,13 +57,16 @@ const EditorPage = () => {
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       e.preventDefault();
-      e.returnValue = "Are you sure you want to refresh? Doing this will delete all your changes.";
+      e.returnValue =
+        "Are you sure you want to refresh? Doing this will delete all your changes.";
       return "Are you sure you want to refresh? Doing this will delete all your changes.";
     };
 
     // Handle browser back button
     const handlePopState = (e: PopStateEvent) => {
-      const confirmed = window.confirm("Are you sure you want to go back? Doing this will delete all your changes.");
+      const confirmed = window.confirm(
+        "Are you sure you want to go back? Doing this will delete all your changes.",
+      );
       if (!confirmed) {
         e.preventDefault();
         // Push the current state back to prevent navigation
@@ -84,14 +87,6 @@ const EditorPage = () => {
       window.removeEventListener("popstate", handlePopState);
     };
   }, []);
-
-  // useEffect(() => {
-  //     if (template && isNew) {
-  //         // console.log("projectId", projectId);
-  //         // console.log("templateId", templateId);
-  //         // console.log("from editor", data);
-  //     }
-  // }, [slug, isNew]);
 
   if (!data) return <Loading />;
   if (!template) return <p>Template not found</p>;

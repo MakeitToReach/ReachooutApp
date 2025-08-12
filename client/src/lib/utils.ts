@@ -84,3 +84,8 @@ export const getYouTubeVideoId = (url: string | undefined) => {
     const match = url.match(regExp);
     return match ? match[1] : null;
 };
+
+export const isProjectTemplateExpired = (expiresAt: Date | null): boolean => {
+    if (!expiresAt) return false; // No expiry set
+    return new Date() > expiresAt;
+};

@@ -3,6 +3,7 @@ export interface TemplateItem {
   templateId: string;
   order: number;
   slug: string;
+  expiresAt: Date | null;
   template: {
     id: string;
     name: string;

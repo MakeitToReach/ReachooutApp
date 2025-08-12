@@ -30,6 +30,7 @@ import projectRouter from "./routes/project.routes";
 import genaiRouter from "./routes/genai.routes";
 import uploadRouter from "./routes/upload.routes";
 import userFormsRouter from "./routes/userForms.routes";
+import paymentRouter from "./routes/payment.routes";
 
 const app = express();
 
@@ -43,27 +44,20 @@ const corsOptions = {
     //eslint-disable-next-line
     origin: function (origin, callback) {
         // console.log("🔍 Incoming Origin:", origin || "(no origin header)");
-
         if (!origin) {
-            // console.log(
-            //     "✅ Allowed: No Origin (likely server-to-server or curl request)",
-            // );
             return callback(null, true);
         }
 
         try {
             const { hostname } = new URL(origin);
             // console.log("📌 Parsed Hostname:", hostname);
-            // console.log("📌 Parsed Protocol:", protocol);
 
             // Dev allowed
-            if (
-                hostname === "localhost" ||
-                hostname === "127.0.0.1" ||
-                origin === CLIENT_URL ||
-                origin === DEV_URL
-            ) {
-                // console.log("✅ Allowed: Development origin");
+            if (hostname === "localhost" || hostname === "127.0.0.1") {
+                return callback(null, true);
+            }
+
+            if (origin === CLIENT_URL || origin === DEV_URL) {
                 return callback(null, true);
             }
 
@@ -86,11 +80,15 @@ const corsOptions = {
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization", "Accept", "X-Requested-With", "x-api-key"],
     optionsSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions));
+if (process.env.NODE_ENV === "development") {
+    app.use(cors({ origin: true, credentials: true }));
+} else {
+    app.use(cors(corsOptions));
+}
 
 app.use(
     session({
@@ -256,6 +254,7 @@ app.use("/v1/project", projectRouter);
 app.use("/v1/genai", genaiRouter);
 app.use("/v1", uploadRouter);
 app.use("/v1/submit-form", userFormsRouter);
+app.use("/v1/payment", paymentRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

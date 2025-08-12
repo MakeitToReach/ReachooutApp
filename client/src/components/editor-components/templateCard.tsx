@@ -23,10 +23,14 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { deleteTemplateInstanceByOrder } from "@/api/templates";
+import {
+  deleteTemplateInstanceByOrder,
+  updateTemplateExpiry,
+} from "@/api/templates";
 import { toast } from "sonner";
 import { TemplateItem } from "@/types/projectTemplate.types";
 import QRCodeModal from "./QRCodeModal";
+import { PaymentPopup } from "../paymentPopup";
 
 interface TemplateCardProps {
   imageUrl: string;
@@ -65,22 +69,53 @@ export const TemplateCard = ({
   const router = useRouter();
   const { resetData } = usePortfolioStore();
   const [qrOpen, setQROpen] = useState(false);
+  const [changePlanOpen, setChangePlanOpen] = useState(false);
 
-  const handleEdit = async () => {
-    const fetchedData = await getProjectTemplateInstanceData(
-      templateId,
-      projectId!,
-      index || 0
-    );
-    if (!fetchedData) router.push(`/`);
+  const isMobile = useIsMobile();
 
-    if (fetchedData) {
-      resetData(fetchedData.template.data);
-      router.push(editorUrl);
+  const handleUpdateExpiry = async (expiryDays?: number) => {
+    if (expiryDays !== undefined) {
+      const updateExpiry = await updateTemplateExpiry(
+        projectId!,
+        templateId,
+        index ?? 0,
+        expiryDays,
+      );
+
+      if (!updateExpiry) {
+        toast.error("Failed to update template expiry");
+        return;
+      }
+      setChangePlanOpen(false);
     }
   };
 
-  const isMobile = useIsMobile();
+  const handleEdit = async () => {
+    try {
+      const fetchedData = await getProjectTemplateInstanceData(
+        templateId,
+        projectId!,
+        index ?? 0,
+      );
+
+      if (!fetchedData) {
+        toast.error("Failed to fetch template data");
+        return;
+      }
+
+      if (fetchedData.error) {
+        setChangePlanOpen(true);
+        return;
+      }
+
+      setChangePlanOpen(false);
+      resetData(fetchedData.template.data);
+      router.push(editorUrl);
+    } catch (error) {
+      console.error("Error in handleEdit", error);
+      toast.error("Failed to edit template");
+    }
+  };
 
   const handleDelete = async () => {
     if (!projectId) {
@@ -104,7 +139,7 @@ export const TemplateCard = ({
     <div
       className={cn(
         className,
-        "relative border border-border rounded-xl overflow-hidden group"
+        "relative border border-border rounded-xl overflow-hidden group",
       )}
     >
       <div className="relative w-full">
@@ -124,7 +159,7 @@ export const TemplateCard = ({
               "absolute inset-0 flex items-center justify-center bg-black/60 transition-opacity z-10",
               isMobile
                 ? "opacity-100 visible"
-                : "opacity-0 group-hover:opacity-100 group-hover:visible invisible"
+                : "opacity-0 group-hover:opacity-100 group-hover:visible invisible",
             )}
           >
             <div className="flex gap-4">
@@ -236,6 +271,17 @@ export const TemplateCard = ({
         onClose={() => setQROpen(false)}
         value={previewUrl}
       />
+      <PaymentPopup
+        // showPaymentOpts
+        showFreePlan={true}
+        handlePublish={(expiryDays) => handleUpdateExpiry(expiryDays)}
+        open={changePlanOpen}
+        onOpenChange={setChangePlanOpen}
+      >
+        <h1 className="hidden" aria-hidden>
+          Change Plan
+        </h1>
+      </PaymentPopup>
     </div>
   );
 };
