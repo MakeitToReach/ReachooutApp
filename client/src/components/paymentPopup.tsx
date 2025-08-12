@@ -66,9 +66,9 @@ export function PaymentPopup({
             order_id: order.id,
             image: "https://app.reachoout.com/apple-touch-icon.png",
             //eslint-disable-next-line
-            handler: function (response: any) {
-                console.log("Payment Successful", response);
-                console.log(order.amount);
+            handler: function () {
+                // console.log("Payment Successful", response);
+                // console.log(order.amount);
                 switch (order.amount) {
                     case monthlyPrice * 100:
                         handlePublish(31);
@@ -264,7 +264,7 @@ export function PaymentPopup({
 
                     <div className="grid gap-2">
                         <Button type="button" onClick={handlePayment} className="w-full">
-                            Proceed to checkout
+                            Confirm
                         </Button>
                         <DialogClose asChild>
                             <Button type="button" variant="ghost" className="w-full">
