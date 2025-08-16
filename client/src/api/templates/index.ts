@@ -69,7 +69,6 @@ export const publishTemplate = async (
             headers: {
                 Authorization: `Bearer ${token}`,
             },
-            withCredentials: true,
         },
     );
 

@@ -278,11 +278,25 @@ export const ViewMoreDrawer = ({
 
         {blog && blog.btnLink && (
           <div className="p-4 border-t flex justify-start">
-            <a href={blog.btnLink} target="_blank" rel="noopener noreferrer">
-              <Button>{blog.btnText}</Button>
-            </a>
+            {blog?.btnLink?.startsWith("#") ? (
+              <Button onClick={() => handleInternalLink(blog.btnLink!)}>
+                {blog.btnText}
+              </Button>
+            ) : (
+              <a href={blog.btnLink} target="_blank" rel="noopener noreferrer">
+                <Button>{blog.btnText}</Button>
+              </a>
+            )}
           </div>
         )}
+
+        {/* {blog && blog.btnLink && ( */}
+        {/*   <div className="p-4 border-t flex justify-start"> */}
+        {/*     <a href={blog.btnLink}> */}
+        {/*       <Button>{blog.btnText}</Button> */}
+        {/*     </a> */}
+        {/*   </div> */}
+        {/* )} */}
 
         {teamMember && teamMember.socials && teamMember.socials.length > 0 && (
           <div className="p-4 flex justify-start items-center">

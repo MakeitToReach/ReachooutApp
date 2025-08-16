@@ -82,7 +82,7 @@ export function PFWorkCard({ project }: PFWorkCardProps) {
             </Button>
           </ViewMoreDrawer>
           {project.btnLink && (
-            <a href={project.btnLink} target="_blank" rel="noopener noreferrer">
+            <a href={project.btnLink}>
               <Button className="text-template-btn bg-template-text-btn rounded-sm text-lg hover:bg-template-text-btn/80 cursor-pointer flex items-center gap-2">
                 {project.btnText}
               </Button>
