@@ -25,7 +25,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
   const [selectedCategory, setSelectedCategory] = React.useState<string | null>(
-    "All"
+    "All",
   );
 
   const categories = [
@@ -54,8 +54,8 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
   return (
     <div className="sm:space-y-20 space-y-8 w-full">
       {/* Filter Bar */}
-      <ScrollArea className="w-full whitespace-nowrap mb-12 max-w-full overflow-x-auto">
-        <div className="flex flex-nowrap justify-center gap-3 px-2">
+      <div className="flex overflow-x-scroll mb-12 w-full hide-scrollbar gap-3 px-2">
+        <div className="flex gap-3 w-max">
           {categories.map((category) => (
             <Badge
               key={category}
@@ -64,7 +64,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                 "cursor-pointer px-4 py-2 font-medium transition-all duration-200 text-lg",
                 selectedCategory === category
                   ? "bg-template-text-secondary text-template-secondary hover:bg-template-text-secondary/80"
-                  : "border-template-text-secondary/30 text-template-text-secondary hover:bg-template-text-secondary/10 hover:border-template-text-secondary/50"
+                  : "border-template-text-secondary/30 text-template-text-secondary hover:bg-template-text-secondary/10 hover:border-template-text-secondary/50",
               )}
               onClick={() => setSelectedCategory(category)}
             >
@@ -72,7 +72,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
             </Badge>
           ))}
         </div>
-      </ScrollArea>
+      </div>
       {/* Carousel */}
       <Carousel
         setApi={setApi}
@@ -82,7 +82,10 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
         <CarouselContent>
           {filteredProjects.map((project, idx) => {
             return (
-              <CarouselItem key={idx} className="flex justify-center items-center">
+              <CarouselItem
+                key={idx}
+                className="flex justify-center items-center"
+              >
                 <PFWorkCard project={project} />
               </CarouselItem>
             );
@@ -108,7 +111,7 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
                 "w-2 h-2 rounded-full transition-all duration-300",
                 current === index + 1
                   ? "bg-template-text-secondary"
-                  : "bg-template-text-secondary/30"
+                  : "bg-template-text-secondary/30",
               )}
               onClick={() => api?.scrollTo(index)}
             />

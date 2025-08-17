@@ -15,7 +15,7 @@ interface PFWorkCardProps {
 
 export function PFWorkCard({ project }: PFWorkCardProps) {
   const videoId = getYouTubeVideoId(project.vidUrl ?? "");
-  
+
   const youtubeOpts = {
     playerVars: {
       loop: 1,
@@ -43,11 +43,14 @@ export function PFWorkCard({ project }: PFWorkCardProps) {
         </div>
       ) : (
         <Image
-          src={project.imgUrl || "/placeholder.png"}
+          src={
+            project.imgUrl ||
+            "https://reachooutassets.s3.ap-south-1.amazonaws.com/static/placeholder.png"
+          }
           alt="project-img"
           className={cn(
             "sm:h-[50vh] sm:w-[30vw] h-[40vh] w-full rounded-sm object-cover",
-            "sm:max-h-[50vh] sm:max-w-full max-w-full max-h-[40vh]"
+            "sm:max-h-[50vh] sm:max-w-full max-w-full max-h-[40vh]",
           )}
           width={500}
           height={500}
@@ -56,7 +59,9 @@ export function PFWorkCard({ project }: PFWorkCardProps) {
 
       <div className="flex flex-col gap-4 py-6 self-center md:w-[60%]">
         <div className="space-y-2">
-          <h1 className="sm:text-4xl text-2xl font-semibold">{project.heading}</h1>
+          <h1 className="sm:text-4xl text-2xl font-semibold">
+            {project.heading}
+          </h1>
         </div>
 
         <div
@@ -93,5 +98,3 @@ export function PFWorkCard({ project }: PFWorkCardProps) {
     </div>
   );
 }
-
-

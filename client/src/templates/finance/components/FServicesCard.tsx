@@ -57,7 +57,7 @@ export const FServicesCard = ({
         />
       )}
       <div className="px-6 space-y-1">
-        <h2 className="font-semibold text-xl tracking-tight text-template-text-primary">
+        <h2 className="font-semibold text-2xl sm:text-xl tracking-tight text-template-text-primary">
           {title}
         </h2>
         <div

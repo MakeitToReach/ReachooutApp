@@ -128,7 +128,7 @@ export const PFContactSection = ({
       {subheading && (
         <m.p
           variants={itemVariants}
-          className="text-lg sm:text-xl text-center text-template-text-primary/50 max-w-2xl mx-auto"
+          className="text-lg sm:text-xl text-center text-template-text-primary/50"
         >
           {subheading}
         </m.p>

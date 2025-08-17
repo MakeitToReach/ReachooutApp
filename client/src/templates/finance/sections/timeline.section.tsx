@@ -24,7 +24,7 @@ export const FTimelineSection = ({
             delay: delay,
             ease: "easeOut",
           }}
-          className="font-semibold text-5xl max-w-2xl mx-auto tracking-tight text-center"
+          className="font-semibold text-5xl max-w-5xl mx-auto tracking-tight text-center"
         >
           {title}
         </m.h2>
