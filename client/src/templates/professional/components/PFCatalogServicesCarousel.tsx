@@ -11,7 +11,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PF_CATALOG } from "../types/serviceCatalog.types";
 import { PFCatalogServicesCard } from "./PFCatalogServiceCard";
 import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import Autoplay from "embla-carousel-autoplay";
 
 export const PFCatalogServicesCarousel = ({

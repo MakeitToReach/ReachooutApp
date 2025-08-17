@@ -13,7 +13,6 @@ import { PF_PROJECT } from "@/templates/professional/types/project";
 import Autoplay from "embla-carousel-autoplay";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { PFWorkCard } from "./PFWorkCard";
 
 interface PFWorkCarouselProps {
