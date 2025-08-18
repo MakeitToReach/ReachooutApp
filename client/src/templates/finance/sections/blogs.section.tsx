@@ -25,7 +25,7 @@ export const FBlogsSection = ({ heading, subheading, blogs }: F_BLOGS_SECTION) =
             delay: delay,
             ease: "easeOut",
           }}
-          className="text-center font-semibold text-5xl tracking-tight text-template-text-primary"
+          className="text-center font-semibold sm:text-5xl text-4xl tracking-tight text-template-text-primary"
         >
           {heading}
         </m.h2>

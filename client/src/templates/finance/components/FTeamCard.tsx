@@ -21,7 +21,7 @@ export const FTeamCard = ({
         className="w-full h-[300px] object-cover"
       />
       <div className="px-6 space-y-1 text-template-text-primary">
-        <h2 className="font-semibold text-xl tracking-tight">{name}</h2>
+        <h2 className="font-semibold text-2xl sm:text-xl tracking-tight">{name}</h2>
         <p className="text-sm line-clamp-1 text-template-text-primary/80">
           {designation}
         </p>

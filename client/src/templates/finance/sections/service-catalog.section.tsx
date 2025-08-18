@@ -38,7 +38,7 @@ export const FServiceCatalogSection = ({
                 delay: delay * 2,
                 ease: "easeOut",
               }}
-              className="font-semibold text-5xl tracking-tight"
+              className="font-semibold sm:text-5xl text-4xl tracking-tight"
             >
               {title}
             </m.h2>

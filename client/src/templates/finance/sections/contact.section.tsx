@@ -200,7 +200,7 @@ export const FContactSection = ({
                 delay: delay * 2,
                 ease: "easeOut",
               }}
-              className="font-semibold text-5xl tracking-tight text-template-text-primary mb-6"
+              className="font-semibold sm:text-5xl text-4xl tracking-tight text-template-text-primary mb-6"
             >
               {title}
             </m.h2>

@@ -26,7 +26,7 @@ export const FBlogCard = ({
         />
       </div>
       <div className="space-y-1 px-4">
-        <h2 className="font-semibold line-clamp-2 text-xl tracking-tight text-template-text-primary">
+        <h2 className="font-semibold line-clamp-2 text-2xl sm:text-xl tracking-tight text-template-text-primary">
           {title}
         </h2>
         <div

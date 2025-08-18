@@ -42,8 +42,8 @@ export const FNewsletterSection = ({
       id="newsletter"
     >
       {/* Centered content */}
-      <div className="max-w-2xl w-full flex flex-col items-center text-center gap-8 text-template-text-secondary -translate-y-10">
-        <h2 className="font-semibold text-5xl tracking-tight">
+      <div className="max-w-4xl w-full flex flex-col items-center text-center gap-8 text-template-text-secondary -translate-y-10 px-4">
+        <h2 className="font-semibold sm:text-5xl text-4xl tracking-tight">
           {heading}
         </h2>
         {subheading && (

@@ -15,7 +15,7 @@ export const PFCertificationSection = ({
         <section className="relative w-full bg-template-secondary">
             <div
                 id="certifications"
-                className="max-w-6xl mx-auto text-center overflow-hidden py-20"
+                className="max-w-6xl mx-auto px-4 text-center overflow-hidden py-20"
             >
                 <m.h1
                     initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}

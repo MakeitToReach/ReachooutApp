@@ -10,7 +10,7 @@ export const PFGallerySection = ({ imgs, heading, subheading }: PF_GALLERY_SECTI
   return (
     <section
       id="gallery"
-      className="max-w-6xl mx-auto text-center overflow-hidden py-20"
+      className="max-w-6xl mx-auto text-center overflow-hidden py-20 px-4"
     >
       <m.h1
         initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}

@@ -27,7 +27,7 @@ export const FCertificationSection = ({
                             delay: delay,
                             ease: "easeOut",
                         }}
-                        className="font-semibold text-5xl tracking-tight text-center text-template-text-secondary"
+                        className="font-semibold sm:text-5xl text-4xl tracking-tight text-center text-template-text-secondary"
                     >
                         {heading}
                     </m.h2>

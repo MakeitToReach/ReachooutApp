@@ -73,10 +73,10 @@ export const PFCatalogServicesCarousel = ({
 
           {/* Custom Navigation Buttons */}
           <div className="flex gap-2 mt-8">
-            <CarouselPrevious className="static translate-y-0 bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white">
+            <CarouselPrevious className="static translate-y-0 bg-template-text-secondary border-template-text-secondary text-template-secondary">
               <ChevronLeft className="h-4 w-4" />
             </CarouselPrevious>
-            <CarouselNext className="static translate-y-0 bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white">
+            <CarouselNext className="static translate-y-0 bg-template-text-secondary border-template-text-secondary text-template-secondary">
               <ChevronRight className="h-4 w-4" />
             </CarouselNext>
           </div>

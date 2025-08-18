@@ -14,7 +14,7 @@ export const FTimelineSection = ({
       id="timeline"
       className="w-full rounded-lg overflow-hidden py-20 sm:px-6"
     >
-      <div className="max-w-6xl mx-auto h-full my-10 space-y-8 overflow-x-visible text-template-text-primary">
+      <div className="max-w-6xl mx-auto h-full my-10 px-4 space-y-8 overflow-x-visible text-template-text-primary">
         <m.h2
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -24,7 +24,7 @@ export const FTimelineSection = ({
             delay: delay,
             ease: "easeOut",
           }}
-          className="font-semibold text-5xl tracking-tight text-center"
+          className="font-semibold sm:text-5xl text-4xl tracking-tight text-center"
         >
           {title}
         </m.h2>

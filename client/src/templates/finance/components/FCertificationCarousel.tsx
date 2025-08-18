@@ -20,8 +20,8 @@ export const FCertificationCarousel = ({ certifications }: { certifications: F_C
                     ))}
                 </CarouselContent>
                 <div className="sm:flex gap-2 mt-8 justify-start hidden">
-                    <CarouselPrevious className="static translate-y-0 bg-transparent border-template-text-secondary/80 text-template-text-secondary" />
-                    <CarouselNext className="static translate-y-0 bg-transparent border-template-text-secondary/80 text-template-text-secondary" />
+                    <CarouselPrevious className="static translate-y-0 bg-template-text-secondary border-template-text-secondary text-template-secondary" />
+                    <CarouselNext className="static translate-y-0 bg-template-text-secondary border-template-text-secondary text-template-secondary" />
                 </div>
             </Carousel>
         </div>
