@@ -10,7 +10,6 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { F_CATLOG_SERVICES } from "../types/service-catalog.types";
 import { FCatalogServicesCard } from "./FCatalogServiceCard";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -36,26 +35,24 @@ export const FCatalogServicesCarousel = ({
   return (
     <div className="w-full overflow-x-visible">
       {/* categories */}
-      <div className="mb-12">
-        <ScrollArea className="w-full whitespace-nowrap mb-12 max-w-full overflow-x-auto">
-          <div className="flex flex-nowrap justify-start gap-3 px-2">
-            {categories.map((category) => (
-              <Badge
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                className={cn(
-                  "cursor-pointer px-4 py-2 font-medium transition-all duration-200 text-lg",
-                  selectedCategory === category
-                    ? "bg-template-text-secondary text-template-secondary hover:bg-template-text-secondary/80"
-                    : "border-template-text-secondary/30 text-template-text-secondary hover:bg-template-text-secondary/10 hover:border-template-text-secondary/50",
-                )}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Badge>
-            ))}
-          </div>
-        </ScrollArea>
+      <div className="flex overflow-x-scroll mb-12 w-full hide-scrollbar gap-3 px-2">
+        <div className="flex gap-3 w-full">
+          {categories.map((category) => (
+            <Badge
+              key={category}
+              variant={selectedCategory === category ? "default" : "outline"}
+              className={cn(
+                "cursor-pointer px-4 py-2 font-medium transition-all duration-200 text-lg",
+                selectedCategory === category
+                  ? "bg-template-text-secondary text-template-secondary hover:bg-template-text-secondary/80"
+                  : "border-template-text-secondary/30 text-template-text-secondary hover:bg-template-text-secondary/10 hover:border-template-text-secondary/50",
+              )}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </Badge>
+          ))}
+        </div>
       </div>
       <div className="relative">
         <Carousel

@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { PF_TESTIMONIAL_SECTION } from "../types/testimonials.types";
 import { motion as m } from "motion/react";
 import { useState } from "react";
+import Image from "next/image";
 
 const delay = 0.15;
 
@@ -18,7 +19,7 @@ const ReviewCard = ({
   body: string;
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   // Check if content is longer than 8 lines (approximate)
   const shouldShowReadMore = body.length > 200; // Rough estimate for 8 lines
 
@@ -26,12 +27,12 @@ const ReviewCard = ({
     <figure
       className={cn(
         "relative h-full w-64 cursor-pointer overflow-hidden rounded-sm border p-4",
-        "border-template-accent-primary"
+        "border-template-accent-primary",
       )}
     >
       <div className="flex flex-row items-center gap-2 text-template-text-primary">
         {/* eslint-disable-next-line */}
-        <img
+        <Image
           className="rounded-full"
           width="32"
           height="32"
@@ -45,10 +46,10 @@ const ReviewCard = ({
           {username && <p className="text-xs font-medium">{username}</p>}
         </div>
       </div>
-      <blockquote 
+      <blockquote
         className={cn(
           "mt-2 sm:text-base text-xl text-template-text-primary",
-          !isExpanded && shouldShowReadMore && "line-clamp-8"
+          !isExpanded && shouldShowReadMore && "line-clamp-8",
         )}
       >
         {body}
@@ -78,7 +79,7 @@ export function PFTestimonialsSection({
   return (
     <section
       id="testimonials"
-      className="relative flex max-w-6xl mx-auto py-20 gap-10 flex-col items-center justify-center overflow-hidden"
+      className="flex max-w-6xl mx-auto py-20 gap-10 flex-col items-center justify-center overflow-hidden"
     >
       <m.h1
         initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
@@ -103,20 +104,22 @@ export function PFTestimonialsSection({
             ease: "easeOut",
           }}
           viewport={{ amount: 0.5, once: true }}
-          className="text-lg sm:text-xl text-center text-template-text-primary/50 max-w-2xl"
+          className="text-lg sm:text-xl text-center text-template-text-primary/50"
         >
           {subtitle}
         </m.p>
       )}
-      <div>
-        <Marquee pauseOnHover className="[--duration:20s]">
-          {testimonials.map((review, idx) => (
-            <ReviewCard key={idx} {...review} />
-          ))}
-        </Marquee>
+      <div className="relative">
+        <div>
+          <Marquee pauseOnHover className="[--duration:20s]">
+            {testimonials.map((review, idx) => (
+              <ReviewCard key={idx} {...review} />
+            ))}
+          </Marquee>
+        </div>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-template-primary"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-template-primary"></div>
       </div>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-template-primary"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-template-primary"></div>
     </section>
   );
 }

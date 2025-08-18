@@ -32,7 +32,7 @@ export const FTeamSection = ({ team, heading, subheading }: F_TEAM_SECTION) => {
                 ease: "easeOut",
               }}
               viewport={{ once: true, amount: 0.3 }}
-              className="text-center text-lg sm:text-xl text-template-text-secondary/80 max-w-2xl mx-auto"
+              className="text-center text-lg sm:text-xl text-template-text-secondary/80"
             >
               {subheading}
             </m.p>

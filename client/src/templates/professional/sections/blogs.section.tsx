@@ -43,7 +43,7 @@ export const PFBlogSection = ({ heading, subheading, blogs }: PF_BLOG_SECTION) =
             ease: "easeOut",
           }}
           viewport={{ amount: 0.5, once: true }}
-          className="text-lg sm:text-xl text-center text-template-text-primary/50 max-w-2xl mx-auto my-10"
+          className="text-lg sm:text-xl text-center text-template-text-primary/50 my-10"
         >
           {subheading}
         </m.p>

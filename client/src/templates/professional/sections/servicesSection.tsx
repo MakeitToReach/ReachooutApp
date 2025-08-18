@@ -38,7 +38,7 @@ export const PFServicesSection = ({
                         ease: "easeOut",
                     }}
                     viewport={{ amount: 0.5, once: true }}
-                    className="text-center sm:text-xl text-lg text-template-text-secondary/50 mt-8"
+                    className="text-center w-full sm:text-xl text-lg text-template-text-secondary/50 mt-8"
                 >
                     {subtitle}
                 </m.h2>

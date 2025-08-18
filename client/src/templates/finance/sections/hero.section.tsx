@@ -81,7 +81,7 @@ export const FHeroSection = ({
       )}
       <div className="absolute h-full w-full bg-black/60 flex flex-col gap-3 sm:gap-8 justify-end items-start p-5 sm:p-0 sm:items-center sm:justify-center">
         {subheading && (
-          <p className="text-2xl font-semibold text-template-text-accent-tertiary">
+          <p className="text-2xl font-semibold sm:w-[60%] w-full text-template-text-accent-tertiary sm:text-center">
             {subheading}
           </p>
         )}
@@ -97,7 +97,7 @@ export const FHeroSection = ({
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-white sm:text-center text-xl sm:w-[40%] max-w-[90%] w-full"
+          className="text-white sm:text-center text-xl sm:w-[60%] w-full"
         >
           {subtitle}
         </m.p>

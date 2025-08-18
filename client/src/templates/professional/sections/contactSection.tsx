@@ -125,14 +125,12 @@ export const PFContactSection = ({
       >
         {heading}
       </m.h2>
-      {subheading && (
-        <m.p
-          variants={itemVariants}
-          className="text-lg sm:text-xl text-center text-template-text-primary/50"
-        >
-          {subheading}
-        </m.p>
-      )}
+      <m.p
+        variants={itemVariants}
+        className="text-lg sm:text-xl text-center text-template-text-primary/50"
+      >
+        {subheading}
+      </m.p>
 
       {!calUrl ? (
         <m.form

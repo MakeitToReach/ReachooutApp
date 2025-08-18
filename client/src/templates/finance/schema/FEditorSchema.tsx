@@ -124,19 +124,9 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "experience",
     },
     {
-      type: "group",
-      label: "Button Group",
-      fieldPath: "btnGroup",
-      fields: [
-        {
-          label: "Button Text",
-          fieldPath: "btnText",
-        },
-        {
-          label: "Button Link",
-          fieldPath: "btnLink",
-        },
-      ],
+      label: "Button Text",
+      type: "text",
+      fieldPath: "btnText",
     },
     {
       label: "Video URL",

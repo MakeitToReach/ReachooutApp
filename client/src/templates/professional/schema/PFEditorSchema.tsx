@@ -136,11 +136,6 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
             fieldPath: "title",
         },
         {
-            label: "Subheading",
-            type: "text",
-            fieldPath: "subheading",
-        },
-        {
             label: "Subtitle",
             type: "text",
             fieldPath: "subtitle",

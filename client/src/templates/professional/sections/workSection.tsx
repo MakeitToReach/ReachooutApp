@@ -35,7 +35,7 @@ export const PFWorkSection = ({ projects, heading, subheading }: PF_WORK_SECTION
               ease: "easeOut",
             }}
             viewport={{ amount: 0.5, once: true }}
-            className="text-center text-lg sm:text-xl text-template-text-secondary/50 max-w-2xl mb-6"
+            className="text-center text-lg sm:text-xl text-template-text-secondary/50 mb-6"
           >
             {subheading}
           </m.p>
