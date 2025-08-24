@@ -159,8 +159,6 @@ export const FNavbar = ({
               ease: "easeOut",
             }}
             href={btnLink}
-            target="_blank"
-            rel="noopener noreferrer"
           >
             <FButton btnText={btnText} className="text-xl" />
           </m.a>
