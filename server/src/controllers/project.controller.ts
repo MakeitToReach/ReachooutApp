@@ -334,7 +334,7 @@ export const getProjectBySubdomain = async (req: Request, res: Response) => {
 export const getProjectByCustomDomain = async (req: Request, res: Response) => {
   try {
     const { customDomain } = req.params;
-        console.log("Custom domain request", customDomain);
+    console.log("Custom domain request", customDomain);
 
     if (!customDomain) {
       return res.status(400).json({ error: "Custom domain is required" });
@@ -371,6 +371,7 @@ export const getProjectByCustomDomain = async (req: Request, res: Response) => {
       name: project.name,
       subDomain: project.subDomain,
       customDomain: project.customDomain,
+      faviconUrl: project.faviconUrl,
       user: project.user,
       templates: templates
         .filter((pt) => !isProjectTemplateExpired(pt.expiresAt))
