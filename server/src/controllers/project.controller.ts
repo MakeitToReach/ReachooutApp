@@ -334,13 +334,14 @@ export const getProjectBySubdomain = async (req: Request, res: Response) => {
 export const getProjectByCustomDomain = async (req: Request, res: Response) => {
   try {
     const { customDomain } = req.params;
+        console.log("Custom domain request", customDomain);
 
     if (!customDomain) {
       return res.status(400).json({ error: "Custom domain is required" });
     }
 
     // Fetch the project (without templates)
-    const project = await prisma.project.findUnique({
+    const project = await prisma.project.findFirst({
       where: { customDomain },
       include: {
         user: {
