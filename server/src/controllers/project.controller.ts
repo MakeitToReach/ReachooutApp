@@ -339,19 +339,10 @@ export const getProjectByCustomDomain = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Custom domain is required" });
     }
 
+    // Fetch the project (without templates)
     const project = await prisma.project.findUnique({
-      where: {
-        customDomain: customDomain,
-      },
+      where: { customDomain },
       include: {
-        templates: {
-          include: {
-            template: true,
-          },
-          orderBy: {
-            order: "asc",
-          },
-        },
         user: {
           select: {
             id: true,
@@ -366,14 +357,21 @@ export const getProjectByCustomDomain = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "Project not found" });
     }
 
-    // Transform the data to match the expected format and filter out expired templates
+    // Fetch templates separately with order applied
+    const templates = await prisma.projectTemplate.findMany({
+      where: { projectId: project.id },
+      include: { template: true },
+      orderBy: { order: "asc" },
+    });
+
+    // Transform the data to match your expected format and filter out expired templates
     const transformedProject = {
       id: project.id,
       name: project.name,
       subDomain: project.subDomain,
       customDomain: project.customDomain,
       user: project.user,
-      templates: project.templates
+      templates: templates
         .filter((pt) => !isProjectTemplateExpired(pt.expiresAt))
         .map((pt) => ({
           templateId: pt.templateId,
