@@ -6,12 +6,11 @@ import { AuthProvider } from "@/components/providers/AuthProvider";
 export const metadata: Metadata = {
   title: "Reachoout",
   description: "Reachoout - Build your Digital Identity in just minutes",
-  // icons: {
-  //   icon: "/favicon.ico",
-  //   shortcut: "/favicon.ico",
-  //   apple: "/apple-touch-icon.png",
-  // },
   manifest: "/site.webmanifest",
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

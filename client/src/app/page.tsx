@@ -22,7 +22,7 @@ async function getProject(subdomain: string) {
 async function fetchProjectByCustomDomain(hostname: string) {
   console.log(
     "🔍 fetchProjectByCustomDomain function called with hostname:",
-    hostname
+    hostname,
   );
 
   try {
@@ -54,6 +54,10 @@ export async function generateMetadata(): Promise<Metadata> {
           icons: project.faviconUrl
             ? [{ rel: "icon", url: project.faviconUrl }]
             : undefined,
+          robots: {
+            index: true,
+            follow: true,
+          },
         };
       } catch (error) {
         console.error("Error generating metadata:", error);
@@ -69,6 +73,10 @@ export async function generateMetadata(): Promise<Metadata> {
         icons: project.faviconUrl
           ? [{ rel: "icon", url: project.faviconUrl }]
           : undefined,
+        robots: {
+          index: true,
+          follow: true,
+        },
       };
     } catch (error) {
       console.error("Error generating metadata for custom domain:", error);
@@ -80,6 +88,10 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Reachoout - Portfolio Platform",
     description: "Create and share your professional portfolio",
     icons: undefined,
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 
@@ -133,7 +145,7 @@ export default async function PortfolioPage() {
 
   // If we reach here, no valid subdomain or custom domain was found
   console.log(
-    "No valid subdomain or custom domain detected, redirecting to home"
+    "No valid subdomain or custom domain detected, redirecting to home",
   );
   const { redirect } = await import("next/navigation");
   redirect("/home");
