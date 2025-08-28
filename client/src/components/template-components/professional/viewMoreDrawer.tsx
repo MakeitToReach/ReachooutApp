@@ -119,7 +119,7 @@ export const ViewMoreDrawer = ({
           {/* Project Media */}
           <div
             className={cn(
-              "flex justify-center sm:h-[55vh]",
+              "flex justify-center h-[40vh] sm:h-[55vh]",
               about ? "hidden" : "",
             )}
           >
@@ -168,12 +168,12 @@ export const ViewMoreDrawer = ({
                 </AnimatePresence>
                 {catalogService.imgUrls.length > 1 && (
                   <>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/30" />
+                    {/* <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/30" /> */}
                     <div className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20">
                       <Button
                         onClick={prevImage}
                         variant="ghost"
-                        className="p-2 rounded-full bg-white/80 text-black hover:bg-white/30 border border-white/30"
+                        className="p-2 rounded-full bg-white/80 text-black hover:bg-white/30 border border-black/30"
                       >
                         <ChevronLeft size={20} />
                       </Button>
@@ -182,7 +182,7 @@ export const ViewMoreDrawer = ({
                       <Button
                         onClick={nextImage}
                         variant="ghost"
-                        className="p-2 rounded-full bg-white/80 text-black hover:bg-white/30 border border-white/30"
+                        className="p-2 rounded-full bg-white/80 text-black hover:bg-white/30 border border-black/30"
                       >
                         <ChevronRight size={20} />
                       </Button>
