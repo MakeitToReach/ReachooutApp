@@ -138,7 +138,7 @@ export const EditorPanel = ({
                         </Button>
                     ) : (
                         <>
-                            <PaymentPopup handlePublish={(days) => handlePublish(days)}>
+                            <PaymentPopup showPaymentOpts handlePublish={(days) => handlePublish(days)}>
                                 <Button
                                     // onClick={handlePublish}
                                     variant={"ghost"}

@@ -33,7 +33,7 @@ export default function MainLayout({
 
     useEffect(() => {
         const script = document.createElement("script");
-        script.src = "https://checkout.razorpay.com/v1/checkout.js";
+        script.src = "https://sdk.cashfree.com/js/v3/cashfree.js";
         script.async = true;
         document.body.appendChild(script);
     }, []);

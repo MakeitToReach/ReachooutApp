@@ -272,8 +272,8 @@ export const TemplateCard = ({
         value={previewUrl}
       />
       <PaymentPopup
-        // showPaymentOpts
-        showFreePlan={true}
+        showPaymentOpts
+        // showFreePlan={true}
         handlePublish={(expiryDays) => handleUpdateExpiry(expiryDays)}
         open={changePlanOpen}
         onOpenChange={setChangePlanOpen}

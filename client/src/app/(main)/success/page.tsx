@@ -20,13 +20,13 @@ const AuthSuccessPageContent = () => {
         try {
           // Set the token cookie
           setCookie("token", token);
-          
+
           // Fetch user data using the token
           const response = await getUserFromToken(token);
           if (response?.user) {
             // Update the user store with the fetched data
             updateUserFromServer(response.user);
-            
+
             // Wait a moment for the store to update, then redirect
             setTimeout(() => {
               router.push("/user");

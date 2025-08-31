@@ -1,5 +1,6 @@
-import { useId, useState } from "react";
+import { useId, useState, useEffect } from "react";
 import { CheckIcon, InfoIcon } from "lucide-react";
+import { load } from "@cashfreepayments/cashfree-js";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -13,7 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { createOrder } from "@/api/payment";
+import { createOrder, verifyPayment } from "@/api/payment";
 import { ReqInput } from "./editor-components/inputs/reqInput";
 
 interface PaymentPopupProps {
@@ -24,6 +25,7 @@ interface PaymentPopupProps {
     showFreePlan?: boolean;
     showPaymentOpts?: boolean;
 }
+
 export function PaymentPopup({
     children,
     handlePublish,
@@ -36,71 +38,100 @@ export function PaymentPopup({
     const [value, setValue] = useState("1");
     //eslint-disable-next-line
     const [discountCoupon, setDiscountCoupon] = useState("");
-    const [isRzpOpen, setIsRzpOpen] = useState(false);
-     
+    const [isCfOpen, setIsCfOpen] = useState(false);
+    //eslint-disable-next-line
+    const [cashfree, setCashfree] = useState<any>(null);
 
     const monthlyPrice = 349;
     const yearlyPrice = 249 * 12;
 
-    const planAmounts: Record<string, number> = {
-        "1": 0,
-        "2": monthlyPrice,
-        "3": yearlyPrice,
+    const planAmounts: Record<string, string> = {
+        "1": "rcfpp",
+        "2": "rcmpp",
+        "3": "rcypp"
     };
 
+    // Initialize Cashfree SDK
+    useEffect(() => {
+        const initializeSDK = async () => {
+            try {
+                const cf = await load({
+                    mode: process.env.NODE_ENV === "production" ? "production" : "sandbox"
+                });
+                setCashfree(cf);
+            } catch (error) {
+                console.error("Failed to initialize Cashfree SDK:", error);
+            }
+        };
+        initializeSDK();
+    }, []);
+
     const handlePayment = async () => {
-        const amount = planAmounts[value];
-        if (amount === 0) {
+        const amount_id = planAmounts[value];
+        if (amount_id === "rcfpp") {
             handlePublish(7);
             return;
         }
 
-        const order = await createOrder(amount);
+        if (!cashfree) {
+            // alert("Cashfree SDK not initialized")
+            console.error("Cashfree SDK not initialized");
+            return;
+        }
 
-        const opts = {
-            key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-            amount: order.amount,
-            currency: order.currency,
-            name: "Reachoout",
-            description: "Payment for Reachoout Webpage",
-            order_id: order.id,
-            image: "https://app.reachoout.com/apple-touch-icon.png",
-            //eslint-disable-next-line
-            handler: function () {
-                // console.log("Payment Successful", response);
-                // console.log(order.amount);
-                switch (order.amount) {
-                    case monthlyPrice * 100:
-                        handlePublish(31);
-                    case yearlyPrice * 100:
-                        handlePublish(365);
+        try {
+            const order = await createOrder(amount_id);
+
+            const checkoutOptions = {
+                paymentSessionId: order.paymentSessionId,
+                redirectTarget: "_modal",
+            };
+
+            const result = await cashfree.checkout(checkoutOptions);
+
+            if (order) {
+                console.log("order", order)
+
+            }
+
+            if (result.error) {
+                // User closed popup or payment error
+                console.log("User has closed the popup or there is some payment error");
+                console.log(result.error);
+                setIsCfOpen(false);
+            } else if (result.redirect) {
+                // Payment will be redirected (exceptional case)
+                console.log("Payment will be redirected");
+            } else if (result.paymentDetails) {
+                // Payment completed, verify it
+                console.log("Payment has been completed, checking status");
+                console.log(result.paymentDetails.paymentMessage);
+
+                try {
+                    const verification = await verifyPayment(order.id, order.paymentSessionId);
+                    if (verification.success) {
+                        switch (order.amount) {
+                            case monthlyPrice * 100:
+                                handlePublish(31);
+                                break;
+                            case yearlyPrice * 100:
+                                handlePublish(365);
+                                break;
+                        }
+                    }
+                } catch (error) {
+                    console.error("Payment verification failed:", error);
                 }
-            },
-            theme: {
-                color: "#FF9933",
-            },
-            modal: {
-                ondismiss: () => setIsRzpOpen(false),
-            },
-        };
-
-        //eslint-disable-next-line
-        const rzp = new (window as any).Razorpay(opts);
-        rzp.open();
-        //eslint-disable-next-line
-        rzp.on("payment.failed", function (response: any) {
-            setIsRzpOpen(false);
-        });
-
-        opts.modal = {
-            ondismiss: () => {
-                setIsRzpOpen(false);
-            },
-        };
-        setIsRzpOpen(true);
+                setIsCfOpen(false);
+            }
+        } catch (error) {
+            console.error("Payment failed:", error);
+            setIsCfOpen(false);
+        }
     };
+
     return (
-        <Dialog modal={!isRzpOpen} open={open} onOpenChange={onOpenChange}>
+        <Dialog modal={!isCfOpen} open={open} onOpenChange={onOpenChange}>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent>
                 <div className="mb-2 flex flex-col gap-2">
@@ -180,7 +211,6 @@ export function PaymentPopup({
                         <div className="space-y-2">
                             <label>Discount Code</label>
                             <ReqInput
-                                // label="Discount Coupon Code"
                                 type="text"
                                 placeholder="Reachoout discount code"
                                 onChange={(e) => setDiscountCoupon(e.target.value)}
@@ -263,8 +293,13 @@ export function PaymentPopup({
                     </div>
 
                     <div className="grid gap-2">
-                        <Button type="button" onClick={handlePayment} className="w-full">
-                            Confirm
+                        <Button
+                            type="button"
+                            onClick={handlePayment}
+                            className="w-full"
+                            disabled={!cashfree}
+                        >
+                            {!cashfree ? "Loading..." : "Confirm"}
                         </Button>
                         <DialogClose asChild>
                             <Button type="button" variant="ghost" className="w-full">
