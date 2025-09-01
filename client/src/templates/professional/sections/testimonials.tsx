@@ -19,7 +19,7 @@ const ReviewCard = ({
   body: string;
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   // Check if content is longer than 8 lines (approximate)
   const shouldShowReadMore = body.length > 200; // Rough estimate for 8 lines
 
@@ -46,7 +46,7 @@ const ReviewCard = ({
           {username && <p className="text-xs font-medium">{username}</p>}
         </div>
       </div>
-      <blockquote 
+      <blockquote
         className={cn(
           "mt-2 sm:text-base text-xl text-template-text-primary",
           !isExpanded && shouldShowReadMore && "line-clamp-8"
@@ -79,7 +79,7 @@ export function PFTestimonialsSection({
   return (
     <section
       id="testimonials"
-      className="relative flex max-w-6xl mx-auto py-20 px-4 gap-10 flex-col items-center justify-center overflow-hidden"
+      className="relative flex max-w-6xl mx-auto py-20 px-4 gap-10 flex-col items-center justify-center"
     >
       <m.h1
         initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
@@ -109,15 +109,19 @@ export function PFTestimonialsSection({
           {subtitle}
         </m.p>
       )}
-      <div>
+
+      {/* Testimonials area with gradient masks */}
+      <div className="relative w-full overflow-hidden">
         <Marquee pauseOnHover className="[--duration:20s]">
           {testimonials.map((review, idx) => (
             <ReviewCard key={idx} {...review} />
           ))}
         </Marquee>
+
+        {/* Gradient masks - only covering the testimonials area */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-template-primary"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-template-primary"></div>
       </div>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-template-primary"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-template-primary"></div>
     </section>
   );
 }
