@@ -4,7 +4,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-// import Image from "next/image";
 import { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { updateTemplateExpiry } from "@/api/templates";
@@ -57,7 +56,11 @@ export default function UserAdminPopup({
 
     const toggleProject = (projectId: string) => {
         const next = new Set(expandedProjects);
-        next.has(projectId) ? next.delete(projectId) : next.add(projectId);
+        if (next.has(projectId)) {
+            next.delete(projectId);
+        } else {
+            next.add(projectId);
+        }
         setExpandedProjects(next);
     };
 

@@ -33,7 +33,6 @@ import { toast } from "sonner";
 import { TemplateItem } from "@/types/projectTemplate.types";
 import QRCodeModal from "./QRCodeModal";
 import { PaymentPopup } from "../paymentPopup";
-import { Badge } from "../ui/badge";
 
 interface TemplateCardProps {
   imageUrl: string;
