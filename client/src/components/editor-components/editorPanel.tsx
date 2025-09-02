@@ -20,7 +20,6 @@ import { ThemePickerDialog } from "./popups/colorThemeDialog";
 import { useRouter } from "next/navigation";
 import { useEditorTabIdxStore } from "@/store/editorTabIdx.store";
 import Link from "next/link";
-import { PaymentPopup } from "../paymentPopup";
 
 interface EditorPanelProps {
     isEditing?: boolean;
@@ -138,24 +137,22 @@ export const EditorPanel = ({
                         </Button>
                     ) : (
                         <>
-                            <PaymentPopup handlePublish={(days) => handlePublish(days)}>
-                                <Button
-                                    // onClick={handlePublish}
-                                    variant={"ghost"}
-                                    className="cursor-pointer flex items-center"
-                                >
-                                    {loading ? (
-                                        <LucideLoaderCircle className="size-6 animate-spin" />
-                                    ) : (
-                                        <>
-                                            <span className="hidden md:block text-lg">Publish</span>
-                                            <span>
-                                                <LucideUploadCloud className="size-6" />
-                                            </span>
-                                        </>
-                                    )}
-                                </Button>
-                            </PaymentPopup>
+                            <Button
+                                onClick={() => handlePublish()}
+                                variant={"ghost"}
+                                className="cursor-pointer flex items-center"
+                            >
+                                {loading ? (
+                                    <LucideLoaderCircle className="size-6 animate-spin" />
+                                ) : (
+                                    <>
+                                        <span className="hidden md:block text-lg">Publish</span>
+                                        <span>
+                                            <LucideUploadCloud className="size-6" />
+                                        </span>
+                                    </>
+                                )}
+                            </Button>
                         </>
                     )}
 
