@@ -73,7 +73,7 @@ export default function UserAdminPopup({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="font-Poppins min-w-[70vw]">
+            <DialogContent className="font-Poppins min-w-[70vw] max-h-[90vh] overflow-y-scroll">
                 <DialogHeader>
                     <DialogTitle className="text-xl">User Admin</DialogTitle>
                 </DialogHeader>
