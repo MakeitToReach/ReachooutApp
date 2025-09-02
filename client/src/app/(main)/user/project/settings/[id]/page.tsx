@@ -64,9 +64,6 @@ const ProjectSettingsPage = () => {
     boolean | null
   >(null);
   const [isSlugAvailable, setIsSlugAvailable] = useState<boolean | null>(null);
-  // const [isCustomDomainValid, setIsCustomDomainValid] = useState<
-  //   boolean | null
-  // >(null);
   const [isLoading, setIsLoading] = useState(false);
 
   // Google search preview
@@ -76,10 +73,10 @@ const ProjectSettingsPage = () => {
     const url = settings.customDomain || `${settings.subDomain}.reachoout.com`;
 
     return {
-      title: title.length > 60 ? title.substring(0, 60) + "..." : title,
+      title: title.length > 250 ? title.substring(0, 250) + "..." : title,
       description:
-        description.length > 160
-          ? description.substring(0, 160) + "..."
+        description.length > 400
+          ? description.substring(0, 400) + "..."
           : description,
       url: url,
     };
@@ -117,8 +114,6 @@ const ProjectSettingsPage = () => {
       return;
     }
 
-    // For now, we'll just validate the format
-    // In a real implementation, you'd call an API to check global slug availability
     const slugRegex = /^[a-z0-9-]+$/;
     const isValid =
       slugRegex.test(slug) && !slug.startsWith("-") && !slug.endsWith("-");
@@ -130,10 +125,8 @@ const ProjectSettingsPage = () => {
       const project = await getProjectById(id);
       setSettings(project);
 
-      // Set templates if they exist
       if (project.templates && project.templates.length > 0) {
         setTemplates(project.templates);
-        // Set the first template with order > 0 as selected, or the first template
         const additionalTemplates = project.templates.filter(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (t: any) => t.order > 0,
@@ -151,7 +144,6 @@ const ProjectSettingsPage = () => {
     fetchProject();
   }, [id]);
 
-  // Remove the automatic check on subdomain change
 
   const handleSave = async (section: string) => {
     setIsLoading(true);
@@ -216,10 +208,10 @@ const ProjectSettingsPage = () => {
                   setSettings({ ...settings, name: e.target.value })
                 }
                 placeholder="Enter your project name"
-                maxLength={60}
+                maxLength={250}
               />
               <p className="text-sm text-muted-foreground">
-                {settings.name.length}/60 characters
+                {settings.name.length}/250 characters
               </p>
             </div>
 
@@ -233,10 +225,10 @@ const ProjectSettingsPage = () => {
                 }
                 placeholder="Describe your project"
                 rows={3}
-                maxLength={160}
+                maxLength={400}
               />
               <p className="text-sm text-muted-foreground">
-                {160}/160 characters
+                {400}/400 characters
               </p>
             </div>
 
@@ -518,10 +510,10 @@ const ProjectSettingsPage = () => {
                         })
                       }
                       placeholder="About Me - Professional Portfolio"
-                      maxLength={60}
+                      maxLength={250}
                     />
                     <p className="text-sm text-muted-foreground">
-                      {templateSEO.seoTitle.length}/60 characters
+                      {templateSEO.seoTitle.length}/250 characters
                     </p>
                   </div>
 
@@ -538,7 +530,7 @@ const ProjectSettingsPage = () => {
                       }
                       placeholder="Learn more about my background, skills, and experience in web development and design."
                       rows={3}
-                      maxLength={160}
+                      maxLength={400}
                     />
                     <p className="text-sm text-muted-foreground">
                       {templateSEO.seoDescription.length}/160 characters
