@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { createOrder } from "@/api/payment";
 import { ReqInput } from "./editor-components/inputs/reqInput";
 
 interface PaymentPopupProps {
@@ -36,8 +35,8 @@ export function PaymentPopup({
     const [value, setValue] = useState("1");
     //eslint-disable-next-line
     const [discountCoupon, setDiscountCoupon] = useState("");
-    const [isRzpOpen, setIsRzpOpen] = useState(false);
-     
+    // const [isRzpOpen, setIsRzpOpen] = useState(false);
+
 
     const monthlyPrice = 349;
     const yearlyPrice = 249 * 12;
@@ -52,55 +51,20 @@ export function PaymentPopup({
         const amount = planAmounts[value];
         if (amount === 0) {
             handlePublish(7);
+            onOpenChange?.(false);
             return;
         }
-
-        const order = await createOrder(amount);
-
-        const opts = {
-            key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-            amount: order.amount,
-            currency: order.currency,
-            name: "Reachoout",
-            description: "Payment for Reachoout Webpage",
-            order_id: order.id,
-            image: "https://app.reachoout.com/apple-touch-icon.png",
-            //eslint-disable-next-line
-            handler: function () {
-                // console.log("Payment Successful", response);
-                // console.log(order.amount);
-                switch (order.amount) {
-                    case monthlyPrice * 100:
-                        handlePublish(31);
-                    case yearlyPrice * 100:
-                        handlePublish(365);
-                }
-            },
-            theme: {
-                color: "#FF9933",
-            },
-            modal: {
-                ondismiss: () => setIsRzpOpen(false),
-            },
-        };
-
-        //eslint-disable-next-line
-        const rzp = new (window as any).Razorpay(opts);
-        rzp.open();
-        //eslint-disable-next-line
-        rzp.on("payment.failed", function (response: any) {
-            setIsRzpOpen(false);
-        });
-
-        opts.modal = {
-            ondismiss: () => {
-                setIsRzpOpen(false);
-            },
-        };
-        setIsRzpOpen(true);
+        if (value === "2") {
+            window.location.href = "https://reachoout.com/pricing";
+            return;
+        }
+        if (value === "3") {
+            window.location.href = "https://reachoout.com/pricing";
+            return;
+        }
     };
     return (
-        <Dialog modal={!isRzpOpen} open={open} onOpenChange={onOpenChange}>
+        <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent>
                 <div className="mb-2 flex flex-col gap-2">

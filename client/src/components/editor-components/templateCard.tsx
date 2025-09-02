@@ -12,8 +12,10 @@ import {
   Edit,
   ExternalLink,
   LucideEye,
+  CreditCard,
   QrCode,
   Trash2,
+  Clock,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -48,6 +50,7 @@ interface TemplateCardProps {
   index?: number;
   projectId?: string;
   slug?: string;
+  expiresAt?: Date;
 }
 export const TemplateCard = ({
   imageUrl = "",
@@ -65,6 +68,7 @@ export const TemplateCard = ({
   index,
   slug,
   onDelete,
+  expiresAt,
 }: TemplateCardProps) => {
   const router = useRouter();
   const { resetData } = usePortfolioStore();
@@ -134,6 +138,14 @@ export const TemplateCard = ({
     if (newTemplates) {
       onDelete?.(newTemplates.templates);
     }
+  };
+
+  const computeExpiryDays = () => {
+    if (!expiresAt) return 0;
+    const now = new Date();
+    const expiryDate = new Date(expiresAt as unknown as string);
+    const diffMs = expiryDate.getTime() - now.getTime();
+    return Math.ceil(diffMs / (1000 * 60 * 60 * 24));
   };
   return (
     <div
@@ -254,6 +266,28 @@ export const TemplateCard = ({
                   <QrCode className="text-muted-foreground" />
                   <span>View QR Code</span>
                 </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setChangePlanOpen(true)}>
+                  <CreditCard className="text-muted-foreground" />
+                  <span>Upgrade Plan</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  {expiresAt && (
+                    (() => {
+                      const remaining = computeExpiryDays();
+                      return (
+                        <>
+                          <Clock className="text-muted-foreground" />
+                          {remaining > 0 ? (
+                            <span>Expires in {remaining} days</span>
+                          ) : (
+                            <span>Expired</span>
+                          )}
+                        </>
+                      );
+                    })()
+                  )}
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleDelete}>
                   <Trash2 className="text-destructive" />
@@ -272,14 +306,14 @@ export const TemplateCard = ({
         value={previewUrl}
       />
       <PaymentPopup
-        // showPaymentOpts
-        showFreePlan={true}
+        showPaymentOpts
+        showFreePlan={false}
         handlePublish={(expiryDays) => handleUpdateExpiry(expiryDays)}
         open={changePlanOpen}
         onOpenChange={setChangePlanOpen}
       >
         <h1 className="hidden" aria-hidden>
-          Change Plan
+          Upgrade Plan
         </h1>
       </PaymentPopup>
     </div>

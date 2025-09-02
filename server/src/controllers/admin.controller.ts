@@ -332,6 +332,24 @@ export const getAllUsersWithProjects = async (req: Request, res: Response) => {
             subDomain: true,
             customDomain: true,
             createdAt: true,
+            templates: {
+              select: {
+                projectId: true,
+                templateId: true,
+                order: true,
+                slug: true,
+                expiresAt: true,
+                template: {
+                  select: {
+                    id: true,
+                    name: true,
+                    displayName: true,
+                    thumbnailUrl: true,
+                  },
+                },
+              },
+              orderBy: { order: "asc" },
+            },
           },
         },
       },

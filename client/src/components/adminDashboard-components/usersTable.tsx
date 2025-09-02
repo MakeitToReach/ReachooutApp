@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ChevronDown, ChevronRight, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
+import UserAdminPopup from "../editor-components/popups/UserAdminPopup";
 
 interface Project {
   id: string;
@@ -13,6 +13,19 @@ interface Project {
   subDomain: string;
   customDomain?: string;
   createdAt: string;
+  templates?: Array<{
+    projectId: string;
+    templateId: string;
+    order: number;
+    slug?: string | null;
+    expiresAt?: string | null;
+    template: {
+      id: string;
+      name: string;
+      displayName?: string;
+      thumbnailUrl: string;
+    };
+  }>;
 }
 
 interface User {
@@ -30,16 +43,16 @@ interface UsersTableProps {
 }
 
 export const UsersTable = ({ users }: UsersTableProps) => {
-  const [expandedUsers, setExpandedUsers] = useState<Set<string>>(new Set());
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const toggleUserExpansion = (userId: string) => {
-    const newExpanded = new Set(expandedUsers);
-    if (newExpanded.has(userId)) {
-      newExpanded.delete(userId);
-    } else {
-      newExpanded.add(userId);
-    }
-    setExpandedUsers(newExpanded);
+  const openUserPopup = (user: User) => {
+    setSelectedUser(user);
+    setIsPopupOpen(true);
+  };
+  const closeUserPopup = () => {
+    setIsPopupOpen(false);
+    setSelectedUser(null);
   };
 
   const formatDate = (dateString: string) => {
@@ -68,22 +81,13 @@ export const UsersTable = ({ users }: UsersTableProps) => {
               key={user.id}
               className={cn(
                 "border rounded-lg p-4",
-                user.isTrialUser ? "border border" : "border-black"
+                user.isTrialUser ? "border" : "border-black"
               )}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => toggleUserExpansion(user.id)}
-                    className="p-1 h-6 w-6"
-                  >
-                    {expandedUsers.has(user.id) ? (
-                      <ChevronDown className="h-4 w-4" />
-                    ) : (
-                      <ChevronRight className="h-4 w-4" />
-                    )}
+                  <Button variant="outline" size="sm" onClick={() => openUserPopup(user)}>
+                    Manage
                   </Button>
                   <div>
                     <div className="font-medium">{user.name}</div>
@@ -104,47 +108,11 @@ export const UsersTable = ({ users }: UsersTableProps) => {
                   </Badge>
                 </div>
               </div>
-
-              {expandedUsers.has(user.id) && user.projects.length > 0 && (
-                <div className="mt-4 ml-8 space-y-2">
-                  {user.projects.map((project) => (
-                    <div
-                      key={project.id}
-                      className="flex items-center justify-between p-3 bg-muted/50 rounded-md"
-                    >
-                      <div>
-                        <div className="font-medium">{project.name}</div>
-                        <div className="text-sm text-muted-foreground">
-                          {project.customDomain ||
-                            `${project.subDomain}.reachout.com`}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          Created: {formatDate(project.createdAt)}
-                        </div>
-                      </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => openProject(project.subDomain)}
-                        className="flex items-center space-x-1"
-                      >
-                        <ExternalLink className="h-3 w-3" />
-                        <span>View</span>
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {expandedUsers.has(user.id) && user.projects.length === 0 && (
-                <div className="mt-4 ml-8 text-sm text-muted-foreground">
-                  No projects created yet.
-                </div>
-              )}
             </div>
           ))}
         </div>
       </CardContent>
+      <UserAdminPopup open={isPopupOpen} onOpenChange={(v: boolean) => (v ? setIsPopupOpen(true) : closeUserPopup())} user={selectedUser} onOpenProject={openProject} />
     </Card>
   );
 };
