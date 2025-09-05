@@ -25,6 +25,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { promptPresets } from "@/static_data/prompt-presets";
 
 export const OnboardingPopup = ({
   children,
@@ -46,10 +47,13 @@ export const OnboardingPopup = ({
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isAiMode, setIsAiMode] = useState(false);
+  const [selectedPreset, setSelectedPreset] = useState<string>();
 
   const [aiForm, setAiForm] = useState({
     userInput: "",
   });
+
+
 
   const handleDataChange = (data: GenericTemplateSchema, category?: string) => {
     if (isPreview) {
@@ -96,6 +100,10 @@ export const OnboardingPopup = ({
       ...prev,
       [field]: value,
     }));
+  };
+
+  const handlePresetInject = (text: string) => {
+    setAiForm((prev) => ({ ...prev, userInput: text }));
   };
 
   const handleAiSubmit = async () => {
@@ -161,6 +169,30 @@ export const OnboardingPopup = ({
                 }
                 className="min-h-[100px]"
               />
+            </div>
+            <div className="space-y-2">
+              <Label className="text-base">Prompt presets</Label>
+              <div className="flex flex-wrap gap-2">
+                {promptPresets.map((preset) => (
+                  <Button
+                    key={preset.label}
+                    type="button"
+                    variant={selectedPreset === preset.label ? "default" : "outline"}
+                    className="rounded-full"
+                    onClick={() => {
+                      if (selectedPreset === preset.label) {
+                        setSelectedPreset(undefined);
+                        setAiForm({ userInput: "" });
+                      } else {
+                        setSelectedPreset(preset.label);
+                        handlePresetInject(preset.text);
+                      }
+                    }}
+                  >
+                    {preset.label}
+                  </Button>
+                ))}
+              </div>
             </div>
             <Button
               onClick={handleAiSubmit}
