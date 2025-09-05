@@ -127,7 +127,7 @@ const EditorPage = () => {
         toast.error("No project ID or template ID found");
         return;
       }
-      await publishTemplate(data, projectId, templateId, pageSlug || "");
+      await publishTemplate(data, projectId, templateId, pageSlug || "", 7);
       router.push(`/user/project/${projectId}`);
     } catch (error) {
       console.error(error);
