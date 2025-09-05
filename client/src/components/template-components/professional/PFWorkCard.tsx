@@ -31,7 +31,7 @@ export function PFWorkCard({ project }: PFWorkCardProps) {
     },
   };
   return (
-    <div className="flex flex-col sm:flex-row-reverse sm:justify-between overflow-hidden">
+    <div className="flex flex-col w-full sm:flex-row-reverse sm:justify-between overflow-hidden">
       {videoId ? (
         <div className="relative sm:h-[50vh] sm:w-[30vw] aspect-video h-[40vh] w-full rounded-sm">
           <YouTube
@@ -59,7 +59,7 @@ export function PFWorkCard({ project }: PFWorkCardProps) {
 
       <div className="flex flex-col gap-4 py-6 self-center md:w-[60%]">
         <div className="space-y-2">
-          <h1 className="sm:text-4xl text-2xl font-semibold">
+          <h1 className="sm:text-4xl text-2xl max-w-[90%] font-semibold">
             {project.heading}
           </h1>
         </div>
