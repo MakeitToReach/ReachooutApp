@@ -67,6 +67,25 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
               showToolbar={true}
             />
           </div>
+          <div className="flex gap-2 w-full">
+            <ReqInput
+              type="text"
+              label="Button Text"
+              className="w-full"
+              placeholder="Enter button text"
+              value={blog.btnText}
+              onChange={(e) => setBlog({ ...blog, btnText: e.target.value })}
+            />
+
+            <ReqInput
+              type="text"
+              label="Button Link"
+              className="w-full"
+              placeholder="Enter button link"
+              value={blog.btnLink}
+              onChange={(e) => setBlog({ ...blog, btnLink: e.target.value })}
+            />
+          </div>
         </div>
 
         <DialogFooter>

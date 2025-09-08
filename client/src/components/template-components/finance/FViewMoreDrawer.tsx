@@ -52,7 +52,7 @@ export const FViewMoreDrawer = ({
     const aboutSection = type === "About" ? (content as F_ABOUT_SECTION) : null;
 
     const videoId = getYouTubeVideoId(
-        project?.vidUrl || catalogService?.vidUrl || blog?.vidUrl || "",
+        project?.vidUrl || catalogService?.vidUrl || blog?.vidUrl || service?.vidUrl || "",
     );
     const catalogVideoId = getYouTubeVideoId(catalogService?.vidUrl || "");
     const blogVideoId = getYouTubeVideoId(blog?.vidUrl || "");
@@ -241,7 +241,7 @@ export const FViewMoreDrawer = ({
                             />
                         )}
 
-                        {service && (
+                        {service && !service.vidUrl && (
                             <Image
                                 src={service.imgUrl || "/placeholder.png"}
                                 alt={`${service.title}-img`}
