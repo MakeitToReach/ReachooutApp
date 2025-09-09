@@ -33,6 +33,7 @@ import { toast } from "sonner";
 import { TemplateItem } from "@/types/projectTemplate.types";
 import QRCodeModal from "./QRCodeModal";
 import { PaymentPopup } from "../paymentPopup";
+import { DeleteAlertPopup } from "./popups/deleteAlertPopup";
 
 interface TemplateCardProps {
   imageUrl: string;
@@ -74,6 +75,7 @@ export const TemplateCard = ({
   const { resetData } = usePortfolioStore();
   const [qrOpen, setQROpen] = useState(false);
   const [changePlanOpen, setChangePlanOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
   const isMobile = useIsMobile();
 
@@ -225,7 +227,7 @@ export const TemplateCard = ({
               <QrCode className="text-muted-foreground" />
             </div>
 
-            <DropdownMenu>
+            <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <div
                   role="button"
@@ -289,7 +291,7 @@ export const TemplateCard = ({
                   )}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleDelete}>
+                <DropdownMenuItem onClick={() => setDeleteOpen(true)}>
                   <Trash2 className="text-destructive" />
                   <span className="text-sm">Delete Website</span>
                 </DropdownMenuItem>
@@ -316,6 +318,15 @@ export const TemplateCard = ({
           Upgrade Plan
         </h1>
       </PaymentPopup>
+      <DeleteAlertPopup
+        open={deleteOpen}
+        onOpenChange={setDeleteOpen}
+        onConfirm={handleDelete}
+      >
+        <h1 className="hidden" aria-hidden>
+          Delete Website
+        </h1>
+      </DeleteAlertPopup>
     </div>
   );
 };
