@@ -9,7 +9,7 @@ Write a professional and engaging introduction for my personal website. Highligh
     {
         label: "Company Representation",
         text:
-            `My name is [your name]
+            `
 I run a company called [Your Company Name]
 that provides [type of services, e.g., digital marketing, legal consulting, fitness training].
 

@@ -13,14 +13,12 @@ import React, { useEffect, useState } from "react";
 import { TemplateItem } from "@/types/projectTemplate.types";
 import { SettingsIcon } from "lucide-react";
 import Link from "next/link";
-// import { useTrialStatus } from "@/hooks/use-trial-status";
 
 const ProjectPage = () => {
   const params = useParams<{ id: string }>();
   const id = params?.id;
   const [templates, setTemplates] = useState<TemplateItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  // const { isTrialUser } = useTrialStatus();
 
   useEffect(() => {
     if (!id) return;
@@ -28,7 +26,7 @@ const ProjectPage = () => {
     const fetchTemplatesInProject = async () => {
       try {
         const response = await getTemplatesInProject(id as string);
-        // console.log(response);
+
         setTemplates(response || []);
       } catch (error) {
         console.error("Error fetching templates:", error);
@@ -77,55 +75,38 @@ const ProjectPage = () => {
           <>
             {templates.length > 0
               ? templates.map((item, idx) => (
-                <TemplateCard
-                  expiresAt={item.expiresAt || undefined}
-                  templateName={`Website ${idx + 1}`}
-                  templateId={item.template.id}
-                  key={idx}
-                  imageUrl={item.template.thumbnailUrl || "/placeholder.png"}
-                  previewUrl={
-                    item && item.order > 0
-                      ? `http://${item.project.subDomain}.${process.env.NODE_ENV === "development"
-                        ? "localhost:3000"
-                        : "reachoout.com"
-                      }/${item.slug}`
-                      : `http://${item.project.subDomain}.${process.env.NODE_ENV === "development"
-                        ? "localhost:3000"
-                        : "reachoout.com"
-                      }/`
-                  }
-                  editorUrl={`/editor/${item.template.name.toLowerCase()}?edit&order=${idx}&pid=${id}&tid=${item.template.id
+                  <TemplateCard
+                    expiresAt={item.expiresAt || undefined}
+                    templateName={`Website ${idx + 1}`}
+                    templateId={item.template.id}
+                    key={idx}
+                    imageUrl={item.template.thumbnailUrl || "/placeholder.png"}
+                    previewUrl={
+                      item && item.order > 0
+                        ? `http://${item.project.subDomain}.${
+                            process.env.NODE_ENV === "development"
+                              ? "localhost:3000"
+                              : "reachoout.com"
+                          }/${item.slug}`
+                        : `http://${item.project.subDomain}.${
+                            process.env.NODE_ENV === "development"
+                              ? "localhost:3000"
+                              : "reachoout.com"
+                          }/`
+                    }
+                    editorUrl={`/editor/${item.template.name.toLowerCase()}?edit&order=${idx}&pid=${id}&tid=${
+                      item.template.id
                     }`}
-                  isPublished
-                  index={idx}
-                  projectId={id}
-                  slug={item.slug}
-                  onDelete={(newTemplates: TemplateItem[]) => {
-                    setTemplates(newTemplates);
-                  }}
-                />
-              ))
+                    isPublished
+                    index={idx}
+                    projectId={id}
+                    slug={item.slug}
+                    onDelete={(newTemplates: TemplateItem[]) => {
+                      setTemplates(newTemplates);
+                    }}
+                  />
+                ))
               : null}
-
-            {/* {isTrialUser ? ( */}
-            {/*   templates.length >= 2 ? null : ( */}
-            {/*     <AddSlugPopup pid={id as string}> */}
-            {/*       <Card className="border bg-transparent h-full border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors"> */}
-            {/*         <CardContent className="p-4"> */}
-            {/*           <Button variant="outline">Create New Reachpage</Button> */}
-            {/*         </CardContent> */}
-            {/*       </Card> */}
-            {/*     </AddSlugPopup> */}
-            {/*   ) */}
-            {/* ) : ( */}
-            {/*   <AddSlugPopup pid={id as string}> */}
-            {/*     <Card className="border bg-transparent h-full border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors"> */}
-            {/*       <CardContent className="p-4"> */}
-            {/*         <Button variant="outline">Create New website</Button> */}
-            {/*       </CardContent> */}
-            {/*     </Card> */}
-            {/*   </AddSlugPopup> */}
-            {/* )} */}
             <AddSlugPopup pid={id as string}>
               <Card className="border bg-transparent h-full border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">
                 <CardContent className="p-4">

@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   ArrowUpDown,
+  BookOpen,
   Home,
   LucideLoaderCircle,
   LucidePalette,
@@ -197,11 +198,18 @@ const EditorPage = () => {
               transition={{ type: "easeInOut", duration: 0.8 }}
               className="w-[30%] hidden md:flex fixed z-50 bottom-4 right-1/2 translate-x-1/2 bg-white justify-between backdrop-blur-3xl items-center border-border border rounded-md p-2 shadow-xs shadow-gray-300"
             >
-              <Link href={`/user/project/${projectId}`}>
-                <Button className="cursor-pointer" variant="ghost">
-                  <Home className="size-6" />
-                </Button>
-              </Link>
+              <div>
+                <Link href={`/user/project/${projectId}`}>
+                  <Button className="cursor-pointer" variant="ghost">
+                    <Home className="size-6" />
+                  </Button>
+                </Link>
+                <Link href="https://reachoout.com/help" target="_blank">
+                  <Button variant={"ghost"} className="cursor-pointer">
+                    <BookOpen className="size-6" role="button" />
+                  </Button>
+                </Link>
+              </div>
 
               <div className="flex items-center gap-2">
                 {isEditing ? (

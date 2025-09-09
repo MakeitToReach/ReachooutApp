@@ -109,7 +109,15 @@ export const PFHeroSection = ({
               : "max-w-[420px] sm:h-[500px] h-[50vh]",
           )}
         >
-          <div
+          <m.div
+            initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              duration: 0.5,
+              delay: delay,
+              ease: "easeOut",
+            }}
             className={`absolute inset-0 w-full h-full overflow-hidden drop-shadow-xl rounded-sm ${
               showVideo ? "aspect-video" : ""
             }`}
@@ -124,7 +132,7 @@ export const PFHeroSection = ({
               embedClassName="w-full h-full"
               iframeClassName="w-full h-full"
             />
-          </div>
+          </m.div>
         </div>
         {/* {videoId ? ( */}
         {/*   <m.div */}
