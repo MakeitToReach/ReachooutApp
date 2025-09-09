@@ -144,7 +144,6 @@ const ProjectSettingsPage = () => {
     fetchProject();
   }, [id]);
 
-
   const handleSave = async (section: string) => {
     setIsLoading(true);
     try {
@@ -298,7 +297,7 @@ const ProjectSettingsPage = () => {
                   placeholder="your-project"
                   className="flex-1"
                 />
-                <span className="text-muted-foreground">.reachoout.com</span>
+                <span className="text-muted-foreground hidden md:block">.reachoout.com</span>
                 <Button
                   type="button"
                   variant="outline"
@@ -404,13 +403,12 @@ const ProjectSettingsPage = () => {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="template-select">Select Website</Label>
+                <Label htmlFor="template-select">Select Reachpage</Label>
                 <Select
-                  value={selectedTemplate?.templateId || ""}
+                  value={String(selectedTemplate?.order || "")}
                   onValueChange={(value) => {
                     const template = templates.find(
-                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                      (t: any) => t.templateId === value,
+                      (t: any) => String(t.order) === value,
                     );
                     setSelectedTemplate(template);
                     if (template) {
@@ -432,10 +430,10 @@ const ProjectSettingsPage = () => {
                       // eslint-disable-next-line @typescript-eslint/no-explicit-any
                       .map((template: any) => (
                         <SelectItem
-                          key={template.templateId}
-                          value={template.templateId}
+                          key={template.order}
+                          value={String(template.order)}
                         >
-                          Website {template.order + 1}
+                          Reachpage {template.order + 1}
                         </SelectItem>
                       ))}
                   </SelectContent>
@@ -533,7 +531,7 @@ const ProjectSettingsPage = () => {
                       maxLength={400}
                     />
                     <p className="text-sm text-muted-foreground">
-                      {templateSEO.seoDescription.length}/160 characters
+                      {templateSEO.seoDescription.length}/400 characters
                     </p>
                   </div>
 
