@@ -594,6 +594,7 @@ export const getProjectById = async (req: Request, res: Response) => {
           name: pt.template.name,
           thumbnailUrl: pt.template.thumbnailUrl,
         },
+        createdAt: pt.createdAt,
       })),
   };
 
@@ -733,6 +734,7 @@ export const updateTemplateSEO = async (
     {
       projectId: string;
       templateId: string;
+      createdAt: string; 
       slug: string;
       seoTitle: string;
       seoDescription: string;
@@ -741,45 +743,50 @@ export const updateTemplateSEO = async (
   res: Response,
 ) => {
   try {
-    const { projectId, templateId, slug, seoTitle, seoDescription } = req.body;
+    const { projectId, templateId, createdAt, slug, seoTitle, seoDescription } =
+      req.body;
     const userId = req.user?.id;
 
-    if (!projectId || !templateId || !slug || !seoTitle || !seoDescription) {
+    if (
+      !projectId ||
+      !templateId ||
+      !createdAt ||
+      !slug ||
+      !seoTitle ||
+      !seoDescription
+    ) {
       return res.status(400).json({
         error:
-          "Project ID, template ID, slug, SEO title, and SEO description are required",
+          "Project ID, template ID, createdAt, slug, SEO title, and SEO description are required",
       });
     }
 
-    // Check if user exists and owns the project
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-    });
-
+    // 1. Check if user exists
+    const user = await prisma.user.findUnique({ where: { id: userId } });
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Check if project exists and belongs to user
+    // 2. Check if project belongs to user
     const project = await prisma.project.findFirst({
-      where: {
-        id: projectId,
-        userId: userId,
-      },
+      where: { id: projectId, userId },
     });
-
     if (!project) {
       return res
         .status(404)
         .json({ error: "Project not found or access denied" });
     }
 
-    // Check if slug is already taken by another template in the same project
+    // 3. Ensure slug is unique across project (excluding this exact record)
     const existingTemplate = await prisma.projectTemplate.findFirst({
       where: {
-        projectId: projectId,
-        slug: slug,
-        templateId: { not: templateId }, // Exclude current template
+        projectId,
+        slug,
+        NOT: {
+          projectId,
+          templateId,
+          createdAt: new Date(createdAt), 
+        },
       },
     });
 
@@ -790,33 +797,19 @@ export const updateTemplateSEO = async (
       });
     }
 
-    // Find the specific template instance to update
-    const templateToUpdate = await prisma.projectTemplate.findFirst({
-      where: {
-        projectId: projectId,
-        templateId: templateId,
-      },
-    });
-
-    if (!templateToUpdate) {
-      return res.status(404).json({
-        error: "Template not found in this project",
-      });
-    }
-
-    // Update the template SEO settings using the composite key
+    // 4. Update the template
     const updatedTemplate = await prisma.projectTemplate.update({
       where: {
         projectId_templateId_createdAt: {
-          projectId: projectId,
-          templateId: templateId,
-          createdAt: templateToUpdate.createdAt,
+          projectId,
+          templateId,
+          createdAt: new Date(createdAt),
         },
       },
       data: {
-        slug: slug,
-        seoTitle: seoTitle,
-        seoDescription: seoDescription,
+        slug,
+        seoTitle,
+        seoDescription,
       },
     });
 
@@ -826,6 +819,6 @@ export const updateTemplateSEO = async (
     });
   } catch (error) {
     console.error("Error updating template SEO:", error);
-    res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };

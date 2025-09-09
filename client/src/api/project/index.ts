@@ -31,7 +31,7 @@ export const createUserProject = async (name: string, description: string) => {
     {
       headers: { Authorization: `Bearer ${token}` },
       withCredentials: true,
-    }
+    },
   );
 
   if (response.status == 201) {
@@ -55,7 +55,7 @@ export const deleteProjectById = async (projectId: string) => {
 
 export const addTemplateToProject = async (
   templateId: string,
-  projectId: string
+  projectId: string,
 ) => {
   const token = getToken();
   const response = await api.post(
@@ -67,7 +67,7 @@ export const addTemplateToProject = async (
     {
       headers: { Authorization: `Bearer ${token}` },
       withCredentials: true,
-    }
+    },
   );
   if (response.status === 200) {
     toast.success("Template added to project");
@@ -106,7 +106,7 @@ export const getProjectBySubdomain = async (subdomain: string) => {
 export const getProjectByCustomDomain = async (customDomain: string) => {
   console.log(
     "🔍 getProjectByCustomDomain called with customDomain:",
-    customDomain
+    customDomain,
   );
   // console.log("🔍 API base URL:", process.env.NEXT_PUBLIC_BACKEND_URL);
   // console.log(
@@ -119,7 +119,7 @@ export const getProjectByCustomDomain = async (customDomain: string) => {
       `/v1/project/custom-domain/${customDomain}`,
       {
         withCredentials: false,
-      }
+      },
     );
 
     if (response.status === 200 || response.status === 304) {
@@ -158,7 +158,7 @@ export const getProjectByCustomDomain = async (customDomain: string) => {
 
 export const updateProjectFavicon = async (
   projectId: string,
-  faviconUrl: string
+  faviconUrl: string,
 ) => {
   const token = getToken();
   const response = await api.put(
@@ -172,7 +172,7 @@ export const updateProjectFavicon = async (
         Authorization: `Bearer ${token}`,
       },
       withCredentials: true,
-    }
+    },
   );
   if (response.status === 200) {
     toast.success("Favicon updated successfully");
@@ -185,7 +185,7 @@ export const updateProjectFavicon = async (
 export const updateProjectMetaData = async (
   projectId: string,
   name: string,
-  description: string
+  description: string,
 ) => {
   const token = getToken();
   const response = await api.put(
@@ -200,7 +200,7 @@ export const updateProjectMetaData = async (
         Authorization: `Bearer ${token}`,
       },
       withCredentials: true,
-    }
+    },
   );
   if (response.status === 200) {
     toast.success("Project meta data updated successfully");
@@ -215,7 +215,8 @@ export const updateTemplateSEO = async (
   templateId: string,
   slug: string,
   seoTitle: string,
-  seoDescription: string
+  seoDescription: string,
+  createdAt: string,
 ) => {
   const token = getToken();
   const response = await api.put(
@@ -226,13 +227,14 @@ export const updateTemplateSEO = async (
       slug: slug,
       seoTitle: seoTitle,
       seoDescription: seoDescription,
+      createdAt: createdAt,
     },
     {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       withCredentials: true,
-    }
+    },
   );
   if (response.status === 200) {
     toast.success("Template SEO settings updated successfully");
@@ -244,21 +246,20 @@ export const updateTemplateSEO = async (
 
 export const getProjectBySubdomainAndSlug = async (
   subdomain: string,
-  slug: string
+  slug: string,
 ) => {
   const response = await api.get(
-    `/v1/project/subdomain/${subdomain}/slug/${slug}`
+    `/v1/project/subdomain/${subdomain}/slug/${slug}`,
   );
   return response.data;
 };
 
 export const getProjectByCustomDomainAndSlug = async (
   customDomain: string,
-  slug: string
+  slug: string,
 ) => {
   const response = await api.get(
-    `/v1/project/custom-domain/${customDomain}/slug/${slug}`
+    `/v1/project/custom-domain/${customDomain}/slug/${slug}`,
   );
   return response.data;
 };
-

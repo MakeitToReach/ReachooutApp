@@ -158,13 +158,41 @@ const ProjectSettingsPage = () => {
           settings.description,
         );
       } else if (section === "template-seo" && selectedTemplate) {
-        await updateTemplateSEO(
+        const updatedTemplate = await updateTemplateSEO(
           id as string,
           selectedTemplate.templateId,
           templateSEO.slug,
           templateSEO.seoTitle,
           templateSEO.seoDescription,
+          selectedTemplate.createdAt,
         );
+
+        //TODO: refactor this shitty code and use react-query please
+        setTemplates((prevTemplates) =>
+          prevTemplates.map((t) =>
+            t.projectId === updatedTemplate.template.projectId &&
+            t.templateId === updatedTemplate.template.templateId &&
+            t.createdAt === updatedTemplate.template.createdAt
+              ? { ...t, ...updatedTemplate.template }
+              : t,
+          ),
+        );
+
+        //eslint-disable-next-line
+        setSelectedTemplate((prev: any) =>
+          prev &&
+          prev.projectId === updatedTemplate.template.projectId &&
+          prev.templateId === updatedTemplate.template.templateId &&
+          prev.createdAt === updatedTemplate.template.createdAt
+            ? { ...prev, ...updatedTemplate.template }
+            : prev,
+        );
+
+        setTemplateSEO({
+          slug: updatedTemplate.template.slug || "",
+          seoTitle: updatedTemplate.template.seoTitle || "",
+          seoDescription: updatedTemplate.template.seoDescription || "",
+        });
       }
     } catch (error) {
       console.error("Error updating settings:", error);
