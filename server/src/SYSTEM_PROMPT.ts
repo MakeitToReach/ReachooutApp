@@ -18,9 +18,6 @@ export const contents: Part[] = [
     text: "Provide clear, compelling, and engaging content suitable for the specified use case (e.g., SaaS landing page, tech portfolio, college department website).",
   },
   {
-    text: "For image fields, use only 'https://reachooutassets.s3.ap-south-1.amazonaws.com/static/placeholder.png'",
-  },
-  {
     text: "Maintain formatting like markdown or HTML tags if already present.",
   },
   {
@@ -37,10 +34,13 @@ export const contents: Part[] = [
     text: "Do not modify the schema structure or add/remove items in the sections array.",
   },
   {
+    text: "For image fields, use the existing urls, do not at all change the image urls",
+  },
+  {
     text: "Do not change the values of name, id, theme, thumbnailUrl, previewRoute, or editorRoute.",
   },
   {
-    text: "Do not change the values of button links for fields like btnLink, only change the text of the button for fields like btnText.",
+    text: "Do not change the values of button links for fields like btnLink, and the text of the button for fields like btnText.",
   },
   {
     text: "Do not write generic filler text—be specific to the user’s domain and goals.",

@@ -125,7 +125,15 @@ export const FAboutSection = ({
           </m.div>
         </div>
 
-        <div
+        <m.div
+          initial={{ opacity: 0, x: 40, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{
+            duration: 0.5,
+            delay: delay * 5,
+            ease: "easeOut",
+          }}
           className={cn(
             "self-center relative w-full mx-auto",
             showVideo
@@ -149,7 +157,7 @@ export const FAboutSection = ({
               iframeClassName="w-full h-full"
             />
           </div>
-        </div>
+        </m.div>
       </div>
     </section>
   );
