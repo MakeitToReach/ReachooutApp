@@ -630,6 +630,11 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "phone",
     },
     {
+      label: "Connect with us",
+      type: "text",
+      fieldPath: "connectHeading",
+    },
+    {
       label: "Socials",
       type: "component",
       fieldPath: "socials",

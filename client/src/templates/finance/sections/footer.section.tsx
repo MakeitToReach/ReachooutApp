@@ -10,6 +10,7 @@ export const FFooterSection = ({
   address,
   email,
   phone,
+  connectHeading,
   socials,
   privacyPolicyContent,
   termsAndConditionsContent,
@@ -73,7 +74,9 @@ export const FFooterSection = ({
           {/* Right Section - Socials */}
           <div className="flex justify-end ">
             <div className="flex flex-col items-start">
-              <h3 className="text-xl font-semibold mb-2">Connect with Me</h3>
+              {connectHeading && (
+                <h3 className="text-xl font-semibold mb-2">{connectHeading}</h3>
+              )}
               <div className="flex gap-4">
                 {socials
                   .filter((social) => social.url)

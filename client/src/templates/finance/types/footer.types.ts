@@ -10,6 +10,7 @@ export type F_FOOTER_SECTION = {
     email: string;
     phone: string;
     qrCodeUrl?: string;
+    connectHeading?: string;
     socials: F_SOCIAL[]
     privacyPolicyContent?: string;
     termsAndConditionsContent?: string;
