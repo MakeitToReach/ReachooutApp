@@ -297,7 +297,9 @@ const ProjectSettingsPage = () => {
                   placeholder="your-project"
                   className="flex-1"
                 />
-                <span className="text-muted-foreground hidden md:block">.reachoout.com</span>
+                <span className="text-muted-foreground hidden md:block">
+                  .reachoout.com
+                </span>
                 <Button
                   type="button"
                   variant="outline"
@@ -408,6 +410,7 @@ const ProjectSettingsPage = () => {
                   value={String(selectedTemplate?.order || "")}
                   onValueChange={(value) => {
                     const template = templates.find(
+                      //eslint-disable-next-line @typescript-eslint/no-explicit-any
                       (t: any) => String(t.order) === value,
                     );
                     setSelectedTemplate(template);
