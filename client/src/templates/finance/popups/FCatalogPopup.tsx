@@ -33,8 +33,7 @@ export function FAddCatalogPopup({ children, onAdd }: FAddCatalogPopupProps) {
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-scroll"
-        onInteractOutside={(e) => e.preventDefault()}
+        className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll"
       >
         <DialogHeader>
           <DialogTitle className="md:text-2xl">Add Catalog Service</DialogTitle>
@@ -165,8 +164,7 @@ export const FEditCatalogPopup = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-scroll"
-        onInteractOutside={(e) => e.preventDefault()}
+        className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll"
       >
         <DialogHeader>
           <DialogTitle className="md:text-2xl">

@@ -30,7 +30,7 @@ export function AddServicesPopup({ children, onAdd }: AddServicesPopupProps) {
         <Dialog >
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[600px] font-Poppins"
+                className="sm:max-w-[40vw] font-Poppins"
                 style={{ overflow: "visible" }}
                 onInteractOutside={(e) => e.preventDefault()}
             >
@@ -120,16 +120,16 @@ export const EditServicePopup = ({
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 font-Poppins max-h-[90vh] overflow-y-scroll">
+            <DialogContent className="space-y-4 sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll">
                 <DialogHeader>
-                    <DialogTitle>
+                    <DialogTitle className="sm:text-2xl">
                         Edit Service {serviceIdx !== undefined && `#${serviceIdx + 1}`}
                     </DialogTitle>
                 </DialogHeader>
 
                 <div className="space-y-2">
-                    <Label>Title</Label>
                     <ReqInput
+                        label="Title"
                         value={formData.heading}
                         onChange={(e) => handleChange("heading", e.target.value)}
                     />

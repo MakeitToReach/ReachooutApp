@@ -33,9 +33,7 @@ export function PFAddExperiencePopup({
         <Dialog >
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-auto"
-                style={{ overflow: "visible" }}
-                onInteractOutside={(e) => e.preventDefault()}
+                className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-auto"
             >
                 <DialogHeader>
                     <DialogTitle className="md:text-2xl">Add Experience</DialogTitle>
@@ -130,9 +128,9 @@ export const PFEditExperiencePopup = ({
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 font-Poppins max-h-[90vh] overflow-y-scroll">
+            <DialogContent className="space-y-4 sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll">
                 <DialogHeader>
-                    <DialogTitle>
+                    <DialogTitle className="sm:text-2xl">
                         Edit Experience {expIdx !== undefined && `#${expIdx + 1}`}
                     </DialogTitle>
                 </DialogHeader>

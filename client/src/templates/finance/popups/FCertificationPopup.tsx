@@ -28,11 +28,10 @@ export function FAddCertificationPopup({ children, onAdd }: FAddCertificationPop
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[30vw] w-full max-h-[90vh] overflow-y-scroll font-Poppins"
-                onInteractOutside={(e) => e.preventDefault()}
+                className="sm:max-w-[40vw] max-h-[90vh] overflow-y-scroll font-Poppins"
             >
                 <DialogHeader>
-                    <DialogTitle className="sm:text-2xl">Add</DialogTitle>
+                    <DialogTitle className="sm:text-2xl">Add Certification</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col gap-3">
                     <div className="space-y-2">
@@ -109,8 +108,7 @@ export const FEditCertificationPopup = ({
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[50vw] max-h-[90vh] overflow-y-scroll font-Poppins"
-                onInteractOutside={(e) => e.preventDefault()}
+                className="sm:max-w-[40vw] max-h-[90vh] overflow-y-scroll font-Poppins"
             >
                 <DialogHeader>
                     <DialogTitle className="sm:text-2xl">

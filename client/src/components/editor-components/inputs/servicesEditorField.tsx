@@ -34,7 +34,7 @@ export const ServicesEditorField = ({
                 <h1 className="font-semibold">Services</h1>
                 <AddServicesPopup onAdd={handleAdd}>
                     <Button variant={"outline"}>
-                        Add Service{" "}
+                        Add {" "}
                         <span>
                             <LucidePlus />
                         </span>

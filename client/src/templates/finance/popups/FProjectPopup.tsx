@@ -34,8 +34,7 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="sm:max-w-[600px] max-h-[90vh] overflow-y-scroll font-Poppins"
-        onInteractOutside={(e) => e.preventDefault()}
+        className="sm:max-w-[40vw] max-h-[90vh] overflow-y-scroll font-Poppins"
       >
         <DialogHeader>
           <DialogTitle className="sm:text-2xl">Add Project</DialogTitle>
@@ -160,7 +159,7 @@ export const FEditProjectPopup = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="sm:max-w-[600px] max-h-[90vh] overflow-y-scroll font-Poppins"
+        className="sm:max-w-[40vw] max-h-[90vh] overflow-y-scroll font-Poppins"
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>

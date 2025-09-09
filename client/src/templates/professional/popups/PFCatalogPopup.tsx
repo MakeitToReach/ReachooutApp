@@ -34,7 +34,7 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="max-w-[600px] font-Poppins max-h-[90vh] overflow-y-auto"
+        className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-auto"
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
@@ -171,7 +171,7 @@ export const PFEditCatalogPopup = ({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="w-full max-w-[600px] font-Poppins max-h-[90vh] overflow-y-auto"
+        className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-auto"
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>

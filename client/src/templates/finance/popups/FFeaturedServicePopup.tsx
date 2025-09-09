@@ -32,9 +32,7 @@ export function FAddFeaturedServicePopup({
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className="sm:max-w-[600px] font-Poppins"
-        style={{ overflow: "visible" }}
-        onInteractOutside={(e) => e.preventDefault()}
+        className="sm:max-w-[40vw] max-h-[90vh] font-Poppins"
       >
         <DialogHeader>
           <DialogTitle className="md:text-2xl">Add Featured Service</DialogTitle>
@@ -118,9 +116,9 @@ export const FEditFeaturedServicePopup = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="space-y-4 z-[100] font-Poppins">
+      <DialogContent className="space-y-4 sm:max-w-[40vw] max-h-[90vh] font-Poppins">
         <DialogHeader>
-          <DialogTitle>
+          <DialogTitle className="sm:text-2xl">
             Edit Featured Service {serviceIdx !== undefined && `#${serviceIdx + 1}`}
           </DialogTitle>
         </DialogHeader>

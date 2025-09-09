@@ -32,8 +32,7 @@ export function FAddFeaturePopup({ children, onAdd }: FAddFeaturePopupProps) {
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[600px] font-Poppins max-h-[90vh] overflow-y-scroll"
-                onInteractOutside={(e) => e.preventDefault()}
+                className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll"
             >
                 <DialogHeader>
                     <DialogTitle className="md:text-2xl">Add Feature</DialogTitle>
@@ -119,9 +118,9 @@ export const FEditFeaturePopup = ({
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 z-[100] font-Poppins">
+            <DialogContent className="space-y-4 sm:max-w-[40vw] font-Poppins">
                 <DialogHeader>
-                    <DialogTitle>
+                    <DialogTitle className="sm:text-2xl">
                         Edit Feature {featureIdx !== undefined && `#${featureIdx + 1}`}
                     </DialogTitle>
                 </DialogHeader>

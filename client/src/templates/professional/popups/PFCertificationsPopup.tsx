@@ -27,7 +27,7 @@ export function PFAddCertificationPopup({ children, onAdd }: PFAddCertificationP
     return (
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="sm:max-w-[500px] font-Poppins max-h-[90vh] overflow-y-scroll">
+            <DialogContent className="sm:max-w-[35vw] font-Poppins max-h-[90vh] overflow-y-scroll">
                 <DialogHeader>
                     <DialogTitle className="md:text-2xl">Add Certification</DialogTitle>
                 </DialogHeader>
@@ -100,9 +100,9 @@ export const PFEditCertificationPopup = ({
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 z-[100] font-Poppins max-h-[90vh] overflow-y-scroll">
+            <DialogContent className="space-y-4 sm:max-w-[35vw] font-Poppins max-h-[90vh] overflow-y-scroll">
                 <DialogHeader>
-                    <DialogTitle>
+                    <DialogTitle className="sm:text-2xl">
                         Edit Certification {certIdx !== undefined && `#${certIdx + 1}`}
                     </DialogTitle>
                 </DialogHeader>

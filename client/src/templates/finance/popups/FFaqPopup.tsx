@@ -28,9 +28,7 @@ export function FAddFaqPopup({ children, onAdd }: FAddFaqPopupProps) {
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent
-                className="sm:max-w-[600px] font-Poppins"
-                style={{ overflow: "visible" }}
-                onInteractOutside={(e) => e.preventDefault()}
+                className="sm:max-w-[40vw] max-h-[90vh] font-Poppins"
             >
                 <DialogHeader>
                     <DialogTitle className="md:text-2xl">Add Faq</DialogTitle>
@@ -108,7 +106,7 @@ export const FEditFaqPopup = ({
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="space-y-4 z-[100] font-Poppins">
+            <DialogContent className="space-y-4 sm:max-w-[40vw] max-h-[90vh] font-Poppins">
                 <DialogHeader>
                     <DialogTitle className="sm:text-2xl">
                         Edit Faq {faqIdx !== undefined && `#${faqIdx + 1}`}
