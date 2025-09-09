@@ -41,7 +41,7 @@ export const CategorySelect = ({
       <SelectContent className="z-[100]">
         {categoryItems.map((item) => (
           <SelectItem key={item.id} value={item.id}>
-            {item.category}
+            {item.category} content
           </SelectItem>
         ))}
       </SelectContent>
