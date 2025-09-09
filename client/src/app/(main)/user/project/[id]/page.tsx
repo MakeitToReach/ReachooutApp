@@ -77,7 +77,7 @@ const ProjectPage = () => {
               ? templates.map((item, idx) => (
                 <TemplateCard
                   expiresAt={item.expiresAt || undefined}
-                  templateName={`Website ${idx + 1}`}
+                  templateName={`Reachpage ${idx + 1}`}
                   templateId={item.template.id}
                   key={idx}
                   imageUrl={item.template.thumbnailUrl || "/placeholder.png"}
