@@ -33,9 +33,6 @@ export function PaymentPopup({
 }: PaymentPopupProps) {
     const id = useId();
     const [value, setValue] = useState("1");
-    //eslint-disable-next-line
-    const [discountCoupon, setDiscountCoupon] = useState("");
-    // const [isRzpOpen, setIsRzpOpen] = useState(false);
 
 
     const monthlyPrice = 349;
@@ -140,22 +137,7 @@ export function PaymentPopup({
                             </>
                         )}
                     </RadioGroup>
-                    {value === "3" && (
-                        <div className="space-y-2">
-                            <label>Discount Code</label>
-                            <ReqInput
-                                // label="Discount Coupon Code"
-                                type="text"
-                                placeholder="Reachoout discount code"
-                                onChange={(e) => setDiscountCoupon(e.target.value)}
-                            />
-                        </div>
-                    )}
-
                     <div className="space-y-3">
-                        <p>
-                            <strong className="text-sm font-medium">Note:</strong>
-                        </p>
                         {!showPaymentOpts && (
                             <div className="text-muted-foreground flex items-center gap-2">
                                 <InfoIcon size={16} className="text-primary mt-0.5 shrink-0" />
