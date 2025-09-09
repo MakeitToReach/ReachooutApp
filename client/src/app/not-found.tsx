@@ -1,23 +1,16 @@
-import Link from "next/link";
-
 export default function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center">
-        <h1 className="text-6xl font-bold text-gray-900 mb-4">404</h1>
+        <h1 className="text-6xl font-bold text-gray-900 mb-4">Oops!</h1>
         <h2 className="text-2xl font-semibold text-gray-700 mb-4">
-          Portfolio Not Found
+          Reachpage Missing
         </h2>
         <p className="text-gray-600 mb-8">
-          The portfolio you&apos;re looking for doesn&apos;t exist or hasn&apos;t been published yet.
+          Looks like this page isn&apos;t live yet. The owner may still be working on
+          it. Head back to the <a href="https://reachoout.com" className="text-orange-500">Reachoout.com</a> to explore more.
         </p>
-        <Link
-          href="/home"
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Go back home
-        </Link>
       </div>
     </div>
   );
-} 
+}
