@@ -61,7 +61,7 @@ export const Navbar = () => {
         <a href="https://reachoout.com">Home</a>
         <a href="https://reachoout.com/support">Support</a>
         <a href="https://reachoout.com/resources">Blog</a>
-        <a href="https://reachoout.com/help">Help Book</a>
+        <a href="https://reachoout.com/help">Helpbook</a>
       </div>
     </div>
   );
