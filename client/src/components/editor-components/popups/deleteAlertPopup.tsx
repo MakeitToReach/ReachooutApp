@@ -17,17 +17,19 @@ interface DeleteAlertPopupProps {
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
     onConfirm: () => void;
+    type: "project" | "reachpage"
 }
 
 export function DeleteAlertPopup({
     children,
     open,
     onOpenChange,
-    onConfirm
+    onConfirm,
+    type
 }: DeleteAlertPopupProps) {
     const [value, setValue] = useState("");
 
-    const canConfirm = value.trim().toLowerCase() === "delete my project";
+    const canConfirm = value.trim().toLowerCase() === `delete my ${type}`;
 
     // Reset input value when dialog closes
     useEffect(() => {
@@ -56,7 +58,7 @@ export function DeleteAlertPopup({
                 <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">
                         This action cannot be undone. To confirm, type
-                        <span className="mx-1 font-semibold">delete my project</span>
+                        <span className="mx-1 font-semibold">delete my {type}</span>
                         below.
                     </p>
                     <Input

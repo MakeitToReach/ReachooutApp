@@ -22,6 +22,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import React from "react";
 import QRCodeModal from "./QRCodeModal";
 import { useRouter } from "next/navigation";
+import { DeleteAlertPopup } from "./popups/deleteAlertPopup";
 
 interface ProjectCardProps {
   project: Project;
@@ -31,6 +32,7 @@ interface ProjectCardProps {
 export function ProjectCard({ project, onDelete }: ProjectCardProps) {
   const { isMobile } = useSidebar();
   const [qrOpen, setQROpen] = React.useState(false);
+  const [deleteOpen, setDeleteOpen] = React.useState(false);
   const router = useRouter();
 
   const getPortfolioUrl = () => {
@@ -59,7 +61,7 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
   return (
     <Card
       className="shadow-2xl hover:shadow-3xl transition-all duration-300 px-0 cursor-pointer hover:border-zinc-600"
-      onClick={() => router.push(`/user/project/${project.id}`)}
+      onClick={() => !deleteOpen && router.push(`/user/project/${project.id}`)}
     >
       <CardHeader
         className="flex flex-row justify-between items-center px-2 w-full"
@@ -86,7 +88,7 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
 
         {/* Settings Menu */}
 
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <div
               role="button"
@@ -125,7 +127,7 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
               </DropdownMenuItem>
             </Link>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => onDelete(project.id)}>
+            <DropdownMenuItem onClick={() => setDeleteOpen(true)}>
               <Trash2 className="text-destructive" />
               <span>Delete Project</span>
             </DropdownMenuItem>
@@ -138,6 +140,16 @@ export function ProjectCard({ project, onDelete }: ProjectCardProps) {
         onClose={() => setQROpen(false)}
         value={portfolioUrl}
       />
+      <DeleteAlertPopup
+        open={deleteOpen}
+        onOpenChange={setDeleteOpen}
+        onConfirm={() => onDelete(project.id)}
+        type="project"
+      >
+        <h1 className="hidden" aria-hidden>
+          Delete Project
+        </h1>
+      </DeleteAlertPopup>
     </Card>
   );
 }

@@ -293,7 +293,7 @@ export const TemplateCard = ({
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => setDeleteOpen(true)}>
                   <Trash2 className="text-destructive" />
-                  <span className="text-sm">Delete Website</span>
+                  <span className="text-sm">Delete Reachpage</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -322,9 +322,10 @@ export const TemplateCard = ({
         open={deleteOpen}
         onOpenChange={setDeleteOpen}
         onConfirm={handleDelete}
+        type="reachpage"
       >
         <h1 className="hidden" aria-hidden>
-          Delete Website
+          Delete Reachpage
         </h1>
       </DeleteAlertPopup>
     </div>
