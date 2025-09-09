@@ -35,7 +35,6 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-auto"
-        onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
           <DialogTitle className="md:text-2xl">Add Catalog</DialogTitle>

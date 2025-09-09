@@ -34,7 +34,6 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll"
-        onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
           <DialogTitle className="md:text-2xl">Add Project</DialogTitle>

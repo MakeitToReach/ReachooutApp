@@ -122,7 +122,7 @@ export const PFNavbar = ({
                   <SelectItem
                     key={section.name}
                     value={section.href}
-                    className="capitalize text-base bg-template-secondary "
+                    className="capitalize text-lg bg-template-secondary "
                   >
                     {section.name}
                   </SelectItem>
@@ -134,7 +134,7 @@ export const PFNavbar = ({
                 >
                   <SelectItem
                     value="view-qr-code"
-                    className="capitalize text-base"
+                    className="capitalize text-lg"
                   >
                     View QR Code
                   </SelectItem>
