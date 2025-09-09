@@ -121,32 +121,32 @@ const ProjectPage = () => {
       <div className="fixed bottom-0 h-20 border-t w-full flex items-center">
         <ScrollArea className="w-full" type="auto">
           <div className="flex items-center gap-2 px-4">
-            <Link href="https://reachoout.com/help">
+            <Link href="https://reachoout.com/help" target="_blank">
               <Button variant="default" className="bg-white text-black text-lg">
                 Tutorials
               </Button>
             </Link>
-            <Link href="https://pixabay.com">
+            <Link href="https://pixabay.com" target="_blank">
               <Button variant="default" className="bg-white text-black text-lg">
                 Download Free images
               </Button>
             </Link>
-            <Link href="https://imageresizer.com/crop-image">
+            <Link href="https://imageresizer.com/crop-image" target="_blank">
               <Button variant="default" className="bg-white text-black text-lg">
                 Image Crop tool
               </Button>
             </Link>
-            <Link href="https://reachoout.com/support">
+            <Link href="https://reachoout.com/support" target="_blank">
               <Button variant="default" className="bg-white text-black text-lg">
                 Support
               </Button>
             </Link>
-            <Link href="https://imageresizer.com/image-compressor">
+            <Link href="https://imageresizer.com/image-compressor" target="_blank">
               <Button variant="default" className="bg-white text-black text-lg">
                 Image Compress Tool
               </Button>
             </Link>
-            <Link href="https://reachoout.com/resources">
+            <Link href="https://reachoout.com/resources" target="_blank">
               <Button variant="default" className="bg-white text-black text-lg">
                 Product Blog
               </Button>

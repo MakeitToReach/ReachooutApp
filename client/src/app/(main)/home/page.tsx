@@ -351,7 +351,13 @@ function Home() {
               href="https://reachoout.com/resources"
               className="hover:text-white transition"
             >
-              Tutorials
+              Blog
+            </a>
+            <a
+              href="https://reachoout.com/help"
+              className="hover:text-white transition"
+            >
+              Helpbook
             </a>
           </motion.div>
         </div>
