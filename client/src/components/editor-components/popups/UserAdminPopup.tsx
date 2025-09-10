@@ -87,9 +87,8 @@ export default function UserAdminPopup({
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange} >
-      <DialogContent
-        className="font-Poppins min-w-[70vw] max-h-[90vh] overflow-y-scroll">
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="font-Poppins min-w-[70vw] max-h-[90vh] overflow-y-scroll">
         <DialogHeader>
           <DialogTitle className="text-xl">User Admin</DialogTitle>
         </DialogHeader>
@@ -143,11 +142,15 @@ export default function UserAdminPopup({
                       <div className="flex items-center gap-2">
                         <Dialog>
                           <DialogTrigger asChild>
-                            <Button variant="outline" size="sm">Add Custom domain</Button>
+                            <Button variant="outline" size="sm">
+                              Add Custom domain
+                            </Button>
                           </DialogTrigger>
                           <DialogContent className="font-Poppins w-[90vw] max-w-md">
                             <DialogHeader>
-                              <DialogTitle className="text-base">Add custom domain</DialogTitle>
+                              <DialogTitle className="text-base">
+                                Add custom domain
+                              </DialogTitle>
                             </DialogHeader>
                             <AddCustomDomainForm projectId={project.id} />
                           </DialogContent>
@@ -252,6 +255,7 @@ function AddCustomDomainForm({ projectId }: { projectId: string }) {
     try {
       await addCustomDomain(projectId, domain.trim());
     } catch (e) {
+      console.error("error adding custom domain", e);
       setError("Failed to add domain");
     } finally {
       setLoading(false);
@@ -266,7 +270,12 @@ function AddCustomDomainForm({ projectId }: { projectId: string }) {
         onChange={(e) => setDomain(e.target.value)}
       />
       {error && <div className="text-xs text-red-600">{error}</div>}
-      <Button size="sm" className="w-full" onClick={onSubmit} disabled={loading}>
+      <Button
+        size="sm"
+        className="w-full"
+        onClick={onSubmit}
+        disabled={loading}
+      >
         {loading ? "Saving..." : "Submit"}
       </Button>
     </div>
