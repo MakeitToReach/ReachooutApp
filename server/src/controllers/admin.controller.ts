@@ -369,3 +369,36 @@ export const getAllUsersWithProjects = async (req: Request, res: Response) => {
     return res.status(500).json({ error: "Failed to fetch users" });
   }
 };
+
+export const setProjectCustomDomainAdmin = async (
+  req: Request<{}, {}, { projectId: string; customDomain: string }>,
+  res: Response,
+) => {
+  try {
+    const { projectId, customDomain } = req.body;
+
+    if (!projectId || !customDomain) {
+      return res
+        .status(400)
+        .json({ error: "Project ID and custom domain are required" });
+    }
+
+    const project = await prisma.project.findUnique({ where: { id: projectId } });
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    const updatedProject = await prisma.project.update({
+      where: { id: projectId },
+      data: { customDomain },
+    });
+
+    return res.status(200).json({
+      project: updatedProject,
+      message: "Project custom domain updated successfully",
+    });
+  } catch (error) {
+    console.error("Error setting project custom domain (admin):", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};

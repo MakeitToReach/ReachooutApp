@@ -181,3 +181,31 @@ export const getAllUsers = async () => {
     }
   }
 };
+
+export const addCustomDomain = async (
+  projectId: string,
+  customDomain: string,
+) => {
+  const token = getAdminToken();
+  const response = await api.post(
+    `/v1/admin/project/custom-domain`,
+    {
+      projectId,
+      customDomain,
+    },
+    {
+      headers: { Authorization: `Bearer ${token}` },
+      withCredentials: true,
+    },
+  );
+
+  if (response.status === 200) {
+    toast.success("Custom domain added successfully");
+    return response.data?.project;
+  }
+  toast.error(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    `Failed to add custom domain: ${(response as any)?.data?.error ?? "Unknown error"}`,
+  );
+  return null;
+};

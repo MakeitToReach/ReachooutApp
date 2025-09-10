@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +14,8 @@ import { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { updateTemplateExpiry } from "@/api/templates";
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
+import { addCustomDomain } from "@/api/admin";
 
 type TemplateItem = {
   projectId: string;
@@ -84,8 +87,9 @@ export default function UserAdminPopup({
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="font-Poppins min-w-[70vw] max-h-[90vh] overflow-y-scroll">
+    <Dialog open={open} onOpenChange={onOpenChange} >
+      <DialogContent
+        className="font-Poppins min-w-[70vw] max-h-[90vh] overflow-y-scroll">
         <DialogHeader>
           <DialogTitle className="text-xl">User Admin</DialogTitle>
         </DialogHeader>
@@ -136,13 +140,26 @@ export default function UserAdminPopup({
                         </div>
                       </div>
 
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => onOpenProject(project.subDomain)}
-                      >
-                        Open
-                      </Button>
+                      <div className="flex items-center gap-2">
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button variant="outline" size="sm">Add Custom domain</Button>
+                          </DialogTrigger>
+                          <DialogContent className="font-Poppins w-[90vw] max-w-md">
+                            <DialogHeader>
+                              <DialogTitle className="text-base">Add custom domain</DialogTitle>
+                            </DialogHeader>
+                            <AddCustomDomainForm projectId={project.id} />
+                          </DialogContent>
+                        </Dialog>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => onOpenProject(project.subDomain)}
+                        >
+                          Open
+                        </Button>
+                      </div>
                     </div>
 
                     {expandedProjects.has(project.id) && (
@@ -217,5 +234,41 @@ export default function UserAdminPopup({
         )}
       </DialogContent>
     </Dialog>
+  );
+}
+
+function AddCustomDomainForm({ projectId }: { projectId: string }) {
+  const [domain, setDomain] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const onSubmit = async () => {
+    setError(null);
+    if (!domain.trim()) {
+      setError("Domain is required");
+      return;
+    }
+    setLoading(true);
+    try {
+      await addCustomDomain(projectId, domain.trim());
+    } catch (e) {
+      setError("Failed to add domain");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="space-y-2">
+      <Input
+        placeholder="example.com"
+        value={domain}
+        onChange={(e) => setDomain(e.target.value)}
+      />
+      {error && <div className="text-xs text-red-600">{error}</div>}
+      <Button size="sm" className="w-full" onClick={onSubmit} disabled={loading}>
+        {loading ? "Saving..." : "Submit"}
+      </Button>
+    </div>
   );
 }

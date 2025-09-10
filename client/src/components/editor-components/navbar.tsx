@@ -58,10 +58,9 @@ export const Navbar = () => {
             handleLogout={logoutAndRedirect}
           />
         )}
-        <a href="https://reachoout.com">Home</a>
-        <a href="https://reachoout.com/support">Support</a>
-        <a href="https://reachoout.com/resources">Blog</a>
-        <a href="https://reachoout.com/help">Helpbook</a>
+        <a target="_blank" href="https://reachoout.com/help">Helpbook</a>
+        <a target="_blank" href="https://reachoout.com/support">Support</a>
+        <a target="_blank" href="https://reachoout.com/resources">Blog</a>
       </div>
     </div>
   );

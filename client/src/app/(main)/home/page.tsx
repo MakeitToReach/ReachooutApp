@@ -336,28 +336,25 @@ function Home() {
             className="flex items-center gap-8 text-gray-400"
           >
             <a
-              href="https://reachoout.com"
+              target="_blank"
+              href="https://reachoout.com/help"
               className="hover:text-white transition"
             >
-              Home
+              Helpbook
             </a>
             <a
+              target="_blank"
               href="https://reachoout.com/support"
               className="hover:text-white transition"
             >
               Support
             </a>
             <a
+              target="_blank"
               href="https://reachoout.com/resources"
               className="hover:text-white transition"
             >
               Blog
-            </a>
-            <a
-              href="https://reachoout.com/help"
-              className="hover:text-white transition"
-            >
-              Helpbook
             </a>
           </motion.div>
         </div>

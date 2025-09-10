@@ -10,6 +10,7 @@ import {
   getAllUsersWithProjects,
   loginAdmin,
   updateTemplate,
+  setProjectCustomDomainAdmin,
 } from "../controllers/admin.controller";
 import {
   getTotalProjectCount,
@@ -73,5 +74,14 @@ adminRouter.get("/analytics/projects", isAuthenticated, (req: Request, res: Resp
 adminRouter.get("/users", isAuthenticated, (req: Request, res: Response) => {
   getAllUsersWithProjects(req, res);
 });
+
+// Admin-only: update project custom domain without req.user ownership checks
+adminRouter.post(
+  "/project/custom-domain",
+  isAuthenticated,
+  (req: Request, res: Response) => {
+    setProjectCustomDomainAdmin(req, res);
+  },
+);
 
 export default adminRouter;
