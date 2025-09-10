@@ -27,7 +27,7 @@ export function PFAddCertificationPopup({ children, onAdd }: PFAddCertificationP
     return (
         <Dialog>
             <DialogTrigger asChild>{children}</DialogTrigger>
-            <DialogContent className="sm:max-w-[35vw] font-Poppins max-h-[90vh] overflow-y-scroll">
+            <DialogContent className="sm:max-w-[35vw] space-y-4 font-Poppins max-h-[90vh] overflow-y-scroll">
                 <DialogHeader>
                     <DialogTitle className="md:text-2xl">Add Certification</DialogTitle>
                 </DialogHeader>
@@ -40,7 +40,7 @@ export function PFAddCertificationPopup({ children, onAdd }: PFAddCertificationP
                         onChange={(e) => setCert({ ...cert, subtitle: e.target.value })}
                     />
                     <div className="space-y-2">
-                        <Label className="font-semibold">Certification Image</Label>
+                        <Label>Certification Image</Label>
                         <ImageInput
                             initialImgUrl={cert.imgUrl}
                             className="w-full"
@@ -115,7 +115,7 @@ export const PFEditCertificationPopup = ({
                     />
                 </div>
                 <div className="space-y-2">
-                    <Label className="font-semibold">Certification Image</Label>
+                    <Label>Certification Image</Label>
                     <ImageInput
                         initialImgUrl={formData.imgUrl}
                         className="w-full"

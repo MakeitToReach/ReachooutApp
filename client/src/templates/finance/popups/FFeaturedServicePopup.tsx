@@ -47,7 +47,7 @@ export function FAddFeaturedServicePopup({
           />
 
           <div className="space-y-2">
-            <Label className="font-semibold">Subtitle</Label>
+            <Label>Subtitle</Label>
             <textarea
               placeholder="Subtitle"
               className="border p-2 w-full rounded-md h-20"
@@ -132,7 +132,7 @@ export const FEditFeaturedServicePopup = ({
           />
 
           <div className="space-y-2">
-            <Label className="font-semibold">Subtitle</Label>
+            <Label>Subtitle</Label>
             <textarea
               placeholder="Subtitle"
               className="border p-2 w-full rounded-md h-20"

@@ -33,9 +33,7 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent
-        className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-auto"
-      >
+      <DialogContent className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="md:text-2xl">Add Catalog</DialogTitle>
         </DialogHeader>
@@ -57,7 +55,7 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
           />
 
           <div>
-            <label className="font-semibold">Description</label>
+            <Label>Description</Label>
             <TipTapEditor
               value={item.description}
               onChange={(value) => setItem({ ...item, description: value })}
@@ -67,10 +65,11 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
             />
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 w-full">
             <ReqInput
               label="Button Text"
               type="text"
+              className="w-full"
               placeholder="View my project"
               value={item.btnText}
               onChange={(e) => setItem({ ...item, btnText: e.target.value })}
@@ -79,6 +78,7 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
             <ReqInput
               label="Button Link"
               type="text"
+              className="w-full"
               placeholder="https://reachoout.com"
               value={item.btnLink}
               onChange={(e) => setItem({ ...item, btnLink: e.target.value })}
@@ -195,7 +195,7 @@ export const PFEditCatalogPopup = ({
           />
 
           <div>
-            <label className="font-semibold">Description</label>
+            <Label>Description</Label>
             <TipTapEditor
               value={formData.description}
               onChange={(value) => handleChange("description", value)}
@@ -205,10 +205,11 @@ export const PFEditCatalogPopup = ({
             />
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 w-full">
             <ReqInput
               label="Button Text"
               type="text"
+              className="w-full"
               placeholder="View my project"
               value={formData.btnText}
               onChange={(e) => handleChange("btnText", e.target.value)}
@@ -217,6 +218,7 @@ export const PFEditCatalogPopup = ({
             <ReqInput
               label="Button Link"
               type="text"
+              className="w-full"
               placeholder="https://reachoout.com"
               value={formData.btnLink}
               onChange={(e) => handleChange("btnLink", e.target.value)}

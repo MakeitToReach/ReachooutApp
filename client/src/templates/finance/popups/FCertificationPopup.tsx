@@ -35,7 +35,7 @@ export function FAddCertificationPopup({ children, onAdd }: FAddCertificationPop
                 </DialogHeader>
                 <div className="flex flex-col gap-3">
                     <div className="space-y-2">
-                        <Label className="font-semibold">Certification Image</Label>
+                        <Label>Certification Image</Label>
                         <ImageInput
                             initialImgUrl={certification.imgUrl}
                             className="w-full"
@@ -118,7 +118,7 @@ export const FEditCertificationPopup = ({
 
                 <div className="space-y-3">
                     <div className="space-y-2">
-                        <Label className="font-semibold">Certification Image</Label>
+                        <Label>Certification Image</Label>
                         <ImageInput
                             initialImgUrl={formData.imgUrl}
                             className="w-full"

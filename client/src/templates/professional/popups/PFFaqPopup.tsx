@@ -44,7 +44,7 @@ export function PFAddFaqPopup({ children, onAdd }: PFAddFaqPopupProps) {
                     />
 
                     <div className="space-y-2">
-                        <Label className="font-semibold">Answer</Label>
+                        <Label>Answer</Label>
                         <TipTapEditor
                             value={item.answer}
                             onChange={(value) => setItem({ ...item, answer: value })}
@@ -123,7 +123,7 @@ export const PFEditFaqPopup = ({
                     />
 
                     <div className="space-y-2">
-                        <Label className="font-semibold">Answer</Label>
+                        <Label>Answer</Label>
                         <TipTapEditor
                             value={formData.answer}
                             onChange={(value) => handleChange("answer", value)}

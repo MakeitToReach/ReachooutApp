@@ -22,11 +22,11 @@ export const ReqInput: React.FC<ReqInputProps> = ({
     ...props
 }) => {
     return (
-        <div className={cn("space-y-2", className)}>
+        <div className={cn("", className)}>
             {label && (
                 <Label
                     htmlFor="input-02"
-                    className="text-md md:text-lg font-Montserrat"
+                    className="font-Montserrat"
                 >
                     {label}
                     {isRequired && <span className="text-red-400">*</span>}

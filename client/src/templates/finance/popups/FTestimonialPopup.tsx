@@ -59,7 +59,7 @@ export function FAddTestimonialPopup({ children, onAdd }: FAddTestimonialPopupPr
           />
 
           <div className="space-y-2">
-            <Label className="font-semibold">Message</Label>
+            <Label>Message</Label>
             <Textarea
               placeholder="Enter testimonial message"
               className="border p-2 w-full rounded-md h-20"
@@ -71,7 +71,7 @@ export function FAddTestimonialPopup({ children, onAdd }: FAddTestimonialPopupPr
           </div>
 
           <div className="space-y-2">
-            <Label className="font-semibold">Rating</Label>
+            <Label>Rating</Label>
             <input
               type="range"
               min={0}
@@ -87,7 +87,7 @@ export function FAddTestimonialPopup({ children, onAdd }: FAddTestimonialPopupPr
           </div>
 
           <div className="space-y-2">
-            <Label className="font-semibold">Avatar Image</Label>
+            <Label>Avatar Image</Label>
             <ImageInput
               initialImgUrl={testimonial.avatarUrl}
               className="w-full"
@@ -177,7 +177,7 @@ export const FEditTestimonialPopup = ({
           />
 
           <div className="space-y-2">
-            <Label className="font-semibold">Message</Label>
+            <Label>Message</Label>
             <textarea
               placeholder="Enter testimonial message"
               className="border p-2 w-full rounded-md h-20"
@@ -187,7 +187,7 @@ export const FEditTestimonialPopup = ({
           </div>
 
           <div className="space-y-2">
-            <Label className="font-semibold">Rating</Label>
+            <Label>Rating</Label>
             <input
               type="range"
               min={0}
@@ -203,7 +203,7 @@ export const FEditTestimonialPopup = ({
           </div>
 
           <div className="space-y-2">
-            <Label className="font-semibold">Avatar Image</Label>
+            <Label>Avatar Image</Label>
             <ImageInput
               initialImgUrl={formData.avatarUrl}
               className="w-full"

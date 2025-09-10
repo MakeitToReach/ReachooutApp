@@ -81,7 +81,7 @@ export function FAddCatalogPopup({ children, onAdd }: FAddCatalogPopupProps) {
           />
 
           <div>
-            <label className="font-semibold">Description</label>
+            <Label>Description</Label>
             <TipTapEditor
               value={item.description}
               onChange={(e) => setItem({ ...item, description: e })}

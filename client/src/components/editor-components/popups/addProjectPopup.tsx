@@ -13,6 +13,7 @@ import { useState } from "react";
 import { ReqInput } from "../inputs/reqInput";
 import { ImageInput } from "@/components/imgInput";
 import { TipTapEditor } from "@/components/ui/TipTapEditor";
+import { Label } from "@/components/ui/label";
 
 interface AddProjectPopupProps {
   children: React.ReactNode;
@@ -58,7 +59,7 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
           />
 
           <div>
-            <label className="font-semibold">Description</label>
+            <Label>Description</Label>
             <TipTapEditor
               value={project.description}
               onChange={(value) => setProject({ ...project, description: value })}

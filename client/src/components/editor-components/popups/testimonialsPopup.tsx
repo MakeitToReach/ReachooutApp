@@ -51,7 +51,7 @@ export function AddTestimonialPopup({
 
 
                     <div>
-                        <label className="font-semibold">Message</label>
+                        <Label>Message</Label>
                         <Textarea
                             placeholder="Message"
                             className="border p-2 w-full rounded-md h-20"
@@ -63,7 +63,7 @@ export function AddTestimonialPopup({
                     </div>
 
                     <div className="space-y-2">
-                        <Label className="font-semibold">Client Image</Label>
+                        <Label>Client Image</Label>
                         <ImageInput
                             initialImgUrl={testimonial.img}
                             className="w-full"
@@ -145,7 +145,7 @@ export const EditTestimonialPopup = ({
                     />
 
                     <div>
-                        <label className="font-semibold">Message</label>
+                        <Label>Message</Label>
                         <Textarea
                             placeholder="Message"
                             className="border p-2 w-full rounded-md h-20"
@@ -156,7 +156,7 @@ export const EditTestimonialPopup = ({
                 </div>
 
                 <div className="space-y-2">
-                    <Label className="font-semibold">Client Image</Label>
+                    <Label>Client Image</Label>
                     <ImageInput
                         initialImgUrl={formData.img}
                         className="w-full"

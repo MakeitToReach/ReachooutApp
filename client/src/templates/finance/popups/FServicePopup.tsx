@@ -33,9 +33,7 @@ export function FAddServicePopup({ children, onAdd }: FAddServicePopupProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent
-        className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll"
-      >
+      <DialogContent className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll">
         <DialogHeader>
           <DialogTitle className="md:text-2xl">Add Service</DialogTitle>
         </DialogHeader>
@@ -58,7 +56,7 @@ export function FAddServicePopup({ children, onAdd }: FAddServicePopupProps) {
           />
 
           <div className="space-y-2">
-            <Label className="font-semibold">Description</Label>
+            <Label>Description</Label>
             <TipTapEditor
               onChange={(value) =>
                 setService({ ...service, description: value })
@@ -184,7 +182,7 @@ export const FEditServicePopup = ({
           />
 
           <div className="space-y-2">
-            <Label className="font-semibold">Description</Label>
+            <Label>Description</Label>
             <TipTapEditor
               value={service.description}
               onChange={(value) => handleChange("description", value)}
@@ -202,12 +200,14 @@ export const FEditServicePopup = ({
           <div className="flex gap-2 w-full">
             <ReqInput
               type="text"
+              className="w-full"
               label="Button Text"
               value={formData.btnText}
               onChange={(e) => handleChange("btnText", e.target.value)}
             />
             <ReqInput
               type="text"
+              className="w-full"
               label="Button Link"
               value={formData.btnLink}
               onChange={(e) => handleChange("btnLink", e.target.value)}

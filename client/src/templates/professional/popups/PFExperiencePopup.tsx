@@ -63,7 +63,7 @@ export function PFAddExperiencePopup({
                     />
 
                     <div className="space-y-2">
-                        <Label className="font-semibold">Description</Label>
+                        <Label>Description</Label>
                         <TipTapEditor
                             value={item.description}
                             onChange={(value) => setItem({ ...item, description: value })}
@@ -156,7 +156,7 @@ export const PFEditExperiencePopup = ({
                     />
 
                     <div className="space-y-2">
-                        <Label className="font-semibold">Description</Label>
+                        <Label>Description</Label>
                         <TipTapEditor
                             value={formData.description}
                             onChange={(value) => handleChange("description", value)}

@@ -52,7 +52,7 @@ export function FAddTimelinePopup({ children, onAdd }: FAddTimelinePopupProps) {
           />
 
           <div className="space-y-2">
-            <Label className="font-semibold">Description</Label>
+            <Label>Description</Label>
             <TipTapEditor
               placeholder="Enter step description"
               value={step.description}
@@ -62,7 +62,7 @@ export function FAddTimelinePopup({ children, onAdd }: FAddTimelinePopupProps) {
           </div>
 
           <div className="space-y-2">
-            <Label className="font-semibold">Timeline Image</Label>
+            <Label>Timeline Image</Label>
             <ImageInput
               className="w-full"
               onImageUpload={(imgUrl) => {
@@ -150,7 +150,7 @@ export const FEditTimelinePopup = ({
           />
 
           <div className="space-y-2">
-            <Label className="font-semibold">Description</Label>
+            <Label>Description</Label>
             <TipTapEditor
               placeholder="Enter step description"
               value={formData.description}
@@ -160,7 +160,7 @@ export const FEditTimelinePopup = ({
           </div>
 
           <div className="space-y-2">
-            <Label className="font-semibold">Timeline Image</Label>
+            <Label>Timeline Image</Label>
             <ImageInput
               initialImgUrl={formData.image}
               className="w-full"

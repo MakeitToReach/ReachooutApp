@@ -14,6 +14,7 @@ import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { F_BLOG } from "../types/blogs.types";
 import { ImageVideoInput } from "@/components/editor-components/inputs/ImageVideoInput";
 import { TipTapEditor } from "@/components/ui/TipTapEditor";
+import { Label } from "@/components/ui/label";
 
 interface FAddBlogPopupProps {
   children: React.ReactNode;
@@ -56,7 +57,7 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
           />
 
           <div>
-            <label className="font-semibold">Description</label>
+            <Label>Description</Label>
             <TipTapEditor
               value={blog.description}
               onChange={(value) => setBlog({ ...blog, description: value })}
@@ -169,7 +170,7 @@ export const FEditBlogPopup = ({
           />
 
           <div>
-            <label className="font-semibold">Description</label>
+            <Label>Description</Label>
             <TipTapEditor
               value={blog.description}
               onChange={(value) => handleChange("description", value)}

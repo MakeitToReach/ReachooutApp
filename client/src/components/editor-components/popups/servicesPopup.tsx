@@ -49,7 +49,7 @@ export function AddServicesPopup({ children, onAdd }: AddServicesPopupProps) {
                     />
 
                     <div>
-                        <Label className="font-semibold">Description</Label>
+                        <Label>Description</Label>
                         <TipTapEditor
                             value={service.description}
                             onChange={(value) => setService({ ...service, description: value })}
@@ -135,7 +135,7 @@ export const EditServicePopup = ({
                     />
 
                     <div>
-                        <Label className="font-semibold">Description</Label>
+                        <Label>Description</Label>
                         <TipTapEditor
                             value={formData.description}
                             onChange={(value) => handleChange("description", value)}

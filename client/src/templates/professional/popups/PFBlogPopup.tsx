@@ -14,6 +14,7 @@ import { ReqInput } from "@/components/editor-components/inputs/reqInput";
 import { PF_BLOG } from "../types/blog.types";
 import { ImageVideoInput } from "@/components/editor-components/inputs/ImageVideoInput";
 import { TipTapEditor } from "@/components/ui/TipTapEditor";
+import { Label } from "@/components/ui/label";
 
 interface PFAddBlogPopupProps {
   children: React.ReactNode;
@@ -58,7 +59,7 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
           />
 
           <div>
-            <label className="font-semibold">Description</label>
+            <Label>Description</Label>
             <TipTapEditor
               value={blog.description}
               onChange={(value) => setBlog({ ...blog, description: value })}
@@ -172,7 +173,7 @@ export const PFEditBlogPopup = ({
           />
 
           <div>
-            <label className="font-semibold">Description</label>
+            <Label>Description</Label>
             <TipTapEditor
               value={formData.description}
               onChange={(value) => handleChange("description", value)}

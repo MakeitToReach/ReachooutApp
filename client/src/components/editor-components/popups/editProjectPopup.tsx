@@ -11,6 +11,7 @@ import { PF_PROJECT } from "@/templates/professional/types/project";
 import { ReqInput } from "../inputs/reqInput";
 import { ImageInput } from "@/components/imgInput";
 import { TipTapEditor } from "@/components/ui/TipTapEditor";
+import { Label } from "@/components/ui/label";
 
 interface EditProjectPopupProps {
   project: PF_PROJECT;
@@ -70,7 +71,7 @@ export const EditProjectPopup = ({
           />
 
           <div className="space-y-2">
-            <h1 className="text-sm font-medium">Description</h1>
+            <Label>Description</Label>
             <TipTapEditor
               value={formData.description}
               onChange={(value) => handleChange("description", value)}
