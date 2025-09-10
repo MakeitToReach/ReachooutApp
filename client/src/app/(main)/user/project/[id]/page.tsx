@@ -115,7 +115,7 @@ const ProjectPage = () => {
           </>
         )}
       </div>
-      <div className="fixed bg-background z-[100] bottom-0 h-20 border-t w-full flex items-center">
+      <div className="fixed bg-background z-[25] bottom-0 h-20 border-t w-full flex items-center">
         <ReferencesButtons />
       </div>
     </div>
