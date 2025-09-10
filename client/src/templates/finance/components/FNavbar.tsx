@@ -122,15 +122,17 @@ export const FNavbar = ({
                 </m.span>
               </SelectTrigger>
               <SelectContent>
-                {overflowSections.map((section) => (
-                  <SelectItem
-                    key={section.name}
-                    value={section.href}
-                    className="capitalize text-lg"
-                  >
-                    {section.name}
-                  </SelectItem>
-                ))}
+                {overflowSections
+                  .filter((s) => s.name && s.name.trim() !== "")
+                  .map((section) => (
+                    <SelectItem
+                      key={section.name}
+                      value={section.href}
+                      className="capitalize text-lg"
+                    >
+                      {section.name}
+                    </SelectItem>
+                  ))}
                 <QRCodePopup
                   value={qrCodeUrl || window?.location?.href}
                   open={qrPopupOpen}
@@ -166,48 +168,66 @@ export const FNavbar = ({
         {/* Mobile Menu Button */}
 
         {isMobile && (
-          <Select
-            value={mobileSelectValue}
-            onValueChange={(value) => handleSelectChange(value, true)}
-          >
-            <SelectTrigger
-              showIcon={false}
-              className="w-fit px-3 py-1 text-template-text-primary shadow-none bg-transparent border-none hover:underline flex items-center gap-1 [&>[data-slot='icon']]:hidden"
+          <div className="flex items-center gap-2">
+            <m.a
+              initial={{ opacity: 0, x: 20, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{
+                duration: 0.5,
+                delay: delay,
+                ease: "easeOut",
+              }}
+              href={btnLink}
             >
-              <m.span
-                initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.5,
-                  delay: delay,
-                  ease: "easeOut",
-                }}
+              <FButton btnText={btnText} className="text-lg" />
+            </m.a>
+            <Select
+              value={mobileSelectValue}
+              onValueChange={(value) => handleSelectChange(value, true)}
+            >
+              <SelectTrigger
+                showIcon={false}
+                className="w-fit px-3 py-1 text-template-text-primary shadow-none bg-transparent border-none hover:underline flex items-center gap-1 [&>[data-slot='icon']]:hidden"
               >
-                <LucideMenu className="size-10" />
-              </m.span>
-            </SelectTrigger>
-            <SelectContent>
-              {sections.slice(2, sections.length - 2).map((section) => (
-                <SelectItem
-                  key={section.name}
-                  value={section.href}
-                  className="capitalize text-lg"
+                <m.span
+                  initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: delay,
+                    ease: "easeOut",
+                  }}
                 >
-                  {section.name}
-                </SelectItem>
-              ))}
-              <QRCodePopup
-                value={qrCodeUrl || window?.location?.href}
-                open={qrPopupOpen}
-                onOpenChange={setQrPopupOpen}
-              >
-                <SelectItem value="view-qr-code" className="capitalize text-lg">
-                  View QR Code
-                </SelectItem>
-              </QRCodePopup>
-            </SelectContent>
-          </Select>
+                  <LucideMenu className="size-10" />
+                </m.span>
+              </SelectTrigger>
+              <SelectContent>
+                {sections
+                  .slice(2, sections.length - 2)
+                  .filter((s) => s.name && s.name.trim() !== "")
+                  .map((section) => (
+                    <SelectItem
+                      key={section.name}
+                      value={section.href}
+                      className="capitalize text-lg"
+                    >
+                      {section.name}
+                    </SelectItem>
+                  ))}
+                <QRCodePopup
+                  value={qrCodeUrl || window?.location?.href}
+                  open={qrPopupOpen}
+                  onOpenChange={setQrPopupOpen}
+                >
+                  <SelectItem value="view-qr-code" className="capitalize text-lg">
+                    View QR Code
+                  </SelectItem>
+                </QRCodePopup>
+              </SelectContent>
+            </Select>
+          </div>
         )}
       </div>
     </nav>

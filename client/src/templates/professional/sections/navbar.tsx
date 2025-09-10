@@ -118,15 +118,17 @@ export const PFNavbar = ({
                 </m.span>
               </SelectTrigger>
               <SelectContent>
-                {overflowSections.map((section) => (
-                  <SelectItem
-                    key={section.name}
-                    value={section.href}
-                    className="capitalize text-lg bg-template-secondary "
-                  >
-                    {section.name}
-                  </SelectItem>
-                ))}
+                {overflowSections
+                  .filter((s) => s.name && s.name.trim() !== "")
+                  .map((section) => (
+                    <SelectItem
+                      key={section.name}
+                      value={section.href}
+                      className="capitalize text-lg bg-template-secondary "
+                    >
+                      {section.name}
+                    </SelectItem>
+                  ))}
                 <QRCodePopup
                   value={qrCodeUrl || window?.location?.href}
                   open={qrPopupOpen}
@@ -168,15 +170,18 @@ export const PFNavbar = ({
               </m.span>
             </SelectTrigger>
             <SelectContent>
-              {sections.slice(2, sections.length - 2).map((section) => (
-                <SelectItem
-                  key={section.name}
-                  value={section.href}
-                  className="capitalize text-xl"
-                >
-                  {section.name}
-                </SelectItem>
-              ))}
+              {sections
+                .slice(2, sections.length - 2)
+                .filter((s) => s.name && s.name.trim() !== "")
+                .map((section) => (
+                  <SelectItem
+                    key={section.name}
+                    value={section.href}
+                    className="capitalize text-xl"
+                  >
+                    {section.name}
+                  </SelectItem>
+                ))}
               <QRCodePopup
                 value={qrCodeUrl || window?.location?.href}
                 open={qrPopupOpen}

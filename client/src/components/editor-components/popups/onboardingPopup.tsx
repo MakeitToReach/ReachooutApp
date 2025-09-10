@@ -132,16 +132,6 @@ export const OnboardingPopup = ({
               </div>
             )}
           </DialogTitle>
-          {isAiMode ? (
-            <DialogDescription className="text-sm text-gray-500">
-              The more detailed and specific you are, the better content will be
-              generated.
-            </DialogDescription>
-          ) : (
-            <DialogDescription className="text-sm text-gray-500">
-              Choose how you'd like to create your portfolio content
-            </DialogDescription>
-          )}
         </DialogHeader>
 
         {!isPreview ? (
@@ -173,7 +163,9 @@ export const OnboardingPopup = ({
                         Tell us about yourself, your services, and experience.
                       </Label>
                       <Textarea
-                        placeholder="Describe yourself, your services, and your experience here..."
+                        placeholder="
+                        The more detailed and specific you are, the better content will be
+                        generated."
                         value={aiForm.userInput}
                         onChange={(e) =>
                           handleAiInputChange("userInput", e.target.value)
@@ -224,7 +216,7 @@ export const OnboardingPopup = ({
                     >
                       <Button
                         onClick={handleAiSubmit}
-                        className="flex-1"
+                        className="flex-1 bg-[#ff9933] hover:bg-[#ff9933] cursor-pointer"
                         disabled={isLoading}
                       >
                         {isLoading ? (
@@ -267,7 +259,7 @@ export const OnboardingPopup = ({
                     </p>
                     <Button
                       onClick={() => setIsAiMode(true)}
-                      className="w-full"
+                      className="w-full bg-[#ff9933] hover:bg-[#ff9933] cursor-pointer"
                     >
                       <Sparkles className="mr-2" size={16} />
                       Generate Content with AI

@@ -13,7 +13,7 @@ import React, { useEffect, useState } from "react";
 import { TemplateItem } from "@/types/projectTemplate.types";
 import { SettingsIcon } from "lucide-react";
 import Link from "next/link";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import ReferencesButtons from "@/components/editor-components/referencesButton";
 
 const ProjectPage = () => {
   const params = useParams<{ id: string }>();
@@ -76,37 +76,34 @@ const ProjectPage = () => {
           <>
             {templates.length > 0
               ? templates.map((item, idx) => (
-                  <TemplateCard
-                    expiresAt={item.expiresAt || undefined}
-                    templateName={`Reachpage ${idx + 1}`}
-                    templateId={item.template.id}
-                    key={idx}
-                    imageUrl={item.template.thumbnailUrl || "/placeholder.png"}
-                    previewUrl={
-                      item && item.order > 0
-                        ? `http://${item.project.subDomain}.${
-                            process.env.NODE_ENV === "development"
-                              ? "localhost:3000"
-                              : "reachoout.com"
-                          }/${item.slug}`
-                        : `http://${item.project.subDomain}.${
-                            process.env.NODE_ENV === "development"
-                              ? "localhost:3000"
-                              : "reachoout.com"
-                          }/`
-                    }
-                    editorUrl={`/editor/${item.template.name.toLowerCase()}?edit&order=${idx}&pid=${id}&tid=${
-                      item.template.id
+                <TemplateCard
+                  expiresAt={item.expiresAt || undefined}
+                  templateName={`Reachpage ${idx + 1}`}
+                  templateId={item.template.id}
+                  key={idx}
+                  imageUrl={item.template.thumbnailUrl || "/placeholder.png"}
+                  previewUrl={
+                    item && item.order > 0
+                      ? `http://${item.project.subDomain}.${process.env.NODE_ENV === "development"
+                        ? "localhost:3000"
+                        : "reachoout.com"
+                      }/${item.slug}`
+                      : `http://${item.project.subDomain}.${process.env.NODE_ENV === "development"
+                        ? "localhost:3000"
+                        : "reachoout.com"
+                      }/`
+                  }
+                  editorUrl={`/editor/${item.template.name.toLowerCase()}?edit&order=${idx}&pid=${id}&tid=${item.template.id
                     }`}
-                    isPublished
-                    index={idx}
-                    projectId={id}
-                    slug={item.slug}
-                    onDelete={(newTemplates: TemplateItem[]) => {
-                      setTemplates(newTemplates);
-                    }}
-                  />
-                ))
+                  isPublished
+                  index={idx}
+                  projectId={id}
+                  slug={item.slug}
+                  onDelete={(newTemplates: TemplateItem[]) => {
+                    setTemplates(newTemplates);
+                  }}
+                />
+              ))
               : null}
             <AddSlugPopup pid={id as string}>
               <Card className="border bg-transparent h-full border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">
@@ -118,42 +115,8 @@ const ProjectPage = () => {
           </>
         )}
       </div>
-      <div className="fixed bg-background bottom-0 h-20 border-t w-full flex items-center">
-        <ScrollArea className="w-full" type="auto">
-          <div className="flex items-center gap-2 px-4">
-            <Link href="https://reachoout.com/help" target="_blank">
-              <Button variant="default" className="bg-white text-black text-lg">
-                Tutorials
-              </Button>
-            </Link>
-            <Link href="https://pixabay.com" target="_blank">
-              <Button variant="default" className="bg-white text-black text-lg">
-                Download Free images
-              </Button>
-            </Link>
-            <Link href="https://imageresizer.com/crop-image" target="_blank">
-              <Button variant="default" className="bg-white text-black text-lg">
-                Image Crop tool
-              </Button>
-            </Link>
-            <Link href="https://reachoout.com/support" target="_blank">
-              <Button variant="default" className="bg-white text-black text-lg">
-                Support
-              </Button>
-            </Link>
-            <Link href="https://imageresizer.com/image-compressor" target="_blank">
-              <Button variant="default" className="bg-white text-black text-lg">
-                Image Compress Tool
-              </Button>
-            </Link>
-            <Link href="https://reachoout.com/resources" target="_blank">
-              <Button variant="default" className="bg-white text-black text-lg">
-                Product Blog
-              </Button>
-            </Link>
-          </div>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
+      <div className="fixed bg-background z-[100] bottom-0 h-20 border-t w-full flex items-center">
+        <ReferencesButtons />
       </div>
     </div>
   );
