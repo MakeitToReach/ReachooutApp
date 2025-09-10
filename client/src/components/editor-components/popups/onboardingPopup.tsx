@@ -48,8 +48,6 @@ export const OnboardingPopup = ({
     userInput: "",
   });
 
-
-
   const handleDataChange = (data: GenericTemplateSchema, category?: string) => {
     if (isPreview) {
       //   router.push(
@@ -72,7 +70,7 @@ export const OnboardingPopup = ({
       setCategoryData(response.categories);
       if (response.categories.length > 0) {
         const defaultCategory = response.categories.find(
-          (category: CategoryItem) => category.category === "Default"
+          (category: CategoryItem) => category.category === "Default",
         );
         // console.log("default category data", defaultCategory.data);
         setDefaultCategoryData(defaultCategory.data);
@@ -173,7 +171,9 @@ export const OnboardingPopup = ({
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-sm font-medium">Quick Start Templates</Label>
+                      <Label className="text-sm font-medium">
+                        Quick Start Templates
+                      </Label>
                       <motion.div
                         className="flex flex-wrap gap-2"
                         initial={{ opacity: 0 }}
@@ -189,7 +189,11 @@ export const OnboardingPopup = ({
                           >
                             <Button
                               type="button"
-                              variant={selectedPreset === preset.label ? "default" : "outline"}
+                              variant={
+                                selectedPreset === preset.label
+                                  ? "default"
+                                  : "outline"
+                              }
                               className="rounded-full text-xs h-8"
                               onClick={() => {
                                 if (selectedPreset === preset.label) {
@@ -248,13 +252,16 @@ export const OnboardingPopup = ({
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <Sparkles className="text-gray-600" size={16} />
-                      <h3 className="text-base font-medium text-gray-900">AI Content Generation</h3>
+                      <h3 className="text-base font-medium text-gray-900">
+                        AI Content Generation
+                      </h3>
                       <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
                         Recommended
                       </span>
                     </div>
                     <p className="text-sm text-gray-600 mb-4">
-                      Let AI create personalized content for your portfolio.
+                      Professional, personalized content website content in
+                      seconds.
                     </p>
                     <Button
                       onClick={() => setIsAiMode(true)}
@@ -279,7 +286,9 @@ export const OnboardingPopup = ({
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-sm font-medium text-gray-700">Or choose from content templates</h3>
+                    <h3 className="text-sm font-medium text-gray-700">
+                      Or choose from content templates
+                    </h3>
                     <span className="text-xs text-gray-500">Manual</span>
                   </div>
 
