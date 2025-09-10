@@ -118,7 +118,7 @@ const ProjectPage = () => {
           </>
         )}
       </div>
-      <div className="fixed bottom-0 h-20 border-t w-full flex items-center">
+      <div className="fixed bg-background bottom-0 h-20 border-t w-full flex items-center">
         <ScrollArea className="w-full" type="auto">
           <div className="flex items-center gap-2 px-4">
             <Link href="https://reachoout.com/help" target="_blank">
