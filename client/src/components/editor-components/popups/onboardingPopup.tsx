@@ -260,7 +260,7 @@ export const OnboardingPopup = ({
                       </span>
                     </div>
                     <p className="text-sm text-gray-600 mb-4">
-                      Professional, personalized content website content in
+                      Professional, personalized  website content in
                       seconds.
                     </p>
                     <Button
