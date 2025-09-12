@@ -36,12 +36,10 @@ export const generateContent = async (req: Request, res: Response) => {
     // This is the key change: Access the content directly from the result object
     const textResponse = result.text;
 
-    console.log("result", result);
-    console.log("---------------------");
-    console.log("textResponse", textResponse);
+    // console.log("result", result);
+    // console.log("---------------------");
+    // console.log("textResponse", textResponse);
 
-    // Let's assume the response is a JSON string as you are using
-    // responseMimeType: "application/json"
     let parsedResponse = JSON.parse(textResponse);
 
     return res.json({ result: parsedResponse });
