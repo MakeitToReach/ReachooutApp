@@ -157,7 +157,7 @@ export function PaymentPopup({
             )}
             {showPaymentOpts && (
               <ul className="text-muted-foreground space-y-2 text-sm">
-                <Link href="https://reachoout.com/pricing">
+                <Link href="https://reachoout.com/pricing" target="_blank">
                   <li className="flex gap-1 underline">
                     Check out all features here
                     <span>

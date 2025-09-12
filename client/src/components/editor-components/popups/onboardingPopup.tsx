@@ -195,8 +195,7 @@ export const OnboardingPopup = ({
                         Tell us about yourself, your services, and experience.
                       </Label>
                       <Textarea
-                        placeholder="
-                        The more detailed and specific you are, the better content will be
+                        placeholder="The more detailed and specific you are, the better content will be
                         generated."
                         value={aiForm.userInput}
                         onChange={(e) =>
