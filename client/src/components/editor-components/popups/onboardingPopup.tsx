@@ -95,14 +95,24 @@ export const OnboardingPopup = ({
 
   const handleAiSubmit = async () => {
     setIsLoading(true);
-    const completeInput = aiForm.userInput;
-    const response = await generateContent(completeInput, defaultCategoryData);
+    try {
+      const completeInput = aiForm.userInput;
+      const response = await generateContent(
+        completeInput,
+        defaultCategoryData,
+      );
 
-    if (response) {
-      resetData(response.result);
+      if (response) {
+        resetData(response.result);
+        setIsLoading(false);
+        setIsOpen(false);
+        router.push(previewUrl);
+      }
+    } catch (error) {
+      console.error("Error generating content:", error);
       setIsLoading(false);
-      setIsOpen(false);
-      router.push(previewUrl);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -253,8 +263,7 @@ export const OnboardingPopup = ({
                       </span>
                     </div>
                     <p className="text-sm text-gray-600 mb-4">
-                      Professional, personalized  website content in
-                      seconds.
+                      Professional, personalized website content in seconds.
                     </p>
                     <Button
                       onClick={() => setIsAiMode(true)}
