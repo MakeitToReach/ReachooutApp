@@ -21,7 +21,6 @@ export const generateContent = async (
     if (response.status == 200) {
       toast.success("Content generated successfully");
     }
-    // console.log(response.data);
     return response.data;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
