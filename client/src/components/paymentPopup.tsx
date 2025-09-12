@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { ArrowUpRight, CheckIcon, InfoIcon } from "lucide-react";
+import { ArrowUpRight, InfoIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
