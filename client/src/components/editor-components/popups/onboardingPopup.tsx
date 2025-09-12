@@ -50,11 +50,6 @@ export const OnboardingPopup = ({
 
   const handleDataChange = (data: GenericTemplateSchema, category?: string) => {
     if (isPreview) {
-      //   router.push(
-      //     `${previewUrl}?category=${
-      //       category ? category : "Default"
-      //     }&tid=${templateId}`
-      //   );
       router.push(`${previewUrl}?tid=${templateId}&category=${category}`);
       return;
     }
@@ -72,7 +67,6 @@ export const OnboardingPopup = ({
         const defaultCategory = response.categories.find(
           (category: CategoryItem) => category.category === "Default",
         );
-        // console.log("default category data", defaultCategory.data);
         setDefaultCategoryData(defaultCategory.data);
       }
     } catch (error) {
@@ -117,7 +111,7 @@ export const OnboardingPopup = ({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="max-h-[80vh] flex flex-col gap-4 overflow-y-auto">
         <DialogHeader className="text-left mb-2">
-          <DialogTitle className="text-lg font-medium">
+          <DialogTitle className="sm:text-2xl text-xl font-medium">
             {isAiMode ? (
               <div className="flex gap-2 items-center">
                 <Sparkles className="text-gray-600" size={16} />
@@ -157,22 +151,7 @@ export const OnboardingPopup = ({
                   >
                     <div className="space-y-2">
                       <Label className="text-sm font-medium">
-                        Tell us about yourself, your services, and experience.
-                      </Label>
-                      <Textarea
-                        placeholder="
-                        The more detailed and specific you are, the better content will be
-                        generated."
-                        value={aiForm.userInput}
-                        onChange={(e) =>
-                          handleAiInputChange("userInput", e.target.value)
-                        }
-                        className="min-h-[100px]"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label className="text-sm font-medium">
-                        Quick Start Templates
+                        Quick Start Prompts
                       </Label>
                       <motion.div
                         className="flex flex-wrap gap-2"
@@ -210,6 +189,21 @@ export const OnboardingPopup = ({
                           </motion.div>
                         ))}
                       </motion.div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="text-sm font-medium">
+                        Tell us about yourself, your services, and experience.
+                      </Label>
+                      <Textarea
+                        placeholder="
+                        The more detailed and specific you are, the better content will be
+                        generated."
+                        value={aiForm.userInput}
+                        onChange={(e) =>
+                          handleAiInputChange("userInput", e.target.value)
+                        }
+                        className="min-h-[100px]"
+                      />
                     </div>
                     <motion.div
                       className="flex gap-2"
