@@ -138,7 +138,7 @@ export const PFNavbar = ({
                     value="view-qr-code"
                     className="capitalize text-lg"
                   >
-                    View QR Code
+                    QR Code
                   </SelectItem>
                 </QRCodePopup>
               </SelectContent>

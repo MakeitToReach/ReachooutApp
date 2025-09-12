@@ -142,7 +142,7 @@ export const FNavbar = ({
                     value="view-qr-code"
                     className="capitalize text-lg"
                   >
-                    View QR Code
+                    QR Code
                   </SelectItem>
                 </QRCodePopup>
               </SelectContent>
@@ -221,7 +221,10 @@ export const FNavbar = ({
                   open={qrPopupOpen}
                   onOpenChange={setQrPopupOpen}
                 >
-                  <SelectItem value="view-qr-code" className="capitalize text-lg">
+                  <SelectItem
+                    value="view-qr-code"
+                    className="capitalize text-lg"
+                  >
                     View QR Code
                   </SelectItem>
                 </QRCodePopup>
