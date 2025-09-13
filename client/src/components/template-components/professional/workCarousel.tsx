@@ -29,13 +29,17 @@ export function PFWorkCarousel({ Projects }: PFWorkCarouselProps) {
 
   const categories = [
     "All",
-    ...Array.from(new Set(Projects.map((project) => project.category))),
+    ...Array.from(new Set(Projects.map((project) => project.category).filter(cat => cat && cat.trim() !== ''))),
   ];
 
   const filteredProjects =
     selectedCategory === "All"
       ? Projects
-      : Projects.filter((project) => project.category === selectedCategory);
+      : Projects.filter((project) =>
+        project.category === selectedCategory ||
+        !project.category ||
+        project.category.trim() === ''
+      );
 
   React.useEffect(() => {
     if (!api) {

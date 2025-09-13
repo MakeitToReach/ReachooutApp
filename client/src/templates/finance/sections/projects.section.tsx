@@ -25,13 +25,17 @@ export const FProjectsSection = ({
 
   const categories = [
     "All",
-    ...Array.from(new Set(projects.map((project) => project.category))),
+    ...Array.from(new Set(projects.map((project) => project.category).filter(cat => cat && cat.trim() !== ''))),
   ];
 
   const filteredProjects =
     selectedCategory === "All"
       ? projects
-      : projects.filter((projects) => projects.category === selectedCategory);
+      : projects.filter((project) =>
+        project.category === selectedCategory ||
+        !project.category ||
+        project.category.trim() === ''
+      );
 
   return (
     <section className="py-20">

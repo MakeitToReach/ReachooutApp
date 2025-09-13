@@ -73,7 +73,7 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
 
           <ReqInput
             type="text"
-            label="Category"
+            label="Category Tag"
             placeholder="Enter your project category"
             onChange={(e) =>
               setProject({ ...project, category: e.target.value })
@@ -198,7 +198,7 @@ export const FEditProjectPopup = ({
           </div>
           <ReqInput
             type="text"
-            label="Category"
+            label="Category Tag"
             value={formData.category}
             onChange={(e) => handleChange("category", e.target.value)}
           />

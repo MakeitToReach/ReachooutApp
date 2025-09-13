@@ -18,13 +18,17 @@ export const FServicesCarousel = ({ services }: { services: F_SERVICE[] }) => {
 
   const categories = [
     "All",
-    ...Array.from(new Set(services.map((service) => service.category))),
+    ...Array.from(new Set(services.map((service) => service.category).filter(cat => cat && cat.trim() !== ''))),
   ];
 
   const filteredServices =
     selectedCategory === "All"
       ? services
-      : services.filter((service) => service.category === selectedCategory);
+      : services.filter((service) =>
+        service.category === selectedCategory ||
+        !service.category ||
+        service.category.trim() === ''
+      );
 
   return (
     <div className="w-full overflow-x-visible">

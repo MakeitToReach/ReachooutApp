@@ -69,7 +69,7 @@ export function FAddServicePopup({ children, onAdd }: FAddServicePopupProps) {
 
           <ReqInput
             type="text"
-            label="Category"
+            label="Category Tag"
             placeholder="Enter your service category"
             onChange={(e) =>
               setService({ ...service, category: e.target.value })
@@ -193,7 +193,7 @@ export const FEditServicePopup = ({
           </div>
           <ReqInput
             type="text"
-            label="Category"
+            label="Category Tag"
             value={formData.category}
             onChange={(e) => handleChange("category", e.target.value)}
           />

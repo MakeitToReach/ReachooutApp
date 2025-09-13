@@ -22,15 +22,18 @@ export const PFCatalogServicesCarousel = ({
 
   const categories = [
     "All",
-    ...Array.from(new Set(catalogServices.map((service) => service.category))),
+    ...Array.from(new Set(catalogServices.map((service) => service.category).filter(cat => cat && cat.trim() !== ''))),
   ];
 
   const filteredServices =
     selectedCategory === "All"
       ? catalogServices
       : catalogServices.filter(
-          (service) => service.category === selectedCategory,
-        );
+        (service) =>
+          service.category === selectedCategory ||
+          !service.category ||
+          service.category.trim() === ''
+      );
 
   return (
     <div className="w-full">

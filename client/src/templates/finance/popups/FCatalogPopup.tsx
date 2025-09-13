@@ -74,7 +74,7 @@ export function FAddCatalogPopup({ children, onAdd }: FAddCatalogPopupProps) {
           />
 
           <ReqInput
-            label="Category"
+            label="Category Tag"
             type="text"
             placeholder="Enter your service category"
             onChange={(e) => setItem({ ...item, category: e.target.value })}
@@ -214,7 +214,7 @@ export const FEditCatalogPopup = ({
           <ReqInput
             required={true}
             type="text"
-            label="Category"
+            label="Category Tag"
             placeholder="Enter your service category"
             value={formData.category}
             onChange={(e) => handleChange("category", e.target.value)}
