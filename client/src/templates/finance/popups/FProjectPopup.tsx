@@ -160,7 +160,6 @@ export const FEditProjectPopup = ({
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         className="sm:max-w-[40vw] max-h-[90vh] overflow-y-scroll font-Poppins"
-        onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
           <DialogTitle className="sm:text-2xl">
