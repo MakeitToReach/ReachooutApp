@@ -148,7 +148,7 @@ export const EditorTabs = ({
 
                     {field.type === "image-video" && (
                       <div className="flex flex-col items-center md:gap-10 gap-6">
-                        <div>
+                        <div className="w-full">
                           <ImageInput
                             initialImgUrl={
                               sectionData?.data[field.fieldPathImg ?? ""]
@@ -195,7 +195,7 @@ export const EditorTabs = ({
                     )}
 
                     {field.type === "image" && (
-                      <div>
+                      <div className="w-full">
                         <ImageInput
                           onImageUpload={(imgUrl) => {
                             setSectionField(
@@ -260,7 +260,7 @@ export const EditorTabs = ({
                       <div className="space-y-2">
                         <Label>{field.label}</Label>
                         {/* Multiple Images Input */}
-                        <div>
+                        <div className="w-full">
                           <MultipleImageInput
                             initialImages={
                               sectionData?.data[field.fieldPathImg ?? ""]
