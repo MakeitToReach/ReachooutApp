@@ -8,20 +8,10 @@ import { AuthPopup } from "@/components/editor-components/popups/authPopup";
 import { getToken } from "@/lib/isAuthenticated";
 import { Navbar } from "@/components/editor-components/navbar";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { FlipText } from "@/components/template-components/professional/flipText";
 import { Button } from "@/components/ui/button";
 
 function Home() {
-  const rotatingWords = ["Portfolio", "Brandsite"];
-  const [wordIndex, setWordIndex] = useState(0);
   const isMobile = useIsMobile();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
-    }, 3000); // Change every 3 seconds
-    return () => clearInterval(interval);
-  }, []);
 
   const [token, setToken] = useState<string>("");
   const fadeIn = {
@@ -38,7 +28,6 @@ function Home() {
     },
   };
 
-  // Get token for UI state only - user fetching is handled by AuthProvider
   useEffect(() => {
     const token = getToken();
     setToken(token || "");
@@ -66,7 +55,9 @@ function Home() {
                 className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full mb-4"
               >
                 <Sparkles size={18} className="text-purple-400" />
-                <span className="text-xs font-medium">Create without code</span>
+                <span className="text-xs font-medium">
+                  No-code website builder
+                </span>
               </motion.div>
               <motion.h1
                 initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
@@ -74,19 +65,10 @@ function Home() {
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                 className="text-4xl font-bold mb-4 text-left bg-gradient-to-r from-orange-100 to-orange-400 bg-clip-text text-transparent"
               >
-                Launch Your
-                <span className="block mt-2">
-                  {/* <span className="text-orange-400 text-4xl font-extrabold">
-                    Portfolio
-                  </span> */}
-                  <FlipText
-                    texts={rotatingWords}
-                    interval={1500}
-                    className="text-orange-400 tracking-tight text-4xl font-extrabold"
-                  />
-                </span>
+                Build Your
+                <span className="block mt-2 text-orange-400">Professional Presence</span>
                 <span className="text-lg font-normal text-gray-300">
-                  before your coffee gets cold
+                  in minutes
                 </span>
               </motion.h1>
               {/* <motion.p
@@ -150,7 +132,9 @@ function Home() {
                 className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full mb-8"
               >
                 <Sparkles size={18} className="text-purple-400" />
-                <span className="text-sm font-medium">Create without code</span>
+                <span className="text-sm font-medium">
+                  No-code website builder
+                </span>
               </motion.div>
               <motion.h1
                 variants={fadeIn}
@@ -158,49 +142,25 @@ function Home() {
                 transition={{ layout: { duration: 0.5, ease: "easeInOut" } }}
                 className="text-xl md:text-5xl text-center md:leading-tight font-bold mb-6 bg-gradient-to-r from-orange-100 to-orange-400 bg-clip-text text-transparent"
               >
-                Launch Your{" "}
+                Build Your{" "}
                 <motion.span
                   layout
                   className="bg-white text-orange-400 rounded-full px-4 inline-flex justify-center items-center overflow-hidden min-w-0"
                 >
                   <AnimatePresence mode="wait" initial={false}>
-                    <motion.span
-                      layout
-                      key={rotatingWords[wordIndex]}
-                      initial={{ opacity: 0, filter: "blur(4px)", width: 0 }}
-                      animate={{
-                        opacity: 1,
-                        filter: "blur(0px)",
-                        width: "auto",
-                      }}
-                      exit={{ opacity: 0, filter: "blur(4px)", width: 0 }}
-                      transition={{
-                        duration: 0.4,
-                        ease: "easeInOut",
-                        delay: 0.1, // Slight delay to let layout animation start first
-                      }}
-                      className="inline-block whitespace-nowrap"
-                      style={{
-                        position: "relative",
-                        display: "inline-block",
-                      }}
-                    >
-                      {rotatingWords[wordIndex]}
+                    <motion.span className="inline-block whitespace-nowrap">
+                      Professional Presence
                     </motion.span>
                   </AnimatePresence>
-                </motion.span>{" "}
-                before{" "}
-                <span className="hidden md:inline">
-                  <br />
-                </span>{" "}
-                your coffee gets cold
+                </motion.span>
+                <p>in minutes</p>
               </motion.h1>
               <motion.p
                 variants={fadeIn}
                 className="text-lg md:text-2xl text-gray-400 mb-12 max-w-2xl"
               >
-                Transform your work into a stunning portfolio with our minimal
-                templates and intuitive editor.
+                Log in and launch your website quickly. Explore our modern
+                templates and start building right away.
               </motion.p>
               <motion.div variants={fadeIn} className="flex gap-4">
                 {token ? (

@@ -99,7 +99,7 @@ export const EditorTabs = ({
                             setSectionField(
                               section,
                               field.fieldPath,
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />
@@ -117,11 +117,7 @@ export const EditorTabs = ({
                         <TipTapEditor
                           value={sectionData?.data[field.fieldPath] ?? ""}
                           onChange={(value) =>
-                            setSectionField(
-                              section,
-                              field.fieldPath,
-                              value
-                            )
+                            setSectionField(section, field.fieldPath, value)
                           }
                           placeholder={field.label}
                           height="h-36"
@@ -144,7 +140,7 @@ export const EditorTabs = ({
                           setSectionField(
                             section,
                             field.fieldPath,
-                            e.target.value
+                            e.target.value,
                           )
                         }
                       />
@@ -152,26 +148,31 @@ export const EditorTabs = ({
 
                     {field.type === "image-video" && (
                       <div className="flex flex-col items-center md:gap-10 gap-6">
-                        <ImageInput
-                          initialImgUrl={
-                            sectionData?.data[field.fieldPathImg ?? ""]
-                          }
-                          className="w-full"
-                          onImageUpload={(imgUrl) => {
-                            setSectionField(
-                              section,
-                              field.fieldPathImg ?? "",
-                              imgUrl
-                            );
-                          }}
-                          onImageRemove={() =>
-                            setSectionField(
-                              section,
-                              field.fieldPathImg ?? "",
-                              ""
-                            )
-                          }
-                        />
+                        <div>
+                          <ImageInput
+                            initialImgUrl={
+                              sectionData?.data[field.fieldPathImg ?? ""]
+                            }
+                            className="w-full"
+                            onImageUpload={(imgUrl) => {
+                              setSectionField(
+                                section,
+                                field.fieldPathImg ?? "",
+                                imgUrl,
+                              );
+                            }}
+                            onImageRemove={() =>
+                              setSectionField(
+                                section,
+                                field.fieldPathImg ?? "",
+                                "",
+                              )
+                            }
+                          />
+                          <p className="text-xs text-gray-700">
+                            {field.subtitle}
+                          </p>
+                        </div>
 
                         <h1 className="text-xs md:text-lg">OR</h1>
 
@@ -186,7 +187,7 @@ export const EditorTabs = ({
                             setSectionField(
                               section,
                               field.fieldPathVid ?? "",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />
@@ -194,34 +195,64 @@ export const EditorTabs = ({
                     )}
 
                     {field.type === "image" && (
-                      <ImageInput
-                        onImageUpload={(imgUrl) => {
-                          setSectionField(
-                            section,
-                            field.fieldPath ?? "",
-                            imgUrl
-                          );
-                        }}
-                        initialImgUrl={sectionData?.data[field.fieldPath ?? ""]}
-                      />
+                      <div>
+                        <ImageInput
+                          onImageUpload={(imgUrl) => {
+                            setSectionField(
+                              section,
+                              field.fieldPath ?? "",
+                              imgUrl,
+                            );
+                          }}
+                          initialImgUrl={
+                            sectionData?.data[field.fieldPath ?? ""]
+                          }
+                        />
+                        <p className="text-xs text-gray-700">
+                          {field.subtitle}
+                        </p>
+                      </div>
                     )}
 
                     {field.type === "multiple-images" && (
                       <div className="space-y-2">
                         <Label>{field.label}</Label>
-                      <MultipleImageInput
-                        initialImages={sectionData?.data[field.fieldPath ?? ""]}
-                        onImageAdd={(imgUrl) => {
-                          const currentImages = Array.isArray(sectionData?.data[field.fieldPath ?? ""]) ? sectionData.data[field.fieldPath ?? ""] : [];
-                          const updatedImages = [...currentImages, imgUrl];
-                          setSectionField(section, field.fieldPath ?? "", updatedImages);
-                        }}
-                        onImageRemove={(index) => {
-                          const currentImages = Array.isArray(sectionData?.data[field.fieldPath ?? ""]) ? sectionData.data[field.fieldPath ?? ""] : [];
-                          const updatedImages = currentImages.filter((_: string, i: number) => i !== index);
-                            setSectionField(section, field.fieldPath ?? "", updatedImages);
+                        <MultipleImageInput
+                          initialImages={
+                            sectionData?.data[field.fieldPath ?? ""]
+                          }
+                          onImageAdd={(imgUrl) => {
+                            const currentImages = Array.isArray(
+                              sectionData?.data[field.fieldPath ?? ""],
+                            )
+                              ? sectionData.data[field.fieldPath ?? ""]
+                              : [];
+                            const updatedImages = [...currentImages, imgUrl];
+                            setSectionField(
+                              section,
+                              field.fieldPath ?? "",
+                              updatedImages,
+                            );
+                          }}
+                          onImageRemove={(index) => {
+                            const currentImages = Array.isArray(
+                              sectionData?.data[field.fieldPath ?? ""],
+                            )
+                              ? sectionData.data[field.fieldPath ?? ""]
+                              : [];
+                            const updatedImages = currentImages.filter(
+                              (_: string, i: number) => i !== index,
+                            );
+                            setSectionField(
+                              section,
+                              field.fieldPath ?? "",
+                              updatedImages,
+                            );
                           }}
                         />
+                        <p className="text-xs text-gray-700">
+                          {field.subtitle}
+                        </p>
                       </div>
                     )}
 
@@ -229,21 +260,47 @@ export const EditorTabs = ({
                       <div className="space-y-2">
                         <Label>{field.label}</Label>
                         {/* Multiple Images Input */}
-                        <MultipleImageInput
-                          initialImages={sectionData?.data[field.fieldPathImg ?? ""]}
-                          onImageAdd={(imgUrl) => {
-                            const currentImages = Array.isArray(sectionData?.data[field.fieldPathImg ?? ""]) ? sectionData.data[field.fieldPathImg ?? ""] : [];
-                            const updatedImages = [...currentImages, imgUrl];
-                            setSectionField(section, field.fieldPathImg ?? "", updatedImages);
-                          }}
-                          onImageRemove={(index) => {
-                            const currentImages = Array.isArray(sectionData?.data[field.fieldPathImg ?? ""]) ? sectionData.data[field.fieldPathImg ?? ""] : [];
-                            const updatedImages = currentImages.filter((_: string, i: number) => i !== index);
-                            setSectionField(section, field.fieldPathImg ?? "", updatedImages);
-                          }}
-                        />
+                        <div>
+                          <MultipleImageInput
+                            initialImages={
+                              sectionData?.data[field.fieldPathImg ?? ""]
+                            }
+                            onImageAdd={(imgUrl) => {
+                              const currentImages = Array.isArray(
+                                sectionData?.data[field.fieldPathImg ?? ""],
+                              )
+                                ? sectionData.data[field.fieldPathImg ?? ""]
+                                : [];
+                              const updatedImages = [...currentImages, imgUrl];
+                              setSectionField(
+                                section,
+                                field.fieldPathImg ?? "",
+                                updatedImages,
+                              );
+                            }}
+                            onImageRemove={(index) => {
+                              const currentImages = Array.isArray(
+                                sectionData?.data[field.fieldPathImg ?? ""],
+                              )
+                                ? sectionData.data[field.fieldPathImg ?? ""]
+                                : [];
+                              const updatedImages = currentImages.filter(
+                                (_: string, i: number) => i !== index,
+                              );
+                              setSectionField(
+                                section,
+                                field.fieldPathImg ?? "",
+                                updatedImages,
+                              );
+                            }}
+                          />
+                          <p className="text-xs text-gray-700">
+                            {field.subtitle}
+                          </p>
+                        </div>
+
                         <h1 className="text-xs md:text-lg text-center">OR</h1>
-                        {/* Video Input */}
+                        {/* Video url Input */}
                         <ReqInput
                           className="w-full"
                           label={field.label}
@@ -255,7 +312,7 @@ export const EditorTabs = ({
                             setSectionField(
                               section,
                               field.fieldPathVid ?? "",
-                              e.target.value
+                              e.target.value,
                             )
                           }
                         />
@@ -288,7 +345,7 @@ export const EditorTabs = ({
                               setSectionField(
                                 section,
                                 groupField.fieldPath,
-                                e.target.value
+                                e.target.value,
                               )
                             }
                             className="w-full"
@@ -306,7 +363,7 @@ export const EditorTabs = ({
                           setSectionField(
                             section,
                             field.fieldPath,
-                            e.target.value
+                            e.target.value,
                           )
                         }
                       />
