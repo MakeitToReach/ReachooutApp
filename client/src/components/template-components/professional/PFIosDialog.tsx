@@ -91,7 +91,7 @@ export const PFIosDialog = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent showCloseButton={false} className="sm:px-8 max-w-full theme-wrapper bg-template-primary sm:max-w-7xl mx-auto h-[80vh] sm:min-h-[95vh] flex flex-col rounded-xs">
+      <DialogContent showCloseButton={false} className="sm:px-8 max-w-full theme-wrapper bg-template-primary sm:max-w-7xl mx-auto h-[90vh] sm:h-[95vh] flex flex-col rounded-xs">
         {/* Header */}
         <DialogHeader className="p-4 border-b">
           <DialogTitle className="text-left text-3xl flex flex-col gap-1">
