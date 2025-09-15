@@ -97,7 +97,7 @@ export const FViewMoreDrawer = ({
         <Drawer open={open} onOpenChange={setOpen}>
             <DrawerTrigger asChild>{children}</DrawerTrigger>
 
-            <DrawerContent className="sm:px-8 max-w-full theme-wrapper bg-template-primary sm:max-w-7xl mx-auto sm:min-h-[95vh] min-h-[90vh] flex flex-col">
+            <DrawerContent className="sm:px-8 max-w-full theme-wrapper bg-template-primary sm:max-w-7xl mx-auto sm:min-h-[95vh] h-[80vh] max-h- flex flex-col">
                 {/* Header */}
                 <DrawerHeader className="p-4 border-b">
                     <DrawerTitle className="text-left text-3xl flex flex-col gap-2">
