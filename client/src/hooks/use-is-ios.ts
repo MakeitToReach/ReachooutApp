@@ -6,6 +6,7 @@ export const useIsIOS = () => {
   useEffect(() => {
     if (typeof navigator === "undefined") return;
 
+    //eslint-disable-next-line
     const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
 
     // iOS detection

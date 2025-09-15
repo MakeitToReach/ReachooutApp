@@ -1,12 +1,4 @@
 import * as React from "react";
-import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from "@/components/ui/drawer";
 import Image from "next/image";
 import YouTube from "react-youtube";
 import { cn, getYouTubeVideoId } from "@/lib/utils";
