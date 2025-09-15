@@ -1,12 +1,12 @@
 import * as React from "react";
 import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import Image from "next/image";
 import YouTube from "react-youtube";
 import { cn, getYouTubeVideoId } from "@/lib/utils";
@@ -21,10 +21,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { PF_BLOG } from "@/templates/professional/types/blog.types";
 import { PF_CATALOG } from "@/templates/professional/types/serviceCatalog.types";
 import { PF_ABOUT_SECTION } from "@/templates/professional/types/about.types";
-import { useIsIOS } from "@/hooks/use-is-ios";
-import { PFIosDialog } from "./PFIosDialog";
 
-interface ViewMoreDrawerProps {
+interface PFIosDialogProps {
   children: React.ReactNode;
   content:
     | PF_PROJECT
@@ -35,11 +33,11 @@ interface ViewMoreDrawerProps {
   type: "Project" | "TeamMember" | "Blog" | "CatalogService" | "About";
 }
 
-export const ViewMoreDrawer = ({
+export const PFIosDialog = ({
   content,
   children,
   type,
-}: ViewMoreDrawerProps) => {
+}: PFIosDialogProps) => {
   const [open, setOpen] = React.useState(false);
 
   const project = type === "Project" ? (content as PF_PROJECT) : null;
@@ -90,18 +88,13 @@ export const ViewMoreDrawer = ({
     }
   };
 
-  const isIos = useIsIOS();
-  return isIos ? (
-    <PFIosDialog content={content} type={type}>
-      {children}
-    </PFIosDialog>
-  ) : (
-    <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>{children}</DrawerTrigger>
-      <DrawerContent className="sm:px-8 max-w-full theme-wrapper bg-template-primary sm:max-w-7xl mx-auto h-[80vh] sm:min-h-[95vh] flex flex-col rounded-xs">
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent showCloseButton={false} className="sm:px-8 max-w-full theme-wrapper bg-template-primary sm:max-w-7xl mx-auto h-[80vh] sm:min-h-[95vh] flex flex-col rounded-xs">
         {/* Header */}
-        <DrawerHeader className="p-4 border-b">
-          <DrawerTitle className="text-left text-3xl flex flex-col gap-1">
+        <DialogHeader className="p-4 border-b">
+          <DialogTitle className="text-left text-3xl flex flex-col gap-1">
             <span>
               {project?.heading ||
                 teamMember?.name ||
@@ -114,12 +107,12 @@ export const ViewMoreDrawer = ({
                 {teamMember?.designation}
               </span>
             )}
-          </DrawerTitle>
+          </DialogTitle>
 
-          <DrawerClose className="absolute top-4 right-4 cursor-pointer">
+          <DialogClose className="absolute top-4 right-4 cursor-pointer">
             <LucideX className="size-8" />
-          </DrawerClose>
-        </DrawerHeader>
+          </DialogClose>
+        </DialogHeader>
 
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
@@ -324,7 +317,7 @@ export const ViewMoreDrawer = ({
             </div>
           </div>
         )}
-      </DrawerContent>
-    </Drawer>
+      </DialogContent>
+    </Dialog>
   );
 };
