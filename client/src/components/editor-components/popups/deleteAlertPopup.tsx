@@ -29,7 +29,7 @@ export function DeleteAlertPopup({
 }: DeleteAlertPopupProps) {
     const [value, setValue] = useState("");
 
-    const canConfirm = value.trim().toLowerCase() === `delete my ${type}`;
+    const canConfirm = value.trim().toLowerCase() === `delete`;
 
     // Reset input value when dialog closes
     useEffect(() => {
@@ -58,11 +58,11 @@ export function DeleteAlertPopup({
                 <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">
                         This action cannot be undone. To confirm, type
-                        <span className="mx-1 font-semibold">delete my {type}</span>
+                        <span className="mx-1 font-semibold">delete</span>
                         below.
                     </p>
                     <Input
-                        placeholder="delete my project"
+                        placeholder="delete"
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
                         aria-label="delete confirmation input"
