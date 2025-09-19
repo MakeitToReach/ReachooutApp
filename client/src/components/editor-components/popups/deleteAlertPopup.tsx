@@ -25,7 +25,6 @@ export function DeleteAlertPopup({
     open,
     onOpenChange,
     onConfirm,
-    type
 }: DeleteAlertPopupProps) {
     const [value, setValue] = useState("");
 
