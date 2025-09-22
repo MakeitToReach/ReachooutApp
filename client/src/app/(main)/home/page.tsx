@@ -9,9 +9,11 @@ import { getToken } from "@/lib/isAuthenticated";
 import { Navbar } from "@/components/editor-components/navbar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
+import YouTube from "react-youtube";
 
 function Home() {
   const isMobile = useIsMobile();
+  const demoVideoID = "C8DzImpVk8E";
 
   const [token, setToken] = useState<string>("");
   const fadeIn = {
@@ -32,6 +34,24 @@ function Home() {
     const token = getToken();
     setToken(token || "");
   }, []);
+
+  const opts = {
+    playerVars: {
+      width: "100%",
+      height: "100%",
+      autoplay: 1,
+      loop: 1,
+      playlist: demoVideoID,
+      controls: 0,
+      modestbranding: 1,
+      rel: 0,
+      iv_load_policy: 3,
+      disablekb: 1,
+      fs: 0,
+      mute: 1,
+      playsinline: 1,
+    },
+  };
 
   return (
     <div className="min-h-screen relative bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 text-white font-Inter overflow-x-hidden">
@@ -66,7 +86,9 @@ function Home() {
                 className="text-4xl font-bold mb-4 text-left bg-gradient-to-r from-orange-100 to-orange-400 bg-clip-text text-transparent"
               >
                 Build Your
-                <span className="block mt-2 text-orange-400">Professional Presence</span>
+                <span className="block mt-2 text-orange-400">
+                  Professional Presence
+                </span>
                 <span className="text-lg font-normal text-gray-300">
                   in minutes
                 </span>
@@ -214,65 +236,16 @@ function Home() {
       )}
 
       <section className="container mx-auto px-6 sm:py-24 flex justify-center">
-        <Image
-          src="https://reachoout.com/wp-content/uploads/2025/06/Reachoout-15secs.gif"
-          alt="gif"
-          width={1000}
-          height={1000}
-          className="bg-white rounded-xl"
+        <YouTube
+          videoId={demoVideoID || ""}
+          opts={opts}
+          className="w-full sm:h-[80vh] h-[50vh]"
+          iframeClassName="w-full h-full"
         />
       </section>
 
-      {/* Templates Section */}
-      {/* <motion.section */}
-      {/*   initial={{ opacity: 0 }} */}
-      {/*   whileInView={{ opacity: 1 }} */}
-      {/*   transition={{ duration: 0.8 }} */}
-      {/*   viewport={{ once: true }} */}
-      {/*   className="container mx-auto px-6 sm:py-24" */}
-      {/* > */}
-      {/*   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"> */}
-      {/*     {TEMPLATES_STATIC.map((template, idx) => ( */}
-      {/*       <motion.div */}
-      {/*         key={idx} */}
-      {/*         initial={{ opacity: 0, scale: 0.95 }} */}
-      {/*         whileInView={{ opacity: 1, scale: 1 }} */}
-      {/*         whileHover={{ y: -8 }} */}
-      {/*         transition={{ duration: 0.4 }} */}
-      {/*         viewport={{ once: true }} */}
-      {/*         className="group relative rounded-xl overflow-hidden" */}
-      {/*       > */}
-      {/*         <Image */}
-      {/*           src={template.imageUrl} */}
-      {/*           alt={`Template ${template}`} */}
-      {/*           width={100} */}
-      {/*           height={500} */}
-      {/*           loading="lazy" */}
-      {/*           loader={() => template.imageUrl} */}
-      {/*           className="w-full h-[500px] object-cover object-top brightness-75 group-hover:brightness-100 transition duration-500" */}
-      {/*         /> */}
-      {/*         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"> */}
-      {/*           <div className="absolute bottom-0 p-8"> */}
-      {/*             <h3 className="text-2xl font-semibold mb-3"> */}
-      {/*               Template {idx + 1} */}
-      {/*             </h3> */}
-      {/*             <p className="text-gray-300 mb-4"> */}
-      {/*               A minimal design that puts your work in the spotlight. */}
-      {/*             </p> */}
-      {/*             <Link href={template.previewUrl}> */}
-      {/*               <button className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg font-medium hover:bg-white/20 transition"> */}
-      {/*                 Preview Template */}
-      {/*               </button> */}
-      {/*             </Link> */}
-      {/*           </div> */}
-      {/*         </div> */}
-      {/*       </motion.div> */}
-      {/*     ))} */}
-      {/*   </div> */}
-      {/* </motion.section> */}
-
       {/* Footer */}
-      <footer className="container absolute bottom-0 sm:static  mx-auto px-6 py-12 border-t border-white/10">
+      <footer className="container sm:static mx-auto px-6 py-12 border-t border-white/10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <motion.div
             initial={{ opacity: 0 }}
