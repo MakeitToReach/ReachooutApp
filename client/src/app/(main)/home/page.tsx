@@ -39,7 +39,6 @@ function Home() {
     playerVars: {
       width: "100%",
       height: "100%",
-      autoplay: 1,
       loop: 1,
       playlist: demoVideoID,
       controls: 0,
