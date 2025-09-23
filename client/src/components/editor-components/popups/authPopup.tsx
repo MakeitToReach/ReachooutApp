@@ -17,7 +17,18 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
 
-export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
+interface AuthPopupProps {
+  children: React.ReactNode;
+  showPlainAuth?: boolean;
+  showGoogleAuth?: boolean;
+  separator?: boolean;
+}
+export const AuthPopup = ({
+  children,
+  showPlainAuth,
+  showGoogleAuth,
+  separator = false,
+}: AuthPopupProps) => {
   const { updateUserFromServer } = useUserStore();
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -89,16 +100,8 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
             <DialogHeader>
               <m.div layoutId="dialog-title">
                 <DialogTitle className="text-2xl font-semibold font-Montserrat">
-                  {/* {type === "Register" */}
-                  {/*   ? "Create An Account" */}
-                  {/*   : "Login to Reachoout"} */}
                   {type === "Register" ? (
-                    <span className="text-left">
-                      Register to{" "}
-                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-600">
-                        Reachoout
-                      </span>
-                    </span>
+                    <span className="text-red-400">Register</span>
                   ) : (
                     <div className="text-left">
                       Login to{" "}
@@ -128,7 +131,6 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                   <ReqInput
                     placeholder="Enter your email"
                     label="Email"
-                    isRequired
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
@@ -136,107 +138,116 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                 </m.div>
               )}
 
-              <m.div
-                initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{
-                  duration: 0.15,
-                  delay: type === "Register" ? 0.05 : 0,
-                }}
-                layoutId="username-input"
-              >
-                <ReqInput
-                  isRequired
-                  required
-                  placeholder="Enter your username"
-                  label="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  type="text"
-                  inputClassName="lowercase"
-                />
-              </m.div>
+              {showPlainAuth && (
+                <>
+                  <m.div
+                    initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{
+                      duration: 0.15,
+                      delay: type === "Register" ? 0.05 : 0,
+                    }}
+                    layoutId="username-input"
+                  >
+                    <ReqInput
+                      isRequired
+                      required
+                      placeholder="Enter your username"
+                      label="Username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      type="text"
+                      inputClassName="lowercase"
+                    />
+                  </m.div>
 
-              <m.div
-                initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{
-                  duration: 0.15,
-                  delay: type === "Register" ? 0.1 : 0.05,
-                }}
-                layoutId="password-input"
-              >
-                <PasswordInput
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </m.div>
+                  <m.div
+                    initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{
+                      duration: 0.15,
+                      delay: type === "Register" ? 0.1 : 0.05,
+                    }}
+                    layoutId="password-input"
+                  >
+                    <PasswordInput
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </m.div>
 
-              <m.div
-                initial={{ opacity: 0, filter: "blur(4px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                transition={{ duration: 0.15, delay: 0.15 }}
-                layoutId="toggle-text"
-              >
-                <p className="text-sm text-gray-500 flex gap-1 items-center">
-                  {type === "Register"
-                    ? "Already have an account? "
-                    : "New here? "}
-                  <span className="text-black">
+                  {/* Toggle button */}
+                  {/* <m.div */}
+                  {/*     initial={{ opacity: 0, filter: "blur(4px)" }} */}
+                  {/*     animate={{ opacity: 1, filter: "blur(0px)" }} */}
+                  {/*     transition={{ duration: 0.15, delay: 0.15 }} */}
+                  {/*     layoutId="toggle-text" */}
+                  {/* > */}
+                  {/*     <p className="text-sm text-gray-500 flex gap-1 items-center"> */}
+                  {/*         {type === "Register" */}
+                  {/*             ? "Already have an account? " */}
+                  {/*             : "New here? "} */}
+                  {/*         <span className="text-black"> */}
+                  {/*             <Button */}
+                  {/*                 variant={"link"} */}
+                  {/*                 className="p-0" */}
+                  {/*                 onClick={() => */}
+                  {/*                     setType(type === "Register" ? "Login" : "Register") */}
+                  {/*                 } */}
+                  {/*             > */}
+                  {/*                 {type === "Register" ? "Login" : "Create an account"} */}
+                  {/*             </Button> */}
+                  {/*         </span> */}
+                  {/*     </p> */}
+                  {/* </m.div> */}
+
+                  <m.div
+                    initial={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    transition={{ duration: 0.15, delay: 0.2 }}
+                    layoutId="submit-button"
+                  >
                     <Button
-                      variant={"link"}
-                      className="p-0"
-                      onClick={() =>
-                        setType(type === "Register" ? "Login" : "Register")
+                      onClick={
+                        type === "Register" ? handleRegister : handleLogin
                       }
+                      disabled={loading}
+                      className="w-full"
                     >
-                      {type === "Register" ? "Login" : "Create an account"}
+                      {loading ? (
+                        <LucideLoader className="animate-spin" />
+                      ) : type === "Register" ? (
+                        <span>Register</span>
+                      ) : (
+                        <span>Login</span>
+                      )}
                     </Button>
-                  </span>
-                </p>
-              </m.div>
+                  </m.div>
+                </>
+              )}
 
-              <m.div
-                initial={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
-                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                transition={{ duration: 0.15, delay: 0.2 }}
-                layoutId="submit-button"
-              >
+              {separator && (
+                <div className="flex items-center justify-center gap-2 text-gray-500 text-sm">
+                  <div className="h-px bg-gray-300 flex-1" />
+                  <span>Or</span>
+                  <div className="h-px bg-gray-300 flex-1" />
+                </div>
+              )}
+
+              {showGoogleAuth && (
                 <Button
-                  onClick={type === "Register" ? handleRegister : handleLogin}
-                  disabled={loading}
-                  className="w-full"
+                  variant="default"
+                  onClick={handleGoogleLogin}
+                  className="w-full flex items-center justify-center gap-2 mt-5 py-6"
                 >
-                  {loading ? (
-                    <LucideLoader className="animate-spin" />
-                  ) : type === "Register" ? (
-                    <span>Register</span>
-                  ) : (
-                    <span>Login</span>
-                  )}
+                  <IconBrandGoogleFilled
+                    className="text-neutral-100 dark:text-white/60"
+                    size={16}
+                    aria-hidden="true"
+                  />
+                  Continue with Google
                 </Button>
-              </m.div>
-
-              <div className="flex items-center justify-center gap-2 text-gray-500 text-sm">
-                <div className="h-px bg-gray-300 flex-1" />
-                <span>Or</span>
-                <div className="h-px bg-gray-300 flex-1" />
-              </div>
-
-              <Button
-                variant="outline"
-                onClick={handleGoogleLogin}
-                className="w-full flex items-center justify-center gap-2"
-              >
-                <IconBrandGoogleFilled
-                  className="text-neutral-900 dark:text-white/60"
-                  size={16}
-                  aria-hidden="true"
-                />
-                {type === "Register"
-                  ? "Sign up with Google"
-                  : "Login with Google"}
-              </Button>
+              )}
             </m.div>
           </DialogContent>
         </m.div>

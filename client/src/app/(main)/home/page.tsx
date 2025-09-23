@@ -117,7 +117,7 @@ function Home() {
                     </motion.button>
                   </Link>
                 ) : (
-                  <AuthPopup>
+                  <AuthPopup showGoogleAuth showPlainAuth={false}>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       className="cursor-pointer flex items-center justify-center gap-2 bg-white text-black px-4 py-3 rounded-md font-semibold text-sm shadow-md"
@@ -207,7 +207,7 @@ function Home() {
                   </div>
                 ) : (
                   <div className="flex gap-12">
-                    <AuthPopup>
+                    <AuthPopup showGoogleAuth showPlainAuth={false}>
                       <motion.div
                         whileHover={{ scale: 1.05 }}
                         role="button"
