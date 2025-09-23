@@ -70,6 +70,9 @@ export function FAddTimelinePopup({ children, onAdd }: FAddTimelinePopupProps) {
               }}
               onImageRemove={() => setStep({ ...step, image: "" })}
             />
+            <p className="text-xs text-gray-700">
+              Best fit: 3:2 ratio (640x427 px)
+            </p>
           </div>
         </div>
 
@@ -169,6 +172,9 @@ export const FEditTimelinePopup = ({
               }}
               onImageRemove={() => handleChange("image", "")}
             />
+            <p className="text-xs text-gray-700">
+              Best fit: 3:2 ratio (640x427 px)
+            </p>
           </div>
         </div>
 

@@ -32,29 +32,32 @@ export function FAddCatalogPopup({ children, onAdd }: FAddCatalogPopupProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent
-        className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll"
-      >
+      <DialogContent className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll">
         <DialogHeader>
           <DialogTitle className="md:text-2xl">Add Catalog Service</DialogTitle>
         </DialogHeader>
         <div className="space-y-2">
           <Label>Images</Label>
           <div className="flex flex-col md:gap-6 gap-6 w-full">
-            <MultipleImageInput
-              onImageAdd={(imgUrl) => {
-                setItem((prev) => ({
-                  ...prev,
-                  imgUrls: [...prev.imgUrls, imgUrl],
-                }));
-              }}
-              onImageRemove={(index) => {
-                setItem((prev) => ({
-                  ...prev,
-                  imgUrls: prev.imgUrls.filter((_, i) => i !== index),
-                }));
-              }}
-            />
+            <div>
+              <MultipleImageInput
+                onImageAdd={(imgUrl) => {
+                  setItem((prev) => ({
+                    ...prev,
+                    imgUrls: [...prev.imgUrls, imgUrl],
+                  }));
+                }}
+                onImageRemove={(index) => {
+                  setItem((prev) => ({
+                    ...prev,
+                    imgUrls: prev.imgUrls.filter((_, i) => i !== index),
+                  }));
+                }}
+              />
+              <p className="text-xs text-gray-700">
+                Best fit: 3:2 ratio (640x427 px)
+              </p>
+            </div>
             <h2 className="text-sm font-semibold text-center">OR</h2>
             <ReqInput
               className="w-full"
@@ -163,9 +166,7 @@ export const FEditCatalogPopup = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent
-        className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll"
-      >
+      <DialogContent className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll">
         <DialogHeader>
           <DialogTitle className="md:text-2xl">
             Edit Catalog Service {itemIdx !== undefined && `#${itemIdx + 1}`}
@@ -175,21 +176,26 @@ export const FEditCatalogPopup = ({
         <div className="space-y-2">
           <Label>Images</Label>
           <div className="flex flex-col md:gap-6 gap-6 w-full">
-            <MultipleImageInput
-              initialImages={formData.imgUrls}
-              onImageAdd={(imgUrl) => {
-                setFormData((prev) => ({
-                  ...prev,
-                  imgUrls: [...prev.imgUrls, imgUrl],
-                }));
-              }}
-              onImageRemove={(index) => {
-                setFormData((prev) => ({
-                  ...prev,
-                  imgUrls: prev.imgUrls.filter((_, i) => i !== index),
-                }));
-              }}
-            />
+            <div>
+              <MultipleImageInput
+                initialImages={formData.imgUrls}
+                onImageAdd={(imgUrl) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    imgUrls: [...prev.imgUrls, imgUrl],
+                  }));
+                }}
+                onImageRemove={(index) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    imgUrls: prev.imgUrls.filter((_, i) => i !== index),
+                  }));
+                }}
+              />
+              <p className="text-xs text-gray-700">
+                Best fit: 3:2 ratio (640x427 px)
+              </p>
+            </div>
             <h2 className="text-sm font-semibold text-center">OR</h2>
             <ReqInput
               className="w-full"

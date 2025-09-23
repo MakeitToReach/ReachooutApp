@@ -48,6 +48,7 @@ export function FAddBlogPopup({ children, onAdd }: FAddBlogPopupProps) {
               setBlog({ ...blog, vidUrl: vidUrl });
             }}
             className="w-full"
+            imgSubtitle="Best fit:3:2 ratio (720x480 px)"
           />
           <ReqInput
             type="text"
@@ -160,6 +161,7 @@ export const FEditBlogPopup = ({
               handleChange("vidUrl", vidUrl);
             }}
             className="w-full"
+            imgSubtitle="Best fit:3:2 ratio (720x480 px)"
           />
 
           <ReqInput

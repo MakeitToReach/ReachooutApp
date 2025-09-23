@@ -60,6 +60,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "imgUrl",
       fieldPathImg: "imgUrls",
       fieldPathVid: "vidUrl",
+      imgSubtitle: "Best fit: 21:9 ratio (1920x800 px)",
     },
     {
       label: "Brand Heading",
@@ -134,6 +135,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "imgUrl",
       fieldPathVid: "vidUrl",
       fieldPathImg: "imgUrl",
+      imgSubtitle: "Best fit: 4:5 ratio (1080x1350 px)",
     },
   ],
 
@@ -351,6 +353,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       label: "Logos",
       type: "multiple-images",
       fieldPath: "imgs",
+      imgSubtitle: "Best fit: 1:1 ratio (512x512 px)",
     },
   ],
   faqs: [
@@ -408,6 +411,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       label: "Gallery",
       type: "multiple-images",
       fieldPath: "imgs",
+      imgSubtitle: "Best fit: 3:2 ratio (1000x667 px)",
     },
   ],
   timeline: [
@@ -435,6 +439,7 @@ export const F_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       type: "image",
       label: "Images",
       fieldPath: "imgUrl",
+      imgSubtitle: "Best fit: 1:1 ratio (800x800 px)",
     },
 
     {

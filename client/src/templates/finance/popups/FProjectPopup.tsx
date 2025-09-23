@@ -33,9 +33,7 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent
-        className="sm:max-w-[40vw] max-h-[90vh] overflow-y-scroll font-Poppins"
-      >
+      <DialogContent className="sm:max-w-[40vw] max-h-[90vh] overflow-y-scroll font-Poppins">
         <DialogHeader>
           <DialogTitle className="sm:text-2xl">Add Project</DialogTitle>
         </DialogHeader>
@@ -51,6 +49,7 @@ export function FAddProjectPopup({ children, onAdd }: FAddProjectPopupProps) {
               setProject({ ...project, vidUrl: vidUrl });
             }}
             className="w-full"
+            imgSubtitle="Best fit: 3:2 ratio (640x427 px)"
           />
           <ReqInput
             type="text"
@@ -158,9 +157,7 @@ export const FEditProjectPopup = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent
-        className="sm:max-w-[40vw] max-h-[90vh] overflow-y-scroll font-Poppins"
-      >
+      <DialogContent className="sm:max-w-[40vw] max-h-[90vh] overflow-y-scroll font-Poppins">
         <DialogHeader>
           <DialogTitle className="sm:text-2xl">
             Edit Project {projectIdx !== undefined && `#${projectIdx + 1}`}
@@ -178,6 +175,7 @@ export const FEditProjectPopup = ({
             onVideoUrlChange={(vidUrl) => {
               handleChange("vidUrl", vidUrl);
             }}
+            imgSubtitle="Best fit: 3:2 ratio (640x427 px)"
           />
           <ReqInput
             type="text"

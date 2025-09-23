@@ -21,7 +21,10 @@ interface FAddTestimonialPopupProps {
   onAdd: (testimonial: F_TESTIMONIAL) => void;
 }
 
-export function FAddTestimonialPopup({ children, onAdd }: FAddTestimonialPopupProps) {
+export function FAddTestimonialPopup({
+  children,
+  onAdd,
+}: FAddTestimonialPopupProps) {
   const [testimonial, setTestimonial] = useState<F_TESTIMONIAL>({
     avatarUrl: "",
     name: "",
@@ -31,11 +34,9 @@ export function FAddTestimonialPopup({ children, onAdd }: FAddTestimonialPopupPr
   });
 
   return (
-    <Dialog >
+    <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent
-        className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll"
-      >
+      <DialogContent className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll">
         <DialogHeader>
           <DialogTitle className="md:text-2xl">Add Testimonial</DialogTitle>
         </DialogHeader>
@@ -45,7 +46,9 @@ export function FAddTestimonialPopup({ children, onAdd }: FAddTestimonialPopupPr
             label="Name"
             placeholder="Enter client name"
             value={testimonial.name}
-            onChange={(e) => setTestimonial({ ...testimonial, name: e.target.value })}
+            onChange={(e) =>
+              setTestimonial({ ...testimonial, name: e.target.value })
+            }
           />
 
           <ReqInput
@@ -79,11 +82,16 @@ export function FAddTestimonialPopup({ children, onAdd }: FAddTestimonialPopupPr
               step={1}
               value={testimonial.rating}
               onChange={(e) =>
-                setTestimonial({ ...testimonial, rating: parseInt(e.target.value) })
+                setTestimonial({
+                  ...testimonial,
+                  rating: parseInt(e.target.value),
+                })
               }
               className="w-full"
             />
-            <div className="text-sm text-gray-600">Rating: {testimonial.rating}/5</div>
+            <div className="text-sm text-gray-600">
+              Rating: {testimonial.rating}/5
+            </div>
           </div>
 
           <div className="space-y-2">
@@ -94,8 +102,14 @@ export function FAddTestimonialPopup({ children, onAdd }: FAddTestimonialPopupPr
               onImageUpload={(imgUrl) => {
                 setTestimonial({ ...testimonial, avatarUrl: imgUrl });
               }}
-              onImageRemove={() => setTestimonial({ ...testimonial, avatarUrl: "" })}
+              onImageRemove={() =>
+                setTestimonial({ ...testimonial, avatarUrl: "" })
+              }
             />
+
+            <p className="text-xs text-gray-700">
+              Best fit: 1:1 ratio (190x190 px)
+            </p>
           </div>
         </div>
 
@@ -157,7 +171,8 @@ export const FEditTestimonialPopup = ({
       <DialogContent className="space-y-4 sm:max-w-[40vw] font-Poppins">
         <DialogHeader>
           <DialogTitle className="sm:text-2xl">
-            Edit Testimonial {testimonialIdx !== undefined && `#${testimonialIdx + 1}`}
+            Edit Testimonial{" "}
+            {testimonialIdx !== undefined && `#${testimonialIdx + 1}`}
           </DialogTitle>
         </DialogHeader>
 
@@ -194,12 +209,12 @@ export const FEditTestimonialPopup = ({
               max={5}
               step={1}
               value={formData.rating}
-              onChange={(e) =>
-                handleChange("rating", e.target.value)
-              }
+              onChange={(e) => handleChange("rating", e.target.value)}
               className="w-full"
             />
-            <div className="text-sm text-gray-600">Rating: {formData.rating}/5</div>
+            <div className="text-sm text-gray-600">
+              Rating: {formData.rating}/5
+            </div>
           </div>
 
           <div className="space-y-2">
@@ -212,6 +227,9 @@ export const FEditTestimonialPopup = ({
               }}
               onImageRemove={() => handleChange("avatarUrl", "")}
             />
+            <p className="text-xs text-gray-700">
+              Best fit: 1:1 ratio (190x190 px)
+            </p>
           </div>
         </div>
 

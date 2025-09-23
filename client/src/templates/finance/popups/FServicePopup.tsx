@@ -47,6 +47,7 @@ export function FAddServicePopup({ children, onAdd }: FAddServicePopupProps) {
             onVideoUrlChange={(vidUrl) => {
               setService({ ...service, vidUrl: vidUrl });
             }}
+            imgSubtitle="Best fit: 1:1 ratio (1500x1500 px)"
           />
           <ReqInput
             type="text"
@@ -172,6 +173,7 @@ export const FEditServicePopup = ({
             onVideoUrlChange={(vidUrl) => {
               handleChange("vidUrl", vidUrl);
             }}
+            imgSubtitle="Best fit: 1:1 ratio (1500x1500 px)"
           />
 
           <ReqInput
