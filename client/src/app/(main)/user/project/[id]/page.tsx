@@ -76,34 +76,38 @@ const ProjectPage = () => {
           <>
             {templates.length > 0
               ? templates.map((item, idx) => (
-                <TemplateCard
-                  expiresAt={item.expiresAt || undefined}
-                  templateName={`Reachpage ${idx + 1}`}
-                  templateId={item.template.id}
-                  key={idx}
-                  imageUrl={item.template.thumbnailUrl || "/placeholder.png"}
-                  previewUrl={
-                    item && item.order > 0
-                      ? `http://${item.project.subDomain}.${process.env.NODE_ENV === "development"
-                        ? "localhost:3000"
-                        : "reachoout.com"
-                      }/${item.slug}`
-                      : `http://${item.project.subDomain}.${process.env.NODE_ENV === "development"
-                        ? "localhost:3000"
-                        : "reachoout.com"
-                      }/`
-                  }
-                  editorUrl={`/editor/${item.template.name.toLowerCase()}?edit&order=${idx}&pid=${id}&tid=${item.template.id
+                  <TemplateCard
+                    expiresAt={item.expiresAt || undefined}
+                    templateName={`Reachpage ${idx + 1}`}
+                    templateId={item.template.id}
+                    key={idx}
+                    imageUrl={item.template.thumbnailUrl || "/placeholder.png"}
+                    previewUrl={
+                      item && item.order > 0
+                        ? `http://${item.project.subDomain}.${
+                            process.env.NODE_ENV === "development"
+                              ? "localhost:3000"
+                              : "reachoout.com"
+                          }/${item.slug}`
+                        : `http://${item.project.subDomain}.${
+                            process.env.NODE_ENV === "development"
+                              ? "localhost:3000"
+                              : "reachoout.com"
+                          }/`
+                    }
+                    editorUrl={`/editor/${item.template.name.toLowerCase()}?edit&order=${item.order}&pid=${id}&tid=${
+                      item.template.id
                     }`}
-                  isPublished
-                  index={idx}
-                  projectId={id}
-                  slug={item.slug}
-                  onDelete={(newTemplates: TemplateItem[]) => {
-                    setTemplates(newTemplates);
-                  }}
-                />
-              ))
+                    isPublished
+                    index={idx}
+                    projectId={id}
+                    slug={item.slug}
+                    onDelete={(newTemplates: TemplateItem[]) => {
+                      setTemplates(newTemplates);
+                    }}
+                    order={item.order}
+                  />
+                ))
               : null}
             <AddSlugPopup pid={id as string}>
               <Card className="border bg-transparent h-full border-dashed border-gray-400 bg-none rounded-lg flex items-center justify-center cursor-pointer hover:border-primary hover:bg-card transition-colors">

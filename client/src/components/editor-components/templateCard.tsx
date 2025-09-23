@@ -51,6 +51,7 @@ interface TemplateCardProps {
   index?: number;
   projectId?: string;
   slug?: string;
+  order?: number;
   expiresAt?: Date;
 }
 export const TemplateCard = ({
@@ -70,6 +71,7 @@ export const TemplateCard = ({
   slug,
   onDelete,
   expiresAt,
+  order,
 }: TemplateCardProps) => {
   const router = useRouter();
   const { resetData } = usePortfolioStore();
@@ -84,7 +86,7 @@ export const TemplateCard = ({
       const updateExpiry = await updateTemplateExpiry(
         projectId!,
         templateId,
-        index ?? 0,
+        order ?? 0,
         expiryDays,
       );
 
@@ -101,7 +103,7 @@ export const TemplateCard = ({
       const fetchedData = await getProjectTemplateInstanceData(
         templateId,
         projectId!,
-        index ?? 0,
+        order ?? 0,
       );
 
       if (!fetchedData) {
@@ -274,7 +276,7 @@ export const TemplateCard = ({
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  {expiresAt && (
+                  {expiresAt &&
                     (() => {
                       const remaining = computeExpiryDays();
                       return (
@@ -287,8 +289,7 @@ export const TemplateCard = ({
                           )}
                         </>
                       );
-                    })()
-                  )}
+                    })()}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => setDeleteOpen(true)}>
