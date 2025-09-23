@@ -93,7 +93,12 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                   {/*   ? "Create An Account" */}
                   {/*   : "Login to Reachoout"} */}
                   {type === "Register" ? (
-                    <span className="text-red-400">Register</span>
+                    <span className="text-left">
+                      Register to{" "}
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-600">
+                        Reachoout
+                      </span>
+                    </span>
                   ) : (
                     <div className="text-left">
                       Login to{" "}
@@ -123,6 +128,7 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                   <ReqInput
                     placeholder="Enter your email"
                     label="Email"
+                    isRequired
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
@@ -166,29 +172,29 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                 />
               </m.div>
 
-              {/* <m.div */}
-              {/*     initial={{ opacity: 0, filter: "blur(4px)" }} */}
-              {/*     animate={{ opacity: 1, filter: "blur(0px)" }} */}
-              {/*     transition={{ duration: 0.15, delay: 0.15 }} */}
-              {/*     layoutId="toggle-text" */}
-              {/* > */}
-              {/*     <p className="text-sm text-gray-500 flex gap-1 items-center"> */}
-              {/*         {type === "Register" */}
-              {/*             ? "Already have an account? " */}
-              {/*             : "New here? "} */}
-              {/*         <span className="text-black"> */}
-              {/*             <Button */}
-              {/*                 variant={"link"} */}
-              {/*                 className="p-0" */}
-              {/*                 onClick={() => */}
-              {/*                     setType(type === "Register" ? "Login" : "Register") */}
-              {/*                 } */}
-              {/*             > */}
-              {/*                 {type === "Register" ? "Login" : "Create an account"} */}
-              {/*             </Button> */}
-              {/*         </span> */}
-              {/*     </p> */}
-              {/* </m.div> */}
+              <m.div
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.15, delay: 0.15 }}
+                layoutId="toggle-text"
+              >
+                <p className="text-sm text-gray-500 flex gap-1 items-center">
+                  {type === "Register"
+                    ? "Already have an account? "
+                    : "New here? "}
+                  <span className="text-black">
+                    <Button
+                      variant={"link"}
+                      className="p-0"
+                      onClick={() =>
+                        setType(type === "Register" ? "Login" : "Register")
+                      }
+                    >
+                      {type === "Register" ? "Login" : "Create an account"}
+                    </Button>
+                  </span>
+                </p>
+              </m.div>
 
               <m.div
                 initial={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
@@ -227,7 +233,9 @@ export const AuthPopup = ({ children }: { children: React.ReactNode }) => {
                   size={16}
                   aria-hidden="true"
                 />
-                Login with Google
+                {type === "Register"
+                  ? "Sign up with Google"
+                  : "Login with Google"}
               </Button>
             </m.div>
           </DialogContent>
