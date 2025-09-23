@@ -129,7 +129,11 @@ export const OnboardingPopup = ({
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <span>Create Your Reachpage</span>
+                {isPreview ? (
+                  <span>Pick Your Preview</span>
+                ) : (
+                  <span>Create Your Reachpage</span>
+                )}
               </div>
             )}
           </DialogTitle>

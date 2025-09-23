@@ -31,6 +31,7 @@ export const PFSocialEditorField = ({
             key={`${index}-followers`}
             label="Followers"
             value={social.followerCounts}
+            placeholder="0"
             onChange={(e) => {
               const updated = [...value];
               updated[index].followerCounts = Number(e.target.value) || 0;

@@ -38,6 +38,36 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
           <DialogTitle className="md:text-2xl">Add Catalog</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-3">
+          <div className="flex flex-col md:gap-6 gap-6 w-full">
+            <div>
+              <MultipleImageInput
+                onImageAdd={(imgUrl) => {
+                  setItem((prev) => ({
+                    ...prev,
+                    imgUrls: [...prev.imgUrls, imgUrl],
+                  }));
+                }}
+                onImageRemove={(index) => {
+                  setItem((prev) => ({
+                    ...prev,
+                    imgUrls: prev.imgUrls.filter((_, i) => i !== index),
+                  }));
+                }}
+              />
+              <p className="text-xs text-gray-700">
+                Best fit: 3:2 ratio (640x427 px)
+              </p>
+            </div>
+            <h2 className="text-sm font-semibold text-center">OR</h2>
+            <ReqInput
+              className="w-full"
+              label="Video URL"
+              type="text"
+              placeholder="https://youtube.com/watch?v=******"
+              value={item.vidUrl}
+              onChange={(e) => setItem({ ...item, vidUrl: e.target.value })}
+            />
+          </div>
           <ReqInput
             type="text"
             label="Title"
@@ -82,32 +112,6 @@ export function PFAddCatalogPopup({ children, onAdd }: PFAddCatalogPopupProps) {
               placeholder="https://reachoout.com"
               value={item.btnLink}
               onChange={(e) => setItem({ ...item, btnLink: e.target.value })}
-            />
-          </div>
-          <Label>Images</Label>
-          <div className="flex flex-col md:gap-6 gap-6 w-full">
-            <MultipleImageInput
-              onImageAdd={(imgUrl) => {
-                setItem((prev) => ({
-                  ...prev,
-                  imgUrls: [...prev.imgUrls, imgUrl],
-                }));
-              }}
-              onImageRemove={(index) => {
-                setItem((prev) => ({
-                  ...prev,
-                  imgUrls: prev.imgUrls.filter((_, i) => i !== index),
-                }));
-              }}
-            />
-            <h2 className="text-sm font-semibold text-center">OR</h2>
-            <ReqInput
-              className="w-full"
-              label="Video URL"
-              type="text"
-              placeholder="https://youtube.com/watch?v=******"
-              value={item.vidUrl}
-              onChange={(e) => setItem({ ...item, vidUrl: e.target.value })}
             />
           </div>
         </div>
@@ -169,15 +173,44 @@ export const PFEditCatalogPopup = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent
-        className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-auto"
-      >
+      <DialogContent className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="md:text-2xl">
             Edit Catalog {itemIdx !== undefined && `#${itemIdx + 1}`}
           </DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-3">
+          <div className="flex flex-col md:gap-6 gap-6 w-full">
+            <div>
+              <MultipleImageInput
+                initialImages={formData.imgUrls}
+                onImageAdd={(imgUrl) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    imgUrls: [...prev.imgUrls, imgUrl],
+                  }));
+                }}
+                onImageRemove={(index) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    imgUrls: prev.imgUrls.filter((_, i) => i !== index),
+                  }));
+                }}
+              />
+              <p className="text-xs text-gray-700">
+                Best fit: 3:2 ratio (640x427 px)
+              </p>
+            </div>
+            <h2 className="text-sm font-semibold text-center">OR</h2>
+            <ReqInput
+              className="w-full"
+              label="Video URL"
+              type="text"
+              placeholder="https://youtube.com/watch?v=******"
+              value={formData.vidUrl}
+              onChange={(e) => handleChange("vidUrl", e.target.value)}
+            />
+          </div>
           <ReqInput
             type="text"
             label="Title"
@@ -221,34 +254,6 @@ export const PFEditCatalogPopup = ({
               placeholder="https://reachoout.com"
               value={formData.btnLink}
               onChange={(e) => handleChange("btnLink", e.target.value)}
-            />
-          </div>
-
-          <Label>Images</Label>
-          <div className="flex flex-col md:gap-6 gap-6 w-full">
-            <MultipleImageInput
-              initialImages={formData.imgUrls}
-              onImageAdd={(imgUrl) => {
-                setFormData((prev) => ({
-                  ...prev,
-                  imgUrls: [...prev.imgUrls, imgUrl],
-                }));
-              }}
-              onImageRemove={(index) => {
-                setFormData((prev) => ({
-                  ...prev,
-                  imgUrls: prev.imgUrls.filter((_, i) => i !== index),
-                }));
-              }}
-            />
-            <h2 className="text-sm font-semibold text-center">OR</h2>
-            <ReqInput
-              className="w-full"
-              label="Video URL"
-              type="text"
-              placeholder="https://youtube.com/watch?v=******"
-              value={formData.vidUrl}
-              onChange={(e) => handleChange("vidUrl", e.target.value)}
             />
           </div>
         </div>

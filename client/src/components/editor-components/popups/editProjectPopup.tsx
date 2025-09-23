@@ -102,14 +102,19 @@ export const EditProjectPopup = ({
           </div>
 
           <div className="flex flex-col items-center md:gap-10 gap-6">
-            <ImageInput
-              initialImgUrl={formData.imgUrl}
-              className="w-full"
-              onImageUpload={(imgUrl) => {
-                handleChange("imgUrl", imgUrl);
-              }}
-              onImageRemove={() => handleChange("imgUrl", "")}
-            />
+            <div className="w-full">
+              <ImageInput
+                initialImgUrl={formData.imgUrl}
+                className="w-full"
+                onImageUpload={(imgUrl) => {
+                  handleChange("imgUrl", imgUrl);
+                }}
+                onImageRemove={() => handleChange("imgUrl", "")}
+              />
+              <p className="text-xs text-gray-700">
+                Best fit: 1:1 ratio (1500x1500 px)
+              </p>
+            </div>
 
             <h1 className="text-xs md:text-lg">OR</h1>
 

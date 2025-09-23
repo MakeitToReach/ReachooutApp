@@ -66,7 +66,7 @@ export function AddTeamMemberPopup({
         <div className="flex flex-col gap-3">
           <ReqInput
             type="text"
-            label="Member Name"
+            label="Name"
             placeholder="Enter name of the member"
             onChange={(e) => setMember({ ...member, name: e.target.value })}
           />
@@ -92,13 +92,18 @@ export function AddTeamMemberPopup({
           </div>
 
           <div className="space-x-2">
-            <ImageInput
-              className="w-full"
-              onImageUpload={(imgUrl) => {
-                setMember({ ...member, imgUrl: imgUrl });
-              }}
-              onImageRemove={() => setMember({ ...member, imgUrl: "" })}
-            />
+            <div className="w-full">
+              <ImageInput
+                className="w-full"
+                onImageUpload={(imgUrl) => {
+                  setMember({ ...member, imgUrl: imgUrl });
+                }}
+                onImageRemove={() => setMember({ ...member, imgUrl: "" })}
+              />
+              <p className="text-xs text-gray-700">
+                Best fit: 3:2 ratio (640x427 px)
+              </p>
+            </div>
 
             <div className="flex flex-col gap-2 mt-2">
               {member.socials.map((social, index) => (
@@ -130,7 +135,7 @@ export function AddTeamMemberPopup({
                 });
               }}
             >
-              Add member
+              Add
             </Button>
           </DialogClose>
         </DialogFooter>
@@ -213,14 +218,19 @@ export const EditTeamMemberPopup = ({
         </div>
 
         <div className="space-x-2">
-          <ImageInput
-            initialImgUrl={formData.imgUrl}
-            className="w-full"
-            onImageUpload={(imgUrl) => {
-              handleChange("imgUrl", imgUrl);
-            }}
-            onImageRemove={() => handleChange("imgUrl", "")}
-          />
+          <div className="w-full">
+            <ImageInput
+              initialImgUrl={formData.imgUrl}
+              className="w-full"
+              onImageUpload={(imgUrl) => {
+                handleChange("imgUrl", imgUrl);
+              }}
+              onImageRemove={() => handleChange("imgUrl", "")}
+            />
+            <p className="text-xs text-gray-700">
+              Best fit: 3:2 ratio (640x427 px)
+            </p>
+          </div>
         </div>
 
         <div className="flex flex-col gap-2">

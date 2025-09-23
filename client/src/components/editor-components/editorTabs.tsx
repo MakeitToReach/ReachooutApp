@@ -170,7 +170,7 @@ export const EditorTabs = ({
                             }
                           />
                           <p className="text-xs text-gray-700">
-                            {field.subtitle}
+                            {field.imgSubtitle}
                           </p>
                         </div>
 
@@ -196,6 +196,7 @@ export const EditorTabs = ({
 
                     {field.type === "image" && (
                       <div className="w-full">
+                        <Label>{field.label}</Label>
                         <ImageInput
                           onImageUpload={(imgUrl) => {
                             setSectionField(
@@ -209,7 +210,7 @@ export const EditorTabs = ({
                           }
                         />
                         <p className="text-xs text-gray-700">
-                          {field.subtitle}
+                          {field.imgSubtitle}
                         </p>
                       </div>
                     )}
@@ -251,7 +252,7 @@ export const EditorTabs = ({
                           }}
                         />
                         <p className="text-xs text-gray-700">
-                          {field.subtitle}
+                          {field.imgSubtitle}
                         </p>
                       </div>
                     )}
@@ -295,7 +296,7 @@ export const EditorTabs = ({
                             }}
                           />
                           <p className="text-xs text-gray-700">
-                            {field.subtitle}
+                            {field.imgSubtitle}
                           </p>
                         </div>
 

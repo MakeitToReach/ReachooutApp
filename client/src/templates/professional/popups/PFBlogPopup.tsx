@@ -39,6 +39,7 @@ export function PFAddBlogPopup({ children, onAdd }: PFAddBlogPopupProps) {
 
         <div className="flex flex-col gap-3">
           <ImageVideoInput
+            imgSubtitle="Best fit: 3:2 ratio (720x480 px)"
             initialImgUrl={blog.imgUrl}
             initialVideoUrl={blog.vidUrl}
             onImageUpload={(imgUrl) => {
@@ -163,6 +164,7 @@ export const PFEditBlogPopup = ({
             handleChange("vidUrl", vidUrl);
           }}
           className="w-full"
+          imgSubtitle="Best fit: 3:2 ratio (720x480 px)"
         />
         <div className="space-y-2">
           <ReqInput

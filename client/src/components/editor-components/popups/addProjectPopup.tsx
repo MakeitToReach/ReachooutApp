@@ -33,9 +33,7 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent
-        className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll"
-      >
+      <DialogContent className="sm:max-w-[40vw] font-Poppins max-h-[90vh] overflow-y-scroll">
         <DialogHeader>
           <DialogTitle className="md:text-2xl">Add Project</DialogTitle>
         </DialogHeader>
@@ -62,7 +60,9 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
             <Label>Description</Label>
             <TipTapEditor
               value={project.description}
-              onChange={(value) => setProject({ ...project, description: value })}
+              onChange={(value) =>
+                setProject({ ...project, description: value })
+              }
               placeholder="Description"
               height="h-36"
               showToolbar={true}
@@ -93,13 +93,18 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
           </div>
 
           <div className="flex flex-col items-center md:gap-10 gap-6">
-            <ImageInput
-              className="w-full"
-              onImageUpload={(imgUrl) => {
-                setProject({ ...project, imgUrl: imgUrl });
-              }}
-              onImageRemove={() => setProject({ ...project, imgUrl: "" })}
-            />
+            <div className="w-full">
+              <ImageInput
+                className="w-full"
+                onImageUpload={(imgUrl) => {
+                  setProject({ ...project, imgUrl: imgUrl });
+                }}
+                onImageRemove={() => setProject({ ...project, imgUrl: "" })}
+              />
+              <p className="text-xs text-gray-700">
+                Best fit: 1:1 ratio (1500x1500 px)
+              </p>
+            </div>
 
             <h1 className="text-xs md:text-lg">OR</h1>
 
@@ -108,7 +113,9 @@ export function AddProjectPopup({ children, onAdd }: AddProjectPopupProps) {
               label="Video URL"
               type="text"
               placeholder="https://youtub.com/watch?v=******"
-              onChange={(e) => setProject({ ...project, vidUrl: e.target.value })}
+              onChange={(e) =>
+                setProject({ ...project, vidUrl: e.target.value })
+              }
             />
           </div>
         </div>

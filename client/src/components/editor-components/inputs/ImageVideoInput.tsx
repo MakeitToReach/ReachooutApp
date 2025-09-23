@@ -11,6 +11,7 @@ interface ImageVideoInputProps {
   onImageRemove: () => void;
   onVideoUrlChange: (videoUrl: string) => void;
   className?: string;
+  imgSubtitle?: string;
 }
 
 export const ImageVideoInput = ({
@@ -20,6 +21,7 @@ export const ImageVideoInput = ({
   onImageRemove,
   onVideoUrlChange,
   className = "",
+  imgSubtitle,
 }: ImageVideoInputProps) => {
   const [videoUrl, setVideoUrl] = useState(initialVideoUrl);
 
@@ -33,12 +35,15 @@ export const ImageVideoInput = ({
     <div className={cn("space-y-2", className)}>
       <Label className="text-lg">Image or Video</Label>
       <div className="flex flex-col md:gap-6 gap-6 w-full">
-        <ImageInput
-          initialImgUrl={initialImgUrl}
-          className="w-full"
-          onImageUpload={onImageUpload}
-          onImageRemove={onImageRemove}
-        />
+        <div className="w-full">
+          <ImageInput
+            initialImgUrl={initialImgUrl}
+            className="w-full"
+            onImageUpload={onImageUpload}
+            onImageRemove={onImageRemove}
+          />
+          <p className="text-xs text-gray-700">{imgSubtitle}</p>
+        </div>
         <h2 className="text-sm font-semibold text-center">OR</h2>
         <ReqInput
           className="w-full"
@@ -51,4 +56,4 @@ export const ImageVideoInput = ({
       </div>
     </div>
   );
-}; 
+};
