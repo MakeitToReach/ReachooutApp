@@ -13,7 +13,7 @@ import YouTube from "react-youtube";
 
 function Home() {
   const isMobile = useIsMobile();
-  const demoVideoID = "C8DzImpVk8E";
+  const demoVideoID = "Oo0xlvVWxtk";
 
   const [token, setToken] = useState<string>("");
   const fadeIn = {
