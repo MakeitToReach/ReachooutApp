@@ -99,7 +99,7 @@ const ProjectPage = () => {
                       item.template.id
                     }`}
                     isPublished
-                    index={idx}
+                    // index={idx}
                     projectId={id}
                     slug={item.slug}
                     onDelete={(newTemplates: TemplateItem[]) => {

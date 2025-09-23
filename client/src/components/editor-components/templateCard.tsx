@@ -48,7 +48,6 @@ interface TemplateCardProps {
   onDelete?: (templates: TemplateItem[]) => void;
   showPreview?: boolean;
   templateId: string;
-  index?: number;
   projectId?: string;
   slug?: string;
   order?: number;
@@ -67,7 +66,6 @@ export const TemplateCard = ({
   showPreview,
   templateId,
   projectId,
-  index,
   slug,
   onDelete,
   expiresAt,
