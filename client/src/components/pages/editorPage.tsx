@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   ArrowUpDown,
-  BookOpen,
+  CircleQuestionMark,
   Home,
   LucideLoaderCircle,
   LucidePalette,
@@ -206,7 +206,7 @@ const EditorPage = () => {
                 </Link>
                 <Link href="https://reachoout.com/help" target="_blank">
                   <Button variant={"ghost"} className="cursor-pointer">
-                    <BookOpen className="size-6" role="button" />
+                    <CircleQuestionMark className="size-6" role="button" />
                   </Button>
                 </Link>
               </div>

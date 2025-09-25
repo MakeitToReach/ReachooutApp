@@ -2,7 +2,7 @@ import { usePortfolioStore } from "@/store/portfolio.store";
 import { Button } from "../ui/button";
 import {
   ArrowUpDown,
-  BookOpen,
+  CircleQuestionMark,
   Home,
   LucideEye,
   LucideLoaderCircle,
@@ -131,7 +131,7 @@ export const EditorPanel = ({
           </Link>
           <Link href="https://reachoout.com/help" target="_blank">
             <Button variant={"ghost"} className="cursor-pointer">
-              <BookOpen className="size-6" role="button" />
+              <CircleQuestionMark className="size-6" role="button" />
             </Button>
           </Link>
         </div>
