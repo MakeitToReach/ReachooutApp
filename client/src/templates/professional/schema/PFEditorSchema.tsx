@@ -22,7 +22,7 @@ export const PF_EDITOR_SCHEMA: GenericEditorFieldSchema = {
       fieldPath: "navbar-img",
       fieldPathVid: "textLogo",
       fieldPathImg: "logoUrl",
-      imgSubtitle: "Dimensions 64x64",
+      imgSubtitle: "Best: 2:1 OR 1:1 ratio (300x150 OR 512x512 px)",
     },
     {
       label: "QR Code URL",
