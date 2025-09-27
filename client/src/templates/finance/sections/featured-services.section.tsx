@@ -33,7 +33,6 @@ export const FFeaturedServicesSection = ({
                     ))}
                 </div>
             </div>
-            <Separator />
         </section>
     );
 };
