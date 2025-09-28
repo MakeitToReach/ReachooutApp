@@ -1,4 +1,3 @@
-import { Separator } from "@/components/ui/separator";
 import { FFeaturedServiceCard } from "../components/FfeaturedServiceCard";
 import { F_FEATURED_SERVICE_SECTION } from "../types/featured-services.types";
 import { motion } from "framer-motion";
