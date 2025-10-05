@@ -29,7 +29,7 @@ const EditorPage = () => {
   const params = useParams<{ slug: string }>();
   const slug = params?.slug;
   const {
-    // resetData,
+    resetData,
     data,
     setThemeObject,
     toggleHideSection,
@@ -86,6 +86,7 @@ const EditorPage = () => {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
       window.removeEventListener("popstate", handlePopState);
+      resetData(null);  
     };
   }, []);
 
