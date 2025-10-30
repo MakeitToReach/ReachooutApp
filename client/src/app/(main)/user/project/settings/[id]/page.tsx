@@ -45,7 +45,7 @@ const ProjectSettingsPage = () => {
     description: "A professional portfolio showcasing my work and experience",
     subDomain: "my-portfolio",
     customDomain: "",
-    faviconUrl: "/favicon.ico",
+    faviconUrl: "",
   });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -123,7 +123,10 @@ const ProjectSettingsPage = () => {
   useEffect(() => {
     const fetchProject = async () => {
       const project = await getProjectById(id);
-      setSettings(project);
+      setSettings({
+        ...project,
+        faviconUrl: project.faviconUrl || "/favicon.ico",
+      });
 
       if (project.templates && project.templates.length > 0) {
         setTemplates(project.templates);
@@ -151,6 +154,13 @@ const ProjectSettingsPage = () => {
         await updateSubdomain(settings.subDomain, id as string);
       } else if (section === "favicon") {
         await updateProjectFavicon(id as string, settings.faviconUrl);
+        const updated = await getProjectById(id);
+        setSettings({
+          ...updated,
+          faviconUrl: updated.faviconUrl || "/favicon.ico",
+        });
+
+        toast.success("Favicon updated!");
       } else if (section === "basic") {
         await updateProjectMetaData(
           id as string,
