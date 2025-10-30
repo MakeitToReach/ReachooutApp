@@ -123,10 +123,7 @@ const ProjectSettingsPage = () => {
   useEffect(() => {
     const fetchProject = async () => {
       const project = await getProjectById(id);
-      setSettings({
-        ...project,
-        faviconUrl: project.faviconUrl || "/favicon.ico",
-      });
+      setSettings(project);
 
       if (project.templates && project.templates.length > 0) {
         setTemplates(project.templates);
@@ -403,7 +400,13 @@ const ProjectSettingsPage = () => {
             <div className="space-y-2">
               <Label htmlFor="favicon">Project Favicon</Label>
               <ImageInput
-                initialImgUrl={settings.faviconUrl}
+                key={settings.faviconUrl}
+                initialImgUrl={
+                  settings.faviconUrl && settings.faviconUrl.trim() !== ""
+                    ? settings.faviconUrl
+                    : "/favicon.ico"
+                }
+                // initialImgUrl={settings.faviconUrl}
                 className="w-full"
                 onImageUpload={(imgUrl) => {
                   setSettings({ ...settings, faviconUrl: imgUrl });
