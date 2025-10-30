@@ -15,5 +15,6 @@ export interface TemplateItem {
     name: string;
     subDomain: string;
     customDomain: string | null;
+    description: string | null;
   };
 }

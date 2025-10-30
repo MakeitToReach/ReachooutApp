@@ -370,6 +370,7 @@ export const getProjectByCustomDomain = async (req: Request, res: Response) => {
       id: project.id,
       name: project.name,
       subDomain: project.subDomain,
+      description: project.description,
       customDomain: project.customDomain,
       faviconUrl: project.faviconUrl,
       user: project.user,
@@ -734,7 +735,7 @@ export const updateTemplateSEO = async (
     {
       projectId: string;
       templateId: string;
-      createdAt: string; 
+      createdAt: string;
       slug: string;
       seoTitle: string;
       seoDescription: string;
@@ -785,7 +786,7 @@ export const updateTemplateSEO = async (
         NOT: {
           projectId,
           templateId,
-          createdAt: new Date(createdAt), 
+          createdAt: new Date(createdAt),
         },
       },
     });
