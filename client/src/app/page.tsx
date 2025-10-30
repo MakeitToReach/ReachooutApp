@@ -50,7 +50,7 @@ export async function generateMetadata(): Promise<Metadata> {
         console.log("faviconURL", project);
         return {
           title: project.name,
-          description: `${project.name}'s Reachoout Portfolio`,
+          description: project.description,
           icons: project.faviconUrl
             ? [{ rel: "icon", url: project.faviconUrl }]
             : undefined,
@@ -69,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
       const project = await fetchProjectByCustomDomain(hostname);
       return {
         title: project.name,
-        description: `${project.name}'s Reachoout Portfolio`,
+        description: project.description,
         icons: project.faviconUrl
           ? [{ rel: "icon", url: project.faviconUrl }]
           : undefined,
