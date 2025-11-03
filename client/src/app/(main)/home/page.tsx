@@ -27,10 +27,7 @@ function Home() {
       <Navbar />
 
       <main className="flex-grow flex items-center justify-center px-4">
-        <m.div
-          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+        <div
           className="w-full max-w-md bg-white/10 backdrop-blur-md p-10 rounded-2xl shadow-2xl border border-white/10"
         >
           <h1 className="text-3xl font-semibold mb-2 font-Montserrat text-left">
@@ -49,7 +46,7 @@ function Home() {
             <IconBrandGoogleFilled size={18} className="text-black/70" />
             Continue with Google
           </Button>
-        </m.div>
+        </div>
       </main>
 
       <footer className="container mx-auto px-6 py-12 border-t border-white/10">
